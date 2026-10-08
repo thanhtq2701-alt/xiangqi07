@@ -13,3 +13,7 @@ No paid APIs, external puzzle scraping, public deployment, real-user results or 
 ## 8 October 2026 — whole-folder inventory
 
 Rechecked the parent App cờ tướng folder, including General, 10-07, 10-08, Failing and ignored local files. Added a Vietnamese project memory, generated file/ZIP/Word/Python inventory, privacy-preserving database counts, duplicate hashes, an HTML companion and a standard-library update script with snapshot comparison. Inspected both Failing screenshots: browser extension import errors, not demonstrated game bugs. Original materials and runtime application code were not changed. Git has no remote configured. Test recheck evidence is recorded separately in inventory/VERIFICATION_VI.md; generated inventory does not imply tests were rerun.
+
+## 8 October 2026 — detailed UI architecture and rules questionnaire
+
+Created a separate owner questionnaire with 272 uniquely identified questions across 34 groups and 20 priority questions. Covers per-page UI, design details, responsive states, information and software architecture, API contracts, content editing, core and tournament rules, test fixtures and acceptance. Includes three schematic layout options, page/API/rule response templates and explicit reconciliation with existing V4. Existing V4 and application code remain unchanged. Saved DOCX structure and question IDs verified; packaged renderer fails because bundled LibreOffice is unavailable, so page layout is not visually certified.

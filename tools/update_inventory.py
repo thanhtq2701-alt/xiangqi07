@@ -37,6 +37,7 @@ def role(path):
     if name == 'Answer V3.docx': return 'Ý định sản phẩm và câu trả lời chủ dự án V3'
     if name == 'Codex.docx': return 'Hướng dẫn thực thi đầu vào'
     if name == 'V3.docx': return 'Bộ câu hỏi khám phá V3 cũ'
+    if name == 'Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx': return '272 câu bổ sung V4 về từng trang UI UX kiến trúc API và luật; chờ trả lời'
     if 'V4_' in name: return 'Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt'
     if rel.startswith('Failing/'): return 'Ảnh lỗi nhập tiện ích trình duyệt; đã xem ngày 08/10/2026'
     if '/var/' in rel: return 'Dữ liệu local; không đưa nội dung riêng tư vào báo cáo'

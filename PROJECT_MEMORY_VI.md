@@ -107,6 +107,8 @@ Thứ tự đọc đề nghị: sổ tay này → README → chạy demo → KNO
 
 ## 8. Cái gì còn thiếu và nên làm tiếp
 
+Bổ sung ngày 08/10/2026: `deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx` có 272 câu trong 34 nhóm, 20 câu ưu tiên, mã UX01.01–UX34.08. Trả lời cùng Word V4 cũ, kèm ảnh/bản vẽ theo mã trang P01–P16 và case luật theo mã LUAT001. Nguồn nội dung ở `docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md`; generator là `tools/create_v4_ui_supplement.py`. Đây là bộ thu thập yêu cầu, chưa phải thiết kế UI mới hoặc luật đã triển khai.
+
 1. Trả lời 12 câu P0 trong V4; xác định người học mục tiêu, mục tiêu pilot, engine/luật, quyền dữ liệu và tiêu chí chấp nhận. Trả lời các nhóm UI/UX/API còn lại theo mẫu; chưa quyết định có thể ghi “dùng mặc định đề xuất”.
 2. Chuẩn bị một nhóm nhỏ thế cờ có quyền sử dụng: FEN, bên đi, lời giải chấp nhận, biến giải thích, mức người học và nguồn. Nhờ người hiểu cờ duyệt; đối chiếu engine mạnh trước khi đưa ra tuyên bố độ chính xác.
 3. Kiểm thử bằng một ván của chính bạn; ghi màn hình/bước tái hiện lỗi và kỳ vọng. Hai ảnh lỗi extension hiện có không đủ để sửa lỗi gameplay.

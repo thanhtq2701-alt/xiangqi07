@@ -89,6 +89,7 @@
 </table>
 <p>Thứ tự đọc đề nghị: sổ tay này → README → chạy demo → KNOWN_LIMITATIONS → 12 câu P0 trong Word V4 → báo cáo triển khai → hướng dẫn học code. Bạn chưa cần nghiên cứu ML sâu hoặc đăng ký dịch vụ cloud để kiểm tra prototype.</p>
 <h2>8. Cái gì còn thiếu và nên làm tiếp</h2>
+<p>Bổ sung ngày 08/10/2026: <code>deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx</code> có 272 câu trong 34 nhóm, 20 câu ưu tiên, mã UX01.01–UX34.08. Trả lời cùng Word V4 cũ, kèm ảnh/bản vẽ theo mã trang P01–P16 và case luật theo mã LUAT001. Nguồn nội dung ở <code>docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md</code>; generator là <code>tools/create_v4_ui_supplement.py</code>. Đây là bộ thu thập yêu cầu, chưa phải thiết kế UI mới hoặc luật đã triển khai.</p>
 <p>1. Trả lời 12 câu P0 trong V4; xác định người học mục tiêu, mục tiêu pilot, engine/luật, quyền dữ liệu và tiêu chí chấp nhận. Trả lời các nhóm UI/UX/API còn lại theo mẫu; chưa quyết định có thể ghi “dùng mặc định đề xuất”.</p>
 <p>2. Chuẩn bị một nhóm nhỏ thế cờ có quyền sử dụng: FEN, bên đi, lời giải chấp nhận, biến giải thích, mức người học và nguồn. Nhờ người hiểu cờ duyệt; đối chiếu engine mạnh trước khi đưa ra tuyên bố độ chính xác.</p>
 <p>3. Kiểm thử bằng một ván của chính bạn; ghi màn hình/bước tái hiện lỗi và kỳ vọng. Hai ảnh lỗi extension hiện có không đủ để sửa lỗi gameplay.</p>
@@ -110,30 +111,31 @@
 <p>- Bản HTML là tài liệu có thể mở bằng trình duyệt; sổ tay Markdown và manifest JSON là nguồn có thể theo dõi qua Git. Không tạo bản Word mới trong đợt này. Word V4 đã có vẫn giữ nguyên; chưa có xác minh bố cục Word bằng renderer vì môi trường trước đó thiếu LibreOffice.</p>
 <p>Khi code đổi, chạy lại kiểm tra cần thiết và cập nhật file này. Lệnh kiểm kê không tự chạy test và không tự làm mới bằng chứng ở đây.</p>
 <h1>Danh mục toàn bộ thư mục App cờ tướng</h1>
-<p>Lần quét: 2026-10-08T17:15:39+07:00.</p>
+<p>Lần quét: 2026-10-08T22:36:50+07:00.</p>
 <p>Phạm vi: <code>E:\ThanhTQ\App cờ tướng</code>; gồm mọi file thường/ẩn ngoài .git, kể cả cache và file bị Git bỏ qua. Không đi theo thư mục symlink.</p>
-<p>Commit nền: <code>e66c6c060ef71e52db3b5f944a1cad4c5ecca9b3</code>; nhánh <code>codex-full</code>. Metadata Git nội bộ: 89 file, 187326 byte, chỉ thống kê tổng; không chép nội dung cấu hình/log/object.</p>
+<p>Commit nền: <code>3e64935bfbb486b73fd6b6fc73e4e6b71bc30238</code>; nhánh <code>codex-full</code>. Metadata Git nội bộ: 106 file, 235219 byte, chỉ thống kê tổng; không chép nội dung cấu hình/log/object.</p>
 <p>Các báo cáo tự sinh được liệt kê nhưng không hash/kích thước chính chúng để tránh tự tham chiếu. Không chép nội dung database, cookie hoặc secrets. Đây là metadata kiểm kê, không tự xác minh chức năng.</p>
-<p>Tổng file ngoài .git: **121**. Trạng thái: Ngoài repo: 26, Tracked: 49, Ignored: 40, Chưa tracked: 6.</p>
+<p>Tổng file ngoài .git: **124**. Trạng thái: Ngoài repo: 25, Tracked: 55, Ignored: 40, Chưa tracked: 4.</p>
 <h2>Các thư mục cấp đầu</h2>
 <table>
 <tr><td>Nhóm</td><td>Số file</td></tr>
 <tr><td>10-07</td><td>19</td></tr>
-<tr><td>10-08</td><td>2</td></tr>
+<tr><td>10-08</td><td>1</td></tr>
 <tr><td>Failing</td><td>2</td></tr>
 <tr><td>General</td><td>2</td></tr>
-<tr><td>xiangqi-ai</td><td>95</td></tr>
+<tr><td>xiangqi-ai</td><td>99</td></tr>
 <tr><td>~$swer to Master Question.docx</td><td>1</td></tr>
 </table>
 <h2>Lịch sử Git hiện có</h2>
+<p>3e64935 — 2026-10-08T17:21:35+07:00 — docs: inventory complete project folder with maintainable Vietnamese project memory</p>
 <p>e66c6c0 — 2026-10-08T16:41:06+07:00 — docs: add runnable handoff and Vietnamese V4 product questionnaire</p>
 <p>6cd4f79 — 2026-10-08T12:40:44+07:00 — feat: implement local Xiangqi learning loop with rules and persistence</p>
 <p>Remote: Chưa có remote; chưa có bằng chứng backup lên GitHub.</p>
 <h2>Thay đổi so với lần kiểm kê trước</h2>
-<p>Baseline trước: 2026-10-08T17:03:01+07:00.</p>
-<p>Thêm: xiangqi-ai/PROJECT_INVENTORY_VI.md; xiangqi-ai/deliverables/Co_Chill_So_tay_hien_trang.html; xiangqi-ai/inventory/VERIFICATION_VI.md; xiangqi-ai/inventory/manifest.json; xiangqi-ai/tools/__pycache__/update_inventory.cpython-314.pyc</p>
-<p>Xóa/di chuyển khỏi đường dẫn: Không có</p>
-<p>Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/README.md</p>
+<p>Baseline trước: 2026-10-08T17:15:39+07:00.</p>
+<p>Thêm: xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx; xiangqi-ai/deliverables/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx; xiangqi-ai/docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md; xiangqi-ai/tools/create_v4_ui_supplement.py</p>
+<p>Xóa/di chuyển khỏi đường dẫn: 10-08/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx</p>
+<p>Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/PROJECT_MEMORY_VI.md; xiangqi-ai/README.md; xiangqi-ai/tools/update_inventory.py</p>
 <h2>Danh sách từng file</h2>
 <p>Đường dẫn tương đối với App cờ tướng. Hash đầy đủ và thời gian sửa nằm trong inventory/manifest.json.</p>
 <table>
@@ -158,7 +160,6 @@
 <tr><td>10-07/XiangqiAI_V3_Final_Pack/17_ACTION_ITEMS_BEFORE_CODE.md</td><td>977</td><td>Ngoài repo</td><td>Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai</td></tr>
 <tr><td>10-07/XiangqiAI_V3_Final_Pack/manifest.json</td><td>659</td><td>Ngoài repo</td><td>Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai</td></tr>
 <tr><td>10-08/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx</td><td>56440</td><td>Ngoài repo</td><td>Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt</td></tr>
-<tr><td>10-08/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx</td><td>162</td><td>Ngoài repo</td><td>File khóa Word; không phải nội dung tài liệu</td></tr>
 <tr><td>Failing/10-08/1.png</td><td>50738</td><td>Ngoài repo</td><td>Ảnh lỗi nhập tiện ích trình duyệt; đã xem ngày 08/10/2026</td></tr>
 <tr><td>Failing/10-08/22.png</td><td>47141</td><td>Ngoài repo</td><td>Ảnh lỗi nhập tiện ích trình duyệt; đã xem ngày 08/10/2026</td></tr>
 <tr><td>General/Answer V3.docx</td><td>104658</td><td>Ngoài repo</td><td>Ý định sản phẩm và câu trả lời chủ dự án V3</td></tr>
@@ -169,13 +170,13 @@
 <tr><td>xiangqi-ai/Answer V3.docx</td><td>104658</td><td>Ignored</td><td>Ý định sản phẩm và câu trả lời chủ dự án V3</td></tr>
 <tr><td>xiangqi-ai/BEGINNER_LEARNING_GUIDE_CODEX.md</td><td>4036</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/Codex.docx</td><td>44289</td><td>Ignored</td><td>Hướng dẫn thực thi đầu vào</td></tr>
-<tr><td>xiangqi-ai/DEVELOPMENT_JOURNAL.md</td><td>1961</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
+<tr><td>xiangqi-ai/DEVELOPMENT_JOURNAL.md</td><td>2668</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/IMPLEMENTATION_REPORT_CODEX.md</td><td>10281</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/KNOWN_LIMITATIONS.md</td><td>3111</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/PRIVACY.md</td><td>1406</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
-<tr><td>xiangqi-ai/PROJECT_INVENTORY_VI.md</td><td>Tự sinh</td><td>Chưa tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
-<tr><td>xiangqi-ai/PROJECT_MEMORY_VI.md</td><td>14444</td><td>Chưa tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
-<tr><td>xiangqi-ai/README.md</td><td>4791</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
+<tr><td>xiangqi-ai/PROJECT_INVENTORY_VI.md</td><td>Tự sinh</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
+<tr><td>xiangqi-ai/PROJECT_MEMORY_VI.md</td><td>14939</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
+<tr><td>xiangqi-ai/README.md</td><td>5002</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/RUN_AND_DEMO_CODEX.md</td><td>2279</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/TEST_REPORT_CODEX.md</td><td>3321</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
 <tr><td>xiangqi-ai/THIRD_PARTY_NOTICES.md</td><td>1889</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
@@ -197,8 +198,11 @@
 <tr><td>xiangqi-ai/app/storage.py</td><td>2189</td><td>Tracked</td><td>Logic backend; xem vai trò chi tiết trong sổ tay</td></tr>
 <tr><td>xiangqi-ai/artifacts/co-chill-home.png</td><td>31274</td><td>Ignored</td><td>Ảnh/bằng chứng kiểm tra cục bộ</td></tr>
 <tr><td>xiangqi-ai/data/sources.csv</td><td>599</td><td>Tracked</td><td>Sổ nguồn dữ liệu và quyền sử dụng</td></tr>
-<tr><td>xiangqi-ai/deliverables/Co_Chill_So_tay_hien_trang.html</td><td>Tự sinh</td><td>Chưa tracked</td><td>File cấu hình hoặc tài nguyên; xem đường dẫn</td></tr>
+<tr><td>xiangqi-ai/deliverables/Co_Chill_So_tay_hien_trang.html</td><td>Tự sinh</td><td>Tracked</td><td>File cấu hình hoặc tài nguyên; xem đường dẫn</td></tr>
+<tr><td>xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx</td><td>60402</td><td>Chưa tracked</td><td>272 câu bổ sung V4 về từng trang UI UX kiến trúc API và luật; chờ trả lời</td></tr>
 <tr><td>xiangqi-ai/deliverables/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx</td><td>56440</td><td>Tracked</td><td>Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt</td></tr>
+<tr><td>xiangqi-ai/deliverables/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx</td><td>162</td><td>Chưa tracked</td><td>File khóa Word; không phải nội dung tài liệu</td></tr>
+<tr><td>xiangqi-ai/docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md</td><td>56604</td><td>Chưa tracked</td><td>Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt</td></tr>
 <tr><td>xiangqi-ai/docs/materials/00_START_HERE.md</td><td>1262</td><td>Ignored</td><td>Bản trích xuất/giải nén đầu vào, ngoài Git</td></tr>
 <tr><td>xiangqi-ai/docs/materials/01_PRODUCT_SPEC.md</td><td>2201</td><td>Ignored</td><td>Bản trích xuất/giải nén đầu vào, ngoài Git</td></tr>
 <tr><td>xiangqi-ai/docs/materials/02_FEEDBACK_AND_CORRECTIONS.md</td><td>2626</td><td>Ignored</td><td>Bản trích xuất/giải nén đầu vào, ngoài Git</td></tr>
@@ -239,8 +243,8 @@
 <tr><td>xiangqi-ai/docs/spec/15_PARALLEL_COMPARISON_SCORECARD.md</td><td>554</td><td>Tracked</td><td>Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai</td></tr>
 <tr><td>xiangqi-ai/docs/spec/16_FUTURE_FEATURE_BACKLOG.md</td><td>745</td><td>Tracked</td><td>Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai</td></tr>
 <tr><td>xiangqi-ai/docs/spec/17_ACTION_ITEMS_BEFORE_CODE.md</td><td>977</td><td>Tracked</td><td>Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai</td></tr>
-<tr><td>xiangqi-ai/inventory/VERIFICATION_VI.md</td><td>1988</td><td>Chưa tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
-<tr><td>xiangqi-ai/inventory/manifest.json</td><td>Tự sinh</td><td>Chưa tracked</td><td>File cấu hình hoặc tài nguyên; xem đường dẫn</td></tr>
+<tr><td>xiangqi-ai/inventory/VERIFICATION_VI.md</td><td>1988</td><td>Tracked</td><td>Tài liệu/quy tắc dự án</td></tr>
+<tr><td>xiangqi-ai/inventory/manifest.json</td><td>Tự sinh</td><td>Tracked</td><td>File cấu hình hoặc tài nguyên; xem đường dẫn</td></tr>
 <tr><td>xiangqi-ai/server.py</td><td>6732</td><td>Tracked</td><td>Điểm khởi động HTTP server local</td></tr>
 <tr><td>xiangqi-ai/tests/__init__.py</td><td>0</td><td>Tracked</td><td>Đánh dấu package tests</td></tr>
 <tr><td>xiangqi-ai/tests/__pycache__/__init__.cpython-314.pyc</td><td>159</td><td>Ignored</td><td>Cache Python tái tạo được</td></tr>
@@ -252,7 +256,8 @@
 <tr><td>xiangqi-ai/tests/test_rules.py</td><td>6421</td><td>Tracked</td><td>Kiểm thử tự động</td></tr>
 <tr><td>xiangqi-ai/tools/__pycache__/update_inventory.cpython-314.pyc</td><td>23821</td><td>Ignored</td><td>Cache Python tái tạo được</td></tr>
 <tr><td>xiangqi-ai/tools/create_v4_document.py</td><td>45967</td><td>Tracked</td><td>Công cụ tạo tài liệu/kiểm kê</td></tr>
-<tr><td>xiangqi-ai/tools/update_inventory.py</td><td>13936</td><td>Chưa tracked</td><td>Công cụ tạo tài liệu/kiểm kê</td></tr>
+<tr><td>xiangqi-ai/tools/create_v4_ui_supplement.py</td><td>4790</td><td>Chưa tracked</td><td>Công cụ tạo tài liệu/kiểm kê</td></tr>
+<tr><td>xiangqi-ai/tools/update_inventory.py</td><td>14102</td><td>Tracked</td><td>Công cụ tạo tài liệu/kiểm kê</td></tr>
 <tr><td>xiangqi-ai/var/chill.sqlite3</td><td>32768</td><td>Ignored</td><td>Dữ liệu local; không đưa nội dung riêng tư vào báo cáo</td></tr>
 <tr><td>xiangqi-ai/web/app.js</td><td>32082</td><td>Tracked</td><td>Giao diện trình duyệt</td></tr>
 <tr><td>xiangqi-ai/web/favicon.svg</td><td>279</td><td>Tracked</td><td>Giao diện trình duyệt</td></tr>
@@ -315,6 +320,7 @@
 <tr><td>General/V3.docx</td><td>4683</td><td>102047</td></tr>
 <tr><td>xiangqi-ai/Answer V3.docx</td><td>1431</td><td>113541</td></tr>
 <tr><td>xiangqi-ai/Codex.docx</td><td>141</td><td>14328</td></tr>
+<tr><td>xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx</td><td>1001</td><td>47031</td></tr>
 <tr><td>xiangqi-ai/deliverables/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx</td><td>547</td><td>33056</td></tr>
 </table>
 <h2>Thành phần Python cấp module</h2>
@@ -333,6 +339,7 @@
 <tr><td>tests/test_learning.py</td><td>EngineTests, ScheduleTests, ServiceTests</td></tr>
 <tr><td>tests/test_rules.py</td><td>setup, RulesTests</td></tr>
 <tr><td>tools/create_v4_document.py</td><td>p, h, page, bullet, answer, table</td></tr>
+<tr><td>tools/create_v4_ui_supplement.py</td><td>build</td></tr>
 <tr><td>tools/update_inventory.py</td><td>git, digest, role, render_markdown, main</td></tr>
 </table>
 <h2>Database tại lúc quét</h2>

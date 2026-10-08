@@ -47,6 +47,8 @@ HTTP tests mở server tạm trên loopback. Nếu chạy trong sandbox chặn s
 
 ## Cấu trúc và tài liệu
 
+- [Word bổ sung V4 về UI UX kiến trúc và luật](deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx): 272 câu riêng để trả lời cùng V4 cũ, kèm mẫu bản vẽ, API và case luật.
+
 - [Sổ tay hiện trạng toàn dự án](PROJECT_MEMORY_VI.md), [danh mục từng file](PROJECT_INVENTORY_VI.md), [bản HTML tổng hợp dễ đọc](deliverables/Co_Chill_So_tay_hien_trang.html).
 - Cập nhật kiểm kê toàn thư mục **App cờ tướng** bằng `python tools/update_inventory.py`; cập nhật diễn giải trong `PROJECT_MEMORY_VI.md` khi tính năng thay đổi. Snapshot ghi commit nền tại lúc quét; xem hướng dẫn commit trong sổ tay.
 
