@@ -47,6 +47,9 @@ HTTP tests mở server tạm trên loopback. Nếu chạy trong sandbox chặn s
 
 ## Cấu trúc và tài liệu
 
+- [Sổ tay hiện trạng toàn dự án](PROJECT_MEMORY_VI.md), [danh mục từng file](PROJECT_INVENTORY_VI.md), [bản HTML tổng hợp dễ đọc](deliverables/Co_Chill_So_tay_hien_trang.html).
+- Cập nhật kiểm kê toàn thư mục **App cờ tướng** bằng `python tools/update_inventory.py`; cập nhật diễn giải trong `PROJECT_MEMORY_VI.md` khi tính năng thay đổi. Snapshot ghi commit nền tại lúc quét; xem hướng dẫn commit trong sổ tay.
+
 - `app/rules.py`: luật và FEN; `engine.py`: search adapter; `learning.py`: lời giải và lịch ôn.
 - `app/service.py`: hành trình học; `storage.py`: SQLite; `puzzles.py`: fixture tổng hợp.
 - `server.py`: HTTP local; `web/`: giao diện; `tests/`: unit, service và HTTP.
