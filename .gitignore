@@ -8,5 +8,6 @@ var/
 artifacts/
 docs/materials/
 *.docx
+!deliverables/*.docx
 *.zip
 node_modules/

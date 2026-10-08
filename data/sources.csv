@@ -1,0 +1,3 @@
+source_id,title,url,author,source_type,license,permission_status,commercial_allowed,redistribution_allowed,attribution,date_checked,notes
+synthetic-codex-v1,Twelve original synthetic fixtures,,Codex for owner,synthetic,Project license not selected,Created in this task,undecided,undecided,AI-assisted fixtures,2026-10-08,Legality and local depth-2 verified; human review pending
+owner-spec-v3,Final Pack and original answers,,Tran Quoc Thanh,requirements,Owner-provided,Provided for implementation,not_applicable,not_assumed,Owner product intent,2026-10-08,Raw discovery materials excluded from Git

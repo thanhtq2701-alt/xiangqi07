@@ -1,0 +1,15 @@
+# Known limitations
+
+1. Local search depth is at most 2 plies (one move and one response). Its material-oriented estimates can miss long tactics, sacrifices, strategic factors and horizon effects. Timeout may leave depth 0/1, explicitly reported. No Pikafish binary or NNUE is installed or distributed.
+2. Movement legality is tested, but tournament adjudication is incomplete: no formal perpetual check/chase, no official move-limit draw or arbiter policy. Threefold repetition stops the demonstration game with a disclosed demo rule. FEN structural validity does not prove historical reachability.
+3. Twelve synthetic exercises cover only four elementary themes. Their solutions are checked against the local engine, not an independent strong engine or human gold set. Engine tests sharing the same rules are not independent proof of full correctness.
+4. Explanations are deterministic Vietnamese templates. They include legal candidate lines but do not deeply diagnose a learner's strategic intent. Free-text reflection is stored without automated semantic grading. No LLM, trained ML, RAG or personalized coaching model.
+5. Review covers up to the latest 24 Red moves. Bot plays Black. No Black learner review, clocks, online PvP, undo negotiation, PGN/Vietnamese notation import, review tree or evaluation timeline UI.
+6. No real placement test or progression across difficulty levels. Mastery values are bounded practice scores initialized at 50 upon first evidence, not proven competence or Elo. Unseen means an unexposed authored family, not guaranteed cognitive novelty; themes remain very simple.
+7. Spaced repetition uses 1/2/7/14/30 day rules. No reminder delivery, retention model, scientific efficacy validation or calendar integration. Current bank exhaustion is labeled and repeats honestly.
+8. SQLite guest persistence is local, unencrypted and tied to a browser cookie. No OAuth, multi-device sync, user recovery, production migrations, backup automation or production auth. Local database file access is outside guest API isolation.
+9. Development HTTP server binds loopback only. No public hosting, production ASGI stack, distributed jobs, abuse quotas, production TLS, 100-concurrent-user validation or service-level guarantees. Review requests serialize SQLite writes and can take up to about 48 seconds for 24 uncached positions.
+10. UI has responsive layouts, accessible names and focus outlines but has not undergone a full WCAG audit, screen-reader user testing or wide device/browser compatibility testing. Navigation resets unsaved reflection drafts; users should submit before leaving. No drag and drop or keyboard arrow-grid navigation.
+11. Feedback saves locally and is available in export, not delivered to the project owner. No pilot results, improvement claims or research conclusions exist.
+
+Highest-value next step: owner-review a small diverse gold set with exact FEN, acceptable alternatives, deeper-engine checks, WHAT/WHY/HOW, learner level and source permission. Then replace the shallow engine through the existing adapter before expanding claims or public deployment.
