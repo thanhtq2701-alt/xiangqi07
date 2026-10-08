@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+.env.*
+!.env.example
+var/
+artifacts/
+docs/materials/
+*.docx
+*.zip
+node_modules/

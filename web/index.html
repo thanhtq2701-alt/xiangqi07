@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cờ Chill · Học từ từng nước đi</title>
+  <link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <a href="#home" class="brand"><span class="brand-piece">車</span><span>Cờ Chill<small>CHƠI · HIỂU · TIẾN BỘ</small></span></a>
+    <div class="nav-label">KHÔNG GIAN CỦA BẠN</div>
+    <nav aria-label="Điều hướng chính">
+      <button data-nav="home" class="active"><span>◈</span> Góc học tập</button>
+      <button data-nav="play"><span>▦</span> Chơi cờ</button>
+      <button data-nav="practice"><span>◎</span> Luyện tư duy</button>
+      <button data-nav="dashboard"><span>▥</span> Tiến bộ của tôi</button>
+      <button data-nav="lessons"><span>▤</span> Sổ tay cờ tướng</button>
+    </nav>
+    <div class="sidebar-note"><span class="small-star">✧</span><p>Một ván cờ.<br>Một điều hiểu thêm.</p><small>Không cần chơi thật nhiều.<br>Hãy học từ nước vừa đi.</small></div>
+    <button class="guest" data-nav="settings"><span class="avatar">B</span><span>Người học · Khách<small>Lưu trên máy của bạn</small></span><span>⚙</span></button>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span id="breadcrumb">Góc học tập</span><div><span class="status-dot"></span> Bản thử nghiệm cục bộ <span class="version">V0.1</span></div></header>
+    <main id="main"></main>
+    <footer>Được xây từ tình yêu cờ tướng. <span>Luật xác định nước đi · Công cụ tìm kiếm cục bộ · Lời giải theo mẫu</span></footer>
+  </div>
+  <div id="toast" role="status" aria-live="polite" hidden></div>
+  <div id="busy" role="status" aria-live="polite" hidden><span class="spinner"></span><span id="busy-label">Đang xử lý…</span></div>
+</body>
+</html>
