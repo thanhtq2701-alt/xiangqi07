@@ -1,5 +1,13 @@
 # Implementation report
 
+## Update 9 October 2026
+
+Added server-owned reflection drafts (`POST /api/draft`), pending learning summaries in dashboard, home resume entry, hash-based reload recovery, Vietnamese piece labels, keyboard board navigation, responsive/readability polish and clearer request/error handling. Files changed: app/service.py, web/app.js, web/index.html, web/style.css, tests/test_learning.py, tests/test_http.py and handoff documentation. JSON storage avoids a migration; drafts stay private to the guest, export/delete with other records, do not open answers or score, and cannot overwrite submitted reflections.
+
+Verified 72 tests (64.517s), Python compileall, Node --check, browser draft/reload/full learning flow and a 390×844 layout. No new build system, external engine, LLM, dataset or paid service. Engine and scoring remain the original prototype. Drafts lack durable offline support and multi-tab conflict resolution; full browser history routing and screen-reader audit remain outstanding. Run command stays `python server.py --port 8765`.
+
+Research and complete change report: RESEARCH_AND_IMPROVEMENTS_2026_10_09.md, with official sources for 11 inspected services and 3 inaccessible targets. No owner answers from the new V4 questionnaire were used. Earlier evidence below describes the initial implementation.
+
 ## Outcome and evidence
 
 Built a working Vietnamese-first local Xiangqi learning prototype from an empty application baseline. The complete loop was exercised in the browser: load synthetic game, open critical moment, answer three reflection questions, reveal grounded analysis, retry a2a7, receive a different related exercise, solve h2h7, record both attempts, schedule a 14-day review, view progress and reload with persistence intact. These are QA records, not real learner-impact results.

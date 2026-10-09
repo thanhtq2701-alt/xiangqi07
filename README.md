@@ -24,6 +24,9 @@ Mở **http://127.0.0.1:8765/**. Giữ cửa sổ terminal đang chạy. Dừng 
 
 ## Thực sự có gì
 
+- Cập nhật 09/10: tự lưu nháp suy nghĩ, tiếp tục bài đang dở, khôi phục bài/ván khi reload, chữ quân tiếng Việt tùy chọn và bàn phím mũi tên/Enter/Esc. Nháp chưa mở đáp án hoặc tính điểm. Đợi thông báo đã lưu trước khi đóng trang.
+- [Báo cáo khảo sát website và cải tiến](RESEARCH_AND_IMPROVEMENTS_2026_10_09.md): nguồn tham khảo, việc đã làm, 72 test và giới hạn còn lại.
+
 - Luật cả 7 quân, cản chân Mã, cản mắt Tượng, ngòi Pháo, cung, sông, lộ Tướng; chiếu hết và hết nước là thua.
 - Máy cục bộ, hai người cùng máy; lưu biên bản, nhập FEN và nước tọa độ.
 - Xem tối đa 24 nước Đỏ gần nhất, chọn tối đa 3 điểm đáng học; không gán mọi ván là có sai lầm.

@@ -8,6 +8,83 @@ const state = {page:'home', game:null, exercise:null, moments:[], selected:null,
 const sq = i => String.fromCharCode(97 + i % 9) + (9 - Math.floor(i / 9));
 const date = value => value ? new Date(value).toLocaleDateString('vi-VN', {day:'numeric',month:'numeric',year:'numeric'}) : '—';
 let toastTimer;
+const drafts = new Map();
+let draftTimer, draftQueue = Promise.resolve();
+let pieceLabels = 'han';
+try { pieceLabels = localStorage.getItem('chill-piece-labels') === 'vi' ? 'vi' : 'han'; } catch (_) { /* Preferences are optional. */ }
+
+function draftStatus(id, message) {
+  if (state.exercise?.id === id && $('#draft-status')) $('#draft-status').textContent = message;
+}
+
+function captureDraft(form) {
+  const id = state.exercise.id;
+  const entry = drafts.get(id) || {version:0};
+  entry.data = Object.fromEntries(new FormData(form));
+  entry.version++; entry.pending = true;
+  drafts.set(id, entry);
+  draftStatus(id, 'Đang giữ bản nháp trên trang…');
+  clearTimeout(draftTimer);
+  draftTimer = setTimeout(() => saveDraft(id), 600);
+}
+
+function saveDraft(id = state.exercise?.id) {
+  clearTimeout(draftTimer);
+  const entry = drafts.get(id);
+  if (!entry?.pending) return draftQueue;
+  const version = entry.version, data = {...entry.data};
+  // Serialize autosaves so an older response cannot overwrite a newer draft.
+  draftQueue = draftQueue.then(async () => {
+    draftStatus(id, 'Đang lưu bản nháp…');
+    try {
+      await api('/api/draft', {id, ...data});
+      if (drafts.get(id)?.version === version) {
+        entry.pending = false;
+        draftStatus(id, 'Đã lưu bản nháp trên máy chủ cục bộ · Chưa gửi câu trả lời');
+      }
+    } catch (error) {
+      draftStatus(id, `Chưa lưu được: ${error.message} Giữ trang mở và bấm Lưu nháp; đừng tải lại lúc này.`);
+    }
+  });
+  return draftQueue;
+}
+
+function restoreDraft() {
+  const form = $('#reflect-form'), e = state.exercise;
+  if (!form || !e) return;
+  const draft = drafts.get(e.id)?.data || e.draft;
+  if (draft) for (const key of ['evaluation','threat','plan','confidence']) {
+    if (typeof draft[key] === 'string') form.elements[key].value = draft[key];
+  }
+  draftStatus(e.id, drafts.get(e.id)?.pending ? 'Bản nháp chưa lưu xong · Giữ trang mở' : draft ? 'Đã khôi phục bản nháp · Đáp án vẫn được giữ kín' : 'Bản nháp sẽ tự lưu sau khi bạn nhập.');
+}
+
+async function saveAllDrafts() {
+  for (const [id, entry] of drafts) if (entry.pending) await saveDraft(id);
+}
+
+async function boot() {
+  try {
+    state.boot = await api('/api/bootstrap');
+    const [page, id] = location.hash.slice(1).split('/');
+    if (page==='exercise' && /^[a-f0-9]{32}$/.test(id || '')) {
+      openExercise(await api('/api/exercise?id='+id)); return;
+    }
+    if (page==='play' && /^[a-f0-9]{32}$/.test(id || '')) state.game=await api('/api/game?id='+id);
+    state.page = ['home','play','practice','dashboard','lessons','settings'].includes(page) ? page : 'home';
+    render();
+  } catch (error) {
+    if (state.boot) { state.page='home'; render(); toast('Không mở được bài/ván đã chọn. Bạn có thể tiếp tục từ danh sách trên trang chủ.', true); }
+    else $('#main').innerHTML=`<section class="card connection-error"><h1>Chưa kết nối được Cờ Chill</h1><p>${esc(error.message)}</p><p>Trong thư mục dự án, chạy <code>python server.py --port 8765</code> và giữ cửa sổ đó mở.</p><button class="primary" data-action="reconnect">Kết nối lại</button></section>`;
+  }
+}
+
+function continuePanel() {
+  const pending = state.boot.dashboard.pending || [];
+  if (!pending.length) return '';
+  const labels = {reflection:'Tiếp tục suy nghĩ', attempt:'Tiếp tục thử nước', retry:'Tiếp tục thử lại'};
+  return `<section class="card continue-card" aria-label="Bài đang học"><div><span class="eyebrow">TIẾP TỤC TỪ CHỖ ĐÃ DỪNG</span><h2>${esc(pending[0].title)}</h2><p>${esc(pending[0].skill_name)} · ${pending[0].has_draft?'Có bản nháp đã lưu':'Tiến trình đã được lưu'}</p></div><button class="primary" data-exercise="${pending[0].id}">${labels[pending[0].stage]} →</button>${pending.length>1?`<details><summary>Còn ${pending.length-1} bài đang dở</summary>${pending.slice(1).map(e=>`<button class="text-link" data-exercise="${e.id}">${esc(e.title)} · ${esc(e.skill_name)}</button>`).join('')}</details>`:''}</section>`;
+}
 
 function toast(message, error=false) {
   $('#toast').textContent = message;
@@ -18,19 +95,31 @@ function toast(message, error=false) {
 }
 
 async function api(path, data) {
-  const response = await fetch(path, data === undefined ? {} : {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-  const result = await response.json();
-  if (!response.ok) throw new Error(result.error || 'Không thể kết nối.');
-  return result;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 75000);
+  try {
+    const response = await fetch(path, {signal:controller.signal, ...(data === undefined ? {} : {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)})});
+    let result;
+    try { result = await response.json(); } catch (_) { throw new Error('Máy chủ trả dữ liệu không hợp lệ. Hãy kiểm tra cửa sổ server.'); }
+    if (!response.ok) throw new Error(result.error || 'Không thể xử lý yêu cầu.');
+    return result;
+  } catch (error) {
+    if (error.name === 'AbortError') throw new Error('Chờ quá lâu. Dữ liệu có thể đã được lưu; hãy mở lại ván hoặc bài từ trang chủ trước khi thử lại.');
+    if (error instanceof TypeError) throw new Error('Không kết nối được server cục bộ. Kiểm tra python server.py --port 8765 đang chạy; nội dung đang nhập vẫn ở trên trang.');
+    throw error;
+  } finally { clearTimeout(timer); }
 }
 
 async function task(fn, label='Đang xử lý…') {
   if (!$('#busy').hidden) return;
   $('#busy-label').textContent = label;
   $('#busy').hidden = false;
+  $('#main').inert = true; $('.sidebar').inert = true;
+  const started = Date.now();
+  const ticker = setInterval(() => { $('#busy-time').textContent = `${Math.floor((Date.now()-started)/1000)} giây · Vui lòng giữ trang mở. Không gửi lại yêu cầu.`; }, 1000);
   try { await fn(); }
   catch (error) { toast(error.message, true); }
-  finally { $('#busy').hidden = true; }
+  finally { clearInterval(ticker); $('#busy-time').textContent=''; $('#busy').hidden = true; $('#main').inert=false; $('.sidebar').inert=false; }
 }
 
 function intro(title, subtitle, eyebrow='MỖI NGÀY, HIỂU THÊM MỘT CHÚT') {
@@ -54,7 +143,7 @@ function heroBoard() {
 function home() {
   const d = state.boot.dashboard;
   return `${intro('Chào bạn, cùng học cờ nhé.','Biến một nước đi chưa tốt thành một điều bạn thực sự hiểu.')}
-    <section class="hero"><div class="hero-copy"><div class="eyebrow">CỜ CHILL · HỌC TỪ VÁN CỜ CỦA MÌNH</div><h2>Đừng chỉ biết nước hay.<br>Hãy hiểu vì sao.</h2><p>Chơi một ván. Nhìn lại cách bạn suy nghĩ.<br>Thử lại, rồi mang điều vừa học sang một thế cờ mới.</p><div class="actions"><button class="primary" data-action="demo">Thử hành trình 60 giây <span>↗</span></button><button class="secondary" data-nav="play">Chơi ván mới</button></div></div><div class="hero-art">${heroBoard()}<span class="art-caption">MỖI NƯỚC ĐI LÀ MỘT CƠ HỘI HỌC</span></div></section>
+    ${continuePanel()}<section class="hero"><div class="hero-copy"><div class="eyebrow">CỜ CHILL · HỌC TỪ VÁN CỜ CỦA MÌNH</div><h2>Đừng chỉ biết nước hay.<br>Hãy hiểu vì sao.</h2><p>Chơi một ván. Nhìn lại cách bạn suy nghĩ.<br>Thử lại, rồi mang điều vừa học sang một thế cờ mới.</p><div class="actions"><button class="primary" data-action="demo">Thử hành trình 60 giây <span>↗</span></button><button class="secondary" data-nav="play">Chơi ván mới</button></div></div><div class="hero-art">${heroBoard()}<span class="art-caption">MỖI NƯỚC ĐI LÀ MỘT CƠ HỘI HỌC</span></div></section>
     <div class="home-columns"><section><div class="section-line"><h2>Một vòng học, một bước tiến</h2><span class="small-note">Bắt đầu thật đơn giản</span></div><div class="card journey">${[['▦','Chơi & nhìn lại','Tìm điểm đáng suy nghĩ trong ván cờ.'],['✧','Tự suy nghĩ','Nói ý tưởng của bạn trước khi xem lời giải.'],['↻','Thử & áp dụng','Đi lại rồi giải một thế cờ liên quan.'],['◷','Nhớ lâu hơn','Ôn đúng lúc và theo dõi tiến bộ.']].map(([icon,title,body])=>`<div class="journey-step"><span class="step-icon">${icon}</span><h3>${title}</h3><p>${body}</p></div>`).join('')}</div><div class="card next-card"><span class="next-icon">◷</span><div><h3>${d.due.length ? `${d.due.length} kỹ năng đến lịch ôn` : 'Một chút hôm nay, vững hơn ngày mai'}</h3><p>${d.total_attempts ? 'Lịch ôn đã sẵn sàng trong trang tiến bộ của bạn.' : 'Sau bài đầu tiên, lịch ôn sẽ xuất hiện ở đây.'}</p></div><button class="text-link" data-nav="dashboard">Xem lịch ôn →</button></div></section>
     <section><div class="section-line"><h2>Dấu chân học tập</h2><span class="badge">Của riêng bạn</span></div><div class="card insight-card"><div class="empty-graphic"><i></i><i></i><i></i><i></i></div><h3>${d.total_attempts ? `${d.total_attempts} lần thử đã được ghi nhận` : 'Tiến bộ bắt đầu từ sự tò mò'}</h3><p>${d.total_attempts ? `Bạn đã thử ${d.transfer_total} bài mới không có trợ giúp. Hãy quan sát cả cách nghĩ, không chỉ đáp án.` : 'Chưa có dữ liệu học tập. Hoàn thành hành trình đầu tiên để tìm điểm cần luyện và tạo lịch ôn riêng.'}</p><button class="text-link" data-nav="dashboard">Khám phá tiến bộ của tôi →</button><div class="small-note">Không xếp hạng. Không áp lực chuỗi ngày.</div></div></section></div>`;
 }
@@ -63,7 +152,7 @@ function board(view, interactive=true) {
   const order = Array.from({length:90}, (_,i) => state.flipped ? 89-i : i);
   const targets = state.selected ? view.legal.filter(m=>m.startsWith(state.selected)).map(m=>m.slice(2)) : [];
   const last = state.game && state.page==='play' ? state.game.history.at(-1)?.move : null;
-  return `<div class="board-card"><div class="player-row"><span class="player-mark ${state.flipped?'red':''}">${state.flipped?'帥':'將'}</span><span>${state.flipped?'Bên Đỏ':'Bên Đen'}</span><span class="turn-label">${view.turn==='b'?'Đen đi':'Đỏ đi'}</span></div><div class="board-wrap">${boardLines(state.flipped)}<div class="board-grid" role="group" aria-label="Bàn cờ tướng 9 cột 10 hàng">${order.map(i=>{const p=view.board[i],s=sq(i);return `<button class="square ${state.selected===s?'selected':''} ${targets.includes(s)?'target':''} ${last?.includes(s)?'last':''}" data-square="${s}" ${interactive?'':'disabled'} aria-label="${s}${p!=='.'?` ${p===p.toUpperCase()?'Đỏ':'Đen'} ${NAMES[p.toLowerCase()]}`:' trống'}" aria-pressed="${state.selected===s}" title="${s}">${p!=='.'?`<span class="piece ${p===p.toUpperCase()?'red':''}">${PIECES[p]}</span>`:''}</button>`;}).join('')}</div></div><div class="player-row bottom"><span class="player-mark ${state.flipped?'':'red'}">${state.flipped?'將':'帥'}</span><span>${state.flipped?'Bên Đen':'Bên Đỏ'}</span><span class="turn-label">${state.selected ? `Đã chọn ${state.selected}` : interactive?'Chọn quân → chọn điểm đến':'Quan sát trước khi đi'}</span></div><div class="board-tools"><button class="subtle" data-action="flip">⇅ Lật bàn cờ</button><span class="small-note">${interactive?'Chấm xanh = nước hợp lệ':'Đáp án được giữ kín trước suy nghĩ'}</span></div><div class="board-caption">Tọa độ a0–i9 tính từ phía Đỏ. Ví dụ a0a1 = từ a0 đến a1.</div></div>`;
+  return `<div class="board-card"><div class="player-row"><span class="player-mark ${state.flipped?'red':''}">${state.flipped?'帥':'將'}</span><span>${state.flipped?'Bên Đỏ':'Bên Đen'}</span><span class="turn-label">${view.turn==='b'?'Đen đi':'Đỏ đi'}</span></div><div class="board-wrap">${boardLines(state.flipped)}<div class="board-grid" role="group" aria-label="Bàn cờ tướng 9 cột 10 hàng">${order.map(i=>{const p=view.board[i],s=sq(i);return `<button class="square ${state.selected===s?'selected':''} ${targets.includes(s)?'target':''} ${last?.includes(s)?'last':''}" data-square="${s}" tabindex="${i===order[0]?0:-1}" ${interactive?'':'disabled'} aria-label="${s}${p!=='.'?` ${p===p.toUpperCase()?'Đỏ':'Đen'} ${NAMES[p.toLowerCase()]}`:' trống'}" aria-pressed="${state.selected===s}" title="${s}">${p!=='.'?`<span class="piece ${p===p.toUpperCase()?'red':''}">${pieceLabels==='vi'?`<span class="piece-name">${NAMES[p.toLowerCase()]}</span>`:PIECES[p]}</span>`:''}</button>`;}).join('')}</div></div><div class="player-row bottom"><span class="player-mark ${state.flipped?'':'red'}">${state.flipped?'將':'帥'}</span><span>${state.flipped?'Bên Đen':'Bên Đỏ'}</span><span class="turn-label">${state.selected ? `Đã chọn ${state.selected}` : interactive?'Chọn quân → chọn điểm đến':'Quan sát trước khi đi'}</span></div><div class="board-tools"><button class="subtle" data-action="flip">⇅ Lật bàn cờ</button><label class="piece-label-control">Chữ quân<select id="piece-labels"><option value="han" ${pieceLabels==='han'?'selected':''}>Chữ Hán</option><option value="vi" ${pieceLabels==='vi'?'selected':''}>Tiếng Việt</option></select></label><span class="small-note">${interactive?'Chấm xanh = nước hợp lệ':'Đáp án được giữ kín trước suy nghĩ'}</span></div><div class="board-caption">Tọa độ a0–i9 tính từ phía Đỏ. Ví dụ a0a1 = từ a0 đến a1. Bàn phím: phím mũi tên để di chuyển, Enter chọn, Esc hủy.</div></div>`;
 }
 
 function play() {
@@ -77,7 +166,7 @@ function importForm() {
 }
 
 function reflectionForm(e) {
-  return `<span class="badge">01 · SUY NGHĨ TRƯỚC</span><h2>Bạn nhìn thấy điều gì?</h2><p>Chưa cần tìm ngay đáp án. Hãy nói cách bạn đánh giá thế cờ. “Chưa biết” cũng là một điểm bắt đầu.</p><div class="reflection-count"><span></span><span></span><span></span></div><form id="reflect-form"><div class="form-field"><label for="evaluation">1. Bên nào có lợi thế? Vì sao?</label><textarea id="evaluation" name="evaluation" required maxlength="1500" placeholder="Hãy nhìn số quân, vị trí và an toàn của Tướng…"></textarea></div><div class="form-field"><label for="threat">2. Đối phương đang đe dọa điều gì?</label><textarea id="threat" name="threat" required maxlength="1500" placeholder="Một quân đang bị tấn công, đường chiếu, hoặc điều bạn chưa chắc…"></textarea></div><div class="form-field"><label for="plan">3. Bạn muốn đi nước nào? Dự kiến họ đáp ra sao?</label><textarea id="plan" name="plan" required maxlength="1500" placeholder="Nêu nước ứng viên và lý do chọn…"></textarea></div><div class="form-field"><label for="confidence">Bạn tự tin đến đâu?</label><select id="confidence" name="confidence"><option value="unsure">Tôi còn phân vân</option><option value="some">Tôi có một hướng suy nghĩ</option><option value="sure">Tôi khá tự tin</option></select></div><button class="primary wide" type="submit">${e.kind==='review'?'Lưu suy nghĩ & xem phân tích →':'Lưu suy nghĩ & thử nước đi →'}</button></form><p class="small-note" style="margin-top:12px">Chỉ lưu cục bộ. Không chấm điểm văn phong hay tự suy diễn tính cách.</p>`;
+  return `<span class="badge">01 · SUY NGHĨ TRƯỚC</span><h2>Bạn nhìn thấy điều gì?</h2><p>Chưa cần tìm ngay đáp án. Hãy nói cách bạn đánh giá thế cờ. “Chưa biết” cũng là một điểm bắt đầu.</p><div class="reflection-count"><span></span><span></span><span></span></div><p id="draft-status" class="draft-status" role="status" aria-live="polite"></p><button type="button" class="subtle" data-action="save-draft">Lưu nháp ngay</button><form id="reflect-form"><div class="form-field"><label for="evaluation">1. Bên nào có lợi thế? Vì sao?</label><textarea id="evaluation" name="evaluation" required maxlength="1500" placeholder="Hãy nhìn số quân, vị trí và an toàn của Tướng…"></textarea></div><div class="form-field"><label for="threat">2. Đối phương đang đe dọa điều gì?</label><textarea id="threat" name="threat" required maxlength="1500" placeholder="Một quân đang bị tấn công, đường chiếu, hoặc điều bạn chưa chắc…"></textarea></div><div class="form-field"><label for="plan">3. Bạn muốn đi nước nào? Dự kiến họ đáp ra sao?</label><textarea id="plan" name="plan" required maxlength="1500" placeholder="Nêu nước ứng viên và lý do chọn…"></textarea></div><div class="form-field"><label for="confidence">Bạn tự tin đến đâu?</label><select id="confidence" name="confidence"><option value="unsure">Tôi còn phân vân</option><option value="some">Tôi có một hướng suy nghĩ</option><option value="sure">Tôi khá tự tin</option></select></div><button class="primary wide" type="submit">${e.kind==='review'?'Lưu suy nghĩ & xem phân tích →':'Lưu suy nghĩ & thử nước đi →'}</button></form><p class="small-note" style="margin-top:12px">Chỉ lưu cục bộ. Không chấm điểm văn phong hay tự suy diễn tính cách.</p>`;
 }
 
 function explanation(e) {
@@ -103,7 +192,7 @@ function practicePage() {
 
 function dashboard() {
   const d=state.boot.dashboard;
-  return `${intro('Nhìn lại để đi xa hơn.','Dữ liệu từ những lần bạn thực sự luyện tập. Chưa có dữ liệu thì chưa kết luận.','TIẾN BỘ CỦA TÔI')}<div class="metric-grid"><div class="card metric"><small>Lần thử đầu đã ghi nhận</small><b>${d.total_attempts}</b><small>Không cộng lại khi thử sửa đáp án</small></div><div class="card metric"><small>Bài mới đúng, không trợ giúp</small><b>${d.transfer_total?`${d.transfer_success}/${d.transfer_total}`:'—'}</b><small>${d.transfer_total?'Tín hiệu chuyển giao sơ bộ':'Cần một bài mới để bắt đầu đo'}</small></div><div class="card metric"><small>Kỹ năng đến lịch ôn</small><b>${d.due.length}</b><small>Tối đa 8 chủ đề trong hàng đợi</small></div></div><div class="dashboard-grid"><section class="card"><h2>Kỹ năng đang xây dựng</h2><p class="small-note" style="margin-top:10px">Điểm luyện tập theo quy tắc, không phải Elo hoặc chứng nhận thành thạo. Chất lượng lập luận chưa được tự động đánh giá.</p>${d.skills.length?d.skills.map(s=>`<div class="skill-item"><div class="skill-top"><strong>${esc(s.name)}</strong><span>${s.mastery_score}/100</span></div><div class="progress"><span style="width:${Number(s.mastery_score)}%"></span></div><div class="small-note">${s.evidence_count} bằng chứng · ${s.transfer_success_count} bài mới đúng · ${s.lapse_count} lần cần ôn sớm<br>Lịch tiếp theo: ${date(s.next_review_at)} (${s.stability} ngày)</div><button class="text-link" data-skill="${s.skill}">${d.due.some(x=>x.skill===s.skill)?'Đến lịch · ôn ngay':'Luyện thêm tự chọn'} →</button></div>`).join(''):'<div class="empty">Chưa đủ bằng chứng để nhận xét kỹ năng.<br>Hãy hoàn thành một lượt xem lại hoặc bài luyện.</div><button class="primary" data-action="demo">Bắt đầu hành trình đầu tiên →</button>'}</section><section class="card"><h2>Những lần bạn đã suy nghĩ</h2>${d.attempts.length?d.attempts.map(a=>`<div class="activity"><span class="badge ${a.correct?'success':''}">${a.correct?'Đúng':'Cần ôn'}</span><strong>${esc(state.boot.skills[a.skill])}</strong><small>${date(a.created_at)} · ${a.assisted?'Có trợ giúp':'Tự giải'} · ${a.kind==='review'?'Thử lại từ ván cờ':'Bài luyện'}</small><small>Nước ${esc(a.move)} · Ôn vào ${date(a.next_review_at)}</small></div>`).join(''):'<div class="empty">Nhật ký sẽ xuất hiện sau lần thử đầu tiên. Không có số liệu minh họa thay cho tiến bộ thật.</div>'}</section><section class="card"><h2>Điểm cần xem lại gần đây</h2>${d.reviews.length?d.reviews.map(r=>`<div class="activity"><button class="text-link" data-exercise="${r.id}">${esc(r.title)} →</button><small>${esc(state.boot.skills[r.skill])} · ${r.complete?'Đã thử lại đúng':'Đang học'}</small></div>`).join(''):'<p class="empty">Chưa xem lại ván nào.</p>'}</section><section class="card"><h2>Ván cờ đã lưu</h2>${d.games.length?d.games.slice().reverse().map(g=>`<div class="activity"><button class="text-link" data-game="${g.id}">${g.mode==='demo'?'Ván minh họa':g.mode==='bot'?'Ván với máy':g.mode==='import'?'Ván đã nhập':'Ván cùng thiết bị'} · ${g.moves} nửa nước →</button><small>${date(g.created_at)}</small></div>`).join(''):'<p class="empty">Ván mới sẽ tự lưu sau mỗi nước đi.</p>'}</section></div>`;
+  return `${continuePanel()}${intro('Nhìn lại để đi xa hơn.','Dữ liệu từ những lần bạn thực sự luyện tập. Chưa có dữ liệu thì chưa kết luận.','TIẾN BỘ CỦA TÔI')}<div class="metric-grid"><div class="card metric"><small>Lần thử đầu đã ghi nhận</small><b>${d.total_attempts}</b><small>Không cộng lại khi thử sửa đáp án</small></div><div class="card metric"><small>Bài mới đúng, không trợ giúp</small><b>${d.transfer_total?`${d.transfer_success}/${d.transfer_total}`:'—'}</b><small>${d.transfer_total?'Tín hiệu chuyển giao sơ bộ':'Cần một bài mới để bắt đầu đo'}</small></div><div class="card metric"><small>Kỹ năng đến lịch ôn</small><b>${d.due.length}</b><small>Tối đa 8 chủ đề trong hàng đợi</small></div></div><div class="dashboard-grid"><section class="card"><h2>Kỹ năng đang xây dựng</h2><p class="small-note" style="margin-top:10px">Điểm luyện tập theo quy tắc, không phải Elo hoặc chứng nhận thành thạo. Chất lượng lập luận chưa được tự động đánh giá.</p>${d.skills.length?d.skills.map(s=>`<div class="skill-item"><div class="skill-top"><strong>${esc(s.name)}</strong><span>${s.mastery_score}/100</span></div><div class="progress"><span style="width:${Number(s.mastery_score)}%"></span></div><div class="small-note">${s.evidence_count} bằng chứng · ${s.transfer_success_count} bài mới đúng · ${s.lapse_count} lần cần ôn sớm<br>Lịch tiếp theo: ${date(s.next_review_at)} (${s.stability} ngày)</div><button class="text-link" data-skill="${s.skill}">${d.due.some(x=>x.skill===s.skill)?'Đến lịch · ôn ngay':'Luyện thêm tự chọn'} →</button></div>`).join(''):'<div class="empty">Chưa đủ bằng chứng để nhận xét kỹ năng.<br>Hãy hoàn thành một lượt xem lại hoặc bài luyện.</div><button class="primary" data-action="demo">Bắt đầu hành trình đầu tiên →</button>'}</section><section class="card"><h2>Những lần bạn đã suy nghĩ</h2>${d.attempts.length?d.attempts.map(a=>`<div class="activity"><span class="badge ${a.correct?'success':''}">${a.correct?'Đúng':'Cần ôn'}</span><strong>${esc(state.boot.skills[a.skill])}</strong><small>${date(a.created_at)} · ${a.assisted?'Có trợ giúp':'Tự giải'} · ${a.kind==='review'?'Thử lại từ ván cờ':'Bài luyện'}</small><small>Nước ${esc(a.move)} · Ôn vào ${date(a.next_review_at)}</small></div>`).join(''):'<div class="empty">Nhật ký sẽ xuất hiện sau lần thử đầu tiên. Không có số liệu minh họa thay cho tiến bộ thật.</div>'}</section><section class="card"><h2>Điểm cần xem lại gần đây</h2>${d.reviews.length?d.reviews.map(r=>`<div class="activity"><button class="text-link" data-exercise="${r.id}">${esc(r.title)} →</button><small>${esc(state.boot.skills[r.skill])} · ${r.complete?'Đã thử lại đúng':'Đang học'}</small></div>`).join(''):'<p class="empty">Chưa xem lại ván nào.</p>'}</section><section class="card"><h2>Ván cờ đã lưu</h2>${d.games.length?d.games.slice().reverse().map(g=>`<div class="activity"><button class="text-link" data-game="${g.id}">${g.mode==='demo'?'Ván minh họa':g.mode==='bot'?'Ván với máy':g.mode==='import'?'Ván đã nhập':'Ván cùng thiết bị'} · ${g.moves} nửa nước →</button><small>${date(g.created_at)}</small></div>`).join(''):'<p class="empty">Ván mới sẽ tự lưu sau mỗi nước đi.</p>'}</section></div>`;
 }
 
 function lessons() {
@@ -119,9 +208,13 @@ function render() {
   $('#breadcrumb').textContent=labels[state.page];
   document.querySelectorAll('[data-nav]').forEach(b=>b.classList.toggle('active',b.dataset.nav===state.page));
   $('#main').innerHTML=({home,play,practice:practicePage,exercise,dashboard,lessons,settings}[state.page])();
+  restoreDraft();
+  const id = state.page==='exercise'?state.exercise?.id:state.page==='play'?state.game?.id:null;
+  history.replaceState(null, '', '#'+state.page+(id?'/'+id:''));
 }
 
 async function navigate(page) {
+  await saveAllDrafts();
   state.selected=null;
   if (page==='dashboard'||page==='home') state.boot.dashboard=await api('/api/dashboard');
   state.page=page;
@@ -130,8 +223,47 @@ async function navigate(page) {
 }
 
 function openExercise(e) {
+  void saveAllDrafts();
   state.exercise=e; state.page='exercise'; state.selected=null; state.hint=null; state.retry=false; render();
 }
+
+document.addEventListener('input', event => {
+  if (event.target.closest('#reflect-form')) captureDraft($('#reflect-form'));
+});
+document.addEventListener('change', event => {
+  if (event.target.id !== 'piece-labels') return;
+  pieceLabels = event.target.value === 'vi' ? 'vi' : 'han';
+  try { localStorage.setItem('chill-piece-labels', pieceLabels); } catch (_) { /* Still usable for this page. */ }
+  render();
+  $('#piece-labels')?.focus();
+});
+document.addEventListener('visibilitychange', () => { if (document.hidden) void saveAllDrafts(); });
+window.addEventListener('beforeunload', event => {
+  if ([...drafts.values()].some(d=>d.pending)) { event.preventDefault(); event.returnValue=''; }
+});
+document.addEventListener('keydown', event => {
+  const cell = event.target.closest('[data-square]');
+  if (!cell || cell.disabled || !$('#busy').hidden) return;
+  const cells = [...document.querySelectorAll('[data-square]')];
+  const current = cells.indexOf(cell), row=Math.floor(current/9), column=current%9;
+  let next=current;
+  if (event.key==='ArrowLeft') next=row*9+Math.max(0,column-1);
+  else if (event.key==='ArrowRight') next=row*9+Math.min(8,column+1);
+  else if (event.key==='ArrowUp') next=Math.max(0,row-1)*9+column;
+  else if (event.key==='ArrowDown') next=Math.min(9,row+1)*9+column;
+  else if (event.key==='Home') next=row*9;
+  else if (event.key==='End') next=row*9+8;
+  else if (event.key==='Escape') {
+    state.selected=null;
+    const focused=cell.dataset.square;
+    const view=state.page==='play'?state.game:state.exercise;
+    $('.board-card').outerHTML=board(view,true);
+    const target=document.querySelector(`[data-square="${focused}"]`);
+    document.querySelectorAll('[data-square]').forEach(c=>c.tabIndex=-1);
+    target.tabIndex=0;target.focus();event.preventDefault();return;
+  } else return;
+  event.preventDefault();cell.tabIndex=-1;cells[next].tabIndex=0;cells[next].focus();
+});
 
 async function chooseSquare(square) {
   const view=state.page==='play'?state.game:state.exercise;
@@ -154,12 +286,18 @@ async function chooseSquare(square) {
   else {state.selected=null;if(chosen)toast('Điểm đến chưa hợp lệ. Chọn lại quân và một chấm xanh.');}
   // Replace only the board to preserve partially written reflection/feedback.
   const boardNode=$('.board-card');
-  if (boardNode) boardNode.outerHTML=board(view,true);
+  if (boardNode) {
+    boardNode.outerHTML=board(view,true);
+    document.querySelectorAll('[data-square]').forEach(c=>c.tabIndex=c.dataset.square===square?0:-1);
+    document.querySelector(`[data-square="${square}"]`)?.focus();
+  }
 }
 
 document.addEventListener('click',async event=>{
   const button=event.target.closest('button,a.brand');
-  if (!button || button.disabled || !state.boot) return;
+  if (!button || button.disabled) return;
+  if (button.dataset.action==='reconnect') return task(boot, 'Đang kết nối lại…');
+  if (!state.boot || !$('#busy').hidden) return;
   if (button.matches('a.brand')) {event.preventDefault();return task(()=>navigate('home'));}
   if (button.dataset.square) return chooseSquare(button.dataset.square);
   if (button.dataset.nav) return task(()=>navigate(button.dataset.nav));
@@ -167,6 +305,7 @@ document.addEventListener('click',async event=>{
   if (button.dataset.exercise) return task(async()=>openExercise(await api('/api/exercise?id='+button.dataset.exercise)));
   if (button.dataset.game) return task(async()=>{state.game=await api('/api/game?id='+button.dataset.game);await navigate('play');});
   const action=button.dataset.action;
+  if (action==='save-draft') { await saveDraft(); return; }
   if (action==='flip') {state.flipped=!state.flipped; const view=state.page==='play'?state.game:state.exercise; const interactive=state.page==='play'?!view.status.over&&(view.mode!=='bot'||view.turn==='w'):!!view.reflection&&(view.kind==='practice'||state.retry)&&!view.complete;$('.board-card').outerHTML=board(view,interactive);return;}
   if (action==='retry') {state.retry=true;render();toast('Chọn quân và đi lại trên bàn cờ.');return;}
   if (action==='choose-game') {state.game=null;render();return;}
@@ -183,7 +322,7 @@ document.addEventListener('click',async event=>{
     else if (action==='export') {
       const data=await api('/api/export');const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}));const a=document.createElement('a');a.href=url;a.download='co-chill-du-lieu.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
     } else if (action==='delete' && confirm('Xóa toàn bộ dữ liệu của phiên này? Hành động này không thể hoàn tác.')) {
-      await api('/api/delete',{confirmation:'DELETE'});state.game=null;state.exercise=null;state.moments=[];await navigate('home');toast('Đã xóa dữ liệu của phiên này.');
+      await api('/api/delete',{confirmation:'DELETE'});drafts.clear();clearTimeout(draftTimer);state.game=null;state.exercise=null;state.moments=[];await navigate('home');toast('Đã xóa dữ liệu của phiên này.');
     }
   }, action==='review'?'Đang tìm điểm đáng học… (tối đa 24 nước Đỏ gần nhất)':action==='related'?'Đang chọn thế cờ liên quan…':'Đang chuẩn bị…');
 });
@@ -192,7 +331,7 @@ document.addEventListener('submit', event=>{
   event.preventDefault();
   const form=event.target, data=Object.fromEntries(new FormData(form));
   task(async()=>{
-    if (form.id==='reflect-form') {state.exercise=await api('/api/reflect',{id:state.exercise.id,...data});render();}
+    if (form.id==='reflect-form') {clearTimeout(draftTimer);state.exercise=await api('/api/reflect',{id:state.exercise.id,...data});drafts.delete(state.exercise.id);render();}
     else if (form.id==='feedback-form') {await api('/api/feedback',{id:state.exercise.id,...data});form.reset();toast('Đã lưu góp ý cục bộ. Có thể tải cùng bản xuất dữ liệu.');}
     else if (form.id==='import-form') {
       if(!data.fen.trim())delete data.fen;
@@ -201,5 +340,5 @@ document.addEventListener('submit', event=>{
   });
 });
 
-task(async()=>{state.boot=await api('/api/bootstrap');render();},'Đang mở góc học tập…');
+task(boot,'Đang mở góc học tập…');
 

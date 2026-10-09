@@ -1,5 +1,7 @@
 # AI usage and integrity
 
+9 October 2026: Codex researched public official pages from Xiangqi services and directly inspected three interfaces to inform usability improvements. The sources, access limits and implemented changes are in RESEARCH_AND_IMPROVEMENTS_2026_10_09.md. No competitor code, imagery, puzzles or game corpus was imported; no new owner V4 answers were assumed. Added local draft/resume and accessibility improvements, without changing runtime engine or introducing LLM/ML. New browser QA attempts are test records only.
+
 The owner supplied product intent in Answer V3.docx, the Final Pack specifications and Codex execution instructions. Codex read both complete Word texts and all archive members, inventoried the entire parent folder and inspected the older discovery question bank. No application code existed in the supplied folder.
 
 Codex generated the Python application, rules, shallow search, template teaching logic, synthetic positions, frontend, automated tests and documentation. All are AI-assisted implementation, not human-authored gold annotations. Human work already supplied: product thesis, learning philosophy, desired workflow and domain intent. Human validation still required: chess accuracy beyond tested movement, lesson pedagogy, puzzle diversity and level suitability, reasoning rubrics, pilot interpretation.

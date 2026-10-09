@@ -102,7 +102,7 @@ class Service:
 
     def exercise_view(self, exercise):
         pos = Position.from_fen(exercise['fen'])
-        allowed = ('id', 'fen', 'skill', 'kind', 'reflection', 'revealed', 'complete', 'hints', 'title', 'played', 'ply', 'severity', 'unseen', 'source', 'result', 'game_id')
+        allowed = ('id', 'fen', 'skill', 'kind', 'reflection', 'draft', 'revealed', 'complete', 'hints', 'title', 'played', 'ply', 'severity', 'unseen', 'source', 'result', 'game_id')
         view = {k: exercise[k] for k in allowed if k in exercise}
         view.update(board=list(pos.board), turn=pos.turn, legal=pos.legal_moves(), skill_name=SKILLS[exercise['skill']])
         if exercise['revealed']:
@@ -149,6 +149,24 @@ class Service:
         return dict(game_id=game['id'], coverage=game['review_coverage'],
                     moments=[self.exercise_view(self.repo.get(db, owner, 'exercise', eid)) for eid in game['review_ids']])
 
+    def save_draft(self, db, owner, eid, data):
+        exercise = self.repo.get(db, owner, 'exercise', eid)
+        # A delayed autosave must never replace the submitted reflection.
+        if exercise['reflection']:
+            return {'saved': False, 'submitted': True}
+        draft = {}
+        for key in ('evaluation', 'threat', 'plan'):
+            value = data.get(key, '')
+            if not isinstance(value, str) or len(value) > 1500:
+                raise ValueError('Bản nháp cần là văn bản, tối đa 1500 ký tự mỗi câu.')
+            draft[key] = value
+        draft['confidence'] = data.get('confidence', 'unsure')
+        if draft['confidence'] not in ('unsure', 'some', 'sure'):
+            raise ValueError('Mức tự tin không hợp lệ.')
+        exercise['draft'] = draft
+        self.repo.put(db, owner, 'exercise', eid, exercise)
+        return {'saved': True, 'submitted': False}
+
     def reflect(self, db, owner, eid, data):
         exercise = self.repo.get(db, owner, 'exercise', eid)
         if exercise['reflection']:
@@ -158,6 +176,7 @@ class Service:
         if reflection['confidence'] not in ('unsure', 'some', 'sure'):
             raise ValueError('Mức tự tin không hợp lệ.')
         exercise['reflection'] = reflection
+        exercise.pop('draft', None)
         exercise['revealed'] = exercise['kind'] == 'review'
         self.repo.put(db, owner, 'exercise', eid, exercise)
         return self.exercise_view(exercise)
@@ -231,6 +250,9 @@ class Service:
         independent = [a for a in attempts if a['unseen'] and not a['assisted'] and a['kind'] == 'practice']
         due = sorted([s for s in skills if s['next_review_at'] <= now_iso()], key=lambda x: (x['next_review_at'], x['mastery_score']))[:8]
         return dict(attempts=sorted(attempts, key=lambda x: x['created_at'], reverse=True)[:20], skills=skills, due=due,
+                    pending=[dict(id=e['id'], title=e['title'], kind=e['kind'], skill_name=SKILLS[e['skill']],
+                                  stage='retry' if e['revealed'] else 'attempt' if e['reflection'] else 'reflection',
+                                  has_draft=bool(e.get('draft'))) for e in exercises if not e['complete']][-8:][::-1],
                     total_attempts=len(attempts), transfer_total=len(independent), transfer_success=sum(a['correct'] for a in independent),
                     reviews=[dict(id=e['id'], title=e['title'], skill=e['skill'], complete=e['complete']) for e in exercises if e['kind'] == 'review'][-10:],
                     games=[dict(id=g['id'], moves=len(g['history']), mode=g['mode'], created_at=g['created_at']) for g in self.repo.list(db, owner, 'game')][-10:])
@@ -243,6 +265,16 @@ class Service:
         return dict(version=1, data=records)
 
     def dispatch(self, db, owner, path, data):
+        requirements = {
+            '/api/move': ('id', 'move'), '/api/bot': ('id',), '/api/review': ('id',),
+            '/api/draft': ('id',), '/api/reflect': ('id',), '/api/attempt': ('id', 'move'),
+            '/api/hint': ('id',), '/api/feedback': ('id',),
+        }
+        for key in requirements.get(path, ()):
+            if not isinstance(data.get(key), str) or not data[key].strip():
+                raise ValueError(f'Thiếu hoặc sai trường {key}.')
+        if path == '/api/draft':
+            return self.save_draft(db, owner, data['id'], data)
         if path == '/api/game':
             return self.new_game(db, owner, data)
         if path == '/api/move':

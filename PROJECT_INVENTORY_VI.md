@@ -2,29 +2,30 @@
 
 
 
-Lần quét: 2026-10-08T22:36:50+07:00.
+Lần quét: 2026-10-09T09:10:48+07:00.
 
 Phạm vi: `E:\ThanhTQ\App cờ tướng`; gồm mọi file thường/ẩn ngoài .git, kể cả cache và file bị Git bỏ qua. Không đi theo thư mục symlink.
 
-Commit nền: `3e64935bfbb486b73fd6b6fc73e4e6b71bc30238`; nhánh `codex-full`. Metadata Git nội bộ: 106 file, 235219 byte, chỉ thống kê tổng; không chép nội dung cấu hình/log/object.
+Commit nền: `247f98769c5daa434cf1294486ad2ec3145b3137`; nhánh `codex-full`. Metadata Git nội bộ: 124 file, 367306 byte, chỉ thống kê tổng; không chép nội dung cấu hình/log/object.
 
 Các báo cáo tự sinh được liệt kê nhưng không hash/kích thước chính chúng để tránh tự tham chiếu. Không chép nội dung database, cookie hoặc secrets. Đây là metadata kiểm kê, không tự xác minh chức năng.
 
-Tổng file ngoài .git: **124**. Trạng thái: Ngoài repo: 25, Tracked: 55, Ignored: 40, Chưa tracked: 4.
+Tổng file ngoài .git: **129**. Trạng thái: Ngoài repo: 26, Tracked: 58, Ignored: 43, Chưa tracked: 2.
 
 ## Các thư mục cấp đầu
 
 | Nhóm | Số file |
 | --- | --- |
 | 10-07 | 19 |
-| 10-08 | 1 |
+| 10-08 | 2 |
 | Failing | 2 |
 | General | 2 |
-| xiangqi-ai | 99 |
+| xiangqi-ai | 103 |
 | ~$swer to Master Question.docx | 1 |
 
 ## Lịch sử Git hiện có
 
+247f987 — 2026-10-09T00:04:05+07:00 — docs: add detailed V4 UI architecture and Xiangqi rules questionnaire
 3e64935 — 2026-10-08T17:21:35+07:00 — docs: inventory complete project folder with maintainable Vietnamese project memory
 e66c6c0 — 2026-10-08T16:41:06+07:00 — docs: add runnable handoff and Vietnamese V4 product questionnaire
 6cd4f79 — 2026-10-08T12:40:44+07:00 — feat: implement local Xiangqi learning loop with rules and persistence
@@ -33,13 +34,13 @@ Remote: Chưa có remote; chưa có bằng chứng backup lên GitHub.
 
 ## Thay đổi so với lần kiểm kê trước
 
-Baseline trước: 2026-10-08T17:15:39+07:00.
+Baseline trước: 2026-10-09T09:10:18+07:00.
 
-Thêm: xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx; xiangqi-ai/deliverables/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx; xiangqi-ai/docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md; xiangqi-ai/tools/create_v4_ui_supplement.py
+Thêm: Không có
 
-Xóa/di chuyển khỏi đường dẫn: 10-08/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx
+Xóa/di chuyển khỏi đường dẫn: Không có
 
-Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/PROJECT_MEMORY_VI.md; xiangqi-ai/README.md; xiangqi-ai/tools/update_inventory.py
+Nội dung/metadata thay đổi: xiangqi-ai/web/style.css
 
 ## Danh sách từng file
 
@@ -66,6 +67,7 @@ Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/P
 | 10-07/XiangqiAI_V3_Final_Pack/16_FUTURE_FEATURE_BACKLOG.md | 745 | Ngoài repo | Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai |
 | 10-07/XiangqiAI_V3_Final_Pack/17_ACTION_ITEMS_BEFORE_CODE.md | 977 | Ngoài repo | Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai |
 | 10-07/XiangqiAI_V3_Final_Pack/manifest.json | 659 | Ngoài repo | Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai |
+| 10-08/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx | 60402 | Ngoài repo | 272 câu bổ sung V4 về từng trang UI UX kiến trúc API và luật; chờ trả lời |
 | 10-08/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx | 56440 | Ngoài repo | Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt |
 | Failing/10-08/1.png | 50738 | Ngoài repo | Ảnh lỗi nhập tiện ích trình duyệt; đã xem ngày 08/10/2026 |
 | Failing/10-08/22.png | 47141 | Ngoài repo | Ảnh lỗi nhập tiện ích trình duyệt; đã xem ngày 08/10/2026 |
@@ -73,19 +75,20 @@ Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/P
 | General/V3.docx | 118714 | Ngoài repo | Bộ câu hỏi khám phá V3 cũ |
 | xiangqi-ai/.gitignore | 132 | Tracked | File cấu hình hoặc tài nguyên; xem đường dẫn |
 | xiangqi-ai/AGENTS.md | 1316 | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/AI_USAGE.md | 1870 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/AI_USAGE.md | 2384 | Tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/Answer V3.docx | 104658 | Ignored | Ý định sản phẩm và câu trả lời chủ dự án V3 |
 | xiangqi-ai/BEGINNER_LEARNING_GUIDE_CODEX.md | 4036 | Tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/Codex.docx | 44289 | Ignored | Hướng dẫn thực thi đầu vào |
-| xiangqi-ai/DEVELOPMENT_JOURNAL.md | 2668 | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/IMPLEMENTATION_REPORT_CODEX.md | 10281 | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/KNOWN_LIMITATIONS.md | 3111 | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/PRIVACY.md | 1406 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/DEVELOPMENT_JOURNAL.md | 3378 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/IMPLEMENTATION_REPORT_CODEX.md | 11603 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/KNOWN_LIMITATIONS.md | 3364 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/PRIVACY.md | 1839 | Tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/PROJECT_INVENTORY_VI.md | Tự sinh | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/PROJECT_MEMORY_VI.md | 14939 | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/README.md | 5002 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/PROJECT_MEMORY_VI.md | 15594 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/README.md | 5466 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/RESEARCH_AND_IMPROVEMENTS_2026_10_09.md | 15284 | Chưa tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/RUN_AND_DEMO_CODEX.md | 2279 | Tracked | Tài liệu/quy tắc dự án |
-| xiangqi-ai/TEST_REPORT_CODEX.md | 3321 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/TEST_REPORT_CODEX.md | 4394 | Tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/THIRD_PARTY_NOTICES.md | 1889 | Tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/XiangqiAI_V3_Final_Pack.zip | 16525 | Ignored | Gói đặc tả gốc; xem danh mục thành viên bên dưới |
 | xiangqi-ai/__pycache__/server.cpython-314.pyc | 11537 | Ignored | Cache Python tái tạo được |
@@ -95,21 +98,24 @@ Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/P
 | xiangqi-ai/app/__pycache__/learning.cpython-314.pyc | 9326 | Ignored | Cache Python tái tạo được |
 | xiangqi-ai/app/__pycache__/puzzles.cpython-314.pyc | 3137 | Ignored | Cache Python tái tạo được |
 | xiangqi-ai/app/__pycache__/rules.cpython-314.pyc | 15391 | Ignored | Cache Python tái tạo được |
-| xiangqi-ai/app/__pycache__/service.cpython-314.pyc | 24871 | Ignored | Cache Python tái tạo được |
+| xiangqi-ai/app/__pycache__/service.cpython-314.pyc | 27070 | Ignored | Cache Python tái tạo được |
 | xiangqi-ai/app/__pycache__/storage.cpython-314.pyc | 4670 | Ignored | Cache Python tái tạo được |
 | xiangqi-ai/app/engine.py | 3988 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
 | xiangqi-ai/app/learning.py | 5737 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
 | xiangqi-ai/app/puzzles.py | 2182 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
 | xiangqi-ai/app/rules.py | 8805 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
-| xiangqi-ai/app/service.py | 15262 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
+| xiangqi-ai/app/service.py | 17146 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
 | xiangqi-ai/app/storage.py | 2189 | Tracked | Logic backend; xem vai trò chi tiết trong sổ tay |
+| xiangqi-ai/artifacts/co-chill-2026-10-09.png | 135026 | Ignored | Ảnh/bằng chứng kiểm tra cục bộ |
 | xiangqi-ai/artifacts/co-chill-home.png | 31274 | Ignored | Ảnh/bằng chứng kiểm tra cục bộ |
+| xiangqi-ai/artifacts/improve_ui.py | 3074 | Ignored | Ảnh/bằng chứng kiểm tra cục bộ |
+| xiangqi-ai/artifacts/polish.css | 3077 | Ignored | Ảnh/bằng chứng kiểm tra cục bộ |
 | xiangqi-ai/data/sources.csv | 599 | Tracked | Sổ nguồn dữ liệu và quyền sử dụng |
 | xiangqi-ai/deliverables/Co_Chill_So_tay_hien_trang.html | Tự sinh | Tracked | File cấu hình hoặc tài nguyên; xem đường dẫn |
-| xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx | 60402 | Chưa tracked | 272 câu bổ sung V4 về từng trang UI UX kiến trúc API và luật; chờ trả lời |
+| xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx | 60402 | Tracked | 272 câu bổ sung V4 về từng trang UI UX kiến trúc API và luật; chờ trả lời |
 | xiangqi-ai/deliverables/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx | 56440 | Tracked | Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt |
 | xiangqi-ai/deliverables/~$_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx | 162 | Chưa tracked | File khóa Word; không phải nội dung tài liệu |
-| xiangqi-ai/docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md | 56604 | Chưa tracked | Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt |
+| xiangqi-ai/docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md | 56604 | Tracked | Bộ câu hỏi bổ sung V4; không tự coi là câu trả lời đã chốt |
 | xiangqi-ai/docs/materials/00_START_HERE.md | 1262 | Ignored | Bản trích xuất/giải nén đầu vào, ngoài Git |
 | xiangqi-ai/docs/materials/01_PRODUCT_SPEC.md | 2201 | Ignored | Bản trích xuất/giải nén đầu vào, ngoài Git |
 | xiangqi-ai/docs/materials/02_FEEDBACK_AND_CORRECTIONS.md | 2626 | Ignored | Bản trích xuất/giải nén đầu vào, ngoài Git |
@@ -150,26 +156,26 @@ Nội dung/metadata thay đổi: xiangqi-ai/DEVELOPMENT_JOURNAL.md; xiangqi-ai/P
 | xiangqi-ai/docs/spec/15_PARALLEL_COMPARISON_SCORECARD.md | 554 | Tracked | Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai |
 | xiangqi-ai/docs/spec/16_FUTURE_FEATURE_BACKLOG.md | 745 | Tracked | Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai |
 | xiangqi-ai/docs/spec/17_ACTION_ITEMS_BEFORE_CODE.md | 977 | Tracked | Đặc tả V3; nội dung yêu cầu không phải trạng thái triển khai |
-| xiangqi-ai/inventory/VERIFICATION_VI.md | 1988 | Tracked | Tài liệu/quy tắc dự án |
+| xiangqi-ai/inventory/VERIFICATION_VI.md | 2324 | Tracked | Tài liệu/quy tắc dự án |
 | xiangqi-ai/inventory/manifest.json | Tự sinh | Tracked | File cấu hình hoặc tài nguyên; xem đường dẫn |
 | xiangqi-ai/server.py | 6732 | Tracked | Điểm khởi động HTTP server local |
 | xiangqi-ai/tests/__init__.py | 0 | Tracked | Đánh dấu package tests |
 | xiangqi-ai/tests/__pycache__/__init__.cpython-314.pyc | 159 | Ignored | Cache Python tái tạo được |
-| xiangqi-ai/tests/__pycache__/test_http.cpython-314.pyc | 8163 | Ignored | Cache Python tái tạo được |
-| xiangqi-ai/tests/__pycache__/test_learning.cpython-314.pyc | 29297 | Ignored | Cache Python tái tạo được |
+| xiangqi-ai/tests/__pycache__/test_http.cpython-314.pyc | 10272 | Ignored | Cache Python tái tạo được |
+| xiangqi-ai/tests/__pycache__/test_learning.cpython-314.pyc | 38529 | Ignored | Cache Python tái tạo được |
 | xiangqi-ai/tests/__pycache__/test_rules.cpython-314.pyc | 16206 | Ignored | Cache Python tái tạo được |
-| xiangqi-ai/tests/test_http.py | 4013 | Tracked | Kiểm thử tự động |
-| xiangqi-ai/tests/test_learning.py | 11214 | Tracked | Kiểm thử tự động |
+| xiangqi-ai/tests/test_http.py | 5185 | Tracked | Kiểm thử tự động |
+| xiangqi-ai/tests/test_learning.py | 14365 | Tracked | Kiểm thử tự động |
 | xiangqi-ai/tests/test_rules.py | 6421 | Tracked | Kiểm thử tự động |
 | xiangqi-ai/tools/__pycache__/update_inventory.cpython-314.pyc | 23821 | Ignored | Cache Python tái tạo được |
 | xiangqi-ai/tools/create_v4_document.py | 45967 | Tracked | Công cụ tạo tài liệu/kiểm kê |
-| xiangqi-ai/tools/create_v4_ui_supplement.py | 4790 | Chưa tracked | Công cụ tạo tài liệu/kiểm kê |
+| xiangqi-ai/tools/create_v4_ui_supplement.py | 4790 | Tracked | Công cụ tạo tài liệu/kiểm kê |
 | xiangqi-ai/tools/update_inventory.py | 14102 | Tracked | Công cụ tạo tài liệu/kiểm kê |
-| xiangqi-ai/var/chill.sqlite3 | 32768 | Ignored | Dữ liệu local; không đưa nội dung riêng tư vào báo cáo |
-| xiangqi-ai/web/app.js | 32082 | Tracked | Giao diện trình duyệt |
+| xiangqi-ai/var/chill.sqlite3 | 49152 | Ignored | Dữ liệu local; không đưa nội dung riêng tư vào báo cáo |
+| xiangqi-ai/web/app.js | 40869 | Tracked | Giao diện trình duyệt |
 | xiangqi-ai/web/favicon.svg | 279 | Tracked | Giao diện trình duyệt |
-| xiangqi-ai/web/index.html | 2064 | Tracked | Giao diện trình duyệt |
-| xiangqi-ai/web/style.css | 15596 | Tracked | Giao diện trình duyệt |
+| xiangqi-ai/web/index.html | 2127 | Tracked | Giao diện trình duyệt |
+| xiangqi-ai/web/style.css | 18704 | Tracked | Giao diện trình duyệt |
 | ~$swer to Master Question.docx | 162 | Ngoài repo | File khóa Word; không phải nội dung tài liệu |
 
 ## Các bản trùng nguyên byte (SHA-256)
@@ -214,6 +220,8 @@ Bản trùng không tự đồng bộ. Không xóa tự động.
 
 - 10-07/XiangqiAI_V3_Final_Pack/manifest.json = xiangqi-ai/docs/materials/manifest.json
 
+- 10-08/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx = xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx
+
 - 10-08/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx = xiangqi-ai/deliverables/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx
 
 - General/Answer V3.docx = xiangqi-ai/Answer V3.docx
@@ -248,6 +256,7 @@ Bản trùng không tự đồng bộ. Không xóa tự động.
 
 | File | Đoạn XML | Ký tự văn bản |
 | --- | --- | --- |
+| 10-08/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx | 1001 | 47031 |
 | 10-08/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx | 547 | 33056 |
 | General/Answer V3.docx | 1431 | 113541 |
 | General/V3.docx | 4683 | 102047 |
@@ -267,6 +276,7 @@ Bản trùng không tự đồng bộ. Không xóa tự động.
 | app/rules.py | side, other, square, index, parse_move, Position, describe |
 | app/service.py | ident, text, Service |
 | app/storage.py | ClosingConnection, Repository |
+| artifacts/improve_ui.py | swap |
 | server.py | make_server |
 | tests/__init__.py | Không có định nghĩa cấp module |
 | tests/test_http.py | HTTPTests |
@@ -282,9 +292,9 @@ Chỉ đếm bản ghi, không đếm người dùng và không đánh giá hi�
 
 | Loại bản ghi | Số lượng |
 | --- | --- |
-| attempt | 2 |
-| exercise | 2 |
-| game | 4 |
+| attempt | 4 |
+| exercise | 6 |
+| game | 6 |
 | skill | 1 |
 
 ## Phạm vi chưa xác minh / lỗi đọc

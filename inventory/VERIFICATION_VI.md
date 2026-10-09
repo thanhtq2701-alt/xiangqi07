@@ -1,5 +1,7 @@
 # Bằng chứng kiểm tra lại ngày 08/10/2026
 
+Cập nhật mới hơn ngày 09/10/2026: 72 test pass trong 64.517 giây sau cải tiến nháp/resume/UI. Bằng chứng mới, phạm vi và giới hạn nằm trong TEST_REPORT_CODEX.md và RESEARCH_AND_IMPROVEMENTS_2026_10_09.md. Phần dưới giữ lịch sử lần kiểm kê trước; không phải kết quả mới nhất.
+
 Commit code được kiểm tra: e66c6c060ef71e52db3b5f944a1cad4c5ecca9b3. Đợt kiểm kê chỉ thêm tài liệu/công cụ kiểm kê, không đổi code ứng dụng hoặc tests.
 
 - `python -m unittest discover -s tests -v`: 65/65 pass, 57.899 giây, khi chạy ngoài sandbox. Lần chạy đầu trong sandbox có 59 test pass và 6 lỗi HTTP WinError 10013 vì bị chặn socket; không bỏ/sửa test để đạt kết quả.

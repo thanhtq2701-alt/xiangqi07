@@ -78,5 +78,23 @@ class HTTPTests(unittest.TestCase):
         self.assertEqual(self.request('/api/game',{'mode':'wrong'})[0],400)
         self.assertEqual(self.request('/api/game',[])[0],400)
 
+    def test_missing_or_wrong_required_fields_are_bad_requests(self):
+        for path in ('/api/move','/api/bot','/api/review','/api/draft','/api/reflect','/api/attempt','/api/hint','/api/feedback'):
+            self.assertEqual(self.request(path,{})[0],400,path)
+            self.assertEqual(self.request(path,{'id':[]})[0],400,path)
+
+    def test_http_draft_resume_keeps_answer_locked(self):
+        _,headers,_=self.request('/api/bootstrap');cookie=headers['Set-Cookie'].split(';')[0]
+        _,_,e=self.request('/api/practice',{'skill':'material'},cookie)
+        self.assertEqual(self.request('/api/draft',{'id':e['id'],'plan':'Nghĩ tiếp'},cookie)[0],200)
+        self.assertEqual(self.request('/api/draft',{'id':e['id'],'plan':'Other'})[0],404)
+        _,_,view=self.request('/api/exercise?id='+e['id'],cookie=cookie)
+        self.assertEqual(view['draft']['plan'],'Nghĩ tiếp')
+        self.assertNotIn('analysis',view)
+        self.assertNotIn('explanation',view)
+        _,_,dashboard=self.request('/api/dashboard',cookie=cookie)
+        self.assertEqual(dashboard['pending'][0]['id'],e['id'])
+        self.assertTrue(dashboard['pending'][0]['has_draft'])
+
 
 if __name__=='__main__':unittest.main()

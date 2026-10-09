@@ -1,5 +1,9 @@
 # Development journal
 
+## 9 October 2026 — research and usability without new owner answers
+
+Surveyed 14 Xiangqi service addresses: 11 with official-page evidence, 3 unavailable. Visually inspected Xiangqi.com, ChessDB and Việt Cờ Tướng. Added private reflection autosave with gating and late-save protection, pending/resume entry points, reload restoration, Vietnamese piece labels, keyboard board navigation, readability/mobile improvements, busy timing, reconnect UI and required request-field validation. No rules/engine/scoring changes or external dataset imports. 72 tests pass in 64.517s; browser learning loop, draft reload and 390×844 layout verified. Full scoped report: RESEARCH_AND_IMPROVEMENTS_2026_10_09.md.
+
 ## 7–8 October 2026
 
 Read the owner materials and finalized specification. The supplied folder had no app code or Git baseline. Chose dependency-free Python/JavaScript/SQLite so the prototype works without paid services. Kept all original specs unchanged and documented the stack deviation.

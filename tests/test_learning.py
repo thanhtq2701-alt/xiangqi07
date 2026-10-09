@@ -103,6 +103,61 @@ class ServiceTests(unittest.TestCase):
 
     def reflect(self,e):return self.svc.reflect(self.db,self.owner,e['id'],REFLECTION)
 
+    def test_draft_persists_without_revealing_or_scoring(self):
+        e=self.demo_review()
+        draft={'evaluation':'Đang suy nghĩ', 'threat':'', 'plan':'', 'confidence':'some'}
+        self.assertTrue(self.svc.save_draft(self.db,self.owner,e['id'],draft)['saved'])
+        self.db.commit()
+        with Repository(self.path).connect() as reopened:
+            view=self.svc.exercise_view(self.repo.get(reopened,self.owner,'exercise',e['id']))
+        self.assertEqual(view['draft'],draft)
+        self.assertIsNone(view['reflection'])
+        self.assertFalse(view['revealed'])
+        self.assertNotIn('analysis',view)
+        self.assertNotIn('explanation',view)
+        self.assertEqual(self.svc.dashboard(self.db,self.owner)['total_attempts'],0)
+        with self.assertRaises(ValueError):self.svc.attempt(self.db,self.owner,e['id'],'a2a7')
+
+    def test_draft_isolation_and_validation(self):
+        e=self.demo_review()
+        with self.assertRaises(LookupError):self.svc.save_draft(self.db,'another-owner',e['id'],{})
+        for draft in ({'plan':7},{'plan':'x'*1501},{'confidence':'invalid'}):
+            with self.assertRaises(ValueError):self.svc.save_draft(self.db,self.owner,e['id'],draft)
+        self.assertNotIn('draft',self.repo.get(self.db,self.owner,'exercise',e['id']))
+
+    def test_submitted_reflection_wins_over_delayed_draft(self):
+        e=self.demo_review()
+        self.svc.save_draft(self.db,self.owner,e['id'],{'plan':'Bản nháp'})
+        self.reflect(e)
+        result=self.svc.save_draft(self.db,self.owner,e['id'],{'plan':'Lưu trễ'})
+        self.assertFalse(result['saved'])
+        stored=self.repo.get(self.db,self.owner,'exercise',e['id'])
+        self.assertNotIn('draft',stored)
+        self.assertEqual(stored['reflection']['plan'],REFLECTION['plan'])
+
+    def test_pending_practice_resume_and_completion(self):
+        e=self.svc.practice(self.db,self.owner,{'skill':'material'})
+        pending=self.svc.dashboard(self.db,self.owner)['pending']
+        self.assertEqual(pending[0]['id'],e['id'])
+        self.assertEqual(pending[0]['stage'],'reflection')
+        self.assertNotIn('analysis',pending[0])
+        self.assertEqual(self.svc.dashboard(self.db,'another-owner')['pending'],[])
+        self.reflect(e)
+        self.assertEqual(self.svc.dashboard(self.db,self.owner)['pending'][0]['stage'],'attempt')
+        stored=self.repo.get(self.db,self.owner,'exercise',e['id'])
+        self.svc.attempt(self.db,self.owner,e['id'],stored['analysis']['lines'][0]['move'])
+        self.assertEqual(self.svc.dashboard(self.db,self.owner)['pending'],[])
+
+    def test_drafts_export_and_delete_with_guest(self):
+        e=self.demo_review()
+        self.svc.save_draft(self.db,self.owner,e['id'],{'plan':'Ghi chú riêng'})
+        records=self.svc.export(self.db,self.owner)['data']
+        exercise=next(r['data'] for r in records if r['kind']=='exercise')
+        self.assertEqual(exercise['draft']['plan'],'Ghi chú riêng')
+        self.assertNotIn('analysis',exercise)
+        self.repo.delete_owner(self.db,self.owner)
+        self.assertEqual(self.svc.export(self.db,self.owner)['data'],[])
+
     def test_complete_learning_loop(self):
         e=self.demo_review()
         self.assertNotIn('analysis',e)

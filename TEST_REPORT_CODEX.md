@@ -1,5 +1,13 @@
 # Test report
 
+## Latest update 9 October 2026
+
+`python -m unittest discover -s tests -v`: **72 passed in 64.517 seconds**, outside sandbox for localhost access. Seven new tests cover draft persistence without answer reveal/scoring, ownership and validation, late autosave after submission, unfinished practice resume/completion, draft export/delete, required HTTP fields and HTTP draft/resume gating. Existing 65 tests unchanged except additions. Python compileall and bundled Node syntax check pass.
+
+Browser: draft saved, navigation home showed resume, reload restored text without answer, Vietnamese pieces preserved reflection, keyboard selected a2 and moved to a7, related b3g3 solved, progress persisted. Viewport 390×844 measured client/scroll widths 375/375 on home and exercise; board about 329 px. Initial viewport attempt affected another tab; final measurements were from the visible mobile test tab. Error/warning logs empty at final check. Screenshot: artifacts/co-chill-2026-10-09.png. Not a full accessibility audit or real learner study.
+
+## Original handoff evidence
+
 Date: 8 October 2026. Environment: Windows, Python 3.14, bundled modern Node for syntax verification.
 
 Final command `python -m unittest discover -s tests -v`: **65 passed, 39.380 seconds**. No failing tests were deleted or weakened.

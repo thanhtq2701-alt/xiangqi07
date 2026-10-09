@@ -50,7 +50,7 @@ Trình duyệt `web/` → JSON HTTP `server.py` → nghiệp vụ `app/service.p
 - Chơi với máy hoặc hai người cùng thiết bị; nhập FEN + nước tọa độ; xem lịch sử ván.
 - Màn xem lại điểm cần học; 3 ô suy nghĩ bắt buộc trước lời giải; WHAT/WHY/HOW; thử lại và gợi ý có ghi nhận hỗ trợ.
 - Luyện bài liên quan, bài học ngắn, tiến bộ và lịch ôn; cài đặt xuất/xóa dữ liệu; góp ý lưu cục bộ.
-- Giao diện tiếng Việt, responsive, trạng thái chờ/lỗi, nhãn truy cập và focus. Chưa audit WCAG đầy đủ; chưa có điều khiển bàn cờ bằng phím mũi tên/drag-and-drop. Bản nháp reflection có thể mất khi chuyển trang.
+- Cập nhật 09/10: giao diện có nhãn quân tiếng Việt tùy chọn, phím mũi tên/Enter/Esc, tự lưu bản nháp reflection lên server local, tiếp tục bài từ trang chủ và phục hồi bài/ván khi reload. Chưa audit WCAG đầy đủ hoặc kéo thả; nháp chưa lưu xong vẫn có thể mất khi đóng cưỡng bức, chưa giải quyết xung đột nhiều tab.
 
 ## 5. API hiện có — nội bộ, không phải dịch vụ trả phí
 
@@ -66,6 +66,7 @@ Trình duyệt `web/` → JSON HTTP `server.py` → nghiệp vụ `app/service.p
 | POST /api/bot | Yêu cầu nước máy. |
 | POST /api/review | Tạo/đọc điểm cần xem lại của ván. |
 | POST /api/reflect | Lưu suy nghĩ và xử lý mở lời giải theo loại bài. |
+| POST /api/draft | Lưu nháp suy nghĩ; không mở đáp án hoặc ghi điểm. |
 | POST /api/attempt | Thử nước tại bài học; ghi lần thử và cập nhật học tập. |
 | POST /api/practice | Chọn bài liên quan hoặc ôn tập. |
 | POST /api/hint | Gợi ý; đánh dấu có hỗ trợ. |
@@ -107,12 +108,14 @@ Thứ tự đọc đề nghị: sổ tay này → README → chạy demo → KNO
 
 ## 8. Cái gì còn thiếu và nên làm tiếp
 
+Đợt 09/10 đã khảo sát nguồn chính thức của 11 dịch vụ cờ tướng, ghi nhận 3 nơi chưa truy cập được và cải thiện khả dụng từ yêu cầu có sẵn. Báo cáo đầy đủ: `RESEARCH_AND_IMPROVEMENTS_2026_10_09.md`. Bộ kiểm thử mới nhất có 72 test pass; đây là bằng chứng kỹ thuật, không phải hiệu quả học thực tế.
+
 Bổ sung ngày 08/10/2026: `deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx` có 272 câu trong 34 nhóm, 20 câu ưu tiên, mã UX01.01–UX34.08. Trả lời cùng Word V4 cũ, kèm ảnh/bản vẽ theo mã trang P01–P16 và case luật theo mã LUAT001. Nguồn nội dung ở `docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md`; generator là `tools/create_v4_ui_supplement.py`. Đây là bộ thu thập yêu cầu, chưa phải thiết kế UI mới hoặc luật đã triển khai.
 
 1. Trả lời 12 câu P0 trong V4; xác định người học mục tiêu, mục tiêu pilot, engine/luật, quyền dữ liệu và tiêu chí chấp nhận. Trả lời các nhóm UI/UX/API còn lại theo mẫu; chưa quyết định có thể ghi “dùng mặc định đề xuất”.
 2. Chuẩn bị một nhóm nhỏ thế cờ có quyền sử dụng: FEN, bên đi, lời giải chấp nhận, biến giải thích, mức người học và nguồn. Nhờ người hiểu cờ duyệt; đối chiếu engine mạnh trước khi đưa ra tuyên bố độ chính xác.
 3. Kiểm thử bằng một ván của chính bạn; ghi màn hình/bước tái hiện lỗi và kỳ vọng. Hai ảnh lỗi extension hiện có không đủ để sửa lỗi gameplay.
-4. Ưu tiên nâng chất lượng phân tích, bảo toàn bản nháp reflection, độ rõ ràng bàn cờ và loading dài. Review có thể mất khoảng 48 giây với 24 thế chưa cache vì search đang đồng bộ.
+4. Ưu tiên nâng chất lượng phân tích và xử lý tác vụ nền. Nháp reflection, độ rõ bàn cờ và thông báo chờ đã cải thiện ngày 09/10; review vẫn có thể mất khoảng 48 giây với 24 thế chưa cache vì search đồng bộ.
 5. Sau khi vòng học được kiểm chứng, mới quyết định engine mạnh, hosting, đăng nhập, đồng bộ, backup và provider LLM. Chưa có PvP online, đồng hồ, placement thực, import ký phổ nâng cao, luật chiếu dai/đuổi dai đầy đủ hoặc kết quả pilot.
 
 ## 9. Cách chạy và cập nhật sổ nhớ mỗi đợt

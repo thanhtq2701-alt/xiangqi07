@@ -1,5 +1,7 @@
 # Local prototype privacy
 
+Update 9 October 2026: partially typed reflection drafts are autosaved to the same local SQLite exercise record after a short pause, before submission. Drafts do not reveal solutions or count as attempts. They are included in guest export and removed by guest deletion or replaced by the submitted reflection. Piece-label preference alone is stored in browser localStorage. The app still sends no learner data to external services.
+
 The local server stores games, reflections, practice attempts, skill schedules and feedback in `var/chill.sqlite3`. An HttpOnly, SameSite=Strict random cookie links your browser to its records. No email, name, password, date of birth or contact information is requested. No analytics tracker, remote font, paid LLM or external API is called by the application.
 
 Data is not automatically shared, transmitted for model training or sent to a coach. The project owner must obtain appropriate consent and define a reviewed privacy policy before any external pilot, particularly involving children. This file is a description of the prototype, not a legal compliance certification.
