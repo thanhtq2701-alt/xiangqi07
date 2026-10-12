@@ -1,5 +1,7 @@
 # Run and demo
 
+Windows shortcut: double-click `Mo_Co_Chill.cmd` in the extracted/cloned repository. It starts a hidden local server or reuses an existing responsive server, then opens the default browser. ChatGPT is not required. Run it again after reboot. Keep using the same browser to retain the guest cookie; logs are in ignored `var/`. For a visible terminal and Ctrl+C shutdown, use the command below.
+
 Run `python server.py --port 8765` from the repository, then open http://127.0.0.1:8765/. Python 3.10+; no dependencies to install. Tested on Python 3.14 / Windows. `python server.py` uses port 8000 instead. If the port is occupied, use `--port 8766` and open that same port.
 
 The server binds only 127.0.0.1. Keep the terminal open. It is not a public deployment. Use the same hostname, port and browser to retain the guest cookie. SQLite persists across server restarts. Back up `var/chill.sqlite3` while the server is stopped; a browser session export is available under Data and privacy.

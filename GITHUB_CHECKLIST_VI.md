@@ -2,6 +2,8 @@
 
 Ngày lập: **12/10/2026 (Asia/Bangkok)**. Đây là hướng dẫn thao tác và danh mục bàn giao, không phải xác nhận đã push.
 
+**Cập nhật sau lần push đầu:** đã nối `origin` với `https://github.com/thanhtq2701-alt/xiangqi07.git`, đẩy 7 commit đến `1eec2db`, xác nhận mã local/remote trùng nhau và nhánh mặc định `codex-full`. Bạn đã hoàn thành bước 5; từ nay dùng mục 6 cho công việc hằng ngày. Các dòng “chưa có remote” bên dưới mô tả snapshot trước lần push đầu, không phải trạng thái hiện tại. Không chạy lại `remote add` hoặc tạo repo mới. Chuẩn bị Public được ghi trong `PUBLIC_READINESS_VI.md`; chưa đổi visibility.
+
 ## 1. Trạng thái đã kiểm tra
 
 - Thư mục đúng: `E:\ThanhTQ\App cờ tướng\xiangqi-ai`. Chỉ dùng thư mục này làm repo, không lấy cả thư mục cha `App cờ tướng`.

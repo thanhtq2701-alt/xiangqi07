@@ -20,8 +20,12 @@ Rechecked the parent App cờ tướng folder, including General, 10-07, 10-08, 
 
 ## 8 October 2026 — detailed UI architecture and rules questionnaire
 
-## 12 October 2026 — local startup fix
-
-Added one-click Windows launcher with detached hidden server, readiness check and existing-server reuse. Updated run instructions and limitations. Verified startup, repeat invocation and HTTP 200 after launcher exit; no gameplay changes. Use `Mo_Co_Chill.cmd` after Windows restarts; ChatGPT need not be open.
-
 Created a separate owner questionnaire with 272 uniquely identified questions across 34 groups and 20 priority questions. Covers per-page UI, design details, responsive states, information and software architecture, API contracts, content editing, core and tournament rules, test fixtures and acceptance. Includes three schematic layout options, page/API/rule response templates and explicit reconciliation with existing V4. Existing V4 and application code remain unchanged. Saved DOCX structure and question IDs verified; packaged renderer fails because bundled LibreOffice is unavailable, so page layout is not visually certified.
+
+## 12 October 2026 — local startup and GitHub handoff
+
+Added one-click Windows launcher with detached hidden server, readiness check and existing-server reuse. Verified startup, repeat invocation and HTTP 200 after launcher exit. Pushed the existing seven commits to the owner's xiangqi07 repository, verified matching local/remote HEAD and default branch codex-full. No gameplay changes.
+
+## 12 October 2026 — preparation for owner-reviewed public release
+
+Owner selected preparation and reporting before deciding Public. Polished the README for fresh clones, corrected stale GitHub status and this journal's misplaced entry, documented contribution/release criteria, and rechecked existing tests and historical Git blobs. Original specifications and Word documents remain unchanged; no history rewrite or visibility change. See PUBLIC_READINESS_VI.md for evidence and remaining decisions.

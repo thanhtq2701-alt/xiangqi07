@@ -35,3 +35,7 @@ Failures diagnosed during development:
 V4 document checks: valid DOCX ZIP/XML, 84 unique A01–N06 questions, 12 prioritized P0 IDs and all intended sections. Rendering attempted twice; runtime lacks LibreOffice. No page-by-page visual verification or rendered-page count claimed.
 
 12 October 2026 launcher validation: Windows PowerShell `tools/start_local.ps1 -NoBrowser` started the server successfully and exited 0; a second invocation reused it and exited 0; subsequent GET `/` returned HTTP 200. `git diff --check` passed. Browser auto-opening, Windows reboot and actual ChatGPT closure were not exercised. Earlier 72-test suite results remain historical; game logic is unchanged by this launcher-only update.
+
+## 12 October 2026 — public-readiness recheck
+
+72/72 tests passed in 42.073s. Python compileall and modern Node --check web/app.js passed. Documentation-only changes; no fresh browser demo claimed. Historical blob scan and its limits are recorded in PUBLIC_READINESS_VI.md.

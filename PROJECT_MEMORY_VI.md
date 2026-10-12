@@ -1,5 +1,7 @@
 # Sổ tay hiện trạng Cờ Chill AI
 
+Cập nhật 12/10/2026: repo đã được push lên `https://github.com/thanhtq2701-alt/xiangqi07`, nhánh mặc định `codex-full`; có launcher `Mo_Co_Chill.cmd` chạy độc lập với ChatGPT. Các nhận xét “chưa có remote” trong snapshot 08/10 là lịch sử. Đánh giá chuẩn bị công khai mới nằm trong `PUBLIC_READINESS_VI.md`; vẫn chờ chủ dự án quyết định Public. Inventory/HTML cũ có ngày snapshot riêng, không phải kết quả quét mới.
+
 Bản diễn giải do người phát triển cập nhật, đối chiếu ngày 08/10/2026. Danh mục file tự động nằm trong `PROJECT_INVENTORY_VI.md`; bản HTML tổng hợp nằm trong `deliverables/Co_Chill_So_tay_hien_trang.html`. Đây là sổ nhớ dự án, không phải đặc tả thay thế V3 và không phải cam kết mọi ý tưởng đã được triển khai.
 
 ## 1. Bạn đang có sản phẩm ở bước nào?

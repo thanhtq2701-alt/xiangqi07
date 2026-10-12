@@ -112,3 +112,7 @@ Next highest-value work: owner-reviewed diverse positions plus a grounded explan
 ## 12 October 2026 — independent Windows launcher
 
 Added `Mo_Co_Chill.cmd` and `tools/start_local.ps1`: discover Python 3.10+, start hidden server outside the chat lifecycle, wait for HTTP readiness, reuse an existing responsive app, and open the default browser. Failure messages point to ignored local logs; occupied ports are not killed. README explains reboot behavior and browser-cookie continuity. Commands verified: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/start_local.ps1 -NoBrowser` twice and HTTP GET `/` (200). Server remains reachable after launcher exits. No game logic or database migration changed; no new external services. Automatic Windows startup and hosting are not installed.
+
+## 12 October 2026 — repository presentation
+
+Polished README for fresh clones, added contribution guidance and owner-reviewed public-readiness report, corrected GitHub status and journal ordering. Rechecked 72 tests, Python/JS syntax, and 97 historical blobs including two DOCX XML payloads. No runtime, engine, data, original specification, visibility or history changes. Details and pending privacy/license decisions: PUBLIC_READINESS_VI.md.

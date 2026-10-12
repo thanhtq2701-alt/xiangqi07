@@ -2,6 +2,25 @@
 
 Ứng dụng học cờ tướng tiếng Việt chạy cục bộ: chơi hoặc nhập ván → tìm điểm cần xem lại → tự suy nghĩ → lời giải có căn cứ → thử lại → bài liên quan → lịch ôn → tiến bộ.
 
+**Trạng thái: prototype local đang phát triển.** Có engine tìm kiếm đơn giản và lời giải theo mẫu; chưa tích hợp LLM, chưa có kết quả kiểm chứng hiệu quả học tập. Mục tiêu hiện tại là hoàn thiện một vòng học rõ ràng, có thể kiểm tra và chạy không cần dịch vụ trả phí.
+
+| Thành phần | Công nghệ |
+| --- | --- |
+| Giao diện tiếng Việt | HTML, CSS, JavaScript thuần |
+| API và nghiệp vụ | Python 3.10+, standard library |
+| Dữ liệu | SQLite trên máy, phiên khách bằng cookie |
+| Phân tích cờ | Luật hợp lệ + engine local tối đa 2 ply |
+| Giải thích | Template dựa trên kết quả engine; không tự sinh biến cờ |
+
+## Tải source
+
+```powershell
+git clone https://github.com/thanhtq2701-alt/xiangqi07.git
+cd xiangqi07
+```
+
+Repo hiện cần quyền truy cập nếu đang Private. Nếu tải ZIP, giải nén trước khi chạy. Nhánh phát triển hiện tại là `codex-full`. Tài liệu dành cho người mới: [chạy và demo](RUN_AND_DEMO_CODEX.md); dành cho người phát triển: [đóng góp](CONTRIBUTING.md).
+
 ## Chạy ngay trên Windows
 
 **Cách dễ nhất:** nhấp đúp `Mo_Co_Chill.cmd` trong thư mục dự án. File này bật server nền rồi mở trình duyệt; nếu server đã chạy thì dùng lại. Có thể đóng ChatGPT mà server vẫn chạy độc lập khi bạn khởi động bằng file này. Sau khi khởi động lại Windows, bấm file lần nữa. Không cần mở ChatGPT. Có thể tạo shortcut của file ra Desktop bằng chuột phải → Send to → Desktop.
@@ -13,11 +32,12 @@ Launcher không tự cài vào Windows Startup, không dừng ứng dụng đang
 Yêu cầu Python 3.10 trở lên. Đã kiểm tra với Python 3.14. Không cần cài package, npm, API key hoặc tài khoản cloud.
 
 ```powershell
-cd "E:\ThanhTQ\App cờ tướng\xiangqi-ai"
 python server.py --port 8765
 ```
 
 Mở **http://127.0.0.1:8765/**. Giữ cửa sổ terminal đang chạy. Dừng bằng Ctrl+C. Có thể dùng `py server.py --port 8765` nếu máy dùng Python Launcher.
+
+Chạy lệnh trong thư mục chứa `server.py`. Launcher `.cmd` dành cho Windows; trên macOS/Linux có thể dùng `python3 server.py --port 8765`, nhưng các nền tảng đó chưa được kiểm thử thủ công. Sau khi tắt/bật máy, phải chạy launcher hoặc server lại. GitHub lưu source không tự chạy website này online.
 
 ## Demo một phút
 
@@ -55,6 +75,20 @@ node --check web/app.js
 HTTP tests mở server tạm trên loopback. Nếu chạy trong sandbox chặn socket, cần quyền chạy test bên ngoài sandbox; người dùng chạy PowerShell thông thường không cần cấu hình đặc biệt này. Không có bước build/bundler hoặc typecheck TypeScript vì frontend dùng JavaScript thuần.
 
 ## Cấu trúc và tài liệu
+
+```text
+web/                 Giao diện và tương tác bàn cờ
+server.py            HTTP API, giới hạn truy cập local
+app/                 Luật → engine → nghiệp vụ học → SQLite
+tests/               Kiểm thử luật, học tập và API
+docs/spec/           Đặc tả gốc, không phải danh sách đã hoàn thành
+tools/               Launcher và công cụ tạo tài liệu
+deliverables/        Tài liệu bàn giao và câu hỏi V4
+var/                 Dữ liệu runtime; không nằm trong Git
+```
+
+- [Đánh giá sẵn sàng công khai](PUBLIC_READINESS_VI.md): kiểm tra thực tế, giới hạn và những mục cần chủ dự án duyệt.
+- [Quy trình GitHub hằng ngày](GITHUB_CHECKLIST_VI.md): commit, push và giữ dữ liệu riêng tư.
 
 - [Word bổ sung V4 về UI UX kiến trúc và luật](deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx): 272 câu riêng để trả lời cùng V4 cũ, kèm mẫu bản vẽ, API và case luật.
 
