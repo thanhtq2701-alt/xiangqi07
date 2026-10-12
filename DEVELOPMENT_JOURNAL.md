@@ -20,4 +20,8 @@ Rechecked the parent App cờ tướng folder, including General, 10-07, 10-08, 
 
 ## 8 October 2026 — detailed UI architecture and rules questionnaire
 
+## 12 October 2026 — local startup fix
+
+Added one-click Windows launcher with detached hidden server, readiness check and existing-server reuse. Updated run instructions and limitations. Verified startup, repeat invocation and HTTP 200 after launcher exit; no gameplay changes. Use `Mo_Co_Chill.cmd` after Windows restarts; ChatGPT need not be open.
+
 Created a separate owner questionnaire with 272 uniquely identified questions across 34 groups and 20 priority questions. Covers per-page UI, design details, responsive states, information and software architecture, API contracts, content editing, core and tournament rules, test fixtures and acceptance. Includes three schematic layout options, page/API/rule response templates and explicit reconciliation with existing V4. Existing V4 and application code remain unchanged. Saved DOCX structure and question IDs verified; packaged renderer fails because bundled LibreOffice is unavailable, so page layout is not visually certified.

@@ -4,6 +4,12 @@
 
 ## Chạy ngay trên Windows
 
+**Cách dễ nhất:** nhấp đúp `Mo_Co_Chill.cmd` trong thư mục dự án. File này bật server nền rồi mở trình duyệt; nếu server đã chạy thì dùng lại. Có thể đóng ChatGPT mà server vẫn chạy độc lập khi bạn khởi động bằng file này. Sau khi khởi động lại Windows, bấm file lần nữa. Không cần mở ChatGPT. Có thể tạo shortcut của file ra Desktop bằng chuột phải → Send to → Desktop.
+
+Địa chỉ `127.0.0.1` là máy của bạn, không phải hosting online. Việc mở lại tab không tự bật Python. Nếu mở bằng trình duyệt khác, phiên khách có thể khác: hãy dùng cùng trình duyệt và giữ cookie để tiếp tục tiến độ. Muốn dùng tab trong ChatGPT, chạy file rồi tải lại `http://127.0.0.1:8765/` ở tab đó.
+
+Launcher không tự cài vào Windows Startup, không dừng ứng dụng đang chiếm cổng và không sửa dữ liệu học. Log khởi động nằm trong `var/server-output.log`, `var/server-error.log` (không commit). Để dừng server nền, dùng Task Manager, xác định tiến trình Python có dòng lệnh `server.py --port 8765`, rồi End task. Cách terminal bên dưới phù hợp khi cần xem lỗi hoặc dừng bằng Ctrl+C.
+
 Yêu cầu Python 3.10 trở lên. Đã kiểm tra với Python 3.14. Không cần cài package, npm, API key hoặc tài khoản cloud.
 
 ```powershell

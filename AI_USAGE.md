@@ -10,4 +10,6 @@ Runtime AI status: no paid API calls, no LLM model, no neural model and no train
 
 Data: twelve original synthetic fixtures and a two-ply synthetic demonstration fragment. They are not owner games, real player records, a licensed external dataset or an expert-reviewed gold set. Automated legality/depth-2 verification is distinct from expert pedagogical validation.
 
+12 October 2026: Codex added and tested a local Windows launcher and startup documentation. This adds no LLM calls, training, external hosting or data transmission.
+
 UI tests created local demonstration attempts solely to verify behavior. Those records are test evidence, not evidence of user learning, adoption or impact. No claims of trained ML, measured improvement, users or concurrent capacity are made. Future training reuse must require separate consent and reviewed data provenance.
