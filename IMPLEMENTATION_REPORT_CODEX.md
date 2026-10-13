@@ -116,3 +116,7 @@ Added `Mo_Co_Chill.cmd` and `tools/start_local.ps1`: discover Python 3.10+, star
 ## 12 October 2026 — repository presentation
 
 Polished README for fresh clones, added contribution guidance and owner-reviewed public-readiness report, corrected GitHub status and journal ordering. Rechecked 72 tests, Python/JS syntax, and 97 historical blobs including two DOCX XML payloads. No runtime, engine, data, original specification, visibility or history changes. Details and pending privacy/license decisions: PUBLIC_READINESS_VI.md.
+
+## 12 October 2026 — public static preview and tomorrow plan
+
+Added KE_HOACH_TU_13_10_2026.md with prioritized owner tasks, V4, UI/UX, games/rules, hosting, daily Git workflow and a proposed seven-day plan. Added online-preview/ source mirror and tools/check_online_preview.py. A separate Sites deployment publishes only four selected static assets: two fixture exercises, reflection, explanation, retry, related fixture and local completion/review markers. Existing Python app and SQLite are unchanged. No server-side gate or online engine in this preview. Browser flow, persistence, mobile width and fixture integrity checked.

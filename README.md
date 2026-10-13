@@ -103,3 +103,7 @@ var/                 Dữ liệu runtime; không nằm trong Git
 - [AI usage](AI_USAGE.md), [giới hạn](KNOWN_LIMITATIONS.md), [riêng tư](PRIVACY.md), [nguồn](THIRD_PARTY_NOTICES.md).
 
 Dữ liệu nằm ở `var/chill.sqlite3`, không commit. Cookie trình duyệt là khóa phiên khách; không có khôi phục tài khoản sau khi xóa cookie. Không tự động chia sẻ hoặc dùng dữ liệu làm tập huấn luyện. Tác giả ý tưởng: Trần Quốc Thanh. Implementation có hỗ trợ Codex; chưa có thử nghiệm hiệu quả học tập với người dùng thật.
+
+## Bản xem trước online và kế hoạch ngày mai
+
+Bản demo tĩnh riêng nằm trong online-preview/: hai bài học tương tác, không thay thế backend local. Xem online-preview/README.md để biết phạm vi và cách cập nhật. Kế hoạch tổng hợp từ 13/10/2026 nằm trong KE_HOACH_TU_13_10_2026.md (tài liệu chủ dự án, không xuất bản lên website).

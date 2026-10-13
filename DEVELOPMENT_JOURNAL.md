@@ -29,3 +29,7 @@ Added one-click Windows launcher with detached hidden server, readiness check an
 ## 12 October 2026 — preparation for owner-reviewed public release
 
 Owner selected preparation and reporting before deciding Public. Polished the README for fresh clones, corrected stale GitHub status and this journal's misplaced entry, documented contribution/release criteria, and rechecked existing tests and historical Git blobs. Original specifications and Word documents remain unchanged; no history rewrite or visibility change. See PUBLIC_READINESS_VI.md for evidence and remaining decisions.
+
+## 12 October 2026 — public preview requested
+
+Owner explicitly requested a URL other people can open and deferred remaining product work to tomorrow. Created a scoped public static demo using Sites, kept repository audience unchanged, and wrote the consolidated 13 October action plan. See online-preview/README.md for scope, tests and deployment notes.

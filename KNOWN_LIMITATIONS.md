@@ -15,3 +15,5 @@
 Highest-value next step: owner-review a small diverse gold set with exact FEN, acceptable alternatives, deeper-engine checks, WHAT/WHY/HOW, learner level and source permission. Then replace the shallow engine through the existing adapter before expanding claims or public deployment.
 
 12 October 2026: `Mo_Co_Chill.cmd` provides on-demand background startup independent of ChatGPT. It is not a Windows service or login task: run it again after reboot. It opens the default browser, whose guest cookie may differ from the in-app browser. Logs stay in ignored `var/`. Automatic recovery from a crashed server and log rotation are not implemented. Launcher reuse checks HTTP page markers, not a cryptographic app identity.
+
+Public preview: online-preview/ is a separate static guided demo, not the full Python app. No free play/import/online engine/account/synchronized database. Reflection gating is UI-only and static answers are inspectable. Two original synthetic exercises, localStorage completion markers, next-day demo reminder date without notifications. See online-preview/README.md.

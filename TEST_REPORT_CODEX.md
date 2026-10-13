@@ -39,3 +39,5 @@ V4 document checks: valid DOCX ZIP/XML, 84 unique A01–N06 questions, 12 priori
 ## 12 October 2026 — public-readiness recheck
 
 72/72 tests passed in 42.073s. Python compileall and modern Node --check web/app.js passed. Documentation-only changes; no fresh browser demo claimed. Historical blob scan and its limits are recorded in PUBLIC_READINESS_VI.md.
+
+12 October 2026 public preview: both guided fixtures completed in browser; progress 2/2 survived reload, explanation hidden before new reflection; viewport 390x844 measured client/scroll width 375/375. No browser console errors observed. Modern Node syntax passed; python tools/check_online_preview.py verifies exported positions, both solutions and complete legal-move sets against app/rules.py. Full local 72-test suite was passed earlier today; local runtime is unchanged.

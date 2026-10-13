@@ -15,3 +15,5 @@ Data: twelve original synthetic fixtures and a two-ply synthetic demonstration f
 UI tests created local demonstration attempts solely to verify behavior. Those records are test evidence, not evidence of user learning, adoption or impact. No claims of trained ML, measured improvement, users or concurrent capacity are made. Future training reuse must require separate consent and reviewed data provenance.
 
 12 October 2026: Codex polished repository documentation and prepared a public-readiness report with historical pattern scanning and fresh automated checks. No new model integration, external dataset, public deployment or learner-data transmission was added.
+
+12 October 2026: Codex created a separate public static preview via the Sites plugin. Two original fixtures and legal-move sets were exported from the existing rules; no LLM-generated analysis or third-party chess assets. Browser-local completion timestamps are not learning-impact evidence. The owner's plan and private repository documents are excluded from deployed assets.
