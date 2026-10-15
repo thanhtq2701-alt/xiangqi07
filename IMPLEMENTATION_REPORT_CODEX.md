@@ -120,3 +120,8 @@ Polished README for fresh clones, added contribution guidance and owner-reviewed
 ## 12 October 2026 — public static preview and tomorrow plan
 
 Added KE_HOACH_TU_13_10_2026.md with prioritized owner tasks, V4, UI/UX, games/rules, hosting, daily Git workflow and a proposed seven-day plan. Added online-preview/ source mirror and tools/check_online_preview.py. A separate Sites deployment publishes only four selected static assets: two fixture exercises, reflection, explanation, retry, related fixture and local completion/review markers. Existing Python app and SQLite are unchanged. No server-side gate or online engine in this preview. Browser flow, persistence, mobile width and fixture integrity checked.
+
+
+## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
+
+Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.

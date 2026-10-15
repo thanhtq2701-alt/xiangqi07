@@ -17,3 +17,8 @@ UI tests created local demonstration attempts solely to verify behavior. Those r
 12 October 2026: Codex polished repository documentation and prepared a public-readiness report with historical pattern scanning and fresh automated checks. No new model integration, external dataset, public deployment or learner-data transmission was added.
 
 12 October 2026: Codex created a separate public static preview via the Sites plugin. Two original fixtures and legal-move sets were exported from the existing rules; no LLM-generated analysis or third-party chess assets. Browser-local completion timestamps are not learning-impact evidence. The owner's plan and private repository documents are excluded from deployed assets.
+
+
+## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
+
+Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.

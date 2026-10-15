@@ -107,3 +107,8 @@ Dữ liệu nằm ở `var/chill.sqlite3`, không commit. Cookie trình duyệt 
 ## Bản xem trước online và kế hoạch ngày mai
 
 Bản demo tĩnh riêng nằm trong online-preview/: hai bài học tương tác, không thay thế backend local. Xem online-preview/README.md để biết phạm vi và cách cập nhật. Kế hoạch tổng hợp từ 13/10/2026 nằm trong KE_HOACH_TU_13_10_2026.md (tài liệu chủ dự án, không xuất bản lên website).
+
+
+## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
+
+Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.

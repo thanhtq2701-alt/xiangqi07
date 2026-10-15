@@ -1,19 +1,84 @@
-# Public preview source
+# Cờ Chill — bản thử nghiệm trên trình duyệt
 
-This directory is a source mirror of a separate static Sites deployment. It does not replace `web/`, `server.py` or SQLite. Only index.html, style.css, app.js and fixtures.js are published. Private documents, plans, source history, database and guest reflections are not included in the static deployment.
+Thư mục này là bản nguồn của website thử nghiệm tĩnh trên ChatGPT Sites. Nó tách
+biệt với ứng dụng Python trong `web/`, `server.py` và SQLite. Cập nhật thư mục này
+hoặc đẩy lên GitHub **không tự triển khai** website.
 
-Site ID: `appgprj_6acd061322c08191a4c912862bc05124`. Deployment checkout is ignored `var/site-preview`, with `.openai/hosting.json`. Reuse this ID for future updates. The Sites source helper owns the separate hosting repository; pushing this GitHub mirror alone does not redeploy the Site.
+## Phạm vi của bản cập nhật
 
-Two original synthetic fixtures are exported from `app/puzzles.py`. The complete legal move sets are generated from `app/rules.py`, not an LLM. Run `python tools/check_online_preview.py` to verify the mirror. The browser implements a guided single-move exercise, not a new general Xiangqi engine. Alternative legal moves receive task-specific feedback, not invented engine scores.
+- Trang chủ theo phác thảo đã chốt: logo, khu vực cá nhân và bốn cửa Chơi, Bài học,
+  Xem lại lỗi sai, Ôn tập.
+- Luật đi của bảy loại quân chạy trong trình duyệt, có kiểm tra Tướng an toàn;
+  máy chơi dùng tìm kiếm cục bộ nông, không phải Pikafish hay mô hình được huấn luyện.
+- Luồng học có câu trả lời trước lời giải, giải thích mẫu dựa trên nước hợp lệ,
+  bài liên quan và bản tự đánh giá cuối phiên.
+- Bài dang dở, câu trả lời và kết quả được lưu trong localStorage để tiếp tục ở
+  **cùng trình duyệt**. Lịch ôn gợi ý lấy thời điểm hoàn thành từng bài làm gốc.
+- Có xuất và xóa dữ liệu tại trình duyệt. Không đồng bộ tài khoản hoặc thiết bị;
+  xóa dữ liệu trình duyệt/chế độ riêng tư có thể làm mất tiến trình.
 
-Reflection gating is a UI teaching sequence only; answers are shipped in the static bundle and can be inspected. This is not the server-side answer gate of the full local application. Reflections remain in DOM memory for the current exercise and are not stored or sent by app code. LocalStorage holds only fixture completion timestamps, next-demo-review timestamps and assistance flags. No account, shared backend, push notification, production spaced-repetition algorithm or device sync is implemented. Hosting still handles ordinary web requests under its own policies.
+Các giới hạn này cần được hiển thị trong giao diện, không chỉ ghi ở README.
 
-Checks on 12 October 2026: both guided exercise flows in browser; progress remains 2/2 on reload; answer section hidden on fresh reflection step; 390px viewport has no horizontal overflow (client/scroll width 375px); modern Node syntax check; fixture verification. No full production or accessibility certification.
+## Điều gì là thật, điều gì là bản mẫu?
 
-Tomorrow's owner plan is `../KE_HOACH_TU_13_10_2026.md`, intentionally outside published assets. All future feature changes should identify whether they target this preview or the full local app.
+`fixtures.js` chứa đủ 12 bài tập tổng hợp gốc trong `app/puzzles.py`, thuộc bốn
+nhóm quan sát quân, Pháo, Mã và an toàn Tướng. Mỗi bài có FEN, vị trí quân,
+toàn bộ nước hợp lệ, một nước mẫu, nguồn gốc và giải thích WHAT / WHY / HOW.
+Không bài nào được lấy từ ván đấu của người thật hoặc tài liệu thương mại.
+Chúng chưa được chuyên gia độc lập thẩm định và không phải bộ dữ liệu đã đo
+hiệu quả học tập. Các thế ít quân được xếp vào phần tàn cuộc để tiện tìm,
+không mang nghĩa một giáo trình tàn cuộc đầy đủ.
 
-Published successfully: https://co-chill-ngay-mai.cosmicanole32.chatgpt.site
-Access: public, explicitly requested by the owner. Version 1. Site source commit: 4ea27de5c90c3080cd673f3a00e669aa3f579bfb. Hosting returned succeeded; live browser heading verified.
-Windows packaging: prepend Git bin and modern Node to PATH, set TAR_OPTIONS=--force-local for the helper; avoids WSL bash and drive-letter tar errors. Credentials are passed only through hidden stdin, never stored.
+Nước mẫu được kiểm tra bằng luật. Phần giải thích nói rõ đường đi của quân,
+ngòi Pháo/chân Mã nếu có và an toàn Tướng. Không khẳng định đó là nước tốt duy
+nhất. Điểm máy từ tìm kiếm nông chỉ là ước lượng cục bộ; không dùng làm bằng
+chứng xếp hạng thi đấu, xác định mọi lỗi chiến lược hoặc đánh giá lời giải tự do.
 
-Anonymous verification: HTTPS request without login/cookies returned HTTP 200 and included reflection-form markup.
+Đây không phải LLM, ML được huấn luyện, hay dịch vụ AI trả phí. Câu trả lời tự do
+được giữ để người học suy nghĩ và đối chiếu; bản này chưa tự chấm năng lực diễn
+đạt bằng LLM. Tự đánh giá cuối phiên không được coi là bằng chứng thành thạo.
+Lịch ôn là quy tắc gợi ý, chưa phải mô hình tối ưu thời điểm ghi nhớ.
+
+Không có PvP online, tài khoản thật, server riêng cho học viên, cơ sở dữ liệu
+chung, email/notification nền hoặc đồng bộ nhiều thiết bị. Luật xử lý chiếu dai,
+đuổi dai và các tình huống giải đấu đầy đủ vẫn cần đối chiếu với bộ luật chủ
+sở hữu sẽ cung cấp. Không dùng bản mẫu này để phân xử một giải đấu.
+
+Khóa lời giải trước phản hồi là cơ chế UI: đáp án có trong bundle tĩnh và có thể
+đọc bằng công cụ lập trình. Không phải khóa đáp án phía server của ứng dụng
+Python. Mã ứng dụng không gửi câu trả lời để huấn luyện mô hình; nhà cung cấp
+hosting vẫn xử lý request web thông thường theo chính sách của họ.
+
+## Tạo lại và kiểm tra dữ liệu
+
+```powershell
+python tools/export_preview_fixtures.py
+python tools/check_online_preview.py
+```
+
+Exporter chỉ đọc dữ liệu tổng hợp trong repository và kiểm tra luật, không truy
+cập mạng. Checker xác nhận đủ 12 ID, FEN, vị trí quân, nước mẫu, toàn bộ tập nước
+hợp lệ, metadata nguồn, bốn nhóm kỹ năng và nội dung xuất khớp với nguồn. Chạy
+lại sau mọi thay đổi của `app/puzzles.py` hoặc `app/rules.py`.
+
+Đã chạy kiểm tra dữ liệu thành công ngày 15/10/2026. Kiểm tra giao diện và triển
+khai của bản mới được ghi trong báo cáo triển khai; kết quả ngày 12/10/2026 của
+bản hai bài không được dùng làm bằng chứng cho bản này.
+
+## Hosting
+
+- Site ID: `appgprj_6acd061322c08191a4c912862bc05124`.
+- URL đã được xuất bản trước đó: <https://co-chill-ngay-mai.cosmicanole32.chatgpt.site>.
+- Audience: **public**, theo yêu cầu của chủ sở hữu; dùng lại dự án này cho bản cập nhật.
+- Checkout của công cụ hosting nằm ở `var/site-preview`, được Git ignore;
+  `.openai/hosting.json` thuộc checkout đó. Công cụ Sites quản lý repository riêng.
+- Chỉ xuất bản các tài nguyên web được chọn. Không xuất bản tài liệu trả lời,
+  kế hoạch riêng, Git history, SQLite, dữ liệu học viên hoặc token.
+
+Bản đầu ngày 12/10/2026 có hai bài; source commit khi đó là
+`4ea27de5c90c3080cd673f3a00e669aa3f579bfb`. Đó là lịch sử triển khai, **không
+phải mã phiên bản của bản cập nhật hiện tại**.
+
+Ghi chú Windows cho công cụ đóng gói: dùng Node hiện đại, Git Bash và
+`TAR_OPTIONS=--force-local` để tránh WSL/đường dẫn ổ đĩa. Credentials chỉ qua
+stdin ẩn của công cụ, không lưu vào repository.

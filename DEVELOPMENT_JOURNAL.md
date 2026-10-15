@@ -33,3 +33,8 @@ Owner selected preparation and reporting before deciding Public. Polished the RE
 ## 12 October 2026 — public preview requested
 
 Owner explicitly requested a URL other people can open and deferred remaining product work to tomorrow. Created a scoped public static demo using Sites, kept repository audience unchanged, and wrote the consolidated 13 October action plan. See online-preview/README.md for scope, tests and deployment notes.
+
+
+## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
+
+Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.
