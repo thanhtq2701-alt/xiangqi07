@@ -1,3 +1,7 @@
+# Cập nhật phát hành ngày 16/10/2026
+
+Đã triển khai và phát hành Site phiên bản 3 dựa trên UI UX + Luật, UX35. [Báo cáo đầy đủ](BAO_CAO_UIUX_V5_2026_10_16.md) ghi file thay đổi, kiến trúc, lệnh, kiểm thử, trạng thái engine/LLM, dữ liệu, quyền, giới hạn và demo. Các phần bên dưới được giữ làm lịch sử các đợt trước.
+
 # Implementation report
 
 ## Update 9 October 2026

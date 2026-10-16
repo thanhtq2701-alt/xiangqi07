@@ -1,3 +1,7 @@
+# Cập nhật giới hạn ngày 16/10/2026
+
+Site phiên bản 3 vẫn dùng engine browser tối đa 2 ply, giải thích mẫu, 12 bài tự dựng và dữ liệu localStorage. Chưa có LLM chấm lập luận, PvP trực tuyến, tài khoản/đồng bộ, OCR, engine mạnh hoặc bộ phân xử WXF đầy đủ. Lặp/đuổi hỗn hợp được gắn cần kiểm chứng. Thống kê hoạt động không chứng minh hiệu quả học tập. Xuất JSON để đọc, chưa nhập phục hồi tự động. Góc lật bàn chưa lưu qua reload; khi xin thua/thỏa thuận hòa, đồng hồ kết thúc còn hiện mốc nước gần nhất. Tùy chọn giọng chỉ đổi lời mở đầu. Xem [báo cáo mới](BAO_CAO_UIUX_V5_2026_10_16.md) để biết phạm vi chính xác; các mục dưới là lịch sử và bối cảnh backend local.
+
 # Known limitations
 
 1. Local search depth is at most 2 plies (one move and one response). Its material-oriented estimates can miss long tactics, sacrifices, strategic factors and horizon effects. Timeout may leave depth 0/1, explicitly reported. No Pikafish binary or NNUE is installed or distributed.

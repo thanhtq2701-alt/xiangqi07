@@ -1,3 +1,7 @@
+# 16/10/2026 — UI UX và Luật, Site v3, câu hỏi V5
+
+Hoàn tất đối chiếu UX01–UX35 và 22 ảnh; cải thiện giao diện, bàn cờ, ký phổ, luồng suy nghĩ/trợ giúp, lịch ôn và tiến độ. Thêm game-tools/experience và 32 kiểm thử mới (14 + 18); giữ toàn bộ kiểm thử có sẵn. Python 72, Node 51, 12 bài mẫu qua. Phát hành Site v3 thành công với source commit Sites `55bd70cd4c19c52192d5d80160d13982e1c7a80a`. Word V5 có 41 câu theo nhu cầu, không chia cố định tám câu. Báo cáo và quyền đã dùng: [BAO_CAO_UIUX_V5_2026_10_16.md](BAO_CAO_UIUX_V5_2026_10_16.md). Không thay đổi quyền GitHub hoặc mua dịch vụ.
+
 # Development journal
 
 ## 9 October 2026 — research and usability without new owner answers

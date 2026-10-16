@@ -1,5 +1,9 @@
 # Cờ Chill AI
 
+**Bản online mới nhất — 16/10/2026:** [Mở Cờ Chill](https://co-chill-ngay-mai.cosmicanole32.chatgpt.site/), Sites phiên bản 3, đã cập nhật từ UI UX + Luật và UX35. Xem [báo cáo phát hành](BAO_CAO_UIUX_V5_2026_10_16.md) và [Word câu hỏi V5](deliverables/Co_Chill_V5_Cau_hoi_hoan_thien.docx).
+
+Site dùng thư mục `online-preview/`, luật/tìm kiếm JavaScript và localStorage; chạy thử bằng `python -m http.server 8769 --bind 127.0.0.1 --directory online-preview`. Phần Python/SQLite và hướng dẫn cổng 8765 dưới đây là app backend local riêng. Hai bản không đồng bộ dữ liệu.
+
 Ứng dụng học cờ tướng tiếng Việt chạy cục bộ: chơi hoặc nhập ván → tìm điểm cần xem lại → tự suy nghĩ → lời giải có căn cứ → thử lại → bài liên quan → lịch ôn → tiến bộ.
 
 **Trạng thái: prototype local đang phát triển.** Có engine tìm kiếm đơn giản và lời giải theo mẫu; chưa tích hợp LLM, chưa có kết quả kiểm chứng hiệu quả học tập. Mục tiêu hiện tại là hoàn thiện một vòng học rõ ràng, có thể kiểm tra và chạy không cần dịch vụ trả phí.

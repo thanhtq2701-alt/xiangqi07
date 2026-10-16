@@ -1,3 +1,13 @@
+# Kiểm thử phát hành UI UX ngày 16/10/2026
+
+- Python unittest: 72/72 qua, 43.521 giây; chạy lại ngoài sandbox sau lỗi quyền HTTP socket, không sửa yếu kiểm thử.
+- Browser learning state: 19/19; experience/app handlers: 18/18; notation/rule extensions: 14/14. Tổng 51 kiểm thử Node qua.
+- Browser/Python parity: 205 thế, 5.468 thế con; perft 2 = 1.920; 25 FEN, 10 nhóm lỗi; engine 12 thế/153 biến.
+- Fixture validation: 12/12. JavaScript syntax qua; static package Sites thành công.
+- Manual: phản hồi trước đáp án, trợ giúp có chờ quan sát, retry, bài liên quan, tự đánh giá, tiến độ; timed local game/ký phổ/lật bàn/xin thua; nhập ván và phân tích; theme tối/chữ lớn/quân Việt; laptop 1366×900 và mobile 390×844 không tràn ngang. Không có console error ghi nhận. Public Site v3 mở được với UI mới.
+
+Xem [báo cáo](BAO_CAO_UIUX_V5_2026_10_16.md) để biết lệnh, giới hạn và các lỗi hiển thị còn lại. Những kết quả bên dưới thuộc các lượt trước.
+
 # Test report
 
 ## Latest update 9 October 2026

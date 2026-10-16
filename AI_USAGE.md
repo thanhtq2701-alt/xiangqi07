@@ -1,3 +1,7 @@
+# Cập nhật sử dụng AI ngày 16/10/2026
+
+Codex đọc UI UX + Luật/UX35, hỗ trợ viết UI, ký phổ Việt, logic trải nghiệm và kiểm thử, soạn 41 câu hỏi V5; bản Site được phát hành bằng plugin Sites. Logo từ tài liệu chủ sản phẩm, các ảnh ứng dụng tham khảo không được sao chép lên Site. Đã đọc nguồn luật WXF chính thức và ghi phạm vi hạn chế trong `docs/RULES_UIUX_2026_10_15.md`. Sản phẩm không gọi API LLM, không huấn luyện ML và không gửi dữ liệu học đi huấn luyện. Lời giải đang là mẫu dựa trên luật; giọng thân thiện không phải AI hội thoại. Chi tiết và kết quả thực: [báo cáo phát hành](BAO_CAO_UIUX_V5_2026_10_16.md).
+
 # AI usage and integrity
 
 9 October 2026: Codex researched public official pages from Xiangqi services and directly inspected three interfaces to inform usability improvements. The sources, access limits and implemented changes are in RESEARCH_AND_IMPROVEMENTS_2026_10_09.md. No competitor code, imagery, puzzles or game corpus was imported; no new owner V4 answers were assumed. Added local draft/resume and accessibility improvements, without changing runtime engine or introducing LLM/ML. New browser QA attempts are test records only.
