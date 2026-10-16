@@ -113,7 +113,16 @@
       attempts: [],
       startedAt: iso(timestamp),
       completedAt: null,
-      selected: null
+      selected: null,
+      submissionCount: 0,
+      retryCount: 0,
+      helpLevel: 0,
+      helpReadyAt: 0,
+      firstCandidate: null,
+      firstAnswers: null,
+      coachFeedback: '',
+      summaryNote: '',
+      summaryChecks: []
     };
   }
 
@@ -199,6 +208,8 @@
       related: session.related === true,
       answers: session.answers.slice(0, 3).map(answer => text(answer, 10000)),
       candidate: move(session.candidate),
+      firstCandidate: move(session.firstCandidate),
+      firstAnswers: Array.isArray(session.firstAnswers) ? [0, 1, 2].map(index => text(session.firstAnswers[index], 1500)) : null,
       unknown: session.unknown === true,
       success: options.success,
       assisted,
@@ -284,6 +295,15 @@
       completedAt: null,
       selected: typeof raw.selected === 'string' && /^[a-i][0-9]$/.test(raw.selected) ? raw.selected : null
     };
+    result.submissionCount = Math.min(3, Math.max(0, Math.floor(Number(raw.submissionCount) || 0)));
+    result.retryCount = Math.min(3, Math.max(0, Math.floor(Number(raw.retryCount) || 0)));
+    result.helpLevel = Math.min(3, Math.max(0, Math.floor(Number(raw.helpLevel) || 0)));
+    result.helpReadyAt = Number.isFinite(raw.helpReadyAt) ? Math.min(raw.helpReadyAt, now + 10000) : 0;
+    result.firstCandidate = move(raw.firstCandidate);
+    result.firstAnswers = Array.isArray(raw.firstAnswers) ? [0, 1, 2].map(index => text(raw.firstAnswers[index], 1500)) : null;
+    result.coachFeedback = text(raw.coachFeedback, 1000);
+    result.summaryNote = text(raw.summaryNote, 1500);
+    result.summaryChecks = Array.isArray(raw.summaryChecks) ? raw.summaryChecks.filter(x => /^[0-3]$/.test(x)).slice(0, 4) : [];
     const completed = time(raw.completedAt);
     if (completed !== null && completed >= started && completed <= now + 300000) result.completedAt = iso(completed);
     if (['explain', 'retry', 'complete', 'summary'].includes(result.stage) && !canReveal(result)) result.stage = 'reflect';
@@ -317,6 +337,8 @@
         related: rawAttempt.related === true,
         answers: [0, 1, 2].map(index => text(Array.isArray(rawAttempt.answers) ? rawAttempt.answers[index] : '', 10000)),
         candidate: move(rawAttempt.candidate),
+        firstCandidate: move(rawAttempt.firstCandidate),
+        firstAnswers: Array.isArray(rawAttempt.firstAnswers) ? [0, 1, 2].map(index => text(rawAttempt.firstAnswers[index], 1500)) : null,
         unknown: rawAttempt.unknown === true,
         success: rawAttempt.success,
         assisted,
@@ -347,7 +369,7 @@
       if (record) result.records[id] = record;
     });
     result.session = sanitizeSession(raw.session, timestamp);
-    result.games = Array.isArray(raw.games) ? raw.games.filter(plain).slice(-100).map(game => safeJson(game, 0)) : [];
+    result.games = Array.isArray(raw.games) ? raw.games.filter(plain).slice(-200).map(game => safeJson(game, 0)) : [];
     result.profile.name = plain(raw.profile) ? text(raw.profile.name, 80) : '';
     if (Array.isArray(raw.summaries)) result.summaries = raw.summaries.slice(-200).filter(summary =>
       plain(summary) && validId(summary.id) && time(summary.at) !== null && time(summary.at) <= timestamp + 300000
