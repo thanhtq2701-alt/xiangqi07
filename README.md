@@ -1,4 +1,60 @@
+# Cờ Chill V5 — bản code hiện tại, 24/10/2026
+
+Ứng dụng học cờ tướng tiếng Việt: **chơi/nhập ván → tìm điểm cần học → tự trả lời trước lời giải → giải thích có căn cứ → thử lại → bài liên quan → lịch ôn → tiến độ**.
+
+Đợt này đã bổ sung code theo câu trả lời V5, gồm tài khoản tập trung, đồng bộ, màn quản trị, biên tập bài và kết nối engine có thể thay thế. **Giao diện V5 đã phát hành trên [ChatGPT Site](https://co-chill-ngay-mai.cosmicanole32.chatgpt.site/#home), phiên bản Sites 4 ngày 24/10/2026.** Bản này chơi/học bằng chế độ khách trên trình duyệt; server tài khoản Python chưa được deploy. [Hướng dẫn chuyển sang cochill.vn](docs/COCHILL_VN_CHO_NGUOI_MOI.md) giải thích gói source, kiểm tra hosting Mắt Bão và DNS. Những cập nhật source sau này vẫn cần deploy mới xuất hiện online.
+
+## Chạy đúng bản V5
+
+Yêu cầu Python 3.12. Mở terminal trong thư mục dự án:
+
+```powershell
+Set-Location -LiteralPath 'E:\ThanhTQ\App cờ tướng\xiangqi-ai'
+python co_chill_server.py serve --port 8769
+```
+
+Mở [Cờ Chill V5 local](http://127.0.0.1:8769/#home) và giữ terminal chạy. Nếu máy dùng Python Launcher, thay `python` bằng `py -3.12`. Có thêm `Mo_Co_Chill_V5.cmd` để gọi Python 3.12 trở lên bằng cửa sổ chạy trực tiếp; file này không tự mở trình duyệt và chưa được thử bằng thao tác nhấp đúp trong đợt cuối. Không cần npm, API key hoặc dịch vụ trả phí để chạy local. `server.py` và `Mo_Co_Chill.cmd` bên dưới thuộc ứng dụng legacy; không dùng chúng để mở hệ thống tài khoản V5.
+
+Đăng ký ở **Tài khoản** để lưu tiến độ vào server này. Người khác chỉ truy cập được từ Internet sau khi bạn deploy. SQLite mặc định ở `var/co_chill_accounts.sqlite3`; khách chưa đăng nhập dùng dữ liệu trình duyệt. Mở một bản sao source ở máy khác tạo một server/database khác, không tự mang dữ liệu tài khoản theo.
+
+## Thành phần đang chạy
+
+| Phần | Vai trò |
+|---|---|
+| `online-preview/index.html`, `style.css`, `v5.css`, ảnh thương hiệu | Khung trang, màu sắc, bố cục, giao diện màn nhỏ |
+| `online-preview/app.js` | Điều phối màn chơi, học, review, bàn cờ và thao tác |
+| `xiangqi.js`, `game-tools.js` trong `online-preview/` | Luật, nước đi, máy cơ bản, ký phổ và nhập/phát lại biên bản |
+| `learning.js`, `experience.js`, `fixtures.js` trong `online-preview/` | Trạng thái học, lịch ôn, gợi bài, sở thích và 12 bài tổng hợp |
+| `cloud-client.js`, `engine-client.js`, `v5-ui.js` trong `online-preview/` | Đồng bộ, kiểm tra kết quả engine, màn tài khoản/quản trị/biên tập |
+| `co_chill_server.py` | Phục vụ giao diện và API cùng một địa chỉ |
+| `app/cloud_store.py`, `app/content_store.py` | Tài khoản, phiên, SQLite, thống kê và nội dung có phiên bản |
+| `app/pikafish.py`, `app/rules.py`, `app/engine.py` | Kết nối UCI, kiểm tra luật và engine local dự phòng |
+
+Tài khoản dùng mật khẩu băm scrypt, cookie phiên HttpOnly và kiểm tra quyền ở server. Owner tạo bằng lệnh riêng và đăng nhập với TOTP; người hỗ trợ có vai trò chỉ đọc báo cáo. Đồng bộ có phiên bản để báo xung đột, không âm thầm ghi đè bản mới. Đây là nền tảng pilot, chưa có kiểm toán bảo mật hay thử tải production.
+
+**Engine/AI:** chưa cài Pikafish hoặc NNUE thật; adapter UCI đã có, mặc định dùng tìm kiếm local giới hạn. Lời giải là mẫu, chưa có LLM chấm ngữ nghĩa hoặc mô hình ML được huấn luyện. Bài tổng hợp chưa phải bộ bài chuyên gia duyệt; thống kê hoạt động không phải Elo hay chứng cứ học hiệu quả.
+
+## Đọc gì tiếp
+
+- [Hướng dẫn deploy V5](docs/DEPLOY_V5.md): tạo owner, backup, Render cùng server và Vercel static. **Vercel static chỉ có phần trình duyệt; không có API tài khoản/đồng bộ/quản trị.**
+- [Báo cáo triển khai](IMPLEMENTATION_REPORT_CODEX.md): phần đã xây, kiến trúc, demo và cách học code.
+- [Kết quả kiểm thử](TEST_REPORT_CODEX.md): bằng chứng thực tế và giới hạn nghiệm thu.
+- [Đối chiếu 42 nhóm yêu cầu V5](docs/V5_DECISIONS_2026_10_24.md): phần có, một phần, chưa có và đầu vào còn thiếu.
+- [Tích hợp Pikafish](docs/PIKAFISH_SETUP_V5.md), [giới hạn](KNOWN_LIMITATIONS.md), [riêng tư](PRIVACY.md), [AI usage](AI_USAGE.md).
+
+Giữ code, tests, cấu hình và các tài liệu trên khi bàn giao sang VS Code. Không commit `var/`, `.env`, backup, thông tin đăng nhập hoặc tài liệu trả lời riêng. `.env.example` chỉ là mẫu hướng dẫn; server không tự đọc `.env`.
+
+---
+
+## Lịch sử trước 24/10/2026 — hướng dẫn dưới đây thuộc các bản cũ
+
+Giữ phần này để đối chiếu lịch sử. Các nhận định “mới nhất”, số test và địa chỉ chạy trong phần này chỉ đúng tại ngày ghi của chúng; dùng hướng dẫn V5 ở trên cho code hiện tại.
+
 # Cờ Chill AI
+
+**Bản online mới nhất — 16/10/2026:** [Mở Cờ Chill](https://co-chill-ngay-mai.cosmicanole32.chatgpt.site/), Sites phiên bản 3, đã cập nhật từ UI UX + Luật và UX35. Xem [báo cáo phát hành](BAO_CAO_UIUX_V5_2026_10_16.md) và [Word V5 cập nhật tài khoản](deliverables/Co_Chill_V5_Cap_nhat_Tai_khoan.docx).
+
+Site dùng thư mục `online-preview/`, luật/tìm kiếm JavaScript và localStorage; chạy thử bằng `python -m http.server 8769 --bind 127.0.0.1 --directory online-preview`. Phần Python/SQLite và hướng dẫn cổng 8765 dưới đây là app backend local riêng. Hai bản không đồng bộ dữ liệu.
 
 Ứng dụng học cờ tướng tiếng Việt chạy cục bộ: chơi hoặc nhập ván → tìm điểm cần xem lại → tự suy nghĩ → lời giải có căn cứ → thử lại → bài liên quan → lịch ôn → tiến bộ.
 
@@ -107,3 +163,8 @@ Dữ liệu nằm ở `var/chill.sqlite3`, không commit. Cookie trình duyệt 
 ## Bản xem trước online và kế hoạch ngày mai
 
 Bản demo tĩnh riêng nằm trong online-preview/: hai bài học tương tác, không thay thế backend local. Xem online-preview/README.md để biết phạm vi và cách cập nhật. Kế hoạch tổng hợp từ 13/10/2026 nằm trong KE_HOACH_TU_13_10_2026.md (tài liệu chủ dự án, không xuất bản lên website).
+
+
+## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
+
+Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.

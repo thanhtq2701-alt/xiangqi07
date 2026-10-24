@@ -1,3 +1,177 @@
+# Bàn giao code Cờ Chill V5 — 24/10/2026
+
+**Cập nhật sau bàn giao local:** giao diện V5 đã được phát hành lên ChatGPT Site, phiên bản Sites 4, theo yêu cầu mở online. Server Python chưa deploy; xem [biên bản phát hành](docs/SITES_V5_RELEASE_2026_10_24.md) và [hướng dẫn cochill.vn](docs/COCHILL_VN_CHO_NGUOI_MOI.md). Các đoạn “chưa phát hành” bên dưới mô tả thời điểm bàn giao local trước yêu cầu mới.
+
+**Đã triển khai các phần có thể chạy của V5 trong repository local:** vòng học có bước suy nghĩ trước lời giải, giữ bài dở, lịch ôn, tài khoản và đồng bộ cùng server, quản trị, biên tập nội dung, giao diện theo thương hiệu và adapter engine. **Chưa triển khai hết mọi mong muốn trong V5; chưa đưa bản code này lên hosting.** Bản ChatGPT Site đã phát hành trước đây không tự đổi theo source local.
+
+Phạm vi thực tế được đối chiếu theo [42 nhóm yêu cầu V5](docs/V5_DECISIONS_2026_10_24.md). Trạng thái kiểm thử cuối đợt nằm ở [TEST_REPORT_CODEX.md](TEST_REPORT_CODEX.md); không lấy số test của các mục lịch sử bên dưới làm kết quả của bản mới.
+
+## 1. Đầu vào đã dùng
+
+- File được tìm thấy và đọc toàn bộ: `E:\ThanhTQ\App cờ tướng\10-23\V5.docx`, gồm 940 đoạn và 96 khối câu hỏi/trả lời. Đường dẫn người dùng nhắc `E:\ThanhTQ\App cờ tướng\10-23.docx` không có tại lúc kiểm tra.
+- Giữ nguyên tài liệu gốc và `docs/spec/`; đối chiếu yêu cầu mới với kiến trúc/code đang có, không xây lại toàn bộ.
+- Dùng logo/cover do chủ sản phẩm gửi. Logo đã có bản tương ứng; thêm cover vào tài nguyên giao diện.
+- Xem bốn ảnh thế cờ trong Word nhưng chưa đưa vào bài công khai vì cần xác minh thế, bên đi, đáp án và quyền sử dụng.
+- Không coi câu trả lời trong file là quyền tự mua dịch vụ, phát hành công khai hoặc bí mật giữ dữ liệu để huấn luyện. Xóa tài khoản ở bản này xóa dữ liệu hoạt động thực sự.
+
+## 2. Những gì đã xây
+
+### Vòng học
+
+Người học quan sát thế, trả lời ba câu và chọn một nước ứng viên trước khi mở lời giải. Bỏ trống trường bắt buộc không tạo lượt thử. Lời giải theo cấu trúc điều gì xảy ra, vì sao và cách suy nghĩ tiếp; nước/biến phải có căn cứ luật và kết quả đã có. Sau đó người học thử lại, nhận bài cùng kỹ năng ưu tiên chưa gặp, hoàn thành và thấy lịch ôn/tiến độ.
+
+Giữ nháp và bước học khi tải lại. Sau ba lần gửi câu trả lời đầy đủ nhưng nước chưa được chấp nhận, bài chuyển sang tạm dừng để tiếp tục ngày sau; không tự tính là đã hoàn thành hoặc tăng lịch ôn. Lượt có hỗ trợ được ghi riêng, không gọi là đã độc lập nắm vững. Tự đánh giá cuối phiên là tùy chọn. Lịch ôn dựa trên thời điểm hoàn thành, hiển thị theo giờ Việt Nam.
+
+### Chơi và xem lại
+
+Có máy cơ bản trong trình duyệt, hai người cùng máy, đồng hồ/tùy chọn không giới hạn và nhập biên bản kiểm tra nước đi. Import toàn ván yêu cầu thế xuất phát và xác nhận đã gửi đủ biên bản; chương trình không thể chứng minh người gửi không bỏ phần cuối. Có nhận diện biên bản trùng và không cắt âm thầm danh sách ván cũ chỉ vì vượt 200 ván.
+
+Review không cố định ba điểm đáng học: quét có giới hạn tối đa 20 lượt gần nhất của bên người học, hiển thị tiến độ thực, hỗ trợ hủy/bỏ kết quả trễ. Không thấy điểm cần xem lại không được diễn đạt thành ván hoàn hảo. Có lựa chọn phân tích nhanh/sâu qua API và trạng thái lỗi kỹ thuật; lỗi engine không tự làm người chơi thua do đồng hồ tiếp tục chạy trong lúc chờ bot server. Không đưa coaching trong ván đang diễn ra.
+
+### Tài khoản, đồng bộ và quản trị
+
+Đăng ký/đăng nhập username/password là chức năng thật với SQLite, không phải màn hình giả. Mật khẩu băm scrypt có salt; token phiên ngẫu nhiên chỉ lưu bản băm ở server; cookie HttpOnly/SameSite, Secure khi cấu hình HTTPS. API thay đổi dữ liệu có kiểm tra origin, CSRF, giới hạn kích thước/tần suất và quyền. Đăng nhập ở phiên mới thu hồi phiên cũ theo yêu cầu một phiên hoạt động.
+
+Dữ liệu học đồng bộ có số phiên bản. Nếu server có bản mới, client báo xung đột để chọn, không ghi đè âm thầm. Cache theo từng tài khoản; bản khách chỉ nhập khi người dùng chủ động chọn. Giữ nháp khi mạng lỗi; trạng thái “Đã đồng bộ” khác với “Đã lưu trên thiết bị”. Khi đang lấy dữ liệu tài khoản, giao diện chờ để tránh ghi trạng thái khách/phiên cũ sang tài khoản mới.
+
+Owner được tạo bằng CLI và cần TOTP để đăng nhập. Vai trò `report` xem thống kê/danh sách/biên bản đã lọc; không xem phản hồi riêng hoặc bản nháp nội dung. Owner xử lý phản hồi, khóa tài khoản với lý do/thời hạn, tạo/sửa nháp bài và xuất bản/tạm gỡ. Bộ nội dung kiểm tra nước hợp lệ, nguồn, phiên bản và xung đột cập nhật. Nếu bài đang học đã đổi phiên bản, dừng chấm theo đáp án cũ và cho người học giữ bản nháp trước khi bắt đầu lại.
+
+Có sửa thông tin/mật khẩu, xuất dữ liệu và xóa tài khoản thường; backup SQLite và kiểm tra tài khoản không hoạt động qua CLI. Chưa có email phục hồi/OAuth, job backup hoặc dọn tài khoản tự động. Thống kê quản trị là dữ liệu do thiết bị gửi, không chứng nhận Elo, khả năng chống gian lận hay tác động học tập.
+
+### Giao diện và triển khai
+
+Giữ bố cục chính đã thống nhất, bổ sung cover, ba chủ đề màu, màn tài khoản/quản trị/trợ giúp, thông báo trạng thái kết nối và bố cục màn nhỏ. Chưa có kiểm toán khả năng tiếp cận hoặc thử đầy đủ iOS/Android. Chuẩn bị `vercel.json` cho bản tĩnh và hướng dẫn Render cho bản có server, không tự tạo dịch vụ trả phí.
+
+## 3. Kiến trúc hiện tại, đọc từ ngoài vào trong
+
+```text
+Trình duyệt: online-preview/
+  giao diện → luật/nước đi → trạng thái học và cache trên thiết bị
+        │
+        ├─ cloud-client.js → API cùng địa chỉ → SQLite tài khoản/nội dung
+        └─ engine-client.js → API kiểm tra ngữ cảnh → adapter UCI/local engine
+
+co_chill_server.py
+  ├─ app/cloud_store.py: xác thực, phiên, đồng bộ, số liệu, xóa/backup
+  ├─ app/content_store.py: nháp, xuất bản, phiên bản, kiểm tra bài
+  └─ app/pikafish.py → app/rules.py kiểm tra nước; app/engine.py dự phòng
+```
+
+**Cùng địa chỉ** nghĩa là HTML và `/api/...` được phục vụ từ cùng một server/origin. Cách này giảm cấu hình cookie/CORS khi deploy. Nó không phải Vercel frontend tự gọi một backend bất kỳ: tách hai địa chỉ cần một vòng thiết kế và kiểm thử riêng.
+
+`server.py` + `web/` + `app/service.py` là ứng dụng legacy còn được giữ để tránh làm mất code/tests cũ. Nó không dùng API tài khoản mới. Không trộn lệnh chạy hoặc database của hai bản. `var/chill.sqlite3` là dữ liệu cũ; `var/co_chill_accounts.sqlite3` là dữ liệu tài khoản V5.
+
+## 4. File thêm/sửa trong đợt V5
+
+Các đường dẫn dưới đây tính từ `E:\ThanhTQ\App cờ tướng\xiangqi-ai`.
+
+| File/nhóm | Thay đổi và vai trò |
+|---|---|
+| `co_chill_server.py` | Entry point WSGI/CLI, static website, API session/account/state/admin/content/engine/feedback/health |
+| `app/cloud_store.py` | SQLite, hash mật khẩu/token, TOTP, đồng bộ có revision, thống kê đã lọc, export/xóa |
+| `app/content_store.py` | Lưu bài nháp/công khai, kiểm tra luật và nguồn, phiên bản nội dung |
+| `app/pikafish.py` | Giao thức UCI, timeout, giới hạn process/output, kiểm tra PV, fallback rõ nguồn |
+| `online-preview/app.js` | Tích hợp trạng thái học V5, import/review, bot server, resume và tài khoản |
+| `online-preview/learning.js` | Lượt độc lập/hỗ trợ, tạm dừng, hoàn thành, ngày ôn, khôi phục trạng thái |
+| `online-preview/experience.js` | Sở thích/trải nghiệm, thời gian và các kiểm tra trạng thái liên quan |
+| `online-preview/cloud-client.js` | Session, lấy/lưu trạng thái, xử lý 409, offline và kết quả trễ |
+| `online-preview/engine-client.js` | Yêu cầu phân tích, bỏ kết quả trễ, xác minh nước/biến/đơn vị điểm |
+| `online-preview/v5-ui.js` | Tài khoản, quản trị, phản hồi, biên tập bài, riêng tư/trợ giúp |
+| `online-preview/index.html`, `v5.css`, `cover-co-chill.png` | Nạp thành phần V5, bố cục/theme/ảnh cover |
+| `tests/test_cloud.py`, `tests/test_pikafish.py` | Xác thực, phân quyền, đồng bộ, nội dung, engine giả và đường lỗi |
+| `tools/test_cloud_client.cjs`, `test_engine_client.cjs`, `test_v5_ui.cjs` | Hồi quy client, race/expiry, điểm engine và điều phối UI |
+| `tools/test_preview_learning.cjs`, `test_preview_experience.cjs` | Bổ sung ca học/tạm dừng/lịch và trải nghiệm |
+| `.env.example`, `requirements.txt`, `vercel.json` | Mẫu cấu hình, Gunicorn cho UNIX, output static Vercel |
+| `Mo_Co_Chill_V5.cmd` | Launcher Windows gọi Python từ PATH, giữ server trong cửa sổ trực tiếp; không tự bật trình duyệt |
+| `docs/DEPLOY_V5.md`, `PIKAFISH_SETUP_V5.md`, `V5_DECISIONS_2026_10_24.md` | Chạy/deploy, tích hợp engine, đối chiếu toàn bộ đầu vào V5 |
+| `README.md`, báo cáo test, báo cáo này, `AI_USAGE.md`, `KNOWN_LIMITATIONS.md`, `PRIVACY.md`, `THIRD_PARTY_NOTICES.md` | Bàn giao và phân biệt hiện tại với lịch sử |
+
+Những Word bàn giao hoặc thay đổi tài liệu đã có từ các đợt trước không được tính là code mới của đợt này. Dữ liệu QA và văn bản trích xuất nằm trong `var/` bị Git bỏ qua. Không sửa tài liệu nguồn, không gộp nhầm toàn bộ file untracked thành một commit.
+
+## 5. Phần thật và phần dự phòng
+
+| Thành phần | Trạng thái chính xác |
+|---|---|
+| Luật di chuyển, lưu ván, nhập/phát lại | Có code thực và kiểm thử; không chứng nhận mọi luật giải đấu |
+| Phản ánh, retry, gợi bài, lịch ôn, progress | Thực thi trong ứng dụng; gợi ý/lịch là heuristic, chưa có kiểm chứng hiệu quả |
+| Tài khoản, sync, admin, biên tập | Backend SQLite thật khi chạy `co_chill_server.py`; không hoạt động trên hosting chỉ phục vụ file tĩnh |
+| Pikafish | Adapter có; chưa có binary/NNUE thật hoặc kết quả đo sức mạnh |
+| Engine fallback | Tìm kiếm local giới hạn, có nhãn; không ngang engine mạnh |
+| Giải thích | Mẫu có căn cứ nước/biến; không phải LLM hiểu lập luận |
+| Bài tập | 12 bài tự dựng và công cụ thêm bài đã kiểm tra luật; chưa là giáo trình chuyên gia |
+| Người dùng/số ván | Tài khoản QA là dữ liệu thử; chưa có số liệu người dùng/impact được xác nhận |
+| Hosting | Có code/cấu hình/hướng dẫn; chưa deploy, mua hạ tầng, đổi domain hoặc thay site cũ |
+
+Các ranh giới engine, client phân tích, store và nội dung được tách để thay thế sau này. Có interface không đồng nghĩa phần thay thế đã được tích hợp hoặc nghiệm thu.
+
+## 6. Lệnh kiểm tra và bằng chứng
+
+Quá trình đã đọc file Word qua ZIP/XML, kiểm kê file/Git, kiểm tra JavaScript, chạy Python/Node suites và dùng trình duyệt kiểm tra luồng. Báo cáo kết quả cuối cùng, số ca và giới hạn môi trường nằm ở [TEST_REPORT_CODEX.md](TEST_REPORT_CODEX.md). Các lệnh tái kiểm tra:
+
+```powershell
+python -m unittest discover -s tests -v
+python -m compileall -q app co_chill_server.py server.py tests
+node tools/test_preview_learning.cjs
+node tools/test_preview_experience.cjs
+node tools/test_preview_game_tools.cjs
+node tools/test_cloud_client.cjs
+node tools/test_engine_client.cjs
+node tools/test_v5_ui.cjs
+python tools/check_online_preview.py
+node --check online-preview/app.js
+node --check online-preview/v5-ui.js
+git diff --check
+```
+
+Node chỉ cần cho kiểm thử, không bắt buộc để phục vụ web. Không có TypeScript/typecheck hay bundler: frontend là JavaScript thuần nên không có bước build biên dịch để báo “đã build”. HTTP tests cần quyền mở socket local; môi trường hạn quyền có thể chặn thao tác này trước khi ứng dụng chạy.
+
+Đã kiểm tra thủ công chuỗi phản ánh → chọn nước → lời giải → retry → bài liên quan, cùng việc tải lại giữ bước học và trạng thái đồng bộ bằng tài khoản thử ở lượt kiểm tra trình duyệt trước trong cùng đợt phát triển. Lượt chốt cuối chưa lặp lại kiểm tra trình duyệt do công cụ điều khiển không xác minh được địa chỉ tab; các thay đổi sau đó được kiểm tra bằng test tự động. Launcher mới chưa được thử nhấp đúp. Bằng chứng hiện có không thay thế thử hosting HTTPS, thiết bị thật, phục hồi backup hoặc kiểm thử với binary Pikafish thật. Những lỗi phát hiện trong đồng bộ/khởi tạo đã được sửa và có kiểm thử hồi quy; các giới hạn chưa xử lý được liệt kê riêng, không xóa test để che lỗi.
+
+## 7. Ngày mai chạy như thế nào
+
+```powershell
+Set-Location -LiteralPath 'E:\ThanhTQ\App cờ tướng\xiangqi-ai'
+python co_chill_server.py serve --port 8769
+```
+
+Nếu lệnh Python chưa có trên PATH nhưng máy có Python Launcher, dùng `py -3.12 co_chill_server.py serve --port 8769`. Mở [http://127.0.0.1:8769/#home](http://127.0.0.1:8769/#home). Giữ cửa sổ terminal; `Ctrl+C` để dừng. Sau khi tắt máy cần chạy lại. Không cần key API hoặc cài Node để mở web local.
+
+Muốn owner: làm theo [hướng dẫn TOTP và tạo admin](docs/DEPLOY_V5.md#3-tạo-tài-khoản-quản-trị-riêng). Không có mật khẩu admin mặc định; không đưa tài khoản kiểm thử vào bản dùng thật. Muốn deploy: chọn bản tĩnh Vercel hay bản có API và ổ dữ liệu bền ở Render theo [DEPLOY_V5.md](docs/DEPLOY_V5.md). Không xem một lần deploy thành công là bằng chứng dữ liệu còn sau redeploy; cần thử lưu/đăng nhập/restart trên hạ tầng chọn.
+
+## 8. Demo khoảng 60 giây
+
+1. Mở Home để thấy nhận diện Cờ Chill và các lối vào chính; đăng ký/đăng nhập một tài khoản thử nếu muốn minh họa sync.
+2. Mở Học, chọn bài đầu; chỉ vào ba câu hỏi và bàn cờ để giải thích rằng người học phải tự nghĩ trước.
+3. Nhập suy nghĩ ngắn, chọn nước trên bàn, gửi. Đọc phần điều gì/vì sao/cách nghĩ và nhãn giới hạn nguồn phân tích.
+4. Thử lại thế cờ; hoàn thành bước để sang bài liên quan. Nhấn mạnh hệ thống ưu tiên bài chưa gặp, không đảm bảo kho luôn còn bài mới.
+5. Mở phần ôn/tiến độ và tải lại trang: cho thấy trạng thái/lịch được lưu. Nếu đăng nhập, đợi “Đã đồng bộ” trước khi đóng.
+
+Đây là demo cơ chế, không phải bằng chứng người học thật đã hiểu trong 60 giây. Dùng dữ liệu thử riêng; không tính demo thành kết quả người dùng.
+
+## 9. Năm khái niệm nên học từ implementation
+
+1. **Frontend và backend:** HTML/CSS/JS là màn hình và tương tác; Python xác nhận phiên/quyền và lưu dữ liệu. File giao diện đẹp không tự tạo tài khoản tập trung.
+2. **State machine:** một phiên có bước phản ánh, lời giải, retry, bài liên quan, tạm dừng, hoàn thành. Kiểm tra bước chuyển giúp tránh lộ đáp án sớm hoặc cộng lượt hai lần khi reload.
+3. **Xác thực và phân quyền:** đăng nhập trả lời “bạn là ai”; backend quyết định “bạn được làm gì”. Ẩn một nút admin ở giao diện không phải biện pháp phân quyền.
+4. **Đồng bộ có revision:** hai bản dữ liệu có thể cùng thay đổi. Gửi số phiên bản giúp phát hiện bản cũ và yêu cầu chọn, thay vì âm thầm làm mất công việc; cache local và server là hai nơi lưu khác nhau.
+5. **Luật, engine, lời giải là ba lớp:** luật kiểm tra nước đi; engine tìm và đánh giá trong giới hạn; phần dạy diễn giải những dữ kiện đó. LLM về sau không được tự tạo nước/điểm/biến ngoài căn cứ đã kiểm tra.
+
+## 10. Phần còn lại và rủi ro cần biết
+
+Chưa có engine mạnh thật, LLM chấm ngữ nghĩa, dữ liệu bài/luật đã được chuyên gia duyệt toàn diện, PvP, OAuth/phục hồi email, sharing đa máy công khai, RAG sách, giáo trình thích nghi, nhắc ngoài ứng dụng hoặc vận hành nhiều server. Nền tảng tài khoản chưa được audit độc lập hay thử tải production. Backup/retention cần chủ vận hành thực hiện. Chi tiết ở [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md).
+
+Không có push/commit/phát hành mới được ghi nhận trong đợt bàn giao này. Quyền ghi `.git` bị hạn chế trong môi trường làm việc; code và tài liệu nằm ở working tree để chủ dự án xem và commit. Các commit và site được nhắc bên dưới là lịch sử trước ngày 24/10/2026, không phải thao tác mới.
+
+---
+
+## Lịch sử triển khai trước V5 24/10/2026
+
+Các số test, branch, URL và lệnh dưới đây mô tả từng thời điểm cũ. Đọc phần V5 ở trên để chọn entry point và trạng thái hiện tại.
+
+# Cập nhật phát hành ngày 16/10/2026
+
+Đã triển khai và phát hành Site phiên bản 3 dựa trên UI UX + Luật, UX35. [Báo cáo đầy đủ](BAO_CAO_UIUX_V5_2026_10_16.md) ghi file thay đổi, kiến trúc, lệnh, kiểm thử, trạng thái engine/LLM, dữ liệu, quyền, giới hạn và demo. Các phần bên dưới được giữ làm lịch sử các đợt trước.
+
 # Implementation report
 
 ## Update 9 October 2026
@@ -120,3 +294,8 @@ Polished README for fresh clones, added contribution guidance and owner-reviewed
 ## 12 October 2026 — public static preview and tomorrow plan
 
 Added KE_HOACH_TU_13_10_2026.md with prioritized owner tasks, V4, UI/UX, games/rules, hosting, daily Git workflow and a proposed seven-day plan. Added online-preview/ source mirror and tools/check_online_preview.py. A separate Sites deployment publishes only four selected static assets: two fixture exercises, reflection, explanation, retry, related fixture and local completion/review markers. Existing Python app and SQLite are unchanged. No server-side gate or online engine in this preview. Browser flow, persistence, mobile width and fixture integrity checked.
+
+
+## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
+
+Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.
