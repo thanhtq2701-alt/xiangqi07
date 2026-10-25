@@ -1,0 +1,30 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 44
+L Pikafish và phân tích có căn cứ
+Về mục lục
+Pikafish được đề xuất tích hợp như bộ tính toán; không phải engine đã cài. Mã nguồn GPL-3.0 và điều kiện trọng 
+số NNUE phải kiểm tra riêng. Nguồn chính thức của trọng số hiện ghi không dùng thương mại khi chưa có phép; 
+cần đối chiếu đúng file được chọn. Nguồn ở cuối tài liệu.
+BS 31 Engine mạnh phục vụ việc gì trước
+Mức 1 · Liên quan: V5 04, V5 37, V5 39
+Điều kiện áp dụng: Không bỏ qua nếu yêu cầu engine mạnh thuộc đợt này.
+Trong bản đầu dùng engine mạnh, việc nào bắt buộc phải sử dụng Pikafish thật và việc nào vẫn có thể
+dùng chế độ cơ bản? Bạn muốn người dùng nhìn thấy tên engine và giới hạn phân tích ở đâu?
+Đề xuất chưa duyệt: Ưu tiên phân tích sau ván và xác minh nước bài học; giữ luật hợp lệ cho mọi chế
+độ, ghi tên/phiên bản engine trong phần chi tiết. Thứ tự phát hành cuối cùng chốt tại V5-39.
+Cần điền: 1. Chọn các việc bắt buộc: chơi máy / xem lại ván / chấm nước bài học / duyệt nội dung; 2. Thứ tự giữa 
+các việc vừa chọn; 3. Nhãn người dùng cần thấy khi dùng engine mạnh hoặc dự phòng
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 32 Mục đích sử dụng và quyền dùng trọng số Pikafish
+Mức 1 · Liên quan: V5 15, V5 37, V5 40
+Điều kiện áp dụng: Nếu chưa có engine/file/quyền, ghi Chưa có; đội kỹ thuật sẽ đề xuất phương án phù hợp.
+Đợt tới chỉ là thử nghiệm học tập, trình bày với mentor hay có quảng cáo, thu phí hoặc phục vụ một 
+hoạt động thương mại? Bạn đã có văn bản cho phép dùng trọng số nào chưa? Nếu điều kiện chưa phù 
+hợp, bạn muốn chờ xác minh quyền hay chọn engine/trọng số khác phù hợp?
+Đề xuất chưa duyệt: Kiểm tra đúng bản mã và trọng số trước khi phát hành; không tự coi mọi gói 
+Pikafish đều được dùng thương mại. Không mua giấy phép hoặc liên hệ bên thứ ba thay bạn khi chưa 
+được giao.
+Cần điền: 1. Mục đích của bản sắp phát hành; 2. Kế hoạch quảng cáo/thu phí nếu đã có, chưa cần thiết kế thanh 
+toán; 3. Tên file/bản engine và tài liệu quyền sử dụng nếu đang sở hữu; 4. Cách xử lý khi chưa xác nhận được 
+quyền
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

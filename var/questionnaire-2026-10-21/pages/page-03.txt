@@ -1,0 +1,30 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 3
+Thứ tự trả lời và mục lục
+Mức 1: cần chốt trước khi làm phần liên quan. Mức 2: tinh chỉnh để nghiệm thu tốt hơn. Mức 3: chỉ cần 
+chốt khi đưa tính năng đó vào phạm vi. Bạn có thể trả lời theo chủ đề, không bắt buộc theo số trang.
+Ưu tiên trước: V5 01–04, 08–10, 14–16, 25–26, 28–30, 32, 35–37, 39–46; BS 31–BS 36; BS 47 và BS 
+48. Sau đó hoàn thiện toàn bộ các câu còn lại hoặc ghi rõ để sau.
+A Cách hỏi và bằng chứng hiểu bài | 7 câu | V5 01 đến V5 07
+B Luật phán quyết và ký phổ | 6 câu | V5 08 đến V5 13
+C Kho bài và lộ trình học | 6 câu | V5 14 đến V5 19
+D Giao diện và tương tác trên bản mới | 5 câu | V5 20 đến V5 24
+E Lịch ôn và số liệu tiến bộ | 4 câu | V5 25 đến V5 28
+F Dữ liệu quyền riêng tư và chia sẻ | 4 câu | V5 29 đến V5 32
+G Thử nghiệm thực tế và vận hành | 6 câu | V5 33 đến V5 38
+H Chốt bản tiếp theo và chuẩn bị Vercel | 3 câu | V5 39 đến V5 41
+I Chi tiết tài khoản quản trị và đồng bộ | 5 câu | V5 42 đến V5 46
+J Giao diện và trải nghiệm từng bước | 26 câu | BS 01 đến BS 26
+K Hoàn thiện hình thức và các màn tài khoản | 4 câu | BS 27 đến BS 30
+L Pikafish và phân tích có căn cứ | 8 câu | BS 31 đến BS 38
+M Vận hành dữ liệu và phát hành | 5 câu | BS 39 đến BS 43
+N Tài khoản và quyền truy cập bổ sung | 4 câu | BS 44 đến BS 47
+O Làm việc trong VS Code và kiến trúc API | 3 câu | BS 48 đến BS 50
+Phụ lục cuối file: bản đồ từng màn hình, mẫu cung cấp thế cờ và lỗi giao diện, các lựa chọn đã chốt, 
+nguồn đối chiếu và danh sách điều kiện phát hành. Đây là phần hỗ trợ điền, không phải biểu mẫu thứ
+hai.
+Những việc kỹ thuật được giao cho người triển khai
+Chuyển FEN/tọa độ, quản lý tiến trình UCI, cấu trúc API/database, cache/hàng đợi, giới hạn tài nguyên, 
+kiểm tra biến hợp lệ, xác thực/phân quyền, giữ phiên bản và test là việc của kỹ thuật. Bạn quyết định 
+trải nghiệm, dữ liệu được phép dùng, giới hạn chi phí và kết quả cần đạt. Chưa có câu trả lời không cho 
+phép kỹ thuật tự bịa nội dung cờ hoặc thay nguyên tắc đã chốt.

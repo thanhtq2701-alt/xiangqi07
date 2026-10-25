@@ -1,0 +1,16 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 28
+V5 46 Khóa tài khoản và xử lý yêu cầu của người chơi
+Mức 1
+Khi bạn khóa tài khoản, người chơi có được xem hoặc xuất dữ liệu cũ không, hay phải liên hệ bạn? 
+Cần khóa có thời hạn hay đến khi mở lại? Người chơi gửi yêu cầu mở lại, sửa thông tin hoặc xóa tài 
+khoản ở đâu? Bạn muốn màn hình xác nhận thao tác quản trị hiển thị những gì để tránh chọn nhầm 
+người?
+Đề xuất chưa duyệt: phân biệt khóa sử dụng với xóa dữ liệu; ghi lý do, thời điểm và người thực hiện. 
+Quyền khóa/mở có hiệu lực phía server, kể cả với phiên đang đăng nhập; xóa cần xác nhận riêng theo 
+chính sách đã chốt. Người dùng vẫn có một đường gửi yêu cầu về dữ liệu hoặc truy cập. Không cho 
+admin xem mật khẩu, đăng nhập giả làm người dùng hoặc sửa kết quả học tùy ý.
+Cần điền: 1. Khi khóa còn xem dữ liệu cũ không; 2. Khi khóa còn xuất dữ liệu không hay liên hệ; 3. Khóa có thời 
+hạn hay đến khi mở lại; 4. Kênh yêu cầu mở lại/sửa thông tin/xóa tài khoản; 5. Nội dung xác nhận trước thao tác 
+tránh nhầm người; 6. Quyền còn lại của người bị khóa
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

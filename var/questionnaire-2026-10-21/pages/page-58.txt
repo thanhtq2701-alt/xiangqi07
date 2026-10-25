@@ -1,0 +1,47 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 58
+Các lựa chọn đã có để không phải trả lời lại
+Đây là sổ tóm tắt ý định đã nêu, không phải danh sách tính năng hoàn tất. Các chi tiết còn mâu thuẫn 
+được hỏi ở phần chính. Nếu muốn đổi một lựa chọn, ghi mã C tương ứng và quyết định mới; không cần 
+chép lại cả lịch sử.
+C01 Tên và ngôn ngữ
+Tên chính thức là Cờ Chill; giao diện tiếng Việt; tiêu đề nói rõ chức năng; không in WHAT WHY HOW 
+như nhãn câu hỏi.
+Nguồn: UX02.02, UX02.06, UX04.05
+C02 Cảm giác và giọng văn
+Bình tĩnh, thoải mái, hướng dẫn gợi mở khi học. Giọng trung tính hoặc bạn học; người dùng được chọn 
+style. Mẫu lời chào: Chào mừng bạn đến với Cờ Chill.
+Nguồn: V4 B05, UX01.06, UX02.05
+C03 Theme và logo
+Ba theme sáng ấm, trắng lạnh, tối. Màu hiện tại được giữ tạm; màu thương hiệu cuối giữa logo và màu 
+Site còn chờ. Chủ sở hữu nói logo PNG do mình tạo bằng AI.
+Nguồn: V4 B02, UX01.02, UX02.03, UX03.01, UX03.02, UX03.08
+C04 Bố cục chính
+Ưu tiên laptop; màn học bàn bên trái khoảng 50–55%, câu hỏi/lời giải bên phải; sidebar thu gọn được; 
+khi zoom ưu tiên giữ bàn cờ và khung câu hỏi. Panel kéo đổi kích thước chưa ưu tiên.
+Nguồn: UX06.01, UX06.02, UX06.03, UX06.07, UX06.08
+C05 Điều hướng
+Các khu vực có trang/URL riêng; Xem lại thuộc Ván của tôi, Tiến bộ thuộc Ôn tập; có dashboard và lộ
+trình; mobile dùng thanh dưới. Back về bước trước và giữ vị trí cuộn.
+Nguồn: UX01.01, UX01.07, UX07.01, UX07.02, UX07.03, UX07.04, UX07.07
+C06 Rời trang
+Rời ván hoặc câu trả lời chưa gửi cần xác nhận một lần. Nháp và trạng thái đang học phải giữ; trì 
+hoãn/rời trang không phải hoàn thành.
+Nguồn: V4 E04, UX07.05, UX10.07, UX15.06, UX22.04, UX24.06
+C07 Trang chủ
+Người mới đi từ Bắt đầu chơi qua demo/hướng dẫn/cách học rồi trận mẫu. Người quay lại ưu tiên bài 
+đang dở và lịch ôn. Không đặt danh sách ván gần đây trên trang chủ; đặt ở Ván của tôi. Demo cần nhãn 
+rõ.
+Nguồn: V4 B03, UX08.01, UX08.02, UX08.04, UX08.05, UX08.07, UX10.08
+C08 Tự khai trình độ và mục tiêu
+Hỏi trình độ tự khai ban đầu; người đã biết chơi có Skip. Người Chưa biết chơi cần học luật và thực 
+hành kiểm tra. Mục tiêu chọn từng lần một, tối đa ba, có thể tự luận thêm.
+Nguồn: V4 C02, V4 C05, UX09.01, UX09.02, UX09.07, UX20.05
+C09 Hướng dẫn và lưu vị trí
+Hướng dẫn thao tác xem lại được từ menu. Bài đầu vào không cần hiển thị thời gian ước tính gây áp 
+lực; có thể rời rồi tiếp tục đúng chỗ.
+Nguồn: UX09.03, UX09.04
+C10 Chọn ván
+Có chọn màu quân, preset thời gian cộng giây như 10p+5s, 5p+3s, 3p+2s; chỉ một ván đang chạy. Ván 
+hết giờ tính thua dù người chơi rời trang.
+Nguồn: UX10.02, UX10.04, UX10.05, UX10.07

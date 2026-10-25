@@ -1,0 +1,42 @@
+[
+  {
+    "file": "app.js",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "experience.js",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "favicon.svg",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "fixtures.js",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "game-tools.js",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "index.html",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "learning.js",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "logo-co-chill.png",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "style.css",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "xiangqi.js",
+    "error": "HTTP Error 403: Forbidden"
+  }
+]

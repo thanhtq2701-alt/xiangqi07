@@ -1,0 +1,22 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 29
+J Giao diện và trải nghiệm từng bước
+Về mục lục
+Nhóm này làm rõ luồng và các trạng thái còn thiếu. Hình thức màu/logo chốt ở V5 20; phần K chốt mẫu thiết kế và 
+màn tài khoản. Không cần trả lời lại dữ liệu hoặc quyền đã có ở nhóm I.
+BS 01 Bài tồn có chặn chơi ván mới không
+Mức 1 · Liên quan: V5 27
+Bạn từng muốn yêu cầu học trước khi còn quá nhiều bài. V5 nên chỉ gợi ý ôn, cảnh báo nhưng vẫn cho 
+Chơi, hay tạm khóa Chơi? Nếu có chặn, bao nhiêu bài nào được tính, phải hoàn thành bao nhiêu để
+mở lại và người chưa hiểu bài có đường tiếp tục nào?
+Đề xuất chưa duyệt: Chỉ gợi ý và cho chọn, không khóa vòng chơi để ép hoàn thành bài chưa hiểu.
+Cần điền: 1. Có chặn hay không; 2. Ngưỡng và loại bài; 3. Điều kiện mở lại; 4. Đường tiếp tục khi mắc kẹt
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 02 Trang chủ khi còn ván và còn bài
+Mức 2
+Khi cùng có một ván đang chạy đồng hồ, một bài học dở và bài ôn đến hạn, nút chính dẫn tới đâu? 
+Dòng cảnh báo đồng hồ và lối tới hai việc còn lại nên xuất hiện thế nào?
+Đề xuất chưa duyệt: Ván đang chạy được cảnh báo dễ thấy và có Tiếp tục ván; danh sách bài dở/đến 
+hạn vẫn truy cập được nhưng không mở coaching khi ván sống.
+Cần điền: 1. Việc ưu tiên; 2. Nhãn nút chính; 3. Thông tin vẫn phải thấy
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

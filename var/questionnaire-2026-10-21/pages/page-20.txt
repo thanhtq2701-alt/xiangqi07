@@ -1,0 +1,26 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 20
+V5 31 Chia sẻ ván với người khác cần lộ những gì
+Mức 2
+Bạn muốn ai có link cũng xem được. Link đó nên chỉ chứa thế cờ hoặc biên bản, hay cả tên, ghi chú và 
+lời giải đã mở? Người gửi có cần thu hồi link hoặc đặt thời hạn khi chuyển sang backend không?
+Đề xuất chưa duyệt: mặc định chỉ chia sẻ dữ liệu cờ đã chọn, bỏ câu trả lời riêng tư và tên thật. Đáp án 
+chưa mở không đi vào file xuất chia sẻ. Phân biệt “link đến trang” với “link chứa đúng ván”; dữ liệu local 
+không tự xuất hiện trên máy người nhận.
+Cần điền: 1. Link chứa thế cờ, biên bản hay cả tên/ghi chú/lời giải đã mở; 2. Nội dung được chia sẻ; 3. Nội dung 
+phải riêng tư; 4. Cần thu hồi link không; 5. Cần thời hạn hết hiệu lực khi dùng backend không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 32 Người chơi đăng nhập như thế nào và có chế độ khách không
+Mức 1
+Bạn muốn người chơi đăng nhập bằng email, Google hoặc phương thức quen thuộc nào? Có cho chơi 
+thử không cần tài khoản và chỉ yêu cầu đăng nhập khi lưu đồng bộ không? Tên hiển thị có được khác 
+tên tài khoản đăng nhập không? Chỉ nêu trải nghiệm mong muốn, không gửi mật khẩu hoặc mã xác 
+thực.
+Đề xuất chưa duyệt: bản đầu dùng một phương thức xác thực có quản lý, cho tên hiển thị riêng; nếu có 
+chế độ khách thì nói rõ dữ liệu chỉ nằm trên máy cho đến khi người chơi chọn chuyển vào tài khoản. Có 
+đăng xuất và khôi phục quyền truy cập. Codex đề xuất dịch vụ phù hợp ngân sách trước triển khai; 
+không tự tạo cơ chế lưu mật khẩu dạng rõ.
+Cần điền: 1. Phương thức đăng nhập ưu tiên email/Google/khác; 2. Có chế độ khách chơi thử không; 3. Bước bắt 
+buộc đăng nhập, ví dụ lúc lưu đồng bộ; 4. Tên hiển thị có khác tên tài khoản đăng nhập không; 5. Quy tắc tên hiển 
+thị
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

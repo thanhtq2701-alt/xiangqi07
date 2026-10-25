@@ -1,0 +1,43 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 61
+C32 Mobile
+Bàn trên câu hỏi dưới, khi nhập vẫn cần nhìn bàn; giữ vị trí sau đóng bàn phím; thiếu chỗ ưu tiên bàn 
+và Q&A, có thể ẩn ký phổ. Mạng yếu tải bàn và câu hỏi trước. PWA/offline đầy đủ để sau.
+Nguồn: V4 I02, UX12.08, UX24.02, UX24.03, UX24.05, UX24.07, UX24.08
+C33 Khả năng tiếp cận
+V4 chấp nhận chữ lớn, tương phản, phương án ngoài kéo và không chỉ dựa màu; UX xác nhận text 
+thay đúng/sai và âm, trình đọc màn hình cập nhật từng nước thay đọc lại cả bàn. Chủ sở hữu và bạn bè 
+kiểm tra; lỗi qua feedback và biểu mẫu.
+Nguồn: V4 I03, V4 I05, UX25.04, UX25.06, UX25.07, UX25.08
+C34 Trạng thái và cập nhật
+Spinner cho chờ ngắn; tác vụ dài nói rõ đang phân tích/kiểm tra gì; lỗi dưới ô; thông báo không mất quá 
+nhanh; giữ dữ liệu và kiểm tra chống lưu trùng. Cho kết thúc phiên cũ rồi thông báo reload để nhận bản 
+mới.
+Nguồn: V4 I04, UX26.02, UX26.04, UX26.05, UX26.06, UX26.08, UX28.04, UX28.05
+C35 Phạm vi V5
+Vòng học công khai có resume/mobile là ưu tiên; quyết định mới yêu cầu tài khoản thật, dữ liệu tập 
+trung, đa thiết bị và admin ngay V5. PvP và AI tự huấn luyện vẫn để sau.
+Nguồn: UX35, REGISTER Quyết định mới cùng ngày, V5 Những gì đã chốt
+C36 Ngân sách và ranh giới
+Mong 100.000 đồng/tháng, trần 200.000 cho tất cả dịch vụ; không tự bật phí. Luật/UI tách, engine/lời 
+giải/persistence thay được; ưu tiên engine hợp pháp có thể dùng Pikafish, dễ chạy, chi phí thấp.
+Nguồn: V4 K01, UX27.03, UX27.06, UX27.08, UX28.01, UX30.04, UX35
+C37 Ưu tiên LLM
+Thứ tự giá trị mong muốn là phản hồi lập luận, hỏi tiếp, rồi cách diễn đạt. LLM chỉ dựa dữ kiện 
+engine/luật; chưa có tài khoản API sẵn theo V4.
+Nguồn: V4 K02, V4 K03, UX28.07
+C38 Duyệt nội dung và vận hành
+Chủ sở hữu chốt nội dung/quyền cấu hình, xem log, xử lý rollback. Nhịp duyệt khoảng 10 thế/tuần; gỡ
+bài sai và thông báo người đã làm, giữ bằng chứng/version. Muốn xem web chạy để phản hồi; bàn giao 
+thay đổi/test/giới hạn/hướng dẫn chạy.
+Nguồn: V4 K06, V4 M03, V4 M04, V4 M05, UX17.08, UX29.02, UX29.04, UX29.07, UX30.05, UX30.07, UX30.08, UX33.08, 
+UX34.02
+C39 Pilot
+Bạn bè trình độ trung cấp biết luật; V4 đã chấp nhận phiên thử 10–15 phút, một điểm review và một bài 
+liên quan, có lưu giữa bước. Muốn ghi điểm bị kẹt cùng phản hồi giao diện.
+Nguồn: V4 A02, V4 A03, V4 I06, UX35
+C40 Luật và phán quyết
+Muốn cờ tướng tiêu chuẩn/thi đấu, tất cả bảy quân, chiếu hết/hết nước là thua bên hết nước. Nguồn 
+Ziga/Wikipedia do chủ sở hữu nêu là tham khảo, chưa thay bộ luật tổ chức có phiên bản. Tình huống 
+chưa chắc ghi Cần kiểm chứng thêm; chủ sở hữu chốt và giữ bằng chứng.
+Nguồn: V4 J01, UX31.01, UX31.02, UX31.03–UX31.08, UX32.01, UX32.08, UX33.05, UX33.08

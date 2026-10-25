@@ -1,0 +1,277 @@
+{
+  "createdAt": "2026-10-24T23:51:43.950627+07:00",
+  "kind": "co-chill-v5-source-only",
+  "containsUserData": false,
+  "files": [
+    {
+      "path": ".env.example",
+      "bytes": 1021,
+      "sha256": "12239f0628fb7c3981d2752bb6b7232a57c22a58567664b220151e5de0cfb9c7"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 174,
+      "sha256": "5b7eeeec27d4bef84e2d946c3cee25bb995bd7311f2d3594bd21a1ea82c626c8"
+    },
+    {
+      "path": "AI_USAGE.md",
+      "bytes": 6865,
+      "sha256": "4b4d2f81e5dd37fc4e13fa4a063c52627ea494de3a479a11935cccab32518a87"
+    },
+    {
+      "path": "IMPLEMENTATION_REPORT_CODEX.md",
+      "bytes": 33496,
+      "sha256": "c1b5bcb619dcb5b71f37c65e223fa78c41b390be3da34a3f255c1a27d813ca3e"
+    },
+    {
+      "path": "KNOWN_LIMITATIONS.md",
+      "bytes": 10970,
+      "sha256": "348d308ef5fcfb759c102bf540dac7debac8de6ff7017853ba7776003b79093c"
+    },
+    {
+      "path": "Mo_Co_Chill_V5.cmd",
+      "bytes": 894,
+      "sha256": "cae132cd0719f84195afad123d1dc0d683b13575468b258656655e06b928edbc"
+    },
+    {
+      "path": "PRIVACY.md",
+      "bytes": 7152,
+      "sha256": "6c7dad6064d281206474d585ffa89bf64e8fb3e8c5be1acb20bb62c202edcd0f"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3431,
+      "sha256": "f3923cbf7f1fa9463f1e8352f768f34367ed93c8c197cac0d90aa7ad817be141"
+    },
+    {
+      "path": "TEST_REPORT_CODEX.md",
+      "bytes": 13260,
+      "sha256": "8c2217303e928439f37e9f2074efb12f0eb19b787ee7aed45a9773d77f20886e"
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "bytes": 4656,
+      "sha256": "7420206beaf884936b41fef4fd186a48a23bf4d195eabb16b791db6f2d4bc381"
+    },
+    {
+      "path": "app/__init__.py",
+      "bytes": 56,
+      "sha256": "a4bc4dc61a7d7911ebcf3d498daac21fd38ceccacba9e04823f088a1faebcb94"
+    },
+    {
+      "path": "app/cloud_store.py",
+      "bytes": 21678,
+      "sha256": "333b59da6fdb675ffcb6b3d8fa208e690a24ed24c41247e1b06da7163f25595e"
+    },
+    {
+      "path": "app/content_store.py",
+      "bytes": 8539,
+      "sha256": "a656ee8f2761a22bc334c78b9e0a028e7cca24ed4b6fa1d2baa50f7ef0c828cc"
+    },
+    {
+      "path": "app/engine.py",
+      "bytes": 3988,
+      "sha256": "e69b74d66c445c15a85abcc063bdbee60a1900460d3b45c0ecc96b15aca47096"
+    },
+    {
+      "path": "app/pikafish.py",
+      "bytes": 19717,
+      "sha256": "0920661f4857154df520c5959b67fd206e8b32c4117256f0270ae5b90901cc8c"
+    },
+    {
+      "path": "app/puzzles.py",
+      "bytes": 2182,
+      "sha256": "4dabd2d30d42afe5970b395102f2b39fc66cf000028b194e21dd69e04e03c3cb"
+    },
+    {
+      "path": "app/rules.py",
+      "bytes": 8805,
+      "sha256": "720b65228ff53b9eb6081fef12a7a3f4ee3e10ff424e139d45064ffa610a1b86"
+    },
+    {
+      "path": "co_chill_server.py",
+      "bytes": 33163,
+      "sha256": "04b24240a2f5ee4b79e881652af70eab8d2ebae65d62af76102097a8c9f67229"
+    },
+    {
+      "path": "docs/COCHILL_VN_CHO_NGUOI_MOI.md",
+      "bytes": 16406,
+      "sha256": "03a991894153b4475fa66d3e3f4d71a0bbdcdafe6a92d33c6ef6ae020a77ac2a"
+    },
+    {
+      "path": "docs/DEPLOY_V5.md",
+      "bytes": 13522,
+      "sha256": "95d9fd4c05277a1de2591c24ed455014310257487d29919b29af9f843f1213f9"
+    },
+    {
+      "path": "docs/PIKAFISH_SETUP_V5.md",
+      "bytes": 7712,
+      "sha256": "7f816885ec139c7da83c81fe46dcf93cd70a20e1e324abc12a18639e8ebd3ef2"
+    },
+    {
+      "path": "docs/SITES_V5_RELEASE_2026_10_24.md",
+      "bytes": 2457,
+      "sha256": "da85ac015572583d4d890a7a8098d66ef9c0e65ca5c7f170e744db5261a4652a"
+    },
+    {
+      "path": "docs/V5_DECISIONS_2026_10_24.md",
+      "bytes": 18589,
+      "sha256": "feba450209e5148138218096e916dd4eab72cf01f640bdfbdc52093886caa70f"
+    },
+    {
+      "path": "online-preview/app.js",
+      "bytes": 78686,
+      "sha256": "ca7d3aa558a595da75dea5f82bf2f425a602b34112d475d367f161d1835e7ae8"
+    },
+    {
+      "path": "online-preview/cloud-client.js",
+      "bytes": 9289,
+      "sha256": "b70f14d960a8748801dedc4a3338cd1d6b63efd0860b27d7d5083ebc162eefa2"
+    },
+    {
+      "path": "online-preview/cover-co-chill.png",
+      "bytes": 2487269,
+      "sha256": "0fdecbdaca5b52c75043aa7ace499b09bccf69b9177d5dd4c626f382f1d6de90"
+    },
+    {
+      "path": "online-preview/engine-client.js",
+      "bytes": 3342,
+      "sha256": "c935091ebf437b2382c2d7cc39fac45361557de88c58e234433a3c1d1dc1cff4"
+    },
+    {
+      "path": "online-preview/experience.js",
+      "bytes": 6258,
+      "sha256": "7cec57f8f52f3dc32adbaf117598124bfc1abcb133f7ada8a1e8c7ec0a6c2f6e"
+    },
+    {
+      "path": "online-preview/favicon.svg",
+      "bytes": 348,
+      "sha256": "3047a88786861e5531815b5b3cddcbbff30298ffa77405c75e05857695db203b"
+    },
+    {
+      "path": "online-preview/fixtures.js",
+      "bytes": 23121,
+      "sha256": "604bf9a17871303423652aee560983c1eb892f0d1a27d0866a5f92c05998a180"
+    },
+    {
+      "path": "online-preview/game-tools.js",
+      "bytes": 13300,
+      "sha256": "5c41a1ca29644dbb33a48c90a891ca39a291b802d9fcea90eaffdf7c8640cb90"
+    },
+    {
+      "path": "online-preview/index.html",
+      "bytes": 6374,
+      "sha256": "0f3547823aa4027536130caa1afd1bac3d2f414e31831a2f3d75c6f30caa0afb"
+    },
+    {
+      "path": "online-preview/learning.js",
+      "bytes": 23383,
+      "sha256": "254c9e27d8b89e52a6049a88f62daadc99cd096f199d87bee93394992091af12"
+    },
+    {
+      "path": "online-preview/logo-co-chill.png",
+      "bytes": 751229,
+      "sha256": "e7ca5862873246c36bd3f4366add8aa23667c0c05ab7b2b0f04c7c574439e1b6"
+    },
+    {
+      "path": "online-preview/style.css",
+      "bytes": 32677,
+      "sha256": "f1b7678ec2572d2294045815b3901dc03c2cefda82f92bdfa18064ca45cc93d5"
+    },
+    {
+      "path": "online-preview/v5-ui.js",
+      "bytes": 30579,
+      "sha256": "95902c3682166883d0efc6682a0bd3a86f71a806778ad14dfbac7ef940c1223c"
+    },
+    {
+      "path": "online-preview/v5.css",
+      "bytes": 3372,
+      "sha256": "a4b34b5e96197a78fa644428a746133d0ffec9947f0fba6804e8f9f89cac3638"
+    },
+    {
+      "path": "online-preview/xiangqi.js",
+      "bytes": 12433,
+      "sha256": "1b8b63116dceeebfdbe8120447f8c659f751d621ef3ad89f76541229b17f4ec1"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 179,
+      "sha256": "6bca0986f9a7751f93d5000685f9206d05ffc293c00788a43093242042d49062"
+    },
+    {
+      "path": "tests/__init__.py",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "tests/test_cloud.py",
+      "bytes": 27366,
+      "sha256": "b69053b2eafd339c31524346aeecafe9661b9242f4a698582bb678378e7568f3"
+    },
+    {
+      "path": "tests/test_pikafish.py",
+      "bytes": 13425,
+      "sha256": "1bfcd63a1c6680574334f0dc653b99c12b8382e6a2339c2111f3c0db6aaa53bc"
+    },
+    {
+      "path": "tests/test_rules.py",
+      "bytes": 6421,
+      "sha256": "ede46b62b27310541d9338bebdf8520936b8e1b24e77393f0b5d855285d3f0c5"
+    },
+    {
+      "path": "tools/build_deploy_pack.py",
+      "bytes": 7195,
+      "sha256": "5c504d5d5e6af0bcdfc3ea50f304876b825cfe5467c825d18c8554b0d85eb85f"
+    },
+    {
+      "path": "tools/check_browser_rules.py",
+      "bytes": 9887,
+      "sha256": "2eef259750d0064e6fc7317a8730013104df3665404f500a3dad6139bb585baf"
+    },
+    {
+      "path": "tools/check_online_preview.py",
+      "bytes": 2066,
+      "sha256": "6c17d4e1d16da6177d46e11ff7fb7ae9885504b3d7ef23c7a7dca0d10e216acc"
+    },
+    {
+      "path": "tools/export_preview_fixtures.py",
+      "bytes": 6416,
+      "sha256": "4959a69870ae602f600bc07c442789ac35d31abb76a4f73b127e7bd32bfe3e0e"
+    },
+    {
+      "path": "tools/test_cloud_client.cjs",
+      "bytes": 14714,
+      "sha256": "0ae523acc6eead5928565a14c03771d40fc93756140d6c69a36ae333dc83b5e7"
+    },
+    {
+      "path": "tools/test_engine_client.cjs",
+      "bytes": 4347,
+      "sha256": "eaa75ea16db21c1416a166f0dd4dce3aef658e1468bf49171561cf35e6720c34"
+    },
+    {
+      "path": "tools/test_preview_experience.cjs",
+      "bytes": 17946,
+      "sha256": "824b18fa4488e8e11ba95aec3e369bc31e8a5a8154265896cc58c2cf25ff26a9"
+    },
+    {
+      "path": "tools/test_preview_game_tools.cjs",
+      "bytes": 10847,
+      "sha256": "9e7e9e70b838d97fd510d3f972a1a773fabbaed0d4a77b23c282663fe1597d07"
+    },
+    {
+      "path": "tools/test_preview_learning.cjs",
+      "bytes": 17671,
+      "sha256": "0175c2d05fdad8da4fe67f46f1a533e43cc0d9891f4a7a20e1b50937ae61f0d1"
+    },
+    {
+      "path": "tools/test_v5_ui.cjs",
+      "bytes": 11355,
+      "sha256": "7600a7ca2249aaa89d8cc7a9d1ed297c5200069ae8fe9e33b0f12f756544d42a"
+    },
+    {
+      "path": "vercel.json",
+      "bytes": 854,
+      "sha256": "9effcef61d76a60d27079e2ec14c3237117a4534821ee18c7d5b6a810d1273b0"
+    }
+  ]
+}

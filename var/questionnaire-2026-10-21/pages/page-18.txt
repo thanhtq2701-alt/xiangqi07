@@ -1,0 +1,31 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 18
+V5 27 Nhắc lịch vừa đủ và lời nhắc nghỉ
+Mức 2
+Bạn muốn giữ bài quá hạn, nhắc mỗi sáu giờ ngoài 22 giờ đến 7 giờ và nhắc nghỉ sau 30 phút. Trước 
+khi có email hoặc push, nhắc trong app có đủ không? Dùng sắc đỏ cho quá hạn có làm trái cảm giác 
+thoải mái bạn mong muốn không?
+Đối chiếu thêm mong muốn V4 nhắc trước hạn 30 phút: giữ kiểu nhắc trước hạn này hay chỉ nhắc các 
+bài chưa làm theo giờ đã nêu?
+Đề xuất chưa duyệt: luôn giữ hàng đợi và ưu tiên hạn sớm; cho tắt nhắc, dùng câu trung tính. 30 phút 
+tính thời gian học thực, loại thời gian tab nằm nền. Không coi nghỉ một ngày là mất kiến thức đã đạt.
+Cần điền: 1. Nhắc trong app trước khi có email/push có đủ không; 2. Kênh nhắc trước mắt; 3. Câu nhắc quá hạn; 
+4. Sắc đỏ quá hạn có trái cảm giác thoải mái không; 5. Có nút tạm nghỉ/tắt nhắc không; 6. Cách tính 30 phút học 
+thực và thời gian tab nền; 7. Rà cách áp mong muốn nhắc mỗi sáu giờ ngoài 22h–7h; 8. Có giữ nhắc trước hạn 
+30 phút không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 28 Dashboard cá nhân và quản trị cần giúp bạn biết điều gì
+Mức 1
+Trang cá nhân cho người chơi xem tiến độ của họ; trang quản trị cho bạn xem toàn hệ thống. Trong 
+dashboard quản trị, ngoài tài khoản mới và tài khoản hoạt động, ba thông tin nào cần ở đầu trang: số
+ván, lượt học hoàn tất, lượt ôn, bước bỏ dở hay tỷ lệ làm bài có hỗ trợ? Bạn xem theo ngày, tuần hay 
+tháng và có cần xuất bảng thống kê không?
+Đề xuất chưa duyệt: mặc định 7 ngày gần nhất, có chọn khoảng thời gian và dấu thời điểm cập nhật. 
+Một tài khoản dùng nhiều máy vẫn đếm một tài khoản; số tài khoản không tự bằng số người thật. Tách 
+test nội bộ và phiên có trợ giúp. Số đếm hiển thị từ dữ liệu đầu tiên; chỉ tỷ lệ hoặc kết luận học tập cần 
+đủ mẫu như câu 25. Không hiển thị số giả hoặc gọi hoạt động là hiệu quả học đã kiểm định.
+Cần điền: 1. Ba chỉ số đầu trang ngoài tài khoản mới/hoạt động: ván/lượt học hoàn tất/lượt ôn/bước bỏ dở/tỷ lệ trợ
+giúp hoặc khác; 2. Khoảng thời gian ngày/tuần/tháng hoặc tùy chọn; 3. Hoạt động tính khi đăng nhập hay khi 
+chơi/học; 4. Cần xuất bảng thống kê không; 5. Bấm chỉ số xem chi tiết nào; 6. Phân biệt nhu cầu dashboard cá 
+nhân và toàn hệ thống
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

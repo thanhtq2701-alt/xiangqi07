@@ -1,0 +1,21 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 41
+BS 25 Nội dung và hành động của các trang chưa có dữ liệu hoặc bị lỗi
+Mức 1 · Liên quan: V5 21, V5 36, V5 41, V5 42, V5 43, V5 45, V5 46
+Nguồn UX26.01 chưa có câu trả lời. Dùng danh sách trang kèm theo để ghi chỉ những ngoại lệ: khi 
+chưa có dữ liệu, không tìm thấy dữ liệu, không có quyền, mất mạng, đang chờ và lỗi, người dùng cần 
+biết điều gì và bấm gì tiếp? Phần nào phải giữ lại; trang nào cần đường trở về đặc biệt?
+Đề xuất chưa duyệt: Mỗi trạng thái nói đúng nguyên nhân có biết, không giả phần trăm hoặc xử lý. Giữ
+nháp, hiện thử lại/tiếp tục/xem dữ liệu khi phù hợp. Trang account/admin lấy quyền và chính sách từ V5 
+32 và 42–46.
+Cần điền: 1. Trang/trạng thái cần thay mặc định; 2. Câu thông báo; 3. Nút tiếp theo; 4. Dữ liệu phải giữ
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 26 Trợ giúp thông tin sản phẩm và báo lỗi
+Mức 2 · Liên quan: V5 23, V5 24, V5 38
+Ngoài trang Cách học, Luật và Về Cờ Chill, cần một mục Trợ giúp chung để tìm lại hướng dẫn, xem giới 
+hạn engine và gửi phản hồi không? Chọn vị trí liên kết luôn dễ thấy và tên tiếng Việt; khi mở trợ giúp từ
+bài dở phải quay lại đúng bước nào?
+Đề xuất chưa duyệt: Cách học, Luật, Giới hạn hiện tại và Phản hồi có lối tìm rõ; không thêm màn ngắt 
+vòng học không cần thiết.
+Cần điền: 1. Mục trợ giúp cần có; 2. Tên và vị trí link; 3. Nội dung tối thiểu; 4. Đường quay lại
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

@@ -1,0 +1,77 @@
+[
+  {
+    "page": 1,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 1\r\nHướng dẫn review và update Cờ Chill\r\nDành cho chủ sản phẩm mới bắt đầu đọc code\r\nBạn cần kiểm tra sản phẩm the",
+    "end": "ử tự động của \r\ngói VS Code. Chưa kiểm tra thủ công lại toàn bộ giao diện hoặc xác minh website công khai \r\ntrong lượt này. Các ca review bên dưới là việc cần làm, không phải kết quả đã đạt."
+  },
+  {
+    "page": 2,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 2\r\n1 Chọn đúng bản trước khi review\r\nDự án có ba phạm vi. Chúng liên quan nhau nhưng không tự đồng bộ. Nếu mở nhầ",
+    "end": "iển thật, chọn một checkout Git làm nơi \r\nsửa chính. Không sửa song song cả gói snapshot và repo gốc rồi đoán bản nào mới. Không xóa bản cũ \r\nhoặc tài liệu để làm repo gọn trong bước review."
+  },
+  {
+    "page": 3,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 3\r\n2 Đọc tài liệu theo thứ tự này\r\nQuy ước đường dẫn để bảng gọn: R = E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai. Khi thấ",
+    "end": " ghi vào phiếu review cả hai nguồn và ngày. Ví dụ README gốc có \r\nphần backend cũ sau phần giới thiệu Site mới. Đừng lấy trạng thái của backend để kết luận website \r\ncũng đã có tính năng ấy."
+  },
+  {
+    "page": 4,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 4\r\n3 Hiểu kiến trúc bằng một thao tác\r\nMột trang web gồm phần người dùng nhìn thấy, phần quyết định hành vi và nơ",
+    "end": "u hay đổi giao diện không? File nào và test nào phụ thuộc vào nó?\r\nChỉ khi trả lời được các câu này bằng một ví dụ cụ thể, bạn mới chuyển sang nhóm hàm tiếp theo. \r\nKhông cần nhớ từng ký tự."
+  },
+  {
+    "page": 5,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 5\r\n4 Lộ trình đọc code không bị loạn\r\nMỗi buổi chọn một mục nhỏ. Có thể dành 30–60 phút một buổi rồi dừng khi đạt",
+    "end": "ôm nay đọc file/hàm nào; một luồng mình đã hiểu; một câu còn chưa rõ; một bằng \r\nchứng đã tự kiểm tra. Câu còn chưa rõ phải cụ thể, chẳng hạn “finishPuzzle lấy thời điểm hoàn thành từ\r\nđâu?”"
+  },
+  {
+    "page": 6,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 6\r\n5 Lần theo ba luồng quan trọng\r\nLuồng một từ bấm menu đến trang mới\r\nBắt đầu từ index.html: tìm liên kết có ha",
+    "end": "hi nhờ AI\r\nVẽ bằng chữ: sự kiện → hàm → dữ liệu → điều kiện → kết quả → lưu ở đâu → test nào. Nếu thiếu một \r\nmắt xích, hỏi đúng mắt xích đó thay vì yêu cầu AI “giải thích cả dự án” lần nữa."
+  },
+  {
+    "page": 7,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 7\r\n6 Review vòng học cốt lõi\r\nThử trên đúng bản đã ghi ở trang 2. Dùng dữ liệu thử riêng; không xóa tiến độ thật ",
+    "end": "oàn \r\nthành. Nếu bạn muốn bắt buộc thử lại, ghi thành yêu cầu update riêng với tiêu chí rõ ràng.\r\nThông tin ca kiểm tra: bản/thư mục ______ URL ______ ngày ______ thiết bị/trình duyệt ______"
+  },
+  {
+    "page": 8,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 8\r\n7 Review giao diện dữ liệu và giới hạn\r\nMã Kịch bản Tiêu chí review\r\nC09 Đóng/mở lại tab ở cùng trình duyệt và",
+    "end": "ặt.\r\nBạn chưa thể xem số tài khoản đăng ký của mọi người trên Site hiện tại: chưa có tài khoản và dữ liệu \r\ntập trung. Đừng dùng số liệu trên trình duyệt của mình làm thống kê toàn hệ thống."
+  },
+  {
+    "page": 9,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 9\r\n8 Ghi kết quả thành danh sách có thể sửa\r\nBạn có thể tạo một file REVIEW_BACKLOG.md bằng VS Code, một bảng tín",
+    "end": "an trọng nhất, mỗi vấn đề có điều kiện hoàn thành.\r\n• Yêu cầu V5 còn thiếu thông tin, kèm một quyết định cần bạn trả lời.\r\n• Không gộp một lỗi đã biết và mười mong muốn mới vào cùng một mục."
+  },
+  {
+    "page": 10,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 10\r\n9 Chọn đợt nâng cấp tiếp theo\r\nChọn việc dựa trên tác động đến người dùng. P0 là không mở được web, mất/sai d",
+    "end": "h. \r\nMọi đánh giá/nước đi vẫn phải do luật và engine xác định; lời giải không được tự bịa biến cờ. Thêm tài \r\nkhoản cũng không biến thống kê học thành bằng chứng hiệu quả đã được kiểm chứng."
+  },
+  {
+    "page": 11,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 11\r\n10 Quy trình update một việc từ đầu đến cuối\r\nBước Bạn và người viết code làm gì\r\n1 Chốt Chọn một mã backlog,",
+    "end": "u mỗi đợt, cập nhật README nếu đổi cách chạy, báo cáo/giới hạn nếu đổi hành vi, và nhật ký thay \r\nđổi. Tài liệu gốc V4/UI UX vẫn giữ nguyên; ghi quyết định mới vào tài liệu cập nhật có ngày."
+  },
+  {
+    "page": 12,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 12\r\n11 Kết quả kiểm thử và cách dùng AI\r\nBaseline đã chạy trong lượt này\r\nNgày 20/10/2026, chạy tools/check_all.p",
+    "end": "\nfocus và vùng bấm. Hoàn tác đúng dòng nếu xấu hơn.\r\n• Đọc test lịch ôn trong test_preview_learning.cjs rồi giải thích mốc finish bằng lời. Sau đó chạy test \r\nkhông sửa dữ liệu tiến độ thật."
+  },
+  {
+    "page": 13,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 13\r\n12 Bản đồ mười file chạy website\r\nTất cả file ở bảng này thuộc thư mục sau. Để mở một file, ghép tên file vào",
+    "end": " tập, cần sửa nguồn bài và sinh lại fixtures có kiểm tra, không sửa tay lời giải rồi bỏ qua \r\nluật. Khi chỉnh luật, đối chiếu cả implementation JavaScript và tham chiếu Python theo các test."
+  },
+  {
+    "page": 14,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 14\r\n13 Bản đồ các file hỗ trợ phát triển\r\nĐường dẫn bên dưới tính từ thư mục gói VS Code đã ghi ở trang 2. Bảng b",
+    "end": "ken hoặc khóa API vào repo công khai. Gói \r\nportable hiện không chứa dữ liệu tài khoản hay thông tin truy cập hosting. .gitignore hỗ trợ lọc, không tự\r\nđảm bảo mọi bí mật đều được phát hiện."
+  },
+  {
+    "page": 15,
+    "start": "CỜ CHILL • HƯỚNG DẪN REVIEW VÀ UPDATE\r\nBản ngày 20/10/2026 • Trang 15\r\n14 Khi nào bạn có thể tự update tiếp\r\nTự kiểm tra bằng sáu câu\r\nCâu hỏi Câu trả lời cần nắm\r\nMuốn đổi màu, sử",
+    "end": "______________\r\nLưu bản hướng dẫn này cùng các tài liệu bàn giao. Mỗi đợt cập nhật chỉ sửa trạng thái và quyết định \r\nmới trong sổ review; giữ ngày và nguồn để biết vì sao sản phẩm thay đổi."
+  }
+]

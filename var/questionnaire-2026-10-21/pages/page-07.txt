@@ -1,0 +1,13 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 7
+V5 07 Ví dụ phản hồi sai một phần cần sửa như thế nào
+Mức 2
+Gửi một câu trả lời có cả ý đúng lẫn ý sai. Bạn muốn hệ thống trích chính xác đoạn nào, ghi lời nhận xét 
+gì và hỏi lại câu nào? Với nhận xét chưa chắc đúng, nút báo lỗi nên giữ bài đang học hay chuyển sang 
+bài khác?
+Đề xuất chưa duyệt: đánh dấu ý bằng chữ “Hợp lý”, “Cần xem lại” cùng màu; không tô đỏ cả đoạn. Khi 
+chưa có bộ chấm lập luận được kiểm chứng, không tô tự động theo việc xuất hiện từ khóa.
+Cần điền: 1. Câu trả lời gốc có ý đúng lẫn sai; 2. Đoạn chính xác cần trích là hợp lý; 3. Đoạn chính xác cần xem 
+lại; 4. Lời nhận xét cho từng ý; 5. Câu hỏi tiếp theo; 6. Khi báo lỗi nhận xét chưa chắc: giữ bài đang học hay 
+chuyển bài
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

@@ -1,0 +1,28 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 27
+V5 44 Chuyển tiến độ local cũ vào tài khoản ra sao
+Mức 1
+Khi người chơi đăng nhập lần đầu, cần chuyển những gì từ trình duyệt cũ: ván, nháp, câu trả lời, kết 
+quả, lịch ôn hay tùy chọn giao diện? Nếu tài khoản đã có dữ liệu và máy đang mở cũng có dữ liệu local, 
+bạn muốn xem trước rồi hợp nhất hay lựa chọn từng nhóm? Máy dùng chung cần bước xác nhận nào 
+để tránh gán dữ liệu nhầm người?
+Đề xuất chưa duyệt: hỏi người dùng có muốn nhập phần local vào tài khoản, cho xem số lượng và nội 
+dung liên quan trước khi xác nhận. Không tự coi toàn bộ dữ liệu trên máy là của người vừa đăng nhập; 
+nhập lại không nhân đôi kết quả. Giữ khả năng xuất bản sao và báo rõ mục nào chưa chuyển được.
+Cần điền: 1. Nhóm chuyển: ván/nháp/câu trả lời/kết quả/lịch ôn/tùy chọn giao diện; 2. Nếu cloud và local cùng có 
+dữ liệu: xem trước hợp nhất hay chọn từng nhóm; 3. Cách chọn và hợp nhất; 4. Xác nhận trên máy dùng chung 
+tránh gán nhầm chủ; 5. Điều bắt buộc không mất; 6. Cách báo mục không chuyển và xuất bản sao
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 45 Khi dùng hai máy hoặc mất mạng thì giữ tiến độ thế nào
+Mức 1
+Giả sử cùng tài khoản đang làm một bài trên điện thoại và laptop, rồi hai máy gửi câu trả lời khác nhau: 
+bạn muốn chỉ một phiên được sửa, chọn bản nào, hay để người chơi quyết định? Khi mất mạng giữa 
+bài, người chơi được tiếp tục viết nháp hay phải dừng? Bạn muốn nhìn thấy trạng thái đang lưu, đã 
+đồng bộ và chưa đồng bộ ở đâu?
+Đề xuất chưa duyệt: lưu nháp trên thiết bị khi cần và hiển thị rõ phần chưa gửi; chỉ nói đã đồng bộ sau 
+khi máy chủ xác nhận. Nếu có xung đột, giữ cả bản nháp và yêu cầu chọn, không âm thầm ghi đè. Một 
+lần hoàn thành chỉ ghi nhận một kết quả và một mốc ôn dù gửi lại nhiều lần.
+Cần điền: 1. Hai máy sửa cùng bài/câu trả lời khác: một phiên được sửa, chọn bản, hay người dùng quyết; 2. Quy 
+tắc xung đột; 3. Mất mạng giữa bài: tiếp tục nháp hay dừng; 4. Vị trí hiện đang lưu/đã đồng bộ/chưa đồng bộ; 5. 
+Mức chờ đồng bộ chấp nhận; 6. Cách bảo toàn các bản nháp và tránh đếm trùng hoàn thành
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

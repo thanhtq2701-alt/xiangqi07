@@ -1,0 +1,22 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 43
+BS 29 Các màn tài khoản cần tên và đường đi nào
+Mức 1 · Liên quan: V5 32, V5 44, V5 45, V5 46
+Từ Home, đăng ký/đăng nhập, xác minh, quên quyền truy cập, hồ sơ và đăng xuất cần nối nhau thế
+nào? Sau đăng nhập thành công hoặc hết phiên giữa bài, quay về đúng bài hay về Home? Trang hồ sơ 
+cần trường nào được sửa và trường nào chỉ xem? Phương thức đăng nhập chốt tại V5 32.
+Đề xuất chưa duyệt: Quay lại việc đang làm sau xác thực khi còn phù hợp; báo phần nháp chưa đồng 
+bộ trước đăng xuất, không yêu cầu tên thật nếu không có mục đích.
+Cần điền: 1. Lối mở đăng nhập và câu mời; 2. Trang quay về sau đăng nhập/hết phiên; 3. Các trường hồ sơ được 
+xem/sửa; 4. Cảnh báo khi dùng máy chung hoặc đăng xuất có nháp
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 30 Bố cục quản trị từ tổng quan tới chi tiết
+Mức 1 · Liên quan: V5 28, V5 38, V5 42, V5 43, V5 46
+V5 28 và 42 đã hỏi số liệu và quyền xem. Với các quyền đó, bạn muốn bắt đầu ngày làm việc ở tổng 
+quan, danh sách tài khoản hay phản hồi lỗi? Khi bấm một tài khoản, cần các tab nào và hành động 
+quan trọng đặt đâu? Bạn có cần dùng admin trên điện thoại không?
+Đề xuất chưa duyệt: Tổng quan dẫn tới danh sách có lọc, rồi chi tiết được phân quyền; thao tác phá hủy 
+tách khỏi nút xem thường dùng, không hiển thị câu trả lời riêng tư ngoài mục đích đã thông báo.
+Cần điền: 1. Trang mặc định và thứ tự menu admin; 2. Thông tin trong hàng danh sách tài khoản; 3. Các tab chi 
+tiết theo quyền được phép; 4. Hành động khóa/xuất/xóa và bước xác nhận; 5. Có quản trị trên điện thoại không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

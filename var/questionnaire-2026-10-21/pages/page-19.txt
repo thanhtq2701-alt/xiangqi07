@@ -1,0 +1,28 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 19
+F Dữ liệu quyền riêng tư và chia sẻ
+Về mục lục
+V5 29 Một năm rồi xóa áp dụng cho dữ liệu nào
+Mức 1
+Bạn chọn một năm rồi xóa. Một năm tính từ lúc tạo dữ liệu hay lần cuối sử dụng? Gồm ván, câu trả lời 
+tự do, ghi chú, log lỗi và bản sao lưu hay chỉ lịch sử học? Bản thử hiện lưu trên trình duyệt, chưa có tác 
+vụ server thực thi chính sách một năm.
+Đề xuất chưa duyệt: tách loại dữ liệu và công bố thời hạn trước khi có tài khoản. Chức năng xóa người 
+dùng phải thực sự xóa trong phạm vi đã mô tả; lịch xóa server và bản sao lưu chỉ hứa khi đã triển khai, 
+kiểm thử.
+Cần điền: 1. Mốc một năm từ tạo dữ liệu hay lần dùng cuối; 2. Thời hạn từng loại: ván, câu trả lời tự do, ghi chú, 
+log lỗi, lịch sử học; 3. Có áp cho bản sao lưu không; 4. Phạm vi bản sao lưu và xóa; 5. Phạm vi công bố với người 
+dùng
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 30 Dữ liệu sau khi xóa có được giữ lại không
+Mức 1
+Cần tách xóa dữ liệu khỏi việc đóng góp nội dung. Nếu người dùng yêu cầu xóa, bạn muốn thông báo 
+đúng phạm vi như thế nào? Có nhu cầu giữ thống kê tổng hợp không thể gắn về cá nhân, thay vì giữ
+nguyên ván và câu trả lời của họ không?
+Đề xuất chưa duyệt: bản hiện tại không thu hoặc dùng dữ liệu người học để train. Xóa là xóa dữ liệu đã 
+công bố; mọi mục đích đóng góp hoặc huấn luyện tương lai phải được thiết kế riêng, minh bạch và có 
+đồng ý chủ động trước. Không mặc định giữ bản ẩn sau thao tác xóa.
+Cần điền: 1. Xác nhận chính sách xóa dữ liệu theo phạm vi công bố; 2. Cách thông báo đúng phạm vi khi người 
+dùng yêu cầu xóa; 3. Có thật sự cần giữ thống kê tổng hợp không thể gắn cá nhân không; 4. Những thống kê tổng 
+hợp cụ thể; 5. Điểm còn muốn trao đổi về xóa và đóng góp nội dung
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

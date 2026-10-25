@@ -1,0 +1,940 @@
+P0001: GỬI KÈM LOGO CỜ CHILL VÀ AVATAR/NỀN. CÓ NÊN GỬI THÊM CẢ TÀI LIỆU SÁCH VÀ NHỮNG TÀI LIỆU TRÊN MẠNG VỀ CỜ TƯỚNG ĐỂ BỘ LỌC NÓ KHÔN RA KHÔNG, PHÂN TÍCH GIỎI HƠN VÀ MANUAL HƠN KHÔNG. NẾU CẦN TÔI SẼ SOẠN SỚM VÀ GỬI LẠI.
+P0002: 
+P0003: Cờ Chill bộ câu hỏi hợp nhất V5
+P0004: Một file để chốt bản web tiếp theo
+P0005: 96 câu: giữ đủ 46 câu V5 và thêm 50 câu sau khi gộp phần trùng. Các nhóm có số câu khác nhau theo nhu cầu. File này thay các biểu mẫu V5 trước để bạn trả lời; tài liệu gốc vẫn được giữ nguyên.
+P0006: Mục tiêu là làm rõ các quyết định còn thiếu để tiếp tục đúng hướng của bạn: học từ ván thật, suy nghĩ trước đáp án, phân tích có căn cứ, thực hành tiếp, lịch ôn, tài khoản nhiều thiết bị và quản trị. Phần mới bổ sung Pikafish, giao diện từng màn, vận hành và cách làm việc trong VS Code.
+P0007: Cách điền
+P0008: Điền ngay dưới mỗi câu. Dùng số 1, 2, 3 tương ứng với các mục Cần điền; thêm dòng/ảnh tùy ý. Không cần vừa chỗ trống hoặc tự viết FEN, code, SQL hay chọn framework.
+P0009: Nếu đồng ý toàn bộ, ghi Giữ đề xuất. Nếu chỉ đồng ý một phần, ghi rõ phần giữ và phần đổi. Không có lựa chọn nào được điền sẵn thay bạn.
+P0010: Nếu chưa biết, ghi Chưa rõ và mô tả kết quả mong muốn hoặc Giao kỹ thuật đề xuất rồi gửi tôi duyệt. Bỏ trống không đồng nghĩa đồng ý.
+P0011: V5 01–46 giữ mã cũ. Nếu bạn đã có câu trả lời ở file khác, chép phần đó vào đúng mã rồi chỉ bổ sung các mục còn thiếu. Không phải điền hai file.
+P0012: Câu Chỉ khi triển khai được ghi Chưa làm đợt này nếu không thuộc bản tới. Tài khoản, đồng bộ và admin đã thuộc V5; lựa chọn này không tự bỏ phần đã chốt.
+P0013: Không ghi mật khẩu, token, API key, mã khôi phục hoặc dữ liệu riêng của người thử. Chỉ ghi tên dịch vụ, vai trò và file mẫu đã loại dữ liệu riêng.
+P0014: Người trả lời: ____________________    Ngày bắt đầu: ______________Mốc mong muốn có bản thử: __________    Ngày gửi lại: ______________
+P0015: Đề xuất trong file là để bạn quyết định. Ghi đồng ý thiết kế không tự cho phép mua dịch vụ, đổi public, push/deploy hoặc xóa dữ liệu; các hành động cần quyền vẫn xin duyệt trên bản cụ thể.
+P0016: 
+P0017: Hiện trạng dùng làm điểm xuất phát
+P0018: Mốc phát hành có hồ sơ gần nhất: Site phiên bản 3 ngày 16/10/2026, source ứng dụng ở online-preview. URL đã phát hành:
+P0019: Mở địa chỉ Cờ Chill đã ghi trong báo cáo
+P0020: Đây là mốc theo báo cáo phát hành và source local được đọc, không phải tuyên bố vừa kiểm thử lại toàn bộ website công khai ngày 21/10. Nếu bạn đã sửa một bản mới ở nơi khác, ghi tại BS 48.
+P0021: Đã có trong bản được ghi nhận
+P0022: Chưa có hoặc còn giới hạn
+P0023: Chơi máy cơ bản/hai người cùng máy, luật hợp lệ, ký phổ và nhập text.
+P0024: Chưa có PvP online; luật phân xử lịch sử chưa đầy đủ cho mọi trường hợp giải đấu.
+P0025: Xem lại, phản hồi trước lời giải, gợi ý có kiểm soát, thử lại và bài liên quan.
+P0026: Engine tự viết tối đa hai nửa nước; chưa có Pikafish hoặc LLM chấm lập luận.
+P0027: Nháp, giữ chỗ dở, lịch ôn và tiến độ trong trình duyệt.
+P0028: Chưa có tài khoản, đồng bộ server và dashboard admin. Đây là yêu cầu V5 đã chốt, chưa phải tính năng đang chạy.
+P0029: 12 bài tự dựng; ba theme, chữ quân Hán/Việt và giao diện responsive.
+P0030: Chưa có kho bài lớn được chuyên gia duyệt, không có bằng chứng tác động học tập đã kiểm định.
+P0031: Xuất dữ liệu, xóa dữ liệu local theo các thao tác hiện có.
+P0032: Xuất chưa tự phục hồi; chưa giữ hướng lật bàn qua reload; đồng hồ lúc kết thúc ván còn lỗi hiển thị đã ghi nhận.
+P0033: 
+P0034: Các nguyên tắc tiếp tục giữ
+P0035: Tên chính thức Cờ Chill; Việt trước, đơn giản, dễ đọc, ít tạo áp lực.
+P0036: Vòng học chơi/nhập → điểm cần học → suy nghĩ trước → lời giải có căn cứ → thử lại → bài liên quan → kết quả/lịch ôn.
+P0037: Không coaching/nước tốt nhất/phân tích chiến thuật trong ván đang chạy; chỉ xem lại hoặc luyện tập.
+P0038: Bài dở tiếp đúng chỗ; trì hoãn không là hoàn thành; lịch ôn theo lúc hoàn thành từng hình.
+P0039: V5 có tài khoản thật, dữ liệu tập trung, nhiều thiết bị, quản trị thấy tài khoản mới và thống kê hệ thống. Đây là yêu cầu đã chốt, chưa tự chứng minh đã triển khai.
+P0040: Vòng học giữ chạy trên máy tính và điện thoại; PvP trực tuyến và AI huấn luyện riêng để sau.
+P0041: Ngân sách mong muốn 100.000 đồng/tháng, trần 200.000 đồng cho mọi dịch vụ; không tự tăng.
+P0042: Bố cục bàn bên trái, ba theme sáng ấm/trắng lạnh/tối và nguyên tắc suy nghĩ trước đáp án đã chốt. V5-20 chỉ giữ câu màu xanh/đỏ cam còn phân vân sau trải nghiệm.
+P0043: Ký phổ Việt hai cột Đỏ/Đen đã chọn; V5-11 hỏi thêm các ký hiệu quân trùng cột.
+P0044: Trên điện thoại bàn trên/câu hỏi dưới đã chọn; V5-22 chỉ hỏi xử lý lúc bàn phím mở.
+P0045: Đối với chi phí, 100.000 đồng/tháng mong muốn và 200.000 đồng/tháng trần là câu trả lời trước đây. Nếu muốn thay đổi do engine mạnh, chỉ cập nhật tại V5 37. Không coi việc bạn mua công cụ AI lập trình là đã tăng ngân sách vận hành website.
+P0046: 
+P0047: Thứ tự trả lời và mục lục
+P0048: Mức 1: cần chốt trước khi làm phần liên quan. Mức 2: tinh chỉnh để nghiệm thu tốt hơn. Mức 3: chỉ cần chốt khi đưa tính năng đó vào phạm vi. Bạn có thể trả lời theo chủ đề, không bắt buộc theo số trang.
+P0049: Ưu tiên trước: V5 01–04, 08–10, 14–16, 25–26, 28–30, 32, 35–37, 39–46; BS 31–BS 36; BS 47 và BS 48. Sau đó hoàn thiện toàn bộ các câu còn lại hoặc ghi rõ để sau.
+P0050: A Cách hỏi và bằng chứng hiểu bài   |   7 câu   |   V5 01 đến V5 07
+P0051: B Luật phán quyết và ký phổ   |   6 câu   |   V5 08 đến V5 13
+P0052: C Kho bài và lộ trình học   |   6 câu   |   V5 14 đến V5 19
+P0053: D Giao diện và tương tác trên bản mới   |   5 câu   |   V5 20 đến V5 24
+P0054: E Lịch ôn và số liệu tiến bộ   |   4 câu   |   V5 25 đến V5 28
+P0055: F Dữ liệu quyền riêng tư và chia sẻ   |   4 câu   |   V5 29 đến V5 32
+P0056: G Thử nghiệm thực tế và vận hành   |   6 câu   |   V5 33 đến V5 38
+P0057: H Chốt bản tiếp theo và chuẩn bị Vercel   |   3 câu   |   V5 39 đến V5 41
+P0058: I Chi tiết tài khoản quản trị và đồng bộ   |   5 câu   |   V5 42 đến V5 46
+P0059: J Giao diện và trải nghiệm từng bước   |   26 câu   |   BS 01 đến BS 26
+P0060: K Hoàn thiện hình thức và các màn tài khoản   |   4 câu   |   BS 27 đến BS 30
+P0061: L Pikafish và phân tích có căn cứ   |   8 câu   |   BS 31 đến BS 38
+P0062: M Vận hành dữ liệu và phát hành   |   5 câu   |   BS 39 đến BS 43
+P0063: N Tài khoản và quyền truy cập bổ sung   |   4 câu   |   BS 44 đến BS 47
+P0064: O Làm việc trong VS Code và kiến trúc API   |   3 câu   |   BS 48 đến BS 50
+P0065: Phụ lục cuối file: bản đồ từng màn hình, mẫu cung cấp thế cờ và lỗi giao diện, các lựa chọn đã chốt, nguồn đối chiếu và danh sách điều kiện phát hành. Đây là phần hỗ trợ điền, không phải biểu mẫu thứ hai.
+P0066: Những việc kỹ thuật được giao cho người triển khai
+P0067: Chuyển FEN/tọa độ, quản lý tiến trình UCI, cấu trúc API/database, cache/hàng đợi, giới hạn tài nguyên, kiểm tra biến hợp lệ, xác thực/phân quyền, giữ phiên bản và test là việc của kỹ thuật. Bạn quyết định trải nghiệm, dữ liệu được phép dùng, giới hạn chi phí và kết quả cần đạt. Chưa có câu trả lời không cho phép kỹ thuật tự bịa nội dung cờ hoặc thay nguyên tắc đã chốt.
+P0068: 
+P0069: A Cách hỏi và bằng chứng hiểu bài
+P0070: Về mục lục
+P0071: V5 01 Một câu trả lời đủ ý trông như thế nào
+P0072: Mức 1
+P0073: Bạn đã chọn cách đánh giá dựa trên ý quan trọng. Với một hình cụ thể, hãy cho ba câu trả lời: đủ ý, đúng một phần và sai; gạch rõ ý bắt buộc, ý chấp nhận cách nói khác và lỗi khiến kết luận không còn đúng. Cần phân biệt viết đúng từ khóa với thực sự giải thích quan hệ giữa các quân.
+P0074: Đề xuất chưa duyệt: kiểm tra quan sát, đe dọa, mục tiêu, nước hợp lệ và phản ứng của đối phương. Khi chưa có bộ chấm đáng tin cậy, hệ thống chỉ ghi câu trả lời và kết quả nước đi, không tự chứng nhận hiểu bài.
+P0075: Cần điền: 1. Hình hoặc file cụ thể; 2. Mẫu câu trả lời đủ ý; 3. Mẫu câu trả lời đúng một phần; 4. Mẫu câu trả lời sai; 5. Các ý bắt buộc; 6. Ý chấp nhận cách nói khác; 7. Lỗi làm kết luận không còn đúng; 8. Phân biệt đủ từ khóa với giải thích quan hệ giữa các quân
+P0076: Mẫu câu trả lời đủ ý: (Đánh giá) Bên đỏ đang có lợi thế 1 quân mã và đang có nhiều quân chủ lực bên cánh trái. Bên đỏ tuy bị thiệt quân nhưng đang có nước chiếu nguy hiểm và các quân tấn công đều dồn ở một cánh tạo hỏa lực mạnh. (Mục tiêu tiếp theo) Do vậy, nước tiếp theo đỏ cần đi phải vừa phát huy sức tấn công bên cánh trái, vừa chống đỡ nước chiếu tiếp theo của đen.  Có thể đi P7.1 hoặc P8/3 để phòng thủ thì sẽ hơi bị động nhưng vẫn chơi được (chấp nhận được với level <=3) hoặc (Nước đi đề xuất) Lao M7.5 để mở đường tấn công chiếu bí, đồng thời bắt quân mã đen luôn.
+P0077: - Câu trả lời thiếu một trong những phần chính ở trong ngoặc kia mà đúng các ý còn lại sẽ được coi là đúng một phần. Nếu user trả lời đúng một phần thì sẽ coi phần đó đã hoàn thành và đưa câu hỏi gợi mở để họ biết câu trả lời của những phần chưa đúng/chưa trả lời được. 
+P0078: - Câu trả lời sai là việc đánh giá quân đỏ hơn quân nhưng không đánh giá được mức độ nguy hiểm của đen và đi ra nước không phục vụ mục đích tích cực. Như vậy sẽ bị bất lợi lớn dù đang hơn quân.
+P0079: - Các ý bắt buộc thì tóm keyword ở trên là thấy rồi. Cách nói khác đều được chấp nhận nếu vẫn tương đồng với đáp án. Thường thì đã phân tích đúng và nhận xét đưa ra strategic đúng thì sẽ đưa ra kết luận khá hợp lý thôi. TH người ta phân tích đánh giá được mà không đưa ra nước đi được thì sẽ chỉ quân để họ biết nước. 
+P0080: 
+P0081: V5 02 Bấm Chưa biết nên dẫn tới bước nào
+P0082: Mức 1
+P0083: Bạn muốn hỏi nhỏ hơn và từng đề xuất chờ 10 giây khi bấm Chưa biết. Khoảng này có nhằm cho người học quan sát lại hay chỉ để hạn chế bấm nhanh? Sau gợi ý đầu tiên, điều kiện nào mới mở gợi ý tiếp và lời giải?
+P0084: Đề xuất chưa duyệt: mở một câu quan sát cụ thể ngay; người học trả lời hoặc chủ động xin trợ giúp tiếp. Không giả trạng thái “đang xử lý” khi không có xử lý thật. Nếu giữ thời gian chờ, ghi rõ “Thời gian quan sát” và cho phép chế độ hỗ trợ tiếp cận.
+P0085: Trả lời: Giữ đề xuất. Những câu hỏi nhỏ hơn/cụ thể hơn được đưa ra sẽ giúp họ dễ trả lời chính xác hơn, từ đó xây được đáp án cho câu hỏi rộng hơn trước đó. VD: họ bấm “Chưa biết” ở câu 1  sẽ có khoảng 5 câu follow-up của câu 1 (những câu hỏi nhỏ hơn cụ thể hơn) giúp họ trả lời hoàn toàn câu 1 đó rồi sau khi trả lời hết sẽ sang nước tiếp theo. Bao giờ xong thì sẽ hỏi họ đã trả lời lại được câu 1 chưa rồi sẽ tiếp tục sang các câu lớn sau. Khi đó họ sẽ trả lời được hết (Lượng câu hỏi follow-up còn tùy thuộc vào trình độ và mức độ trả lời tương quan với những câu trả lời khác nữa, không phải ai cũng như nhau)
+P0086: 
+P0087: V5 03 Sau ba lần chưa đạt thì ghi nhận điều gì
+P0088: Mức 1
+P0089: Bạn giới hạn ba lần thử, đồng thời yêu cầu giải thích đúng rồi mới hoàn thành. Sau ba lần vẫn chưa hiểu, người học được kết thúc hoạt động có hỗ trợ và chuyển sang bài dễ hơn hay phải giữ nguyên bài chưa hoàn thành? “Lần thử” là một câu trả lời, một lần gửi cả bộ hay một nước đi?Cần chốt việc hoàn thành hình có bắt buộc đi lại nước đã học sau lời giải không, hay chỉ được bỏ qua bước thử lại khi chuyển sang trạng thái học có hỗ trợ. Không coi bấm xem đáp án là đã tự giải đúng.
+P0090: Đề xuất chưa duyệt: một lần gửi cả bộ là một lần thử; sau ba lần, mở hướng dẫn từng bước và ghi “Đã học có hỗ trợ, cần ôn”. Chỉ kết quả ở bài kiểm tra độc lập sau đó mới tăng bằng chứng tự giải.
+P0091: Cần điền: 1. Một lần thử là một câu trả lời, gửi cả bộ, hay một nước đi; 2. Sau ba lần vẫn chưa hiểu: kết thúc có hỗ trợ hay giữ chưa hoàn thành; 3. Trạng thái được ghi sau lần thứ ba; 4. Bài hoặc hướng dẫn tiếp theo; 5. Khi nào kết quả được tăng bằng chứng tự giải; 6. Bước thử lại bắt buộc để hoàn thành hay có ngoại lệ nào
+P0092: Trả lời của bạn: Sau 3 lần thử (được gợi ý những câu hỏi nhỏ hơn, dễ hơn từ trước mà vẫn chưa làm được) thì sẽ chuyển sang bài dễ hơn, còn bài chưa làm được đó lưu vào phần ôn tập và đánh dấu chưa hoàn thành. Lần thử là một lần gửi cả bộ (bao gồm câu trả lời và nước đi). Hoàn thành nghĩa là đã đi được nước đi đúng và trả lời đúng rồi, lưu vào phần ôn tập nếu đúng ngay lần đầu. Nếu dùng lần thử thì sẽ chưa coi là hoàn thành hẳn mà lưu vào phần ôn tập
+P0093: V5 04 Nước khác vẫn hợp lý được chấp nhận ra sao
+P0094: Mức 1
+P0095: Hãy gửi một thế có ít nhất hai nước được chấp nhận cùng mục tiêu, cùng lý do nước thứ ba không đạt. Bạn có chấp nhận kết quả “chưa đủ căn cứ để chấm” khi engine nông không phân biệt được không? Điểm phải so các nước từ cùng một thế và cùng phía, không so số trước và sau đổi lượt một cách trực tiếp.Bổ sung cho engine mạnh: ví dụ được chấp nhận phải cùng mục tiêu; khi Pikafish đổi kết luận hoặc chưa đủ ổn định, không dùng điểm máy như đáp án tuyệt đối. Ngưỡng điểm do kỹ thuật hiệu chuẩn bằng bộ thế đã duyệt.
+P0096: Đề xuất chưa duyệt: lưu danh sách nước được duyệt cùng mục tiêu. Trường hợp chưa rõ không tính sai chắc chắn và không dùng để kết luận trình độ.
+P0097: Cần điền: 1. Hình có ít nhất hai nước chấp nhận cùng mục tiêu; 2. Nước A và B cùng mục tiêu/lý do chấp nhận; 3. Nước C và lý do không đạt; 4. Chấp nhận kết quả chưa đủ căn cứ để chấm khi engine không phân biệt được không; 5. Cách xử lý đánh giá chưa rõ; 6. Ví dụ nào bắt buộc phải công nhận nhiều đáp án
+P0098: Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+P0099:  Hình cờ trên, hai bên đều có cùng quân như nhau, bên đỏ hơn tốt 7 còn bên đen hơn tốt 1 đã qua sông. Bên đỏ có nhiều quân ở vị trí tấn công mạnh hơn ở cánh trái đỏ (2 pháo mã tốt đầu xe) còn bên đen lãi một tượng, có pháo giác và tốt qua sông. 
+P0100: Mục tiêu của đỏ: tiếp tục tấn công, kiềm chế các quân đen để nó không sang tấn công cánh trái của đỏ được. Để ý đen chuẩn bị lao mã rồi ấn tốt xuống nên 2 phương án chấp nhận được là P5-3 hoặc P5-4. Nước C không đạt là lao M6.8 nhưng chẳng tấn công được gì, hoặc nước P5-6 nhưng không có quá nhiều ý đồ hợp lý. Chấp nhận kết quả chưa đủ căn cứ để chấm khi engine không phân biệt được. Có thể công nhận nhiều đáp án không ép buộc nếu nó còn hợp lý.
+P0101: V5 05 Bạn muốn đoạn giải thích cuối cùng viết như thế nào
+P0102: Mức 2
+P0103: Hãy viết một lời giải ngắn hoàn chỉnh cho một hình bạn chọn, rồi thêm nội dung chỉ hiện khi bấm Chi tiết hơn. Câu nào cần làm quân di chuyển trên bàn khi bấm? Bạn muốn câu kết dẫn sang bài tiếp theo viết chính xác thế nào?
+P0104: Đề xuất chưa duyệt: dùng câu hỏi và tiêu đề tiếng Việt cụ thể; không in WHAT WHY HOW. Lời giải mặc định khoảng 3 đến 5 câu, nhánh minh họa mở theo yêu cầu. “Chi tiết hơn” chỉ bị giới hạn khi có chi phí dịch vụ thực và phải nói rõ lý do.
+P0105: Cần điền: 1. Hình minh họa cụ thể; 2. Lời giải ngắn hoàn chỉnh; 3. Nội dung chỉ hiện khi bấm Chi tiết hơn; 4. Câu nào bấm vào sẽ làm quân di chuyển trên bàn; 5. Câu kết dẫn sang bài tiếp theo với lời văn chính xác
+P0106: Trả lời của bạn:  Hình cờ trên, hai bên đều có cùng quân như nhau, bên đỏ hơn tốt 7 còn bên đen hơn tốt 1 đã qua sông. Bên đỏ có nhiều quân ở vị trí tấn công mạnh hơn ở cánh trái đỏ (2 pháo mã tốt đầu xe) còn bên đen lãi một tượng, có pháo giác và tốt qua sông. 
+P0107: Mục tiêu của đỏ: tiếp tục tấn công, kiềm chế các quân đen để nó không sang tấn công cánh trái của đỏ được. Nội dung chỉ hiện khi bấm chi tiết hơn là phần này: Để ý đen chuẩn bị lao mã rồi ấn tốt xuống nên 2 phương án chấp nhận được là P5-3 hoặc P5-4. Khi đi quân (thực hiện nước đi) thì quân di chuyển trene bàn cờ theo đúng nước đi đó. Câu kết là trong bài học này: bạn học được việc đánh giá vị trí tấn công đối phương và đưa ra nước đi hợp lý theo strategic đó. 
+P0108: V5 06 Giảm số câu theo trình độ dựa vào bằng chứng nào
+P0109: Mức 2
+P0110: Bạn muốn người giỏi nhận ít câu hơn. Hãy chọn một hình và viết phiên bản hỏi cho người đã biết luật nhưng yếu chiến thuật, rồi phiên bản cho người trung cấp. Khi nào cần quay lại câu hỏi nhỏ nếu người trung cấp trả lời chưa đủ?
+P0111: Đề xuất chưa duyệt: cho phép người học chọn mức hướng dẫn, còn việc tự động đổi mức dựa trên nhiều bài tương đương đã hoàn thành độc lập. Tự khai trình độ và thắng máy nông chỉ là thông tin ban đầu.
+P0112: Cần điền: 1. Một hình cụ thể; 2. Bộ câu cho người biết luật nhưng yếu chiến thuật; 3. Bộ câu cho người trung cấp; 4. Điều kiện quay lại câu hỏi nhỏ hoặc tăng hướng dẫn; 5. Bằng chứng cho việc giảm số câu/tự động đổi mức hướng dẫn
+P0113: Trả lời của bạn:  Với người mới chơi thì cần chỉ rõ quân nào đang bị tấn công, hình thế hai bên xuất quân như nào (bên đen đã ra được hầu hết các quân mạnh ở vị trí mạnh còn bên đỏ thì ít, quân đang xấu, có quân P3 mạnh thôi). Từ đó đưa ra nước đi hợp lý như M7/5 hoặc M3/5. Người trung cấp thì chỉ cần đưa ra nước đi phù hợp và bảo rằng quân đang bị bắt thôi. Nếu người chơi trung cấp chưa trả lời đúng thì chuyển xuống những câu hỏi nhỏ hơn như: Quân nào đang bị tấn công  Xử lý như nào? Hai bên xuất quân như nào, bên nào quân mạnh hơn?... 
+P0114: V5 07 Ví dụ phản hồi sai một phần cần sửa như thế nào
+P0115: Mức 2
+P0116: Gửi một câu trả lời có cả ý đúng lẫn ý sai. Bạn muốn hệ thống trích chính xác đoạn nào, ghi lời nhận xét gì và hỏi lại câu nào? Với nhận xét chưa chắc đúng, nút báo lỗi nên giữ bài đang học hay chuyển sang bài khác?
+P0117: Đề xuất chưa duyệt: đánh dấu ý bằng chữ “Hợp lý”, “Cần xem lại” cùng màu; không tô đỏ cả đoạn. Khi chưa có bộ chấm lập luận được kiểm chứng, không tô tự động theo việc xuất hiện từ khóa.
+P0118: Cần điền: 1. Câu trả lời gốc có ý đúng lẫn sai; 2. Đoạn chính xác cần trích là hợp lý; 3. Đoạn chính xác cần xem lại; 4. Lời nhận xét cho từng ý; 5. Câu hỏi tiếp theo; 6. Khi báo lỗi nhận xét chưa chắc: giữ bài đang học hay chuyển bài
+P0119: Trả lời của bạn:  Giữ đề xuất: Phần nào đúng thì ghi hợp lý, chưa đúng thì ghi cần xem lại và tô đỏ. Nếu nhận xét được đang bị tấn công mà đi nước M7/8 thì sẽ coi là đúng nhưng nuowcsc đi sai, ghi nhận xét bạn đã có tư duy tốt nhưng đưa ra quyết định chưa chính xác. Khi báo lỗi nhận xét thì giữ nguyên bài đang học chứ 
+P0120: B Luật phán quyết và ký phổ
+P0121: Về mục lục
+P0122: V5 08 Chọn bộ luật thi đấu nào làm chuẩn
+P0123: Mức 1
+P0124: Bạn đã đưa nguồn Ziga và Wikipedia, đồng thời muốn luật thi đấu. Cần chốt một tài liệu của tổ chức cờ tướng có tên và phiên bản để xử lý lặp, chiếu dai, đuổi dai và hòa. Nếu quy định của nền tảng tham khảo khác luật giải, bạn muốn chế độ nào làm mặc định?
+P0125: Đề xuất chưa duyệt: dùng một bộ luật có phiên bản xác định sau khi đối chiếu nguồn chính thức. Giữ nhãn giới hạn của bản thử cho tới khi các phán quyết nâng cao có kiểm thử; quy ước nền tảng nếu có phải mang tên riêng.
+P0126: Cần điền: 1. Tài liệu tổ chức cờ tướng có tên và phiên bản hoặc giao Codex đề xuất nguồn; 2. Bộ luật mặc định cho lặp/chiếu dai/đuổi dai/hòa; 3. Nếu quy ước nền tảng khác luật giải thì chọn mặc định nào; 4. Có cần chế độ quy ước riêng không
+P0127: Trả lời của bạn: Chọn theo luật cờ tướng quốc gia Việt Nam, không cần chế độ quy ước riêng, như những gì tôi đã điền trước đó rồi mà
+P0128: V5 09 Mốc hòa do không bắt quân phải xác nhận bằng điều khoản
+P0129: Mức 1
+P0130: Bạn ghi 50 nước không ăn quân. Hãy gửi điều khoản hoặc xác nhận muốn dùng đó như quy ước riêng; khi đối chiếu cần xử lý cả khác biệt mốc 50 và 60 nước giữa các nguồn. “Một nước” ở đây là mỗi bên đi một lượt hay một lượt của một bên? Đi Tốt hoặc chiếu có ảnh hưởng cách đếm không?
+P0131: Đề xuất chưa duyệt: chưa gọi mốc 50 là luật thi đấu chuẩn nếu chưa có nguồn xác nhận. Codex sẽ chuyển điều khoản được chọn thành bộ đếm và test, bạn không cần tự viết thuật toán.
+P0132: Cần điền: 1. Nguồn/điều khoản xác nhận hoặc dùng quy ước riêng; 2. Mốc hòa và xử lý khác biệt 50 với 60 nước; 3. Đơn vị đếm: hai bên mỗi bên một lượt hay một lượt một bên; 4. Đi Tốt có ảnh hưởng cách đếm không; 5. Chiếu có ảnh hưởng cách đếm không; 6. Ngoại lệ khác hoặc nhờ Codex đối chiếu
+P0133: Trả lời của bạn: Nguồn điều khoản không rõ nhưng theo luật tôi thi đấu là như vậy. Trong 50 nước đó được chiếu liên tục tối đa 10 lần, ngoài ra mốc hòa là 50 nước không ăn quân, nếu chiếu thì sẽ không tính là 1 trong 50 nước đang đếm đó. Đỏ đi 1, đen đi 1 xong thì mới tính là 1 nước. Đi bất cứ quân gì cũng không ảnh hưởng cách đếm, nhưng chiếu sẽ không tính (chỉ chiếu liên tục). Không có ngoại lệ
+P0134: V5 10 Cần những chuỗi lặp nào để bạn nghiệm thu
+P0135: Mức 1
+P0136: Hãy gửi tối thiểu một chuỗi chiếu một bên và một chuỗi đuổi quân mà bạn muốn phân xử, có thế ban đầu, bên đi, đủ nước trước khi lặp và kết quả dự kiến. Nếu chưa chắc, chỉ ghi “cần kiểm chứng”. Ảnh cuối ván riêng lẻ không đủ để phân xử lịch sử.
+P0137: Đề xuất chưa duyệt: Codex tự tạo các test cơ bản theo bộ luật đã chốt; ví dụ bạn gửi dùng để đối chiếu tình huống chuyên môn. Bổ sung ca hai bên cùng chiếu, đổi mục tiêu và xen nước chờ sau đó.
+P0138: Cần điền: 1. Chuỗi chiếu một bên; 2. Chuỗi đuổi quân; 3. Với mỗi chuỗi: thế ban đầu; 4. Với mỗi chuỗi: bên đi; 5. Với mỗi chuỗi: đủ nước trước khi lặp; 6. Kết quả phán quyết dự kiến; 7. Điểm chưa chắc đánh dấu cần kiểm chứng; 8. Ca bổ sung hai bên cùng chiếu/đổi mục tiêu/xen nước chờ nếu có
+P0139: Trả lời của bạn: Quan trọng là nếu chiếu lặp đi lặp lại thì sẽ không được quá 6 lần (6 lần hai bên lặp lại 1 thế cờ). Đuổi quân không có căn bằng cùng một quân cũng được không quá 6 lần. Nếu cố tình lặp lại quá số lần quy định thì sẽ coi nước đó không hợp lệ và yêu cầu đi nước khác. 
+P0140: V5 11 Ký phổ khi hai quân cùng loại cùng cột
+P0141: Mức 1
+P0142: Bạn đã chọn ký phổ Việt và hai cột Đỏ Đen. Cần thêm đúng ví dụ có hai Xe hoặc hai Mã cùng cột và một ví dụ nhiều Tốt cùng cột: ứng dụng bạn quen viết “trước sau”, “t s” hay ký hiệu khác? Gửi ảnh hoặc text để thống nhất cách hiển thị và nhập.
+P0143: Đề xuất chưa duyệt: xuất ký phổ dễ đọc theo bên đi; bên trong giữ tọa độ ổn định. Trường hợp nhập mơ hồ phải hỏi chọn nước, không tự đoán. Việc lật bàn không đổi nội dung nước đã lưu.
+P0144: Cần điền: 1. Ứng dụng nguồn quen dùng; 2. Ảnh/text có hai Xe hoặc hai Mã cùng cột; 3. Ví dụ nhiều Tốt cùng cột; 4. Chọn cách ghi trước/sau, t/s hay ký hiệu khác; 5. Thống nhất cách hiển thị và nhập ký hiệu
+P0145: Trả lời của bạn: Nếu cùng một cột có cả 2 con cùng tên như này thì bên đen sẽ ghi là Xt và Xs (trước sau phụ thuộc vào vị trí nhìn từ người bàn bên đen, trong hình trên thì quân xe đen ở chính giữa cung của bên đỏ sẽ coi là Xt, xe còn lại là Xs). Tương tự như vậy. Tốt cùng cột cũng vậy, nếu có 3 con trùng cột thì hiếm lắm không cần thiết-
+P0146: V5 12 Những file ván thực tế nào phải nhập được trước
+P0147: Mức 2
+P0148: Gửi hai hoặc ba file gốc thật bạn đang có, tên ứng dụng xuất và một ảnh kết quả bàn cờ mong muốn. Chọn thứ tự giữa dán ký phổ Việt, tải file ván và đọc ảnh. Nếu lỗi tại nước thứ 17, có giữ 16 nước đầu thành bản nhập chưa hoàn chỉnh không?
+P0149: Đề xuất chưa duyệt: hỗ trợ một định dạng có mẫu trước, chỉ rõ nước lỗi và cho người dùng chủ động lưu phần hợp lệ. Nhận dạng ảnh để riêng vì phải xác minh từng quân và bên đi. Xuất sang ứng dụng ngoài cần thử với chính ứng dụng đó.
+P0150: Cần điền: 1. Hai hoặc ba file gốc thật; 2. Tên ứng dụng xuất từng file; 3. Ảnh bàn cờ kết quả mong muốn; 4. Thứ tự ưu tiên dán ký phổ Việt/tải file/đọc ảnh; 5. Lỗi ở nước 17 có lưu chủ động 16 nước hợp lệ thành bản chưa hoàn chỉnh không; 6. Ứng dụng bên ngoài cần xuất sang
+P0151: Trả lời của bạn: Hiện chưa có ván đấu như mong muốn, đang tìm cách import
+P0152: V5 13 Khi bạn và hệ thống bất đồng về một thế
+P0153: Mức 2
+P0154: Bạn là người chốt nội dung. Khi có phản hồi sai luật hoặc lời giải, bạn muốn tạm ngừng tính điểm cho riêng bài đó trong bao lâu và nhận gói thông tin nào để quyết định? Ai có thể giúp đối chiếu một trường hợp khó khi bạn chưa chắc?
+P0155: Đề xuất chưa duyệt: lưu FEN, chuỗi nước, phiên bản luật, kết quả tìm kiếm và lý do phản hồi; tạm gỡ khỏi bài tính kết quả. Giữ lịch sử thay đổi và thông báo sửa cho người đã gặp bài. Không ghi đè bằng chứng cũ.
+P0156: Cần điền: 1. Tạm ngừng tính điểm riêng bài lỗi trong bao lâu; 2. Gói thông tin chủ sản phẩm cần để quyết định; 3. Người hỗ trợ đối chiếu trường hợp khó nếu có; 4. Thời gian phản hồi mong muốn; 5. Cách thông báo sửa cho người đã gặp bài
+P0157: Trả lời của bạn: Tạm ngừng tính điểm cho đến khi tôi confirm lại, nhận thông báo rằng “Đang kiểm tra lại…”. Chỉ tôi thôi, không có người khác can thiệp vào. Thông báo trực tiếp cho user bị nhận vấn đề khi sử dụng. Giữ đề xuất.
+P0158: C Kho bài và lộ trình học
+P0159: Về mục lục
+P0160: V5 14 Gói nội dung đầu tiên bạn có thể cung cấp
+P0161: Mức 1
+P0162: Bạn có thể cung cấp bao nhiêu ván hoặc hình do mình tạo và có quyền sử dụng trong đợt tới? Với từng hình, cần bên đi, mục tiêu, nước chấp nhận, lời giải ngắn, chủ đề và nguồn. Nếu chưa biết đáp án, đánh dấu cần kiểm chứng thay vì cố điền.
+P0163: Đề xuất chưa duyệt: bắt đầu 8 đến 12 hình được duyệt kỹ, ưu tiên hai nhóm lỗi thường gặp trong ván bạn bè. Chất lượng câu hỏi và đáp án quan trọng hơn số lượng. Đây là mục tiêu thu thập, không phải dữ liệu đã có.
+P0164: Cần điền: 1. Số ván có quyền sử dụng; 2. Số hình có quyền sử dụng; 3. Hai chủ đề lỗi ưu tiên; 4. Ngày có thể gửi; 5. File mẫu; 6. Mỗi hình: bên đi, mục tiêu, các nước chấp nhận, lời giải ngắn, chủ đề, nguồn; 7. Mục chưa biết đáp án đánh dấu cần kiểm chứng
+P0165: Trả lời của bạn: Chưa import được ván đấu, khi cung cấp được ván đấu sẽ chốt luôn phân tích và những thứ liên quan.
+P0166: V5 15 Ai được phép cho phép đưa một ván vào kho chung
+P0167: Mức 1
+P0168: Ván hoặc hình bạn nhập có thể do bạn tự tạo, bạn bè đồng ý cung cấp hoặc lấy từ một nguồn khác. Hãy ghi nguồn và quyền sử dụng cho gói đầu tiên, đặc biệt phần lời bình, ảnh và bài từ sách hoặc website. Việc bạn tải lên tự nó chưa xác nhận quyền xuất bản lại.
+P0169: Đề xuất chưa duyệt: mặc định ván người học là riêng tư; chuyển sang kho chung bằng thao tác đồng ý riêng, loại thông tin cá nhân. Chỉ xuất bản nội dung có nguồn và quyền phù hợp, không sao chép lời bình hoặc ảnh thương mại.
+P0170: Cần điền: 1. Nguồn gói đầu: tự tạo/bạn bè đồng ý/nguồn khác; 2. Quyền được cho phép đối với ván/hình/lời bình/ảnh/bài sách hoặc website; 3. Người hoặc căn cứ cho phép đưa vào kho chung; 4. Dữ liệu cá nhân cần ẩn; 5. Cơ chế đồng ý riêng để chuyển dữ liệu riêng tư sang kho chung
+P0171: Trả lời của bạn: User được phép cho vào, nhưng sẽ để ở kho riêng, sau khi kiểm duyệt sẽ cho vào kho chung. Nếu tôi tải lên nó thì xác nhận quyền xuất bản lại rồi. 
+P0172: 
+P0173: V5 16 Bài mới và bài đổi hình cùng ý cần gọi thế nào
+P0174: Mức 1
+P0175: Bạn muốn bài cùng chủ đề vẫn có thể gọi là mới. Hãy xác nhận hai nhãn riêng: “Chưa gặp hình này” và “Đã gặp ý tương tự”. Hình chỉ lật gương hoặc đổi màu quân có được tính vào tỷ lệ tự giải bài mới hay chỉ tính luyện củng cố?
+P0176: Đề xuất chưa duyệt: cùng chủ đề vẫn có bài mới thật; hình biến đổi gần như giống hệt thuộc cùng nhóm tương đương và không tính là bằng chứng chuyển giao độc lập. Trong lời mời chỉ ghi “Thử thêm một bài”, phần thống kê giữ phân loại rõ.
+P0177: Cần điền: 1. Nhãn cho Chưa gặp hình này; 2. Nhãn cho Đã gặp ý tương tự; 3. Hình lật gương/đổi màu quân tính bài mới hay củng cố; 4. Cách tính tỷ lệ tự giải bài mới; 5. Một cặp hình thuộc cùng nhóm tương đương
+P0178: Trả lời của bạn: Tất cả nếu chưa gặp bao giờ thì sẽ ghi là “Bài mới” hết nhưng trong hệ thống dashboard persona của từng người thì sẽ coi là khác nhau với hai nhãn khác nhau như đề xuất. HÌnh chỉ đổi màu quân không được coi là khác nhau, coi giống hoàn toàn. Giữ đề xuất
+P0179: V5 17 Lộ trình đầu tiên nên có những bài nào
+P0180: Mức 2
+P0181: Chọn một nhánh đầu tiên cho người đã biết luật. Hãy xếp 5 đến 7 mục tiêu theo thứ tự, ghi mục tiêu nào là điều kiện trước của mục tiếp theo. Khai trung tàn, kỹ năng và độ khó có thể là các nhãn cùng tồn tại, không nhất thiết thành nhiều bản trùng của một bài.
+P0182: Đề xuất chưa duyệt: xây một nhánh ngắn như quan sát quân không được bảo vệ, tìm nước ăn quân, nhìn đòn phản công, rồi chọn nước phòng thủ. Chỉ khóa bước khi có lý do học tập; các mục chưa có nội dung được ghi rõ.
+P0183: Cần điền: 1. Nhóm người học/nhánh đầu cho người biết luật; 2. Thứ tự 5–7 mục tiêu; 3. Mục tiêu là điều kiện trước của mục sau; 4. Điều kiện chuyển hoặc khóa bước; 5. Nhãn khai/trung/tàn, kỹ năng, độ khó nếu cần
+P0184: Trả lời của bạn: Giữ đề xuất, phần này tôi chưa để ý lắm, điều kiện chuyển khóa là hoàn thành đủ kỹ năng và có đủ điểm
+P0185: 
+P0186: V5 18 Tiêu chí độ khó ngoài số nước tính trước
+P0187: Mức 2
+P0188: Bạn lấy ví dụ mức 1 ăn quân một nước, mức 4 cần 3 đến 4 nước. Với hai hình cùng độ dài lời giải nhưng một hình có nhiều lựa chọn gây nhiễu hơn, bạn muốn xếp khác mức không? Gửi một cặp dễ và khó để làm mẫu.
+P0189: Đề xuất chưa duyệt: dùng độ dài lời giải, số phương án hợp lý, mức ẩn của đe dọa và yêu cầu giải thích. Mức ban đầu do bạn duyệt, sau đó điều chỉnh bằng dữ liệu thực; không gọi đó là Elo đã đo.
+P0190: Cần điền: 1. Một hình dễ; 2. Một hình khó; 3. Lý do phân mức; 4. Cùng độ dài lời giải nhưng nhiều phương án gây nhiễu hơn có xếp khác mức không; 5. Tên mức người học nhìn thấy; 6. Các tiêu chí độ khó ngoài số nước tính trước
+P0191: Trả lời của bạn: Có, nếu hình nào phức tạp hơn hoặc có nhiều sự gây nhiễu hơn thì sẽ được đánh giá cao hơn ở mức cao hơn. Giữ đề xuất. Tôi chưa có hình sẽ import thêm sau
+P0192: V5 19 Công cụ biên tập đầu tiên cần làm được gì
+P0193: Mức 3
+P0194: Trong một lần sửa nội dung, bạn thường muốn thay câu hỏi, thêm hình, sửa đáp án hay gỡ bài lỗi? Xếp ba việc quan trọng nhất. Bạn có cần xem trước trải nghiệm người học trước khi xuất bản không, và muốn ghi lý do sửa ở đâu?Rà lại mức ưu tiên: nếu bạn muốn tự sửa câu hỏi/bài mà không nhờ người viết code, công cụ biên tập có cần đưa lên cùng bản V5 không?
+P0195: Đề xuất chưa duyệt: bản biên tập đầu có trạng thái Nháp, Chờ duyệt, Đã xuất bản, Tạm gỡ; chỉ mình bạn có quyền phát hành. Tự động kiểm tra nước hợp lệ và cho xem trước toàn bộ vòng học. Chưa cần hệ thống vai trò phức tạp.
+P0196: Cần điền: 1. Xếp ba việc ưu tiên: thay câu hỏi/thêm hình/sửa đáp án/gỡ bài lỗi hoặc việc khác; 2. Luồng duyệt và quyền phát hành; 3. Có cần xem trước trải nghiệm người học trước xuất bản không; 4. Ghi lý do sửa ở đâu; 5. Một ví dụ sửa thường gặp; 6. Biên tập tối thiểu cùng V5 hay để sau
+P0197: Trả lời của bạn: Những việc ưu tiên: thêm hình (lessons + puzzles), chỉnh sửa và thay đổi những bài lỗi. Sau khi thay đổi xuất bản lên web thì user sẽ feedback luôn trên đó và có form nhận feedback để user điền vào, từ đó tiếp tục tinh chỉnh và làm tốt hơn.
+P0198: 
+P0199: D Giao diện và tương tác trên bản mới
+P0200: Về mục lục
+P0201: V5 20 Logo gốc và hai hướng màu còn đang phân vân
+P0202: Mức 2
+P0203: Logo Cờ Chill đã có trong Word và được dùng làm tham chiếu. Nếu có file gốc chất lượng cao hơn, hãy gửi bổ sung; cho biết phần nào được phép giản lược khi hiển thị nhỏ. Sau khi xem ba theme trên web, bạn ưu tiên giữ xanh hiện tại hay lấy đỏ cam của logo làm màu chính?
+P0204: Đề xuất chưa duyệt: giữ màu hiện tại trong lần thử này; logo cần đọc được ở kích thước nhỏ và không mượn tài sản hình ảnh của ứng dụng tham khảo. Codex có thể chuẩn bị biến thể sáng tối từ file bạn sở hữu sau khi bạn chọn.
+P0205: Cần điền: 1. File logo gốc chất lượng cao hơn nếu có; 2. Sau thử ba theme: giữ xanh hiện tại hay lấy đỏ cam logo làm chính; 3. Chi tiết logo bắt buộc giữ; 4. Chi tiết được giản lược khi nhỏ; 5. Quyền sở hữu/file dùng để tạo biến thể sáng tối
+P0206: Trả lời của bạn: Tôi sẽ gửi file gốc kèm theo. Hiện tại chưa thấy thay đổi, vẫn là màu xanh lá cây nhạt thì đó là 1 theme, còn lại 2 kiểu theme còn lại cần phát triển trong phiên bản này. Giữ đề xuất
+P0207: V5 21 Ba lỗi giao diện cụ thể sau khi thử bản mới
+P0208: Mức 2
+P0209: Hãy thử trang chơi, màn câu hỏi và trang ôn trên máy bạn. Mỗi lỗi ghi đường dẫn, thao tác, điều bạn mong muốn và điều xảy ra; nếu liên quan kích thước thì chụp cả màn cùng mức zoom. Chỉ chọn ba lỗi cản việc học nhiều nhất trước.
+P0210: Đề xuất chưa duyệt: ưu tiên lỗi khiến không đọc được bàn, mất ô nhập, không biết bước tiếp hoặc mất dữ liệu. Màu và trang trí xử lý sau các lỗi thao tác. Không cần đo từng pixel.
+P0211: Cần điền: 1. Ba lỗi cản việc học nhất trên trang chơi/câu hỏi/ôn; 2. Mỗi lỗi: đường dẫn; 3. Mỗi lỗi: thao tác; 4. Mỗi lỗi: kỳ vọng; 5. Mỗi lỗi: thực tế xảy ra; 6. Thiết bị và mức zoom; 7. Ảnh cả màn nếu liên quan kích thước
+P0212: Trả lời của bạn: Bản gần nhất (sau V4 + UI UX Luật thì mức zoom và các thứ khá ổn, nhưng màu chưa được như ý muốn). Đã ghi note để chỉnh sửa rồi
+P0213: 
+P0214: V5 22 Khi bàn phím điện thoại mở thì phần nào phải giữ
+P0215: Mức 2
+P0216: Bạn đã chọn bàn trên câu hỏi dưới. Trên điện thoại thực tế của bạn hoặc bạn bè, khi gõ hãy chụp màn hình và đánh dấu phần tối thiểu cần thấy của bàn, câu hỏi và nút gửi. Có chấp nhận bàn thu nhỏ trong lúc gõ rồi phóng lại khi chạm không?
+P0217: Đề xuất chưa duyệt: giữ câu đang gõ và nút gửi dễ chạm, cho mở lại bàn nhanh; không ép toàn bộ bàn và ba câu vào chiều cao quá nhỏ. Enter xuống dòng; Ctrl hoặc Cmd cộng Enter mới gửi để tránh nộp nhầm câu dài.
+P0218: Cần điền: 1. Thiết bị thật; 2. Ảnh khi đang gõ; 3. Phần tối thiểu cần thấy của bàn; 4. Phần tối thiểu của câu hỏi và nút gửi; 5. Chấp nhận bàn thu nhỏ khi gõ và phóng lại khi chạm không; 6. Cách gửi mong muốn/Enter và phím tắt
+P0219: Trả lời của bạn: Chưa thử trên điện thoại. Sẽ thử lại ngay sau khi xong bản V5 này. HIện tại là ổn. Chấp nhận bàn thu nhỏ (ít thôi) khi gõ rồi lại phóng lại khi hoàn thành câu trả lời. Giữ đề xuất
+P0220: V5 23 Giọng phản hồi và âm thanh cần mẫu nào
+P0221: Mức 2
+P0222: Bạn đã chọn giọng trung tính hoặc bạn học và các loại âm khác nhau. Hãy sửa ba câu thực tế: “Nước đi chưa hợp lệ”, “Bạn đã nhận trợ giúp ở hình này”, “Bạn còn bài ôn chưa hoàn thành”. Có từ nào cần tránh khi người học trả lời sai nhiều lần?
+P0223: Đề xuất chưa duyệt: giọng trung tính làm mặc định; âm tự tạo ngắn, không dùng âm lấy từ game khác. Có nút tắt nhanh và văn bản thay âm thanh. Không biến lỗi thành phán xét năng lực người học.
+P0224: Cần điền: 1. Sửa câu Nước đi chưa hợp lệ; 2. Sửa câu Bạn đã nhận trợ giúp ở hình này; 3. Sửa câu Bạn còn bài ôn chưa hoàn thành; 4. Từ cần tránh khi sai nhiều lần; 5. Âm gây khó chịu sau thử
+P0225: Trả lời của bạn: Những câu ở trên đã khá oke rồi. Khi người học trả lời sai thì tránh nhắc đến các từ như “sai”, “lỗi” mà thay bằng giọng an ủi hơn kiểu “Sắp chính xác rồi…” hoặc cái này bạn tự soạn đi. Giữ đề xuất
+P0226: 
+P0227: V5 24 Hình minh họa luật nào cần làm rõ nhất
+P0228: Mức 2
+P0229: Trong các tình huống chân Mã, mắt Tượng, ngòi Pháo, qua sông và lộ mặt Tướng, chọn hai tình huống người thử dễ nhầm nhất. Muốn minh họa bằng một cặp hình đối chiếu hay thao tác bật tắt quân chắn? Sau khi xem phải quay lại đúng câu đang làm.
+P0230: Đề xuất chưa duyệt: một ví dụ hợp lệ đặt cạnh một ví dụ chỉ thay một quân khiến nước bị cấm; lời mô tả nói rõ lý do. Codex tự lo cơ chế bàn phím, focus và tương phản, bạn chỉ cần phản hồi chỗ khó dùng.
+P0231: Cần điền: 1. Hai tình huống dễ nhầm nhất: chân Mã/mắt Tượng/ngòi Pháo/qua sông/lộ mặt Tướng; 2. Cặp hình đối chiếu hay bật/tắt quân chắn; 3. Ảnh hoặc ví dụ cụ thể; 4. Yêu cầu quay đúng câu đang làm sau minh họa
+P0232: Trả lời của bạn: Có thể là chân Mã và lộ mặt TƯớng. Tất cả những lỗi cơ bản như này sẽ chỉ bắt gặp ở user mới chơi thôi. Sẽ giải thích minh họa rất cụ thể để user hiểu được khi học tutorial. Lúc dạy ban đầu cho beginner sẽ giữ đề xuất/
+P0233: E Lịch ôn và số liệu tiến bộ
+P0234: Về mục lục
+P0235: V5 25 Sáu lần thử là sáu lần nào
+P0236: Mức 1
+P0237: Ngưỡng sáu mẫu dành cho tỷ lệ học tập; số tài khoản, ván và lượt học thực tế hiển thị ngay khi được ghi nhận hợp lệ. Sáu mẫu phải cùng kỹ năng và độ khó không? Có tính xem đáp án, thử lại cùng hình hoặc sửa bài sau trợ giúp vào tỷ lệ tự giải bài mới không?
+P0238: Đề xuất chưa duyệt: tỷ lệ tự giải bài mới chỉ dùng lần đầu ở hình đủ điều kiện, tách trợ giúp và bài đã gặp. Giữ thẻ “Chưa đủ dữ liệu” cùng số mẫu, chỉ hiện tỷ lệ khi có ít nhất sáu lần hợp lệ. Sáu là ngưỡng hiển thị, chưa chứng minh kết luận đáng tin cậy.
+P0239: Cần điền: 1. Phạm vi sáu mẫu có cùng kỹ năng không; 2. Có cùng độ khó không; 3. Lần nào được tính; 4. Xem đáp án có bị loại khỏi tự giải bài mới không; 5. Thử lại cùng hình có bị loại không; 6. Sửa bài sau trợ giúp có bị loại không
+P0240: Trả lời của bạn: Sáu mẫu có thể khác kỹ năng. Sáu mẫu thử dành cho tổng số ván đã chơi + tổng số puzzle/lessons đã giải hoặc học + tổng số bài học đã review. Có thể khác kỹ năng, khác độ khó. Xem đáp án và thử lại cùng một hình trước đó thì không được tính. Sửa bài sau trợ giúp thì tính riêng, không cho vào làm tham số của tỷ lệ tự giải bài mới. 
+P0241: 
+P0242: V5 26 Một bài chưa hiểu sẽ được hẹn ôn như thế nào
+P0243: Mức 1
+P0244: Nếu đã xem hướng dẫn nhưng chưa tự giải được, bạn muốn đưa vào hàng đợi “Cần học tiếp” ngay hay lên lịch ngày mai? Khi hoàn thành hình gốc nhưng để bài liên quan sang hôm sau, hai mốc ôn có độc lập không?
+P0245: Đề xuất chưa duyệt: bài đang dở giữ nguyên hàng đợi, chưa bắt đầu chu kỳ ôn hoàn thành. Mỗi hình đã hoàn tất có lịch riêng tính từ thời điểm kết thúc; lần có hỗ trợ được ghi riêng và ôn sớm. Chưa coi tự đánh giá “đã hiểu” là bằng chứng tự giải.
+P0246: Cần điền: 1. Đã xem hướng dẫn nhưng chưa tự giải: Cần học tiếp ngay hay hẹn ngày mai; 2. Cách ghi và hẹn ôn khi có hỗ trợ; 3. Mốc ôn hình gốc; 4. Mốc ôn hình liên quan để sang hôm sau; 5. Hai mốc có độc lập không
+P0247: Trả lời của bạn: Cần học tiếp và thêm vào phần ôn tập lên lịch trong ngày hôm sau (phần spaced repetition). Khi để bài ôn tập liên quan sang hôm sau thì thời gian ôn sẽ được giãn ra, mức độ quên sẽ không quan trọng bằng bài trực tiếp của mình mắc trong trận đấu, vẫn sẽ để vào phần ôn tập sau. Giữ đề xuất
+P0248: V5 27 Nhắc lịch vừa đủ và lời nhắc nghỉ
+P0249: Mức 2
+P0250: Bạn muốn giữ bài quá hạn, nhắc mỗi sáu giờ ngoài 22 giờ đến 7 giờ và nhắc nghỉ sau 30 phút. Trước khi có email hoặc push, nhắc trong app có đủ không? Dùng sắc đỏ cho quá hạn có làm trái cảm giác thoải mái bạn mong muốn không?Đối chiếu thêm mong muốn V4 nhắc trước hạn 30 phút: giữ kiểu nhắc trước hạn này hay chỉ nhắc các bài chưa làm theo giờ đã nêu?
+P0251: Đề xuất chưa duyệt: luôn giữ hàng đợi và ưu tiên hạn sớm; cho tắt nhắc, dùng câu trung tính. 30 phút tính thời gian học thực, loại thời gian tab nằm nền. Không coi nghỉ một ngày là mất kiến thức đã đạt.
+P0252: Cần điền: 1. Nhắc trong app trước khi có email/push có đủ không; 2. Kênh nhắc trước mắt; 3. Câu nhắc quá hạn; 4. Sắc đỏ quá hạn có trái cảm giác thoải mái không; 5. Có nút tạm nghỉ/tắt nhắc không; 6. Cách tính 30 phút học thực và thời gian tab nền; 7. Rà cách áp mong muốn nhắc mỗi sáu giờ ngoài 22h–7h; 8. Có giữ nhắc trước hạn 30 phút không
+P0253: Trả lời của bạn: Giữ đề xuất. Nhắc quá hạn sẽ để chữ đậm hơn làm nổi bật hơn. Không có nút tắt nhắc nhưng có thể tắt thông báo nhắc đi. 30p/ngày để học là hợp lý rồi. Không giữ nhắc hạn trước
+P0254: V5 28 Dashboard cá nhân và quản trị cần giúp bạn biết điều gì
+P0255: Mức 1
+P0256: Trang cá nhân cho người chơi xem tiến độ của họ; trang quản trị cho bạn xem toàn hệ thống. Trong dashboard quản trị, ngoài tài khoản mới và tài khoản hoạt động, ba thông tin nào cần ở đầu trang: số ván, lượt học hoàn tất, lượt ôn, bước bỏ dở hay tỷ lệ làm bài có hỗ trợ? Bạn xem theo ngày, tuần hay tháng và có cần xuất bảng thống kê không?
+P0257: Đề xuất chưa duyệt: mặc định 7 ngày gần nhất, có chọn khoảng thời gian và dấu thời điểm cập nhật. Một tài khoản dùng nhiều máy vẫn đếm một tài khoản; số tài khoản không tự bằng số người thật. Tách test nội bộ và phiên có trợ giúp. Số đếm hiển thị từ dữ liệu đầu tiên; chỉ tỷ lệ hoặc kết luận học tập cần đủ mẫu như câu 25. Không hiển thị số giả hoặc gọi hoạt động là hiệu quả học đã kiểm định.
+P0258: Cần điền: 1. Ba chỉ số đầu trang ngoài tài khoản mới/hoạt động: ván/lượt học hoàn tất/lượt ôn/bước bỏ dở/tỷ lệ trợ giúp hoặc khác; 2. Khoảng thời gian ngày/tuần/tháng hoặc tùy chọn; 3. Hoạt động tính khi đăng nhập hay khi chơi/học; 4. Cần xuất bảng thống kê không; 5. Bấm chỉ số xem chi tiết nào; 6. Phân biệt nhu cầu dashboard cá nhân và toàn hệ thống
+P0259: Trả lời của bạn: Số lượng tài khoản active, số ván thi đấu và lượt học + lượt ôn của từng user, tỷ lệ làm bài đúng và level của từng user. + thêm giữ đề xuất những điều cần thiết
+P0260: 
+P0261: F Dữ liệu quyền riêng tư và chia sẻ
+P0262: Về mục lục
+P0263: V5 29 Một năm rồi xóa áp dụng cho dữ liệu nào
+P0264: Mức 1
+P0265: Bạn chọn một năm rồi xóa. Một năm tính từ lúc tạo dữ liệu hay lần cuối sử dụng? Gồm ván, câu trả lời tự do, ghi chú, log lỗi và bản sao lưu hay chỉ lịch sử học? Bản thử hiện lưu trên trình duyệt, chưa có tác vụ server thực thi chính sách một năm.
+P0266: Đề xuất chưa duyệt: tách loại dữ liệu và công bố thời hạn trước khi có tài khoản. Chức năng xóa người dùng phải thực sự xóa trong phạm vi đã mô tả; lịch xóa server và bản sao lưu chỉ hứa khi đã triển khai, kiểm thử.
+P0267: Cần điền: 1. Mốc một năm từ tạo dữ liệu hay lần dùng cuối; 2. Thời hạn từng loại: ván, câu trả lời tự do, ghi chú, log lỗi, lịch sử học; 3. Có áp cho bản sao lưu không; 4. Phạm vi bản sao lưu và xóa; 5. Phạm vi công bố với người dùng
+P0268: Trả lời của bạn: Một năm tính từ lần cuối cùng tài khoản đó active. Bao gồm tất cả dữ liệu dù có thể làm bộ nhớ máy chủ tổng bị đầy nhưng vẫn sẽ giữ. Sẽ gửi lịch mong muốn họ quay lại sử dụng khoảng 1 tuần/lần. Chính xác một năm. Giữ đề xuất.
+P0269: V5 30 Dữ liệu sau khi xóa có được giữ lại không
+P0270: Mức 1
+P0271: Cần tách xóa dữ liệu khỏi việc đóng góp nội dung. Nếu người dùng yêu cầu xóa, bạn muốn thông báo đúng phạm vi như thế nào? Có nhu cầu giữ thống kê tổng hợp không thể gắn về cá nhân, thay vì giữ nguyên ván và câu trả lời của họ không?
+P0272: Đề xuất chưa duyệt: bản hiện tại không thu hoặc dùng dữ liệu người học để train. Xóa là xóa dữ liệu đã công bố; mọi mục đích đóng góp hoặc huấn luyện tương lai phải được thiết kế riêng, minh bạch và có đồng ý chủ động trước. Không mặc định giữ bản ẩn sau thao tác xóa.
+P0273: Cần điền: 1. Xác nhận chính sách xóa dữ liệu theo phạm vi công bố; 2. Cách thông báo đúng phạm vi khi người dùng yêu cầu xóa; 3. Có thật sự cần giữ thống kê tổng hợp không thể gắn cá nhân không; 4. Những thống kê tổng hợp cụ thể; 5. Điểm còn muốn trao đổi về xóa và đóng góp nội dung
+P0274: Trả lời của bạn: Dữ liệu bị xóa thì sẽ bị xóa hoàn toàn trên dashboard người chơi nhưng trên máy chủ vẫn lưu vì có thể dùng nó làm dữ liệu train data và tạo thêm lessons, puzzles từ đó. 
+P0275: V5 31 Chia sẻ ván với người khác cần lộ những gì
+P0276: Mức 2
+P0277: Bạn muốn ai có link cũng xem được. Link đó nên chỉ chứa thế cờ hoặc biên bản, hay cả tên, ghi chú và lời giải đã mở? Người gửi có cần thu hồi link hoặc đặt thời hạn khi chuyển sang backend không?
+P0278: Đề xuất chưa duyệt: mặc định chỉ chia sẻ dữ liệu cờ đã chọn, bỏ câu trả lời riêng tư và tên thật. Đáp án chưa mở không đi vào file xuất chia sẻ. Phân biệt “link đến trang” với “link chứa đúng ván”; dữ liệu local không tự xuất hiện trên máy người nhận.
+P0279: Cần điền: 1. Link chứa thế cờ, biên bản hay cả tên/ghi chú/lời giải đã mở; 2. Nội dung được chia sẻ; 3. Nội dung phải riêng tư; 4. Cần thu hồi link không; 5. Cần thời hạn hết hiệu lực khi dùng backend không
+P0280: Trả lời của bạn: Link chứa ván đấu đó. Như kiểu ấn vào link Reels Tiktok được bạn gửi qua Social thì ấn vào sẽ xem dược video đó ấy. Nên chứa đúng những gì user có thể thấy ngay tại link đó. Không cần đặt thời hạn chuyển là gì. Giữ đề xuất
+P0281: 
+P0282: V5 32 Người chơi đăng nhập như thế nào và có chế độ khách không
+P0283: Mức 1
+P0284: Bạn muốn người chơi đăng nhập bằng email, Google hoặc phương thức quen thuộc nào? Có cho chơi thử không cần tài khoản và chỉ yêu cầu đăng nhập khi lưu đồng bộ không? Tên hiển thị có được khác tên tài khoản đăng nhập không? Chỉ nêu trải nghiệm mong muốn, không gửi mật khẩu hoặc mã xác thực.
+P0285: Đề xuất chưa duyệt: bản đầu dùng một phương thức xác thực có quản lý, cho tên hiển thị riêng; nếu có chế độ khách thì nói rõ dữ liệu chỉ nằm trên máy cho đến khi người chơi chọn chuyển vào tài khoản. Có đăng xuất và khôi phục quyền truy cập. Codex đề xuất dịch vụ phù hợp ngân sách trước triển khai; không tự tạo cơ chế lưu mật khẩu dạng rõ.
+P0286: Cần điền: 1. Phương thức đăng nhập ưu tiên email/Google/khác; 2. Có chế độ khách chơi thử không; 3. Bước bắt buộc đăng nhập, ví dụ lúc lưu đồng bộ; 4. Tên hiển thị có khác tên tài khoản đăng nhập không; 5. Quy tắc tên hiển thị
+P0287: Trả lời của bạn: Tất cả phương thức liên kết nếu có thể. Có thể chơi tài khoản khách và chỉ yêu cầu đồng bộ nếu muốn giữ lại dữ liệu. Có, hoàn toàn có thể thay đổi username và mật khẩu như bao web khác thôi. Có thể nêu trải nghiệm, sau ở những bản sau sau sau nữa thì có thể gửi mã xác thực và thông báo thay đổi mật khẩu sau
+P0288: 
+P0289: G Thử nghiệm thực tế và vận hành
+P0290: Về mục lục
+P0291: V5 33 Nhóm bạn thử đầu tiên có quy mô nào
+P0292: Mức 1
+P0293: Bạn xác nhận người thử là bạn bè trình độ trung cấp, biết luật. Hãy chốt số người dự kiến, khoảng tuổi, thiết bị và trình duyệt họ dùng, số phiên mỗi người và ngày thử. Không cần ghi tên thật hoặc thông tin liên hệ vào tài liệu.
+P0294: Đề xuất chưa duyệt: 5 đến 8 người cho vòng quan sát đầu, mỗi người một phiên 15 đến 20 phút và một lần quay lại ôn. Đây là đề xuất pilot để tìm lỗi, không đủ để tuyên bố hiệu quả học tập.
+P0295: Cần điền: 1. Số người thử dự kiến; 2. Khoảng tuổi; 3. Thiết bị; 4. Trình duyệt; 5. Số phiên mỗi người; 6. Ngày thử dự kiến
+P0296: Trả lời của bạn: Số lượng ít khoảng 5-10 người thôi, tuổi trẻ, thiết bị dùng máy tính và có thể điện thoại, trình duyệt web bình thường, ngày thử chưa xác định. Không thu thập dữ liệu cá nhân ở vòng này.
+P0297: V5 34 Phân biệt test nội bộ với người thử thật
+P0298: Mức 1
+P0299: Bạn ghi năm bài đầu là demo hoặc test, sau đó là người dùng thật. Một người thật vẫn là người thật từ phiên đầu; một tài khoản kiểm thử vẫn là kiểm thử dù làm nhiều bài. Bạn muốn đánh dấu loại phiên thế nào để số liệu báo mentor không trộn hai nhóm?
+P0300: Đề xuất chưa duyệt: ghi riêng phiên nội bộ, phiên hướng dẫn và phiên pilot có đồng ý. Bài làm quen có thể loại khỏi đánh giá kỹ năng, nhưng không dùng mốc bài thứ sáu để biến dữ liệu test thành dữ liệu người dùng thật.
+P0301: Cần điền: 1. Cách đánh dấu loại phiên/tài khoản; 2. Bài làm quen loại khỏi chỉ số nào; 3. Các chỉ số báo mentor; 4. Cách tách phiên nội bộ, có hướng dẫn và pilot thật
+P0302: Trả lời của bạn: Giữ đề xuất, phiên nội bộ với bản deploy web và nhờ mọi người chơi cũng không khác nhau mấy. Không nhất thiết phải tách
+P0303: V5 35 Tiêu chí đạt của vòng thử đầu tiên
+P0304: Mức 1
+P0305: Hãy chọn những điều có thể quan sát được: tự hoàn thành vòng học không cần người chỉ, không mất nháp khi tải lại, hiểu câu hỏi cần trả lời gì, làm được bài khác cùng chủ đề hoặc quay lại ôn đúng chỗ. Với mỗi điều, cần đạt ở bao nhiêu người hoặc phiên mới chấp nhận?
+P0306: Đề xuất chưa duyệt: lỗi đi quân sai, lộ đáp án trước suy nghĩ và mất dữ liệu là lỗi chặn phát hành. Các chỉ số học cần ghi mức ban đầu và giới hạn mẫu; không dùng cảm giác thích giao diện để chứng minh đã tiến bộ cờ.
+P0307: Cần điền: 1. Tiêu chí quan sát: tự xong vòng học/không mất nháp/hiểu câu hỏi/làm hình khác cùng chủ đề/ôn đúng chỗ; 2. Ngưỡng số người hoặc phiên cho từng tiêu chí; 3. Lỗi phải sửa trước; 4. Người nghiệm thu; 5. Mức ban đầu/giới hạn mẫu cho chỉ số học
+P0308: Trả lời của bạn: Giữ đề xuất. Tỷ lệ hiện tại chỉ cần đạt khoảng 50% ở những giai đoạn đầu là ổn rồi.
+P0309: V5 36 Thời gian chờ thực tế nào chấp nhận được
+P0310: Mức 2
+P0311: Bạn muốn phản hồi gần như ngay lập tức và ghi 0,1 mili giây. Mục tiêu đó nhỏ hơn thời gian một khung hình thông thường. Hãy thử trên thiết bị ưu tiên và cho biết thao tác nào bạn thấy chậm; review cả ván có thể chờ lâu hơn chọn quân hay lưu nháp bao nhiêu?Tách thời gian chấp nhận cho chọn quân, máy đi một nước, phân tích một hình và phân tích cả ván. Có thể ghi chưa biết để kỹ thuật đo rồi đưa hai phương án cho bạn duyệt.
+P0312: Đề xuất chưa duyệt: đo phản hồi chọn quân dưới khoảng 100 mili giây trên thiết bị pilot; lưu nháp trong lúc gõ, không chỉ lúc rời trang. Review hiển thị công việc và tiến độ thật, cho hủy. Đây là mục tiêu cần đo, chưa phải cam kết đã đạt.
+P0313: Cần điền: 1. Thiết bị ưu tiên đo; 2. Thao tác thực thấy chậm; 3. Thời gian chấp nhận cho chọn quân/lưu nháp; 4. Thời gian review cả ván chấp nhận so với thao tác trực tiếp; 5. Hành vi khi quá thời gian; 6. Cách hiện tiến độ/hủy công việc; 7. Chờ máy đi một nước; 8. Chờ một hình; 9. Chờ cả ván
+P0314: Trả lời của bạn: Chưa thử trên web vì các tính năng hiện tại chưa tốt. Muốn thử tốt hơn rồi mới review cả ván. Review cả ván thì thời gian sẽ lâu hơn, người chơi sẽ đi từ từ nên thời gian đó có thể đợi để máy review hết hơn. Giữ đề xuất
+P0315: V5 37 Phân bổ ngân sách cho tài khoản và các nâng cấp khác
+P0316: Mức 1
+P0317: Tài khoản, lưu tập trung và quản trị đã là yêu cầu của V5. Với trần 200.000 đồng mỗi tháng cho tất cả dịch vụ, bạn ưu tiên phần ngân sách còn lại cho engine mạnh hơn hay lời giải linh hoạt hơn? Khi dịch vụ gần chạm hạn mức, cần báo cho bạn ở đâu và những chức năng trả phí nào được tạm dừng?Nhu cầu engine mạnh thêm chi phí CPU/máy chủ. Mức 100.000 mong muốn và trần 200.000 đồng/tháng là ràng buộc cũ, chưa tự tăng. Ghi rõ giữ hay điều chỉnh, tách ngân sách vận hành sản phẩm khỏi phí công cụ AI lập trình bạn dùng cá nhân.
+P0318: Đề xuất chưa duyệt: giữ độ đúng luật và vòng học hiện có, ưu tiên nền tảng tài khoản/lưu dữ liệu; engine nông và lời giải mẫu vẫn là phương án không trả phí. Không tự nâng gói, không đánh mất dữ liệu đã lưu để xử lý hạn mức. Nếu hạn mức chặn ghi mới, hiển thị rõ tình trạng và hỗ trợ xuất dữ liệu. Báo phương án chi phí trước khi bật dịch vụ.
+P0319: Cần điền: 1. Ưu tiên ngân sách còn lại cho engine mạnh hay lời giải linh hoạt; 2. Thứ tự ưu tiên thêm; 3. Phân bổ cho từng nhóm nếu muốn; 4. Kênh báo sắp chạm hạn mức; 5. Chức năng trả phí được tạm dừng; 6. Cách xử lý chặn ghi mới trong hạn mức; 7. Trần vận hành hiện tại; 8. Phần dành cho engine, tài khoản/database và lời giải; 9. Chi phí một lần/tên miền nếu có
+P0320: Trả lời của bạn: Tôi muốn lời giải linh hoạt ưu tiên hơn. Engine mạnh có thể tìm cách xoay sở khác, vẫn dành một phần ngân sách cho điều này. Khi dịch vụ gần chạm hạn mức thì sẽ ngừng phát triển chỗ cần tiền đó và xoay những cái khác. Giữ đề xuất
+P0321: 
+P0322: V5 38 Nhận và xử lý phản hồi từ pilot
+P0323: Mức 2
+P0324: Bạn muốn dùng một biểu mẫu chung hay nút báo lỗi ngay trong bài? Chốt các trường tối thiểu và nơi bạn sẽ xem phản hồi. Người thử có đồng ý đính kèm biên bản hoặc câu trả lời của họ không? Không tự gửi dữ liệu nhạy cảm trong nền.
+P0325: Đề xuất chưa duyệt: chọn loại lỗi, mô tả, kết quả mong muốn và ảnh tùy chọn; ứng dụng đính kèm mã bài cùng phiên bản khi được đồng ý. Có mục cho bạn ghi đã tái hiện, đang sửa và đã kiểm tra lại.
+P0326: Cần điền: 1. Biểu mẫu chung hay nút báo lỗi trong bài; 2. Kênh/nơi chủ sản phẩm xem phản hồi; 3. Trường tối thiểu; 4. Được đính kèm biên bản/câu trả lời/ảnh/mã bài/phiên bản nào; 5. Cách người thử đồng ý đính kèm; 6. Tần suất xem; 7. Theo dõi đã tái hiện/đang sửa/đã kiểm tra
+P0327: Trả lời của bạn: Có nút báo lỗi ngay trong bài. Các trường tối thiểu là gì? Những nơi bị báo lỗi sẽ cần note lại và trong những giai đoạn đầu tôi sẽ trực tiếp xem. Giữ đề xuất,
+P0328: 
+P0329: H Chốt bản tiếp theo và chuẩn bị Vercel
+P0330: Về mục lục
+P0331: V5 39 Thứ tự triển khai trong đợt V5
+P0332: Mức 2
+P0333: V5 đã phải có tài khoản, đồng bộ và quản trị, đồng thời giữ vòng học hoạt động. Ngoài phần bắt buộc đó, hãy chọn tối đa ba cải thiện quan trọng nhất: câu hỏi/lời giải, nội dung được duyệt, engine, mobile hoặc công cụ biên tập. Bạn muốn thử từng bản nhỏ hay chờ một bản tích hợp cuối cùng?Đề xuất làm mốc Pikafish local trước là đề xuất của trợ lý, chưa được coi là bạn đã chọn. Hãy xếp thứ tự engine mạnh, tài khoản/admin, đồng bộ và UX trong phạm vi V5 đã chốt.
+P0334: Đề xuất chưa duyệt: nghiệm thu tài khoản và quyền truy cập trước, tiếp đến đồng bộ và thống kê, rồi ghép các cải thiện trải nghiệm đã chốt. Mỗi đợt có kết quả quan sát được; không mở rộng sang PvP hoặc trained ML chỉ vì đã có tài khoản.
+P0335: Cần điền: 1. Tối đa ba cải thiện ngoài tài khoản/đồng bộ/quản trị và giữ vòng học; 2. Ưu tiên trong câu hỏi/lời giải, nội dung duyệt, engine, mobile, biên tập; 3. Thử từng bản nhỏ hay bản tích hợp; 4. Tiêu chí quan trọng nhất khi duyệt; 5. Có đồng ý một mốc Pikafish local trước bản tài khoản online không
+P0336: Trả lời của bạn: Những điều cần cải thiện là câu hỏi/lời giải, engine và công cụ biên tập thật chính xác, dễ sử dụng. Tôi chờ bản tích hợp cuối cùng. Sẽ tìm cách tích hợp pikafish. Giữ đề xuất.
+P0337: 
+P0338: V5 40 Dịch vụ và quyền triển khai bản V5 lên web
+P0339: Mức 1
+P0340: Bạn đã có tài khoản hosting, dịch vụ đăng nhập hoặc database nào? Chỉ ghi tên dịch vụ và người quản lý, không đưa thông tin đăng nhập. Với mong muốn chuyển sang Vercel đã trao đổi, bạn muốn chuyển khi V5 đủ tính năng hay thử trước ở địa chỉ thử nghiệm? Có cần tên miền riêng trong cùng đợt không?Hosting giao diện, API tài khoản/database và dịch vụ chạy engine là các thành phần khác nhau. Đưa giao diện lên Vercel không tự tạo Pikafish hoặc đồng bộ. Bạn chỉ cần nêu dịch vụ đang có và giới hạn; đội kỹ thuật chọn cách kết nối rồi báo để bạn duyệt.
+P0341: Đề xuất chưa duyệt: chọn cách deploy sau khi chốt dữ liệu và ngân sách. Hosting frontend, xác thực và database là các phần có thể tách riêng; chỉ chuyển địa chỉ web sẽ không tự tạo hệ thống tài khoản. Chuẩn bị môi trường thử và cách quay lại bản ổn định; xin duyệt hành động cần quyền trước khi kết nối hoặc phát hành.
+P0342: Cần điền: 1. Hosting/xác thực/database đã có; 2. Người quản lý từng dịch vụ; 3. Số người dùng đồng thời dự kiến; 4. Chuyển Vercel khi đủ V5 hay thử trước ở địa chỉ thử; 5. Thời điểm chuyển; 6. Tên miền riêng trong đợt này nếu cần; 7. Quyền/kết nối/phát hành cần duyệt cụ thể
+P0343: Trả lời của bạn: Chưa dùng gì cả. Hiện tại chưa muốn thêm tiền. Giữ đề xuất
+P0344: V5 41 Những điều phải giữ khi nâng cấp
+P0345: Mức 2
+P0346: Khi có bản mới, cần giữ những dữ liệu nào và trường hợp nào có thể chấp nhận tạo lại? Bạn đã nêu tối đa 12 giờ xử lý sự cố; đối với lỗi mất nháp, luật sai hoặc lộ đáp án, có cần gỡ tính năng ngay trong lúc sửa không?
+P0347: Đề xuất chưa duyệt: giữ ván, câu trả lời trước lời giải, lần thử và lịch ôn; sao lưu trước đổi cấu trúc dữ liệu. Mỗi bản có danh sách thay đổi, kiểm thử, giới hạn và cách quay lại bản ổn định. Không ghi “đã triển khai” trước khi kiểm tra trên link công khai.
+P0348: Cần điền: 1. Dữ liệu bắt buộc giữ qua nâng cấp; 2. Dữ liệu được tạo lại; 3. Lỗi mất nháp/luật sai/lộ đáp án cần gỡ tính năng ngay khi sửa không; 4. Các lỗi phải gỡ ngay; 5. Người duyệt phát hành; 6. Áp mốc xử lý sự cố tối đa 12 giờ đã nêu
+P0349: Trả lời của bạn: Giữ lại những gì đã oke. Những gì nhận phản hồi cần phải sửa thêm thì mới chấp nhận tạo lại. Lỗi nào sai thì bỏ ở nơi đó, ghi là “Đang sửa… hoặc gì đó” là oke. Giữ đề xuất.
+P0350: 
+P0351: I Chi tiết tài khoản quản trị và đồng bộ
+P0352: Về mục lục
+P0353: V5 42 Ai quản trị và được xem những dữ liệu nào
+P0354: Mức 1
+P0355: Trước mắt chỉ bạn quản trị hay có thêm người hỗ trợ? Với mỗi vai trò, họ được xem thống kê tổng hợp, danh sách tài khoản, biên bản ván hay câu trả lời tự do đến mức nào? Có cần người chỉ đọc báo cáo nhưng không khóa/xóa tài khoản không? Không ghi password hoặc thông tin riêng của người thử vào đây.
+P0356: Đề xuất chưa duyệt: bắt đầu với một chủ sở hữu; quyền quản trị được gán qua bước xác minh, không có lựa chọn tự đăng ký làm admin. Dashboard mặc định dùng thống kê và mã tài khoản; chỉ cho xem nội dung riêng khi có mục đích và phạm vi đã thông báo. Backend kiểm tra quyền cho mọi yêu cầu; lưu nhật ký thao tác quan trọng.
+P0357: Cần điền: 1. Chỉ chủ sở hữu hay thêm người hỗ trợ; 2. Các vai trò cần có; 3. Mỗi vai trò xem thống kê/danh sách tài khoản/biên bản/câu trả lời tự do đến đâu; 4. Có vai trò chỉ đọc báo cáo không khóa/xóa không; 5. Ai được khóa/xóa; 6. Cách thông báo phạm vi quyền xem cho người chơi
+P0358: Trả lời của bạn: Chỉ tôi quản trị thôi, có thể thêm một vài người bạn khác. Họ được xem thống kê tổng hợp, danh sách tài khoản và biên bản ván đấu. Không được phép khóa/xóa tài khoản, giữ dữ liệu cá nhân của user riêng.
+P0359: V5 43 Bạn muốn biết có tài khoản mới theo cách nào
+P0360: Mức 1
+P0361: Chỉ cần mở dashboard thấy tài khoản mới, hay bạn muốn nhận thêm email hoặc thông báo ngoài web? Muốn báo từng lần, gộp theo ngày hay chỉ báo khi có vấn đề? Nếu có xác minh email, cần phân biệt người mới đăng ký và người đã xác minh như thế nào?
+P0362: Đề xuất chưa duyệt: server ghi nhận tài khoản ngay khi tạo thành công; dashboard cho thấy trạng thái xác minh và thời điểm làm mới. Bản đầu dùng danh sách cập nhật khi mở/làm mới, có thể tự cập nhật khi trang đang mở. Email/push là tùy chọn phải bật riêng; tránh gửi dữ liệu người học không cần thiết và tránh tạo thông báo trùng.
+P0363: Cần điền: 1. Chỉ dashboard hay email/thông báo ngoài web thêm; 2. Thông báo từng lần/gộp ngày/chỉ khi vấn đề; 3. Mức chậm chấp nhận; 4. Phân biệt mới đăng ký và đã xác minh email; 5. Làm mới khi mở/thủ công/tự cập nhật trang đang mở
+P0364: Trả lời của bạn: Chỉ cần mở là thấy rồi. Muốn báo từng lần, ở bản sau thì báo theo số lượng từng ngày. Có xác minh email thì sẽ xem email có bị trùng không…
+P0365: 
+P0366: V5 44 Chuyển tiến độ local cũ vào tài khoản ra sao
+P0367: Mức 1
+P0368: Khi người chơi đăng nhập lần đầu, cần chuyển những gì từ trình duyệt cũ: ván, nháp, câu trả lời, kết quả, lịch ôn hay tùy chọn giao diện? Nếu tài khoản đã có dữ liệu và máy đang mở cũng có dữ liệu local, bạn muốn xem trước rồi hợp nhất hay lựa chọn từng nhóm? Máy dùng chung cần bước xác nhận nào để tránh gán dữ liệu nhầm người?
+P0369: Đề xuất chưa duyệt: hỏi người dùng có muốn nhập phần local vào tài khoản, cho xem số lượng và nội dung liên quan trước khi xác nhận. Không tự coi toàn bộ dữ liệu trên máy là của người vừa đăng nhập; nhập lại không nhân đôi kết quả. Giữ khả năng xuất bản sao và báo rõ mục nào chưa chuyển được.
+P0370: Cần điền: 1. Nhóm chuyển: ván/nháp/câu trả lời/kết quả/lịch ôn/tùy chọn giao diện; 2. Nếu cloud và local cùng có dữ liệu: xem trước hợp nhất hay chọn từng nhóm; 3. Cách chọn và hợp nhất; 4. Xác nhận trên máy dùng chung tránh gán nhầm chủ; 5. Điều bắt buộc không mất; 6. Cách báo mục không chuyển và xuất bản sao
+P0371: Trả lời của bạn: Dữ liệu được lưu theo từng tài khoản, trừ tôi ra những người khác chỉ truy cập vào bản web được thôi. Máy dùng chung thì yêu cầu đăng nhập tài khoản. Tài khoản khách từ khi bắt đầu đến khi đăng xuất thì bị mất hết dữ liệu rồi (chỉ máy chủ thấy được thôi). Muốn đăng nhập tài khoản thường hoặc đổi tài khoản trên cùng máy thì cần đăng xuất rồi đăng nhập lại thôi. Giữ đề xuất
+P0372: V5 45 Khi dùng hai máy hoặc mất mạng thì giữ tiến độ thế nào
+P0373: Mức 1
+P0374: Giả sử cùng tài khoản đang làm một bài trên điện thoại và laptop, rồi hai máy gửi câu trả lời khác nhau: bạn muốn chỉ một phiên được sửa, chọn bản nào, hay để người chơi quyết định? Khi mất mạng giữa bài, người chơi được tiếp tục viết nháp hay phải dừng? Bạn muốn nhìn thấy trạng thái đang lưu, đã đồng bộ và chưa đồng bộ ở đâu?
+P0375: Đề xuất chưa duyệt: lưu nháp trên thiết bị khi cần và hiển thị rõ phần chưa gửi; chỉ nói đã đồng bộ sau khi máy chủ xác nhận. Nếu có xung đột, giữ cả bản nháp và yêu cầu chọn, không âm thầm ghi đè. Một lần hoàn thành chỉ ghi nhận một kết quả và một mốc ôn dù gửi lại nhiều lần.
+P0376: Cần điền: 1. Hai máy sửa cùng bài/câu trả lời khác: một phiên được sửa, chọn bản, hay người dùng quyết; 2. Quy tắc xung đột; 3. Mất mạng giữa bài: tiếp tục nháp hay dừng; 4. Vị trí hiện đang lưu/đã đồng bộ/chưa đồng bộ; 5. Mức chờ đồng bộ chấp nhận; 6. Cách bảo toàn các bản nháp và tránh đếm trùng hoàn thành
+P0377: Trả lời của bạn: Không, trong một thời điểm tài khoản chi được đăng nhập ở một máy thôi. Nếu đăng nhập ở tài khoản trong thiết bị sau thì sẽ bị out ra ở thiết bị đăng nhập trước.Khi mất mạng vẫn sẽ lưu nháp, nếu đang thi đấu thì sẽ bị trừ thời gian như khi chưa đi ra nước và có thể thua luôn. Giữ đề xuất.
+P0378: V5 46 Khóa tài khoản và xử lý yêu cầu của người chơi
+P0379: Mức 1
+P0380: Khi bạn khóa tài khoản, người chơi có được xem hoặc xuất dữ liệu cũ không, hay phải liên hệ bạn? Cần khóa có thời hạn hay đến khi mở lại? Người chơi gửi yêu cầu mở lại, sửa thông tin hoặc xóa tài khoản ở đâu? Bạn muốn màn hình xác nhận thao tác quản trị hiển thị những gì để tránh chọn nhầm người?
+P0381: Đề xuất chưa duyệt: phân biệt khóa sử dụng với xóa dữ liệu; ghi lý do, thời điểm và người thực hiện. Quyền khóa/mở có hiệu lực phía server, kể cả với phiên đang đăng nhập; xóa cần xác nhận riêng theo chính sách đã chốt. Người dùng vẫn có một đường gửi yêu cầu về dữ liệu hoặc truy cập. Không cho admin xem mật khẩu, đăng nhập giả làm người dùng hoặc sửa kết quả học tùy ý.
+P0382: Cần điền: 1. Khi khóa còn xem dữ liệu cũ không; 2. Khi khóa còn xuất dữ liệu không hay liên hệ; 3. Khóa có thời hạn hay đến khi mở lại; 4. Kênh yêu cầu mở lại/sửa thông tin/xóa tài khoản; 5. Nội dung xác nhận trước thao tác tránh nhầm người; 6. Quyền còn lại của người bị khóa
+P0383: Trả lời của bạn: Hiếm khi khóa tài khoản user lắm, chưa bàn tới. Nếu có sẽ cần liên hệ lại với tôi, khóa có thời hạn thôi, người chơi gửi yêu cầu mở lại qua inbox, còn sửa thông tin tài khoản hoặc xóa tài khoản như kiểu Facebook bình thường thôi. Sẽ không tự khóa tài khoản người chơi mà không thông báo lý do. Giữ đề xuất.
+P0384: J Giao diện và trải nghiệm từng bước
+P0385: Về mục lục
+P0386: Nhóm này làm rõ luồng và các trạng thái còn thiếu. Hình thức màu/logo chốt ở V5 20; phần K chốt mẫu thiết kế và màn tài khoản. Không cần trả lời lại dữ liệu hoặc quyền đã có ở nhóm I.
+P0387: BS 01 Bài tồn có chặn chơi ván mới không
+P0388: Mức 1 · Liên quan: V5 27
+P0389: Bạn từng muốn yêu cầu học trước khi còn quá nhiều bài. V5 nên chỉ gợi ý ôn, cảnh báo nhưng vẫn cho Chơi, hay tạm khóa Chơi? Nếu có chặn, bao nhiêu bài nào được tính, phải hoàn thành bao nhiêu để mở lại và người chưa hiểu bài có đường tiếp tục nào?
+P0390: Đề xuất chưa duyệt: Chỉ gợi ý và cho chọn, không khóa vòng chơi để ép hoàn thành bài chưa hiểu.
+P0391: Cần điền: 1. Có chặn hay không; 2. Ngưỡng và loại bài; 3. Điều kiện mở lại; 4. Đường tiếp tục khi mắc kẹt
+P0392: Trả lời của bạn: Tạm khóa Chơi cho đến khi hoàn thành 1-2 bài tồn. Những bài còn lại chưa được xử lý vẫn ở trong phần ôn tập cũng như tiếp tục áp dụng quy trình tương tự. Khi chưa hiểu bài thì đã có những câu hỏi nhỏ dễ hơn để gợi ý rồi mà. Giữ đề xuất.
+P0393: BS 02 Trang chủ khi còn ván và còn bài
+P0394: Mức 2
+P0395: Khi cùng có một ván đang chạy đồng hồ, một bài học dở và bài ôn đến hạn, nút chính dẫn tới đâu? Dòng cảnh báo đồng hồ và lối tới hai việc còn lại nên xuất hiện thế nào?
+P0396: Đề xuất chưa duyệt: Ván đang chạy được cảnh báo dễ thấy và có Tiếp tục ván; danh sách bài dở/đến hạn vẫn truy cập được nhưng không mở coaching khi ván sống.
+P0397: Cần điền: 1. Việc ưu tiên; 2. Nhãn nút chính; 3. Thông tin vẫn phải thấy
+P0398: Trả lời của bạn: Nếu đang chơi thì ưu tiên hoàn thành ván đấu và học/review từ nó trước đã. Sau đó mới đến bài ôn đến hạn và bài học dở cuối cùng. Xuất hiện nhẹ nhàng dưới dạng thông báo chứ không phải warning. Giữ đề xuất
+P0399: BS 03 Người chưa biết chơi đi qua hướng dẫn nào
+P0400: Mức 1 · Liên quan: V5 24
+P0401: Trong V5 chưa có video gốc, hướng dẫn chữ và bàn cờ tương tác có thay cho video bắt buộc không? Hãy chọn các thao tác/luật cần người mới thực hành trước ván đầu; khi họ làm sai hoặc muốn bỏ qua thì dẫn đi đâu?
+P0402: Đề xuất chưa duyệt: Hướng dẫn tương tác ngắn có thể xem lại; ghi đã hoàn thành thực hành cơ bản, không chứng nhận biết trọn bộ luật giải đấu.
+P0403: Cần điền: 1. Hình thức thay video; 2. Nhiệm vụ thực hành tối thiểu; 3. Điều kiện vào ván đầu; 4. Xử lý sai hoặc bỏ qua
+P0404: Trả lời của bạn: Tôi sẽ thêm video hướng dẫn chơi cờ tướng sau. User mới chỉ cần hiểu workaround nó sẽ hoạt động như nào. Đánh giá với beginner sẽ có những bài thực hành cơ bản để họ dần hiểu luật, khi có gì không hiểu thì vào lại phần luật trên web là oke thôi.
+P0405: BS 04 Đánh giá đầu vào kết thúc khi nào
+P0406: Mức 1 · Liên quan: V5 06, V5 18, V5 25, V5 28
+P0407: Bài đầu vào được kéo dài tối đa bao nhiêu hình hoặc phiên? Nếu chưa đủ căn cứ, người học không muốn làm tiếp, hoặc kết quả thấp hơn tự khai thì hiển thị và cho đổi mức hướng dẫn thế nào? Mức tự khai, mức hướng dẫn và xếp hạng thi đấu cần dùng tên khác nhau ra sao?
+P0408: Đề xuất chưa duyệt: Dùng mức hướng dẫn tạm, cho điều chỉnh; không hạ cấp âm thầm hoặc dùng thắng bot để công bố trình độ đã hiệu chuẩn.
+P0409: Cần điền: 1. Giới hạn bài đầu vào; 2. Trạng thái chưa kết luận; 3. Lựa chọn của người học; 4. Nhãn từng loại mức
+P0410: Trả lời của bạn: Tối đa bao nhiêu phiên chả được. Người học không muốn học tiếp thì rời đi, bao giờ quay lại sẽ trở lại đúng chỗ đã rời đi ấy, kết quả chưa đủ đạt mức trung bình thì sẽ đẩy xuống level thấp hơn thôi. Level hiện chỉ có 1, còn hệ thống sẽ tự điều chỉnh dựa vào kết quả học ấy
+P0411: 
+P0412: BS 05 Mục tiêu học được dùng để thay điều gì
+P0413: Mức 2 · Liên quan: V5 17
+P0414: Hãy viết tối đa ba lựa chọn mục tiêu cụ thể sẽ xuất hiện lúc bắt đầu. Nếu người học chọn nhiều mục tiêu, thứ tự ấy thay bài/lộ trình như thế nào và họ đổi lựa chọn ở đâu?
+P0415: Đề xuất chưa duyệt: Chỉ hỏi mục tiêu có thể thay gợi ý thực tế; giữ một ưu tiên chính và cho đổi trong Học tập.
+P0416: Cần điền: 1. Các nhãn lựa chọn; 2. Thứ tự ưu tiên; 3. Ảnh hưởng lên bài được gợi ý; 4. Nơi đổi
+P0417: Trả lời của bạn: Thứ tự ưu tiên sẽ từ cái được chọn trước đến cái chọn cuối. Giữ đề xuất. Nơi đổi sẽ trong dashboard cá nhân. Khi chọn lọc bài tập cũng sẽ được duyệt theo điều đó.
+P0418: BS 06 Chế độ ván không giới hạn thời gian
+P0419: Mức 1
+P0420: Ngoài các preset đã chọn, V5 có cho ván không đồng hồ không? Với ván đó, rời web rồi mở lại được tiếp tục trong bao lâu; muốn kết thúc để học thì tính đầu hàng, ván luyện đã dừng hay kết quả nào khác?
+P0421: Đề xuất chưa duyệt: Nếu có chế độ luyện không giờ, gọi tên riêng và tách kết thúc luyện khỏi thắng/thua thi đấu; vẫn không có coaching khi ván đang sống.
+P0422: Cần điền: 1. Có ván không đồng hồ; 2. Hành vi rời và trở lại; 3. Cách kết thúc để học; 4. Cách ghi kết quả
+P0423: Trả lời của bạn: Có thể có ván không đồng hồ. Nhưng rời web coi như rời trận đấu, thua cuộc luôn (hoặc 30s offline khỏi web thì coi là resign). Muốn kết thúc thì có thể đầu hàng. Giữ đề xuất.
+P0424: BS 07 Xin hòa khi chơi cùng máy hoặc chơi với bot
+P0425: Mức 1 · Liên quan: V5 36, V5 41
+P0426: Trong hai người một máy, lời mời hòa cần người còn lại xác nhận ở đâu, có nút từ chối và thời hạn chờ không? Với bot, cho xin hòa theo điều kiện nào và ai quyết định chấp nhận? Phần engine lỗi và đồng hồ khi sự cố trả lời ở câu dịch vụ engine ngừng hoạt động, không cần lặp.
+P0427: Đề xuất chưa duyệt: Không tự coi một yêu cầu hòa là hai bên đồng ý; sự cố hệ thống cần nhãn kết quả riêng và không tự đổ lỗi hết giờ cho người chơi.
+P0428: Cần điền: 1. Xác nhận hoặc từ chối hòa local; 2. Thời hạn chờ và đồng hồ trong lúc xin hòa; 3. Điều kiện hòa với bot; 4. Cách ghi kết quả
+P0429: Trả lời của bạn: Hai người một máy thì dễ vì họ sẽ tự thỏa thuận bằng miệng với nhau, bên A bấm cầu hòa và bên B đồng ý hòa thì là hòa. Nút từ chối vẫn sẽ có, thời gian chờ 15s mà hết thì coi như không đồng ý. Với bot thì không bao giờ cho hòa trừ khi ở những hình quá đơn giản và không còn nhiều quân tấn công mạnh. sự cố hệ thống cần nhãn kết quả riêng và không tự đổ lỗi hết giờ cho người chơi, sẽ thông báo lại cho người chơi.
+P0430: 
+P0431: BS 08 Ván cần kiểm chứng được xử lý trên màn hình ra sao
+P0432: Mức 1 · Liên quan: V5 08, V5 09, V5 10, V5 13
+P0433: Khi chưa phân xử được chuỗi lặp/đuổi hoặc thiếu lịch sử, màn ván cần cho tiếp tục chơi, kết thúc với trạng thái chờ kiểm chứng hay chuyển sang học riêng? Đồng hồ và thống kê xử lý thế nào, ai nhận việc kiểm chứng, và người chơi xem kết quả cập nhật ở đâu?
+P0434: Đề xuất chưa duyệt: Hiện Chờ kiểm chứng, không cộng thắng/thua/hòa chưa xác định; bảo toàn lịch sử và cho chọn hành động không làm mất bằng chứng.
+P0435: Cần điền: 1. Hành động tức thời; 2. Đồng hồ; 3. Trạng thái thư viện và thống kê; 4. Nơi xem kết quả sau xác minh
+P0436: Trả lời của bạn: Khi chưa phân xử được thì vẫn cho tiếp tục chơi như bình thường. Kết thúc trận đấu mà có report thì sẽ xem lại và tôi sẽ kiểm duyệt để hoàn thiện thêm hệ thống. Đồng hồ và hệ thống nếu chưa thấy gì bất thường thì sẽ giữ nguyên, tôi nhận viejc kiểm chứng, hệ thống update theo từng ngày sẽ được fix toàn bộ lỗi như vậy
+P0437: BS 09 Ván nhập chưa có kết quả hoặc thiếu lịch sử
+P0438: Mức 1 · Liên quan: V5 12
+P0439: Khi nhập FEN giữa ván hoặc chỉ một đoạn biên bản, người học cần chọn bên muốn học và đánh dấu kết quả chưa biết thế nào? Có cho lưu là ván chưa đầy đủ để học chiến thuật, đồng thời bỏ các phán quyết cần lịch sử không? Khi người dùng chỉ có ảnh/FEN của một vị trí, có cho phân tích chiến thuật và làm bài nhưng không xác nhận phán quyết lịch sử không? Nếu người dùng xin kết quả thắng/hòa của ván thiếu lịch sử, màn hình nên yêu cầu bổ sung gì?
+P0440: Đề xuất chưa duyệt: Cho lưu học với nhãn thiếu lịch sử; không tự gán kết quả thực chiến hoặc xét lặp/không ăn đủ điều kiện từ FEN đơn lẻ.
+P0441: Cần điền: 1. Bên cần học; 2. Nhãn ván chưa đầy đủ; 3. Kết quả chưa biết; 4. Quyền học và giới hạn phán quyết; 5. Cảnh báo thiếu lịch sử; 6. Cách bổ sung chuỗi nước hoặc ghi Không còn biên bản
+P0442: Trả lời của bạn: Hiện tại chưa cho nhập thiếu, chỉ cho nhập đoạn biên bản có từ đầu tới cuối thôi. Có thể chọn bên để thi đấu và suy nghĩ. Nếu chỉ có một vị trí hình cờ thì thêm vào kho data và engine bắt đầu phân tích sâu, không nhận phán quyết. Nếu xin kết quả thì không có gì
+P0443: BS 10 Một ván có nhiều bản ghi chú
+P0444: Mức 2 · Liên quan: V5 12, V5 44
+P0445: Cùng thế đầu và cùng chuỗi nước nhưng khác tên/ghi chú nên là hai ván độc lập hay hai bản ghi chú của một ván? Khi báo nhập trùng, người dùng được mở bản đã có, giữ bản mới hay hợp nhất phần nào?
+P0446: Đề xuất chưa duyệt: Giữ một biên bản chuẩn và các ghi chú riêng, cho lựa chọn rõ trước khi hợp nhất.
+P0447: Cần điền: 1. Cách nhận diện cùng ván; 2. Cách giữ ghi chú; 3. Các nút khi nhập trùng
+P0448: Trả lời của bạn: Nếu giống nhau thì giữ một cái, loại cái còn lại đi. Khi báo nhập trùng thì user dược phép mở bản đã có, hợp nhất lại. Nếu có thay đổi ở nước đi nào đó thì họ tự nhập tiếp và hệ thống sẽ ghi nhận đó là một ván khác dù các phần trước đó hoàn toàn giống.
+P0449: 
+P0450: BS 11 Khi thư viện vượt 200 ván
+P0451: Mức 1 · Liên quan: V5 29, V5 41
+P0452: Bạn đã chọn 20 ván mỗi trang và tối đa 10 trang. Khi có ván thứ 201, chỉ giới hạn số ván đang hiển thị rồi cho tìm/lọc phần cũ, chuyển kho lưu trữ, hay chặn lưu mới? Ván yêu thích và các bài học liên quan cần được bảo toàn ra sao?
+P0453: Đề xuất chưa duyệt: Giới hạn màn hiển thị không tự xóa dữ liệu; dùng lọc/kho lưu trữ và xuất bản sao.
+P0454: Cần điền: 1. Ý nghĩa giới hạn 200; 2. Hành động khi vượt; 3. Cách tìm ván cũ; 4. Bảo toàn liên kết bài học
+P0455: Trả lời của bạn: Giới hạn thì chắc chưa vượt được trong thời gian ngắn đâu, hiện tại mới giữ nguyên limit như vậy thôi. Quá thì sẽ chuyển vào kho lưu trữ, phải vào phần sâu hơn của ván của tôi mới thấy được. Ván yêu thích được lưu riêng, các bài học thì vẫn lưu riêng chứ không để chung vào ván của tôi làm gì cả
+P0456: BS 12 Thư mục và tìm ván
+P0457: Mức 2
+P0458: Trong Ván của tôi, bạn cần tạo/đổi tên/xóa thư mục, chuyển ván giữa thư mục hay gắn nhiều nhãn? Xóa thư mục chỉ bỏ cách sắp xếp hay xóa cả ván; cần tìm bằng tên, đối thủ hay đoạn ký phổ trước?
+P0459: Đề xuất chưa duyệt: Yêu thích và tìm theo thông tin ván trước; xóa thư mục không xóa ván trừ thao tác riêng được xác nhận.
+P0460: Cần điền: 1. Thao tác thư mục ưu tiên; 2. Một hay nhiều thư mục/nhãn; 3. Phạm vi xóa thư mục; 4. Trường tìm kiếm
+P0461: Trả lời của bạn: Giữ đề xuất. Một thư mục thôi chứ nhiều làm gì.
+P0462: BS 13 Khi chưa tìm ra điểm cần học
+P0463: Mức 2 · Liên quan: V5 04, V5 13
+P0464: Nếu phân tích không tìm được lỗi đủ rõ, người học nên tự chọn một nước để hỏi, viết nhận xét về ván, yêu cầu phân tích kỹ hơn hay chuyển sang bài khác? Nếu muốn ưu tiên lỗi chiến lược trước chiến thuật, hãy nêu một cặp ví dụ để phân biệt cách chọn. Khi không tìm thấy lỗi đủ căn cứ, bạn muốn thông báo điều gì và dẫn người chơi tới đâu: ghi nhận một quyết định tốt, ôn bài đến hạn, chọn chủ đề hay kết thúc phiên? Có bắt buộc tạo ra ba vị trí sau mọi ván không?
+P0465: Đề xuất chưa duyệt: Nói giới hạn tìm kiếm rõ và mời chọn một quyết định muốn hiểu; không khen toàn ván hoàn hảo.
+P0466: Cần điền: 1. Hành động tiếp; 2. Nội dung thông báo; 3. Ví dụ strategic/tactical nếu cần ưu tiên; 4. Có xem quyết định tốt khi có bằng chứng không; 5. Số vị trí có được ít hơn ba không
+P0467: Trả lời của bạn: Viết nhận xét về ván và chuyển sang bài khác. Thông báo: Bạn đã chơi tốt rồi rồi chuyển sang các phần khác hoặc tiếp tục chơi. Không bắt buộc tìm ra 3 lỗi mỗi ván (các điểm có thể cải thiện). Nhiều hơn 3 hoặc ít hơn 3 cũng được, không fix, phụ thuộc vào engine
+P0468: BS 14 Xem toàn ván trước khi làm câu hỏi
+P0469: Mức 1 · Liên quan: V5 16, V5 25, V5 31
+P0470: Người học mở xem lại tự do trước một điểm chưa suy nghĩ thì được thấy biên bản đã chơi đến đâu, và lúc chuyển sang bài có cần ghi đã xem diễn biến không? Cần khóa những phần phân tích/biến/đáp án nào để lời giải không lộ trước reflection?
+P0471: Đề xuất chưa duyệt: Biên bản gốc tách khỏi lời giải hệ thống; khi vào điểm học, chỉ hiện dữ liệu được phép và giữ trạng thái đã tiếp xúc để không tính bằng chứng độc lập sai.
+P0472: Cần điền: 1. Diễn biến đã chơi được xem; 2. Phần phân tích bị khóa; 3. Nhãn khi đã xem diễn biến; 4. Lối chuyển sang suy nghĩ
+P0473: Trả lời của bạn: Mở điểm nào ra thì biên bản cờ sẽ hiện đến đó (10 nước trước hình đó), lúc chuyển sang bài mới có thể xem diễn biến qua ký phổ nếu muốn. Ưu tiên sử dụng câu hỏi, reflection chỉ máy chủ biết chứ user không biết được. Giữ đề xuất
+P0474: BS 15 Sửa ý sau phản hồi ở đâu
+P0475: Mức 2 · Liên quan: V5 03, V5 07
+P0476: Bản trả lời trước đáp án phải được giữ nguyên. Khi hệ thống yêu cầu sửa một ý chưa đúng, bạn muốn một ô sửa riêng dưới ý đó hay một câu trả lời mới cho cả bộ? Màn so trước/sau cần hiện phần nào và ai xem được?
+P0477: Đề xuất chưa duyệt: Ô sửa từng ý tách riêng, bản trước đáp án chỉ đọc; các lượt có nhãn trước/sau trợ giúp.
+P0478: Cần điền: 1. Vị trí ô sửa; 2. Sửa từng ý hay cả bộ; 3. Cách xem bản gốc và bản sửa
+P0479: Trả lời của bạn: Sửa vào ô riêng hoặc sửa lại câu trả lời trước đó luôn cũng được, không vấn đề gì. Màn so trước sau thì user thấy thôi để họ tiếp tục nhập, sau một lần trả lời lại thì cũng coi như là lần trả lời thứ hai, không liên quan đến cái trước
+P0480: BS 16 So hai phương án trên điện thoại
+P0481: Mức 2 · Liên quan: V5 22
+P0482: Sau khi đã suy nghĩ, khi so nước đã đi và phương án được giải thích, mobile nên dùng một bàn có nút đổi nhánh, hai bàn nhỏ cạnh nhau hay lần lượt từng nước? Cần luôn thấy câu giải thích nào và thao tác nào để trở về thế gốc?
+P0483: Đề xuất chưa duyệt: Một bàn rõ quân với đổi nhánh, nhãn nhánh và nút về thế gốc; hai bàn chỉ khi đủ diện tích.
+P0484: Cần điền: 1. Cách so mặc định; 2. Thông tin luôn thấy; 3. Nút đổi nhánh và về thế gốc
+P0485: Trả lời của bạn: Nếu để 2 bàn cờ để so sánh thì càng tốt, lần lượt từng bước cũng là một phương án chấp nhận được. Trở về thế gốc thì ấn nút back thôi. Giữ đề xuất
+P0486: BS 17 Công cụ tự suy nghĩ trước khi mở lời giải
+P0487: Mức 2 · Liên quan: V5 04, V5 05
+P0488: Trước khi gửi suy nghĩ, người học có được tự vẽ mũi tên, đánh dấu quân hoặc ghi nhiều nước ứng viên mà chưa nhận phản hồi máy không? Nếu tự mô phỏng vài nước hợp lệ thì lần đó có còn được gọi là tự giải không? Phần khám phá sau lời giải trả lời riêng ở nhóm Engine.
+P0489: Đề xuất chưa duyệt: Tách ghi ý tưởng cá nhân khỏi gợi ý engine; không tự sinh đánh giá/biến trước reflection.
+P0490: Cần điền: 1. Công cụ được dùng trước khi gửi; 2. Có tự mô phỏng nước trước đáp án không; 3. Cách phân biệt tự thử với nhận trợ giúp; 4. Cách xóa dấu và trở về hình gốc
+P0491: Trả lời của bạn: Nước ứng viên thì chỉ ghi một thôi. Nếu user có thể vẽ được mũi tên và đánh dấu quân thì càng tốt. Không hỗ trợ mô phỏng đi vài nước hợp lệ trước khi submit đáp án. Giữ đề xuất.
+P0492: BS 18 Màn kết thúc một hình và một phiên
+P0493: Mức 2 · Liên quan: V5 03, V5 26
+P0494: Sau hình gốc, sau bài liên quan và sau cả phiên, bạn muốn các nút Tiếp tục, Ôn sau, Ghi điều nhớ và Về trang chủ xuất hiện ở bước nào? Ghi takeaway/tự đánh giá là tùy chọn hay bắt buộc; không điền thì bài đã hoàn tất có giữ kết quả và lịch không?
+P0495: Đề xuất chưa duyệt: Tự đánh giá tùy chọn, không thay bằng chứng hiểu bài và không xóa thành quả đã lưu khi bỏ qua.
+P0496: Cần điền: 1. Màn sau hình gốc; 2. Màn sau bài liên quan; 3. Tự đánh giá tùy chọn/bắt buộc; 4. Ảnh hưởng nếu bỏ qua
+P0497: Trả lời của bạn: Sau khi xong một vòng workaround trong ván đấu thì sẽ hiện các nút tùy chọn để user có thể chọn việc làm triếp theo hoặc họ cũng có thể rời web luôn. Tự đánh giá là recommend thôi không phải bắt buộc, không điền thì vẫn coi là hoàn tất. Giữ đề xuất
+P0498: BS 19 Yêu thích bỏ qua và ghi chú bài
+P0499: Mức 2 · Liên quan: V5 26, V5 31
+P0500: Bạn đã trả lời Có lưu cho yêu thích/bỏ qua/báo sai/ghi chú. Chọn rõ những thao tác cần V5: người học tìm lại bài lưu ở đâu, bỏ qua bài liên quan có được đổi bài, và ghi chú cá nhân được viết trước hay sau lời giải?
+P0501: Đề xuất chưa duyệt: Ghi trạng thái bỏ qua riêng, không tính hoàn thành; ghi chú không tự mở đáp án và có phạm vi riêng tư rõ.
+P0502: Cần điền: 1. Thao tác cần có; 2. Nơi mở bài đã lưu; 3. Bỏ qua/đổi bài; 4. Thời điểm viết ghi chú
+P0503: Trả lời của bạn: Tất cả bài học đều ở kho bài học, những ván đã đấu đều được lưu trong Ván của tôi. Những bài được yêu thích và lưu sẽ được hiện ở mục riêng trong ván của tôi để user dễ tìm hơn, ghi chú cá nhân được ghi sau lời giải. Giữ đề xuất
+P0504: BS 20 Bài học giảng trước và bài kiểm tra hiểu
+P0505: Mức 1 · Liên quan: V5 01, V5 14, V5 17, V5 25
+P0506: Với bài giảng khai cuộc hoặc bài luật, phần nào là minh họa được xem ngay và phần nào là hình thực hành mới phải suy nghĩ trước? Người học chỉ đọc/xem minh họa sẽ mang nhãn Đã xem hay Đã học; bài kiểm tra độc lập được mở ở đâu?
+P0507: Đề xuất chưa duyệt: Đã xem minh họa không đồng nghĩa đã hiểu; dùng một hình thực hành phù hợp để ghi kết quả, không lộ đáp án của hình đó trước reflection.
+P0508: Cần điền: 1. Phần giảng được xem; 2. Phần thực hành có reflection; 3. Nhãn sau chỉ xem; 4. Cách chuyển sang kiểm tra
+P0509: Trả lời của bạn: Phẩn giảng trước khi người chơi không biết gì sẽ coi là bài giảng, phần thực hành có reflection yêu cầu suy nghĩ và sửa đổi. Người học chỉ đọc/xem minh họa thì coi là đã xem, bài kiểm tra độc lập là bài tập follow up sau đó. Nếu người học chỉ đọc hoặc xem thì phần bài kiểm tra sẽ vào phần Ôn tập của họ
+P0510: BS 21 Tiến bộ cá nhân trước khi có xếp hạng được kiểm định
+P0511: Mức 2 · Liên quan: V5 25, V5 28
+P0512: Bạn muốn ranking và EXP nhưng chưa có thang trình độ được kiểm định. Trong V5, nên hiển thị mức tự khai, mức hướng dẫn hiện tại và số hoạt động đã hoàn thành bằng nhãn nào? Có cần EXP hoạt động ngay không; nếu có, nó dùng vào việc gì và tuyệt đối không được hiểu là chỉ số nào?
+P0513: Đề xuất chưa duyệt: Hiển thị hoạt động và mức hướng dẫn có nhãn tạm; không gọi thành tích hoạt động là Elo hay trình độ đã đo.
+P0514: Cần điền: 1. Nhãn mức tự khai; 2. Nhãn mức hướng dẫn; 3. Có EXP và mục đích; 4. Thông tin cần thấy khi bấm chỉ số
+P0515: Trả lời của bạn: HIển thị mức trình độ dựa theo đánh giá (tự khai rồi điều chỉnh dần qua các bài tập). EXP nên hoạt động ngay làm web trở nên thú vị hơn, tuyệt đối không hiểu là thước đo đánh giá trình độ. Trình độ nên được dựa vào mức level hơn.
+P0516: BS 22 Một lượt ôn khi có nhiều loại bài
+P0517: Mức 2 · Liên quan: V5 26, V5 27
+P0518: Bạn muốn ôn lỗi từ ván và lesson tách nhau. Trên lịch ngày/tháng, người học chọn một hình, một kỹ năng hay một nhóm; nếu cùng lúc nhiều bài đến hạn, có nút bắt đầu phiên ngắn không? Sau hình đầu tiên có tự chuyển bài hay hỏi tiếp tục?
+P0519: Đề xuất chưa duyệt: Cho chọn phiên ngắn nhưng vẫn giữ hàng đợi; mỗi hình có kết quả/lịch riêng, không coi phần còn lại đã làm.
+P0520: Cần điền: 1. Nhóm ôn tách thế nào; 2. Đơn vị chọn; 3. Cách bắt đầu phiên ngắn; 4. Hành động sau mỗi hình
+P0521: Trả lời của bạn: Giữ đề xuất. Ưu tiên những bài học mà phù hợp với mục tiêu của user hơn, từ đó có lịch riêng và hình riêng. Sau hình đầu tiên sẽ hỏi user muốn làm gì tiếp rồi hướng họ theo kiểu lựa chọn mà họ muốn
+P0522: BS 23 Tùy chọn tài khoản và nhu cầu riêng trên thiết bị
+P0523: Mức 2 · Liên quan: V5 23, V5 45
+P0524: Bạn đã muốn đồng bộ tùy chọn theo tài khoản. Nếu cùng người dùng cần chữ lớn trên điện thoại nhưng chữ thường trên laptop, có cho ghi đè riêng thiết bị không? Nút tắt âm nhanh áp dụng ngay ở trang đang học hay phải về Home?
+P0525: Đề xuất chưa duyệt: Đồng bộ mặc định, có ghi đè khả năng đọc theo thiết bị và tắt âm ngay tại chỗ.
+P0526: Cần điền: 1. Tùy chọn đồng bộ; 2. Tùy chọn riêng thiết bị; 3. Nút âm nhanh; 4. Cách trở về mặc định
+P0527: Trả lời của bạn: Có thể thay đổi được trong settings mà. Với từng máy thiết bị khác nhau sẽ cố gắng lưu thiết kế/định dạng ở trên từng máy, tuy nhiên khá phức tạp không cần vội. Nút tắt âm thanh có thể xuất hiện ở mọi page nhỏ nhỏ trên góc để người chơi tránh bị phiền, gần nút Home cũng được.
+P0528: BS 24 Cách dùng thuận tiện cho nhu cầu tiếp cận
+P0529: Mức 2 · Liên quan: V5 21, V5 22, V5 24, V5 33, V5 38
+P0530: Trong nhóm thử, có ai cần chữ lớn, độ tương phản cao, phân biệt quân ngoài màu, giảm chuyển động hoặc đọc bàn bằng giọng không? Hãy thử một thao tác chọn quân và một câu trả lời bằng phương án phù hợp rồi ghi chỗ khó dùng; với đọc bàn, sau mỗi nước cần nghe thêm tọa độ, tên quân, ăn quân và chiếu theo thứ tự nào?
+P0531: Đề xuất chưa duyệt: Bàn phím, focus, tín hiệu text và giảm chuyển động là nền kỹ thuật; lấy phản hồi thực tế để chỉnh, không bắt người dùng chọn tiêu chuẩn hay bỏ chuột.
+P0532: Cần điền: 1. Nhu cầu thực tế không nêu danh tính; 2. Tác vụ và trở ngại; 3. Thứ tự thông báo nước đi; 4. Mẫu mong muốn
+P0533: Trả lời của bạn: Chưa có nhóm thử nào cả. Giữ đề xuất
+P0534: BS 25 Nội dung và hành động của các trang chưa có dữ liệu hoặc bị lỗi
+P0535: Mức 1 · Liên quan: V5 21, V5 36, V5 41, V5 42, V5 43, V5 45, V5 46
+P0536: Nguồn UX26.01 chưa có câu trả lời. Dùng danh sách trang kèm theo để ghi chỉ những ngoại lệ: khi chưa có dữ liệu, không tìm thấy dữ liệu, không có quyền, mất mạng, đang chờ và lỗi, người dùng cần biết điều gì và bấm gì tiếp? Phần nào phải giữ lại; trang nào cần đường trở về đặc biệt?
+P0537: Đề xuất chưa duyệt: Mỗi trạng thái nói đúng nguyên nhân có biết, không giả phần trăm hoặc xử lý. Giữ nháp, hiện thử lại/tiếp tục/xem dữ liệu khi phù hợp. Trang account/admin lấy quyền và chính sách từ V5 32 và 42–46.
+P0538: Cần điền: 1. Trang/trạng thái cần thay mặc định; 2. Câu thông báo; 3. Nút tiếp theo; 4. Dữ liệu phải giữ
+P0539: Trả lời của bạn: Giữ đề xuất
+P0540: BS 26 Trợ giúp thông tin sản phẩm và báo lỗi
+P0541: Mức 2 · Liên quan: V5 23, V5 24, V5 38
+P0542: Ngoài trang Cách học, Luật và Về Cờ Chill, cần một mục Trợ giúp chung để tìm lại hướng dẫn, xem giới hạn engine và gửi phản hồi không? Chọn vị trí liên kết luôn dễ thấy và tên tiếng Việt; khi mở trợ giúp từ bài dở phải quay lại đúng bước nào?
+P0543: Đề xuất chưa duyệt: Cách học, Luật, Giới hạn hiện tại và Phản hồi có lối tìm rõ; không thêm màn ngắt vòng học không cần thiết.
+P0544: Cần điền: 1. Mục trợ giúp cần có; 2. Tên và vị trí link; 3. Nội dung tối thiểu; 4. Đường quay lại
+P0545: Trả lời của bạn: Có, nên thêm thì tốt hơn. Sau khi bấm quay lại trang Home (nút Home luôn có ở mọi trang) thì sẽ có phần Trợ giúp. Giữ đề xuất
+P0546: 
+P0547: K Hoàn thiện hình thức và các màn tài khoản
+P0548: Về mục lục
+P0549: BS 27 Hình thức tổng thể cần giữ và cần thay
+P0550: Mức 2 · Liên quan: V5 20, V5 21, V5 22
+P0551: Bạn đã chọn ba theme và bố cục chính. Để hoàn thiện chi tiết, hãy gửi một ảnh web hiện tại có đánh dấu phần giữ, phần đổi; chọn cảm giác cho nút/card (phẳng hay có bóng nhẹ), mức bo góc và độ dày đường viền theo ví dụ trực quan. Nêu tối đa ba điều khiến giao diện trông thiếu chỉn chu; màu thương hiệu và logo vẫn trả lời V5 20.
+P0552: Đề xuất chưa duyệt: Kỹ thuật làm một mẫu Home và một mẫu màn học với đủ ba theme để bạn duyệt; dùng cùng hệ chữ/khoảng cách cho cả web, không yêu cầu bạn chọn từng pixel.
+P0553: Cần điền: 1. Ảnh đánh dấu giữ và đổi; 2. Nút, card, bo góc, bóng và viền mong muốn; 3. Mức chữ và độ thoáng dễ đọc; 4. Ví dụ chỉ tham khảo bố cục, không sao chép tài sản
+P0554: Trả lời của bạn: Về cơ bản layout hiện tại là đẹp rồi, thay màu cho các theme khác nhau thôi. Giữ đề xuất
+P0555: BS 28 Chi tiết bàn cờ và trạng thái quân cần nghiệm thu
+P0556: Mức 2 · Liên quan: V5 21, V5 23, V5 24
+P0557: Giữ kiểu quân Hán/Việt và thao tác bấm đã chọn. Trên từng theme, trạng thái chọn quân, nước trước, chiếu và nước bị cấm có điểm nào khó nhận ra? Có cần kéo thả như phương án phụ, đánh số tọa độ thường trực, hoặc điều chỉnh tốc độ quân chạy khi xem biến không?
+P0558: Đề xuất chưa duyệt: Bấm quân/đích và bàn phím luôn dùng được; không thêm chấm gợi nước hoặc đánh giá chiến thuật trong ván. Chọn hình và độ tương phản dựa trên thử thực tế.
+P0559: Cần điền: 1. Ảnh trạng thái khó nhìn; 2. Kéo thả có cần ở đợt này không; 3. Tọa độ hiện thường trực hay bật tắt; 4. Tốc độ chuyển nước và chế độ giảm chuyển động; 5. Có ghi thống kê nước sai luật không và cách phân biệt bấm nhầm với chưa hiểu luật
+P0560: Trả lời của bạn: Chưa có điểm nào khó nhận ra, click thì sẽ tiện hơn, drag and drop thêm vào thì càng tốt. Không điều chỉnh quá kỹ những phần không cần thiết làm gì. Giữ đề xuất
+P0561: BS 29 Các màn tài khoản cần tên và đường đi nào
+P0562: Mức 1 · Liên quan: V5 32, V5 44, V5 45, V5 46
+P0563: Từ Home, đăng ký/đăng nhập, xác minh, quên quyền truy cập, hồ sơ và đăng xuất cần nối nhau thế nào? Sau đăng nhập thành công hoặc hết phiên giữa bài, quay về đúng bài hay về Home? Trang hồ sơ cần trường nào được sửa và trường nào chỉ xem? Phương thức đăng nhập chốt tại V5 32.
+P0564: Đề xuất chưa duyệt: Quay lại việc đang làm sau xác thực khi còn phù hợp; báo phần nháp chưa đồng bộ trước đăng xuất, không yêu cầu tên thật nếu không có mục đích.
+P0565: Cần điền: 1. Lối mở đăng nhập và câu mời; 2. Trang quay về sau đăng nhập/hết phiên; 3. Các trường hồ sơ được xem/sửa; 4. Cảnh báo khi dùng máy chung hoặc đăng xuất có nháp
+P0566: Trả lời của bạn: Nhìn theo vài app web lớn hiện tại đang làm như Gmail hoặc Facebook. Quay về đúng bài, chỉ quay về Home khi user tự muốn như vậy. Giữ đề xuất
+P0567: BS 30 Bố cục quản trị từ tổng quan tới chi tiết
+P0568: Mức 1 · Liên quan: V5 28, V5 38, V5 42, V5 43, V5 46
+P0569: V5 28 và 42 đã hỏi số liệu và quyền xem. Với các quyền đó, bạn muốn bắt đầu ngày làm việc ở tổng quan, danh sách tài khoản hay phản hồi lỗi? Khi bấm một tài khoản, cần các tab nào và hành động quan trọng đặt đâu? Bạn có cần dùng admin trên điện thoại không?
+P0570: Đề xuất chưa duyệt: Tổng quan dẫn tới danh sách có lọc, rồi chi tiết được phân quyền; thao tác phá hủy tách khỏi nút xem thường dùng, không hiển thị câu trả lời riêng tư ngoài mục đích đã thông báo.
+P0571: Cần điền: 1. Trang mặc định và thứ tự menu admin; 2. Thông tin trong hàng danh sách tài khoản; 3. Các tab chi tiết theo quyền được phép; 4. Hành động khóa/xuất/xóa và bước xác nhận; 5. Có quản trị trên điện thoại không
+P0572: Trả lời của bạn: Tôi dùng admin trên máy tính thôi. Giữ đề xuất
+P0573: L Pikafish và phân tích có căn cứ
+P0574: Về mục lục
+P0575: Pikafish được đề xuất tích hợp như bộ tính toán; không phải engine đã cài. Mã nguồn GPL-3.0 và điều kiện trọng số NNUE phải kiểm tra riêng. Nguồn chính thức của trọng số hiện ghi không dùng thương mại khi chưa có phép; cần đối chiếu đúng file được chọn. Nguồn ở cuối tài liệu.
+P0576: BS 31 Engine mạnh phục vụ việc gì trước
+P0577: Mức 1 · Liên quan: V5 04, V5 37, V5 39
+P0578: Điều kiện áp dụng: Không bỏ qua nếu yêu cầu engine mạnh thuộc đợt này.
+P0579: Trong bản đầu dùng engine mạnh, việc nào bắt buộc phải sử dụng Pikafish thật và việc nào vẫn có thể dùng chế độ cơ bản? Bạn muốn người dùng nhìn thấy tên engine và giới hạn phân tích ở đâu?
+P0580: Đề xuất chưa duyệt: Ưu tiên phân tích sau ván và xác minh nước bài học; giữ luật hợp lệ cho mọi chế độ, ghi tên/phiên bản engine trong phần chi tiết. Thứ tự phát hành cuối cùng chốt tại V5-39.
+P0581: Cần điền: 1. Chọn các việc bắt buộc: chơi máy / xem lại ván / chấm nước bài học / duyệt nội dung; 2. Thứ tự giữa các việc vừa chọn; 3. Nhãn người dùng cần thấy khi dùng engine mạnh hoặc dự phòng
+P0582: Trả lời của bạn: Việc dùng Pikafish hoặc engine mạnh cần có khi đưa ra đánh giá các nước đi và nước đi tối ưu. Dùng chế độ cơ bản hạn chế thôi cho đến khi dùng được Pikafish thật. Giới hạn phân tích (20 nước chẳng hạn) còn lại không cần nhìn tên engine để làm gì
+P0583: BS 32 Mục đích sử dụng và quyền dùng trọng số Pikafish
+P0584: Mức 1 · Liên quan: V5 15, V5 37, V5 40
+P0585: Điều kiện áp dụng: Nếu chưa có engine/file/quyền, ghi Chưa có; đội kỹ thuật sẽ đề xuất phương án phù hợp.
+P0586: Đợt tới chỉ là thử nghiệm học tập, trình bày với mentor hay có quảng cáo, thu phí hoặc phục vụ một hoạt động thương mại? Bạn đã có văn bản cho phép dùng trọng số nào chưa? Nếu điều kiện chưa phù hợp, bạn muốn chờ xác minh quyền hay chọn engine/trọng số khác phù hợp?
+P0587: Đề xuất chưa duyệt: Kiểm tra đúng bản mã và trọng số trước khi phát hành; không tự coi mọi gói Pikafish đều được dùng thương mại. Không mua giấy phép hoặc liên hệ bên thứ ba thay bạn khi chưa được giao.
+P0588: Cần điền: 1. Mục đích của bản sắp phát hành; 2. Kế hoạch quảng cáo/thu phí nếu đã có, chưa cần thiết kế thanh toán; 3. Tên file/bản engine và tài liệu quyền sử dụng nếu đang sở hữu; 4. Cách xử lý khi chưa xác nhận được quyền
+P0589: Trả lời của bạn: Thử nghiệm học tập và trình bày với người khác. Chưa có văn bản cho phép dùng Pikafish, nếu chưa được thì tìm cách cướp hoặc dùng lén hoặc tìm engine khác được phép và phù hợp
+P0590: 
+P0591: BS 33 Bạn sẽ công nhận engine đủ tốt bằng bộ thế nào
+P0592: Mức 1 · Liên quan: V5 04, V5 10, V5 14, V5 35
+P0593: Điều kiện áp dụng: Có thể ghi Nhờ đề xuất bộ kiểm tra nếu chưa có thế chuẩn; không cần tự tạo FEN.
+P0594: Chọn một nhóm thế bạn hoặc người hướng dẫn tin tưởng để so kết quả. Mỗi thế cần bên đi, mục tiêu, nguồn và nước/ý được chấp nhận. Có trường hợp nào tuyệt đối phải giải đúng trước khi bạn duyệt bản dùng thật?
+P0595: Đề xuất chưa duyệt: Dùng bộ thế có nguồn và đáp án đã đối chiếu; đo cả độ đúng lẫn thời gian trên máy thực. Không gán Elo hoặc sức mạnh tương đương sản phẩm khác khi chưa có đánh giá phù hợp.
+P0596: Cần điền: 1. Nhóm tình huống bắt buộc: chiếu hết / cứu quân / chống đòn / tàn cuộc / khác; 2. Các mã/file thế đã có; có thể trỏ về V5-14 thay gửi trùng; 3. Người đủ khả năng giúp duyệt và phần chưa chắc; 4. Số ca/tiêu chí bạn muốn đạt; cho phép đội kỹ thuật đề xuất nếu chưa biết
+P0597: Trả lời của bạn: Giữ đề xuất. Tôi tin engine sẽ làm được. Hi vọng nó là Pikafish
+P0598: BS 34 Mức khó khi chơi với máy nên biểu hiện thế nào
+P0599: Mức 2 · Liên quan: V5 06, V5 18
+P0600: Điều kiện áp dụng: Nếu chưa nâng chế độ chơi máy trong đợt này, ghi Để sau; việc review bằng engine mạnh vẫn làm độc lập.
+P0601: Bạn muốn người chơi chọn vài mức bằng tên dễ hiểu, tự điều chỉnh theo kết quả hay luôn chơi máy mạnh nhất? Với mức dễ, bạn chấp nhận đôi lúc máy chọn nước kém hơn có kiểm soát không? Khi thua liên tiếp nên giữ mức, gợi ý giảm hay tự giảm?
+P0602: Đề xuất chưa duyệt: Tách sức mạnh đối thủ khỏi chất lượng phân tích sau ván; cho người học chủ động chọn mức, nói rõ các nhãn chưa phải Elo đã đo. Không đưa gợi ý chiến thuật trong ván để làm người chơi thắng dễ hơn.
+P0603: Cần điền: 1. Tên/số mức trước mắt; 2. Cách chọn mức ban đầu; 3. Hành vi khi thắng hoặc thua liên tiếp; 4. Có chấp nhận mức dễ chọn nước kém hơn có kiểm soát không
+P0604: Trả lời của bạn: Sẽ tìm hiểu thêm làm thế nào để set trình độ cho engine từng người một. Tự điều chỉnh từ người chơi. Khi level thấp thì việc chọn nước dễ là dễ hiểu thôi. Khi thua liên tiếp thì hệ thống tự giảm. Giữ đề xuất
+P0605: BS 35 Phân tích nhanh và phân tích sâu hiển thị ra sao
+P0606: Mức 1 · Liên quan: V5 36, V5 43
+P0607: Điều kiện áp dụng: Chỉ bỏ phần thông báo ngoài app nếu không chọn email/push.
+P0608: Bạn muốn nhận kết quả sơ bộ rồi có nút phân tích kỹ hơn, hay chờ một kết quả cuối? Khi đang chờ có được rời trang và quay lại xem kết quả không? Nếu hủy, giữ phần đã xong dưới nhãn nào?
+P0609: Đề xuất chưa duyệt: Phân tích là tác vụ có trạng thái rõ; không chấm sai chắc chắn bằng kết quả sơ bộ. Có hủy và nhận lại kết quả hoàn chỉnh; không chạy vô hạn trong nền. Ngưỡng thời gian lấy từ V5-36.
+P0610: Cần điền: 1. Một kết quả cuối hay sơ bộ rồi nâng cấp; 2. Có cần tác vụ tiếp tục khi rời trang không; 3. Cách hiển thị phần chưa hoàn tất/đã hủy; 4. Màn hình hoặc thông báo khi kết quả cuối sẵn sàng
+P0611: Trả lời của bạn: Nhận kết quả phân tích nhanh rồi nếu muốn phân tích kỹ thì bấm thêm nút và đượi thêm. Khi đang chờ mà rời trang sẽ mất hết và hủy phân tích, nếu hủy sẽ mất hết luôn. Giữ đề xuất
+P0612: BS 36 Engine ngừng hoạt động thì người học làm gì tiếp
+P0613: Mức 1 · Liên quan: V5 41, V5 45
+P0614: Điều kiện áp dụng: Không bỏ qua khi engine chạy qua mạng.
+P0615: Trong từng tình huống xem lại ván, giải bài và chơi máy, bạn muốn chờ/thử lại, dùng chế độ cơ bản có nhãn rõ hay chuyển sang bài đã được duyệt? Nếu đang chơi mà máy không trả nước, bạn muốn tạm dừng có thông báo hay kết thúc như sự cố kỹ thuật?
+P0616: Đề xuất chưa duyệt: Giữ ván và nháp, không tính người chơi thua vì sự cố dịch vụ; không ghi nhận lỗi học từ nước chưa đánh giá. Cho bài đã duyệt hoặc thử lại, mọi kết quả dự phòng gắn nhãn riêng.
+P0617: Cần điền: 1. Xem lại ván khi engine lỗi; 2. Chấm nước bài học khi engine lỗi; 3. Ván với máy bị gián đoạn và cách xử lý đồng hồ/kết quả; 4. Câu thông báo người chơi cần đọc
+P0618: Trả lời của bạn: Giữ đề xuất ở câu hỏi 1. Máy không trẩ nước thì tạm dừng có thông báo và nếu lâu quá thì kết thúc và xin lỗi/ thông báo sau.Giữ đề xuất
+P0619: BS 37 Khi engine mới đổi kết luận về một bài cũ
+P0620: Mức 1 · Liên quan: V5 13, V5 19, V5 41
+P0621: Điều kiện áp dụng: Nếu đợt này không thay engine/nội dung thì ghi Chưa áp dụng; vẫn cần chính sách trước lần thay đầu.
+P0622: Nếu một nước từng bị chấm sai được bản mới chấp nhận, bạn muốn thông báo cho người học, điều chỉnh thống kê và lịch ôn ra sao? Nếu bài đang làm dở đổi đáp án thì tiếp tục bản cũ có cảnh báo hay chuyển bài?
+P0623: Đề xuất chưa duyệt: Giữ dấu vết phiên bản, không âm thầm sửa câu trả lời đầu; tạm loại kết quả chưa chắc khỏi kết luận kỹ năng. Việc điều chỉnh có lý do và xem trước trước khi chủ sở hữu duyệt.
+P0624: Cần điền: 1. Thông báo sửa kết luận ở đâu; 2. Cách xử lý điểm/tỷ lệ cũ bị ảnh hưởng; 3. Cách xử lý lịch ôn và bài đang dở; 4. Ai duyệt sửa hàng loạt kết quả
+P0625: Trả lời của bạn: Chỉ có một engine thôi, engine sẽ được update liên tục nhưng hiếm có chuyện thay đổi kết quả phân tích cũ lắm chứ khi có report hoặc báo cáo yêu cầu sửa đổi thôi. 
+P0626: BS 38 Người học có được thử các nhánh nếu đi khác không
+P0627: Mức 2 · Liên quan: V5 04, V5 05, V5 31
+P0628: Điều kiện áp dụng: Nếu không cần công cụ khám phá trong V5, ghi Để sau.
+P0629: Sau khi mở lời giải, bạn muốn người học tự đi nước khác trên bàn để hỏi điều gì xảy ra không? Cần so hai phương án, quay về hình gốc, lưu nhánh cá nhân hoặc gửi nhánh cho bạn ở mức nào?
+P0630: Đề xuất chưa duyệt: Chỉ bật sau reflection hoặc ở màn xem lại đã được phép; cho thử nhánh và quay về gốc trước, chưa cần cây biến phức tạp. Biến khám phá không tự tính là lần tự giải bài mới.
+P0631: Cần điền: 1. Chọn các thao tác cần ở bản đầu; 2. Giới hạn nhánh/lượt khám phá nếu muốn; 3. Quay lại bài gốc và giữ trạng thái như thế nào; 4. Có lưu hoặc chia sẻ nhánh cá nhân không
+P0632: Trả lời của bạn: Sẽ hỏi câu hỏi, yêu cầu phân tích và đưa ra nước đi. Nếu sai sẽ đi nhánh khác với đánh giá nhận định khác. Muốn quay về hình gốc thì bấm back thôi. Nếu muốn dùng biến tự khám phá thì có lưu và không nhận được phân tích nữa
+P0633: M Vận hành dữ liệu và phát hành
+P0634: Về mục lục
+P0635: BS 39 Hạn mức sử dụng phân tích khi có nhiều người
+P0636: Mức 1 · Liên quan: V5 37, V5 40
+P0637: Điều kiện áp dụng: Không cần tự ước lượng số CPU, thread hoặc RAM.
+P0638: Khi nhiều người cùng dùng engine, bạn ưu tiên mọi người nhận lượt cơ bản, hay cho một người dùng liên tục đến khi hết hạn mức? Khách và tài khoản có giới hạn khác nhau không? Người chạm giới hạn được tiếp tục phần nào?
+P0639: Đề xuất chưa duyệt: Giới hạn hợp lý ở server, báo rõ trạng thái và giữ bài đã có; chưa tạo premium/payment. Đội kỹ thuật đề xuất con số sau đo tải trong ngân sách bạn chốt.
+P0640: Cần điền: 1. Khách và tài khoản được dùng phân tích mạnh ở mức nào; 2. Cách xử lý khi xếp hàng/quá hạn mức; 3. Phần luyện tập vẫn mở khi hết lượt; 4. Có muốn xem lượng tài nguyên đã dùng trong quản trị không
+P0641: Trả lời của bạn: Ưu tiên lợi ích nhiều người hơn một người chứ. Ưu tiên tài khoản hơn là khách. Chạm giới hạn thì ra thông báo và lời khen khuyên họ đi nghỉ thôi. Giữ đề xuất
+P0642: BS 40 Dữ liệu nào được gửi tới dịch vụ giải thích bên ngoài
+P0643: Mức 1 · Liên quan: V5 01, V5 29, V5 30, V5 37
+P0644: Điều kiện áp dụng: Nếu chưa chọn LLM, có thể trả lời Chưa gửi dịch vụ ngoài; phần tích hợp LLM để sau.
+P0645: Nếu sau này dùng dịch vụ LLM cho lời giải, bạn cho phép gửi chỉ thế cờ và bằng chứng engine, hay cả câu trả lời tự do đã loại thông tin cá nhân? Người học cần được thông báo và lựa chọn như thế nào? Nếu không đồng ý hoặc dịch vụ lỗi, lời giải mẫu có đủ không?
+P0646: Đề xuất chưa duyệt: Bản đầu chỉ dùng lời giải có căn cứ và mẫu; không gửi dữ liệu ra nhà cung cấp mới trước khi có chính sách được duyệt. Không dùng dữ liệu người học để huấn luyện. Không coi việc gỡ tên là đảm bảo đã ẩn danh hoàn toàn.
+P0647: Cần điền: 1. Những nhóm dữ liệu được gửi; 2. Những nhóm tuyệt đối không gửi; 3. Thông báo/lựa chọn của người học; 4. Hành vi khi từ chối hoặc dịch vụ không hoạt động
+P0648: Trả lời của bạn: Giữ đề xuất. Nếu dịch vụ lỗi thì bỏ, tránh làm engine hệ thống máy chủ bị quá tải.
+P0649: BS 41 Khôi phục sau sự cố phải đạt mức nào
+P0650: Mức 1 · Liên quan: V5 29, V5 41
+P0651: Điều kiện áp dụng: Có thể ghi Chưa biết và nêu tình huống bạn không chấp nhận thay vì tự chọn số kỹ thuật.
+P0652: Nếu máy chủ hỏng, bạn cần mở lại dịch vụ trong khoảng nào và tối đa mất phần hoạt động chưa được sao lưu bao lâu? Những dữ liệu nào cần ưu tiên phục hồi? Ai kiểm tra rằng bản phục hồi thật sự dùng được?
+P0653: Đề xuất chưa duyệt: Đề xuất phương án sao lưu/khôi phục có kiểm thử theo ngân sách, công bố giới hạn thật; không hứa không mất dữ liệu tuyệt đối nếu chưa có hạ tầng chứng minh.
+P0654: Cần điền: 1. Thời gian gián đoạn chấp nhận cho pilot; 2. Mức mất dữ liệu tối đa mong muốn hoặc yêu cầu đội kỹ thuật đề xuất; 3. Thứ tự dữ liệu cần khôi phục; 4. Người kiểm tra sau phục hồi
+P0655: Trả lời của bạn: Giữ đề xuất
+P0656: BS 42 Ai được truy cập bản thử và bản chính
+P0657: Mức 1 · Liên quan: V5 33, V5 34, V5 40
+P0658: Điều kiện áp dụng: Không bỏ qua nếu chuyển hosting hoặc bật tài khoản.
+P0659: Bản thử V5 dành cho người có lời mời, mọi người có link hay mọi người tự tìm thấy? Bản thử có dùng tài khoản/dữ liệu thật không, hay dữ liệu test riêng? Sau khi có bản chính, link chatgptsite cũ nên giữ làm demo, chuyển hướng hay ngừng dùng?
+P0660: Đề xuất chưa duyệt: Tách môi trường thử với dữ liệu thử, bảo vệ truy cập thật nếu cần riêng tư; không coi noindex là kiểm soát quyền. Chỉ chuyển hoặc ngừng link cũ khi chủ sở hữu duyệt.
+P0661: Cần điền: 1. Phạm vi truy cập bản thử; 2. Phạm vi đăng ký tài khoản; 3. Dữ liệu test hay dữ liệu thật và cách phân biệt; 4. Cách xử lý link cũ và thông báo chuyển
+P0662: Trả lời của bạn: Bản nào được deploy cũng là bản chính hết, chỉ là phiên bản được update lên thôi. Sau khi có bản chính (bản deploy vercel) thì sẽ chỉ dùng trên đó, dừng không còn là chatgptsite nữa. Bản sau khi tôi gửi V5 này thì cũng vậy, sau khi hoàn thiện sẽ hướng dẫn tôi deploy trên Vercel chứ không còn chatgptsite nữa
+P0663: BS 43 Ngày học và thống kê dùng múi giờ nào
+P0664: Mức 2 · Liên quan: V5 25, V5 26, V5 27, V5 28
+P0665: Điều kiện áp dụng: Nếu chỉ dùng Việt Nam ở pilot, ghi giờ Việt Nam cho cả hai; không cần lựa chọn nhiều múi giờ ngay.
+P0666: Bạn muốn báo cáo ngày/tuần theo giờ Việt Nam, theo múi giờ người học hay có lựa chọn? Khi người học đi nơi khác hoặc đổi múi giờ, lịch ôn đã tính từ lúc hoàn thành cần hiển thị thế nào?
+P0667: Đề xuất chưa duyệt: Lưu thời điểm thống nhất; quản trị dùng múi giờ được chốt và hiển thị nhãn. Đổi cách hiển thị không tự đặt lại mốc hoàn thành hoặc nhân đôi lượt học.
+P0668: Cần điền: 1. Múi giờ mặc định cho quản trị; 2. Múi giờ hiển thị cho người học; 3. Ngày bắt đầu tuần báo cáo; 4. Cách muốn hiển thị hạn ôn khi đổi múi giờ
+P0669: Trả lời của bạn: Múi giờ mặc định Việt Nam. Khi đi nơi khác hoặc đổi múi giờ thì vẫn giữ nguyên Việt Nam, lịch ôn hay các khoảng thời gian cũng vậy, đồng hồ của web giữ nguyên không đổi.
+P0670: N Tài khoản và quyền truy cập bổ sung
+P0671: Về mục lục
+P0672: BS 44 Khôi phục quyền quản trị của chính chủ sản phẩm
+P0673: Mức 1 · Liên quan: V5 32, V5 42, V5 46
+P0674: Điều kiện áp dụng: Không bỏ qua nếu có quản trị thật; đừng ghi password, mã khôi phục hoặc thông tin định danh nhạy cảm.
+P0675: Nếu bạn mất quyền truy cập tài khoản quản trị, ai được hỗ trợ xác minh và khôi phục? Bạn có sẵn sàng bật xác thực bổ sung cho admin không? Có cần người dự phòng chỉ đủ quyền vận hành sự cố không?
+P0676: Đề xuất chưa duyệt: Dùng cơ chế khôi phục của dịch vụ xác thực và xác minh chủ sở hữu; không tạo cửa hậu, không đưa mã dự phòng vào Word/repo. Đội kỹ thuật đề xuất cách thực hiện an toàn.
+P0677: Cần điền: 1. Có người quản trị dự phòng không; chỉ ghi vai trò nếu không muốn tên; 2. Cách liên hệ/kiểm chứng mong muốn khi mất quyền; 3. Có đồng ý yêu cầu xác thực bổ sung cho admin không
+P0678: Trả lời của bạn: Sao mất được, bật xác thực bổ sung cho admin chứ. Không cần người dự phòng. Giữ đề xuất.
+P0679: BS 45 Một người đăng nhập bằng hai phương thức
+P0680: Mức 2 · Liên quan: V5 28, V5 32, V5 44
+P0681: Điều kiện áp dụng: Bỏ qua nếu V5-32 chọn đúng một phương thức và chưa cần chuyển đổi.
+P0682: Nếu chọn nhiều phương thức ở V5-32, bạn có cần cho người dùng liên kết chúng thành một tài khoản không? Nếu đã lỡ tạo hai tài khoản có tiến độ riêng, họ tự yêu cầu hợp nhất hay chỉ được chọn một tài khoản dùng tiếp?
+P0683: Đề xuất chưa duyệt: Ưu tiên một phương thức trước; nếu liên kết phải chứng minh quyền kiểm soát cả hai, xem trước dữ liệu và tránh ghi trùng. Không tự hợp nhất theo tên hiển thị hoặc email chưa xác minh.
+P0684: Cần điền: 1. Có cần liên kết nhiều phương thức không; 2. Cách xử lý hai tài khoản đã có dữ liệu; 3. Những dữ liệu phải giữ khi hợp nhất; 4. Người dùng cần xác nhận điều gì
+P0685: Trả lời của bạn: Có thể dùng chung một tài khoản ở nhiều thiết bị khác nhau nhưng không được cùng một thời điểm sử dụng 2 hoặc nhiều thiết bị. Tạo 2 tài khoản thì phải chịu, không hợp nhất làm gì
+P0686: BS 46 Tài khoản chưa xác minh được làm những gì
+P0687: Mức 1 · Liên quan: V5 32, V5 43, V5 45
+P0688: Điều kiện áp dụng: Bỏ qua nếu phương thức đã chọn không có bước xác minh email riêng.
+P0689: Nếu phương thức đăng nhập cần xác minh email mà người dùng chưa nhận thư, họ được chơi, viết nháp hoặc lưu đồng bộ đến mức nào? Trang hỗ trợ nên cho gửi lại, đổi địa chỉ hay trở về chế độ khách?
+P0690: Đề xuất chưa duyệt: Hiển thị trạng thái rõ; giữ nháp khi có thể, hướng dẫn gửi lại qua dịch vụ xác thực với giới hạn chống spam. Không hiển thị tài khoản chưa xác minh như đã xác minh.
+P0691: Cần điền: 1. Chức năng được dùng trước xác minh; 2. Hành vi khi thư chưa đến hoặc link hết hạn; 3. Có cho đổi email trước xác minh không; 4. Dữ liệu nháp được giữ ở đâu trong thời gian chờ
+P0692: Trả lời của bạn: Nếu chưa có tài khoản thì sẽ chơi dưới dạng khách. Đương nhiên tích hợp email hoặc social accounts chỉ là optionial thôi kiểu bên playcotuong.com ấy, vẫn phân biệt đã xác minh và chưa xác minh. Giữ đề xuất.
+P0693: BS 47 Giới hạn đối tượng và thông báo trước thu thập dữ liệu
+P0694: Mức 1 · Liên quan: V5 29, V5 30, V5 33
+P0695: Điều kiện áp dụng: Nếu pilot chỉ nhóm người lớn đã chọn, ghi phạm vi đó; chưa cần thiết kế chức năng trường học.
+P0696: Ngoài nhóm bạn thử, đợt đầu có chủ động phục vụ trẻ vị thành niên hoặc lớp học không? Bạn muốn giới hạn đối tượng ở giai đoạn thử đến đâu và ai chịu trách nhiệm duyệt thông báo quyền riêng tư trước mở đăng ký?
+P0697: Đề xuất chưa duyệt: Chỉ mở cho phạm vi đã chuẩn bị chính sách phù hợp; thu dữ liệu tối thiểu, không yêu cầu ngày sinh đầy đủ khi chỉ cần biết nhóm tuổi. Yêu cầu pháp lý cụ thể phải được đối chiếu theo phạm vi thực tế trước phát hành.
+P0698: Cần điền: 1. Nhóm tuổi/phạm vi người dùng dự kiến khi mở rộng; 2. Có trường lớp hoặc người giám hộ tham gia không; 3. Người duyệt thông báo thu thập/xóa dữ liệu; 4. Điều kiện để mở đăng ký rộng hơn
+P0699: Trả lời của bạn: Giữ đề xuất. Nói chung những người này không phải lo gì đâu, sẽ cố gắng range người nhiều nhất có thể
+P0700: O Làm việc trong VS Code và kiến trúc API
+P0701: Về mục lục
+P0702: BS 48 Nguồn code chính để phát triển trong VS Code
+P0703: Mức 1 · Liên quan: V5 39, V5 41
+P0704: Điều kiện áp dụng: Không bỏ qua khi chuyển môi trường làm việc; không gửi token GitHub.
+P0705: Bạn có đồng ý dùng repository gốc làm nơi phát triển chính, giữ gói bàn giao như bản lưu, và lấy giao diện online-preview làm nền cho bản web tiếp theo không? Nếu có một bản mới hơn đang sửa ở nơi khác, chỉ rõ vị trí và việc đã đổi.
+P0706: Đề xuất chưa duyệt: Dùng E:\ThanhTQ\App cờ tướng\xiangqi-ai làm repo chính; đối chiếu thay đổi chưa commit trước mọi lần ghép. Không xóa snapshot/tài liệu hoặc tạo lịch sử Git mới đè repo cũ.
+P0707: Cần điền: 1. Thư mục/repo chính bạn sẽ mở; 2. Có bản mới hơn ở nơi khác không; 3. Những file đang sửa cần giữ; 4. Ai hoặc trợ lý nào cùng sửa để tránh ghi đè
+P0708: Trả lời của bạn: Giữ đề xuất. Tôi có thể copy sang repo khác để tránh việc người ta nhìn vào mình sử dụng AI quá nhiều.  Còn lại oke
+P0709: BS 49 Bạn muốn duyệt một bản sửa bằng bằng chứng nào
+P0710: Mức 1 · Liên quan: V5 35, V5 39, V5 40, V5 41
+P0711: Điều kiện áp dụng: Không cần trả lời lại có auto-approve hay không; chính sách đã chốt là không.
+P0712: Với mỗi đợt, bạn muốn xem link thử, ảnh trước/sau, video ngắn, danh sách file đổi hay kết quả test ở mức nào? Bạn muốn phản hồi theo từng tính năng hay duyệt cả gói? Những nội dung nào bắt buộc có trước khi xin phép phát hành?
+P0713: Đề xuất chưa duyệt: Mỗi đợt có mục tiêu, link/bản chạy kiểm tra được, thay đổi chính, test thật và giới hạn. Giữ yêu cầu duyệt trước push/deploy, đổi public, mua dịch vụ hoặc xóa dữ liệu; không bật lại auto-approve.
+P0714: Cần điền: 1. Bằng chứng bạn ưu tiên theo thứ tự; 2. Duyệt từng tính năng hay cả đợt; 3. Tiêu chí báo cáo ngắn bắt buộc; 4. Cách đánh dấu đồng ý hoặc yêu cầu sửa
+P0715: Trả lời của bạn: Tự kiểm thử web, phản hồi theo web đã hoàn thiên jvaf đánh giá tiếp tục sửa đổi. Giữ đề xuất
+P0716: BS 50 API chỉ phục vụ Cờ Chill hay còn cho bên khác
+P0717: Mức 2 · Liên quan: V5 40, V5 42
+P0718: Điều kiện áp dụng: Nếu chưa có đối tác/app khác, trả lời Chỉ phục vụ Cờ Chill là đủ.
+P0719: Trong đợt này, API chỉ cần phục vụ website Cờ Chill, hay bạn đã có ứng dụng/đối tác cụ thể muốn kết nối? Nếu có, họ cần đọc bài, gửi ván phân tích hay đọc thống kê nào, và chỉ dùng dữ liệu của ai?
+P0720: Đề xuất chưa duyệt: Bản đầu chỉ xây API cho chính ứng dụng với quyền kiểm tra ở server. Chưa mở API public hoặc cấp khóa cho bên thứ ba nếu chưa có nhu cầu cụ thể. Cấu trúc endpoint, token và framework do đội kỹ thuật đề xuất.
+P0721: Cần điền: 1. Chỉ Cờ Chill hay có bên sử dụng khác; 2. Tên loại ứng dụng và mục đích nếu có; 3. Dữ liệu/thao tác được phép; 4. Mốc thời gian cần tích hợp
+P0722: Trả lời của bạn: Chưa có đối tác cụ thể cần kết nối. Giữ đề xuất. Chưa dùng tiền ở bước này
+P0723: 
+P0724: Bản đồ các màn hình cần đối chiếu
+P0725: Bảng này giúp không bỏ quên trang. Không phải yêu cầu bạn thiết kế lại từ đầu. Nếu giữ giao diện đã chọn, ghi Giữ hiện tại tại câu liên quan; nếu sửa, dùng ảnh/khung phác và mã màn hình. Các route là tên trong source đang đọc, không chứng minh có tính năng tài khoản online.
+P0726: Màn hình hoặc trạng thái
+P0727: Câu chốt yêu cầu
+P0728: Trang chủ#home
+P0729: V5 21, V5 27, BS 01, BS 02, BS 25, BS 26
+P0730: Bắt đầu và cách học#howto
+P0731: V5 01, V5 02, V5 06, V5 24, BS 03, BS 04, BS 05, BS 25, BS 26
+P0732: Chọn ván và nhập ván#play
+P0733: V5 08, V5 09, V5 11, V5 12, BS 02, BS 06, BS 09, BS 10, BS 25
+P0734: Ván đang chạy#game/:id
+P0735: V5 08, V5 09, V5 10, V5 23, V5 36, V5 41, BS 06, BS 07, BS 08, BS 24, BS 25
+P0736: Ván của tôi#mistakes
+P0737: V5 12, V5 29, V5 30, V5 31, BS 08, BS 09, BS 10, BS 11, BS 12, BS 25
+P0738: Xem lại toàn ván#replay/:id
+P0739: V5 11, V5 12, V5 31, BS 12, BS 14, BS 25
+P0740: Tổng quan điểm cần học#moments/:id
+P0741: V5 04, V5 13, V5 36, BS 08, BS 13, BS 14, BS 25
+P0742: Suy nghĩ trước đáp án#learn stage reflect
+P0743: V5 01, V5 02, V5 03, V5 06, V5 07, V5 22, V5 45, BS 14, BS 15, BS 17, BS 24, BS 25
+P0744: Phân tích và lời giải#learn stage explanation
+P0745: V5 04, V5 05, V5 07, V5 13, V5 23, BS 15, BS 16, BS 17, BS 24, BS 25
+P0746: Thử lại#learn stage retry
+P0747: V5 01, V5 03, V5 04, V5 26, BS 15, BS 17, BS 18, BS 25
+P0748: Bài liên quan#learn related exercise
+P0749: V5 02, V5 14, V5 15, V5 16, V5 18, V5 26, BS 17, BS 18, BS 19, BS 25
+P0750: Danh sách bài học#lessons
+P0751: V5 14, V5 15, V5 16, V5 17, V5 18, BS 19, BS 20, BS 25, BS 26
+P0752: Minh họa khai cuộc#opening/:id
+P0753: V5 05, V5 14, V5 17, BS 19, BS 20, BS 25
+P0754: Hành trình học#path
+P0755: V5 06, V5 14, V5 17, V5 18, BS 20, BS 25
+P0756: Tiến độ và góc cá nhân#profile
+P0757: V5 25, V5 28, V5 32, V5 44, BS 04, BS 21, BS 25
+P0758: Lịch ôn#review
+P0759: V5 26, V5 27, V5 45, BS 01, BS 22, BS 25
+P0760: Tự nhìn lại cuối phiên#summary
+P0761: V5 03, V5 26, BS 18, BS 25
+P0762: Cài đặt và dữ liệu#settings
+P0763: V5 20, V5 23, V5 29, V5 30, V5 31, V5 32, V5 44, V5 45, V5 46, BS 05, BS 23, BS 24, BS 25, BS 26
+P0764: Luật và minh họa#rules
+P0765: V5 08, V5 09, V5 10, V5 11, V5 13, V5 24, BS 03, BS 25, BS 26
+P0766: Về Cờ Chill#about
+P0767: V5 23, V5 29, V5 30, V5 37, BS 25, BS 26
+P0768: Đăng ký đăng nhập khôi phục và tài khoảnChưa có route trong bản đọc
+P0769: V5 29, V5 30, V5 32, V5 44, V5 45, V5 46, BS 25
+P0770: Quản trị tài khoản dữ liệu và nội dungChưa có route trong bản đọc
+P0771: V5 13, V5 19, V5 28, V5 38, V5 42, V5 43, V5 46, BS 25
+P0772: 
+P0773: Mỗi màn cần kiểm tra: trạng thái bình thường, chưa có dữ liệu, đang tải, lỗi, mất mạng, thiếu quyền, thao tác thành công và dữ liệu chưa lưu. Mặc định: nói đúng tình trạng, có bước tiếp, giữ nháp khi phù hợp, không giả dữ liệu hoặc phần trăm tiến độ. Ngoại lệ điền tại BS 25.
+P0774: 
+P0775: Mẫu gửi ví dụ và tiêu chí nghiệm thu
+P0776: Một hình cờ hoặc ván mẫu
+P0777: Tên file nên bắt đầu bằng mã câu, ví dụ V5_14_hinh_01.png. Không cần biết FEN; ảnh rõ 90 giao điểm và bên đến lượt là đủ để kỹ thuật dựng lại rồi xác minh với bạn. Với luật lặp/chiếu/đuổi cần toàn bộ chuỗi nước liên quan, ảnh cuối đơn lẻ không đủ.
+P0778: Mã hình/van: __________   Thuộc câu: __________Nguồn và quyền dùng: __________________________________________Bên đi, mục tiêu bài, đoạn lịch sử cần xét: _________________________Nước chấp nhận và vì sao: ______________________________________Nước không đạt và vì sao: ______________________________________Lời giải của bạn hoặc ghi Cần kiểm chứng: _________________________Tên/chủ đề kỹ năng, độ khó dự kiến: ______________________________
+P0779: Một vấn đề giao diện
+P0780: Mã câu / trang / thiết bị / trình duyệt / zoom: ______________________Bước thao tác: ________________________________________________Thực tế đang xảy ra: ___________________________________________Bạn muốn thay đổi thành: _______________________________________Ảnh hoặc bản phác: ____________________________________________Cách nhận biết đã sửa xong: _____________________________________
+P0781: Các điều kiện nền phải kiểm tra khi phát hành
+P0782: Không cho nước sai luật; mỗi biến engine được phát lại qua luật. Nếu các bộ luật bất đồng, dừng và báo cần kiểm chứng.
+P0783: Không lộ đáp án trước phản hồi hoặc coaching trong ván; giữ câu đầu và phân biệt có hỗ trợ với tự giải.
+P0784: Không mất nháp hoặc tính hai lần khi gửi lại; lịch ôn bắt đầu từ hoàn thành hình và không được thay đổi bởi tự đánh giá.
+P0785: Tài khoản tạo trên A thấy đúng trong admin B; học trên A thấy tiến độ đã đồng bộ khi đăng nhập C.
+P0786: A không truy cập dữ liệu B; người thường không gọi chức năng admin; khóa và quyền xem có hiệu lực phía server.
+P0787: Engine lỗi có trạng thái rõ và phục hồi; hết hạn mức không làm biến mất dữ liệu đã có. Nhãn engine, phiên bản và dữ liệu thật phải đúng.
+P0788: Xuất/xóa và phục hồi được thử; dữ liệu test tách khỏi pilot; báo cáo không bịa người dùng hoặc hiệu quả.
+P0789: Bạn xem bản thử có changelog, test, giới hạn và cách quay lại trước khi duyệt push/deploy.
+P0790: 
+P0791: Các lựa chọn đã có để không phải trả lời lại
+P0792: Đây là sổ tóm tắt ý định đã nêu, không phải danh sách tính năng hoàn tất. Các chi tiết còn mâu thuẫn được hỏi ở phần chính. Nếu muốn đổi một lựa chọn, ghi mã C tương ứng và quyết định mới; không cần chép lại cả lịch sử.
+P0793: C01 Tên và ngôn ngữ
+P0794: Tên chính thức là Cờ Chill; giao diện tiếng Việt; tiêu đề nói rõ chức năng; không in WHAT WHY HOW như nhãn câu hỏi.
+P0795: Nguồn: UX02.02, UX02.06, UX04.05
+P0796: C02 Cảm giác và giọng văn
+P0797: Bình tĩnh, thoải mái, hướng dẫn gợi mở khi học. Giọng trung tính hoặc bạn học; người dùng được chọn style. Mẫu lời chào: Chào mừng bạn đến với Cờ Chill.
+P0798: Nguồn: V4 B05, UX01.06, UX02.05
+P0799: C03 Theme và logo
+P0800: Ba theme sáng ấm, trắng lạnh, tối. Màu hiện tại được giữ tạm; màu thương hiệu cuối giữa logo và màu Site còn chờ. Chủ sở hữu nói logo PNG do mình tạo bằng AI.
+P0801: Nguồn: V4 B02, UX01.02, UX02.03, UX03.01, UX03.02, UX03.08
+P0802: C04 Bố cục chính
+P0803: Ưu tiên laptop; màn học bàn bên trái khoảng 50–55%, câu hỏi/lời giải bên phải; sidebar thu gọn được; khi zoom ưu tiên giữ bàn cờ và khung câu hỏi. Panel kéo đổi kích thước chưa ưu tiên.
+P0804: Nguồn: UX06.01, UX06.02, UX06.03, UX06.07, UX06.08
+P0805: C05 Điều hướng
+P0806: Các khu vực có trang/URL riêng; Xem lại thuộc Ván của tôi, Tiến bộ thuộc Ôn tập; có dashboard và lộ trình; mobile dùng thanh dưới. Back về bước trước và giữ vị trí cuộn.
+P0807: Nguồn: UX01.01, UX01.07, UX07.01, UX07.02, UX07.03, UX07.04, UX07.07
+P0808: C06 Rời trang
+P0809: Rời ván hoặc câu trả lời chưa gửi cần xác nhận một lần. Nháp và trạng thái đang học phải giữ; trì hoãn/rời trang không phải hoàn thành.
+P0810: Nguồn: V4 E04, UX07.05, UX10.07, UX15.06, UX22.04, UX24.06
+P0811: C07 Trang chủ
+P0812: Người mới đi từ Bắt đầu chơi qua demo/hướng dẫn/cách học rồi trận mẫu. Người quay lại ưu tiên bài đang dở và lịch ôn. Không đặt danh sách ván gần đây trên trang chủ; đặt ở Ván của tôi. Demo cần nhãn rõ.
+P0813: Nguồn: V4 B03, UX08.01, UX08.02, UX08.04, UX08.05, UX08.07, UX10.08
+P0814: C08 Tự khai trình độ và mục tiêu
+P0815: Hỏi trình độ tự khai ban đầu; người đã biết chơi có Skip. Người Chưa biết chơi cần học luật và thực hành kiểm tra. Mục tiêu chọn từng lần một, tối đa ba, có thể tự luận thêm.
+P0816: Nguồn: V4 C02, V4 C05, UX09.01, UX09.02, UX09.07, UX20.05
+P0817: C09 Hướng dẫn và lưu vị trí
+P0818: Hướng dẫn thao tác xem lại được từ menu. Bài đầu vào không cần hiển thị thời gian ước tính gây áp lực; có thể rời rồi tiếp tục đúng chỗ.
+P0819: Nguồn: UX09.03, UX09.04
+P0820: C10 Chọn ván
+P0821: Có chọn màu quân, preset thời gian cộng giây như 10p+5s, 5p+3s, 3p+2s; chỉ một ván đang chạy. Ván hết giờ tính thua dù người chơi rời trang.
+P0822: Nguồn: UX10.02, UX10.04, UX10.05, UX10.07
+P0823: C11 Tương tác bàn cờ
+P0824: Bấm quân rồi bấm đích là thao tác chính; bấm lại quân để hủy chọn. Bấm ngoài bàn không làm đồng hồ dừng. Chưa chốt kéo thả cho V5 sau câu trả lời mới UX11.02.
+P0825: Nguồn: V4 D01, UX03.06, UX11.02, UX24.04
+P0826: C12 Ván đang chạy
+P0827: Hiển thị đồng hồ, biên bản và nút lật bàn; không đi lại, không xem lịch sử bàn cờ, không coaching, không dừng để học. Đầu hàng là thua; muốn học phải kết thúc ván. Undo chỉ thuộc luyện tập.
+P0828: Nguồn: V4 D04, UX11.01, UX11.05, UX11.06, UX11.07, UX35
+P0829: C13 Báo nước sai
+P0830: Nước sai không được thực hiện; báo ngắn lý do luật như cản chân Mã hay thiếu ngòi Pháo, ngay trên bàn. Chủ sở hữu muốn ghi nhận lần bấm sai vào hồ sơ; phạm vi thống kê cần tách thao tác nhầm khỏi thiếu hiểu luật.
+P0831: Nguồn: V4 D03, UX03.06, UX11.03
+P0832: C14 Quân và ký hiệu
+P0833: Quân Hán mặc định, đổi sang tiếng Việt khi người dùng chọn; không hiện đích hợp lệ. Vòng chọn trắng, dấu nước gần nhất, cảnh báo Tướng bị chiếu; danh sách quân bị ăn không dùng số đếm. Ký phổ hai cột Đỏ/Đen và số nước.
+P0834: Nguồn: UX03.06, UX04.02, UX04.06, UX12.02, UX12.05, UX12.07
+P0835: C15 Nhập ván
+P0836: Muốn kéo file, dán text và chọn ảnh đúng loại ký phổ; ưu tiên biên bản Việt. Lỗi ở nước nào dừng và báo đúng nước ấy. Dựng thế bằng đặt quân để bản sau; nhập trùng phải báo.
+P0837: Nguồn: UX13.01, UX13.02, UX13.04, UX13.05, UX13.06, UX13.08, UX33.01
+P0838: C16 Thư viện ván
+P0839: Hiện ngày, màu quân, đối thủ, kết quả, trạng thái review. Có bộ lọc chưa review/đang học/đã học/bên cầm/thời gian/chủ đề; thích thẻ thu nhỏ desktop, bảng cuộn trên mobile. Có yêu thích và thư mục; quay lại giữ bộ lọc và vị trí.
+P0840: Nguồn: UX14.01, UX14.02, UX14.03, UX14.05, UX14.08
+P0841: C17 Mở và phân trang ván
+P0842: Mở ván từ thế đầu với tổng quan review rồi dẫn tới điểm cần chú ý. Phân trang 20 ván mỗi trang, tối đa 10 trang. Có xuất riêng ván sang ứng dụng khác.
+P0843: Nguồn: UX14.04, UX14.07, UX14.08
+P0844: C18 Tổng quan review
+P0845: Trước reflection chỉ báo vị trí cần xem lại, ẩn tên chiến thuật/gợi ý; tối đa ba điểm, theo thời gian, có quay lại. Timeline đánh giá để bản sau. Phân tích cần tiến độ thật và resume.
+P0846: Nguồn: UX15.01, UX15.02, UX15.03, UX15.04, UX15.05, UX15.06
+P0847: C19 Bộ câu hỏi phản hồi
+P0848: Hỏi đánh giá thế và ưu thế; quân/vị trí yếu, nên công hay thủ và cách thực hiện; nước tiếp theo cùng phản ứng đối phương 2–3 nước. Người giỏi có thể gộp đánh giá/nguy cơ nhưng vẫn nêu ý tưởng ứng viên và lý do.
+P0849: Nguồn: V4 E02, V4 E03
+P0850: C20 Màn suy nghĩ
+P0851: Các câu cùng một trang; đầu vào text. Có nút Chưa biết để hỏi nhỏ hơn. Giữ nháp và bản đã gửi riêng; không sửa bản phản hồi trước đáp án sau khi gửi.
+P0852: Nguồn: V4 C06, V4 E04, UX16.01, UX16.03, UX16.04, UX16.05, UX16.07
+P0853: C21 Lời giải có căn cứ
+P0854: Lời giải cụ thể theo thế, ngắn, có Chi tiết hơn. Bấm một câu làm bàn phát biến tương ứng, bấm lại trở về; nêu chiến lược rồi các nước phục vụ cùng mục tiêu. Engine/độ sâu/điểm để trong chi tiết.
+P0855: Nguồn: UX04.04, UX17.02, UX17.04, UX17.05, UX20.08
+P0856: C22 Sai một phần và bất đồng
+P0857: Ghi nhận ý đúng, hỏi cụ thể hơn phần chưa đúng rồi tổng hợp; chủ sở hữu chốt việc xác minh và giữ bằng chứng. Có nút báo loại lỗi cụ thể. Mong muốn tô màu chưa đồng nghĩa đã có bộ chấm đáng tin cậy.
+P0858: Nguồn: V4 F05, V4 F06, UX17.06, UX17.07, UX17.08, UX33.08
+P0859: C23 Thử lại và hoàn thành
+P0860: Muốn người học vừa giải thích/đánh giá đúng vừa đi được nước chấp nhận. Giới hạn ba lần thử; sai thì câu hỏi nhỏ hơn. Nếu rời sau bài gốc và trước bài liên quan, lần sau vào bài liên quan; trạng thái hai hình tách nhau.
+P0861: Nguồn: V4 G03, V4 G06, UX18.04, UX18.06, UX18.08
+P0862: C24 Chủ đề và bài liên quan
+P0863: Chủ đề theo mục tiêu dễ hiểu như ăn quân, tấn công quân/vị trí yếu, phòng thủ, đổi quân lấy lợi thế. Mỗi lần làm một bài; lời mời Thử thêm một bài, không tiết lộ quan hệ với bài trước. Có ba tầng hỗ trợ quan sát, ý tưởng, nước cụ thể; trước phản hồi không lộ nước.
+P0864: Nguồn: UX19.01, UX19.03, UX19.05, UX19.06
+P0865: C25 Hết nội dung
+P0866: Ưu tiên đổi chủ đề hoặc chơi thêm để sinh bài học; nếu hết thật thì nói thẳng Bạn đã học hết mất rồi. Bài ôn đã gặp không gọi là bài mới.
+P0867: Nguồn: V4 G05, UX19.07, UX22.06
+P0868: C26 Bài học
+P0869: Tổ chức nhãn khai/trung/tàn, trình độ, mục tiêu/kỹ năng. Bài có mục tiêu, lỗi thường gặp, câu hỏi thực hành và nước cần đạt; không cố định độ dài. Text và bàn tương tác đủ cho bản đầu; video/âm thanh nội dung để sau.
+P0870: Nguồn: V4 G01, V4 G04, UX20.01, UX20.02, UX20.03
+P0871: C27 Tra luật khi học
+P0872: Từ thuật ngữ mở hình minh họa, có Minh họa thêm dẫn tới luật và ví dụ cụ thể; quay lại đúng chỗ đang học. Nội dung đổi có nhãn Có thay đổi và mở được phần chi tiết.
+P0873: Nguồn: UX20.04, UX20.06
+P0874: C28 Tiến bộ cá nhân
+P0875: Muốn biết trình độ, tiến độ hôm nay, lỗi tái diễn và kỹ năng cần cải thiện. Ưu tiên số lần thực hành/tỷ lệ bài mới đúng; từ sáu mẫu mới vẽ biểu đồ tỷ lệ. Bấm nhận xét xem lại câu hỏi và lời giải. Hệ xếp hạng/EXP là mong muốn chưa có mô hình được kiểm định.
+P0876: Nguồn: V4 H03, V4 H04, UX21.01, UX21.03, UX21.04, UX21.06, UX21.07
+P0877: C29 Lịch ôn
+P0878: Dạng ngày nổi bật, tháng mở thêm; giữ toàn bộ hàng đợi quá hạn, ưu tiên hạn gần; trì hoãn không tính hoàn thành. Hẹn từng hình từ lúc hoàn thành. Ôn lỗi từ ván và ôn lesson được chủ sở hữu muốn tách riêng.
+P0879: Nguồn: V4 H01, UX22.01, UX22.02, UX22.03, UX22.04, REGISTER Quyết định phạm vi ưu tiên, V5 Những gì đã chốt
+P0880: C30 Nhắc học và nghỉ
+P0881: Có thể tắt nhắc; giờ yên lặng 22–7, nhắc việc chưa xong mỗi sáu giờ; nhắc nghỉ sau 30 phút/ngày. V4 còn mong nhắc trước hạn 30 phút nên cần hòa giải trong V5 27.
+P0882: Nguồn: V4 H05, UX22.05, UX22.08
+P0883: C31 Cài đặt và dữ liệu
+P0884: Tùy chọn chữ quân, tiếng, theme, chữ lớn dự kiến theo tài khoản; có mục Tài khoản trong Của tôi. Xuất theo loại/khoảng ngày, biên bản không lộ đáp án chưa mở; xóa ván/lịch sử/toàn bộ dùng nút riêng và nêu phạm vi.
+P0885: Nguồn: UX23.02, UX23.05, UX23.06, UX23.08
+P0886: C32 Mobile
+P0887: Bàn trên câu hỏi dưới, khi nhập vẫn cần nhìn bàn; giữ vị trí sau đóng bàn phím; thiếu chỗ ưu tiên bàn và Q&A, có thể ẩn ký phổ. Mạng yếu tải bàn và câu hỏi trước. PWA/offline đầy đủ để sau.
+P0888: Nguồn: V4 I02, UX12.08, UX24.02, UX24.03, UX24.05, UX24.07, UX24.08
+P0889: C33 Khả năng tiếp cận
+P0890: V4 chấp nhận chữ lớn, tương phản, phương án ngoài kéo và không chỉ dựa màu; UX xác nhận text thay đúng/sai và âm, trình đọc màn hình cập nhật từng nước thay đọc lại cả bàn. Chủ sở hữu và bạn bè kiểm tra; lỗi qua feedback và biểu mẫu.
+P0891: Nguồn: V4 I03, V4 I05, UX25.04, UX25.06, UX25.07, UX25.08
+P0892: C34 Trạng thái và cập nhật
+P0893: Spinner cho chờ ngắn; tác vụ dài nói rõ đang phân tích/kiểm tra gì; lỗi dưới ô; thông báo không mất quá nhanh; giữ dữ liệu và kiểm tra chống lưu trùng. Cho kết thúc phiên cũ rồi thông báo reload để nhận bản mới.
+P0894: Nguồn: V4 I04, UX26.02, UX26.04, UX26.05, UX26.06, UX26.08, UX28.04, UX28.05
+P0895: C35 Phạm vi V5
+P0896: Vòng học công khai có resume/mobile là ưu tiên; quyết định mới yêu cầu tài khoản thật, dữ liệu tập trung, đa thiết bị và admin ngay V5. PvP và AI tự huấn luyện vẫn để sau.
+P0897: Nguồn: UX35, REGISTER Quyết định mới cùng ngày, V5 Những gì đã chốt
+P0898: C36 Ngân sách và ranh giới
+P0899: Mong 100.000 đồng/tháng, trần 200.000 cho tất cả dịch vụ; không tự bật phí. Luật/UI tách, engine/lời giải/persistence thay được; ưu tiên engine hợp pháp có thể dùng Pikafish, dễ chạy, chi phí thấp.
+P0900: Nguồn: V4 K01, UX27.03, UX27.06, UX27.08, UX28.01, UX30.04, UX35
+P0901: C37 Ưu tiên LLM
+P0902: Thứ tự giá trị mong muốn là phản hồi lập luận, hỏi tiếp, rồi cách diễn đạt. LLM chỉ dựa dữ kiện engine/luật; chưa có tài khoản API sẵn theo V4.
+P0903: Nguồn: V4 K02, V4 K03, UX28.07
+P0904: C38 Duyệt nội dung và vận hành
+P0905: Chủ sở hữu chốt nội dung/quyền cấu hình, xem log, xử lý rollback. Nhịp duyệt khoảng 10 thế/tuần; gỡ bài sai và thông báo người đã làm, giữ bằng chứng/version. Muốn xem web chạy để phản hồi; bàn giao thay đổi/test/giới hạn/hướng dẫn chạy.
+P0906: Nguồn: V4 K06, V4 M03, V4 M04, V4 M05, UX17.08, UX29.02, UX29.04, UX29.07, UX30.05, UX30.07, UX30.08, UX33.08, UX34.02
+P0907: C39 Pilot
+P0908: Bạn bè trình độ trung cấp biết luật; V4 đã chấp nhận phiên thử 10–15 phút, một điểm review và một bài liên quan, có lưu giữa bước. Muốn ghi điểm bị kẹt cùng phản hồi giao diện.
+P0909: Nguồn: V4 A02, V4 A03, V4 I06, UX35
+P0910: C40 Luật và phán quyết
+P0911: Muốn cờ tướng tiêu chuẩn/thi đấu, tất cả bảy quân, chiếu hết/hết nước là thua bên hết nước. Nguồn Ziga/Wikipedia do chủ sở hữu nêu là tham khảo, chưa thay bộ luật tổ chức có phiên bản. Tình huống chưa chắc ghi Cần kiểm chứng thêm; chủ sở hữu chốt và giữ bằng chứng.
+P0912: Nguồn: V4 J01, UX31.01, UX31.02, UX31.03–UX31.08, UX32.01, UX32.08, UX33.05, UX33.08
+P0913: 
+P0914: Nguồn đối chiếu và cách gửi lại
+P0915: Repository gốc: E:\ThanhTQ\App cờ tướng\xiangqi-ai. Các đường dẫn dưới đây dùng R để chỉ đúng thư mục này; chữ R không phải biến terminal.
+P0916: V5 cập nhật đủ 46 câu
+P0917: R\docs\CO_CHILL_V5_QUESTIONS.md
+P0918: Bản Word V5 tài khoản
+P0919: R\deliverables\Co_Chill_V5_Cap_nhat_Tai_khoan.docx
+P0920: V4 đã trả lời
+P0921: E:\ThanhTQ\App cờ tướng\10-14\V4.docx
+P0922: UI UX và Luật đã trả lời
+P0923: E:\ThanhTQ\App cờ tướng\10-13\UI UX + Luat.docx
+P0924: Sổ quyết định và phạm vi luật
+P0925: R\docs\UIUX_DECISION_REGISTER_2026_10_15.mdR\docs\RULES_UIUX_2026_10_15.md
+P0926: Báo cáo bản phát hành
+P0927: R\BAO_CAO_UIUX_V5_2026_10_16.md
+P0928: Đặc tả nền
+P0929: R\docs\spec\01_PRODUCT_SPEC.mdR\docs\spec\07_LEARNING_MODEL_SPACED_REPETITION.md
+P0930: Cách tự review
+P0931: R\deliverables\Co_Chill_Huong_dan_review_va_update_2026_10_20.docx
+P0932: Các trao đổi ngày 21/10 về VS Code, engine mạnh và yêu cầu gom một file được đưa vào nhóm bổ sung. Phần chữ V4 và UI UX được đọc đầy đủ, kể cả bảng; ảnh thiết kế được đối chiếu qua hồ sơ đã có, không có một vòng đánh giá lại toàn bộ ảnh gốc trong lần tổng hợp này.
+P0933: Nguồn kỹ thuật tham khảo cho Pikafish
+P0934: Mã nguồn và giấy phép engine
+P0935: Giao thức UCI
+P0936: Điều kiện trọng số NNUE
+P0937: Các nguồn engine được tra ngày 21/10/2026. Điều kiện áp dụng cần kiểm tra lại với đúng phiên bản khi triển khai. UCI, độ sâu và tham số kỹ thuật không phải câu hỏi bắt buộc bạn tự quyết.
+P0938: Chốt một lần trước khi bắt đầu code
+P0939: Bạn gửi lại chính file này đã điền và file mẫu đặt tên theo mã câu. Không cần gửi lại V3/V4 nếu không có thay đổi. Sau khi nhận, người triển khai phải tổng hợp: quyết định cuối cùng, mâu thuẫn còn lại, phạm vi đợt đầu, tiêu chí nghiệm thu, chi phí dự kiến và hành động cần duyệt. Câu để trống hoặc lời đề xuất chưa được đồng ý không được biến thành quyết định của bạn.
+P0940: Xác nhận cuối: tôi đã điền các phần cần làm trong đợt tới và ghi rõ phần chưa chốt.Người trả lời: ____________________   Ngày: ____________________Các câu vẫn cần trao đổi: _______________________________________
