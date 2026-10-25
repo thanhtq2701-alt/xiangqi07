@@ -1,0 +1,1430 @@
+Cần Roadmap, các milestones, cần sản phẩm prototype ngay dựa trên những gì đang có và tiếp tục sửa, cần README, cần plan trong tương lai, cần các nguồn cần xin license hoặc trích dữ liệu, cần bản update sửa đổi hàng ngày, cần thêm những gì muốn làm, viết lại các CV bullet point, viết những gì cần học và bổ sung sớm
+Part 1:
+Vì mong muốn của tôi là dạy mọi người chơi cờ, đặc biệt là cách suy nghĩ tại sao. Điều đó thể hiện có evidence thật vì tôi đã từng dạy cờ mọi người, ngoài ra còn dạy những điều khác nữa. App CS một phần vì project, phần lớn hơn vì tôi muốn truyền tải cách suy nghĩ và cách dạy đến với nhiều người, vì thời gian bản thân có hạn và cách tiếp cận có hạn
+Việc học cờ tướng hiện nay là mọi người nhanh chán nản, và không có người mentor phù hợp nên chỉ chăm chăm vào thi đấu đánh cờ mà không tích lũy được kinh nghiệm, không học hỏi được từ sai lầm. Điều đó rất lãng phí và khiến họ rất lâu mới có thể tiến bộ, mất thời gian và nguồn lực, sức lực.
+HLV review sẽ giúp chỉ ra điểm sai và nước đi sai (một vài engine mạnh đã có), tiếp theo đưa ra nước đi chính xác (một vài điểm engine đã có). Điểm khác biệt là sẽ hỗ trợ phân tích tình hình ván cờ trước khi ra quyết định đi nước đó, sau đó đề xuất bài tập và các puzzle để học viên cải thiên và tự mình tiến bộ. Cách làm đó giúp họ nhớ sai lầm hơn và giúp họ tiến bộ rất nhanh.
+Người chơi cờ tướng mạnh theo tôi được tiếp xúc sẽ nhìn những đường đánh tấn công nguy hiểm trước (nếu có), sau đó phân tích sức mạnh quân cờ hiện tại của hai bên (nhiều quân chủ lực hơn, vị trí đứng đẹp hơn,…) rồi từ đó đưa ra chiêns lược đánh tiếp theo. Đôi khi chiến lược có thể thay đổi, nhất là khi nhìn được 1 nước exceptional !!, hoặc khi đối thủ sai lầm hoặc đi nước yếu thì sẽ thay đổi dựa trên tình hình ván đấu. Đôi khi sẽ đưa vào những thế trận mình quen thuộc hoặc sở trường, từ đó đi những nước tiếp theo tốt hơn
+User chính tôi hướng tới đầu tiên là những người mới chơi, muốn cải thiện nhanh. Tiếp đó là những người đã chơi lâu nhưng ít tiến bộ, app sẽ là điều giúp họ bật lên nhanh hơn. Cuối cùng mới đến những người đã giỏi thành thạo và muốn hoàn thiện full bộ kỹ năng như tôi
+Learning outcome tôi muốn họ biết là khi ở trong một tình huống, chúng ta sẽ suy nghĩ như nào, HOW để đi ra được nước tốt nhất và WHYx nước đó lại tốt nhất. Sau đó sẽ rèn luyện phản xạ những nước đi tốt cho họ để later apply vào cờ chớp siêu chớp bullet hoặc cờ nhanh nữa
+Strategic thinking theo tôi là lối suy nghĩ hệ thống, hiểu là lối đánh tấn công, phòng ngự hay kiểm soát, chèn ép trong ván đấu. Điều đó thể hien tu ban dau và sẽ định hình cách người ta quyết định, xử lý khi gặp tình huống khác nhau theo ván đấu  (VD: khi gặp tình huống đối công thì có người hconj lao lên, có người chọn lui về, có người chọn đổi quân)
+Problem solving là cách người chơi giải quyết vấn đề, cụ thể là việc họ sẽ suy nghĩ như nào và đi nước đi nào kh igapwj một tình huống cụ thể. Người có PS tốt là xử lý những nước đi hay kể cả trong những tình huống bất lợi khó khăn. Điều này có thể được luyện qua các puzzle của app và tiến bộ
+Feature xem lại những lỗi sai của mình (được gợi cảm hứng từ chess.com), từ đó sẽ giúp tôi tiết kiệm rất nhiều thời gian và tiến bộ nhanh hơn mà không bị mất thời gian, mất công ở những lỗi đã gặp từ trước. Tiếp đó là viêc gợi ý những puzzle trong cùng một kiểu trạng thái tình huống để luyện phản xạ bản thân kh igapwj ddeiefu đó trong tương lai
+Core flow chắc là chốt ý tưởng sản phẩm,chốt các tính năng sẽ có, chốt giao diện và cách xuwrlys. ĐỒng thời đưa cách AI sẽ xuwrl ý từng tình huống, train nó và cuối cùng là release prototype để tôi nhờ các bạn của tôi thử (tôi chưa có kinh nghiệm lắm nên đây là những bước đầu tôi có thể biết)
+Điều cần nhớ là hôm nay tôi đã mắc lỗi lầm gì, tại sao, sửa như nào, tại sao phải sửa, sau này sẽ phải xử lý chúng như nào
+Khác biệt của tôi là việc phát hiện mọi lỗi trong ván đầu, từ đó link sang lỗi trong hệ thống tư duy và fix nó, được tiến bộ trong phần đó bằng cách puzzle tương tự
+Có, đó là hướng đi, giúp người chơi học được từ ván đầu và sai lầm của mình để tiến bộ hơn
+Có, dù chưa hiểu hoàn toàn đó là gì, nhưng có vẻ đó là những điều mà hướng đi tôi đang muốn hướng đến
+Tôi muốn là ML nhưng sợ không kịp thời gian, nên trước mắt hãy đánh giá sự khả thi của tiến độ và cố tiến tới ML sớm nhất có thể
+Đề xuất cho người chơi lỗi trong tư duy kh ithi đấu của họ và puzzle để solve/tiến bộ trong đó
+Tôi muốn áp dụng AI, CS, ML và đẩy lên web, chưa hiểu engine bạn đang nhắc ở đây là gì lắm
+Có một phần, đó là một phần ở việc phân tích và đưa ra cũng như giải thích tại sao đó là nước đi tốt nhất, còn lại việc puzzle và phân tích lỗi sai được chú trọng nhiều hơn
+Chạy browser là bước đầu tiên thôi, mục đích cuối cùng là release lên được web và ai cũng có thể chơi được nó
+Cách viết chuẩn duy nhất, giúp tôi là developer hiểu data nhận về và phân tích rồi train cho AI, có thể dùng Docs hoặc Excel để dễ nhìn
+Puzzle hiện tại tôi cũng chưa biết, trước hết tôi có vài quyển sách cờ tướng và một vài khai cuộc bản thân từng học, qua đó có thể làm data, cũng như nhiều dữ liệu ván đấu cờ tướng trên các web khác, tôi có thể lấy làm data và train cho AI
+Hiện tại chưa biết, có thể phải xin, nếu không được thì phải solve như nào?
+Có rất nhiều, qua các giải đấu của bản thân, không thiếu phần của bản thân nhưng ở scale lớn hơn thì phải suy nghĩ thêm, bạn rcm cho tôi
+Nếu cần thiết thì tôi có thể gom đủ và annotate 50+ được vì trước đây khi thi đấu tôi cũng từng làm vậy
+Có HLV và thầy nhưng để nhờ thì hơi lâu và hơi ngại tại họ cũng bận, cần thiết tôi sẽ nhờ nhưng không được nhiều, nên mới cần train AI làm thay
+Tôi nghĩ tôi sẽ xin feedback từ những người bạn trong cùng hội chơi cờ tướng và những người thầy của tôi
+ĐI từng bước chắc chắn, xác nhận app có thể làm được những gì tôi muốn đã rồi mới release
+“Xem từng nước đi phản ánh thế nào về cách người chơi cờ tướng suy nghĩ, lối tư duy và lỗi tư duy của họ để fix và hoàn thiện hơn, tiến bộ tốt”
+Cho bạn đúng 1 tuần
+Rất hạn chế, nhưng sẽ cố gắng hết sức
+Có nhiều, đây là vấn đề cá nhân, không liên quan tới project
+Tôi chỉ code đơn giản kiểu Hello World và hiểu những gì AI làm trong code chứ không tự viết được nhiều
+Chưa có gì
+Cài rồi, chạy được rồi, thỉnh thoảng vẫn sử dụng, từ giờ sẽ sử dụng nhiều
+Chưa biết để xem lại
+Chưa biết để xem lại
+Chưa biết để xem lại
+GitHUb acccount có rồi, từng upload dự án khác lên rồi, repo có sẵn sàng rồi theo tôi hiểu là vậy
+Chưa biết để xem lại, có thể hướng dẫn tôi cách xem
+Kết hợp, đã mua GPTPlus, cần sẽ mua thêm của Claude, hiện tại free
+Có, nên vậy làm sản phẩm rõ ràng hơn, tôi cũng dể hiểu hơn
+Có, tôi nghĩ vậy là hợp lý
+Team cờ tướng thì có real rồi, không có team làm project tôi tự làm một mình
+Pilot schedule đagn plan, có đi dạy cờ tướng face2face nhưng chưa có workshop
+Public được, share cho mọi người dùng, nma vẫn nên giữ bí mật những phần quan trognj nhất vì không muốn bị sao chép ý tưởng full
+Sẵn sàng everyday
+Sẵng sàng dùng tests+Github Actions
+Có thể, nên demo database và login nếu không sẽ không real
+Sẽ hiểu, cố gắng thiết kế cho người mới phù hợp và không làm họ chán nản quá sớm
+Có thể, sẽ cân nhắc thêm
+CS
+Không liên quan project đừng hỏi, tôi chỉ muốn tiến độ nhanh nhất và hiệu quả cao nhất mà thôi
+Là ứng dụng CS giải quyết vấn đề thực tế gần gũi với cộng đồng, learn from mistake, kiên trì, bền bỉ trong thời gian dài
+Tôi nghĩ là việc nó sẽ đáp ứng minimum requirement và giúp giữ user ở lại hơn là lướt qua ngay lập tức
+Rule Xiangqi chưa tìm hiểu full nhưng tôi là người chơi lâu năm, sẽ tham khảo thêm luật ở Wiki hoặc các trang uy tín hơn
+Không cho phép xuất hiện, nếu có sẽ ngay lập tức fix và thay bằng điều hợp lý truthful, phát hiện càng sớm càng tốt để không làm ảnh hưởn tiến độ
+App sẽ cài độ trễ 5s cho mỗi nước đi sai được phát hiện, rồi giới hạn attempt mỗi ngày để vừa tiết kiệm chi phí, vừa không gây áp lực lên học viên
+Có thể nhưng không nên, sẽ yêu cầu API là Face, Google, Ins… để hạn chế tối đa viêc anonymnous phá app
+Không quá quan trọng, không có cũng được, tập trung vào làm sản phẩm tốt nhất thôi
+Hiểu được người chơi, hiểu được mong muốn của họ, personalize kiến thức và quá trình tiến bộ thay vì chỉ đưa nước đi tốt nhất và đưa đáp án như các app khác, ngoài ra vẫn cần tập trung vào trải nghiệm chơi game thực tế
+This is where người chơi cờ tướng có thể học, tiến bộ thật sự và vẫn có cơ hội giao lưu, được tiếp cận với AI-personalized learning một cách đơn giản dễ hiểu nhất, tiến bộ tốt nhất
+Thường thường trong thực tế tôi sẽ ưu tiên sửa strategic thinking hơn là situational decision, vì cái trước ảnh hưởng trực tiếp đến cái sau. Khi nào decisioni quá vô lý hoặc khó hiểu hoặc sai căn bản thì tôi mới tập trung vào đó
+Phải giải thích dễ hiểu cụ thể ngay cả cho người mới chơi có thể hiểu được, đồng thời giúp họ tiến bộ chứ không bị chán nản và bỏ cuộc sớm
+Spaced repetition sẽ vẫn là mô hình nhắc viêc học tập như mochi tiếng anh học Vocab nhưng sẽ là các puzzle khác nhau cùng một chủ đề, cố gom a wide variety of puzzles để không bị trùng lặp (ít nhất 50 mỗi loại) để giúp học cách tư duy thay vì chỉ học vẹt
+Tôi nghĩ để 100 là đẹp, dù không quá nhiều nhưng đủ để test trình
+Có, khi bắt đầu và trước khi đánh ván đầu tiên sẽ có một minitest, trình độ intermediate để đánh giá khả năng của người hcoiw, nếu giỏi quá sẽ thêm 1 test khó hơn rồi mới cho vào chơi với người/ hoặc với bot, từ đó dần dần phát triển lên
+Là có prototype đơn giản giúp triển khai ý tưởng của tôi và người chơi có thể trải nghiệm full tính năng, nhưng dataset chưa quá lớn, từ đó dần dần triển khai thêm
+Vẫn chứng minh được hướng đi sản phẩm và cách suy nghĩ của tôi là đúngm hiệu quả cho user, từ đó sẽ fix lỗi và tiếp tục hoàn thiện sp
+Tôi muốn nó là sự tiến bộ của user, có thể hiểu là learning signal qua quá trình sử dụng và tiếp xúc với app này
+Phải chứa những lập luận suy nghĩ thật dựa trên luật và dữ liệu tôi cung cấp, nếu tự bịa ra lập tức loại luôn, phải trích dẫn được từ data và kiến thức tôi cung cấp đầu vào
+Có thể nếu cần
+10 test đầu sẽ đến từ bản thân tôi, rồi mở rộng ra các ván đầu của danh thủ kỳ thủ và cả những newbie mới chơi nữa
+Chơi  kết quả  phát hiện lỗi  giải thích (how, why)  fix  puzzle để tiến bộ, sau đó có spaced repetition để nhắc học nữa
+Khó, tùy thuộc, nếu <100k 1 tháng thì được
+Engine thì phải xin bên phát triển xem có được dùng không, dataset cũng vậy, nếu không có tôi sẽ tự tạo ra và nghĩ ra thôi
+Phần product này
+Là tôi sẽ làm được với mọi tình huống và có đủ dataset, TH xấu nhất không đủ dữ liệu để hoàn thành train AI và không xin giấy phép sử dụng với các engine khác
+Sau 1 tháng, tôi cần có web dùng full và hiệu quả đầy đủ mọi tính năng, giúp người chơi dễ sử dụng có concurrent user khoảng 100
+Khi người chơi mới vào, tôi sẽ hiểu được tính cách của họ và phân tích, đưa AI phân tích và sắp xếp lộ trình bài học chứ không chỉ thuần AI giúp vì dễ bị hallucination
+Không, nhưng sẽ cố gắng tiến bộ hoàn thiên jnhieuef nhất có thể ở mỗi ngày
+
+Part 2:
+A.
+1. Cờ tướng là bộ môn đã theo tôi từ lúc 5 tuổi, đồng thời gắn bó với tôi xuyên suốt đến tận bây giờ. Đó cũng chính là inspiration để tôi tạo ra app này, nên tôi có rất nhiều kỷ niệm và lý do để từ cờ tướng  app. Đúng hơn nó là 1 phần quan trọng define con người tôi
+2. Bắt đầu chơi từ lúc 5 tuổi, được ông nội dạy
+3. Học với ông, học bằng cách thi đấu nhiều. Sau khi lớn hơn tầm 8-9 tuổi thì theo học thầy Hải, thầy Cường, thầy Trang ở CLB TLKĐ rồi đi thi đấu giải quốc gia quốc tế rồi dần tiến bộ hơn
+4. Rồi từng thi đấu nhiều giải quốc gia và quốc tế, thấy được trong CV tôi đã gửi, có tư liệu thật
+5. Có nhiều giải quốc gia quốc tế từ nhỏ, nếu từ lớp 10 trở đi thì có những cái đã được ghi trong CV tôi đã gửi
+6. Có thất bại và trận đấu, tôi đã từng thua 1 anh suốt từ bé đến bây giờ đơn giản vì họ giỏi hơn dù tôi đã chuẩn bị rất kĩ. Đồng thời tôi từng mắc một sai lầm, trận đấu sau đó dù tôi biết mình đã sai lầm nhwung không nhớ cách khắc phục và tiếp tục thua. Do vậy đó là mục tiêu và inspiration khiến tôi muốn tạo ra app. Đồng thời muốn truyền cách dạy học của tôi đến nhiều người khác nữa
+7. Phần trung cuộc, vì có quá nhiều biến hóa khóa lường. Tôi biết sai lầm của mình nhưng chưa có một hệ thống giúp phân tích và sửa chữa, khiến tôi dễ quên và không hiểu bản chất  cần app
+8. Trình độ trung tá, có thể top 2-3 ở lứa tuổi của tôi toàn quốc, khá giỏi
+9. Biết đọc notatio như P1-2, X2.4, M2/3…
+10. Không lưu ván đấu cũ nhưng có thể tìm được trên mạng, đồng thời trên mạng cũng có lượng lớn dữ liệu về các ván đấu của danh thủ hay những ngườ khác  nguồn dùng được
+11. Rất nhiều, chắc chắn khoogn thiếu, nếu thiếu tôi tự đánh thêm cũng được
+12. Có thầy Trang có thể feedback cho sản phẩm nhưng tôi cũng có thể tự làm analyst phân tích được
+13. Có nhiều bạn bè và người chơi có thể nhờ được
+14. Tất cả chỗ đó, và mong muốn biến ý tưởng thành hiện thực, đồng thời problem solving và cách tư duy của chính bản thân tôi
+15. Because I wanna spread the love of Chinese Chess and teach others in Chinese Chess the way I wished to be.
+B.
+1. User chính là những người mới chơi, muốn có cách học nhanh hiệu quả - yếu tố tiên quyết trong thời đại hiện nay. Tiếp đến là những người bị chững lại ở một mức độ không thể tiến bộ, tôi giúp họ, Cuối cùng là những master muốn hoàn thiện bộ kỹ năng của mình, những puzzle và nhận xét của tôi sẽ giúp họ complete
+2. Có nhưng không phải main, những người mới chơi sẽ có 5-10 buổi tutorial
+3. Có, là main, giúp họ phát triển bước đầu vững chắc và nhanh hơn
+4. Có thể, sau main, giúp họ bứt phá khỏi limit hiện tại
+5. Có thể áp dụng nếu muốn học tốt hơn, sau intermediate
+6. Last one, có nhưng không quá cần thiết, họ đôi khi là người feedback lại sản phẩm và chỉ dùng app nếu muốn hoàn thiện mọi kỹ năng còn thiếu (overall test)
+7. Tập trung vào độ tuổi 10-15 và trung niên, lứa đầu để họ dần dần phát triển niềm yêu thích đam mê với cờ tướng, lứa sau để họ có một phương pháp học khoogn tốn quá nhiều thời gian nhưng vẫn tiến bộ và fix lỗi tư duy được
+8. Việt Nam trước, vì cờ tướng chỉ xoay quanh Việt Nam Trung Quốc, nếu cần hoặc có offer từ nước ngoài sẽ thêm billingual sau
+9. Giao diện Tiếng Việt trước vì người chơi hướng đến đầu tiên là người Việt, sau đó nếu có offer hoặc require từ bên ngoài sẽ thêm billingual sau
+10. Những người dùng bình thường hiện tại chỉ học bằng cách theo các bài giảng truyền thống của các thầy hoặc thi đấu nhiều. Chưa có phương pháp giúp họ học từ sai lầm, từ chính những trận đấu của mình và phát triển theo hướng đó. Do vậy tôi là pioneer trong cách nghĩ này
+11. Khó chịu nhất là họ không thu được quá nhiều từ một ván đấu của mình. Do vậy cần người phân tích, chỉ lỗi và giúp họ tiến bộ, có được kinh nghiệm và không mắc sai lầm cũ ở những trận đấu tiếp theo
+12. Youtube, như một MXH và một cái kho, chỉ cung cấp ván đấu chứ thiếu sự hướng dẫn, mentor để họ ngày càng giỏi hơn, thiếu người giúp những người mới thực sự hiểu nước đi chứ không chỉ biết where is best mà là HOW, Why, và How can do that
+13. Tương tự như Youtube ở câu trên
+14. Web cờ tướng hiện tại có thể có chức năng thi đấu, xem lại ván đấu và chỉ ra where is the best nhưng thiếu sự phân tích, sự hướng dẫn cũng như thiếu puzzle followup để họ có thể thực sự nhớ và tiến bộ, loại sai lầm cũ
+15. Nếu cần thì có vài người em, người bạn có thể nhờ được
+16. Học sinh trường có thể, dù lượng người chơi cờ tướng không nhiều, nhưng có thể
+17. Chưa có, có thể nhờ vài bác trong các CLB lớn tuổi, hơi khó
+18. Workshop thực tế thì hơi khó nhưng sẽ nhờ những người bạn online tạo một buổi thu thập feedback của mọi người để chơi và hoàn thiện sản phẩm
+19. Tổ chức online được, có thể không cần họp và sẽ gom nhận xét, rồi sửa dần theo nhận xét có chọn lọc
+C.
+1. Strategic thinking và problem solving, qua việc thực sự đánh giá một hình cờ dựa vào tình hình hiện tại, đồng thời tăng khả năng planning của họ lên (từ 1-2 nước thành 6-7 nước) rồi từ đó nâng trình
+2. Là lối chơi chung sẽ sử dụng trong trận đấu đó, ví dụ như là sẽ tấn công thì sẽ nhìn vào những điểm yếu của đối phương và dồn quân, phòng thủ thì chú trọng đội hình và hình trận chặt chẽ, các quân liên kết tốt với nhau,….
+3. Problem solving skills là cách người chơi react với một hình cờ, một nước đi mới chưa gặp bao giờ. Khi đó họ cần skills như planning, đánh giá tình huống, đưa ra nước đi đột phá… để có lợi nhất cho hình của mình
+4. Mình muốn họ chơi một ván cờ nhanh (5p) rồi tìm lỗi, phân tích lỗi, được AI hướng dẫn và fix nó, đồng thời sau đó được spaced repetition nhắc học bài để không BAO GIỜ lặp lại lỗi đó nữa. Từ đó dần dần họ sẽ cải thiện được khả năng phản xạ cũng như cách tư duy khi gặp hình cờ lạ
+5. User nên biết cách đánh giá hình cờ (cơ bản), nên nhớ những lỗi của bản thân và không bao giờ mắc phải nữa, đồng thời biết cách đưa ra nước đi phù hợp (nếu suy nghĩ kip), nếu chưa suy nghĩ kịp thì dần dần sẽ cải thiện khả năng nhìn nước nhanh và nghĩ nhanh
+6. Có cả pre-test trước khi vào ván đấu và post-test (review lại)
+7. Đươngn hiên là phải giải thích tại sao sai, (có thể nhờ user đưa ra dự đoán đánh giá của mình trước, sau đó mới check lại với ans của AI và giải thích tại sao sai, tại sao cnay lại đúng)  bài học sâu hơn WHY
+8. Có đương nhiên, trước khi vào ván đầu tiên sẽ có các bài test (puzzle, câu hỏi…) trước để ước đoán trình độ người chơi, sau đó AI sẽ follow theo đó và giải thích sau này. Khi trình được nâng lên thì AI cũng sẽ tăng level người chơi theo đó mà giải thích
+9. Beginner sẽ được áp dụng analogy để giải thích hết sức dễ hiểu như link sang thực tế cuộc sống,… để không quá chú trọng vào lý thuyết nặng trong cờ tướng mà giúp họ hình dung và tưởng tượng, nhớ lâu hơn, từ đó xây nền tảng từ đầu
+10. Với intermediate, khi họ đã thuần thục với luật chơi, cách đi, họ sẽ cần giải thích WHY, tại sao, dựa theo strategic thinking họ có từ đầu sẵn, sau đó từ từ build theo persona của họ. Cuối cùng là đưa puzzle để họ thực sự hiểu điều đó và áp dụng sau này
+11. Với advanced thì có lẽ chỉ cần giải thích tại sao họ sai, đồng thời đánh giá bàn cờ giúp họ và đưa nước đi tốt nhất (final turn) để cuối cùng họ sẽ nhớ vì với trình độ đó thì chỉ cần vài puzzle là họ sẽ tự hiểu thôi
+12. Có, theo chủ đề tấn công phòng thủ kiểm soát chèn ép… trong khai cuộc trung cuộc tàn cuộc
+13. Có, càng đa dạng chủ đề, những chủ đề càng đặc sắc càng dễ nhớ gây ấn tượng mạnh, vừa để giữ chân người chơi, vừa để họ có ấn tượng tốt về sản phẩm của tôi
+14. Có thể có, chủ đề pin sẽ là cái sở trường của tôi (kiểm soát, chèn ép) còn lại sẽ đặt ở trên các chủ đề còn lại, về range of chủ đề sẽ xem thêm sau
+15. Đương nhiên có, kèm theo đó là discovered quân yếu, discovered khu vực yếu, … defense nữa
+16. Đương nhiên, đó sẽ là tuyển tập các bài tập chiếu hết tôi đã từng phải làm khi còn là học sinh (có khá nhiều)
+17. Có, sẽ xem làm thế nào để ăn được nhiều quân nhất, có lợi nhất bla bla
+18. Đương nhiên, phần này sẽ được pin trong attack vì việc an toàn của tướng là quan trọng nhất (CỜ TƯỚNG), 
+19. Không giống cờ vua cái này pawn không quá quan trọng, nhưng vẫn sẽ có ở một vài hình đặc thù
+20. Có, sẽ có một list khai cuộc do tôi học và feed vào AI (opening part)
+21. Endgames thì na ná phần tàn cuộc checkmate, ngoài ra sẽ có các hình tàn cuộc chắc thắng, chắc hòa, chắc thua… và các hình cần đổi quân để có lợi thế về tàn cuộc
+22. Phân tích là sau ván đấu, việc dạy đương nhiên sẽ có rút ra từ những bài học, sẽ có nguyên một tuyển tập bài học khai cuộc trung cuộc tàn cuộc và những dữ liệu từ trận đấu sẽ tìm những bài học hợp lý, liên quan đến trận đấu để feed cho hợp lý (làm puzzle sau trận để followup)
+D.
+1. Tôi muốn AI làm phân tích (điều được thấy trong một vài engine như xiangqi.ai hiện nay), rồi từ những phân tích về người chơi và ván đấu đó sẽ chuyển qua search trong bộ puzzle/bài học và đề xuất nó cho người chơi để improve (đương nhiên không bắt buộc nhưng rcm). Tôi không thể ngồi phân tích hàng trăm hàng ngàn hình cờ manually được (chỉ 1-2 thôi) nên sẽ dùng AI để phân tích và sắp xếp như vậy
+2. Có, rất cần phân tích ván đấu ở từng hình cờ một như một vài engine hiện nay (đặc biệt là những điểm ngoặt quan trọng của ván đấu)
+3. Có, RẤT CẦN sự tự nhiên, đồng thời mỗi lời giải thích cần liên quan và relate tới trình độ đã được phỏng đoán từ trước (cái này có thể thay đổi dựa trên tiến bộ và quá trình học của học viên), quan trọng nhất không phải tối ưu nhất hay tốt nhất mà là phù hợp nhất với học viên, để họ có sự cải thiện và tiến bộ tốt nhất
+4. Đương nhiên, puzzle cũng sẽ được xếp loại theo các chủ đề, theo các trình độ khác nhau, để phù hợp với sự tiến bộ của user
+5. Đương nhiên, weakness của người chơi như (quá vội vàng, quá chậm, nghĩ quá nhiều,…) đồng thời sẽ thêm tính năng phát hiện điểm yếu trên bàn cờ để tấn công vào đó (pinpoint)
+6. Từ những weakness và những thiếu sót cũng như dựa trên những trận đấu của họ, ta sẽ lập cái overall review về user đó, từ đó tạo training plan (VD: chơi 1 ván  weakness  vài puzzle để fix weakness đó  ứng dụng thực tế chơi thêm một vài ván  weakness  tiếp tục solve)
+7. ChatCoach thì không quá cần thiết khi đã có training plan tích hợp AI Assistant, nếu cần ChaBot để giải quyết những vấn đề mà training plan chưa làm được (VD thông tin tổng quát về web, cách sử dụng tất cả tính năng, những khúc mắc cần giải quyết trong quá trình sử dụng) thì có thể thêm
+8. Độ khó puzzle sẽ được tôi tự đánh giá lúc feed ban đầu, sau đó mới categorize chúng vào những phần khác nhau để sắp xếp và provide một cách phù hợp cho user được. Sau một khoảng thời gian (1 tuần), nếu một puzzle khó được giải quá nhiều hoặc 1 puzzle intermediate mà không ai giải được thì phải change cho hợp lý hơn
+9.  Có đương nhiên, đó sẽ là thuộc phần phân tích trận đấu và giải đáp thắc mắc cho những user, nhưng sẽ phải đợi sau khi hỏi “Tại sao chỗ này bạn lại nghĩ như này?” hoặc “Đoạn này bên nào đang có lợi thế? Vì sao?”… như vậy rồi mới feedback chứ không trực tiếp đưa đáp án
+10. Khá khiêm tốn, trình bày lại với tôi sự cần thiết ngân sách của API và làm thế nào để tối ưu nó, ứng dụng như nào
+11. Hơi ít, nếu <100k VND 1 tháng thì còn gồng được
+12. Đương nhiên, kịch bản nếu API giá cao quá thì phải chạy miễn phí (prototype chưa cần tiền)
+13. Chạy local trước để test các tính năng, sau đó đẩy lên web sau
+14. Chưa biết, có quan trọng hay không, để xem lại sau, hướng dẫn tôi cách xem lại
+15. Rồi, LLM của tôi sẽ là phân tích WHY, đánh giá HOW và truyền đạt thật dễ hiểu cho user chứ không chỉ làm engine đưa ra nước đi tốt nhất
+16. Đúng, gần như chính xác là vậy. Bên cạnh đó còn có kho puzzle và lesson để người chơi có thể truy cập vào mà không mất thời gian đánh cờ nếu họ muốn
+17. Ban đầu phải là rule-based và những dữ liệu tôi tự nhập vào, sau đó mới đến LM để tăng scale và rộng rãi hơn
+18. Dataset về puzzle và các hình cờ được phân tích thì có, nhưng những ván đấu với số lượng lớn thì chưa chắc đã sẵn sàng, sẽ cố
+19. Nếu chưa có dataset sẽ cố gắng có, thuật toán adaptive chắc chắn là bước đầu từ đó phát triển lên LM
+20. Đương nhiên, phần READme sẽ có riêng một file trình bày như vậy, chưa phải ưu tiên bây giờ
+21. Đương nhiên, bên cạnh các lỗi thường gặp được xếp vào từng loại khác nhau, còn tạo một set data để lưu ván đấu của người chơi và persona theo họ nữa
+22. Tôi nghĩ đó sẽ lưu  bên cạnh phần profile của người chơi, họ có thể tự vào đó xem chứ không cần xem qua vài trận đấu, vì app của tôi không khuyến khích người chơi đánh nhiều ván cờ mà muốn họ học được tối đa từ những ván đấu đó
+E.
+1. Cần có cả 3 yếu tố, để AI tutor là nổi bật nhất
+2. Đương nhiên, nếu những người chơi đã có những ván đấu thì có thể áp dụng learning from your mistakes được, dần dần sẽ tập hợp lỗi thành một nhóm và từ đó track progress của họ. Không chỉ tập trung vào đó mà cần có cả repo về lessons (khai cuộc trung cuộc tàn cuộc) và puzzles để họ học song song nữa
+3. Việc user upload ván của người khác lên biến app tôi thành một engine, điều này không thích lắm nhưng họ vẫn có thể làm vậy nếu dùng trả phí vì sẽ tốn khán hiều token
+4. Đúng, nên persona nhất có thể với những user đã có dữ liệu
+5. Mistake replay chỉ xảy ra khi ở trong phần Review ván đấu, khi đó sẽ hỏi “Why họ đi như vậy?”  “Why bạn biết là bạn đã sai”  “Nước đi đúng là gì? Tại sao?”  Check lại với đáp án của AI và đưa puzzles và lessons follow0up
+6. Đương nhiên, trong lúc Review, người chơi sẽ cần tự phân tích hình cờ trước rồi mới check với đáp án, yêu cầu họ phải suy nghĩ và tự đánh giá sai lầm của mình  nhớ lâu hơn
+7. Đương nhiên, khi người chơi tiến bộ hơn thì phải tăng level puzzle lessons lên khi đó mới có hiệu quả
+8. Khá khó để bao quát toàn bộ, nếu làm như Doulingo thì sẽ cần wide knowledge khá lớn, sẽ cân nhắc, khá thú vị, nhắc tôi sau
+9. Streak là cái vớ vẩn nhất tôi từng thấy, nếu Streak hoặc XP (Gamification) có tác dụng giúp người chơi thú vị và có nhiều mục đích để quay lại app hơn thì oke, không thì thôi
+10. Đương nhiên sản phẩm vẫn phải thân thiện với user nhưng không muốn hướng sp của tôi như một game lắm, giống app để học cờ tướng hơn
+11. Dashboard thì phải dành cho user chứ, không phải HLV AI. Những gì HLV feedback cho tôi sẽ được dùng tin nhắn thông thường để nói cho tôi và tôi feed vào AI chứ không trực tiếp
+12. Comment trên position từ HLV sẽ giúp tôi hoàn thiện sản phẩm hơn nhưng không trực tiếp trên app mà qua một cái khác (VD: tin nhắn thông thường), còn feedback từ user sẽ được tổng hợp trực tiếp từ web/app đó
+13. Đương nhiên, đó cần dùng để hoàn thiện sản phẩm chứ không đơn thuần cho người chơi, tôi sẽ dùng cái đó feed AI để nó ngày càng suy nghĩ giống những người có trình độ cao advanced hơn
+14. Chưa tìm hiểu, có thể sẽ cần thêm để làm sản phẩm friendly với user hơn
+15. Nên có, không quá chú trọng, hiện tại ban đầu tập trung vào người dùng Việt Nam sau đó mới đến billingual sau (mở sang TQ  nước ngoài ít chơi cờ tướng)
+16. Có nhưng không phải tất cả mọi người. Sẽ phải chia và flexible theo trình độ của từng người được dự đoán (trình độ cũng cần track progress, có thể phân theo cấp rank như trong game để motivate họ)
+17. Rất dễ dùng, hiệu quả, đặc biệt tính năng giúp thấy được sai lầm, phân tích trận đấu và học từ nó sẽ chắc chắn là điều ai cũng muốn dùng, không chỉ mỗi beginner
+F.
+1. Prototype cần để tôi hoặc người chơi có thể chơi/học và từ đó sẽ áp dụng các tính năng như phân tích ván đấu  giải thích và fix lỗi tư duy  puzzle lesson followup. Để AI và hệ thống học từ lỗi của người chơi là cách tốt nhất để personal coaching cho họ
+2. Có thể có, đó cũng cần thiết để giữ người chơi muốn PvP ở lại với web app của tôi
+3. Có, nên có để những người chơi một mình cũng có môi trường học và chơi, thậm chí computer được thiết kế dựa trên personal statement hay trình độ của người chơi đôi khi còn hiệu quả, giúp họ tiến bộ nhanh hơn
+4. Đương nhiên, cần sự kết hợp của cả hai để maximize user
+5. Nên để 3D, nhìn cho thích mắt, thú vị, nhưng là optional
+6. Trọng tâm 2D, vì cờ tướng về cơ bản vẫn là đánh trên 2D, giúp tối ưu, sẽ phát triển trước, 3D chỉ để nhìn stylistic và nhìn đẹp mắt hơn thôi
+7. Đương nhiên, đó sẽ là cách tốt để visualize như chơi thật đồng thời giúp người chơi thuận mắt dễ theo dõi. Vẫn cần tính đến việc tối ưu speed khi đi một nước (VD như có thể bấm vào ô bắt đầu lần 1 và bấm vào ô muốn đi đến vào lần 2)
+8. Có thể có, phần coaching đó sẽ tập trung vào persona của users và dần dần mở rộng cho họ, có thể thiết kế roadmap như doulingo nhưng sẽ không nhét quá chi tiết làm hoảng beginner hoặc người mới chơi
+9. Không cần thiết, nước nào hợp lệ sẽ hiện màu xanh lá cây, nước nào không hợp lệ sẽ hiện màu đỏ (như chess.com khi đang thi đấu thật), còn khi review thì sẽ dựa trên hệ thống chấm nước di !! ! ?! ? tốt của bên cờ vua, đương nhiên sau khi hỏi user và nhận câu trả lời thì mới đưa ra chứ không hiện ngay đáp án từ đầu
+10. Undo chỉ dùng khi review, khi thi đấu thật muốn undo phải hỏi ý kiến đối thủ có đồng ý hay không (khi chơi với máy thi đấu thật thì không được phép undo)
+11. Chưa hiểu Move history nghĩa là gì lắm
+12. Flip board cần, nên làm
+13. Timer đương nhiên có, môn cờ nào chẳng cần timer, sẽ áp dụng một vài mô hình đơn giản, thậm chí thêm ảnh đồng hồ thi đấu cờ thực tế vào nhìn cho sống động
+14. Takeback chưa hiểu nghĩa là gì lắm
+15. Evaluation bar chỉ hiện khi review, tối giản hết sức chỉ làm những phần cần thiết khi thi đấu, evaluation bar nên làm như bên cờ vua (hiện 1 thanh dọc thẳng, nếu đen đang ưu thế thì vạch đen sẽ nhiều hơn, vạch trắng sẽ ít hơn)
+16. Engine depth control sẽ có, còn phụ thuộc vào trình độ người chơi, cái này sẽ vary sau
+17. Chỉ dùng khi review, rất cần thiết, nên apply nhưng sẽ cần có phí nếu dùng quá nhiều lượt, cho giới hạn lượt free mỗi ngày
+18. nên có những sẽ later áp dụng cho premium tại tốn khá nhiều token (1 ván có thể lên tới 100 hình cờ cần phân tích)
+19. Nên có cả hai, tuy vậy cá nhân tôi thích hình cờ tròn và ký hiệu chữ Hán truyền thống hơn vì cảm thấy thân thuộc và thật sự là cờ tướng hơn, nên xây dựng hình chữ Hán trước rồi hiện đại sau
+20. Color nên giữ truyền thống (cờ màu ghi xám, hoặc là combo đỏ-đen/xanh rồi cho người chơi chọn(không quá trọng tâm))
+21. UI thì tôi vẫn khá yêu thích chess.comm hoặc là instagram vì phân chia khá rõ ràng, ngoài ra việc spaced repetition tham khảo mochivocab, còn lại thì chưa quá ấn tượng với điều gì
+22. Desktop-first vì dễ kiểm chứng hơn, xây nền bên desktop rồi sẽ qua mobile sau
+23. Người test của tôi có thể dùng cả hai, có thể flexible, ưu tiên trên desktop trước
+G.
+1. Đương nhiên luật cờ có từ rất lâu rồi, luật sẽ lên wiki và các trang web uy tín để tham khảo luật cờ rồi về train cho AI. Việc học luật rất quan trọng và là cái đầu tiên AI ML cần học, sau đó mới áp dụng việc phân tích vào được
+2. Nên phát triển dần, prototype chưa cần hoàn thiện nhưng sẽ phải hiện hình dần
+3. Có thể trình độ kém hơn tôi một chút (intermediate) để tôi có thể totally control và không bị hallucination vì mục tiêu hướng tới đầu tiên là beginner và người chơi còn yếu. Dần dần sau đó mới đến level cao hơn thì sẽ tính sau
+4. Có chia thành nhiều level (của tôi hiện tại sẽ tính là level 4 thì tập trung phát triển 3 level đầu tiên trước) hoàn thiện xong sẽ là bước đệm để tới các level tiếp theo. Level càng thấp thì càng phải kĩ, càng phải dễ hiểu thì các bước cao hơn sẽ dễ làm hơn rất nhiều
+5. Đương nhiên rồi, cái này không phải trọng tâm nhưng rất cần thiết, có thể tham khảo từ các engine hiện có rồi sẽ phát triển ra cái của bản thân tôi
+6. Có, tương tự chess.com, nhưng tôi cần hiểu thật sự các tiêu chí để evaluate chứ không đơn thuần là đánh giá đơn giản (phần này tôi sẽ tự làm kĩ)
+7. Đương nhiên là có rồi, mỗi best move sẽ ứng với từng strategy khác nhau (tấn công – phòng thủ - chắc chắn)… nhưng không thể có quá nhiều, nếu mỗi cái đều có full sẽ rất tốn token nên sẽ có chọn lọc. Một hình cờ chỉ có full khi nó có quá nhiều biến hóa, còn ở một vài hình cụ thể ở những chủ đề nhất định thì sẽ không cần full
+8. Đương nhiên, bên cạnh best moves thì phải có blunders/mistakes, điều này thậm chí còn quan trọng hơn best moves vì đó là cái user có thể học và tiến bộ nhanh hơn là học thuộc best moves. Dần dần ta yêu cầu user đưa ra best move nhưng trước hết cần khắc phục mistakes trước, không lặp lại
+9. Variation thì đương nhiên có, hiểu như planning của người chơi. Sẽ chỉ có khi mua premium vì có quá nhiều variation, không thể đếm hết được sập API free mất. Trong trận đấu và khi review sẽ không autoshow mà sẽ để họ plan xong, nói cho mình ý tưởng rồi mới recheck chứ không cung cấp đáp án luôn
+10. Heatmap đương nhiên, đó cũng là ý tưởng đầu tiên của tôi trong đấy (VD vùng yếu, vùng mạnh của một bên), từ đó giúp ích cho explanation dễ hiểu hơn và thay strategic, giúp người chơi biết phải tấn công và planning như nào
+11. Càng rõ ràng càng tốt, tuy vậy engine không quá cần cái này. Điều này quan trọng hơn với user khi họ cần tự làm điều đó và đưa ra strategic tốt nhất chứ không quá phụ thuộc vào máy. Điều này tính được nhờ tự đánh giờ hình cờ hiện tại vì đó cũng là một phần quan trọng app muốn dạy họ
+H.
+1. Chưa có, nguồn puzzle có thể tìm được trên mạng hoặc nhờ thầy, hoặc tự đi research được, không thiếu đâu
+2. Dataset là tài liệu trên mạng, TH xấu nhất không được dùng thì sẽ phải tự đi nghĩ cách tạo ra
+3. Đương nhiên, trong trận đấu sẽ có vài (2-3 hình cờ key), đó cũng later on dùng làm dataset sau này được, như kiểu mỗi ván sẽ có thêm 1 puzzle ấy
+4. Puzzle hiểu là 1 hình cờ, rồi người chơi sẽ cần tự phân tích, đánh giá và đưa ra nước đi tốt nhất. Khi đó engine cũng phải thay đổi theo lựa chọn của người chơi và phân tích. Cần hỏi trước lý do họ đi nước đó rồi mới check lại với đáp án của AI
+5. Có, mỗi hình sẽ chỉ cho 5p (không khuyến khích user sử dụng AI). Nếu sau 5p chưa có câu trả lời thì mới hỏi khúc mắc của user còn là ở đâu? Để họ tự nói điểm thắc mắc của mình và focus giải nó. Sau thêm 1p chưa giải được thì mới đưa ra đáp án của AI.
+6. Có thể dùng hints (trả phí hoặc free 2-3 lượt mỗi ngày). Nhưng tối thiểu sau 2p suy nghĩ mới có thể dùng hints. Không quá khuyến khích nhưng nên có
+7. Đương nhiên, với những TH sau 5p user chưa giải được mới có explanation, nếu giải nhanh hơn thì sẽ hỏi lý do tại sao họ trả lời được puzzle đó (dùng làm data cho personal training luôn)
+8. Đương nhiên có, tag puzzle, tag play, tag lessons, tag review, tag learning
+9. Difficulty score không cần quá chi tiết kiểu từng số từ 1-100, chỉ cần chia theo các level (VD người chơi level này sẽ được expected to giải được puzzle level tương tự)
+10. Phải có spaced repetition, rất hiệu quả cho việc học và nhớ, nhưng không lặp lại puzzle trước đó mà cho các puzzle cùng chủ đề/cách giải quyết để tạo sự mới mẻ và tránh học vẹt
+11. Có, cũng là một kiểu spaced repetition, cần thiết
+12. Accuracy không cần thiết vì khá vary ở những level thấp, chủ yếu dựa vào trình độ được ước lượng của user mới adapt theo nó
+13. Có nhưng không quá quan trọng, vẫn cần lưu lại làm record/data nhưng không liên quan rcmder vì cũng khá vary
+14. Theme quan trọng, dựa vào persona của từng user, sẽ cố gắng giải thích (nếu họ từng gặp lỗi sai này rồi thì giúp họ nhớ lại điều đó), đồng thời giúp họ thật sự tiến bộ và cải thiện về mảng đó chứ không chỉ coi như những theme khác
+15. Difficulty thì không, đương nhiên có bài level 2 nhưng khó và bài level 3 lại dễ, không quá liên quan
+16. Có, nên, giúp họ vừa học được điều mới vừa refresh được kiến thức cũ
+17. Game history tương tự recent mistakes, có
+18. Được, hãy giới thiệu và overview cho tôi trước để cân nhắc bổ sung hoàn thiện
+I.
+1. Có chứ, research question cũng nói về điều tôi muốn biết và xây dựng cho user mà
+2. Được, như vậy vừa có feedback, vừa có data, rất tiện và hiệu quả
+3. Không có, chưa có 
+4. Làm cá nhân, xin permission hơi khó
+5. Có chứ, như vậy xem bản thân đã đánh giá chính xác độ khó puzzle chưa còn điều chỉnh (nếu có)
+6. Có chứ, lưu vào record và làm data cho persona nhưng điều này khá vary, khó dùng để evaluate điều gì
+7. Có chứ, RẤT RẤT muốn
+8. Là gì không hiểu, liên quan gì>
+9. Cần thiết, để liên tục cải thiện ML và cho ra sản phẩm mới
+10. Những user có thể đóng góp feedback cho một puzzle hoặc hình cờ nào đó, nếu muốn public thì cũng được còn để ẩn danh cũng được
+11. Có, để xem tiến độ đến đâu rồi, để xem những mục tiêu aim của mình đạt được những gì rồi tiếp tục fix và hoàn thiện sản phẩm
+12. Có thể public
+13. Không, phần results hay records cần set private, chỉ show khi nhà tuyển dụng cần mà thôi
+14. Đương nhiên, prototype quan trọng nhưng sau khi app thì vẫn phải phát triển tiếp chứ
+J.
+1. Mới là kế hoạch, đang muốn làm một mình, chưa có team
+2. 1
+3. Tôi
+4. Tôi
+5. Tôi
+6. Tôi
+7. Tôi
+8. All
+9. As much as possible, cần bao nhiêu bảo tôi tôi tự sắp xếp
+10. 0h
+11. Full ngoại trừ Notion và Trello
+12. Khó, ưu tiên solo project
+13. Muốn làm một mình
+K.
+1. Cơ bản, đủ dùng cho beginner
+2. Hiểu
+3. Hiểu
+4. Hiểu
+5. Hiểu
+6. Hiểu
+7. Hiểu
+8. Chưa rõ lắm
+9. Chưa rõ lắm
+10. Chưa rõ lắm
+11. Rồi
+12. Chưa
+13. Chưa
+14. Chưa
+15. Rồi
+16. Rồi
+17. Rồi
+18. RỒi nhưng quên kha khá rồi, cần học lại
+19. Hiểu khái niệm nhưng chưa tiếp xúc, cần học lại
+20. Không
+21. Chưa
+22. Chưa
+23. Rồi, deploy bằng Render hay cái gì đại loại thế, khá thành công
+24. Chưa
+25. Ra prototype rồi track progress từng ngày
+26. Có, càng CHI TIẾT càng tốt, giải thích từng nhóm lệnh để tôi hiểu chức năng của chúng trong all
+27. Không quá cứng nhắc, nếu tôi chưa hiểu sẽ bảo chưa hiểu, bạn giải thích lại cho tôi, còn lại không bao giờ bỏ qua phương án tốt nhất ƯU TIÊN KẾT QUẢ TRƯỚC, hiểu biết tôi sẽ tự followup
+L.
+1. Windows
+2. Inside viewer hay gì đó, không nhớ
+3. Rồi
+4. Rồi
+5. Python 3.14
+6. Git cài rồi
+7. Không biết xem
+8. Chưa
+9. KHông biết xem
+10. Chưa
+11. Rồi
+12. Rồi, từng upload vài project rồi
+13. Có
+14. Rồi
+15. Không
+16. Không biết, dùng tài khoản Google được không
+17. Không
+18. Tôi đang dùng ChatGPT Plus
+19. Có, chưa dùng bao giờ
+20. Có Plus
+21. Không có Pro, có thể mua nếu cần
+22. Không có, cài như nào
+23. 477 GB
+24. Còn 280GB
+25. Chắc không có đâu
+26. Có
+M.
+1. Combined, ChatGPT Plus lên ý tưởng, Claude code
+2. Giai đoạn đầu copy paste code trước để tôi hiểu ý tưởng và không bị hallucination, sau này ML đủ lớn sẽ cho truy cập vào repo sau
+3. Đúng, càng CHI TIẾT càng tốt, hướng dẫn beginner như tôi
+4. Có thể gửi và giải thích thật chi tiết dễ hiểu sâu sắc đồng cảm tận tình tận tâm cho tôi
+5. Có thể tạo ra context nếu AI cần, dễ làm thôi
+6. Có, để người đọc và chính tôi dễ hình dung đường đi nước bước
+7. Có, cần thiết, tôi sẽ chuẩn bị
+8. Có, dùng để track progress dần dần
+9. Có chứ, tất cả những gì AI Làm phải được track và quản lý, tránh phá project hoặc hallucination
+10. Có, càng nhiều prompt cụ thể chi tiết hiệu quả càng tốt, tôi vừa học vừa làm luôn, thậm chí tạo nguyên 1 file prompt hướng dẫn tôi cũng được (HIỆU QUẢ)
+11. Có đương nhiên rồi
+N.
+1. Repo chắc chắn sẽ được public
+2. XIANGQIAI hoặc tên gì đó sẽ nghĩ sau
+3. Chưa quá cần thiết
+4. Professional vì mục tiêu chính là gây ấn tượng mạnh với những nhà tuyển dụng đại học mà
+5. README có 2 phiên bản, tiếng Việt trước để tôi fulfill và check nội dung ý nghĩa trước khi sang tiếng Anh cho nó billingual
+6. Có
+7. Có
+8. Có, demo hay prototype dùng track progress, nhiều README riêng ra cũng được
+9. Có
+10. Có
+11. Không nên, tôi sẽ cố diễn tả bằng hình vẽ thay vì screenshots, đương nhiên không phải không dùng
+12. Có
+13. Đương nhiên rồi, sẽ được update thường xuyên (weekly, 2-3daysly)
+14. Có, để những người khác có thể feedback và giúp sản phẩm phát triển
+15. Đương nhiên, hiện tại tôi cũng đang làm nhưng không phải với sản phẩm app cờ tướng này
+16. Có, đưa vào phần README hoặc tách riêng ra docs cũng được
+17. Có
+18. Có
+19. Có, giải thích dễ hiểu ra
+20. Có, rất cần để tránh sản phẩm là AI-generated
+O.
+1. Có, người chơi có thể chọn người chơi ẩn danh hoặc guests nếu muốn
+2. Có thể thêm vào, người chơi có thể chọn người chơi ẩn danh hoặc guests nếu muốn
+3. Email tương tự Google, TUYỆT ĐỐI KHÔNG yêu cầu mật khẩu gmail của họ, nếu muốn tự tạo nick riêng thì oke thôi, lưu username và pass (web của tôi) vào data
+4. Có thể thêm anonymous user
+5. Có chứ, dùng data train AI sau này explanation mà
+6. Có chứ, tạo kho puzzles và ngày càng được thêm nhờ những ván đấu của người chơi, tự làm dày lên điều đó
+7. Có, RẤT RẤT RẤT cần thiết cho phần persona của họ mà
+8. Đương nhiêm vừa để check tránh hallucination vừa để chúng cải thiện dần dần qua ngày
+9. Có chứ, kết hợp trích nguồn các engine mạnh bên ngoài và tự phát triển ML của riêng app
+10. Không, cần player dashboard thôi để họ tự track progress (kiểu như Doulingo)
+11. Có chứ, lúc nào cũng cần database để train AI mà
+12. Có, cố gắng bảo vệ nhất có thể
+13. Đó là tùy chọn lựa chọn của user, việc của tôi chỉ là cung cấp cho họ những sự lựa chọn mà thôi
+14. Có, cái gì càng tiết kiệm tối giản được thì càng tốt
+P.
+1. Phục vụ người chơi, những thời gian đầu khá cần chú trọng retention rate đấy
+2. Đương nhiên rồi, dù có nhiều tính năng nhưng vẫn cần dễ hiểu ấn tượng thu hút với người dùng
+3. Có chứ, sẽ quay video demo dùng account (do tôi) làm tutorial cho người mới nếu cần
+4. Có (sẽ bắt đầu bằng giải puzzle  người chơi tự đánh giá  AI)
+5. Không nên quá dài, chỉ cần để giới thiệu hết tính năng và thu hút người chơi thôi (30-60s là đẹp)
+6. Thôi, phần đó sẽ cho ở cuối page (About Me) hoặc gì đó chứ không bắt buộc họ cần xem
+7. Có chứ, có research question mà
+8. Có chứ, được public trên repo mà
+9. Có chứ, cần thiết để chứng minh social values
+10. Có, giúp họ dễ track progress hơn
+11. Có, cần ,vì tôi đôi khi cũng cần mượn source của vài engine khác
+12. Được, nên có số liệu riêng
+13. Có, Có, Có
+Q.
+1. Nên là tiếng Việt vì muốn giữ bản sắc hơn, sau đó nếu cần thiết sẽ thêm ngôn ngữ Tiếng Anh vào thành app billingual. Khi đẩy sang app trên Appstore hoặc web có nhiều người dùng nước ngoài thì sẽ thêm cách để dịch trang sang tiếng nước ngoài
+2. Xiangqi được, đương nhiên hình minh họa bên ngoài web vẫn là hình cờ tướng thông thường nên khá oke, dễ hiểu dễ hình dung khi bắt đầu vào web
+3. Mình muốn là traditional Vietnamese + minimalist, tập trung almost vào cái chất lượng sản phẩm (khi đánh cờ, khi học, khi giải puzzle và nhận explanation hơn còn vibe thì phải Vietnamese + thể hiện cá tính cá nhân của tôi (năng động, ham học hỏi, nhanh nhẹn, màu xanh đậm, huy chương,… làm full sau)
+4. Màu xanh nước biển (xanh đậm) và màu vàng. Khi ở ngoài opening thì nên lấy màu vibe của tôi (có thể thay đổi sau), còn khi trong bàn cờ hoặc phân tích thì nên giữ màu traditional của cờ tướng. Khi vào giao diện học tập hoặc track progress sẽ đổi sang màu tươi mát, mới mẻ để họ có hứng thú học tập (cho chọn nhân vật)
+5. Có logo cờ chill rồi, đặt làm tên web cũng được https://www.facebook.com/cotuongchill
+6. domain chưa mua, bao giờ gần release sẽ mua sau, gợi ý giá tốt nhất và uy tín nhất ở đâu
+7. Có budget mua, nếu mua 1 lần thì thoải mái, nếu mua monthly hay yearly thì cần xem xét thêm
+8. Khoàng 500k VND đi
+9. Prototype hiện tại cần subdomain thôi (vercel hay render gì đó), còn khi lên web chính thức thì sẽ bắt đầu mua domain từ lúc đó luôn
+R.
+1. CS hoặc AI, CS chưa rõ ngành gì lắm
+2. Hầu hết tất cả các trường đều cần sản phẩm product này, trường là requirements, trường là điểm cộng thôi
+3. Khoảng đầu tháng 11
+4. Activities + portfolio link, với một vài trường sẽ là added in4
+5. Khá nhiều, chưa tìm hiểu, không giới hạn
+6. Không, project thì tôi tự làm thôi, có thể sẽ có chuyên gia nhưng chưa chắc chắn
+7. technical depth, initiative, intellectual curiosity, community impact, còn research question thì chỉ là phần phụ mà thôi, solo project nên không thể hiện leadership quá rõ
+8. intellectual curioisity  technical depth  social impact
+9. Hiện tại chưa có, đang trong phần chuẩn bị có thêm 1 dự án nhưng sẽ ưu tiên hoàn thành phần này trước
+S.
+1. Càng sớm càng tốt, NHẤN MẠNH LẠI LÀ CÀNG SỚM CÀNG TỐT
+2. Full buổi sáng từ T2  T6, thêm cả chiều T6 đến 5h chiều mới tan, ngoài ra còn vài buổi học viết luận và 2 buổi tối T2 T5 học SAT
+3. Sẽ cố gắng càng nhiều càng tốt trong khả năng có thể (-6 tiếng là max)
+4. T6 bận nhất, chỉ rảnh buổi tối
+5. Hi vọng có thể full (>10 tiếng, không chắc chắn)
+6. Có vài, sẽ sắp xếp làm trên lớp để không ảnh hưởng việc làm product
+7. Hiện tại đủ để gửi mentor để nhận lại feedback trước và đăng Github bắt đầu trong vài ngày tới, sau đó mới đến hoàn thiện sản phẩm (sau 1 tuần)
+8. Được, hiện tại phát triển phần phân tích và puzzle trước(2) sau khi tạo một web mà 2 người online đánh được với nhau và 1 người chơi được với máy(1), sau đó mới đến phần AI explanation và ML (3)
+T.
+1. Được, dù ít nhưng không bao giờ dùng dữ liệu giả, sẽ cập nhật dữ liệu/data tổng hay số liệu bằng một cách nào đó public để những người khác nếu muốn có thể xem được
+2. Được, chưa có thì sẽ không cho vào
+3. Có đồng ý
+4. Có đồng ý
+5. Có, phân biệt rõ (human-generated, AI-generated, hybrid,…), không gian dối
+6. Được, có thêm file đó
+7. Không, ở cuối trang web sẽ có phần “I would love to have your feedbacks” và “What we need to improve”, còn phần what I learnt về bản thân tôi sẽ để vào docs hoặc tạo blog riêng chứ không dùng web để kể câu chuyện của tôi, không hợp lý
+8. Được, luôn cần sự cải thiện và sự hoàn chỉnh chứ không thể perfect ngay từ đầu, tất nhiên là sẽ không bao giờ chọn hướng đi kém hơn nhưng dễ làm hơn mà luôn hướng tới perfectionism
+U.
+1. Đương nhiên là flow 1, phải play (lấy từ trải nghiệm bản thân) rồi fix lỗi tư duy xuất hiện giữa trận đó thì mới có thể hiểu, nhớ và sau đó áp dụng vào những tình huống tương tự xuất hiện trong tương lai. Điều này sẽ hiệu quả hơn rất nhiều so với việc tìm một puzzle lạ chưa gặp bao giờ (không có quá nhiều tính ứng dụng). Sau khi được identify weakness và explain thì mới được đưa những puzzle followup làm hoàn thiện thêm  rồi nhập vào dashboard để track progress
+2. Một web có thể dạy và sửa cách tư duy cho người chơi + giúp họ tiến bộ rất nhanh mà không bị mất thời gian chững lại (TỐI ƯU HÓA cách học cờ tướng cho người dùng) – what I wished to have in the past
+V.
+1. Sản phẩm vẫn còn hữu ích (vẫn có thể giúp người chơi học và thi đấu) nhưng không thể phát triển ở scale lớn hơn (nếu phân tích manually thì vẫn làm được nhưng lại gặp vấn đề là với số lượng rất lớn trận đấu puzzle) thì sẽ không thể làm hết được  lack sources và info
+2. Có, nhưng không thể phát triển lên scale lớn hơn nếu làm manually
+3. Nếu tôi phân tích bằng tay thì max chỉ được khoảng 10 trận full explanation mỗi lần, nhưng nếu áp dụng AI thì phần spaced repetition trở nên thuận tiện hơn và số lượng trận đấu được phân tích và rút ra bài học kinh nghiệm sẽ trở nên lớn hơn RẤT RẤT RẤT nhiều lần
+4. Thiếu môi trường, thiếu thầy để học tập, thi đấu và thiếu cách rút kinh nghiệm (CHỈ đánh liên tục mà không rút được bài học gì).  app này là cách để tôi thay đổi và sửa chữa điều đó
+5. Có, từng có một khoảng thời gian chỉ có một mình tôi thi đấu và thiếu người để luyện tập cọ xát, đồng thời trình độ bị chững lại một khoảng thời gian khá lớn  app là solution cho những người mắc tình trạng tương tự bản thân lúc đó
+6. Một HLV giỏi có thể phân tích và chỉ ra lỗi sai trong lối đánh và tư duy, relate nó đến với những bài học tương tự, nhưng đương nhiên họ cũng không thể ngồi một mình bằng sức con người giải thích hàng trăm hàng nghìn ván đấu trong một thời gian ngắn được  dùng AI và CS fix nó
+7. Software sẽ mô phỏng được phần phân tích và relate nó đến với những bài học tương tự liên quan, còn việc spaced repetition và nhắc học tập để không quên bài nữa
+8. Không nên thay thế phần tự tạo thêm puzzle và nghĩ ra bài học mới vì rất dễ bị hallucination. Phần đó tôi sẽ tự thêm và tìm cách verify để không bị lỗi phần đó
+9. Đang làm tốt hơn những công cụ engine phân tích hiện tại và cách học truyền thống (chỉ đánh và học khai cuộc chứ không thật sự hiểu), bổ sung sự thiếu sót vốn có hiện tại của những người chơi cờ bây giờ
+10. Nếu họ thêm feature explanation và relate đến các bài học, sửa lỗi tư duy  đó chính xác là những gì tôi muốn làm
+11. technology và pedagogy
+12. Họ sẽ rất khó biết cách phân tích bàn cờ, đưa ra strategy hợp lý và follow theo đó, từ đó bị miss những nước hay đột phá quan trognj cũng như mắc những sai lầm mà nếu phân tích sẽ dễ dàng thấy được
+13. Bị stuck ở một trình độ mà không lên được/ Quên những bài học và sai lầm mình được rút ra vì thiếu related evidence/ Thiếu người dạy và giải thích mentor roadmap cho bản thân
+14. Họ có khả năng phân tích rất tốt và nhanh, nhưng việc làm hàng trăm hàng nghìn hình cờ và puzzle trong thời gian ngắn đơn giản là impossible với human, nên đó là nơi AI và CS take place
+15. Phân tích những hình cờ, relate nó với puzzle tương tự (scale hàng trăm hàng nghìn)
+W.
+1. Mình sẽ nhìn strategic thinking, rồi đến phân tích hình cờ ở những điểm quan trọng, sau đó rút ra lỗi tư duy và tìm cách fix nó, đưa puzzle tương tự để luyện tập và cuối cùng dùng spaced repetition để user không bị quên bài học đã học được đó
+2. Strategic là chiến lược đề ra ban đầu (tấn công – kiểm soát – phòng thủ), còn tactical dựa vào chiến thuật, dựa vào các cách để đạt được mục đích mục tiêu đề ra ban đầu, mỗi người một cách, có cách đúng cách sai và ta sẽ fix strategic rồi đến tactical
+3. Sẽ nhìn thấy những nước đi yếu (ít mục đích) nhưng beginner chưa hiểu, không biết đánh giá bàn cờ và chưa biết ở tình huống đó sẽ phải làm gì  ta sẽ dạy ở đó, fix lỗi tư duy và dần dần biến thành mindset của riêng họ chứ không bị lệ thuộc vào engine
+4. Engine đôi khi chỉ đưa ra phương án tốt nhất, và những nhận xét đánh giá của họ còn chung chung overall không sát khiến user khó hiểu. Ta sẽ cố làm chi tiết nhất, human nhất có thể để họ thấy hứng thú thú vị với web và dần dần thành concurrent user
+5. Review theo hình trận đấu (bắt đầu lỗi từ đầu, tại sao lại lỗi, lúc đó mình nghĩ gì mà lại đi như vậy  fix lỗi tư duy của chính tôi và tìm những hình cờ với tư duy tương tự để train thêm ở phần đó)
+6. HLV sẽ tổng quát hơn engine, sẽ thêm kinh nghiệm riêng của họ ở những hình như vậy, đồng thời biết cách relate với những bài học, những đánh giá sâu sắc về hình hơn engine tầm trung  biến web thành một HLV với hàng nghìn hours of work mà scale lớn hơn rất nhiều
+7. Thầy Trang dạy tôi trước khi đưa ra một nước đi phải đánh giá cả bàn cờ, tìm điểm yếu để công kích và sau mỗi trận thua phải biết sai ở đâu, fix như nào, Why, và không bao giờ mắc lại sai lầm đó nữa
+8. Tại sao lại sai?, tại sao lúc này lại đi nước đó?, hiện tại bên nào đang ưu thế?, nước đi tối ưu là gì?, tại sao?
+9. Nhìn theo vị trí mạnh có thể tấn công  vị trí quân đẹp hay xấu  bên nào nhiều quân hơn  tối ưu lợi thế như nào
+10. Có. Đầu tiên đánh giá quân (bằng quân, bên nào hơn quân..)  Vị trí mỗi quân nào đẹp hay xấu, tối ưu như nào, đưa đến vị trí nào là tốt nhất  Điểm nào để tấn công hoặc lấy được nhiều lợi thế nhiều nhất  Cân nhắc các phương án rồi chốt cái tốt nhất theo stragy bản thân
+11. Được chứ, đó sẽ là phần bà itapaj tôi cũng muốn thiết kế theo kiểu đó
+12. 50 hơi khó, 10 thì còn được
+13. 100 hơi khó, 10 thì được, vẫn sẽ supervise khi máy làm với scale 100 để làm nền vững cho tương lai sau này
+14. Được, nếu đủ thời gian sẽ làm được, trước mắt tối đa 20 thôi
+15. Khó nhờ lắm, tôi sẽ tự làm được thôi
+X.
+1. Đương nhiên đánh giá chiến lược (strategic) qua xu hướng các nước đi, và việc rẽ nhánh của các chiến lược ấy trước từng hình cờ (tactical) sẽ giúp thu thập data về việc người đó có xu hướng như nào, trình độ đến đâu, ở hình cờ này thì sẽ ra quyết định như nào
+2. Tùy vào trình độ, không thể totally precise ngay từ đầu nhưng sẽ từ những cái ban đầu (attack, control, defense) rồi dần dần sâu hơn, cụ thể hơn khi lượng data về user đó dày hơn, sẽ làm kĩ hơn được dựa theo persona của từng người
+3. Không, chỉ hỏi khi Review những critical positions trong trận đấu (VD trước một hình cờ quan trọng, khi review, ta sẽ hỏi họ lúc này bạn nghĩ gì, muốn làm gì tại sạo lại như vậy  data)
+4. Dự đoan premove như vậy cũng oke, khi họ planning 4-5 nước thì phải dự đoán được cả nước đi của đối phương, có thể là add-on (optional nếu user muốn thêm vào)
+5. Giống câu hỏi X3
+6. Ở những level đầu thì cần (VD có một chỗ bị threat mà người ta vẫn lao lên tấn công hoặc không để ý phòng thủ chỗ đó) thì phần review trận đấu cần nhắc nhở họ ở đó, fix lỗi tư duy nếu họ thấy mà không để ý hoặc không thấy. Rồi khi tần suất mắc những lỗi nhỏ ở đó giảm dần nghĩa là họ đã nâng trình lên rồi
+7. Có thể, sẽ cố gắng, dựa vào trình độ ban đầu được ước lượng sẽ chia được
+8. Đương nhiên, phải làm rõ và personal thì từng người mới tiến bộ được
+9. Có thể, và sẽ xây riêng cho từng user luôn, kết hợp với viêc học repetition cũng là một kiểu để phân loại lỗi và nhóm vào để họ học relate và hiệu quả linking hơn
+10. Kinh nghiệm, kiến thức của tôi và những kiến thức sources online, sẽ verify trước khi áp dụng vào ML
+11. Có, sẽ thử
+12. Tôi sẽ recheck lại với trình độ của tôi và sau đó mới cho web nhận dữ liệu
+Y.
+1. Learn better, chính xác là make the most out of each of your games and improve optimally from that
+2. Viêc học tốt hơn không chỉ giúp thắng nhiều hơn mà còn giúp user thực sự tiến bộ trong cờ tướng và cách suy nghĩ của họ nữa
+3. Đúng vậy, nên phải hỏi và yêu cầu user suy nghĩ (5 câu min) trước khi đưa hint (giới hạn token hints cho mỗi ngày, mỗi user)
+4. Khi họ đã đưa ra được khúc mắc của bản thân và chưa biết cách giải quyết dù đã suy nghĩ, chứ không phải đưa hint tự sớm rồi khiến user lười suy nghĩ
+5. Sẽ chỉ có 2 level hint vì khi đã trả lời được những câu hỏi tự bản thân đưa ra thì thường họ đã có đáp án rồi, chỉ là họ không đủ thời gian suy nghĩ ra nó khi thi đấu thực tế thôi. Hint 1 là hướng dẫn cách suy nghĩ giải quyết và hint 2 là đáp án + explanation của AI thôi
+6. Không, không bao giờ đưa ra đáp án cuối cùng, chỉ đưa ra cách suy nghĩ hướng họ đến với đáp án đó thôi
+7. Mình sẽ đưa câu hỏi trắc nghiệm thôi (kiểu tại sao bạn lại nghĩ ra đáp án này đáp án ABCD)
+8. Cho chứ, đó là hint 1
+9. Mình sẽ yêu cầu người chơi trả lời được những câu hỏi trước đó đã, và sau khi đến đó mà họ vấn chưa biết câu trả lời cần thêm hint thì mới đưa ra AI critique explanation cách suy nghĩ giải quyết là tổng hợp đáp án của những câu hỏi trước thôi.
+10. Feedback về câu trả lời của user sẽ được lưu vào data chứ không gửi lại cho user
+11. Không
+12. Loại immediate thường không có tác dụng interact( tôi không muốn) nên sẽ dùng delayed và lưu vào record thôi
+13. Đương nhiên, đó là phần học lại những mistakes và những bài học rút ra (không lặp lại hình cũ mà lấy những puzzle lesson cùng chung chủ đề hoặc tương tự)
+14. Có chứ, sẽ là một bài test vài puzzle cùng chung level đó, nếu pass ở một level nhất định thì track progress sẽ thấy họ đã tiến bộ
+15. Khi họ giải quyết một lượng lớn bài tập theo chủ đề đó, và biết cách giải thích giống explanation (yêu cầu họ giải thích)
+16. Ổn, 87% đi
+17. Hơi cao quá, dừng ở mức 87% thôi vì vẫn sẽ có những hình extreme chưa chắc ai cũng làm được
+18. Accuracy đủ và speed + retention/streak cũng quan trognj, nhưng quan trọng explanation của họ phải hợp lý, phải đúng và điều này quan trọng hơn accuracy nhiều
+19. Đương nhiên, hạn chế tối đa việc lặp lại position vì sẽ khiến việc học trở thành học vẹt, không tư duy.
+20. HI vọng sẽ áp dụng vào được full games, từ đó giúp mọi người giúp có đủ explanation và mentor ở mỗi trận đấu của mình
+Z.
+1. Trong cờ tướng không gọi là king mà gọi là Tướng, đồng thời các quân yếu như mã, tượng, tốt bị tấn công cũng là một loại, hiện tại chi có vậy, nếu thiếu sẽ thêm, chú ý cờ tướng mình phát triển là tiếng VIệt first nên ngôn ngữ trong explanation vẫn là tiếng Việt trước
+2. Có overlap nhưng không nhiều vì mỗi phần tương đối phân biệt, sẽ chú ý
+3. Không thể quá nhiều, phần đó thiên về cái nào hơn thì sẽ để vào category đó chứ không ôm đồm 1 puzzle/hình vào quá nhiều category (max 2-3)
+4. Primary sẽ còn phụ thuộc vào trình độ người chơi (với beginner thì là threat awareness, còn với advanced đôi khi lại là miscalculation) nên còn vary
+5. Tôi
+6. Tự classify dựa vào những gì tôi cung cấp, còn sau đó sẽ thêm dựa vào data từ user và dần dần phát triển thêm những classification khác nữa
+7. Được, vẫn đủ, tôi vẫn thêm vài mistake recognition đặc trưng mà
+8. Input của tôi rất đáng tin cậy, nếu không có hallucination hoặc classify tự bịa thêm thì luôn chính xác
+9. 20 ban đầu, dẫn dần LM sẽ tự học và được tôi fix những lỗi có thể pop up, sau đó hoàn thiện thôi
+10. Được, có thể public, giữ những private cho tôi thôi
+AA.
+1. Sẽ xin trích nguồn từ những engine phân tích mạnh hiện tại (xiangqi.ai,…) còn lại phần explanation sẽ tự build và phát triển
+2. HI vọng có, sẽ cố gắng liên hệ, không thì phải tự tạo riêng
+3. Browser
+4. Hiện tại khá nhanh, 5-10s, gần như immediate, nếu xin được sẽ rất tốt
+5. Depth phải khoảng 20+ nước với những engine mạnh, nếu phải tự làm engine thì sẽ 5 nước bắt đầu thôi
+6. Depth thấp thì label sẽ kém và ảnh hưởng further explanation (với advanced ++)
+7. Có, xin được nhiều engine rồi đối chiếu với nhau càng tốt, tối ưu bản thân
+8. Critical position khi đi một nước gây khó khăn rất lớn cho đối phương, có thể giành được lợi thế lớn hoặc thắng lợi
+9. 100+ theo điểm cờ tướng hiện tại là đã đủ đáng phân tích rồi
+10. Không, dựa trên suy nghĩ và dự đoán của user thì sẽ có vài TH xuất hiện, cần đánh giá all
+11. Có
+12. Sẽ hơi khó hiểu nhuwgn tôi sẽ simplify, cố gắng không dùng nhiều điều mà advanced quen thuộc để nói với beginner, sẽ classify theo trình độ ước lượng người chơi
+13. Nên, nhưng nên specific hơn kiểu “Có vị trí yếu có thể tấn công/ Có quân yếu có thể tấn công/ Có vị trí yếu cần phải phòng thủ”
+14. Đương nhiên, có thể thêm nếu muốn, khi thi đấu thì hide, khi review sẽ cố để để họ có thể phát hiện điểm thay đổi critical và itmf hiểu tự suy nghĩ tại sao
+15. Có, advanced thì có thể, để họ nghiên cứu và đưa ra đánh giá của riêng họ
+AB.
+1. Không cần dài, chỉ cần chỉ rõ strategic thinking và tactical, từ đó định hướng cho user biết họ phải nghĩ gì, về cái gì và như nào, rồi claim answer ở cuối
+2. Đương nhiên, chia rõ để user dễ follow
+3. Có chứ, notation không quá khó đọc trong cờ tướng, sẽ có brief intro tự đầu để họ hiểu rõ
+4. Có, sẽ có hướng dẫn cho người mới
+5. Khi nào có explanation (giải thích vùng nào yếu sẽ có hiện màu vùng đó để dễ hiểu, quân nào mạnh hay yếu sẽ được đánh dấu), tấn công sẽ hiện đỏ những vùng có thể attack và defense ngược lại…, control thì đưa những vùng tranh chấp được và tìm cách thực hiện kế hoạch
+6. Có chứ, tăng giảm điểm evaluation, điểm yếu điểm mạnh highlight hết
+7. Không, tránh tối đa bịa thêm kiến thức và hallucination, dựa trên những gì tôi cung cấp thôi
+8. Tôi sẽ check, những gì không liên quan hoặc bị user feedback là sai lỗi sẽ được fix sau đó
+9. Có, sẽ là đánh giá của experts do tôi thu thập
+10. Chắc có
+11. Có chứ, giúp người chơi tự tin và hiểu hơn về quyết định của mình (biến thành vụ đặt cược confidence quick game cũng oke)
+12. Được, yêu cầu người chơi đánh giá, giải thích hình cờ rồi recheck với AI
+13. có chứ, như vậy mới fix và cải thiện được
+14. Không, nó sẽ đi về hệ thống tôi xem và chỉnh sửa được, sau khi được fix sẽ quay ngược lại về hệ thống evaluation sau
+15. Có, sẽ có phần ratings cho user, nhờ họ đánh giá, cái nào điểm cao giữ, điểm thấp thì tìm cách chỉnh lại
+AC.
+1. Sẽ hỏi khoảng 5 câu trong 1 hình cờ: “Bạn đánh giá như nào về hình cờ hiện tại, bên nào đang có lợi thế” “Tại sao lại như vậy” “Vậy strategy trong hình cờ này là như nào”, “Tactical để thực hiện nó sẽ nhìn như nào” “Đưa ra nước đi tối ưu và giải thích xem tại sao lại là tốt nhất, đã hợp với strategy đưa ra chưa”
+2. Không được skip wtf, câu nào dễ quá thì brief answer hoặc câu trả lời ngắn gọn chứ không được brief, số câu hỏi sẽ được giảm bớt khi lên đến một trình độ cao nhất định (gộp câu 1-2, gộp câu 3-4, cắt giải thích câu 5) nhưng không bao giờ được skip khi làm phần review vì đó là nền tảng, nếu không có sẽ rất khó có thể tiến bộ được, gần như biến quá trình tự suy nghĩ thành useless
+3. Open-minded, sẽ là phần tự điền câu trả lời của bản thân chứ không phải là chọn trắc nghiệm ABCD hay đúng sai, kiểu tự luận ngắn nên user phải tự điền vào suy nghĩ của bản thân chứ không thể dựa vào đáp án được cho trước hoặc dựa vào điều gì khác, phải dựa vào bản thân và đánh giá của họ, theo trình độ hiện tại để còn biết mình đang ở đâu mà tiến bộ, mỗi câu sẽ giới hạn 30s, câu nào chưa trả lời xong sẽ cho thêm 10-15s nữa, nếu thật sự chưa làm được thì cần điền No hoặc Không để AI explanation giúp ở phần đó
+4. Sẽ phát hiện keyword và cách người chơi sắp xếp mạch ý, mạch suy nghĩ của họ. Dần dần nếu họ đủ được keyword và ý dần dần hoàn chỉnh, tương đối khớp với đáp án của AI thì họ sẽ được up level để track progress, và được chấm điểm dựa trên câu trả lời của mình (điểm số này gửi về data lưu trữ chứ không gửi lại cho user) rồi sẽ đánh giá tiến độ của họ
+5. LLM sẽ dần học cách đánh giá explanation, dựa trên những mẫu câu cho sẵn và lượng lớn data được thu vào từ user, từ những nhận xét gốc AI sẽ generate ra những đánh giá của nó và được tôi tinh chỉnh làm bộ gốc mẫu chuẩn xác và làm nền để tiếp tục phát triển đánh giá trên scale lớn hơn
+6. Có đánh giá sai, sau khi nhận feedback từ người chơi và tôi tự kiểm tra thì chỉnh sửa, tinh chỉnh để bước đầu vào đánh giá không có sai sót nào, rồi xây nền chắc mới phát triển tiếp những đánh giá chi tiết, personal hơn sau này được
+7. Có, sẽ bổ sung thêm để hoàn thiện, dần dần khi một phần bị thiếu quá nhiều hoặc quá nhiều lỗi/explanation bị undefined sẽ phải thêm cái mới để bổ sung vào, sẽ update theo ngày (12h-1h)
+8. Hỏi tiếp, hỏi để thực sự hiểu user đang nghĩ gì và fix tư duy đó, chứ không thể đưa đáp án đơn thuần và ép họ vào khuôn được, như vậy sẽ bị mechanic và không hiệu quả với pedagogy hiện tại của app.
+9. Khi user level càng thấp (level 1-2-3) thì câu hỏi càng phải chính xác, rõ ràng, cụ thể để thực sự hiểu được họ đang nghĩ gì, lỗi ở đâu, lỗi như nào, fix như nào. Dần dần sẽ build cho họ một nền tảng đủ vững chắc để thăng tiến rất nhanh khi học cờ và cả trong cách suy nghĩ chứ không chỉ dừng lại ở việc biết đáp án và next sang câu khác
+10. Quick analysis chỉ dùng khi ở level cao (4+), khi đó trình độ họ đã đủ và số câu hỏi sẽ được giảm xuống, nhưng TUYỆT ĐỐI vẫn phải trả lời các câu hỏi main rồi mới fix điều đó, còn việc quá nhanh thì sẽ khó. Coaching plan sẽ theo persona của từng người, còn Deep coaching sẽ tối ưu hóa toàn diện điều đó và được cho vào Premium mode (nhiều tokens hơn)
+AD.
+1. Bắt đầu từ khi họ được tiếp cận puzzle đầu tiên hoặc chơi ván đấu đầu tiên. Data từ đó sẽ được thu thập và dùng để ước lượng trình độ của người chơi. Dần dần họ sẽ được adapt và xếp vào một level nhất định (12345) rồi những puzzle để học và trình độ của đối thủ cũng sẽ tương ứng theo đó (như kiểu xếp rank chơi game) và được improve và track progress qua quá trình học và thi đấu
+2. Khá khó. Nếu ban đầu để mục select your level thì sẽ cần vài bài test để đánh giá trình độ thực sự của họ ở đâu (VD thi đấu, puzzle,…) rồi xếp họ thật sự về đúng level thực sự (thấp hơn, chính xác, cao hơn…) rồi mới bắt đầu quá trình học và thi đấu thực sự, dựa trên năng lực của user thực sự
+3. Có, phải có, dù nhỏ hoặc số lượng ít nhưng phải có để test real ability của người chơi
+4. Khó, chỉ Premium mới có vì nếu upload games thì không biết có phải của user hay không, từ đó họ bị mất đi khả năng đánh giá chính xác trình độ của họ. Đồng thời phân tích past games sẽ tốn rất rất nhiều tokens, nên giới hạn 1 ván/ngày và cố gắng hạn chế điều này nhất có thể. Chỉ được sử dụng như data để thêm và train AI explanation và relate đến bài học tương tự chứ không dùng để đánh giá trình độ người chơi (trừ những người được verify nhưng số lượng rất nhỏ)
+5. Kết hợp, hạn chế upload
+6. Skill score được thiết kế như một bảng chỉ số của user, khi học lesson hoặc giải puzzle ở một chủ đề nhất định và trải qua bài test thì họ sẽ tăng điểm ở chỉ số đó. Khi tổng điểm vượt qua mốc nhất định hoặc bị giảm đi một mức nhất định thì sẽ bị tăng hoặc giảm level 12345.  Dần dần sẽ sắp xếp cho user vào đúng level trình độ của họ
+7. Vẫn phải dựa trên hoàn toàn các results như nhau, tuy nhiên nếu lỗi ở old results được fix trong các ván đấu gần đây hoặc tình trạng gần hiện tại thì sẽ coi như lỗi đó được fix và không mắc lỗi đó nữa  cộng điểm ở chủ đề đó
+8. Giảm khoảng 5 điểm với chỉ số ở chủ đề đó của user, khi làm đúng cũng sẽ cộng khoảng 5 điểm với chỉ số đó sao cho điểm tăng và điểm giảm ngang nhau  credit tốt
+9. Mình sẽ không chấm theo đúng sai mà sẽ yêu cầu họ giải thích bằng evaluation và suy nghĩ của bản thân, rồi từ đó mới đánh giá thực sự chứ không chỉ dựa vào mỗi đáp án đúng
+10. 1 hint đương nhiên sẽ giảm một/hai điểm, nếu cần quá nhiều hint sẽ không được cộng điểm nữa, fair vì phần thưởng không hề dễ kiếm, cho thấy real effort và sự tiến bộ thực sự
+11. Response time nếu qua 1 mốc 30s sẽ trừ một điểm, không nên để họ quá nhiều thời gian vì trong trận đấu hoặc tình huống thực tế sẽ không có được nhiều thời gian như vậy để suy nghĩ
+12. Difficulty thì vẫn sẽ được cộng như vậy, vì trước khi được cung cấp thì người chơi đã được chia puzzle theo năng lực, nên điểm cộng vẫn như vậy thôi, không thay đổi vì level khó thì trình độ cũng phải cao mà
+13. Có thể, dù không hoàn toàn tương đương với bên cờ vua nhưng ý tưởng vẫn giữ nguyên kiểu như vậy
+14. Có, nếu trong một khoảng thời gian nhất định không luyện tập skill đó hoặc không áp dụng skill đó thì sẽ có decay dần dần, sẽ thông báo cho user và dần dần sẽ trừ về 0
+15. Có thể nếu họ muốn, tại sẽ được sắp xếp theo trình độ và puzzle tương tự mà người chơi experience, không quá phức tạp nếu họ yêu cầu
+AE.
+1. Ban đầu tự nhập vào từ nguồn có sẵn và các online sources trên mạng, sau đó dần dần puzzle sẽ được trích ra từ những ván đấu của user, và nhập vào kho dữ liệu làm data để train cho cả những người chơi khác nữa. Đồng thời vẫn tìm kiếm thêm nguồn để lấy dữ liệu ván đấu từ bên ngoài và nhập vào làm puzzle và lesson cho người chơi
+2. Chưa xin được license, sẽ cố gắng ở một vài trang web, nếu không tôi vẫn tự có nguồn tài liệu của mình để nhập vào được
+3. Hi vọng có, sẽ cố gắng xin được, nếu không vẫn tự có nguồn data của bản thân để làm dữ liệu học
+4. Được, nếu tôi nhập chay thì vẫn được, nếu xin được trích nguồn thì càng tốt
+5. Chưa biết có hay không, sẽ tìm hiểu thêm, licensing issue thì chắc không có đâu vì mình có thể đánh một ván như vậy và nhập vào dữ liệu, cũng khá bình thường
+6. Được, nguồn từ ván đấu của tôi có thể được dùng
+7. Hi vọng xin được, không cần phải danh thủ hay kỳ thủ advanced mà những người intermediate cũng nên xin được
+8. Cần khoảng hơn 100, ban đầu tôi sẽ cố nhập hết và chỉnh explanation cho hợp lý, dần dần sau đó sẽ để AI làm và tôi lọc hallucination, lọc mistakes của nó và rồi tinh chỉnh để perfect, làm nền tảng áp dụng sau này được
+9. Recommender cần khoảng 50 thôi, một trận có rất nhiều tình huống nên vậy là đủ cho explanation rồi
+10. ML cũng cần 100, càng nhiều độ chính xác càng cao mà
+11. Data imbalance sẽ được chia theo các trình độ khác nhau, với những ván trình độ cao thì tôi cần phải cân nhắc và kiểm soát đầu vào kĩ hơn, sau đó mới theo trình độ để chia. Trình cao  phân tích càng cần chính xác cụ thể  AI explanation tốt hơn và ML học được nhiều hơn
+12. Không nên lặp positions, tránh biến việc học suy nghĩ thành việc học vẹt của user
+13. Data cleaning process ban đầu tôi sẽ phải tự lọc, sau đó dần dần dạy AI cách làm việc đó. AI explanation nếu bị feedback hoặc report lại thì chính tôi sẽ xem và chỉnh sửa, biến đó thành bài học cho sau này để hoàn thiện sản phẩm hơn
+14. Đương nhiên, sẽ chia càng chi tiết để không bị quá overall mà vẫn đủ chính xác để dùng
+15. Version control có, sẽ update theo ngày, càng ngày càng hoàn thiện và sửa những mistakes hoặc hallucination mà AI tạo ra
+AF.
+1. Ban đầu tôi sẽ phải tự classify, explain và đánh giá hình cờ. Sau đó ML sẽ học từ những điều đó và áp dụng vào những trận đấu/data mới được đưa vào. Cuối cùng thì nó sẽ thay tôi làm những việc đó với một scale lớn hơn rất nhiều
+2. Baseline là học cách phân tích, classify và cung cấp puzzle/lesson liên quan dựa vào những tiêu chí có trước, rồi dần dần sẽ adapt lên theo persona của từng người và tìm cách fix vào theo mỗi người như vậy
+3. Đơn giản nhất là trong một trận đấu của người chơi có thể chấm điểm và phân tích những nước đi rồi relate với puzzle tương ứng. Sau khi được phát triển sẽ có khả năng tìm nhiều puzzle tương ứng hơn, trích một vài hình critical position vào trong data sources và lấy đó làm puzzle luôn (đã mất công phải phân tích rồi)
+4. Đủ, ngày càng được hoàn thiện khi lượng data nhận vào lớn dần lên (một phần được nhập từ tôi và input, một phần được trích từ những ván thi đấu cờ của user)
+5. Phù hợp, cây này không chỉ có yes no mà còn có nhiều phần khác, được chia loại chi tiết cụ thể để dễ hình dung hơn
+6. Phù hợp, những tầng sẽ được sắp xếp hợp lý theo tiêu chí: Kế thừa những điểm mạnh cái tốt của phần trước và khắc phục tất cả những lỗi sai của phần trước để lại. Mỗi ngày sẽ có bản update, 100 ngày là 100 gradient boosting
+7. Cần, cần để cá nhân hóa cho từng user thì mới đạt được mục đích
+8. Sẽ có vài metric tương đối tiêu biểu: accuracy, recall proportion, precision, interacting speed, AUC để phân loại puzzle và lessons, RMSE đánh giá độ chính xác của engine
+9. Không, dựa trên luật được đưa vào và những phân tích explanation có từ trước, chỉ phát triển heuristic và dần vượt qua scale ban đầu
+10. Không cần outperform, chỉ cần làm được trên scale lớn với độ sai sót rất nhỏ mà thôi
+AG.
+1. Những người bạn cùng chơi cờ tướng của tôi/ có thể có thêm thầy hoặc những người trình advanced khác
+2. Có beginner, có tournament player (đa phần intermediate, trên beginner)
+3. Có thể có, không chắc
+4. Không
+5. Không
+6. Nên để họ tự trải nghiệm, tự hoàn thành những câu hỏi web đưa ra và tự đánh giá phân tích explanation của AI chứ không tác động bên ngoài, giữ cho kết quả khách quan nhất có thể để further develop được
+7. Đương nhiên, phần feedback sẽ được tôi xem lại và tự đánh giá, điều chỉnh hệ thống cho hợp lý, đồng thời đưa câu trả lời thích đáng và giải thích cho user về feedback của họ
+8. Sẽ có, lưu vào record tất cả feedback và nhận xét để hoàn thiện sản phẩm
+9. Những câu hỏi ban đầu, những puzzle tests và cả những câu hỏi khi review sẽ lặp lại ở mỗi lần, tương tự như vậy, giúp hoàn thiện nó, điều gì càng lặp lại nhiều lần được classify càng chứng tỏ nó là vấn đề hoặc điểm cần cải thiện  ưu tiên hơn khi fix
+10. Chưa có, chưa bắt đầu prototype nên chưa có feedback
+11. Vẫn giữ, chỉ điều chỉnh để phù hợp hơn với toàn bộ user mà thôi
+AH.
+Competitor chắc là những engine phân tích hiện nay hiện có trên thị trường, đồng thời là những app thuần để 2 người đánh cờ với nhau như ziga hoặc chơi với bot
+Direct chưa có vì phần explain này rất hiếm người phát triển ở thời điểm hiện tại, có lẽ chỉ có thiên thiên tượng kỳ nhưng nó bên TQ nên khó tiếp cận đến đối tượng chính của tôi
+Là những engine phân tích và những app đánh cờ tràn lan hiện nay trên thị trường
+Có người có engine phân tích tốt, có người có nhiều concurrent user nên lượng data về các ván đấu lớn
+Họ làm dở là chưa tối ưu những ván đấu trong hệ thống, chưa biết hướng dẫn người dùng cách học cũng như chưa có quá nhiều cố gắng để thật sự thay đổi cách user tư duy
+Người dùng bình thường chỉ mở app/web  đánh cờ rồi thắng/thua  nghỉ, thiếu sự cố gắng suy nghĩ phát triển làm họ bỏ lỡ rất nhiều cơ hội để tiến bộ
+Chắc là feature 2 người đánh với nhau hoặc đánh với bot và xem lại ván đấu, còn việc được phân tích và học, rút ra bài học, puzzle tương tự, spaced repetition thì chưa có
+Việc được phân tích và học, rút ra bài học, puzzle tương tự, spaced repetition thì chưa có bên nào chú trọng phát triển, làm lỡ rất nhiều data các ván đấu mà họ đang có
+Wedge mà tôi hướng đến là phân tích và relate đến những puzzle/lesson tương tự để người chơi nhớ lâu và học được, rồi bao thêm phần PvP 2 người chơi với nhau hoặc đánh với bot để lấy thêm dữ liệu ván đấu train cho ML 
+AI.
+Có, khi mở khoảng 30 giây sẽ có video tutorial hướng dẫn cách sử dụng những tính năng, để họ hiểu sản phẩm có những gì và làm được những gì. 
+Chưa hiểu CTA là gì, sẽ tìm hiểu thêm
+Có thể đăng nhập theo dạng ẩn danh anonymous nhưng sẽ không thể lưu được kết quả khi out khỏi web. Do vậy khuyến khích họ login tài khoản riêng của bản thân (sẽ cố thêm API google hoặc facebook nếu có thể)
+Không, sau khi tạo tài khoản vào web sẽ được video tutorial
+Sẽ không quá dài, tầm khoảng 30-60s là hợp lý
+Đương nhiên, sau khi login sẽ được chơi một ván đấu và trải nghiệm tính năng, từ đó đánh giá trình độ của họ và đưa những puzzle phù hợp để họ cải thiện và vào workaround ngay lập tức.
+Có, việc tiến bộ của họ được đánh giá và track progress, có thể nhắc về việc họ đã tiến bộ như nào so với (lần cuối họ mắc mistakes đó) để làm động lực giúp họ tiếp tục cố gắng
+Dashboard vẫn cần đủ dữ liệu thông tin nhưng sẽ cố gắng làm tinh giản và ít thông tin, dễ hiểu nhất để user hiểu họ đang ở đâu và cần cải thiện như nào
+Được, sẽ chia theo từng level, từng độ tuổi, cố specific classify sẽ giúp tăng retention và giúp người chơi hiểu được những gì web muốn làm, hiểu được những gì bản thân họ muốn cải thiện nữa
+Vẫn hiểu, không quá phức tạp, về mục đích vẫn tương tự như vậy
+AJ.
+Front và backend vẫn sẽ để chung một repo nhưng tách thành những repo con trong đó, để dễ kiểm soát nhưng không bị lẫn với nhau, dễ fix hơn về sau
+Api contract sẽ cần biết từ feedback của người chơi suy nghĩ của họ, phân tích keyword, những gì họ chưa hiểu, muốn cải thiện ở đâu, những gì họ muốn web cải thiện để thuận tiện hoặc phù hợp hơn với họ
+Sẽ lưu vào bảng (dạng excel để dễ theo dõi), rồi pub và lưu trên repo
+Validation input sẽ được check ban đầu, nếu có kí tự bất thường hoặc không nhận được thì sẽ dần dần thay đổi, đoạn thời gian đầu tôi sẽ check thủ công và nhập vào, sau đó dần dần LM sẽ học được đâu là cái phù hợp nhập vào, đâu là cái chưa được, tiến tới sửa và thu thập thông tin chưa được nôt
+Sẽ set timeout cho AI (15s nếu không được thì refresh), cho máy chủ khoảng 5-10s không được thì refresh, dần dần như vậy
+LLM timeout nếu dài quá 30s thì thật sự cần refresh và làm lại, ngắt chuỗi trước đó đi chứ không sẽ ngốn sạch tokens và không thể làm được quá nhiều attempt
+Có retry, tối đa 3 lần, không được sẽ bỏ luôn. Những lần bỏ sẽ được note lại và tôi sẽ kiểm chứng chúng bằng tay
+Có, tạo giới hạn cứng mỗi ngày khoảng 5-10 attempt, vừa để không quá ngốn tokens vừa để người chơi không bị áp lực phải dùng hết attempt của ngày hôm nay, ít mà lit
+Sẽ ghi lại nhật ký hành động của user trên app, chơi bao nhiêu ván, làm bao nhiêu puzzle, phân tích bao nhiêu, spaced repetition bao nhiêu, explanation bao nhiêu, trả lời bao nhiêu câu hỏi, improve như nào
+Gom những lỗi lại, chuyển về máy chủ và để nó tự sửa đến bao giờ được thì thôi (hơi tốn tokens, cố limit)
+Có, để thử lỗi và kịp phát hiện sửa chữa trước khi đến tay user (luôn đi trước môi trường thật khoảng 1-2h)
+Có, dùng để thử nghiệm tính năng mới và dùng khi có lượng data mới để update (TH có lỗi sẽ sửa được)
+Khoảng 100 ban đầu (expected)
+Style free style, rõ ràng, vibe code nhưng vẫn phải rõ ràng, chia từng phần để dễ thay đổi và update theo từng ngày
+Mình sẽ ghi những cái import vào, những cái thay đổi hàng ngày theo logging, cùng bản đồ quản trị chuyên nghiệp để dễ hình dung và coder khác dễ sửa cho mình
+AK.
+Tôi hiểu được nó dùng để làm gì nhưng không thể viết chay toàn bộ lại
+Không, không giới hạn để AI tự freestyle, tôi chỉ check thôi. Vẫn yêu cầu AI chia rõ ràng chứ nếu không thì tôi còn chẳng track được nó đã làm gì, báo cáo những gì đã thêm và chỉnh sửa cho tôi
+Có, rất cần thông tin lại về sự thay đổi architecture nếu không sẽ bị lost
+Đương nhiên, cần viết tests để biết đã làm gì chứ
+Có, review sẽ do tôi làm khoản 30p một ngày, không thay đổi quá nhiều đột ngột nhưng không dậm chân tại chỗ được
+Có commit
+Có chứ
+Đưogn nhiên có phân biệt từng phần để đảm bảo integrity
+Có README AI_CHANGE LOGGING AI_GENERATE HUMAN_BASED…
+Được, lỗi cơ bản thì thoải mái
+AL.
+Cần test tất cả luật Xiangqi dù có import từ các app khác để chắc chắn không có lỗi gì xảy ra với cái nền tảng của app này, sau đó mới phát triển được
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+AM.
+Khoảng 100 user trong thời gian đầu
+Khoảng 10s max
+10s max
+Có
+Có
+Có
+Không chắc, có thể giảm về 0 nếu dùng LM, budget ít, dựa vào nhà tài trợ nữa
+Không chắc, hi vọng giảm về 0, nếu không <100k VND/tháng
+Thiết kế theo trình độ người chơi (beginner thì khoảng 3-4, advanced thì 1-2 trên ngày thôi)
+Giảm tối đa lượng abuse đếm được
+AN.
+Chính xác là cách tối ưu hóa việc học cờ tướng cho user qua AI explanation và puzzle/lessons recommended tương tự
+Tối ưu hóa hiệu suất va độ chính xác, giảm tối đa hạn mức chi phí, , tối ưu chất lượng AI và giảm chi phí vận hành tổng
+Các cái ở sau
+Duration sẽ cho 1 tuần đầu thử nghiệm
+Hi vọng là 100+
+Level sẽ được đánh giá ban đầu bằng những bài test + thêm thông tin khách quan user cung cấp
+Có
+Amount thì không chắc, còn level hay difficulty của practice được vary theo trình độ người chơi ước lượng của hệ thống
+Khả thi
+Làm thế nào để người chơi make the most out of their games, how to tối ưu hóa việc học với thời gian ngắn và hiệu quả cao, hiệu quả đến đâu
+Consent sẽ cố gắng cao, nếu có ai không đồng ý sẽ yêu cầu họ feedback và điều chỉnh dựa trên những góp ý
+Personal data được thu thập vào dữ liệu, thêm vào data để train cũng như được classify riêng cho từng người cho việc học, cho việc spaced repetition
+Limitations sẽ được khắc phục, tất cả limit của hệ thống phát hiện và người chơi feedback đều sẽ làm được
+Được, sẽ cố gắng đủ data, TH xấu nhất thì phải đổi tên gọi, giữ integrity
+AO.
+Ai-powered thể hiện qua việc ứng dụng AI vào explain và sắp xếp theo chủ đề phù hợp
+Adaptive là trong quá trình người chơi sử dụng app, sẽ được thay đổi để track progress và đưa những bài tập phù hợp hơn với họ
+Giúp user học tập dễ hơn, thấy được sự cải thiện rõ rệt của user qua quá trình tiếp xúc với web
+Chưa có
+ML thể hiện qua việc máy có khả năng phân tích những hình cờ như expert với một scale lớn hơn
+100+ nếu có thể
+Chưa có
+Theo trình độ của người chơi khi thi đấu thực sự, sân chơi thực sự để test trình, có thể với bot hoặc PvP
+AP.
+Tôi
+All
+All
+Không có
+Không có
+Có, của riêng tôi, chưa có, sẽ có sớm nhất có thể
+Có, tôi làm với sự kết hợp của AI
+Figma rồi mới đến code
+Tôi có dùng CMS
+Không có team
+Tôi có, sẽ được track flow progress và luôn được update daytoday
+Có mỗi tôi làm thì là của riêng tôi
+AQ.
+Có, người khác xem được
+Feedback và nhận xét chỉnh sửa được nhưng không được trực tiếp thay đổi vào
+Có
+Có
+Có
+Có
+Có, nhưng hạn chế những chi tiết nhạy cảm, nói chung tôi không muốn public lắm chỉ để những gì mọi người cần biết thôi
+Có thể, phải xin giấy phép với tôi trước
+Được, dựa trên data có sẵn, tạo free trial luôn
+Tôi sẽ verify trước khi thật sự thay đổi, nếu họ muốn chỉ được quyền fork thôi chứ không được chỉnh vào gốc
+AR.
+Việt trước, bản tiếng Anh sau
+Tôi dịch sang tiếng Việt, rồi từ tiếng Việt sang tiếng Anh không quá phức tạp đâu
+Notation là bộ quy chuẩn chung, tôi sẽ để dễ hiễu nhất có thể
+Piece naming từ tiếng Việt trước, sẽ dùng cách dịch sát nghĩa nhất sang tiếng Anh
+Term của tiếng Việt làm main baseline
+Có, sẽ có bản hướng dẫn cho người nước ngoài
+Có thể nhưng là phụ thôi
+AS.
+Có, thiên về Việt Nam hơn Trung Quốc, khiến gần gũi với nhóm đối tượng người chơi
+Có technical, nhưng vẫn có phần lịch sử và câu chuyện của cờ tướng
+Có thể, dựa vào độ tuổi player (trẻ nhỏ hoặc lớn tuổi sẽ có offer câu chuyện theo lịch sử)
+Có chứ, đó là một nguồn data rất quý giá mà
+Có, sẽ kiểm soát là điều chắc chắn, tập trung làm những feature main rồi phát triển phụ sau
+Peripheral layer chứ không phải cái cần chú tâm từ đầu
+AT.
+Không, sẽ yêu cầu họ suy nghĩ và trả lời những câu hỏi mẫu trước, ở đây AI chỉ đơn thuần là tổng hợp những câu trả lời đúng cho những câu hỏi đó chứ không làm user bị lệ thuộc
+Không, đương nhiên tôi đã chú tâm điều đó
+Có chứ, đó là cách tôi muốn làm
+Không có, không cứng nhắc nhưng không quá dễ dàng để user phải thực sự suy nghĩ
+Rated games hoặc khi thi đấu sẽ không có hint hay AI, chỉ khi review mới được sử dụng với limited attempt thôi
+Có, sẽ phát hiện khi tỉ lệ chính xác quá cao vượt quá những gì trình độ đó được expected sẽ làm được
+Khó lắm, attempt không đủ và có rất nhiều câu hỏi làm delay những user muốn dùng với mục đích cheating
+Làm được
+AU.
+Đúng, không thể dùng bất cứ hint gì khi đang thi đấu cả
+Không, chỉ hiện khi review thôi, cố gắng tinh giản và giữ độ minh bạch nhất có thể khi đang thi đấu PvP hoặc với máy
+Rất khó, thứ nhất attempt không đủ, thứ hai có delay với những câu hỏi (mục đích câu hỏi là để học, không phải để tìm ra đáp án)
+Đủ
+Không sợ
+AV.
+30-60s đầu sẽ được tutorial hướng dẫn cách sử dụng web, giới thiệu tất cả các tính năng và cách sử dụng chúng
+Sau đó họ sẽ được dẫn vào test trình độ (bằng cách chơi ván đấu, giải puzzle tùy họ chọn) rồi sắp xếp vào trình độ tương ứng. Sau đó sẽ yêu cầu họ chơi ván đấu với người (nếu có) hoặc bot ở trình độ tương ứng rồi bắt đầu đưa vào workaround
+Sau khi chơi xong ván đấu họ sẽ bắt đầu làm quen với cách học, cách evaluate hình cờ, cách suy nghĩ và spaced repetition, web tôi đòi hỏi trả lời khá nhiều để thực sự tôi và họ đều hiểu cách suy nghĩ và fix tư duy, không phải để có đáp án
+Technical là được phân tích, được mentor, xây dựng roadmap
+Ảnh hưởng là họ dần biết cách suy nghĩ, biết cách đánh giá chập chững từ những bước đầu thì sẽ dần hiểu bản chất và nâng khả năng tính toán lên
+Reflection là họ biết lỗi sai của mình, biết tại sao sai và khắc phục như nào
+Có chứ, cách học và dạy sẽ được hiện trên web mà, đâu cần phải giấu
+Không, cái này tôi tự giữ
+Có chứ, ban đầu
+Sẽ có anonymous account cho user, còn test account thì tôi tự làm
+Có
+Có, update theo số liệu thực và dữ liệu thực
+Có, update theo ngày theo từng đợt update
+AW.
+Vì đây là những gì tôi wished to have in the past, và tôi muốn những người yêu và đam mê cờ tướng khác cũng có cơ hội làm được điều đó
+Vì engine có kinh nghiệm, có kho dữ liệu lớn từ trước, sau đó tôi sẽ theo đó mà phát triển ra chứ nếu không có data thì không LLM được
+Input ban đầu, những criteria cần có không được thay đổi và cách explanation, workflow và workaround của user
+Giúp tôi phát triển scale lên rất nhiều lần bằng máy, đương nhiên tôi vẫn cần tinh chỉnh trong giai đoạn đầu để giảm khả năng mistaken error, sau đó khi LLM tương đối thì sẽ giao cho nó và tự chỉnh sửa, tôi chỉ check khâu cuối thôi
+Chưa có, sẽ có trong tương lai khi phát triển
+Chưa có, đã phát triển đâu ơ
+Hallucination và tôi tưởng rằng chỉ cần làm tốt giai đoạn nền tảng là ML và AI tự làm được nhưng không vẫn phải giám sat
+Sẽ làm systematically, còn chỉ số 01 sẽ được cân nhắc thêm
+Vì nó thích nghi được với user khi họ tăng level, khi họ face difficulties hay khúc mắc ở phần nào đó thì sẽ giúp họ giải đáp và tháo gỡ chứ không có fixed roadmap cho tất cả mọi người
+Used in phân tích và adapt to từng người chơi, ML để phân tích và học cách giải thích cho user chứ không đơn thuần đưa ra đáp án là những nước đi tốt nhất như những engine khác
+Baseline là học cách phân tích, classify và cung cấp puzzle/lesson liên quan dựa vào những tiêu chí có trước, rồi dần dần sẽ adapt lên theo persona của từng người và tìm cách fix vào theo mỗi người như vậy
+Tôi sẽ đưa vào ban đầu, đánh giá việc ML học như nào và dần dần thích nghi cải thiện nó
+Tôi sẽ nâng lượng data có lên scale rất lớn, đồng thời hoàn thiện perfect AI explanation, hệ thống puzzle và lessons, đồng thời web đủ thích nghi và đủ lượng persona để tự tin thích ứng với mọi user
+Chưa biết, sẽ cố khắc phục all
+Learn how to tạo ra một web mới vibecode các bước như nào, làm thế nào để tối ưu
+It’s more important to have a right logical series and thinking rather than just the outcomes, long-term results rather than short-term achievements
+Cờ tướng không chỉ là một trò chơi, đó chỉ là nơi mỗi người thể hiện cách nghĩ cách sáng tạo cách nhìn nhận vấn đề và  nó giúp mọi người phát triển đủ mọi khía cánh của con người
+AX.
+Chắc chắn có, nếu họ đã follow theo roadmap thì phải có sự tiến bộ dù ít hay nhiều. Sau một thời gian nhất định (1 tuần) không có sự thay đổi thì sẽ phải feedback trực tiếp lại với web và những case đó tôi sẽ trực tiếp đi giải quyết
+Có, số lượng thôi, cách giải quyết tôi sẽ giữ
+Họ sẽ feedback, tôi sẽ personalize theo họ từng user một, còn lại hệ thống vẫn giữ nguyên, gọi họ là một vài điểm exception thôi
+Thì đương nhiên ban đầu sẽ như vậy, sẽ tiếp tục train, cải thiện LM, improve từ feedback và những đánh giá tinh chỉnh của riêng tôi rồi cho ra sản phẩm hoàn thiện hơn theo từng ngày
+Học rằng điều gì cũng phải có bắt đầu điểm, có sự thất bại, kiên trì mới đạt được thành công
+Redesign phần bị đánh giá thấp, tối ưu phần được khen, dần dần hoàn thiện sản phẩm
+AY.
+Là lượng AI explanation khổng lồ và độ chính xác đáng kinh ngạc, persona theo từng người
+Có thể nếu muốn, có sự chắt lọc không lấy all
+Không nên, hạn chế tối đa public mọi việc
+Có
+Có
+Có nếu cần thiết với coach, university yêu cầu sẽ show ra
+AZ.
+Không quá cần thiết vì cờ tướng về cơ bản vẫn là 2D, chỉ làm để đẹp cho UI thôi, có thể không có nếu quá vướng
+Có
+Chưa cần
+Có
+Chưa cần
+Chưa cần
+Chưa cần
+Có, làm nền tảng để train AI mà
+Có, thu thập feedback và đánh giá từ user
+Không, chỉ cần personal dashboard của mỗi user, dashboard tổng sẽ không show ra cho users
+BA.
+Không quá chú tâm thời gian, đương nhiên không để length quá lớn kiểu >1 tuần, cần validation và độ chính xác, thực hiện được những gì tôi mong muốn hơn
+Phần explanation và puzzle related, spaced repetition học tập
+Có
+Có
+Có
+Không có limit, miễn diễn giải đầy đủ, cụ thể, chi tiết và tôi hiểu được là oke
+Có
+Có
+Có, tôi sẽ check license những phần lấy thông tin
+Có, sẽ sửa hết lỗi hallucination của AI và những mistakes ban đầu, sai cái nào  sửa hết  rồi mới đến version tiếp theo
+Có, ban đầu lượng tự test sẽ nhiều, dần dần chuyển sang AI và ML làm thay
+Tôi sẽ yêu cầu một AI trung gian so sánh, so với bản so sánh của cả hai và tự mình đánh giá mỗi lần một để xem cái nào thật sự tốt hơn và chọn
+Có thể, gợi ý những AI làm tốt trong phần này cho tôi
+Có
+Được, tôi có thể dành từng đó thời gian được
+Có
+Có thể, 
+Chưa cần
+Ưu tiên nền tảng đơn giản ban đầu trước chứ không nên đi quá vội, speedup ở các tuần tiếp theo
+Đủ tốt khi nhờ user feedback lại
+BB.
+Khi Review, họ sẽ vào và xem những điểm highlight được đánh dấu, tự phân tích
+Có, nhưng chỉ hiện khi có review, tối giản nhất khi user đang thi đấu
+Tránh, nó useless
+Có expected outcome và những engine khác, đồng thời tinh chỉnh để phù hợp với level user vào thời điểm đó
+Có
+Có thể, đôi khi sẽ làm rõ hơn kiểu Blunder dạng nào, Excellent dạng nào hay kiểu vậy
+Có chứ
+Có chứ
+Sẽ thu thập dữ liệu liên tục, với data ban đầu thì chỉ ước lượng được thôi, càng ngày sẽ càng hoàn thiện hơn khi data tăng
+Không cần, user khi đứng trước hình cờ review sẽ phải trả lời những câu hỏi mẫu theo form rồi dần dần mới đưa ra best move dựa trên evaluation có trước
+Có, user cần tự đưa ra idea của bản thân trước khi đưa ra nhận xét best move của bản thân
+Có chứ, đó là một tính năng core tôi đưa ra ban đầu mà
+Có thể, chưa quá cần thiết ở giai đoạn đầu
+Chưa quá cần thiết, sẽ làm như vậy trong tương lai
+Avatar không cần, ChatBot khi được phát triển sẽ có như vậy, ngoài ra không cần
+Review hay Coach mode chỉ có sau ván đấu, dữ liệu từ ván đấu sẽ được đưa vào để tinh chỉnh Coaching plan về sau này
+Không, điều đó sẽ được adapt theo trình độ của user, không tự quyết định
+Có, chia theo level là điều bắt buộc
+Có, sẽ có phần Lessons riêng Puzzles riêng
+Để xem thêm, trước mắt tập trung vào AI explanation và puzzles related đã
+Ưu tiên mistakes và weakness mắc phải, rồi dựa theo trình độ mà  tìm puzzle phù hợp với level đó
+Có chứ, được classify theo chủ đề và độ khó mà
+Có, nhưng tránh lặp lại position có trước mà dùng những puzzle cùng chủ đề/ý tưởng
+Có, kiểu level nhưng na ná vậy
+Có, khi dùng hint sẽ giảm điểm cộng cho chủ đề đó, chỉ số đó
+Đương nhiên, khi mắc lỗi sẽ trừ điểm một chỉ số ở một chủ đề nào đó, tách thực chiến với luyện tập, điểm cộng puzzle không cộng cho overall rating, nhưng điểm trừ từ những sai lầm trong thực chiến thì trừ cho điểm chỉ số tổng
+Có, sẽ so sánh
+BC.
+Có, sẽ thử để có lượng data lớn
+Có
+Về sau có, prototype ban đầu chưa cần lớn như vậy
+Có nhưng không phải main hiện tại. Sau này sẽ có
+Có thể, ghép vào sẽ giúp evaluate tốt hơn mặc dù đánh giá ngay từ khai cuộc sẽ khá khó để bao quát toàn diện được
+Có
+Chưa, hơi xa quá
+Có, càng nhiều thông tin càng tốt, trước mắt mới cần auto best move và AI explanation trước mắt thôi đã
+Có, cần recheck với engine trước khi đưa ra thông tin đó
+Sẽ note lại unmatched position và yêu cầu engine phân tích sâu hơn ở đó
+Rate limit sẽ bị giới hạn nên cần cân nhắc lại
+Có
+Có
+Có
+Không, gộp lại làm một, đồng thời giải thích. Đương nhiên 1 hình sẽ không chỉ có 1 best move, còn tùy vào strategy của user như attack hay phòng thủ nữa
+Không cần
+Local vì đó là phần tôi tự nhập vào, còn khi nào có disagree tôi sẽ trực tiếp check để dần dần đồng bộ hóa
+Không hiện nguồn analysis
+Có
+BD.
+Pikafish của cờ vua, không liên quan. Sẽ đối chiếu nhiều engine để cuối cùng cho ra kết quả tốt nhất
+Có
+Có
+Có sửa source là lượng thông tin nhập vào chứ, không thể auto generate vào được
+Có
+Có
+Library cho dễ hiểu, mục đích tôi cần hiểu nó muốn làm gì trước khi áp dụng
+Có
+Có
+Có
+Time là khoảng 10-15s/explanation, timeout thì sẽ refresh, 3 lần khoogn được thì out
+Fast review nhưng chất lượng không khác quá nhiều deep review, chỉ khác chút thôi, và deep review ưu tiên dùng khi có Premium
+Không nên
+Đúng rồi
+Có
+BE.
+Đương nhiên
+Chưa cần đến đó
+Chưa nên như vậy vì hai cái về cơ bản ta hướng đến như vậy
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có
+Có, cần phần đó để chứng minh integrity và real effort
+Đúng, phần sau chỉ phát triển thêm sau khi đã hoàn thành kha khá thôi
+Có
+BF.
+Notation cơ bản quốc tế, notation cờ tướng không quá phức tạp đâu
+Không, sẽ thống nhất từ đầu
+Có
+Có
+Có
+Có thể có
+Có
+Có cần analysis tree nhưng không quá nhiều và phức tạp, chỉ cần bao hết các TH trong week 1 thôi
+Có
+Có
+Có
+Các bộ rules và quy tắc thì đã được quy chuẩn, ưu tiên dùng theo bản được quy định trong luật Việt Nam, chắc không cần nhiều thời gian đâu
+Vietnamese rules
+App sẽ báo lỗi về hệ thống máy chủ và tôi đưa ra quyết định
+BG.
+Của tôi là cách học, cách yêu cầu suy nghĩ và việc nhắc học chứ không đơn thuần như những engine phân tích hiện nay
+Đúng, learning platform của cờ tướng
+Có, vẫn cần để đánh giá trình độ
+Có nhưng giới hạn lượng có thể update chứ không tôi tải không nổi
+Có thể, là một trong những main
+Đúng
+Model xuyên nhiều sẽ làm user nhanh chán nản, chơi  phân tích lỗi sai  sửa rồi sau khi học đủ thì phải thực hành chứ
+Có
+Có
+Recommend ra cho họ trước và chốt learning goals của riêng persona
+Tôi là HLV, không cần override, mọi nhận xét feedback đều đưa qua tôi trước ở giai đoạn đầu, sau sẽ chuyển thẳng vào AI
+Có, là một frature phụ
+Đúng
+Có thể, không quá cần thiết vì focus chính là cờ tướng mà
+BH.
+Không cần, chỉ cần account thôi (nếu có thể)
+Được
+Không, age range là đủ
+Có nếu họ cung cấp vì là optional, mục đích để dễ liên lạc và xin feedback sau này
+Always, càng nhiều data càng tốt
+Khó, được lưu vào record thì không xóa
+Không cần vì không ảnh hưởng nhiều đến privacy mà
+Đúng
+Có
+Được, nếu họ không muốn hiện thì sẽ hỏi trước, nếu muốn thì vẫn hiện
+Có
+Không, sẽ chỉ dùng với mục đích review
+Có
+Có, chưa tạo nhưng bạn tạo hộ tôi và tôi check lại
+Chưa có
+BI.
+Bằng roadmap và những lần tôi commit từng ngày lên
+Đúng rồi, mọi commit đều cần đóng vai trò gì đó chứ không đơn thuần để giữ streak
+Có
+Tất cả, không giới hạn ở 3 hay một con số nào cả. Làm tất cả cụ thể hơn, đều hơn, minh bạch và mọi commit đều có lý do, phân biệt rõ từng phần
+Được, làm rõ mọi thứ AI-generated, AI-scaffolded, human-based, error and fix
+Tất cả những gì được thêm vào hoặc cắt đi đều được lưu lại, tránh thiếu minh bạch hay những lúc mất dữ liệu mà không biết bị mất ở đâu
+Có, dù fail hay succeed đều cần document và lưu lại
+Ngắn cho engine, còn làm càng chi tiết để lưu vào record tổng càng tốt
+Có
+Vẫn nên đăng ký tài khoản, tuy có thể không cần dùng API thường mà anonymous users thì vẫn được chấp nhận mà
+Được, phần giới thiệu sẽ làm khác, tạo riêng một phần “About Us”
+Được
+CV bullet cần chỉnh lại sau này, phụ thuộc vào những cái xây dựng và thay đổi chứ không cần giữ nguyên CV bullet như ban đầu
+Có, cập nhật trạng thái theo từng lần update, không cố làm đẹp mà phải làm đúng chính xác
+Thể hiện qua từng milestone, qua từng chặng trong roadmap, khi xong được cái nào tôi sẽ đánh dấu ngày vào đó để track progress
+BJ.
+Mentor thì nên theo tuần thôi, đương nhiên nếu họ muốn xem chi tiết thì từng ngày cũng có thể có, còn riêng bản thân tôi thì phải có milestone từng ngày để chi tiết và tôi biết phải làm gì, daily logging cũng cần có mà
+Product và tech depth, còn impact phụ thôi, fit với CV thì càng tốt
+Có
+Một vài, nhắc lại không giới hạn số lượng nhưng ưu tiên chất lượng trước rồi mới đến số lượng
+Không limit hay yêu cầu số lượng mà phải có kết quả thực sự của mỗi ngày
+Có, phải real, không phục vụ mục đích làm đẹp
+Có
+Có, tách riêng minh bạch, không phục vụ làm đẹp
+Có
+Có, phần feedback rất quan trọng, được treat khi review hàng ngày, cần lưu lại tạo thành hồ sơ
+Có, thật ra từng ngày đều cần, nhưng cuối tuần để tổng hợp lại thì cũng được mà
+Tôi làm là chính, mentor chỉ track và kiểu xem là có tiến bộ không chứ khoogn tham gia quá nhiều
+Họ không can thiệp đâu, sẽ có feedback
+Có, trước khi commit tôi phải review và check lại trước
+Có, update liên tục, riêng phần trong CV thì theo tuần và tôi check trước khi update
+BK.
+AI giúp sản phẩm adaptive hơn cũng như hệ thống đề xuất ngày càng thông minh, phù hợp hơn chứ không chỉ làm rule-based mà không có sự phát triển
+Có, tôi sẽ là người check và kiểm tra độ chính xác của AI. Phải tiếp tục cái đã làm tốt và khắc phục tất cả lỗi rồi mới đến phần tiếp theo được
+AI explanation thời gian đầu sẽ khá sơ sài, cần tinh chỉnh rồi dần dần mới tốt lên được
+Không, user vẫn cần tự đánh giá và plan, đồng thời trả lời các câu hỏi rồi mới đi đến đáp án được chứ AI không đóng vai trò cung cấp đáp án ngay từ đầu
+Sẽ cần nhiều data, ngày càng nhiều thì AI mới thật sự làm tốt như con người advanced được
+Tôi, những cái ban đầu tôi đều cần tự nhập vào để kiểm soát
+Chưa, nó vẫn phải tiếp tục cải tiến và thay đổi chứ không thể done được. Những gì trên thực tế done được chỉ là bộ luật và workaround thôi, còn lại đều cần phát triển theo thời gian chứ không dậm chân tại chỗ được
+Tech depth là đương nhiên, dần dần ra accuracy và human-like explanations
+Learning outcome, đương nhiên cần số lượng lớn user để nhiều data hơn và ngày càng hoàn thiện sản phẩm hơn mà, AI explanation và puzzle based
+Chứng minh sản phẩm hoạt động, giải quyết được research question thực sự
+Sự hiểu user và sự hiểu người chơi thật sự cần gì chứ không chỉ cần code, workaround tối ưu cho một người thực sự chơi cờ tướng
+BL.
+Mất đi việc biến những vấn đề thành giải pháp thực sự, biến những gì tôi từng muốn được làm thành giải pháp và khiến câu chuyện với cờ tướng bị đứt gãy
+Cờ tướng, Cờ Chill và những lần đi trải nghiệm để tôi thực sự có khả năng biến điều mình muốn làm thành hiện thực
+Competitive thinker  Researcher/builder/educator  leader
+Việc cờ tướng, từ cờ tướng/đam mê sang CS
+Việc tôi dạy mọi người học cờ tướng và việc trình độ của tôi bị chững lại trong một khoảng thời gian vì thiếu phương pháp học hiệu quả
+Đúng, khi áp dụng engine khác thì nó chỉ đưa best move nên người chơi khó có thể hiểu hết được tại sao và làm thế nào để nghĩ ra best move trong các TH khác
+Việc học, cách học và phương pháp học, cùng cách dạy của web
+Theo progress từng ngày, phát triển dần dần sẽ ra được
+Tất cả đều cần, 1 tháng nữa là nộp rồi
+Có
+Một community project, education experiment và tech build, một sự phát triển của riêng bản thân tôi
+Code quality và user impact, thật sự tiến bộ và phát triển
+Tránh việc project vì admission, mà nó là việc tôi đi giải quyết vấn đề của community và ra được sản phẩm
+Sản phẩm bắt nguồn từ việc dạy học và nhận ra vấn đề của những người chơi cờ tướng, có thể có rồi, có thể chưa 
+All, nổi bật là analytic và teaching-oriented
+Có
+Vì tôi hiểu user, hiểu người chơi cờ tướng và biết họ thực sự cần gì
+Bằng chứng là progress của user, từ beginner cho tới intermediate và cả những người chơi lâu năm mà bị chững lại ở level trình độ
+BM.
+Thay đổi về cách học, thay đổi về mục tiêu khi chơi cờ, thay đổi cách ảnh hưởng lên cả cộng đồng
+Giải bài, review trận đấu và tự phân tích, sau đó mới đến tự thi đấu và học khai cuộc
+Nghĩ ra và giải thích được nước tốt hơn, có thể tái hiện điều đó ở những trường hợp trong tương lai
+Có, thứ tự là đánh giá hình cờ, đánh giá điểm yếu điểm mạnh rồi tìm cách khai thác và tối ưu hóa lợi thế
+Cả hai, bằng evaluation swing và việc bị tấn công nguy hiểm hoặc mất đi những lợi thế vốn có trước đó về quân, lợi thế, vị trí đẹp
+Có mistakes, failed strategy, có miscalculation, unidentified threat,…, sẽ bổ sung hoàn thiện thêm
+Có, phải tùy vào trình độ người chơi chứ không phải hướng đến nước tốt nhất theo engine được
+Không có, tôi sẽ cố gắng đơn giản hóa tất cả để ngay cả beginner cũng có thể hiểu được
+Bắt đầu từ việc họ yêu cầu đánh giá và đưa ra nhận định của bản thân theo từng persona trước khi fix lỗi tư duy và giúp họ phát triển lên level cao hơn
+Không đủ 10 nhưng vài cái “Ở hình cờ này bên nào đang ưu thế?”, “Tại sao lại như vậy”, “Tối ưu ưu thế như nào” “Tấn công vào điểm yếu như nào” “Chiếm lợi thế như nào”…
+Decision quality trước, vì phần tính planning thì sẽ dành cho trình độ cao hơn hẳn mới làm được
+Bằng cách yêu cầu người chơi đưa ra suy nghĩ của bản thân, đánh giá của chính họ khi review chứu không chỉ đưa đáp án và để đó
+Same same, khi đã yêu cầu họ giải thích và nhận định suy nghĩ thì 2 cái đó không còn quá quan trọng
+Có, khi đó sẽ yêu cầu người chơi giải thích lại để note vào
+Có
+Có, sẽ từ họ nghĩ như nào, strategy như nào, tactic như nào làm được điều đó, sau đó sẽ thu được gì, kiểu vậy
+Biết cách để transfer cách nghĩ đúng và hướng tìm nước tốt nhất sang những hình cờ khác nữa
+VD như việc tiếp cận cờ tướng mà đòi hỏi quá nhiều suy nghĩ rất interactive nhưng cũng dễ chán, hi vọng sẽ có những người đủ kiên trì để làm được điều đó
+BN.
+What changed? What you wanna do at this point? How to do that? What’s the outcome after that? Can it be reasonable with other player decision?
+Explain theo việc yêu cầu họ đánh giá, giải thích mong muốn, cách làm như nào, hợp lý không, sau đó sẽ đưa ra best move
+Có
+Có
+Có, strategic trước rồi từ đó mới dẫn đến tactical được
+Độ dài, độ sâu và độ dễ hiểu, giúp beginner hiểu tường tận còn với level cao hơn thì chỉ cần chỉ hướng là họ biết rồi
+Nhiều candidate moves, phù hợp với nhiều trình độ, phù hợp với nhiều người chơi thiên hướng tấn công phòng thủ kiểm soát khác nhau
+Feedback của user sẽ chứng minh điều đó
+Sẽ có check rule ban đầu và đảm bảo AI và engine hoạt động theo đúng luật trước rồi mới tích hợp AI vào sau
+Explain luôn cần rõ ràng dễ hiểu cụ thể sau đó mới đưa cho user được, nếu user thấy có vấn đề gì với AI explanation thì feedback và việc của tôi sẽ giải quyết nó
+Thừa nhận nhiều chứ, there’s no shame about it
+Họ sẽ cần trả lời các câu hỏi trước, AI explanation chỉ là tổng hợp câu trả lời đúng thôi, không deep hơn được nhiều đâu
+Không, mình sẽ chọn cho họ (VD beginner thì cần precise deeply còn advanced thì có thể chỉ cần short explanation thôi)
+Feedback, learning gain và user correctness nữa
+Có
+LLM explain sai thì ngay lập tức tôi dùng engine phản hồi lại và sửa trước khi UX bị lỗi
+Có
+Phải giải thích cho user hiểu, phải giúp họ hiểu và tái hiện lại điều đó ở những position khác với mạch suy nghĩ đúng và tư duy đúng như vậy
+BO.
+Có chứ, lưu vào puzzle để tìm nước đúng, có thể hạn chế lặp lại cho user đó nhưng dùng làm puzzle cho user khác được
+Khi reivew, ở một position tương tự, hạn chế lặp lại trong cùng 1 user
+Review thì chỉ một lần thôi, không lặp lại tránh học vẹt
+Phải puzzle tương tự để transfer trước vì như vậy sẽ không bị quá nhanh mà user nhớ lâu, hiệu quả học cao hơn
+3 lỗi liên quan đến strategic thinking, yêu cầu người chơi giải thích và từ đó fix, còn các lỗi nhỏ khác để sau nếu không phải phần quan trọng là strategy
+Có
+Có
+So sánh chính lịch sử user trước, khi lượng user tăng lên tương đối thì mới so sánh peer group được
+Ban đầu quá nặng cho prototype, v1 chỉ chú tâm vào up lên kho lessons và puzzles trước rồi mới tạo Coaching plan ở v2 sau
+Why this now bằng evaluation và future plan khoảng 3-4 nước chứ không chỉ đưa ra engine best move
+Có thể, trong lịch sử thi đấu nếu họ muốn
+Thì phải tận dụng tất cả những gì họ có, từ những ván đấu của họ và những puzzle họ đã trải qua, yêu cầu mỗi ngày chơi một ván để có thêm data cho persona
+Tentative, khi số lượng đủ lớn (5+) thì mới xác định được weakness và fix bằng AI explanation, puzzle, lesson
+Có
+Có
+Cân bằng chứ, ưu tiên weakness hơn thôi để còn fix được
+Có thể nếu họ muốn, chỉ có trnog bản Premium thôi
+Vì generic practice không thể target vào weakness của user và điểm mạnh của họ nên không thể tối ưu hóa cho từng người được
+BP.
+Personal mistakes và strategic concepts, còn openings không cần spaced repetition, vì sẽ được luyện tập qua thực chiến
+Spaced repetition, để tìm hiểu thêm những nghiên cứu khoa học từ những phần khác nữa như học Vocab hay học các môn học trên lớp
+Reset lại, thậm chí giảm thời gian học để nhắc họ học nhiều hơn nữa
+Có aggregate, bao gồm và extract tất cả theme trong đó có thể có
+Có
+Phải trong thời gian cho phép, nếu quá lâu thì không tính
+Có
+Sẽ không lặp lại position cũ mà dùng những position có theme/chủ đề tương đương mà không cần phải học vẹt, học thuộc nước
+Có
+Không, với trình độ thấp thì chắc chắn không, trình độ cao hơn sẽ được hỏi ít hơn và tập trung số lượng hơn deep explanation như beginner
+10 là cùng, không put pressure on user
+Linh hoạt hơn, vẫn có deadline, có thể có streak để tăng retention rate
+Dùng mô hình chuẩn được nghiên cứu trên thế giới chứ không làm basic cái này được
+Có
+Có, sẽ cho họ thấy trình độ ở đâu, phấn đấu như nào, làm thế nào để tiến bộ
+Đúng là như vậy
+BQ.
+Ban đầu là curated mannually và imported dataset, sau đó sẽ trở nên auto-imported bởi LM 
+Là critical position, chứa nước hay, được phân tích và suy nghĩ trong hình cờ, có khả năng và tiềm năng giúp người chơi khám phá ra mạch suy nghĩ và giúp họ fix tư duy
+Có, nhưng best move còn dựa theo trình độ và khả năng của từng user chứ không chỉ engine bestm ove đơn thuần
+6 nước from now on
+Player attempts và đánh giá của tôi, sau này LM học theo đó và tự đánh giá
+Có
+Có, càng nhiều data càng tốt để research
+Tôi gắn, sau khi có nhiều feedback muốn thay đổi thì sẽ xem xét thêm
+Có thể report, tôi check lại và edit
+Có, có thể trong phần feedback nếu muốn
+Khi 1 hoặc vài user feedback đã gặp puzzle trong quá nhiều lần thì sẽ cân nhắc và chuyển sang theme khác
+Sẽ thay đổi, nếu cái nào không useful sẽ phải loại bỏ hoặc chuyển về kho ít dùng nữa
+Games sẽ là data để tạo thêm critical positions mà
+Chưa hiểu
+Có
+Lưu ở trong record tổng, ở từng dashboard và dữ liệu của từng persona
+Có, goldset ban đầu làm nền tảng để đánh dấu và giúp LM thực sự hiểu đúng 100%, sau đó nó sẽ tự đánh giá và chia theo từng theme khác nhau
+10 hoặc 20, sẽ tiếp tục thêm và cải thiện
+BR.
+Cần hỏi và test, đồng thời beginner chơi được rồi, có hướng dẫn cho người mới
+Hỏi càng nhiều càng tốt, vẫn cần trải qua thực chiến và puzzle test để biết trình độ thực sự của họ nằm ở đâu
+Placement ban đầu cần nhưng 1-2 thôi, thi đấu 1 ván nữa là đủ rồi
+Cả hai
+Khởi tạo bằng những test ban đầu, nếu họ thua thì giảm, thắng thì giữ nguyên hoặc tăng, có cả puzzle cần họ giải nữa qua đó test trình đầu vào
+Nếu thật sự chưa biết luật và chưa biết cách chơi thì cần hướng dẫn họ chơi đầu tiên, thiết lập thêm phần này là rule lesson và how to play Chinese Chess
+Đương nhiên, mình thiết lập persona cho từng user ở bất cứ mọi level mà, chỉ chỉnh cho từng user dựa trên trình độ và những ván đấu thực chiến, những puzzle mà mình thu thập được từ họ mà thôi
+Có, từ đó mình sẽ direct họ theo mong muốn của bản thân, là một phần trong việc persona. Sau khi họ chọn xong mục tiêu thì mình sẽ thiết kế coaching plan theo đó
+Có ảnh hưởng recommendation. VD họ muốn chơi kiểu tấn công thì khi recommend và phân tích ván đấu sẽ thiên về hướng đó để hợp style của họ hơn
+Không, yêu cầu họ chơi vì nếu thật sự import game thì lượng token rất tốn mà không biết ai là người thật sự thi đấu những ván cờ đó
+Không, nếu chưa có data thì yêu cầu người chơi giải puzzle hoặc thi đấu một ván cờ rồi từ đó mới coaching plan và dạy họ cách tư duy chứ không thì lấy data chung chung sẽ không hiệu quả được
+Khoảng 2-3 trận là đủ, mỗi trận sẽ có nhiều mistake và weakness lộ ra mà, 2-3 cho đủ tổng quát và overall rồi bắt đầu đưa họ vào workaround
+Có
+Có, sẽ yêu cầu họ làm những bài test ở level cao với một range lớn hơn bình thường, nếu vẫn làm được chứng tỏ trình độ họ cao ở mức đó thì điều chỉnh level lên thôi
+Không, muốn tăng level phải dựa vào progress thật sự, dựa vào puzzle giải được và những trận thắng thực chiến, phân tích và evaluate được chứ không được phép tùy chỉnh level
+30s-60s thôi, khi gặp khó khăn sẽ có gợi ý/không phải hint
+BS.
+Repo và product spec
+Chưa biết, phải xem đánh giá tổng quát của ngày 1 đã
+Xem tiến độ các ngày trước đã
+Xem tiến độ các ngày trước đã
+Xem tiến độ các ngày trước đã
+Xem tiến độ các ngày trước đã
+Xem tiến độ các ngày trước đã
+Tuyệt đối không được thêm thì không có, nhưng những tính năng phụ không giúp nhiều cho pinpoint của sản phâm thì chưa cần ưu tiên làm gấp
+Làm chậm cũng được, chưa cần quá nhanh gấp gáp
+Chứng minh vẫn cải thiện trình độ user từ mistake của họ được, sau đó đi sửa LLM
+Có
+Hi vọng sẽ cố gắng sắp xếp thời gian nhiều nhất có thể
+Sẽ cố gắng xem hết trước khi commit ngày tiếp theo, sẽ review hết tất cả trước khi next step, ưu tiên chất lượng overall mà
+Không, luôn look forward to the future
+Tất cả bug đều cần sửa từng bước một, không được bỏ lại cái nào cả
+Sẽ tự xem tất cả code chứ không để mặc hết cho AI được
+Daily track thì càng tốt, còn không thì weekly, dù gì vẫn có milestone hàng ngày để track progress mà
+Chưa rõ, API để sau cũng được, chạy server trước đã
+BT.
+Workaround như đã nhắc ở trên, đó là core main hiện tại của product
+Có
+Nếu ẩn danh sẽ không lưu được lịch sử, khuyến khích dùng account của bản thân và liên kết API thì càng tốt để lưu lịch sử thi đấu và luyện tập
+Return usage và completion, sự hoàn thiện của AI và ML, lượng data lớn dần sẽ giúp cải thiện chất lượng và độ rộng
+ĐƯợc định nghĩa là user hài lòng, giải thích đầy đủ các bước, giúp họ đạt được mục tiêu đi lại được những nước như vậy khi gặp tình huống tương tự về sau này
+Có 
+Có
+Có
+Có, để cải thiện nếu cần về explanation
+Thu gần hết, sợ gì privacy
+Có
+Views không quá quan trọng, cái tôi cần thấy là progress của người chơi thật sự với cờ tướng chứ không chỉ đơn thuần là participation
+CV claim sẽ thay đổi, không có gì consistent ở đó cả
+Có
+Có
+Có, minh bạch nhất có thể
+BU.
+Tuần đầu, làm nền tảng để AI phát triển sau này thật bền vững
+Engine facts dựa trên rule-based, concepts còn hallucinations không được phép xảy ra, nếu có tôi sẽ check và loại ngay
+Pedagogy và precision cần đảm bảo, ngoài ra level-fit và clarity là main point bắt buộc phải có
+Có
+Có
+Output sẽ không tệ đi vì khi feedback bản cũ đúng thì giữ nguyên, chỉ cải thiện thêm personal hơn và tinh chỉnh hơn thôi, cái gốc đã đúng rồi vẫn phải giữ chứ
+Show error và retry đến bao giờ được thì thôi
+Hi vọng = 0, tìm cách giảm thành free
+Có
+Vẫn đủ chứ, vẫn có phần gốc mà
+Rule-based để LLM học trước mà, đâu cần phải tách ra
+Có
+Xây Vietnamese trước, English chỉ đơn thuần transfer và translate sang thôi
+Không, note đi vào phần feedback, từ đấy tôi kiểm tra và check lại thôi
+Được, khi nào thực hiện thay đổi gì phải báo lại, không được phép chỉnh sửa mà không báo cáo cho tôi
+Có
+AI làm loạn hết các tính năng lên, gần như sập workaround thì phải dừng
+Bằng diagram thể hiện workaround và metrics của product này
+BV.
+Chỉ feedback qua sheet chứ không trực tiếp chỉnh sửa
+Không biết, tùy người chứ, có thể không có ai mà tôi tự làm mà
+Riêng, càng cụ thể từng phần càng tốt
+Lưu cả hai, take note rõ vào, tôi sẽ điều chỉnh nước nào phù hợp engine và level nào cho user tự persona theo từng trình độ/coaching plan
+Tôi làm được
+Tôi làm được, 20-30 được
+Future, v1 chưa cần
+Có, là tôi
+Có thêm note human, rồi tôi sẽ chốt lại sau
+Có
+Chỉ tôi
+Có
+Có, với người không quá hiểu cờ thì sẽ giải thích dễ hiểu cho họ
+Có thể có, theo usefulness và practicalness, còn lại không có thì thôi tôi tự làm
+Có
+Cần phù hợp với user, tôi sẽ tiếp thu ý kiến và sửa đổi chứ không độc tài đương nhiên rồi
+BW.
+Bạn bè, online community, whatever
+Tùy, lệch cũng được, mỗi cái tầm 5-10 user là được
+Không cần, chỉ cần họ test hợp lý là được, sử dụng app đúng
+Có
+Có thể nếu có người ủng hộ
+Xin feedback, xin ý kiến để cải thiện thêm
+Có, sẽ xin ý kiến chung chung chứ không manipulating hay leading
+Có thể, sẽ cố gắng nhờ bạn bè
+Khó, sẽ không có incentives, tình cảm là chính
+Tôi tự làm thôi
+Có, sẽ tạo sau khi xong v1
+GG form và in-app report
+Có, sẽ tạo sau khi xong v1
+Ưu tiên nguồn thực sự sử dụng web vì nó xác đáng và gần hơn với thực tế
+Cả hai
+Có, sẽ cân bằng bằng cách hi vọng user thật sự muốn sử dụng để tiến bộ đồng thời contribute cho sản phâm này somehow
+BX.
+Có, sẽ có hướng dẫn chơi mà
+Có video introductory hướng dẫn sử dụng tính năng của web mà
+Demo account thì người chơi sẽ được trải nghiệm và giải puzzle rồi vào workaround
+Full các tính năng của web
+Evidence về cách sử dụng web và các tính năng, kèm lý do và progress của users
+Language đơn giản dễ hiểu cho ngay cả người không biết chơi cũng có thể hiểu được
+Có
+Có
+Có
+Chỉ UI, code thì sâu hơn để vào repo và commit hàng ngày
+Có
+Có
+Có
+Để hết vào, sắp xếp đẹp là được, đằng nào cũng cần cung cấp hết mà
+Web và workaround, metrics đằng sau
+Có
+BY.
+100kVND/tháng
+Phần coaching plan riêng theo persona cùng việc truy cập vào kho puzzle/bài tập
+All
+Có, mỗi người giới hạn khoảng 5-10 lượt/ngày
+Time thì max 15s khoogn thì refresh, cost cố giảm xuống 0đ
+Có
+Có
+Có
+Có
+Có
+Chưa, đợi v2
+Hi vọng retention cao
+Deploy được trước đã
+Mới thêm complexity, đợi v2 sẽ test sau
+Sẽ cố gắng sắp xếp thời gian để học
+Là tôi thử và thật sự vào được workaround có hiệu quả, có tăng trình (tôi hoặc vài người bạn làm first-time tester)
+BZ.
+Laptop thì phải
+Nên để fit to screen, như app Ziga hoặc thiên thiên tượng kỳ ấy
+Có thể, sẽ để drag and drop sau
+Có
+Có
+Có
+Có, thật sự dùng để tránh cảm giác nói chuyện với AI
+Có
+Có
+Có
+Có, vẫn đưa vào workaround bình thường nhưng explanation sẽ không tốt/gần như không có luôn
+Có
+Có
+Máy tính mac/win, điện thoại mobile,…
+CA.
+Compatible nhưng chưa chắc xin được license, nếu có thể cần tự tạo engine và library của bản thân
+Cần engine, tôi sẽ phải tự sửa và recheck chứ, cần trước khi release và update
+Có, phải tạo dựa trên những người đi trước
+Có
+Lấy từ của tôi tự nhập vào và sẽ đi cướp hoặc lụm của những trang web lưu biên bản ván đấu hiện nay, quyền redistribute sẽ xin hoặc lụm luôn
+Cần xin permission, không được thì lụm luôn
+Sẽ phải tự nhập chay, hơi mất thời gian mà phải chịu, sẽ train cho AI nhập chay
+Khó, hạn chế upload, quyền thì thoải mái upload thì tôi sẽ lấy data và phân tích, train cho AI và ML thôi
+1 ngày, tôi và chỉ tôi
+Có
+Có
+Anonymous được nếu muốn nhưng nếu muốn lưu lịch sử và retent thì cần tạo account thật
+Có, data là từ viêc họ thi đấu và giải puzzle trong workaround đấy
+Có
+Có
+Tôi
+CB.
+Tôi, mỗi tôi mà thôi
+Không cần, solo project
+Có
+Chỉ tôi
+Tất cả
+Có
+Tôi, dựa trên việc minh bạch và tôi thật sự hiểu code, hiểu những gì AI generate và làm để không bị loạn và lost track với việc làm sản phâm
+Tôi
+Không có team
+Có, mỗi tôi thôi
+Có, mỗi tôi làm thôi
+Cút
+Có
+Không có team, có
+Không có team, mỗi tôi
+Quality sản phẩm, không có team
+CC.
+Chưa làm được đủ tốt. Chưa có hệ thống, chưa tối ưu hóa và giúp user thực sự tiến bộ như cách tôi đang làm được
+Không thể, phản khoa học
+Hallucinate được kiểm soát ở đoạn input nên không thể có được. Dù explanation ban đầu có lỏ thì cũng tuyệt đối không có hallucination
+Cút, cho họ hiểu rằng đó không phải cách tiến bộ mà chỉ fake thôi
+Chia theo từng level để adapt mà, họ sẽ không bị vậy
+Chọn dựa trên từng level
+Không có
+Assumption rằng lượng data sẽ đủ để train AI ML  khắc phục
+Sợ là LLM
+Users và data, còn lại thì flow oke
+No leadership và not enough data để thật sự ra impact
+Không
+Specific vì những feature riêng biệt/oneandonly của web rồi
+Tất cả, không fake, giữ minh bạch nhất có thể
+Có, nếu sai sẽ sửa tất cả mistakes rồi mới move version, không vội
+Chưa chắc sẽ có, tôi khá tự tin
+CD.
+Có 100 users concurrent và thật sự giúp họ tiến bộ trong viecj học cờ tướng
+Dataset và users, AI và ML đủ thông minh và tiến bộ hàng ngày thông qua data được nhập vào từ users
+Có
+Có
+Có, sẽ fake timeline
+Không cần vì cờ tướng khá niche, tôi tự tin
+Hạn chế public nhất có thể, bảo mật privacy cho người dùng
+Có, contribute theo feedback chứ không trực tiếp sửa
+Có
+Có, sẽ nghĩ thêm phần này
+Có, sạch trước làm nền tảng để xây những cái lớn hơn sau này
+Có
+Project và product, rồi mới đến infra áp dụng cho community
+Data và dữ liệu tổng dùng train AI ML
+Được user feedback và thật sự làm được những gì tôi mong muốn
+Có, vì nó thực sự hướng tới cộng đồng chơi cờ tướng chứ không chỉ để phục vụ cho admission, 
+CE.
+Khác biệt rõ, cần phụ thuộc vào luật cờ tướng là chính
+Rule-based và người chơi
+Mistake riêng theo luật, không dựa vào cờ vua, chỉ tham khảo thôi
+Yên tâm, sẽ chuẩn hóa từ đầu
+Có
+Đa số giống, nhưng vẫn specific riêng
+KHác, data availability ít hơn nhưng vẫn có, sẽ cố đạt đủ
+Na ná nhau
+Không khó hơn, khó xin license hơn nếu không được thì phải lụm
+Có, đa phần dùng lap và mobile  xem xét thêm
+Có
+Có
+Content history là phụ thôi, không phải main trong product của tôi
+Có
+Có, nhưng mà cũng không quá quan trọng vì cũng không cần reveal nổi bật của tôi lên làm gì
+Cả hai bên đều thiếu, vẫn na ná nhau mà
+Chịu, chưa biết được
+Learning platform the most optimal way for chinese chess players
+CF.
+Giải thích cấu trúc architecture được
+Không, tôi chỉ control architecture thôi
+Có, sau khi tôi hiểu cái đơn giản thì bắt đầu cái phức tạp sau
+Có
+Có
+Có
+Có
+Sẽ học thêm
+Sẽ cần tìm hiểu thêm
+Có nếu báo lỗi
+CÓ
+CÓ, hi vọng giảm được về 0 là đẹp nhất
+Có
+Càng nhiều hướng về main feature càng tốt, khi main ổn mới bắt đầu bao hết feature phụ được
+Có
+Khi architecture đủ lớn nhưng vẫn control được là thành công
+CG.
+Là sửa đến bao giờ được chứ sao
+Có
+Có, giảm chi phí về 0
+Có
+Có
+Deploy lại
+CÓ
+Có, hiện tại vẫn đủ
+Phải lấy thêm data chứ, ít nhất 20-30 được coi là đủ ở v1 rồi
+Có
+Tiếng Việt
+Là chơi được, vào web được và dùng hết được các tính năng main, feature, vào workaround thành công và có progress
+Có
+Có, luôn phải tính TH xấu nhất và dự phòng cho mỗi lần update
+CH.
+Nói chung là đủ dễ hiểu nhưng không cần quá chi tiết đâu
+Chi tiết dễ hiểu nhưng không quá nhiều vì họ cũng không chuyên về technical
+Không giới hạn không fixed số lượng, tập trung vào độ minh bạch hơn
+Là những gì mình đã làm, vì sao chưa succeed, thay đổi và fix như nào
+Có, nhiều decision cũng được, hợp với thực tế
+Không tối đa, họ sẽ tự lọc thông tin
+Chat trước, tôi sẽ review và check lại
+Có
+So chứ, xem tiến độ và các milestone hàng ngày như nào
+Có
+Có
+Tất cả, họ giúp được nhiêu biết nhiêu thôi, không depend vào đó, có thể đôi khi không có mentor luôn
+Giới hạn tóm gọn phần thay đổi trong architecture thôi, đâu cần chi tiết quá mức làm gì, tôi vẫn kiểm soát được và hiểu architecture là đủ rồi
+Có
+Part 3:
+App chơi cờ tướng/dạy học cờ tướng
+Cách dạy học tối ưu và giúp người chơi cờ tướng tiến bộ tối ưu nhất
+Bạn của tôi, tester và tôi
+Tiến bộ trong cách suy nghĩ và thực lực cờ tướng thực sự
+Workaround như trên
+Phân tích, AI explanation, best move engine, chơi được PvP, chơi được với máy, truy cập vào puzzles related và lessons
+Có 100 users concurrent
+Chưa biết, cái nào tốt nhất lấy cho tôi
+Brow trước rồi đến server và cuối cùng đạt được hybrid
+Chưa biết, cái nào tốt nhất lấy cho tôi
+Chưa biết, cái nào tốt nhất lấy cho tôi
+Có, tôi tự nhập và lấy từ user qua quá trình sử dụng
+Có, đã ghi ở trên tự trích thông tin đi
+Hoạt động chủ yếu trong workaround và các tính năng khác liên quan
+Là mấy cái engine trên mạng và source trên mạng, sẽ xin license hoặc đi lụm của thằng khác
+Bạn tôi
+Là người chơi feedback tốt và thật sự hiệu quả với methodology
+Ngày mai
+Chưa biết, cái nào tốt nhất lấy cho tôi
+Chưa biết, cái nào tốt nhất lấy cho tôi
+Chắc daily hoặc weekly, không quá phụ thuộc vào đâu
+Tất cả chưa có cái nào fix, cần thay đổi liên tục dựa vào kết quả của product
+Daily mentor update không quá cần thiết đâu, fix cũng được vì họ không thiên về technical things
+
+

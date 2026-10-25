@@ -1,0 +1,141 @@
+CODEX — AUTONOMOUS BUILD INSTRUCTIONS
+Upload this file with the existing repo + XiangqiAI_V3_Final_Pack.zip. Codex should inspect, implement, test and document the prototype autonomously.
+
+A. Cách bạn dùng file này
+Bạn chỉ cần cung cấp cho Codex các đầu vào sau trong cùng một coding workspace/conversation:
+File / access
+Mục đích
+Current Xiangqi repository / project folder
+Required if you want the agent to continue from your existing code. Give the coding agent direct access to the repository or upload the complete project folder.
+XiangqiAI_V3_Final_Pack.zip
+Required. This contains the product specification, architecture, roadmap, learning model, AI/ML plan, data/license plan, prototype scope and comparison rules.
+Answer to Master Question(1).docx
+Recommended. This is the raw product-discovery source. Use it only to resolve nuance; the Final Pack remains the implementation source of truth.
+This instruction file
+Required. Claude.docx for Claude; Codex.docx for Codex.
+Sau khi upload/open đủ, chỉ gửi đúng một câu ngắn: 
+Read Codex.docx completely and execute it end-to-end. Build the prototype; do not stop at analysis.
+Quan trọng: nếu bạn không cho agent truy cập repo hiện tại, nó không thể “tiếp tục repo hiện có”. Trong trường hợp đó instruction cho phép nó dựng một workspace mới, nhưng kết quả sẽ không còn là phép so sánh chính xác trên cùng baseline.
+B. BEGIN AUTONOMOUS AI INSTRUCTIONS
+Everything below is an execution specification for the coding agent. Follow it directly.
+1. Role and mission
+You are the senior implementation engineer for the CODEX implementation of this project. Build the strongest working prototype that can be produced from the current repository and supplied specifications, without waiting for step-by-step human prompting. The prototype must demonstrate the learning thesis, not merely a Xiangqi board: Play or load a game → identify critical mistake → learner reflects before seeing the answer → grounded diagnosis → WHAT/WHY/HOW explanation → retry → related unseen practice → spaced repetition → progress dashboard.
+2. Input precedence and how to read the attachments
+Find the current project repository/workspace. Do not assume it is empty.
+Locate XiangqiAI_V3_Final_Pack.zip. Extract it if needed, or read the contained Markdown files directly if the environment exposes them as attachments.
+Read 00_START_HERE.md first, then 01_PRODUCT_SPEC.md, 02_FEEDBACK_AND_CORRECTIONS.md, 03_ARCHITECTURE.md, 04_PROTOTYPE_7_DAY.md, 05_MILESTONES.md, 07_LEARNING_MODEL_SPACED_REPETITION.md, 08_AI_ML_PLAN.md, 09_DATA_LICENSE_SOURCES.md and 17_ACTION_ITEMS_BEFORE_CODE.md.
+If Answer to Master Question(1).docx is attached, use it as raw discovery evidence when a product detail is unclear. Do not let raw answers override explicit corrections in 02_FEEDBACK_AND_CORRECTIONS.md.
+Do not modify the supplied specification files merely to make implementation easier. If you deviate, document the deviation and reason in the implementation report.
+3. Non-negotiable engineering rules
+Do not stop after analysis. Audit first, then implement autonomously until a usable prototype is running.
+Treat docs/spec/01_PRODUCT_SPEC.md and docs/spec/03_ARCHITECTURE.md as desired-product source of truth. Treat the existing repository as the source of truth for what is already implemented and reusable.
+Do not silently overwrite or redesign working architecture. If a major conflict exists, choose the smallest safe change, document the decision, and continue.
+Xiangqi rules/engine determine objective chess truth. The LLM must not invent legal moves, evaluations, tactical lines or engine facts.
+Do not claim machine learning unless an actual model is trained and evaluated. Rule-based/adaptive heuristics must be labeled honestly.
+Do not scrape copyrighted/proprietary puzzle collections or databases just to fill the prototype. Use existing project data, owner-provided data, legally usable sources, or clearly labeled synthetic demo data.
+Never expose API keys or secrets in frontend code or Git. Never store plaintext passwords.
+If an external API key, paid service, engine binary, cloud database or credential is missing, build a clean adapter and a deterministic/local demo fallback. Missing paid infrastructure must not block the prototype.
+Prefer a coherent end-to-end flow over feature count. 3D, tournaments, social feed, premium billing and complex multiplayer are stretch/future features.
+Reuse existing code when it is sound. Avoid broad rewrites and unnecessary frameworks.
+For important logic, add automated tests. At minimum test Xiangqi legality, review/diagnosis behavior, spaced-repetition scheduling, and the critical user flow where practical.
+Keep implementation understandable to a beginner developer. Create a learning guide explaining the final data flow and major files.
+Do not ask preference questions that can be answered by the specification. Ask only if there is a true hard blocker such as unavailable file access or a destructive irreversible action.
+4. Required prototype outcome
+Required capability
+Prototype standard
+A. Entry / Start
+A simple home/start experience that gets a user into the learning flow quickly. Guest/demo mode is acceptable.
+B. 2D Xiangqi board
+Playable board or a reliable loaded-game/demo flow. Legal move handling must not knowingly allow illegal Xiangqi moves.
+C. Game record
+Move history or equivalent state so a completed/demo game can be reviewed.
+D. Engine/rules layer
+A clear adapter boundary. Use a real Xiangqi engine if already available and legally/configurably usable; otherwise a clearly labeled demo/verified fallback must preserve the architecture.
+E. Post-game review
+Show 1–3 meaningful critical moments. Allow the user to navigate to a position and retry.
+F. Reflection first
+Before revealing the explanation, require the learner to give their own evaluation/intent/candidate move at an appropriate depth.
+G. Grounded explanation
+Explain WHAT changed, WHY the move/idea matters, and HOW the learner should think next time. All chess claims must come from verified structured inputs.
+H. Practice follow-up
+Recommend a related skill/theme puzzle or position; prefer unseen positions to exact repetition.
+I. Spaced repetition
+Store a due date / next review based on a transparent heuristic. Failures return sooner; independent transfer success returns later.
+J. Learner dashboard
+At minimum recent mistakes, skill progress/mastery, due reviews and recent activity.
+K. Persistence
+Use the simplest reliable persistence compatible with the repository. Local/dev persistence is acceptable for the prototype if migration path is documented.
+L. Working launch
+The app must start with documented commands. A human must be able to follow a 60–90 second demo path without reading source code.
+5. Autonomous execution sequence — do not wait for human milestone prompts
+Phase 0 — Ingest: Locate/extract the supplied Final Pack. Read 00_START_HERE, Product Spec, Feedback/Corrections, Architecture, Prototype 7-Day, Milestones, Learning Model, AI/ML Plan and Data/License. Read the raw Answer V3 only when extra nuance is needed.
+Phase 1 — Repository audit: Inspect folders, package files, dependencies, current branch/status, existing tests and working features. Run the app/build/tests if possible. Keep this audit short and implementation-oriented.
+Phase 2 — Recovery / foundation: Fix only critical setup/build problems. Preserve working code. Establish a clean run command and test command.
+Phase 3 — Core Xiangqi flow: Complete or reuse board/rules/game record/engine adapter so a game or deterministic demo game can feed review.
+Phase 4 — Learning loop: Implement critical-position review, reflection, diagnosis, grounded explanation and retry.
+Phase 5 — Practice + memory: Implement a small verified puzzle/position bank, skill tags, recommendation, attempts, learner skill state and spaced review queue.
+Phase 6 — Dashboard: Show actionable progress: weaknesses, recent mistakes, due reviews and skill state.
+Phase 7 — QA: Run tests, lint/type checks/build, smoke the user flow, fix critical defects, check secrets, check data/source labeling.
+Phase 8 — Documentation + final handoff: Write run instructions, demo script, implementation report, known limitations, AI usage report and beginner learning guide. Make logical Git commits when repository permissions allow.
+6. Decision rules when something is missing
+Missing / problem
+Required response
+No LLM API key
+Implement an LLM provider interface and a deterministic/templated grounded demo provider. Keep the whole flow runnable. Clearly label it as demo/fallback.
+No engine binary / engine setup fails
+Keep an EngineAdapter boundary. Use an existing legally usable Xiangqi library/engine if present. Otherwise use a small verified demo analysis set and label it; do not pretend it is a real engine.
+No production database
+Use the simplest local/dev persistence compatible with the repo (for example SQLite or clean local persistence). Abstract it so production migration is possible; document the gap.
+No login/auth
+Use guest/demo identity. Do not block the learning loop on OAuth.
+No large puzzle dataset
+Create/use a very small legally safe demo bank with source metadata and verified solutions. Quality > quantity.
+Existing repo is partially broken
+Repair only what blocks the prototype. Preserve unrelated work. Document pre-existing failures separately.
+Spec ambiguity
+Choose the option that best preserves the core learning thesis and simplest maintainable architecture. Record the choice in a decision log.
+Time pressure
+Cut stretch features first: PvP, 3D, premium, animation, social/community, advanced ML. Do not cut the learning loop.
+7. Minimum testing expectations
+Rules/legality: representative tests for Tướng/General, Sĩ, Tượng, Xe, Mã, Pháo, Tốt/Pawn, including horse-leg blocking, elephant river restriction, cannon screen capture and flying-general rule where implemented.
+Game state: illegal moves must not mutate state; move history must remain coherent.
+Review: at least one completed/demo game must generate a reviewable position and retry path.
+Explanation: schema/output validation; fallback must activate if provider fails.
+Spaced repetition: failure schedules earlier than independent/transfer success; exact repeated item should not be the default when a related unseen item is available.
+Persistence: basic attempt/progress survives the expected prototype lifecycle.
+Build: run the repository's relevant lint/typecheck/build/test commands and document results.
+Manual smoke: run the complete 60–90 second demo flow in the UI.
+8. Required final deliverables
+A working prototype in the agent's current repository/workspace.
+IMPLEMENTATION_REPORT_CODEX.md — what was built, architecture actually used, changed files, commands, tests/results, real vs mocked components, deviations, limitations, licensing/source concerns and unfinished items.
+RUN_AND_DEMO_CODEX.md — exact install/start commands plus a 60–90 second human demo path.
+TEST_REPORT_CODEX.md — tests run, results, manual smoke checklist, known failing cases.
+BEGINNER_LEARNING_GUIDE_CODEX.md — explain the final data flow, major folders/files, five most important modules/functions, inputs/outputs, and common failure modes.
+AI_USAGE.md — what coding AI created/changed and where human/domain verification is still required.
+KNOWN_LIMITATIONS.md — explicit limitations, especially demo fallbacks, unverified data, missing API keys/engine, or incomplete features.
+Updated README.md only if the existing README can be updated truthfully without deleting useful project history.
+9. Final self-check before you say “done”
+Can the app be installed/run with the written commands?
+Can a user reach the main learning flow without manual database editing?
+Is at least one game/demo path reviewable?
+Does the user reflect before seeing the solution?
+Are explanations grounded in engine/rules/verified demo facts?
+Can the user retry the position?
+Can the user receive a related practice item?
+Does an attempt create/update a future spaced review?
+Does the dashboard show meaningful progress/due work?
+Are mocked/demo components explicitly labeled?
+Are secrets absent from committed code?
+Do critical tests/build commands pass, or are failures documented precisely?
+10. Final response format to the owner
+PROTOTYPE STATUS: WORKING / PARTIAL / BLOCKED1. How to run<exact commands>2. 60–90 second demo<click-by-click flow>3. What is real<engine/db/LLM/data/features actually working>4. What is mocked or fallback<explicit list>5. Tests<commands + pass/fail summary>6. Most important files<paths + one-line purpose>7. Known limitations<short ranked list>8. What I should learn first<5 concepts, beginner-friendly>9. Git status / commits<branch and commits if available>10. Next highest-value step<one recommendation only>Also point me to IMPLEMENTATION_REPORT_CODEX.md and BEGINNER_LEARNING_GUIDE_CODEX.md.
+11. Codex-specific operating instructions
+At the beginning, create or update a concise AGENTS.md in the repository root containing the persistent repo-level rules derived from the supplied specifications. Do not weaken the original specs.
+Use the repository and terminal actively: inspect dependency manifests, discover the actual test/build commands, run them, and use output as evidence rather than guessing.
+Make small coherent changes and inspect the diff frequently. Avoid giant one-shot rewrites unless the repository is genuinely empty.
+Prefer testable interfaces for engine, explanation provider, persistence and scheduler so demo fallbacks can later be replaced without rewriting the UI.
+When a command fails, diagnose from output, choose the smallest correction, rerun, and record material failures in TEST_REPORT_CODEX.md.
+Use logical Git commits when Git write access exists. Do not force-push or destructively rewrite history.
+Before finalizing, perform an independent code-review pass against the supplied Product Spec and Architecture, not merely against whether the build passes.
+12. Codex execution command
+Read this entire Codex.docx and all supplied project/specification files. Then execute the instructions end-to-end in the current repository. Do not return only a plan or audit. Implement the prototype, run the repository's tests/build checks, fix critical failures, document real versus fallback behavior, and return exact run/demo instructions. Ask me only if a true hard blocker prevents code or file execution.

@@ -1,0 +1,4683 @@
+MASTER FINAL QUESTIONS v3
+AI-Powered Chinese Chess (Xiangqi) Learning Platform
+Product discovery · AI/ML · Xiangqi engine · Learning science · Research · GitHub · Admissions proof-of-work
+
+Prepared for: TRAN QUOC THANH
+Version 3 · 1 October 2026 · Hanoi, Vietnam
+V3 MỤC TIÊU• Giữ nguyên TOÀN BỘ Master Bank v1 (856 câu).• Nâng Priority từ 60 → 80 câu để bạn biết cần trả lời trước.• Bổ sung các nhóm mới dựa trên explainable chess AI, personalized game-derived training, spaced repetition, public puzzle/data pipelines, reliability/evals, deployment, licensing, reviewer defense và Xiangqi-specific differentiation.• Contact details cá nhân được cố ý bỏ khỏi file để an toàn khi bạn chia sẻ cho mentor/team.
+
+CÁCH TRẢ LỜI ĐỂ FILE NÀY HỮU ÍCH NHẤT
+• Không cố trả lời “thông thái nhất”. Ưu tiên câu trả lời đúng với bạn, có reasoning và tách rõ điều đã biết với điều chưa biết.
+• Dùng 4 nhãn khi hữu ích: [PERSONAL] trải nghiệm/ý kiến thật; [EVIDENCE] dữ liệu/feedback/tài liệu; [HYPOTHESIS] giả thuyết chưa kiểm chứng; [UNKNOWN] chưa biết – cần research/đề xuất.
+• Với câu hỏi về bản thân, Xiangqi journey, mục tiêu, pain points: đừng tra cứu để “đẹp câu”. Với architecture, ML, competitors, license, pedagogy, deployment: có thể ghi [RESEARCH NEEDED].
+• Không claim “ML”, “team”, “pilot”, “impact”, “users” nếu evidence chưa tồn tại. Hãy ghi trạng thái thật: Planned / In progress / Completed / Validated.
+• Bạn có thể trả lời Vietnamese/English mixed, bullet, link, screenshot reference, hoặc “choose for me”. Sau khi bạn gửi lại, file này sẽ được dùng để khóa Product Spec v0.1, architecture, roadmap 7 ngày và mentor checklist.
+Research lens — retained in v3
+V3 giữ nguyên toàn bộ câu hỏi bổ sung của V2, được xây dựng sau khi đối chiếu thêm các pattern hiện tại: explainable engine analysis (DecodeChess), game-derived personalized training (Aimchess/Chessable PuzzleConnect), spaced repetition/MoveTrainer, Lichess puzzle themes/open puzzle database, cùng các nguồn Xiangqi/open-source đã có trong v1. Public indexing của X/Threads cho các post build-Xiangqi cụ thể khá hạn chế, nên file không biến các post không kiểm chứng thành “best practice”; thay vào đó chỉ dùng những pattern có thể xác minh hoặc các câu hỏi trung lập để bạn tự quyết định.
+
+PART I — PRIORITY 80: TRẢ LỜI TRƯỚC
+Đây là 80 câu có xác suất cao nhất làm thay đổi product thesis, scope 7 ngày, architecture, evidence và cách project gắn với hồ sơ. Chúng được lặp lại trong Master Bank để bảo đảm ALL questions vẫn nằm trong một hệ thống đầy đủ.
+#
+Ref
+Priority question
+YOUR ANSWER / NOTES
+P01
+A15
+Hoàn thành câu “I built this because…” bằng một lý do cá nhân thật, không phải vì cần project CS.
+
+P02
+V04
+Theo trải nghiệm thi đấu của bạn, vấn đề lớn nhất của việc học cờ tướng hiện nay là gì?
+
+P03
+W06
+HLV review một ván khác engine ở điểm nào?
+
+P04
+W09
+Người chơi mạnh nhìn một position theo thứ tự nào? Có thinking checklist nào bạn thật sự dùng không?
+
+P05
+B01
+User chính của v0.1 là ai – chọn đúng MỘT nhóm trước.
+
+P06
+C01
+Learning outcome cụ thể nhất bạn muốn cải thiện là gì?
+
+P07
+C02
+Bạn định nghĩa và đo “strategic thinking” thế nào?
+
+P08
+C03
+Bạn định nghĩa và đo “problem-solving” thế nào?
+
+P09
+E17
+Feature nào khiến chính bạn lúc mới học cờ chắc chắn muốn dùng?
+
+P10
+U01
+Chọn core flow duy nhất cho prototype 7 ngày.
+
+P11
+U02
+Một câu duy nhất bạn muốn reviewer nhớ sau khi đóng tab là gì?
+
+P12
+BG01
+Nếu web cờ khác đã có AI/play/review/training, khác biệt không thể thay thế của bạn là gì?
+
+P13
+BG05
+Bạn có muốn “one-click from game to personalized lesson” là wedge chính không?
+
+P14
+D16
+Bạn có muốn kiến trúc hybrid Engine → Diagnosis → Learner Profile → Recommender → LLM Tutor không?
+
+P15
+D17
+Recommender v0.1 là rule-based hay ML thật?
+
+P16
+AF02
+Baseline cho recommender/model là gì?
+
+P17
+AA01
+Engine nào dùng?
+
+P18
+BD01
+Có nghiêng về Pikafish không?
+
+P19
+BD09
+Engine chạy server, browser/WASM hay hybrid?
+
+P20
+BF01
+Canonical notation/position format nội bộ sẽ là gì?
+
+P21
+H01
+Nguồn puzzle/dataset hiện tại là gì?
+
+P22
+AE02
+License dataset có cho phép dùng/redistribute không?
+
+P23
+A10
+Bạn có bao nhiêu game record thật của chính mình?
+
+P24
+W12
+Bạn có thể tự annotate ít nhất 50 game/critical positions không?
+
+P25
+A12
+Bạn có HLV/strong player nào sẵn sàng feedback/validate taxonomy không?
+
+P26
+AG01
+5 người đầu tiên bạn sẽ phỏng vấn là ai?
+
+P27
+I02
+Bạn có thực sự muốn pilot pre/post, hay v0.1 chỉ usability test?
+
+P28
+AN01
+Research question chính xác nếu làm pilot là gì?
+
+P29
+S01
+Ngày exact prototype phải live là ngày nào?
+
+P30
+S03
+Mỗi ngày 7 ngày tới bạn có bao nhiêu giờ thật sự?
+
+P31
+S06
+Bài kiểm tra/CLB/essay nào sẽ cạnh tranh thời gian với project tuần này?
+
+P32
+K01
+Python hiện tại bạn thật sự làm được gì mà không cần AI?
+
+P33
+K12
+JavaScript hiện tại bạn thật sự làm được gì mà không cần AI?
+
+P34
+L03
+VS Code đã cài và chạy được chưa?
+
+P35
+L05
+python --version là gì?
+
+P36
+L07
+git --version là gì?
+
+P37
+L09
+node -v là gì?
+
+P38
+L12
+GitHub account/repo đã sẵn sàng chưa?
+
+P39
+L23
+RAM/CPU/GPU máy là gì để quyết định local engine?
+
+P40
+M01
+Tool AI coding chính sẽ là ChatGPT, Claude Code hay kết hợp?
+
+P41
+AK08
+Bạn có đồng ý tách AI-generated / AI-assisted / human-designed trong log không?
+
+P42
+T02
+Bạn có đồng ý chỉ dùng chữ “machine learning” khi có model/dataset/evaluation thật không?
+
+P43
+T03
+Team hiện tại là thật hay planned?
+
+P44
+T04
+Pilot/workshop hiện tại là thật, scheduled hay planned?
+
+P45
+N01
+Repo public được không?
+
+P46
+N15
+Bạn có sẵn sàng Development Journal hằng ngày không?
+
+P47
+N20
+Bạn có sẵn sàng dùng tests + GitHub Actions không?
+
+P48
+O11
+V0.1 có thật sự cần database/login không?
+
+P49
+P02
+Reviewer 30 giây có hiểu innovation không?
+
+P50
+P04
+Có muốn “Try a 60-second AI lesson” làm demo entry không?
+
+P51
+R01
+Ngành apply chính xác là gì?
+
+P52
+R03
+Deadline application sớm nhất là ngày nào?
+
+P53
+R07
+Top 3 phẩm chất project phải chứng minh trong hồ sơ là gì?
+
+P54
+BA20
+Tiêu chí “đã đủ tốt để deploy” của v0.1 là gì?
+
+P55
+AL01
+Những rule Xiangqi tối thiểu nào bắt buộc phải có automated tests?
+
+P56
+AB08
+Bạn sẽ phát hiện/giảm hallucination của LLM explanation thế nào?
+
+P57
+AT07
+App có thể bị dùng để hỗ trợ cheating real-time không, và bạn sẽ thiết kế để giảm điều đó thế nào?
+
+P58
+BH01
+Pilot học sinh có thể dùng anonymous participant IDs thay tên thật không?
+
+P59
+BI13
+Mỗi CV bullet sẽ có evidence nào trong repo/demo/data?
+
+P60
+BK11
+Điều gì chỉ combination “competitive Xiangqi + math + community + beginner-to-builder CS journey” của bạn mới làm project này đáng nhớ?
+
+P61
+CE18
+Hoàn thành câu: “This is not Chess.com for Xiangqi; it is …” bằng một định vị thật sự riêng.
+
+P62
+BO05
+Một game có nhiều lỗi; thuật toán sẽ chọn đúng 3 lỗi nào đáng học nhất và vì sao?
+
+P63
+BN18
+AI explanation của bạn phải làm được điều gì mà raw engine PV không làm được?
+
+P64
+BP08
+Làm sao dùng spaced repetition mà không biến học chiến lược thành học thuộc nước?
+
+P65
+BQ18
+Trong 7 ngày, bao nhiêu puzzle/position đã validate là đủ để demo core loop thuyết phục?
+
+P66
+BR03
+Có cần placement mini-test trước khi personalization bắt đầu không?
+
+P67
+BS07
+Definition of done chính xác của Day 7 là gì?
+
+P68
+BS10
+Nếu LLM integration thất bại, fallback demo vẫn chứng minh product thesis bằng cách nào?
+
+P69
+BT04
+North-star metric của prototype là gì: completion, learning signal hay return usage?
+
+P70
+BU02
+Gold eval case cho AI explanation phải chứa những gì để phát hiện hallucination/regression?
+
+P71
+BV06
+Bạn có thể xin HLV/strong player review 20–30 gold positions để làm ground truth không?
+
+P72
+BW01
+10 tester đầu tiên cụ thể sẽ đến từ đâu?
+
+P73
+BX04
+Một “60-second guided demo” của reviewer gồm chính xác những bước nào?
+
+P74
+BY01
+Ngân sách domain/hosting/API mỗi tháng tối đa bao nhiêu?
+
+P75
+CA01
+Mỗi engine/library/dataset có license gì và có compatible với cách deploy không?
+
+P76
+CB05
+Phần nào bạn tự chịu trách nhiệm end-to-end để authorship trong hồ sơ hoàn toàn rõ?
+
+P77
+CC08
+Assumption nguy hiểm nhất hiện tại vì chưa có evidence là gì?
+
+P78
+CD02
+Sau 3 tháng, artifact mạnh nhất bạn muốn có là gì?
+
+P79
+CF16
+Tiêu chí nào cho thấy project đã chuyển từ “AI wrote it” sang “I understand and own the system”?
+
+P80
+CH03
+Daily mentor update có bắt buộc một shipped artifact/evidence cụ thể mỗi ngày không?
+
+
+PART II — MASTER QUESTION BANK: ALL
+ALL = giữ nguyên 856 câu của v1 (A–BK) + 378 câu mới của v2, giữ nguyên trong v3 (BL–CH). Không xóa/ẩn nhóm câu cũ. Priority 80 chỉ là bản sao ưu tiên, không thay thế Master Bank.
+A. Câu chuyện cá nhân của sản phẩm
+ID
+QUESTION
+YOUR ANSWER / NOTES
+A01
+Vì sao bạn chọn cờ tướng, chứ không phải chess, Sudoku hay một game strategy khác?
+
+A02
+Bạn bắt đầu chơi cờ tướng từ lúc nào?
+
+A03
+Bạn từng học với ai / học theo cách nào?
+
+A04
+Bạn đã từng thi đấu chưa?
+
+A05
+Thành tích cờ tướng nào bạn thực sự có thể đưa công khai vào portfolio?
+
+A06
+Có thất bại, trận đấu hoặc khoảnh khắc nào khiến bạn nhận ra việc học cờ hiện tại có vấn đề?
+
+A07
+Khi học cờ, phần nào từng làm bạn khó tiến bộ nhất: khai cuộc, trung cuộc, tàn cuộc, tactics, phân tích sai lầm hay tìm bài tập phù hợp?
+
+A08
+Hiện nay bạn tự đánh giá trình độ cờ của mình thế nào?
+
+A09
+Bạn có biết đọc notation cờ tướng không?
+
+A10
+Bạn có lưu các ván đấu cũ không? File PGN/XQF/ảnh/biên bản đều được.
+
+A11
+Bạn có khoảng bao nhiêu ván của chính mình có thể thu thập?
+
+A12
+Bạn có thầy/cô/HLV cờ tướng nào có thể cho feedback cho sản phẩm?
+
+A13
+Có bạn bè/CLB/người chơi trẻ nào bạn có thể nhờ test không?
+
+A14
+Bạn muốn admissions officer hiểu điều gì về con người bạn sau khi xem project này: love of Xiangqi + CS, builder, educator, researcher, community leader hay điều khác?
+
+A15
+Nếu chỉ được nói một câu “I built this because…”, bạn sẽ nói gì?
+
+
+B. Người dùng thật
+ID
+QUESTION
+YOUR ANSWER / NOTES
+B01
+User chính là ai?
+
+B02
+User có phải học sinh chưa biết chơi không?
+
+B03
+User có phải người chơi beginner không?
+
+B04
+User có phải intermediate không?
+
+B05
+User có phải học sinh đang thi đấu không?
+
+B06
+User có phải giáo viên/HLV không?
+
+B07
+Bạn muốn tập trung độ tuổi nào?
+
+B08
+Việt Nam trước hay quốc tế?
+
+B09
+Giao diện tiếng Việt, tiếng Anh hay bilingual?
+
+B10
+Người dùng hiện đang học cờ bằng cách nào?
+
+B11
+Bạn nghĩ vấn đề khó chịu nhất của họ là gì?
+
+B12
+Tại sao họ không chỉ dùng YouTube?
+
+B13
+Tại sao họ không chỉ dùng engine?
+
+B14
+Tại sao họ không dùng một web cờ tướng hiện có?
+
+B15
+Bạn có thể phỏng vấn ít nhất 5–10 người chơi thật trong tuần này không?
+
+B16
+Bạn có thể tiếp cận học sinh trường mình không?
+
+B17
+Có CLB cờ nào bạn có thể thử nghiệm không?
+
+B18
+Bạn có khả năng tổ chức một workshop nhỏ sau khi prototype xong không?
+
+B19
+Nếu chưa tổ chức được ở trường, bạn có thể tổ chức online với 5–15 học sinh không?
+
+
+C. Educational problem – vấn đề giáo dục cần giải quyết
+ID
+QUESTION
+YOUR ANSWER / NOTES
+C01
+Bạn muốn sản phẩm cải thiện thứ gì cụ thể: strategic thinking, tactical calculation, mistake recognition, planning, pattern recognition hay problem-solving?
+
+C02
+“Strategic thinking” với bạn được đo thế nào?
+
+C03
+“Problem-solving skills” được đo thế nào?
+
+C04
+Bạn muốn user làm gì trong một session 10 phút?
+
+C05
+Sau 1 tuần dùng sản phẩm, user nên tiến bộ ở metric nào?
+
+C06
+Bạn muốn có pre-test/post-test không?
+
+C07
+Bạn muốn người dùng được giải thích vì sao một nước đi sai, hay chỉ xem nước engine tốt hơn?
+
+C08
+Bạn muốn AI giải thích theo trình độ người chơi không?
+
+C09
+Với beginner, lời giải thích nên đơn giản đến mức nào?
+
+C10
+Với intermediate, lời giải thích nên đi sâu đến mức nào?
+
+C11
+Với advanced, lời giải thích nên đi vào positional/strategic trade-off đến mức nào?
+
+C12
+Bạn có muốn bài học được chia theo chủ đề không?
+
+C13
+Bạn có muốn có chủ đề fork/double attack không?
+
+C14
+Bạn có muốn có chủ đề pin không?
+
+C15
+Bạn có muốn có chủ đề discovered attack không?
+
+C16
+Bạn có muốn có chủ đề checkmate patterns không?
+
+C17
+Bạn có muốn có chủ đề material không?
+
+C18
+Bạn có muốn có chủ đề king safety không?
+
+C19
+Bạn có muốn có chủ đề pawn/soldier structure không?
+
+C20
+Bạn có muốn có chủ đề opening principles không?
+
+C21
+Bạn có muốn có chủ đề endgames không?
+
+C22
+Bạn muốn hệ thống dạy, hay chỉ phân tích?
+
+
+D. “AI” trong project thực sự là gì?
+ID
+QUESTION
+YOUR ANSWER / NOTES
+D01
+Bạn muốn AI có vai trò nào quan trọng nhất?
+
+D02
+Bạn có muốn AI phân tích ván không?
+
+D03
+Bạn có muốn AI sinh lời giải thích tự nhiên không?
+
+D04
+Bạn có muốn AI chọn puzzle phù hợp không?
+
+D05
+Bạn có muốn AI phát hiện weakness không?
+
+D06
+Bạn có muốn AI tạo training plan không?
+
+D07
+Bạn có muốn có Chat Coach không?
+
+D08
+Bạn có muốn dự đoán độ khó puzzle không?
+
+D09
+Bạn có muốn LLM như GPT/Claude trực tiếp xuất lời giải thích không?
+
+D10
+Bạn có ngân sách API không?
+
+D11
+Nếu có, tối đa bao nhiêu mỗi tháng?
+
+D12
+Hay prototype phải chạy gần như miễn phí?
+
+D13
+Bạn có muốn AI chạy local không?
+
+D14
+Máy tính của bạn CPU/RAM/GPU là gì?
+
+D15
+Bạn có hiểu sự khác nhau giữa LLM và chess/Xiangqi engine chưa?
+
+D16
+Bạn có muốn hệ thống hybrid kiểu “Xiangqi Engine → structured position analysis → AI explanation → learner profile → adaptive puzzle selection” không?
+
+D17
+Bạn muốn recommender ban đầu là rule-based hay thực sự train model ML?
+
+D18
+Bạn có sẵn dataset để train không?
+
+D19
+Nếu không có dataset, bạn có chấp nhận prototype đầu dùng một thuật toán adaptive rõ ràng rồi sau này thay bằng ML không?
+
+D20
+Bạn có muốn project có notebook thể hiện ML experimentation để admissions officer thấy bạn hiểu logic chứ không chỉ gọi API?
+
+D21
+Bạn có muốn AI lưu các dạng lỗi thường gặp của từng người chơi không?
+
+D22
+Bạn có muốn user nhận “Your Xiangqi Thinking Profile” sau mỗi 10–20 puzzles không?
+
+
+E. Điểm khác biệt / product differentiation
+ID
+QUESTION
+YOUR ANSWER / NOTES
+E01
+Bạn thích hướng nào hơn: game platform, AI tutor, educational research project, hay cả ba nhưng AI tutor là core?
+
+E02
+Bạn có muốn web tập trung vào learning from your own mistakes không?
+
+E03
+Bạn có muốn user upload ván → hệ thống tìm critical mistakes → biến chính mistake đó thành bài tập không?
+
+E04
+Bạn có muốn puzzle được cá nhân hóa từ lịch sử ván của user, thay vì puzzle chung?
+
+E05
+Bạn có thích idea “Mistake Replay” – đưa người chơi trở lại đúng position trước khi họ đi sai và cho họ cơ hội chọn lại không?
+
+E06
+Bạn có muốn “Socratic Coach” – AI không nói ngay đáp án mà hỏi “Đối phương đang đe dọa gì?” không?
+
+E07
+Bạn có muốn adaptive difficulty như Duolingo không?
+
+E08
+Bạn có muốn knowledge map hiển thị những skill đã master/chưa master không?
+
+E09
+Bạn có muốn streak / XP / gamification không?
+
+E10
+Hay bạn muốn tránh gamification để sản phẩm thiên academic hơn?
+
+E11
+Bạn có muốn dashboard cho giáo viên/HLV không?
+
+E12
+Bạn có muốn thầy/HLV có thể comment trên position không?
+
+E13
+Bạn có muốn lưu human coach explanation + AI explanation để so sánh không?
+
+E14
+Bạn có muốn một feature độc đáo liên quan tới văn hóa/lịch sử cờ tướng Việt Nam không?
+
+E15
+Bạn có muốn educational content bilingual Việt–Anh để giới thiệu Xiangqi cho người nước ngoài không?
+
+E16
+Bạn có muốn feature “Explain this move to a 10-year-old / beginner / tournament player” không?
+
+E17
+Feature nào khiến bạn nghĩ: “Nếu web này tồn tại lúc mình mới học cờ thì mình chắc chắn dùng”?
+
+
+F. Gameplay prototype
+ID
+QUESTION
+YOUR ANSWER / NOTES
+F01
+Prototype tuần 1 có cần đánh một ván hoàn chỉnh không?
+
+F02
+Human vs human có cần không?
+
+F03
+Human vs computer có cần không?
+
+F04
+Có cần cả hai không?
+
+F05
+Bạn có nhất thiết cần 3D như trang bạn tham khảo không?
+
+F06
+Hay ưu tiên UI 2D sạch, nhanh, educational?
+
+F07
+Bạn muốn drag-and-drop quân không?
+
+F08
+Bạn muốn click source → click destination không?
+
+F09
+Bạn muốn highlight legal moves không?
+
+F10
+Bạn muốn Undo không?
+
+F11
+Bạn muốn Move history không?
+
+F12
+Bạn muốn Flip board không?
+
+F13
+Bạn muốn Timer không?
+
+F14
+Bạn muốn Takeback không?
+
+F15
+Bạn muốn Evaluation bar không?
+
+F16
+Bạn muốn Engine depth control không?
+
+F17
+Bạn muốn Hint button không?
+
+F18
+Bạn muốn Analysis mode không?
+
+F19
+Bạn muốn quân cờ theo style truyền thống chữ Hán, icon hiện đại hay user chọn?
+
+F20
+Bạn có design/color/style nào thích không?
+
+F21
+Có web/app nào bạn thích UI, không nhất thiết là cờ?
+
+F22
+Bạn muốn desktop-first hay mobile-first?
+
+F23
+Người test của bạn chủ yếu dùng điện thoại hay laptop?
+
+
+G. Xiangqi engine
+ID
+QUESTION
+YOUR ANSWER / NOTES
+G01
+Bạn muốn tự viết luật cờ để học lập trình hay dùng library/engine có sẵn rồi nghiên cứu dần?
+
+G02
+Trong 1 tuần, bạn có đồng ý rằng không nên tự viết engine từ đầu không?
+
+G03
+Bạn có cần AI opponent mạnh hay chỉ đủ để demo?
+
+G04
+Bạn có muốn difficulty levels không?
+
+G05
+Bạn có muốn engine phân tích best move không?
+
+G06
+Bạn có muốn engine phân tích evaluation không?
+
+G07
+Bạn có muốn engine phân tích top 3 moves không?
+
+G08
+Bạn có muốn engine đánh dấu mistakes/blunders không?
+
+G09
+Bạn có muốn hiển thị variation sau nước tốt nhất không?
+
+G10
+Bạn có muốn heatmap không?
+
+G11
+Bạn có muốn engine đánh giá position theo centipawn-like score hay giản lược thành Winning / Better / Equal / Worse cho học sinh?
+
+
+H. Puzzle system
+ID
+QUESTION
+YOUR ANSWER / NOTES
+H01
+Bạn hiện có nguồn puzzle nào chưa?
+
+H02
+Có được phép sử dụng dataset đó không?
+
+H03
+Bạn có muốn tự tạo dataset từ game records không?
+
+H04
+Puzzle gồm một nước, nhiều nước hay mixed?
+
+H05
+User có thời gian giới hạn không?
+
+H06
+Có hints không?
+
+H07
+Có explanation sau mỗi puzzle không?
+
+H08
+Có tag puzzle không?
+
+H09
+Có difficulty score không?
+
+H10
+Có spaced repetition không?
+
+H11
+Có review lại puzzle sai sau 1 ngày/3 ngày/7 ngày không?
+
+H12
+Adaptive recommender có dựa trên accuracy không?
+
+H13
+Adaptive recommender có dựa trên response time không?
+
+H14
+Adaptive recommender có dựa trên theme không?
+
+H15
+Adaptive recommender có dựa trên difficulty không?
+
+H16
+Adaptive recommender có dựa trên recent mistakes không?
+
+H17
+Adaptive recommender có dựa trên game history không?
+
+H18
+Bạn có muốn mình thiết kế một scoring algorithm đủ đơn giản để bạn hiểu nhưng đủ thuyết phục để gọi là adaptive learning không?
+
+
+I. Research / educational impact
+ID
+QUESTION
+YOUR ANSWER / NOTES
+I01
+Bạn có muốn biến project thành một mini research study không?
+
+I02
+Bạn có muốn pilot theo kiểu pre-test → sử dụng 1–2 tuần → post-test → survey không?
+
+I03
+Bạn có giáo viên nào có thể supervise không?
+
+I04
+Bạn có thể xin permission của trường/CLB không?
+
+I05
+Bạn muốn đo puzzle accuracy không?
+
+I06
+Bạn muốn đo time-to-solution không?
+
+I07
+Bạn muốn đo retention không?
+
+I08
+Bạn muốn đo confidence không?
+
+I09
+Bạn muốn đo strategic explanation quality không?
+
+I10
+Bạn có muốn tạo anonymous analytics không?
+
+I11
+Bạn có muốn viết một report sau pilot không?
+
+I12
+Bạn có muốn public methodology trên GitHub không?
+
+I13
+Bạn có muốn dashboard “Pilot Results” trên website không?
+
+I14
+Bạn có thể dành thêm 1–2 tháng sau prototype để collect meaningful data không?
+
+
+J. Team
+ID
+QUESTION
+YOUR ANSWER / NOTES
+J01
+Bạn đã có team thật chưa, hay bullet “Leading a student team” hiện mới là kế hoạch?
+
+J02
+Nếu có, bao nhiêu người?
+
+J03
+Ai biết code?
+
+J04
+Ai design?
+
+J05
+Ai biết cờ?
+
+J06
+Ai làm content?
+
+J07
+Ai outreach?
+
+J08
+Bạn giữ vai trò gì ngoài title “lead”?
+
+J09
+Bạn có thể commit mỗi ngày bao nhiêu thời gian?
+
+J10
+Các thành viên commit bao nhiêu?
+
+J11
+Bạn sẽ dùng Discord/Messenger/Zalo/Notion/Trello/GitHub Issues để quản lý?
+
+J12
+Nếu hiện tại chưa có team, bạn có sẵn 2–4 người có thể mời không?
+
+J13
+Bạn muốn project ban đầu solo rồi tuyển người sau prototype, hay xây team ngay?
+
+
+K. Code & học lập trình
+ID
+QUESTION
+YOUR ANSWER / NOTES
+K01
+Bạn từng học Python tới đâu?
+
+K02
+Bạn hiểu variables không?
+
+K03
+Bạn hiểu if/else không?
+
+K04
+Bạn hiểu loops không?
+
+K05
+Bạn hiểu functions không?
+
+K06
+Bạn hiểu list/dict không?
+
+K07
+Bạn hiểu classes không?
+
+K08
+Bạn hiểu file I/O không?
+
+K09
+Bạn biết pip không?
+
+K10
+Bạn biết virtual environments không?
+
+K11
+Bạn từng dùng HTML chưa?
+
+K12
+Bạn từng dùng CSS chưa?
+
+K13
+Bạn từng dùng JavaScript chưa?
+
+K14
+Bạn từng dùng React chưa?
+
+K15
+Bạn từng dùng Git chưa?
+
+K16
+Bạn từng dùng GitHub chưa?
+
+K17
+Bạn từng dùng Terminal/PowerShell chưa?
+
+K18
+Bạn đã từng git clone, git add, git commit, git push chưa?
+
+K19
+Bạn có hiểu frontend/backend/database/API là gì không?
+
+K20
+Bạn có hiểu JSON không?
+
+K21
+Bạn có từng dùng Flask/FastAPI/Django không?
+
+K22
+Bạn có từng dùng Node.js/npm không?
+
+K23
+Bạn có từng deploy web chưa?
+
+K24
+Bạn có từng gọi API chưa?
+
+K25
+Bạn muốn mình dạy concept trong lúc build, hay ưu tiên ra prototype rồi quay lại học sâu?
+
+K26
+Khi AI tạo code, bạn có sẵn sàng đọc từng file và để mình giải thích “file này làm gì / dòng này làm gì” không?
+
+K27
+Bạn có muốn áp dụng rule: không merge bất cứ code AI nào mà bạn không thể giải thích ở mức cơ bản không?
+
+
+L. Máy và môi trường hiện tại
+ID
+QUESTION
+YOUR ANSWER / NOTES
+L01
+Bạn dùng Windows hay macOS?
+
+L02
+Phiên bản Windows/macOS là gì?
+
+L03
+VS Code đã cài chưa?
+
+L04
+Python đã cài chưa?
+
+L05
+python --version hiện ra gì?
+
+L06
+Git đã cài chưa?
+
+L07
+git --version hiện ra gì?
+
+L08
+Node.js đã cài chưa?
+
+L09
+node -v hiện ra gì?
+
+L10
+npm đã cài chưa?
+
+L11
+Docker Desktop đã cài chưa?
+
+L12
+Bạn có GitHub account chưa?
+
+L13
+GitHub username là gì? Nếu không muốn public ở đây chỉ cần nói “có”.
+
+L14
+Bạn từng tạo GitHub repo nào chưa?
+
+L15
+Bạn có GitHub Student Developer Pack không?
+
+L16
+Bạn có tài khoản Vercel không?
+
+L17
+Bạn có Render/Railway/Supabase/Firebase không?
+
+L18
+Bạn có OpenAI API account/key không?
+
+L19
+Bạn có Claude không?
+
+L20
+Bạn có ChatGPT Plus không?
+
+L21
+Bạn có Claude Pro không?
+
+L22
+Bạn có Claude Code/Codex/GitHub Copilot không?
+
+L23
+Máy RAM bao nhiêu GB?
+
+L24
+Ổ còn bao nhiêu GB?
+
+L25
+GPU nếu có là gì?
+
+L26
+Bạn có quyền admin trên máy không?
+
+
+M. AI coding workflow
+ID
+QUESTION
+YOUR ANSWER / NOTES
+M01
+Bạn muốn chủ yếu code với ChatGPT, Claude Code hay combination?
+
+M02
+Bạn có sẵn sàng để AI thao tác cả repo hay chỉ copy-paste code?
+
+M03
+Bạn thích mình đưa lệnh terminal từng dòng để chạy?
+
+M04
+Khi lỗi, bạn có thể gửi nguyên terminal/error screenshot cho mình?
+
+M05
+Bạn có muốn tạo PROJECT_CONTEXT.md để giữ context cho AI không?
+
+M06
+Bạn có muốn tạo ARCHITECTURE.md không?
+
+M07
+Bạn có muốn tạo CODING_RULES.md không?
+
+M08
+Bạn có muốn tạo TASKS.md không?
+
+M09
+Bạn có muốn tạo AI_CHANGELOG.md để AI khác nhau không phá cấu trúc dự án không?
+
+M10
+Bạn có muốn mình tạo prompt chuẩn để dùng với Claude/GPT cho từng nhiệm vụ không?
+
+M11
+Bạn có sẵn sàng dùng Git commit sau từng feature để nếu AI làm hỏng có thể rollback không?
+
+
+N. GitHub – bằng chứng engineering
+ID
+QUESTION
+YOUR ANSWER / NOTES
+N01
+Repo sẽ public được không?
+
+N02
+Bạn muốn tên repo/project là gì?
+
+N03
+Bạn đã nghĩ tên brand chưa?
+
+N04
+Bạn muốn project nhìn professional hay playful?
+
+N05
+README bằng English hay bilingual?
+
+N06
+Bạn có muốn README có problem không?
+
+N07
+Bạn có muốn README có motivation không?
+
+N08
+Bạn có muốn README có demo không?
+
+N09
+Bạn có muốn README có architecture không?
+
+N10
+Bạn có muốn README có AI pipeline không?
+
+N11
+Bạn có muốn README có screenshots không?
+
+N12
+Bạn có muốn README có educational methodology không?
+
+N13
+Bạn có muốn README có experiments/results không?
+
+N14
+Bạn có muốn README có roadmap/limitations/contributors không?
+
+N15
+Bạn có sẵn sàng viết Development Journal hằng ngày không?
+
+N16
+Bạn có muốn tạo /docs chứa product reasoning không?
+
+N17
+Bạn có muốn GitHub Issues cho feature/bug không?
+
+N18
+Bạn có muốn GitHub Projects/Kanban không?
+
+N19
+Bạn có muốn semantic commit style kiểu feat:, fix:, docs: không?
+
+N20
+Bạn có muốn automated tests/GitHub Actions để repo thể hiện software engineering thật thay vì chỉ là zip code AI không?
+
+
+O. Data & backend
+ID
+QUESTION
+YOUR ANSWER / NOTES
+O01
+Prototype có cần login không?
+
+O02
+Có cần Google login không?
+
+O03
+Có cần Email/password không?
+
+O04
+Hay anonymous user là đủ?
+
+O05
+Có cần lưu game history không?
+
+O06
+Có cần lưu puzzle history không?
+
+O07
+Có cần lưu user skill profile không?
+
+O08
+Có cần lưu AI explanations không?
+
+O09
+Có cần analytics không?
+
+O10
+Có cần teacher dashboard không?
+
+O11
+Bạn có cần database ngay tuần 1 không?
+
+O12
+Bạn có quan tâm privacy của học sinh không?
+
+O13
+Bạn có muốn tránh lưu tên thật và dùng anonymous IDs không?
+
+O14
+Bạn có muốn privacy statement đơn giản, đặc biệt nếu sau này test với học sinh không?
+
+
+P. Website/product presentation
+ID
+QUESTION
+YOUR ANSWER / NOTES
+P01
+Homepage cần phục vụ người chơi hay admissions reviewer trước?
+
+P02
+Bạn có muốn reviewer mở trang và trong 30 giây hiểu ngay innovation không?
+
+P03
+Bạn có muốn demo account không?
+
+P04
+Bạn có muốn “Try a 60-second AI lesson” ngay homepage không?
+
+P05
+Bạn có muốn video demo 60–90 giây không?
+
+P06
+Bạn có muốn /about kể story của bạn không?
+
+P07
+Bạn có muốn /research không?
+
+P08
+Bạn có muốn /methodology không?
+
+P09
+Bạn có muốn /impact không?
+
+P10
+Bạn có muốn /roadmap không?
+
+P11
+Bạn có muốn /open-source không?
+
+P12
+Bạn có muốn admissions officer có thể xem public metrics: số users, puzzles solved, pilot participants không?
+
+P13
+Bạn có muốn đặt một nút View source on GitHub thật rõ không?
+
+
+Q. Branding
+ID
+QUESTION
+YOUR ANSWER / NOTES
+Q01
+Bạn muốn tên tiếng Việt hay quốc tế?
+
+Q02
+Bạn có muốn giữ chữ “Xiangqi” trong tên để người nước ngoài hiểu không?
+
+Q03
+Vibe bạn muốn là traditional Chinese/Vietnamese, modern AI, academic, gaming hay minimalist?
+
+Q04
+Màu sắc bạn thích là gì?
+
+Q05
+Bạn có logo chưa?
+
+Q06
+Bạn có domain chưa?
+
+Q07
+Bạn có budget mua domain không?
+
+Q08
+Nếu có, khoảng bao nhiêu?
+
+Q09
+Bạn có cần domain .com không hay subdomain Vercel đủ cho prototype?
+
+
+R. Admissions / hồ sơ
+ID
+QUESTION
+YOUR ANSWER / NOTES
+R01
+Bạn dự kiến apply ngành gì chính xác: CS, AI, data science hay khác?
+
+R02
+US/NUS/VinUni/trường Việt nào project này sẽ dùng?
+
+R03
+Khi nào là deadline sớm nhất?
+
+R04
+Bạn muốn đưa project vào Activities, Additional Information, portfolio link hay essay?
+
+R05
+Bạn có bao nhiêu ký tự để mô tả activity?
+
+R06
+Có mentor admissions nào sẽ review project không?
+
+R07
+Bạn muốn project thể hiện mạnh nhất technical depth, initiative, intellectual curiosity, community impact, leadership hay research?
+
+R08
+Hãy xếp top 3 các phẩm chất trên theo ưu tiên.
+
+R09
+Bạn có project CS khác để tránh bị overlap không?
+
+
+S. Prototype deadline 1 tuần
+ID
+QUESTION
+YOUR ANSWER / NOTES
+S01
+Chính xác ngày nào bạn muốn prototype live?
+
+S02
+Trong 7 ngày tới bạn đi học giờ nào?
+
+S03
+Mỗi ngày thật sự dành được bao nhiêu phút/giờ?
+
+S04
+Ngày nào bận nhất?
+
+S05
+Cuối tuần có thể dành bao nhiêu giờ?
+
+S06
+Bạn có bài kiểm tra/deadline CLB/essay nào trong tuần này không?
+
+S07
+Bạn muốn prototype đủ để gửi mentor, đăng GitHub, cho bạn bè test hay demo chính thức?
+
+S08
+Bạn có chấp nhận prototype chỉ có 1 exceptional core loop thay vì 15 feature nửa vời không?
+
+
+T. Giới hạn, integrity và tính trung thực của hồ sơ
+ID
+QUESTION
+YOUR ANSWER / NOTES
+T01
+Bạn có đồng ý không dùng số user/impact giả không?
+
+T02
+Bạn có đồng ý không claim “machine learning” nếu mới chỉ là gọi LLM/API không?
+
+T03
+Bạn có đồng ý không claim “leading a team” trước khi thực sự có team không?
+
+T04
+Bạn có đồng ý không claim “pilot workshops with schools” trước khi chúng diễn ra không?
+
+T05
+Bạn có đồng ý document rõ phần nào tự làm, phần nào AI hỗ trợ không?
+
+T06
+Bạn có muốn có file AI_USAGE.md ghi cách AI được sử dụng trong development không?
+
+T07
+Bạn có muốn cuối project có mục What I learned / What I would redesign không?
+
+T08
+Bạn có sẵn sàng giữ một số imperfections và giải thích trade-offs thay vì cố làm như project hoàn hảo không?
+
+
+U. Một core flow và một câu reviewer phải nhớ
+ID
+QUESTION
+YOUR ANSWER / NOTES
+U01
+Nếu sau 1 tuần chỉ được demo một flow, bạn chọn “Play → AI analyses your game → identifies weakness → gives personalized puzzle → explains improvement”, hay “Solve puzzles → AI learns your weaknesses → adapts next puzzles → progress dashboard”, hay flow khác?
+
+U02
+Nếu admissions officer chỉ nhớ một câu về project sau khi đóng tab, bạn muốn câu đó là gì?
+
+
+V. Product thesis – tại sao sản phẩm phải tồn tại?
+ID
+QUESTION
+YOUR ANSWER / NOTES
+V01
+Nếu xóa AI khỏi sản phẩm, sản phẩm còn hữu ích không?
+
+V02
+Nếu câu trả lời là không, tại sao?
+
+V03
+Nếu câu trả lời là có, AI cải thiện điều gì một cách đo được?
+
+V04
+Vấn đề lớn nhất của việc học cờ tướng hiện nay theo trải nghiệm thật của bạn là gì?
+
+V05
+Bạn có từng trải nghiệm vấn đề đó trực tiếp không?
+
+V06
+Một HLV giỏi giải quyết vấn đề đó thế nào?
+
+V07
+Software có thể mô phỏng phần nào?
+
+V08
+Phần nào software không nên cố thay thế HLV?
+
+V09
+Product của bạn đang thay thế công cụ hiện tại hay bổ sung cho nó?
+
+V10
+Nếu Lichess/Chess.com/Xiangqi platform lớn thêm một feature giống bạn ngày mai, đâu là thứ vẫn khiến sản phẩm bạn khác?
+
+V11
+Bạn muốn cạnh tranh về technology, pedagogy, community hay data?
+
+V12
+Có vấn đề nào bạn phát hiện nhờ việc thi đấu mà người không chơi cờ trình độ cao khó nhận thấy không?
+
+V13
+Top 3 frustrations của chính bạn trong quá trình luyện cờ là gì?
+
+V14
+HLV của bạn mất nhiều thời gian nhất vào việc nào?
+
+V15
+Có việc nào HLV phải làm lặp đi lặp lại mà software có thể hỗ trợ?
+
+
+W. Chuyển Xiangqi expertise của bạn thành product
+ID
+QUESTION
+YOUR ANSWER / NOTES
+W01
+Nếu đưa bạn 100 ván của người mới, bạn nhìn gì đầu tiên?
+
+W02
+Bạn phân biệt tactical mistake và strategic mistake thế nào?
+
+W03
+Có những mistake nào engine evaluation nhìn thấy nhưng beginner không hiểu?
+
+W04
+Có những mistake nào engine không giải thích đủ về tư duy?
+
+W05
+Khi bạn thua một ván, bạn review theo quá trình nào?
+
+W06
+HLV của bạn review khác engine ở điểm nào?
+
+W07
+Advice nào HLV từng nói khiến bạn thay đổi cách suy nghĩ?
+
+W08
+Những câu hỏi nào HLV thường hỏi thay vì nói đáp án?
+
+W09
+Người chơi mạnh nhìn position theo thứ tự gì?
+
+W10
+Có checklist tư duy trước mỗi nước không?
+
+W11
+Bạn có thể biến checklist đó thành interactive training được không?
+
+W12
+Bạn có thể tự annotate 50 trận không?
+
+W13
+Bạn có thể tự annotate 100 trận không?
+
+W14
+Bạn có thể tạo/annotate 500 critical positions không?
+
+W15
+Có HLV/strong players khác có thể independently annotate một subset để so sánh không?
+
+
+X. Thinking process – đánh giá cách người chơi suy nghĩ
+ID
+QUESTION
+YOUR ANSWER / NOTES
+X01
+Bạn muốn chỉ đánh giá nước cuối hay đánh giá quá trình suy nghĩ?
+
+X02
+Làm thế nào biết user chọn nước đó vì lý do gì?
+
+X03
+Có thể hỏi trước nước đi “What are you considering?” không?
+
+X04
+Có nên yêu cầu user đánh dấu candidate moves không?
+
+X05
+Có nên hỏi user “What is your opponent threatening?” không?
+
+X06
+Có nên đo việc user phát hiện threat trước khi tính variation không?
+
+X07
+Có thể phân biệt “Didn’t see threat / Saw threat but miscalculated / Calculated correctly but evaluated incorrectly / Time-pressure mistake” không?
+
+X08
+Đây có phải taxonomy tốt hơn đơn giản “blunder” không?
+
+X09
+Bạn có thể xây một mistake taxonomy của riêng project không?
+
+X10
+Taxonomy đó dựa trên kinh nghiệm của bạn, literature hay HLV?
+
+X11
+Có thể validate taxonomy với expert không?
+
+X12
+Nếu hai experts disagree, app xử lý như thế nào?
+
+
+Y. Pedagogy / learning science
+ID
+QUESTION
+YOUR ANSWER / NOTES
+Y01
+App đang tối ưu “win more games” hay “learn better”?
+
+Y02
+Hai mục tiêu này có lúc mâu thuẫn không?
+
+Y03
+Nếu AI luôn cho hint quá sớm, user có thực sự học không?
+
+Y04
+Khi nào nên cho hint?
+
+Y05
+Có mấy level hint?
+
+Y06
+Hint cuối cùng có nên tiết lộ nước không?
+
+Y07
+Có nên yêu cầu user giải thích reasoning sau khi solve không?
+
+Y08
+Có nên cho AI critique explanation không?
+
+Y09
+Làm sao tránh AI explanation khiến user tưởng mình hiểu nhưng thực tế chỉ đọc thụ động?
+
+Y10
+Có delayed feedback không?
+
+Y11
+Có immediate feedback không?
+
+Y12
+Khi nào mỗi loại tốt hơn?
+
+Y13
+Có spaced repetition không?
+
+Y14
+Có mastery threshold không?
+
+Y15
+Thế nào được gọi là “mastered fork”?
+
+Y16
+80% có đủ không?
+
+Y17
+90% có đủ không?
+
+Y18
+Accuracy có đủ không, hay phải tính speed + retention?
+
+Y19
+Có test lại skill bằng unseen position không?
+
+Y20
+Có measure transfer vào full games không?
+
+
+Z. Mistake taxonomy
+ID
+QUESTION
+YOUR ANSWER / NOTES
+Z01
+Danh sách nhóm lỗi Tactical recognition / Calculation / Candidate move generation / Threat awareness / Positional evaluation / King safety / Piece coordination / Time management / Opening understanding / Endgame technique còn thiếu gì?
+
+Z02
+Các category trên có overlap quá nhiều không?
+
+Z03
+Một mistake có thể thuộc nhiều category không?
+
+Z04
+Nếu có, primary/secondary label thế nào?
+
+Z05
+Ai tạo ground truth?
+
+Z06
+Engine có thể tự classify bao nhiêu?
+
+Z07
+Rule-based classification có đủ cho v1 không?
+
+Z08
+LLM classification có đáng tin không?
+
+Z09
+Human review sample bao nhiêu là đủ?
+
+Z10
+Ta có thể công bố confusion matrix sau này không?
+
+
+AA. Engine methodology
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AA01
+Engine nào ta sẽ sử dụng?
+
+AA02
+License cho phép dùng trong public project không?
+
+AA03
+Engine chạy server hay browser?
+
+AA04
+Một analysis mất bao lâu?
+
+AA05
+Depth bao nhiêu là đủ?
+
+AA06
+Nếu depth quá thấp, label mistake có unreliable không?
+
+AA07
+Có cần multiple engine passes không?
+
+AA08
+Định nghĩa critical position thế nào?
+
+AA09
+Evaluation swing bao nhiêu mới đáng phân tích?
+
+AA10
+Có cần xét “only move” không?
+
+AA11
+Có cần xét tactical forced line không?
+
+AA12
+Evaluation score có dễ hiểu với beginner không?
+
+AA13
+Có nên convert raw score thành Red/Black has a major advantage, slight advantage, equal… không?
+
+AA14
+Có nên hide engine evaluation cho beginner không?
+
+AA15
+Có nên cho advanced user xem raw lines không?
+
+
+AB. AI explanation quality
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AB01
+Một explanation tốt dài bao nhiêu?
+
+AB02
+Có nên explain “what”, “why”, “how to improve” riêng không?
+
+AB03
+Có nên dùng Xiangqi notation trong explanation không?
+
+AB04
+Beginner có hiểu notation đó không?
+
+AB05
+Có nên highlight quân trên board đồng bộ với explanation không?
+
+AB06
+Có animation mô phỏng variation không?
+
+AB07
+AI có được đưa nước ngoài engine top-N không?
+
+AB08
+Làm sao detect hallucination?
+
+AB09
+Có unit tests cho AI output không?
+
+AB10
+Có structured JSON trước rồi mới render text không?
+
+AB11
+Có confidence threshold không?
+
+AB12
+Nếu confidence thấp thì có nên nói “This position is ambiguous” không?
+
+AB13
+Có nên cho user report bad explanation không?
+
+AB14
+Report đó có đi vào evaluation dataset không?
+
+AB15
+Có expert rating AI explanations 1–5 không?
+
+
+AC. Socratic AI coach
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AC01
+AI hỏi bao nhiêu câu trước khi reveal hint?
+
+AC02
+User được skip không?
+
+AC03
+AI nên hỏi open-ended hay multiple-choice?
+
+AC04
+Làm sao đánh giá câu trả lời tự do?
+
+AC05
+LLM có evaluate student explanation không?
+
+AC06
+Có risk đánh giá sai không?
+
+AC07
+Ta có thể dùng rubric gồm identify threat / identify motif / propose candidate / calculate consequence không?
+
+AC08
+AI nên sửa ngay hay hỏi tiếp?
+
+AC09
+User level ảnh hưởng question difficulty thế nào?
+
+AC10
+Có mode Quick analysis và Deep coaching không?
+
+
+AD. Personalized learning
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AD01
+Learner profile bắt đầu từ đâu khi chưa có data?
+
+AD02
+User self-select level?
+
+AD03
+Có placement test không?
+
+AD04
+Có upload past games không?
+
+AD05
+Hay kết hợp tất cả?
+
+AD06
+Skill score cập nhật sau mỗi attempt thế nào?
+
+AD07
+Recent results có weight lớn hơn old results không?
+
+AD08
+Một failure giảm score bao nhiêu?
+
+AD09
+Một correct guess có được coi như mastery không?
+
+AD10
+Hint usage có làm giảm credit không?
+
+AD11
+Response time ảnh hưởng thế nào?
+
+AD12
+Difficulty difference ảnh hưởng thế nào?
+
+AD13
+Rating system có thể dùng Elo-like không?
+
+AD14
+Skill decay theo thời gian không?
+
+AD15
+User có được xem “why this puzzle was recommended” không?
+
+
+AE. Dataset
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AE01
+Dataset puzzle lấy từ đâu?
+
+AE02
+Có license không?
+
+AE03
+Có được redistribute không?
+
+AE04
+Có thể generate puzzle từ public games không?
+
+AE05
+Tournament game records có copyright/licensing issue gì không?
+
+AE06
+Games của chính bạn có thể dùng không?
+
+AE07
+Bạn có thể xin permission của players không?
+
+AE08
+Dataset cần bao nhiêu position cho prototype?
+
+AE09
+Bao nhiêu cho recommender?
+
+AE10
+Bao nhiêu cho ML?
+
+AE11
+Data imbalance có vấn đề không?
+
+AE12
+Có duplicate positions không?
+
+AE13
+Có data cleaning process không?
+
+AE14
+Có metadata theme / difficulty / source / engine score / expert label không?
+
+AE15
+Dataset có version control không?
+
+
+AF. Machine Learning thật sự
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AF01
+Ta đang giải bài toán classification, regression hay ranking?
+
+AF02
+Baseline là gì?
+
+AF03
+Model đơn giản nhất là gì?
+
+AF04
+Logistic regression có đủ không?
+
+AF05
+Decision tree có phù hợp không?
+
+AF06
+Gradient boosting có phù hợp không?
+
+AF07
+Neural network có thực sự cần không?
+
+AF08
+Metrics gì: accuracy, precision, recall, AUC, RMSE hay metric khác?
+
+AF09
+Model có outperform heuristic không?
+
+AF10
+Nếu không outperform heuristic, có nên dùng heuristic không?
+
+
+AG. User research
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AG01
+Ai là 5 người đầu tiên bạn phỏng vấn?
+
+AG02
+Họ là beginner hay tournament player?
+
+AG03
+Có HLV không?
+
+AG04
+Có phụ huynh không?
+
+AG05
+Có giáo viên không?
+
+AG06
+Interview nên tránh câu dẫn dắt thế nào?
+
+AG07
+Bạn có record interview notes không?
+
+AG08
+Có coding themes từ interview không?
+
+AG09
+Những pain point nào xuất hiện lặp lại?
+
+AG10
+Có user nào nói điều trái với assumption của bạn?
+
+AG11
+Bạn có sẵn sàng bỏ feature mình thích nếu user không cần không?
+
+
+AH. Competitive analysis
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AH01
+Competitor chính là ai?
+
+AH02
+Direct competitor là ai?
+
+AH03
+Indirect competitor là ai?
+
+AH04
+Mỗi competitor làm tốt điều gì?
+
+AH05
+Mỗi competitor làm dở điều gì?
+
+AH06
+Người dùng đang dùng workaround nào?
+
+AH07
+Feature nào đã commoditized?
+
+AH08
+Feature nào chưa được phục vụ tốt?
+
+AH09
+Có thể build một wedge nhỏ rồi mở rộng không? Nếu có, wedge đó là gì?
+
+
+AI. UX sâu hơn
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AI01
+User mở homepage 10 giây có hiểu product không?
+
+AI02
+CTA chính là gì?
+
+AI03
+User có cần account trước khi thử không?
+
+AI04
+Có thể demo trước login không?
+
+AI05
+Onboarding mất dưới 60 giây được không?
+
+AI06
+User có thể thử một example game ngay không?
+
+AI07
+Analysis có progressive disclosure không?
+
+AI08
+Dashboard có quá nhiều số liệu không?
+
+AI09
+Một 12-year-old có hiểu không?
+
+AI10
+Một admissions reviewer không biết cờ tướng có hiểu innovation không?
+
+
+AJ. Technical engineering
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AJ01
+Frontend và backend tách repo hay monorepo?
+
+AJ02
+API contract định nghĩa ở đâu?
+
+AJ03
+Database migrations thế nào?
+
+AJ04
+Validation input ở đâu?
+
+AJ05
+Engine timeout xử lý thế nào?
+
+AJ06
+LLM timeout xử lý thế nào?
+
+AJ07
+Có retry không?
+
+AJ08
+Có rate limiting không?
+
+AJ09
+Logging thế nào?
+
+AJ10
+Error monitoring thế nào?
+
+AJ11
+Có staging environment không?
+
+AJ12
+Có environment variables riêng không?
+
+AJ13
+Test coverage mục tiêu bao nhiêu?
+
+AJ14
+Code style nào?
+
+AJ15
+Documentation standard nào?
+
+
+AK. AI coding integrity
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AK01
+Nếu AI viết 300 dòng, bạn hiểu được bao nhiêu?
+
+AK02
+Có rule maximum code generation mỗi lần không?
+
+AK03
+Có yêu cầu AI explain architecture trước khi code không?
+
+AK04
+Có yêu cầu AI viết tests cùng feature không?
+
+AK05
+Có review diff sau mỗi change không?
+
+AK06
+Có commit sau mỗi working unit không?
+
+AK07
+Có AI coding log không?
+
+AK08
+Có phân biệt AI-generated / AI-assisted / human-designed không?
+
+AK09
+Bạn có thể giải thích 5 file quan trọng nhất nếu interviewer hỏi không?
+
+AK10
+Bạn có thể live debug một lỗi cơ bản không?
+
+
+AL. Testing
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AL01
+Bao nhiêu luật Xiangqi cần unit test?
+
+AL02
+General palace có test không?
+
+AL03
+Elephant river có test không?
+
+AL04
+Horse leg blocking có test không?
+
+AL05
+Cannon capture rule có test không?
+
+AL06
+Flying general có test không?
+
+AL07
+Check legality có test không?
+
+AL08
+Checkmate/stalemate có test không?
+
+AL09
+Repetition rules có test không?
+
+AL10
+User interface click tests có không?
+
+AL11
+API tests có không?
+
+AL12
+AI hallucination test suite có không?
+
+AL13
+Puzzle solution validation có không?
+
+AL14
+Browser testing có không?
+
+AL15
+Mobile testing có không?
+
+
+AM. Performance
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AM01
+Board render target là gì?
+
+AM02
+Engine analysis target latency là bao nhiêu?
+
+AM03
+LLM explanation target latency là bao nhiêu?
+
+AM04
+Có thể stream analysis progressively không?
+
+AM05
+Có cache engine analysis không?
+
+AM06
+Có cache AI explanations không?
+
+AM07
+Cost per analysis là bao nhiêu?
+
+AM08
+Cost per 100 users là bao nhiêu?
+
+AM09
+Free quota thiết kế thế nào?
+
+AM10
+Abuse protection thế nào?
+
+
+AN. Pilot study
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AN01
+Research question chính xác là gì?
+
+AN02
+Primary metric là gì?
+
+AN03
+Secondary metric là gì?
+
+AN04
+Duration bao lâu?
+
+AN05
+Number participants là bao nhiêu?
+
+AN06
+Beginner levels có tương đương không?
+
+AN07
+Có placement test không?
+
+AN08
+Các nhóm có same amount of practice không?
+
+AN09
+Control group khả thi không?
+
+AN10
+Survey questions là gì?
+
+AN11
+Consent xử lý thế nào?
+
+AN12
+Personal data xử lý thế nào?
+
+AN13
+Bạn sẽ report limitations thế nào?
+
+AN14
+Nếu không đủ sample, có nên gọi là exploratory pilot thay vì research proof không?
+
+
+AO. Evidence cho từng claim trong portfolio
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AO01
+Evidence cho “AI-powered” là gì?
+
+AO02
+Evidence cho “Adaptive” là gì?
+
+AO03
+Evidence cho “Educational impact” là gì?
+
+AO04
+Evidence cho “Leadership” là gì?
+
+AO05
+Evidence cho “Machine learning” là gì?
+
+AO06
+“Students” là bao nhiêu người?
+
+AO07
+“Local schools” là những trường nào?
+
+AO08
+“Improved” được đo thế nào?
+
+
+AP. Leadership thật
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AP01
+Ai quyết định roadmap?
+
+AP02
+Bạn delegate gì?
+
+AP03
+Bạn review gì?
+
+AP04
+Team disagreement giải quyết thế nào?
+
+AP05
+Có weekly meeting không?
+
+AP06
+Có GitHub workflow không?
+
+AP07
+Có code review không?
+
+AP08
+Designer gửi Figma hay trực tiếp code?
+
+AP09
+Content expert dùng CMS không?
+
+AP10
+Outreach team track contacts ở đâu?
+
+AP11
+Contributions có documented không?
+
+AP12
+Làm sao tránh claim công sức của team là của riêng founder?
+
+
+AQ. Open-source / community
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AQ01
+Có open-source project không?
+
+AQ02
+Người khác contribute được không?
+
+AQ03
+Có Contributor guide không?
+
+AQ04
+Có Code of conduct không?
+
+AQ05
+Có Issue templates không?
+
+AQ06
+Có Public roadmap không?
+
+AQ07
+Có Release notes không?
+
+AQ08
+Có thể để student developers khác dùng project làm educational codebase không?
+
+AQ09
+Có thể build community-generated puzzles không?
+
+AQ10
+Làm sao kiểm duyệt chất lượng community-generated content?
+
+
+AR. Internationalization (i18n)
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AR01
+Việt/Anh cùng lúc?
+
+AR02
+Xiangqi terminology dịch thế nào?
+
+AR03
+Chinese notation cần không?
+
+AR04
+Piece naming nên dùng General/King, Advisor/Guard, Elephant/Bishop, Chariot/Rook… thế nào?
+
+AR05
+Chúng ta standardize terminology nào?
+
+AR06
+Người quốc tế chưa biết Xiangqi có onboarding không?
+
+AR07
+Culture/history content có hỗ trợ narrative không?
+
+
+AS. Cultural dimension
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AS01
+Bạn muốn preservation of Xiangqi culture xuất hiện trong platform không?
+
+AS02
+Hay website chỉ thiên technical?
+
+AS03
+Có oral histories/interviews với elderly players không?
+
+AS04
+Có traditional puzzle collections không?
+
+AS05
+Có danger biến product thành quá nhiều thứ không?
+
+AS06
+Culture nên là secondary layer hay core?
+
+
+AT. Ethics của educational AI
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AT01
+Có nên để user phụ thuộc AI sau mọi nước?
+
+AT02
+AI analysis có thể làm giảm independent calculation không?
+
+AT03
+Có “analysis delay” không – ví dụ user phải giải thích thought trước khi xem AI?
+
+AT04
+Có mode “no hints” không?
+
+AT05
+Có giới hạn AI trong rated games không?
+
+AT06
+Có anti-cheating policy không?
+
+AT07
+App có thể bị dùng để cheat real-time không?
+
+AT08
+Làm sao design để giảm nguy cơ đó?
+
+
+AU. Responsible use / anti-cheating
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AU01
+Analysis chỉ cho post-game?
+
+AU02
+Có real-time board analysis không?
+
+AU03
+Nếu có, có risk bị dùng để cheat tournament online không?
+
+AU04
+Có disclaimer đủ không?
+
+AU05
+Hay về design không cung cấp live external-game assistance?
+
+
+AV. Reviewer test – 5 phút
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AV01
+30 giây đầu reviewer thấy gì?
+
+AV02
+60 giây reviewer thử gì?
+
+AV03
+Phút thứ 2 reviewer hiểu innovation gì?
+
+AV04
+Phút 3 reviewer thấy technical evidence gì?
+
+AV05
+Phút 4 reviewer thấy impact gì?
+
+AV06
+Phút 5 reviewer thấy reflection gì?
+
+AV07
+Có phần “How it works” không?
+
+AV08
+Có Architecture diagram không?
+
+AV09
+Có 60-second demo không?
+
+AV10
+Có Test account không?
+
+AV11
+Có GitHub link rõ không?
+
+AV12
+Có Research results không?
+
+AV13
+Có Development history không?
+
+
+AW. Interview defense
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AW01
+Why did you choose this architecture?
+
+AW02
+Why use an engine instead of an LLM for move analysis?
+
+AW03
+What part did you personally build?
+
+AW04
+How did AI coding tools help you?
+
+AW05
+What code did you have to rewrite?
+
+AW06
+What was the hardest bug?
+
+AW07
+What assumption turned out to be wrong?
+
+AW08
+How does your recommender work mathematically?
+
+AW09
+Why call it adaptive?
+
+AW10
+Where is machine learning used?
+
+AW11
+What is your baseline?
+
+AW12
+How did you evaluate the model?
+
+AW13
+What would you change with 6 more months?
+
+AW14
+What did users dislike?
+
+AW15
+What did you learn technically?
+
+AW16
+What did you learn about education?
+
+AW17
+What did you learn about Xiangqi?
+
+
+AX. Failure analysis
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AX01
+Nếu adaptive recommendation không cải thiện kết quả thì sao?
+
+AX02
+Bạn có public negative finding không?
+
+AX03
+Nếu students thích generic puzzle hơn personalized puzzle thì sao?
+
+AX04
+Nếu AI explanations bị đánh giá thấp hơn human explanations thì sao?
+
+AX05
+Bạn học gì từ kết quả đó?
+
+AX06
+Bạn redesign gì?
+
+
+AY. Long-term moat
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AY01
+Sau 6 tháng, asset khó copy nhất của bạn là gì?
+
+AY02
+Dataset có thể trở thành research resource không?
+
+AY03
+Có thể publish anonymized subset không?
+
+AY04
+Có thể viết technical report không?
+
+AY05
+Có thể submit competition/research fair không?
+
+AY06
+Có thể collaboration với university/coach không?
+
+
+AZ. Product restraint – cái gì KHÔNG làm
+ID
+QUESTION
+YOUR ANSWER / NOTES
+AZ01
+3D có thực sự giúp learning không?
+
+AZ02
+Multiplayer có cần Week 1 không?
+
+AZ03
+Chatbot có cần Week 1 không?
+
+AZ04
+Social feed có cần không?
+
+AZ05
+Tournament system có cần không?
+
+AZ06
+Friend system có cần không?
+
+AZ07
+Live matchmaking có cần không?
+
+AZ08
+Opening database có cần Week 1 không?
+
+AZ09
+Community forum có cần không?
+
+AZ10
+Teacher dashboard có cần Week 1 không?
+
+
+BA. Bổ sung từ case CoTuong3D / social AI-build – tốc độ vs. engineering
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BA01
+Bạn muốn dùng benchmark “build nhanh dưới 10 giờ” để chứng minh tốc độ, hay coi đó chỉ là PoC và dành phần lớn tuần cho validation/testing?
+
+BA02
+Nếu AI có thể dựng một bàn cờ 3D trong vài giờ, phần nào của project bạn sẽ cố ý dành thời gian hơn để tạo technical depth?
+
+BA03
+Bạn có muốn lưu prompt history hoặc decision log để chứng minh AI được dùng có phương pháp thay vì thử-sai ngẫu nhiên không?
+
+BA04
+Bạn có muốn chia mỗi prompt coding thành plan → acceptance criteria → implementation → test → review không?
+
+BA05
+Bạn có muốn bắt AI tạo patch nhỏ thay vì rewrite cả repo không?
+
+BA06
+Bạn có muốn đặt ngưỡng “không quá X file thay đổi trong một AI task” cho tuần đầu không?
+
+BA07
+Bạn có muốn mỗi feature phải chạy test trước khi merge không?
+
+BA08
+Bạn có muốn một checklist kiểm tra security trước khi deploy code do AI sinh không?
+
+BA09
+Bạn có muốn một checklist kiểm tra dependency/license trước khi dùng code/library AI đề xuất không?
+
+BA10
+Bạn có muốn đo số lần AI solution đầu tiên sai và cách bạn sửa để tạo một “engineering learning log” không?
+
+BA11
+Bạn có muốn ghi rõ feature nào được scaffold bằng AI, feature nào bạn tự thiết kế algorithm, feature nào bạn tự test không?
+
+BA12
+Nếu Claude/GPT đưa ra hai architecture khác nhau, tiêu chí nào giúp bạn chọn thay vì chọn theo cảm giác?
+
+BA13
+Bạn có muốn dùng một AI làm implementation và một AI khác làm reviewer/adversarial tester không?
+
+BA14
+Bạn có muốn có “stop rule”: khi lỗi lặp lại 3 lần thì dừng prompt-and-fix, quay lại đọc log/architecture thay vì tiếp tục vibe coding không?
+
+BA15
+Bạn có muốn mỗi ngày dành một block 20–30 phút chỉ để học code đã được AI tạo ra không?
+
+BA16
+Bạn có muốn dùng Git tags hoặc releases cho Day 1, Day 3, Prototype v0.1 để chứng minh tiến trình?
+
+BA17
+Bạn có muốn so sánh thời gian “AI dựng giao diện” với thời gian “viết test, validate engine, design pedagogy” để mentor thấy phần khó thực sự nằm ở đâu không?
+
+BA18
+Bạn có muốn Docker ngay tuần 1, hay chỉ Docker khi backend/engine deployment thực sự cần?
+
+BA19
+Bạn có muốn VPS ngay tuần 1, hay ưu tiên nền tảng managed để giảm DevOps burden?
+
+BA20
+Bạn muốn tiêu chí nào để quyết định “đã đủ tốt để deploy” thay vì cứ polish vô hạn?
+
+
+BB. Bổ sung từ Chess.com Game Review / Coach / Skills / Puzzles
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BB01
+Bạn có muốn một “Game Review Highlights” screen tóm tắt 3–5 điểm quan trọng trước khi user xem chi tiết không?
+
+BB02
+Bạn có muốn evaluation graph theo thời gian của ván đấu không?
+
+BB03
+Bạn có muốn một score dễ hiểu kiểu “accuracy” không, hay tránh vì dễ khiến user ám ảnh điểm số?
+
+BB04
+Nếu có accuracy-like score, công thức có dựa trên engine loss, expected outcome hay một metric Xiangqi riêng?
+
+BB05
+Accuracy-like score có cần điều chỉnh theo trình độ/rating người chơi không?
+
+BB06
+Bạn có muốn move classification dạng Best / Good / Inaccuracy / Mistake / Blunder không?
+
+BB07
+Bạn có muốn thêm “Missed opportunity” tách khỏi “Mistake” không?
+
+BB08
+Bạn có muốn classification dựa trên expected outcome change thay vì raw evaluation swing không?
+
+BB09
+Bạn có đủ dữ liệu Xiangqi để xây expected-points model về sau không?
+
+BB10
+Bạn có muốn nút “Retry” tại critical position để user thử lại trước khi xem best move không?
+
+BB11
+Bạn có muốn “Show idea” trước “Show best move” để giữ tính học tập không?
+
+BB12
+Bạn có muốn course/lesson recommendation sau mỗi game dựa trên mistake theme không?
+
+BB13
+Bạn có muốn Skill points theo taxonomy cờ tướng không?
+
+BB14
+Bạn có muốn hiển thị “time spent on move” để phân biệt knowledge error và time-management error không?
+
+BB15
+Bạn có muốn Coach avatar/voice không, hay text-only để giữ sản phẩm academic và nhẹ?
+
+BB16
+Bạn có muốn Coach mode trong lúc chơi, sau ván, hay cả hai?
+
+BB17
+Bạn có muốn user chọn strength/level của Coach explanation không?
+
+BB18
+Bạn có muốn Learn Path theo New to Xiangqi / Beginner / Intermediate / Tournament không?
+
+BB19
+Bạn có muốn Lesson Library để user tự chọn topic ngoài adaptive path không?
+
+BB20
+Bạn có muốn mỗi lesson có interactive challenge chứ không chỉ text/video không?
+
+BB21
+Bạn có muốn puzzle mặc định chọn từ pool rating gần user như Chess.com, hay ưu tiên weakness hơn rating?
+
+BB22
+Bạn có muốn custom puzzle theo theme?
+
+BB23
+Bạn có muốn filter “previously failed puzzles” không?
+
+BB24
+Bạn có muốn difficulty selector Standard / Hard / Extra Hard không?
+
+BB25
+Bạn có muốn hint được tính như một tín hiệu giảm mastery/credit không?
+
+BB26
+Bạn có muốn puzzle rating của user và puzzle rating tách khỏi playing rating không?
+
+BB27
+Bạn có muốn thử A/B test “generic rating-matched puzzles” với “mistake-derived personalized puzzles” không?
+
+
+BC. Bổ sung từ ChessDB – cloud database, FEN, opening/endgame, API
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BC01
+Bạn có muốn hỗ trợ paste/import FEN ngay từ prototype không?
+
+BC02
+Bạn có muốn nút Copy FEN / Share position link không?
+
+BC03
+Bạn có muốn support cả FEN + move list + PGN/XQF về sau không?
+
+BC04
+Bạn có muốn một position editor để tự đặt quân không?
+
+BC05
+Bạn có muốn opening knowledge database tách khỏi engine search không?
+
+BC06
+Bạn có muốn endgame tablebase/EGTB về sau không?
+
+BC07
+DTC/DTM có cần hiển thị cho advanced user không?
+
+BC08
+Bạn có muốn cloud database trả multiple candidate moves kèm rank/score/win-rate không?
+
+BC09
+Bạn có muốn “known / unknown position” state để UI biết khi nào phải chạy engine sâu hơn không?
+
+BC10
+Bạn có muốn queue background analysis cho position chưa được phân tích, hay prototype chỉ synchronous?
+
+BC11
+Nếu dùng external cloud analysis API, bạn sẽ xử lý downtime/rate limit thế nào?
+
+BC12
+Bạn có muốn cache result từ cloud/engine để giảm cost/latency không?
+
+BC13
+Bạn có muốn pin engine/database version để cùng một position cho kết quả reproducible không?
+
+BC14
+Bạn có muốn lưu engine depth/nodes/time cùng mỗi analysis để biết độ tin cậy?
+
+BC15
+Bạn có muốn tách “opening book suggestion” và “engine best move” trong UI không?
+
+BC16
+Bạn có muốn tách “tablebase exact result” và “engine estimate” trong UI không?
+
+BC17
+Nếu cloud DB và local engine disagree, hệ thống ưu tiên nguồn nào và vì sao?
+
+BC18
+Bạn có muốn nguồn analysis được hiển thị minh bạch cho advanced users không?
+
+BC19
+Bạn có muốn API layer của mình độc lập với engine provider để sau này đổi engine mà frontend không phải sửa nhiều không?
+
+
+BD. Bổ sung từ Pikafish – engine integration và licensing
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BD01
+Bạn có nghiêng về Pikafish làm engine chính không?
+
+BD02
+Bạn đã sẵn sàng tuân thủ GPLv3 nếu phân phối/bundle Pikafish không?
+
+BD03
+Bạn có cần legal/license notes trong README và About/Open-source licenses page không?
+
+BD04
+Bạn có định sửa source Pikafish không, hay chỉ gọi binary/API?
+
+BD05
+Bạn có định bundle NNUE weights không, hay download/runtime/server-side use?
+
+BD06
+Bạn có kiểm tra license riêng của NNUE/network weights trước khi public/commercial use không?
+
+BD07
+Bạn muốn giao tiếp với engine bằng UCI protocol hay wrapper/library?
+
+BD08
+Bạn có muốn một EngineAdapter interface để backend không phụ thuộc trực tiếp vào Pikafish command strings không?
+
+BD09
+Bạn muốn engine chạy server-side, WebAssembly trong browser, hay cả hai?
+
+BD10
+Nếu engine chạy browser, bạn có dùng Web Worker để không block UI không?
+
+BD11
+Nếu engine chạy server, bạn giới hạn CPU/time per analysis thế nào?
+
+BD12
+Bạn có muốn “fast review” và “deep review” dùng depth/time khác nhau không?
+
+BD13
+Bạn có muốn benchmark engine latency trên chính laptop/điện thoại của user không?
+
+BD14
+Bạn có muốn automated test với một bộ known positions để phát hiện engine integration regression không?
+
+BD15
+Bạn có muốn lưu exact engine build/version/network hash trong analysis metadata không?
+
+
+BE. Bổ sung từ open-source Xiangqi apps / GitHub – kiến trúc thực tế
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BE01
+Bạn có muốn local-first cho phần board/rules để app vẫn chơi được khi mất mạng không?
+
+BE02
+Bạn có muốn PWA để user cài web như app không?
+
+BE03
+Bạn có muốn browser-side engine cho quick hint và server-side engine cho deep analysis không?
+
+BE04
+Bạn có muốn game logic tách khỏi UI để unit test độc lập không?
+
+BE05
+Bạn có muốn move generator/rule validator thành module riêng không?
+
+BE06
+Bạn có muốn notation converter thành module riêng không?
+
+BE07
+Bạn có muốn i18n strings tách khỏi component ngay từ đầu không?
+
+BE08
+Bạn có muốn tests cho FEN parsing/serialization không?
+
+BE09
+Bạn có muốn tests cho undo/repetition/check states không?
+
+BE10
+Bạn có muốn developer roadmap theo version v0.1 rules → v0.2 analysis → v0.3 learning profile thay vì feature dump không?
+
+BE11
+Bạn có muốn GitHub Milestones để chứng minh roadmap thực tế không?
+
+BE12
+Bạn có muốn CI chạy lint + unit test + build trên mỗi push không?
+
+BE13
+Bạn có muốn security/observability chỉ sau prototype, nhưng ghi rõ roadmap không?
+
+BE14
+Bạn có muốn README ghi những thứ project intentionally does NOT support không?
+
+BE15
+Bạn có muốn UI tối giản để board + learning feedback là trung tâm, thay vì 3D/animation chiếm phần lớn nỗ lực không?
+
+BE16
+Bạn có muốn một “example analysis dataset” trong repo để reviewer chạy demo mà không cần API key không?
+
+
+BF. Bổ sung: Xiangqi notation, game records và interoperability
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BF01
+Bạn muốn notation nội bộ dùng ICCS coordinate, WXF, Chinese notation hay một canonical format khác?
+
+BF02
+Bạn có cần convert giữa Chinese notation và ICCS/WXF không?
+
+BF03
+Bạn có cần support game records từ các nền tảng/tournament bạn thực tế sử dụng không?
+
+BF04
+Bạn có mẫu file thật để test parser không?
+
+BF05
+Bạn có muốn import từ clipboard text trước khi làm file upload phức tạp không?
+
+BF06
+Bạn có muốn export annotated game để chia sẻ với HLV không?
+
+BF07
+Bạn có muốn share URL mở đúng position/move trong analysis không?
+
+BF08
+Bạn có muốn branch variations / analysis tree, hay tuần 1 chỉ main line?
+
+BF09
+Bạn có muốn comments/annotations gắn theo từng node trong game tree không?
+
+BF10
+Bạn có muốn engine lines lưu dưới dạng move tree để user explore alternative moves không?
+
+BF11
+Bạn có muốn format converter là một phần reusable/open-source riêng trong repo không?
+
+BF12
+Bạn có bộ quy tắc thi đấu cụ thể nào cần support (Asian/Chinese/Vietnamese rules), đặc biệt repetition/long-check không?
+
+BF13
+Rule set nào sẽ là source of truth cho prototype?
+
+BF14
+Nếu các nền tảng dùng quy tắc repetition khác nhau, app sẽ cảnh báo thế nào?
+
+
+BG. Bổ sung: Differentiation thực sự so với web chơi cờ / engine
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BG01
+Nếu Cotuong3D đã có AI, bạn bè, phòng riêng, xếp hạng, xem lại ván và training, core khác biệt của bạn còn gì?
+
+BG02
+Bạn có muốn định vị là “learning layer” hơn là “playing platform” không?
+
+BG03
+Bạn có nhất thiết phải xây matchmaking khi người dùng đã có nền tảng khác để chơi không?
+
+BG04
+Bạn có thể cho user import game từ nơi khác và biến nó thành lesson – tức là complement thay vì replace – không?
+
+BG05
+Bạn có muốn “one-click from game to personalized lesson” là wedge chính không?
+
+BG06
+Bạn có muốn “mistake → concept → targeted practice → retest” là loop mà đối thủ chưa làm tốt trong Xiangqi không?
+
+BG07
+Bạn có muốn một learner model xuyên nhiều ván thay vì mỗi ván analysis độc lập không?
+
+BG08
+Bạn có muốn chỉ ra pattern lỗi theo thời gian (“3/5 losses involved king-safety oversight”) không?
+
+BG09
+Bạn có muốn map error pattern vào training plan tuần tới không?
+
+BG10
+Bạn có muốn player tự đặt learning goal (e.g. calculation, endgame) và recommender cân bằng goal với detected weakness không?
+
+BG11
+Bạn có muốn HLV override/reweight learner profile không?
+
+BG12
+Bạn có muốn human-vs-AI explanation comparison trở thành research feature không?
+
+BG13
+Bạn có muốn focus vào Vietnamese Xiangqi educational terminology mà các sản phẩm quốc tế thiếu không?
+
+BG14
+Bạn có muốn một onboarding cho non-Xiangqi admissions reviewer giải thích sự khác nhau giữa Xiangqi và Western chess trong 20–30 giây không?
+
+
+BH. Bổ sung: Privacy, student safety và data governance
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BH01
+Nếu pilot với học sinh, bạn có thực sự cần tên thật không?
+
+BH02
+Bạn có thể dùng participant codes thay cho tên không?
+
+BH03
+Bạn có cần ngày sinh/tuổi chính xác hay chỉ age range?
+
+BH04
+Bạn sẽ lưu email không, và nếu có thì vì mục đích gì?
+
+BH05
+Bạn sẽ lưu raw game data bao lâu?
+
+BH06
+Bạn sẽ cho user xóa data của mình không?
+
+BH07
+Bạn có cần consent của phụ huynh/trường theo quy định của pilot không?
+
+BH08
+Bạn sẽ tách research data khỏi account data không?
+
+BH09
+Bạn có public aggregate results nhưng không public individual results không?
+
+BH10
+Bạn có tránh leaderboard học tập nếu nó tạo áp lực/so sánh không cần thiết không?
+
+BH11
+Bạn có log prompt/LLM responses chứa dữ liệu user không?
+
+BH12
+Nếu có, dữ liệu đó có được gửi cho third-party AI provider không?
+
+BH13
+Bạn có thể redact/strip personal data trước khi gửi LLM không?
+
+BH14
+Bạn có privacy policy và data retention note trước pilot không?
+
+BH15
+Bạn có threat model cơ bản cho leaked API key, unauthorized data access và abuse không?
+
+
+BI. Bổ sung: Portfolio/admissions proof-of-work và authorship
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BI01
+Bạn muốn reviewer kiểm chứng “I built this” bằng commit history như thế nào?
+
+BI02
+Bạn có muốn commit đều theo meaningful milestones thay vì hàng trăm commit rác chỉ để tạo streak không?
+
+BI03
+Bạn có muốn mỗi milestone kèm screenshot/demo GIF trong journal không?
+
+BI04
+Bạn có muốn document 3 quyết định kỹ thuật mà bạn chủ động phản đối gợi ý ban đầu của AI không?
+
+BI05
+Bạn có muốn document 3 bugs mà AI không tự giải được và bạn phải suy luận/test để fix không?
+
+BI06
+Bạn có muốn document một feature bị cắt vì user research chứng minh không cần không?
+
+BI07
+Bạn có muốn document một hypothesis thất bại không?
+
+BI08
+Bạn có muốn có “Architecture decision records” (ADR) ngắn cho engine, frontend, backend, database không?
+
+BI09
+Bạn có muốn reviewer có thể chạy project local theo README trong dưới 10 phút không?
+
+BI10
+Bạn có muốn demo mode không cần đăng ký/API key không?
+
+BI11
+Bạn có muốn một 60–90 giây video kể problem → demo → technical → impact thay vì chỉ quay UI không?
+
+BI12
+Bạn có muốn một one-page technical poster/diagram sau prototype không?
+
+BI13
+Bạn có muốn một “Evidence matrix” nối từng CV bullet với repo page/metric/demo cụ thể không?
+
+BI14
+Bạn có sẵn sàng sửa wording CV theo đúng trạng thái hiện tại: planned / prototyped / piloted / measured không?
+
+BI15
+Bạn muốn project thể hiện growth từ code gần như 0 đến hiểu architecture/tests/ML như thế nào qua thời gian?
+
+
+BJ. Bổ sung: Mentor workflow và daily evidence
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BJ01
+Mentor của bạn muốn xem tiến độ theo ngày, theo tuần hay theo milestone?
+
+BJ02
+Mentor quan tâm nhiều hơn product, technical depth, admissions narrative hay impact?
+
+BJ03
+Bạn có thể gửi link commit/PR mỗi ngày thay vì chỉ báo “đã code” không?
+
+BJ04
+Bạn có muốn mỗi ngày chỉ có 1 Main Objective không?
+
+BJ05
+Bạn có muốn giới hạn 1–3 shipped items/ngày để tránh checklist giả tạo không?
+
+BJ06
+Bạn có muốn ghi Technical concept learned mỗi ngày không?
+
+BJ07
+Bạn có muốn ghi Product decision + reason mỗi ngày không?
+
+BJ08
+Bạn có muốn ghi AI assistance và My own contribution riêng biệt không?
+
+BJ09
+Bạn có muốn ghi bug/failure + resolution hằng ngày không?
+
+BJ10
+Bạn có muốn ghi user feedback ngay ngày nhận được không?
+
+BJ11
+Bạn có muốn cuối tuần có weekly retro: what worked / failed / next week / evidence không?
+
+BJ12
+Bạn có muốn mentor sign off milestone thay vì approve từng chi tiết code không?
+
+BJ13
+Bạn có muốn một “blocker” field để mentor chỉ cần can thiệp khi thật sự cần không?
+
+BJ14
+Bạn có muốn daily checklist tự động lấy GitHub commits sau này không?
+
+BJ15
+Bạn có muốn mỗi tuần update CV bullet chỉ sau khi evidence đã có không?
+
+
+BK. Meta-questions từng xuất hiện trong phần giải thích / phản biện
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BK01
+AI làm được gì trong sản phẩm này mà engine/rule-based system không làm tốt?
+
+BK02
+AI có đáng tin trong từng nhiệm vụ cụ thể không?
+
+BK03
+AI có giải thích được kết quả của nó không?
+
+BK04
+AI có làm user phụ thuộc không?
+
+BK05
+AI có thu quá nhiều data không?
+
+BK06
+Ai là “source of truth” cho chess/Xiangqi truth: engine, LLM hay human expert?
+
+BK07
+Khi một feature đã “coded”, nó đã thực sự “done” chưa?
+
+BK08
+Bạn đang tối ưu số lượng code hay technical depth?
+
+BK09
+Bạn đang tối ưu số lượng users hay learning outcome?
+
+BK10
+Bạn đang chứng minh sản phẩm hoạt động hay chỉ chứng minh bạn có thể deploy một website?
+
+BK11
+Điều gì TRAN QUOC THANH có thể build trong Xiangqi education mà một programmer kỹ thuật mạnh hơn nhưng chưa từng thi đấu Xiangqi nghiêm túc có thể khó build được?
+
+
+BL. Personal fit & admissions narrative integration
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BL01
+Nếu project này bị xóa khỏi hồ sơ, mạch câu chuyện học thuật/cá nhân của bạn mất đi điều gì quan trọng nhất?
+
+BL02
+Trong Mathematics, Xiangqi, Cờ Chill, TransciTech, EcoTech và internship, project này nên kết nối mạnh nhất với 2–3 trải nghiệm nào – và vì sao?
+
+BL03
+Bạn muốn project chứng minh “builder”, “researcher”, “educator”, “community leader” hay “competitive thinker” trước tiên? Hãy xếp thứ tự.
+
+BL04
+Có thành tích/hoạt động nào trong CV đang mạnh nhưng rời rạc mà project này có thể kết nối thành một narrative thống nhất không?
+
+BL05
+Bạn có một khoảnh khắc thi đấu cụ thể nào đủ mạnh để trở thành opening story cho About/README/essay không?
+
+BL06
+Bạn có một khoảnh khắc dạy/hướng dẫn người khác chơi cờ khiến bạn nhận ra engine chưa đủ để dạy không?
+
+BL07
+Điều gì trong project này là “personal necessity” của bạn thay vì một feature được vay mượn từ chess platforms?
+
+BL08
+Bạn muốn admissions reviewer nhìn thấy mức tăng trưởng nào từ “biết code rất ít” tới “có thể thiết kế, test và defend một hệ thống thật”?
+
+BL09
+Có claim nào trong CV hiện tại bạn muốn project thực sự đạt được trong 1 tháng, 3 tháng và trước deadline hồ sơ?
+
+BL10
+Bạn có sẵn sàng ghi rõ trong portfolio phần nào tồn tại trước project (Xiangqi expertise/community) và phần nào được tạo ra nhờ project không?
+
+BL11
+Bạn muốn trường đại học nhớ project như một technical build, một education experiment, một cultural/community project, hay một intersection của ba thứ?
+
+BL12
+Nếu chỉ được giữ một bằng chứng mạnh: code quality, user impact, research result, expert validation hay scale – bạn chọn gì và vì sao?
+
+BL13
+Bạn muốn tránh hình ảnh nào: “vibe-coded clone”, “chatbot gắn vào game”, “AI overclaim”, “project vì admissions”, hay điều khác?
+
+BL14
+Có phần nào trong hành trình cờ tướng của bạn chưa từng xuất hiện trong CV nhưng có thể tạo chiều sâu cho sản phẩm không?
+
+BL15
+Bạn muốn project phản ánh phong cách cá nhân nào: analytical, calm, competitive, teaching-oriented, experimental, community-centered?
+
+BL16
+Bạn sẵn sàng công khai những limitation/failure nào để project đáng tin hơn thay vì cố tỏ ra hoàn hảo?
+
+BL17
+Một reviewer kỹ thuật hoài nghi sẽ hỏi “Why you?”; câu trả lời 30 giây của bạn là gì?
+
+BL18
+Một reviewer giáo dục hoài nghi sẽ hỏi “Why does this help learning?”; bằng chứng bạn muốn có là gì?
+
+
+BM. Xiangqi learning philosophy from your own training history
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BM01
+Trong quá trình bạn đi từ người mới tới thi đấu quốc gia, 3 thay đổi trong cách suy nghĩ nào tạo ra tiến bộ lớn nhất?
+
+BM02
+Bạn tiến bộ nhiều hơn từ chơi nhiều ván, giải bài, xem engine, học khai cuộc, review với HLV hay tự phân tích? Hãy xếp hạng.
+
+BM03
+Một buổi review ván “tốt” theo bạn phải kết thúc với output gì: nước tốt hơn, concept, bài tập, checklist hay plan luyện tập?
+
+BM04
+Bạn có thói quen tự phân tích trước khi bật engine không? Nếu có, thứ tự cụ thể là gì?
+
+BM05
+Bạn thường nhận ra sai lầm bằng evaluation swing hay bằng dấu hiệu chess-specific nào?
+
+BM06
+Những lỗi nào của người mới thường bị engine gọi chung là blunder nhưng HLV lại coi là các lỗi tư duy khác nhau?
+
+BM07
+Có kiểu nước “không tối ưu theo engine nhưng hợp thực chiến/học sinh” nào cần được AI giải thích cẩn thận không?
+
+BM08
+Có những concept Xiangqi nào cực quan trọng nhưng khó chuyển nguyên xi từ chess terminology sang không?
+
+BM09
+Khi dạy một người yếu hơn, bạn thường bắt đầu từ câu hỏi nào trước khi chỉ nước?
+
+BM10
+Bạn có thể viết 10 “thinking prompts” mà bản thân thực sự dùng trước một nước quan trọng không?
+
+BM11
+Bạn muốn app dạy calculation depth hay decision quality trước?
+
+BM12
+Bạn muốn app phân biệt “không thấy ý tưởng” với “thấy nhưng tính sai” bằng cách nào?
+
+BM13
+Khi nào nên cho người học xem engine line, khi nào chỉ nên cho hint/concept?
+
+BM14
+Có những lỗi do time management/psychology mà board position alone không thể chẩn đoán không?
+
+BM15
+Bạn muốn hệ thống cho phép user tự ghi reasoning trước khi xem đáp án để giữ tính active learning không?
+
+BM16
+Bạn có thể tạo một rubric 3–5 mức cho chất lượng tư duy của người chơi thay vì chỉ đúng/sai không?
+
+BM17
+Một lesson tốt nên kết thúc bằng “biết nước đúng” hay “biết nguyên tắc có thể transfer sang position khác”?
+
+BM18
+Điều gì bạn tin về cách học cờ nhưng sẵn sàng để user data chứng minh bạn sai?
+
+
+BN. Explainable AI – lessons from DecodeChess and engine-explanation products
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BN01
+AI explanation của bạn phải trả lời tối thiểu những câu nào: What changed? Why? Threat? Plan? Concept? Better candidate?
+
+BN02
+Bạn muốn explanation theo cấu trúc cố định hay tự do? Nếu cố định, schema tối thiểu là gì?
+
+BN03
+Có nên có chế độ Before/After để user thấy một nước giải quyết threat như thế nào?
+
+BN04
+Có nên giải thích “piece functionality” – quân nào đang làm tốt/xấu vai trò gì – thay vì chỉ line?
+
+BN05
+Có nên tách tactical explanation và strategic explanation thành hai lớp khác nhau?
+
+BN06
+Một explanation beginner và tournament player khác nhau ở độ dài, notation, depth và vocabulary thế nào?
+
+BN07
+AI có nên nêu nhiều candidate moves hay chỉ một best move để tránh overload?
+
+BN08
+Làm sao chứng minh explanation thực sự grounded in engine/board facts chứ không phải text nghe hợp lý?
+
+BN09
+Bạn có thể tạo checklist tự động để verify các quân/nước được AI nhắc tới tồn tại và hợp lệ không?
+
+BN10
+Có cần explainability confidence: verified, partially verified, ambiguous?
+
+BN11
+Khi engine line có nhiều phương án tương đương, AI nên nói chắc chắn hay thừa nhận nhiều plan hợp lý?
+
+BN12
+User có cần nút “Why?” theo tầng để đào sâu thay vì nhận một đoạn explanation dài ngay lập tức không?
+
+BN13
+Có nên cho user chọn “Explain simply / Explain deeply / Show engine line”?
+
+BN14
+Bạn muốn đánh giá explanation bằng expert rating, user helpfulness, factual correctness hay learning gain?
+
+BN15
+Bạn có thể xây một bộ 30–50 position gold-standard để test explanation qua mỗi phiên bản prompt không?
+
+BN16
+Nếu LLM explanation sai nhưng engine đúng, UX phải phản ứng thế nào?
+
+BN17
+Có nên lưu prompt version và model version cùng mỗi AI explanation để reproducibility tốt hơn không?
+
+BN18
+Một explanation xuất sắc của project bạn phải làm được điều gì mà raw engine PV không làm được?
+
+
+BO. Game-derived personalized training – lessons from Aimchess / PuzzleConnect
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BO01
+Flow chính có nên biến chính lỗi trong game của user thành bài tập ngay lập tức không?
+
+BO02
+“Mistake-derived puzzle” được tạo ở position trước nước sai, sau nước sai, hay một position tương tự?
+
+BO03
+User nên retry đúng position một lần hay nhiều lần với spaced review?
+
+BO04
+Sau retry, app nên cho một puzzle tương tự để test transfer hay chuyển thẳng sang mistake tiếp theo?
+
+BO05
+Một game có 20 lỗi nhỏ; thuật toán chọn 3 lỗi nào đáng học nhất?
+
+BO06
+Có nên ưu tiên lỗi lặp lại nhiều game hơn một blunder lớn nhưng hiếm?
+
+BO07
+Có nên so skill profile của user với người cùng level/rating để phát hiện weakness tương đối không?
+
+BO08
+Bạn có đủ dữ liệu để benchmark peer group hay v0.1 chỉ so với chính lịch sử user?
+
+BO09
+Personalized weekly study plan có phù hợp với user học sinh hay quá nặng cho prototype?
+
+BO10
+Một recommendation nên giải thích “why this now” bằng dữ liệu nào?
+
+BO11
+Có nên có queue “mistakes to revisit” từ toàn bộ game history?
+
+BO12
+Nếu user chơi rất ít game, personalized training lấy signal từ puzzle attempts thế nào?
+
+BO13
+Nếu user chỉ upload một game, system có được kết luận weakness không hay chỉ gọi là tentative signal?
+
+BO14
+Có nên phân biệt recurring weakness và one-off blunder trong UI?
+
+BO15
+Một drill từ game thật có cần giữ nguyên context/opponent/time control để meaningful hơn không?
+
+BO16
+Bạn muốn personalized plan tối ưu weakness nhất hay cân bằng weakness + strengths + variety?
+
+BO17
+Có nên cho user tự chọn “I want to work on X” để override recommender?
+
+BO18
+Metric nào chứng minh personalized practice tốt hơn generic practice cho chính target user của bạn?
+
+
+BP. Spaced repetition, retention & mastery
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BP01
+Những thứ nào trong Xiangqi thực sự phù hợp spaced repetition: openings, tactical motifs, endgames, personal mistakes, strategic concepts?
+
+BP02
+Một personal mistake sau khi solve đúng nên được review lại sau bao lâu?
+
+BP03
+Nếu solve sai, interval reset hoàn toàn hay giảm một phần?
+
+BP04
+Mỗi position có mastery riêng hay mỗi skill/theme có mastery aggregate?
+
+BP05
+Hint usage có làm interval ngắn hơn không?
+
+BP06
+Solve đúng nhưng rất chậm có được coi là mastered không?
+
+BP07
+Có nên tách recognition mastery và calculation mastery?
+
+BP08
+Làm sao tránh spaced repetition biến strategic learning thành học thuộc nước?
+
+BP09
+Có nên perturb/rotate position hoặc dùng analogous positions để test concept transfer?
+
+BP10
+User có được skip/postpone review không? Nếu có, scheduler xử lý thế nào?
+
+BP11
+Daily review queue tối đa bao nhiêu để không làm học sinh bị overload?
+
+BP12
+Có nên có “due today” giống flashcard apps hay feed linh hoạt hơn?
+
+BP13
+Bạn muốn thuật toán scheduler tự viết đơn giản hay dùng mô hình chuẩn rồi điều chỉnh?
+
+BP14
+Metric retention sau 1 ngày/7 ngày/30 ngày có khả thi trong timeline hồ sơ không?
+
+BP15
+Có nên cho user thấy mastery level hay ẩn để tránh gamification quá mức?
+
+BP16
+Bạn sẽ gọi feature này “spaced repetition” chỉ khi thật sự có scheduling theo lịch sử performance chứ không phải random review chứ?
+
+
+BQ. Puzzle quality, rating & data pipeline – lessons from Lichess
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BQ01
+Puzzle sẽ được tạo từ engine-detected tactical swings, curated manually, imported dataset hay kết hợp?
+
+BQ02
+Điều kiện để một generated position được chấp nhận làm puzzle là gì?
+
+BQ03
+Có cần unique best move / forced sequence để puzzle không ambiguous không?
+
+BQ04
+Engine depth/nodes tối thiểu để validate solution là gì?
+
+BQ05
+Puzzle difficulty ban đầu ước lượng bằng engine features, expert judgement hay player attempts?
+
+BQ06
+Sau có đủ attempts, rating puzzle có cập nhật theo Elo/Glicko-like interaction với player không?
+
+BQ07
+Bạn có nên lưu solve time, hints, retries và confidence của user như additional signals không?
+
+BQ08
+Theme tags được expert gắn, rule-based gắn, LLM gắn hay community vote?
+
+BQ09
+Nếu auto-tagging sai, user/expert có thể report/edit không?
+
+BQ10
+Puzzle popularity/helpfulness có cần vote không?
+
+BQ11
+Làm sao phát hiện duplicate hoặc near-duplicate positions?
+
+BQ12
+Có cần filter puzzle quá trivial, quá engine-like hoặc chỉ có tactical trick không có learning value?
+
+BQ13
+Có nên tạo puzzles từ chính games của user nhưng chỉ public nếu có permission?
+
+BQ14
+Metadata tối thiểu của puzzle gồm những trường nào?
+
+BQ15
+Bạn có muốn dataset versioned để có thể tái tạo evaluation của recommender?
+
+BQ16
+Nếu dùng public chess/Xiangqi data, license và provenance của từng record được lưu ở đâu?
+
+BQ17
+Bạn có thể tạo một “gold set” nhỏ chất lượng cao thay vì cố có hàng nghìn puzzles vội không?
+
+BQ18
+Trong 7 ngày, bao nhiêu puzzle validated là đủ để demo core learning loop thuyết phục?
+
+
+BR. Onboarding, placement & cold-start personalization
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BR01
+User mới vào app biết chơi cờ tới mức nào – cần hỏi hay test?
+
+BR02
+Onboarding nên hỏi self-reported level, rating, tournament experience hay tất cả?
+
+BR03
+Có nên có placement mini-test 5–10 positions trước khi recommendation bắt đầu?
+
+BR04
+Placement test đo tactics בלבד hay cả strategic judgement?
+
+BR05
+Nếu user không biết rating của mình, hệ thống khởi tạo difficulty thế nào?
+
+BR06
+Nếu user là hoàn toàn beginner chưa biết luật, product core có phục vụ họ hay redirect sang rule lesson?
+
+BR07
+Bạn có cần persona riêng cho competitive youth player như chính bạn không?
+
+BR08
+Có nên cho user chọn goal: improve tactics, review games, prepare tournament, learn basics?
+
+BR09
+Goal có ảnh hưởng recommendation hay chỉ UI?
+
+BR10
+Có nên cho user import game ngay onboarding để personalization nhanh hơn?
+
+BR11
+Nếu không có game record, system có “diagnostic puzzle set” không?
+
+BR12
+Bao lâu thì learner profile được coi là đủ dữ liệu để hiện weakness chart?
+
+BR13
+Trước threshold đó, UI nên ghi “early estimate” để tránh false precision không?
+
+BR14
+Có cần calibration định kỳ khi user tiến bộ nhanh?
+
+BR15
+User có thể sửa level/profile nếu algorithm hiểu sai không?
+
+BR16
+Onboarding tối đa bao nhiêu giây/phút để không làm tester bỏ cuộc?
+
+
+BS. 7-day prototype execution & scope control
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BS01
+Ngày 1 phải kết thúc với artifact chạy được nào – repo, board, engine PoC hay product spec?
+
+BS02
+Ngày 2 phải chứng minh rủi ro kỹ thuật lớn nhất nào đã được giải?
+
+BS03
+Ngày 3 phải có core loop end-to-end tối thiểu nào?
+
+BS04
+Ngày 4 nên dành cho feature hay testing/refactor?
+
+BS05
+Ngày 5 cần user test sớm hay tiếp tục build?
+
+BS06
+Ngày 6 cần polish, bug-fix, README, demo video hay deploy theo thứ tự nào?
+
+BS07
+Ngày 7 definition of done chính xác là gì?
+
+BS08
+Feature nào tuyệt đối không được thêm trong tuần 1 dù “trông cool”?
+
+BS09
+Nếu engine integration mất 2 ngày hơn dự kiến, feature nào bị cắt đầu tiên?
+
+BS10
+Nếu LLM integration thất bại, fallback demo vẫn chứng minh product thesis bằng cách nào?
+
+BS11
+Nếu deployment lỗi, local demo + recorded demo có được coi là fallback tạm thời không?
+
+BS12
+Bạn có thể dành block tập trung nào mỗi ngày thay vì code rải rác?
+
+BS13
+Mỗi ngày bạn sẽ giới hạn số “AI-generated changes” bao nhiêu để còn review được?
+
+BS14
+Có freeze feature scope sau Day 2 không?
+
+BS15
+Bug nào là blocker, bug nào chấp nhận để backlog?
+
+BS16
+Bạn sẽ dành tối thiểu bao nhiêu thời gian mỗi ngày để học/giải thích code thay vì chỉ ship?
+
+BS17
+Daily mentor report gửi lúc nào và cần evidence gì để mentor thấy tiến bộ thật?
+
+BS18
+Nếu cuối tuần chỉ có một flow hoạt động tốt, flow đó chính xác gồm những screen/API nào?
+
+
+BT. Instrumentation, analytics & evidence
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BT01
+Ngay v0.1 cần log những event nào để sau này biết user thực sự dùng core loop?
+
+BT02
+Các event tối thiểu có phải: game_analyzed, critical_moment_opened, retry_attempted, puzzle_solved, explanation_helpful không?
+
+BT03
+Bạn cần anonymous user/session ID hay login để nối các attempts theo thời gian?
+
+BT04
+Metric north-star của prototype là completion, learning signal hay return usage?
+
+BT05
+Một “successful analysis session” được định nghĩa cụ thể thế nào?
+
+BT06
+Có đo time-to-first-value từ lúc mở app tới lúc nhận learning insight đầu tiên không?
+
+BT07
+Có đo bao nhiêu user click sâu vào explanation/hint không?
+
+BT08
+Có đo user retry mistake sau khi xem explanation không?
+
+BT09
+Có cần feedback “Was this explanation useful/correct?” và lý do không?
+
+BT10
+Data nào cần cho product decisions nhưng không nên thu vì privacy?
+
+BT11
+Có dashboard nội bộ đơn giản để mentor thấy usage không?
+
+BT12
+Bạn sẽ tránh vanity metrics như page views khi claim educational impact thế nào?
+
+BT13
+Mỗi CV claim tương lai cần metric raw nào được lưu ngay từ đầu?
+
+BT14
+Bạn có data dictionary giải thích từng metric/event không?
+
+BT15
+Analytics schema có versioning khi event thay đổi không?
+
+BT16
+Bạn sẽ phân biệt “pilot participant”, “registered user”, “active learner”, “puzzle attempt” để không phóng đại số liệu không?
+
+
+BU. AI engineering evals, prompt/versioning & reliability
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BU01
+Bạn sẽ có eval set cố định cho AI explanation từ tuần nào?
+
+BU02
+Mỗi eval case chứa position, engine facts, expected concepts và forbidden hallucinations nào?
+
+BU03
+AI output được chấm theo factuality, pedagogy, clarity, level-fit và concision riêng không?
+
+BU04
+Bạn có prompt version ID trong code/repo không?
+
+BU05
+Khi sửa prompt, bạn chạy lại toàn bộ eval set trước khi deploy không?
+
+BU06
+Model upgrade có thể làm output tệ đi; bạn phát hiện regression thế nào?
+
+BU07
+Structured output schema validation thất bại thì retry, fallback hay show raw error?
+
+BU08
+Có maximum token/cost per explanation không?
+
+BU09
+Có caching để cùng position/level không gọi LLM lặp lại vô ích không?
+
+BU10
+Nếu LLM provider unavailable, fallback text template có đủ không?
+
+BU11
+Có deterministic/rule-based parts nào nên tách khỏi LLM để tăng reliability?
+
+BU12
+Bạn có muốn expert annotate “core concept” trước, LLM chỉ verbalize thay vì tự classify toàn bộ?
+
+BU13
+Có cần multilingual eval riêng cho Vietnamese và English không?
+
+BU14
+Prompt injection từ user-entered notes có phải risk không? Nếu có, input nào đi vào LLM?
+
+BU15
+LLM có được phép truy cập arbitrary web/content hay chỉ engine facts + curated knowledge?
+
+BU16
+Bạn có lưu model/provider name, latency, token usage, cost cho mỗi request để debug không?
+
+BU17
+Một lỗi AI nào đủ nghiêm trọng để auto-disable feature cho tới khi fix?
+
+BU18
+Bạn sẽ trình bày với reviewer rằng “AI” nằm ở đâu và deterministic chess engine nằm ở đâu bằng diagram nào?
+
+
+BV. Coach/mentor workflow & human-in-the-loop validation
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BV01
+HLV/strong player có thể review output ở giao diện hay chỉ qua spreadsheet/doc?
+
+BV02
+Một expert review mất tối đa bao nhiêu phút/position để quy trình bền vững?
+
+BV03
+Expert cần chấm factual correctness, teaching usefulness hay taxonomy label riêng?
+
+BV04
+Nếu expert disagree với engine best move vì practical considerations, system lưu disagreement thế nào?
+
+BV05
+Có cần “expert verified” badge cho một số lessons/puzzles không?
+
+BV06
+Bạn có thể xin HLV review 20–30 gold positions thay vì hàng trăm không?
+
+BV07
+Coach dashboard có phải future feature hay v0.1 requirement?
+
+BV08
+Coach có muốn tạo custom assignment từ game của học sinh không?
+
+BV09
+Coach có muốn chỉnh AI explanation hoặc thêm note human không?
+
+BV10
+Có version/history khi expert sửa taxonomy/explanation không?
+
+BV11
+Ai có quyền approve content public?
+
+BV12
+Bạn có thể dùng Cờ Chill làm môi trường human feedback hợp pháp và minh bạch không?
+
+BV13
+Mentor admissions khác HLV cờ; hai người cần loại report khác nhau không?
+
+BV14
+Bạn muốn mentor kỹ thuật review architecture theo cadence nào?
+
+BV15
+Bạn sẽ log decisions bị mentor challenge và cách bạn phản hồi không?
+
+BV16
+Một disagreement với mentor mà bạn giữ quyết định riêng cần evidence gì để justify?
+
+
+BW. Social/community distribution, early traction & pilot recruitment
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BW01
+10 tester đầu tiên sẽ đến từ Cờ Chill, trường, bạn thi đấu, HLV hay online community?
+
+BW02
+Bạn muốn tester mix beginner/intermediate/advanced theo tỷ lệ nào?
+
+BW03
+Có nên tuyển tester trước khi prototype xong để họ tham gia discovery không?
+
+BW04
+Bạn có kênh Facebook/Threads/X/TikTok/CLB nào phù hợp để update build-in-public mà không biến project thành marketing trước substance không?
+
+BW05
+Bạn có muốn đăng development journal ngắn công khai hay chỉ gửi mentor?
+
+BW06
+Social post nên xin feedback về problem/UX thay vì chỉ khoe screenshot thế nào?
+
+BW07
+Có thể dùng poll để kiểm tra pain point nhưng tránh leading questions thế nào?
+
+BW08
+Bạn có thể tuyển 5 người đồng ý interview sâu thay vì 100 lượt like không?
+
+BW09
+Tester có được incentives không? Nếu có, có ảnh hưởng feedback không?
+
+BW10
+Pilot với trường/CLB cần người phụ trách/permission nào?
+
+BW11
+Bạn có calendar thực tế cho outreach, test session và follow-up không?
+
+BW12
+Bạn sẽ thu bug feedback bằng form, GitHub Issue, Discord/Zalo hay in-app report?
+
+BW13
+Bạn có template consent/feedback ngắn, phù hợp người tham gia là học sinh không?
+
+BW14
+Nếu feedback social trái với usage data, bạn ưu tiên nguồn nào và vì sao?
+
+BW15
+Bạn muốn traction goal trước deadline hồ sơ là số users hay chất lượng case studies?
+
+BW16
+Một case study user tiến bộ sâu có thể giá trị hơn 500 signups hời hợt không? Bạn muốn cân bằng thế nào?
+
+
+BX. Demo, reviewer & admissions experience
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BX01
+Reviewer không biết luật cờ tướng có thể hiểu value proposition trong 20–30 giây không?
+
+BX02
+Homepage có cần một animation/demo position tự chạy để explain core loop không?
+
+BX03
+Demo account có sẵn sample games và learner profile hay reviewer phải tự nhập dữ liệu?
+
+BX04
+Một “60-second guided demo” gồm chính xác 5–7 bước nào?
+
+BX05
+Reviewer kỹ thuật bấm GitHub sẽ thấy README evidence nào ngay above-the-fold?
+
+BX06
+Reviewer nontechnical bấm Impact/How it works sẽ thấy language nào không jargon?
+
+BX07
+Có architecture diagram đơn giản và architecture diagram sâu tách riêng không?
+
+BX08
+Có “Built with AI assistance” disclosure rõ nhưng không làm mờ vai trò của bạn không?
+
+BX09
+Có video demo 60–90s dự phòng khi live site lỗi không?
+
+BX10
+Video demo có show code/architecture ngắn hay chỉ UI?
+
+BX11
+Có 3 screenshots bắt buộc nào đủ kể toàn bộ story nếu reviewer không tương tác?
+
+BX12
+Có “What I learned / What failed / What next” section để cho thấy maturity không?
+
+BX13
+Có timeline commits/releases chứng minh project phát triển theo thời gian không?
+
+BX14
+Bạn muốn đưa link live demo, GitHub, technical report, research report theo thứ tự nào trong portfolio?
+
+BX15
+Một admissions officer chỉ có 2 phút: artifact nào phải tự đứng độc lập không cần bạn giải thích?
+
+BX16
+Bạn có thể live demo và trả lời “show me where personalization happens in code” không?
+
+
+BY. Infrastructure, cost, deployment & operations
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BY01
+Ngân sách domain/hosting/API mỗi tháng tối đa là bao nhiêu?
+
+BY02
+Trong prototype, phần nào có thể chạy client-side để giảm server cost?
+
+BY03
+Engine analysis CPU-intensive chạy local, server, queue hay on-demand thế nào?
+
+BY04
+Có concurrency limit nếu nhiều users analyze cùng lúc không?
+
+BY05
+Một game analysis ước tính CPU time và cost bao nhiêu?
+
+BY06
+Có job queue/background processing cần thiết hay v0.1 synchronous đủ?
+
+BY07
+User chờ analysis dài có progress indicator không?
+
+BY08
+Có timeout/cancel button để tránh request treo?
+
+BY09
+Secrets/API keys chỉ nằm server-side và .env không?
+
+BY10
+Có separate dev/prod environment không?
+
+BY11
+Database backup có cần ngay nếu lưu pilot data không?
+
+BY12
+Error monitoring/log retention có mức tối thiểu nào?
+
+BY13
+Domain custom có thật sự cần tuần 1 hay deploy URL đủ?
+
+BY14
+Docker có phục vụ reproducibility/deploy thật hay chỉ thêm complexity?
+
+BY15
+Nếu dùng VPS, bạn có thời gian học security/patching không hay managed hosting hợp hơn?
+
+BY16
+Definition of operational readiness trước khi mời user thật là gì?
+
+
+BZ. Accessibility, mobile, multilingual & low-bandwidth design
+ID
+QUESTION
+YOUR ANSWER / NOTES
+BZ01
+Target user dùng mobile hay laptop nhiều hơn trong training session?
+
+BZ02
+Bàn cờ trên màn hình nhỏ tối thiểu bao nhiêu px để thao tác chính xác?
+
+BZ03
+Drag-and-drop có fallback click-click cho touch/accessibility không?
+
+BZ04
+Color coding có thêm icon/text để người khó phân biệt màu vẫn hiểu không?
+
+BZ05
+Keyboard navigation có cần cho analysis controls không?
+
+BZ06
+Vietnamese/English terminology map được định nghĩa trong một file glossary không?
+
+BZ07
+AI explanation Vietnamese có dùng thuật ngữ người chơi Việt thực sự dùng hay dịch máy?
+
+BZ08
+User quốc tế không biết chữ Hán trên quân có option icon/English label không?
+
+BZ09
+Font/icon có giữ nét văn hóa Xiangqi nhưng vẫn dễ đọc không?
+
+BZ10
+Low-bandwidth mode có tắt animation/AI images/heavy assets không?
+
+BZ11
+Core learning loop có dùng được nếu LLM feature tạm unavailable không?
+
+BZ12
+PWA/offline review có phải future opportunity đáng cân nhắc cho học sinh không?
+
+BZ13
+Có accessibility audit cơ bản trước pilot không?
+
+BZ14
+Bạn sẽ test ít nhất những device/browser nào trước deploy?
+
+
+CA. Legal, licensing, content provenance & data governance
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CA01
+Mỗi engine/library/dataset trong repo có license gì và có compatible với cách bạn deploy không?
+
+CA02
+Nếu dùng GPL engine qua server process/API, nghĩa vụ phân phối source nào áp dụng cho phần bạn sửa? Cần kiểm tra cụ thể trước release không?
+
+CA03
+Neural-network weights của engine có license/provenance riêng không?
+
+CA04
+Bạn có file THIRD_PARTY_LICENSES hoặc acknowledgements không?
+
+CA05
+Game records/puzzles lấy từ nguồn nào và quyền redistribute ra sao?
+
+CA06
+Content từ sách/khóa học/website có được paraphrase/ingest vào RAG không hay cần permission?
+
+CA07
+Bạn sẽ tránh nhập copyrighted lesson text vào dataset public thế nào?
+
+CA08
+User upload game của người khác: quyền lưu/public/share position được xử lý thế nào?
+
+CA09
+Pilot data retention bao lâu và ai có quyền truy cập?
+
+CA10
+Có cách delete/export user data nếu user yêu cầu không?
+
+CA11
+Có privacy notice ngắn, dễ hiểu cho học sinh không?
+
+CA12
+Có thu email thật ở prototype hay anonymous ID đủ?
+
+CA13
+Analytics/LLM provider có nhận game/user data nào và có cần disclose không?
+
+CA14
+Bạn có tách personally identifiable information khỏi learning event data không?
+
+CA15
+Mỗi dataset row có source/provenance/version để audit sau này không?
+
+CA16
+Trước public launch, ai sẽ review license/privacy checklist cuối cùng?
+
+
+CB. Team collaboration, authorship & accountability
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CB01
+Team hiện tại có ai thật sự committed với tên/vai trò/thời lượng cụ thể?
+
+CB02
+Nếu chưa có team, timeline tuyển và tiêu chí chọn member là gì?
+
+CB03
+Bạn có tránh thêm team chỉ để support claim leadership không?
+
+CB04
+Mỗi contributor có ownership deliverable nào đo được?
+
+CB05
+Founder/Developer của bạn tự chịu trách nhiệm những phần nào không delegate?
+
+CB06
+Designer/content/outreach có dùng GitHub Issues/Project để evidence contribution không?
+
+CB07
+Ai merge PR và dựa trên acceptance criteria nào?
+
+CB08
+AI-generated code do ai review trước merge?
+
+CB09
+Nếu teammate viết phần quan trọng, CV của bạn mô tả “led/built” thế nào cho chính xác?
+
+CB10
+README Contributors có ghi rõ vai trò không?
+
+CB11
+Có decision log để phân biệt quyết định product của bạn với implementation của teammate không?
+
+CB12
+Bạn xử lý teammate không hoàn thành deadline thế nào mà không ôm hết phần việc?
+
+CB13
+Bạn có weekly demo thay vì chỉ meeting status không?
+
+CB14
+Team có coding conventions và branch strategy tối thiểu không?
+
+CB15
+Bạn có thể explain contribution của từng member nếu interviewer hỏi không?
+
+CB16
+Leadership evidence mạnh nhất bạn muốn tạo là team size hay quality của coordination/decision-making?
+
+
+CC. Red-team, kill criteria & product risks
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CC01
+Điều gì nếu user nói “engine + YouTube already solves this”? Bạn cần evidence gì để phản biện?
+
+CC02
+Điều gì nếu personalized puzzles không tạo learning gain hơn generic puzzles?
+
+CC03
+Điều gì nếu LLM explanations frequently hallucinate chess facts?
+
+CC04
+Điều gì nếu user thích xem đáp án hơn Socratic coaching?
+
+CC05
+Điều gì nếu app quá phức tạp cho beginner và quá nông cho strong player?
+
+CC06
+Bạn sẽ chọn một segment và bỏ segment nào để tránh “for everyone”?
+
+CC07
+Feature nào có kill criterion: nếu test X user mà không dùng thì cắt?
+
+CC08
+Assumption nào nguy hiểm nhất hiện tại vì chưa có evidence?
+
+CC09
+Technical single point of failure lớn nhất là engine, LLM, data format hay deployment?
+
+CC10
+Product single point of failure lớn nhất là lack of users, lack of content hay weak differentiation?
+
+CC11
+Admissions risk lớn nhất là overclaim, low technical ownership hay no measurable impact?
+
+CC12
+Bạn sẽ red-team README để tìm câu nào nghe lớn hơn evidence không?
+
+CC13
+Có thể reviewer nghĩ project là clone của Chess.com/Aimchess/DecodeChess; bạn chứng minh Xiangqi-specific originality thế nào?
+
+CC14
+Nếu chỉ có 7 ngày, yếu tố nào bạn chấp nhận “fake door”/mock UI và yếu tố nào bắt buộc phải thật?
+
+CC15
+Có criteria rõ để chuyển một feature từ v0.1 sang backlog thay vì cố cứu nó không?
+
+CC16
+Tình huống nào khiến bạn pivot product thesis sau user interviews?
+
+
+CD. Long-term research, publication, open-source & competitions
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CD01
+Sau 1 tuần, mục tiêu 30 ngày cụ thể là gì?
+
+CD02
+Sau 3 tháng, artifact mạnh nhất muốn có: dataset, paper/report, 100 users, coach tool hay ML model?
+
+CD03
+Có thể viết technical report với methodology/results/limitations không?
+
+CD04
+Có thể public anonymized benchmark/gold dataset nhỏ cho Xiangqi learning không?
+
+CD05
+Có thể submit project vào science/CS/innovation competition nào phù hợp timeline không?
+
+CD06
+Có thể tìm mentor university/AI/chess education để review methodology không?
+
+CD07
+Open-source phần nào giúp credibility mà không lộ user data/secrets?
+
+CD08
+Có roadmap issues/milestones public để community contribute không?
+
+CD09
+Bạn có muốn tạo API cho researchers/developers dùng learner/puzzle engine sau này không?
+
+CD10
+Có research question đủ hẹp để một student paper/report trả lời nghiêm túc không?
+
+CD11
+Có thể replication study personalized vs generic practice với sample nhỏ hơn nhưng thiết kế sạch không?
+
+CD12
+Nếu không đủ sample, bạn có sẵn sàng gọi kết quả là exploratory/usability findings không?
+
+CD13
+Bạn muốn long-term project trở thành product, research platform, open-source project hay community infrastructure?
+
+CD14
+Asset nào phải tích lũy liên tục mỗi tháng để moat mạnh dần?
+
+CD15
+Khi nào v1.0 được định nghĩa là “stable enough” thay vì cứ thêm feature?
+
+CD16
+Project còn đáng duy trì sau admissions season vì lý do thực tế nào?
+
+
+CE. Xiangqi-specific uniqueness – avoid simply transplanting chess products
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CE01
+Những khác biệt trong luật/tactics/strategy Xiangqi làm cho chess-derived taxonomy không đủ ở đâu?
+
+CE02
+Có motif Xiangqi-specific nào phải là first-class tag ngay từ đầu?
+
+CE03
+Flying general, cannon screens, horse-leg blocking, river/palace constraints tạo loại mistake riêng nào?
+
+CE04
+Notation Xiangqi Việt/Trung/quốc tế khác nhau gây UX/data challenge nào?
+
+CE05
+Engine evaluation trong Xiangqi có cần normalize/translate khác chess centipawn language không?
+
+CE06
+Opening knowledge của Xiangqi có cấu trúc nào khác chess repertoire tools?
+
+CE07
+Endgame tablebase/data availability Xiangqi khác chess như thế nào và ảnh hưởng scope ra sao?
+
+CE08
+Learning culture của người chơi cờ tướng Việt Nam khác online chess learners ở điểm nào?
+
+CE09
+Nguồn game record/puzzle chất lượng cao cho Xiangqi khó hơn chess ở điểm nào?
+
+CE10
+Người chơi Xiangqi Việt Nam dùng mobile/social/community offline ra sao – có tạo distribution advantage không?
+
+CE11
+Bạn có thể dùng expert terminology/coach practices Việt Nam mà generic English chess apps không có không?
+
+CE12
+Một beginner learning path cờ tướng có cần khác chess lesson order không?
+
+CE13
+Cultural preservation nên xuất hiện bằng content/history hay bằng community workshops mà không làm loãng core product?
+
+CE14
+Bạn có thể dùng game của chính các giải quốc gia của mình làm case study/demo độc quyền không?
+
+CE15
+Có thể tạo “My National Championship Mistakes” demo dataset để reviewer thấy product gắn với hành trình cá nhân không?
+
+CE16
+Xiangqi AI ecosystem còn thiếu explainability/pedagogy ở khoảng nào mà chess ecosystem đã giải tốt hơn?
+
+CE17
+Ngược lại, có feature chess platform phổ biến nào không nên copy sang Xiangqi vì không fit behavior user?
+
+CE18
+Một câu ngắn nhất mô tả “This is not Chess.com for Xiangqi; it is …” của bạn là gì?
+
+
+CF. Technical portfolio defense & learning progression
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CF01
+Sau 7 ngày bạn muốn tự giải thích được những file/module nào mà không cần AI?
+
+CF02
+Bạn muốn tự viết tay ít nhất một algorithm/module nào để chứng minh learning progression?
+
+CF03
+Có nên chọn rule engine/recommender đơn giản để bạn thực sự hiểu sâu thay vì model phức tạp?
+
+CF04
+Bạn có thể vẽ architecture từ memory trên giấy sau tuần 1 không?
+
+CF05
+Bạn có thể giải thích một API request từ click trên board tới response cuối cùng không?
+
+CF06
+Bạn có thể giải thích vì sao data model có các table hiện tại không?
+
+CF07
+Bạn có thể viết một unit test mới khi interviewer đưa edge case không?
+
+CF08
+Bạn có thể debug một stack trace cơ bản mà không chỉ copy sang AI không?
+
+CF09
+Bạn có thể explain Git branch/commit/PR history và một rollback thật không?
+
+CF10
+Bạn có thể chỉ một chỗ AI code ban đầu sai và cách bạn phát hiện/sửa không?
+
+CF11
+Bạn có thể giải thích baseline vs ML model và vì sao model có/không đáng dùng không?
+
+CF12
+Bạn có thể nói rõ cost/performance trade-off của engine depth và LLM usage không?
+
+CF13
+Bạn có thể defend một product trade-off mà bạn chủ động nói “no” không?
+
+CF14
+Bạn muốn mỗi tuần học một technical concept nào để ownership tăng dần?
+
+CF15
+Có plan refactor AI-generated code sau prototype để giảm technical debt không?
+
+CF16
+Tiêu chí nào cho thấy project đã chuyển từ “AI wrote it” sang “I understand and own the system”?
+
+
+CG. Backup architecture & failure fallbacks
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CG01
+Nếu chosen Xiangqi engine không build được trên Windows, backup engine/library là gì?
+
+CG02
+Nếu browser/WASM engine quá khó, server subprocess API có phải fallback không?
+
+CG03
+Nếu AI API hết quota/cost cao, template explanation + engine facts có giữ demo được không?
+
+CG04
+Nếu database setup mất thời gian, localStorage/JSON có đủ cho prototype không?
+
+CG05
+Nếu auth gây bug, anonymous sessions có đủ không?
+
+CG06
+Nếu custom domain/VPS lỗi, managed deploy URL fallback là gì?
+
+CG07
+Nếu game parser format phức tạp, manual position/FEN input có đủ cho demo không?
+
+CG08
+Nếu auto puzzle generation chưa reliable, curated 20–30 gold puzzles có đủ không?
+
+CG09
+Nếu recommender ML chưa có data, heuristic baseline nào sẽ ship?
+
+CG10
+Nếu user test không tuyển đủ, expert walkthrough + 3–5 deep tests có kế hoạch không?
+
+CG11
+Nếu bilingual AI chất lượng chênh lệch, ngôn ngữ nào ưu tiên v0.1?
+
+CG12
+Nếu one-week scope trượt, minimum demo cutline là gì?
+
+CG13
+Bạn có documented fallback matrix để tránh panic-driven tool switching giữa tuần không?
+
+CG14
+Mỗi dependency quan trọng có owner/backup decision trước khi code không?
+
+
+CH. Mentor feedback, decision logs & daily accountability
+ID
+QUESTION
+YOUR ANSWER / NOTES
+CH01
+Mentor cần xem progress hàng ngày ở mức technical detail nào?
+
+CH02
+Bạn sẽ gửi screenshot/demo link hay chỉ text update?
+
+CH03
+Mỗi daily update có bắt buộc một shipped artifact không?
+
+CH04
+Nếu một ngày chỉ research/debug chưa ship feature, evidence progress là gì?
+
+CH05
+Có “decision of the day” ghi lựa chọn + alternatives + lý do không?
+
+CH06
+Có “question/blocker for mentor” tối đa 1–3 ý để feedback tập trung không?
+
+CH07
+Mentor feedback được chuyển thành GitHub Issue/task cụ thể hay để trong chat?
+
+CH08
+Bạn có log feedback nào đã làm, từ chối hoặc postpone cùng lý do không?
+
+CH09
+Weekly review nên so với roadmap ban đầu hay chỉ liệt kê việc đã làm?
+
+CH10
+Có metric learning cá nhân: concept mới hiểu, file tự explain được, bug tự fix được không?
+
+CH11
+Có metric product: testers, analyses, puzzles, feedback quality không?
+
+CH12
+Bạn muốn mentor đánh giá progress theo output, understanding, rigor, initiative hay tất cả?
+
+CH13
+Daily checklist có quá dài tới mức mất thời gian build không – giới hạn 5–10 phút update được không?
+
+CH14
+Sau mỗi 7 ngày có retrospective: Keep / Stop / Start / Biggest lesson / Next risk không?
+
+
+PART III — PROTOTYPE READINESS: Điền sau khi trả lời Master Bank
+ID
+READINESS QUESTION
+ANSWER
+R-01
+Project working title là gì?
+
+R-02
+One-sentence problem statement là gì?
+
+R-03
+Primary user persona là ai?
+
+R-04
+Core learning outcome là gì?
+
+R-05
+Core loop là gì?
+
+R-06
+Week-1 must-have features (tối đa 5) là gì?
+
+R-07
+Explicit non-goals của Week 1 là gì?
+
+R-08
+Chosen engine + version là gì?
+
+R-09
+Engine execution mode là browser/server/hybrid?
+
+R-10
+Chosen frontend stack là gì?
+
+R-11
+Chosen backend stack là gì?
+
+R-12
+Database có/không, và lý do?
+
+R-13
+LLM có/không, model/provider nào, nhiệm vụ gì?
+
+R-14
+Adaptive algorithm v0.1 hoạt động bằng công thức nào?
+
+R-15
+Dataset/puzzle source + license là gì?
+
+R-16
+Five test users đầu tiên là ai?
+
+R-17
+Success criteria cho prototype là gì?
+
+R-18
+Exact live deadline là gì?
+
+R-19
+Repo URL là gì?
+
+R-20
+Deployment URL là gì?
+
+R-21
+Mentor review cadence là gì?
+
+R-22
+CV bullets nào hiện là current fact, planned, hoặc future target?
+
+Daily mentor update template (sau khi bắt đầu build)
+FIELD
+UPDATE
+Date
+
+Main objective
+
+Shipped today
+
+GitHub evidence (commit/PR/issue)
+
+Technical concept learned
+
+Product decision + reason
+
+User/research work
+
+AI assistance
+
+My own contribution
+
+Bug/failure
+
+Resolution
+
+Metric/evidence
+
+Tomorrow
+
+Blocker for mentor
+
+Main objective today
+
+Shipped artifact / demo
+
+GitHub commit / PR / Issue
+
+Technical concept I can now explain
+
+Product decision + trade-off
+
+User/research evidence
+
+AI assistance used
+
+My own verification / rewrite
+
+Bug/failure + root cause
+
+Metric / measurement
+
+Mentor blocker/question
+
+Tomorrow definition of done
+
+PART IV — CV CLAIM STATUS AUDIT (để tránh overclaim)
+CURRENT CV CLAIM
+AUDIT QUESTION
+STATUS
+EVIDENCE/LINK
+Developing an educational platform integrating AI and Chinese chess…
+Hiện đã có code/live product chưa? Nếu chưa, wording hiện tại nên là “building/prototyping” hay vẫn “developing”?
+FACT / IN PROGRESS / PLANNED
+
+Building adaptive puzzle recommendations…
+Adaptive algorithm đã tồn tại chưa? Có công thức, data và test chưa?
+FACT / IN PROGRESS / PLANNED
+
+…using Python and machine learning fundamentals
+ML component cụ thể là gì? Nếu chưa có model/evaluation, có cần tạm bỏ “machine learning” khỏi public CV không?
+FACT / IN PROGRESS / PLANNED
+
+Leading a student team…
+Team đã tồn tại và có role/commit/contribution thật chưa?
+FACT / IN PROGRESS / PLANNED
+
+Planning pilot workshops with local schools…
+Có school/contact/date/plan cụ thể hay mới là aspiration? Wording nào phản ánh đúng trạng thái?
+FACT / IN PROGRESS / PLANNED
+
+“AI-powered”
+AI nằm ở module nào? Output nào phụ thuộc LLM/ML/engine? Có diagram/eval không?
+
+
+“adaptive puzzle recommendations”
+Có user signals, ranking/scheduling logic và why-this-puzzle explanation không?
+
+
+“machine learning fundamentals”
+Có dataset, features, baseline, train/test/evaluation thật chưa?
+
+
+“leading a student team”
+Team đã tồn tại, contributors và evidence coordination/PR/Issues là gì?
+
+
+“pilot workshops with local schools”
+Đang planned, scheduled hay completed? Trường/ngày/participants/evidence là gì?
+
+
+“enhance strategic thinking/problem-solving”
+Metric/experimental evidence nào support claim này?
+
+
+APPENDIX A — Research references informing NEW v2 questions
+DecodeChess – Features — https://decodechess.com/features/Why it matters: Explainable engine analysis: threats, plans, concepts, piece functionality, smart game overview.
+Aimchess – Personalized training — https://aimchess.com/Why it matters: Game-derived analytics, skill breakdowns, retry mistakes, personalized study plans; useful comparison for personalization questions.
+Lichess – Puzzle Themes — https://lichess.org/training/themesWhy it matters: Large theme taxonomy, player-game puzzles, multiple learning categories.
+Lichess Open Database – Puzzles — https://database.lichess.org/Why it matters: Public puzzle data pipeline, rating/popularity/theme metadata, expensive automated generation; useful for data-quality and rating questions.
+Chess.com Help – MoveTrainer spaced repetition — https://support.chess.com/en/articles/10319322-how-does-the-spaced-repetition-scheduling-workWhy it matters: Concrete spaced-review behavior; used only as a comparator, not copied blindly.
+Chessable/Chess.com – PuzzleConnect — https://www.chess.com/blog/Chessable/chessable-announces-the-puzzleconnect-contestWhy it matters: Example of turning tactical mistakes from games into trainable spaced-repetition puzzles.
+Chess.com Help – MoveTrainer courses — https://support.chess.com/en/articles/10318195-what-are-movetrainer-coursesWhy it matters: Interactive course/variation learning with explanations and visual aids.
+Chess.com – Chessable Repertoire feature (2026) — https://www.chess.com/blog/Chessable/chessables-new-repertoire-feature-turns-you-from-active-learner-to-architect-of-your-chess-growthWhy it matters: User-customizable training material and annotations; useful for long-term authoring questions.
+APPENDIX B — Research references carried from v1
+1. Chess.com – Game Review Help (updated Sep 2026) — https://support.chess.com/en/articles/8584089-how-does-game-review-work   Why it matters: Evaluation graph, accuracy, move classifications, Coach explanations, Retry, Skills/course recommendations and time-spent signals.
+2. Chess.com – How next puzzles are chosen (2026) — https://support.chess.com/en/articles/8708983-how-are-the-next-puzzles-chosen-for-me-when-i-am-training   Why it matters: Puzzle selection around user rating; custom themes.
+3. Chess.com – Puzzles Help (2026) — https://support.chess.com/en/articles/8608686-how-do-puzzles-work-on-chess-com   Why it matters: Custom themes, failed puzzles, learning-oriented puzzle modes.
+4. Chess.com – Lessons (Jul 2026) — https://support.chess.com/en/articles/8609703-how-do-lessons-work-on-chess-com   Why it matters: Guided learning path by skill level plus lesson library and interactive challenges.
+5. Chess.com – Play Coach (Apr 2026) — https://support.chess.com/en/articles/10877257-how-do-i-play-against-the-coach   Why it matters: Move-by-move coach guidance personalized to skill level.
+6. Xiangqi Cloud Database / ChessDB – Info — https://www.chessdb.cn/cloudbook_info_en.html   Why it matters: Distributed Xiangqi analysis knowledge base, opening book, endgame tablebase, live AI.
+7. Xiangqi Cloud Database / ChessDB – REST API — https://www.chessdb.cn/cloudbook_api.html   Why it matters: FEN-based REST API, move queries, scores, win rates, PV/analysis queue concepts.
+8. Xiangqi.ai – 微思象棋 — https://xiangqi.ai/   Why it matters: Current Xiangqi AI reference site; public page reachable, but detailed features were not reliably indexable in this research pass.
+9. CoTuong3D – public site — https://cotuong3d.com/vi   Why it matters: AI play, friend/private-room play, mobile-oriented board; useful competitor reference.
+10. CoTuong3D – training — https://cotuong3d.com/vi/training   Why it matters: Training content spanning lessons/puzzles/opening-middlegame-endgame.
+11. Facebook group post – AI build workflow for CoTuong3D — https://www.facebook.com/groups/1385451906420187/posts/1616587863306589/   Why it matters: Publicly indexed post describing a fast Claude+GPT build, testing/fixing, Docker/Git and deployment workflow.
+12. Official Pikafish – GitHub — https://github.com/official-pikafish/Pikafish   Why it matters: Strong UCI Xiangqi engine; GPLv3 obligations and NNUE/network considerations.
+13. Open-source Xiangqi React AI project — https://github.com/ryoi/xiangqi   Why it matters: Example of a small AI-assisted/vibecoded Xiangqi web app with adaptive difficulty, move log and evaluation bar.
+14. Open-source Xiangqi web app with neural-network AI — https://github.com/yingwang/chinese_chess   Why it matters: Example of browser AI, multiple game modes, ONNX Runtime Web and Firebase multiplayer.
+15. Local-first Xiangqi project — https://github.com/hkm-a/xiangqi   Why it matters: Example of local-first design, Web Worker AI, PWA/offline support and unit tests.
+16. Production-oriented Xiangqi web app — https://github.com/TonBatbaatar/chinese-chess-game   Why it matters: Example of versioned roadmap, GitHub Issues/Milestones and progression toward security/observability/CI-CD.
+17. Xiangqi web UI / game record framework (VSChess) — https://www.xiaxiangqi.com/vschess/   Why it matters: Reference for FEN, game-record formats, move trees, notation conversion and embeddable board UI.
+APPENDIX C — Completeness index
+Master Bank v1 retained: 856 questions.New v2 questions added: 378 questions.Master Bank v2 total: 1234 questions.Priority questions duplicated intentionally: 80.Prototype readiness questions: 22.Section range: A–CH.Integrity rule: If a claim is not yet true, mark it Planned / In progress rather than writing as completed.
+KHI GỬI LẠI FILE
+Bạn không cần làm sạch câu trả lời. Có thể viết thô, mixed Vietnamese/English, bullet, “choose for me”, link hoặc ghi chú screenshot. Ưu tiên PART I trước; sau đó trả lời Master Bank theo nhóm. Mình sẽ dùng bản trả lời để khóa Product Spec v0.1 → architecture → 7-day build plan → setup GitHub/VS Code → daily mentor checklist → implementation từng bước.

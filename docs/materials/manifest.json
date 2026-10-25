@@ -1,0 +1,25 @@
+{
+  "name": "XiangqiAI V3 Final Pack",
+  "owner": "Tran Quoc Thanh",
+  "file_count": 18,
+  "files": [
+    "00_START_HERE.md",
+    "01_PRODUCT_SPEC.md",
+    "02_FEEDBACK_AND_CORRECTIONS.md",
+    "03_ARCHITECTURE.md",
+    "04_PROTOTYPE_7_DAY.md",
+    "05_MILESTONES.md",
+    "06_ROADMAP.md",
+    "07_LEARNING_MODEL_SPACED_REPETITION.md",
+    "08_AI_ML_PLAN.md",
+    "09_DATA_LICENSE_SOURCES.md",
+    "10_README_VI_DRAFT.md",
+    "11_DAILY_UPDATE_TEMPLATE.md",
+    "12_SETUP_CHECKLIST.md",
+    "13_CLAUDE_TRACK.md",
+    "14_CODEX_TRACK.md",
+    "15_PARALLEL_COMPARISON_SCORECARD.md",
+    "16_FUTURE_FEATURE_BACKLOG.md",
+    "17_ACTION_ITEMS_BEFORE_CODE.md"
+  ]
+}
