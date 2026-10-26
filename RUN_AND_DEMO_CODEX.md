@@ -1,32 +1,45 @@
-# Run and demo
+# Chạy và demo Cờ Chill V6
 
-Windows shortcut: double-click `Mo_Co_Chill.cmd` in the extracted/cloned repository. It starts a hidden local server or reuses an existing responsive server, then opens the default browser. ChatGPT is not required. Run it again after reboot. Keep using the same browser to retain the guest cookie; logs are in ignored `var/`. For a visible terminal and Ctrl+C shutdown, use the command below.
+## Khởi động local
 
-Run `python server.py --port 8765` from the repository, then open http://127.0.0.1:8765/. Python 3.10+; no dependencies to install. Tested on Python 3.14 / Windows. `python server.py` uses port 8000 instead. If the port is occupied, use `--port 8766` and open that same port.
+Cần Python 3.12 trở lên. Từ thư mục gốc repository:
 
-The server binds only 127.0.0.1. Keep the terminal open. It is not a public deployment. Use the same hostname, port and browser to retain the guest cookie. SQLite persists across server restarts. Back up `var/chill.sqlite3` while the server is stopped; a browser session export is available under Data and privacy.
+```powershell
+python co_chill_server.py serve --port 8769
+```
 
-## 60–90 second path
+Mở `http://127.0.0.1:8769/`, giữ terminal chạy và nhấn Ctrl+C để dừng. Có thể
+dùng `py -3.12` trên Windows hoặc `python3` trên Linux/macOS. Không cần Node,
+npm hay API key để chạy ứng dụng.
 
-Home → Thử hành trình 60 giây → Bắt đầu xem lại → fill all three reflections → Lưu suy nghĩ & xem phân tích → read WHAT/WHY/HOW → Tôi đã hiểu · thử lại → a2 to a7 → Luyện một thế cờ liên quan → reflect → solve the new board → Tiến bộ của tôi.
+Dữ liệu SQLite mặc định được tạo trong `var/`; không commit database, backup,
+log hay thông tin tài khoản. Localhost chỉ truy cập được từ máy đang chạy
+server, đây không phải triển khai Internet.
 
-For a fresh guest, the related material exercise is h2h7. Subsequent exercises differ because exposure history is respected. Assisted review success schedules 2 days. First independent unseen success schedules 14 days. Failure schedules 1 day. These are transparent prototype heuristics, not validated optimal intervals.
+## Kiểm tra
 
-## Other paths
+Cần cài Node.js để chạy toàn bộ bộ kiểm tra; app không cần Node lúc sử dụng.
+Từ thư mục gốc repository:
 
-- Play: Chơi cờ → Chọn ván khác if needed → Bắt đầu ván cờ. Red is the learner. The bot responds as Black. If an interrupted response leaves Black to move, press Máy đi.
-- Local game: Chơi cùng nhau, two sides on one device. Review currently focuses Red.
-- Import: paste valid FEN with side `w`/`b`, plus coordinate moves separated by spaces; omitted FEN uses the initial position. No PGN/Vietnamese notation parser yet.
-- Resume: Tiến bộ của tôi → saved game or recent critical moment.
-- Practice: Luyện tư duy → theme → reflect → play. First hint teaches the theme, second reveals the solution and marks help.
-- Feedback stays local and is included in export; it is not sent to a coach.
+```powershell
+python tools/run_checks.py
+```
 
-## Checks
+Runner biên dịch cú pháp Python không tạo `.pyc`, chạy kiểm tra Python,
+JavaScript, fixture và parity luật. Không thay bằng lệnh test legacy hoặc
+chạy một phần test mà không nêu rõ phạm vi.
 
-`python -m unittest discover -s tests -v`
+## Demo hành trình học
 
-`python -m compileall -q app server.py tests`
+Mở chế độ khách → Hành trình học → chọn bài nhiều lượt → trả lời các câu hỏi
+suy nghĩ và thử nước → hoàn tất chuỗi → đọc giải thích có căn cứ → thử lại →
+mở bài liên quan và lịch ôn. Giữ reflection trước lời giải; không bật coaching
+trong ván live.
 
-`node --check web/app.js`
+Có thể mở thêm cửa sổ trình duyệt để thử PvP qua cùng server local. Đây chỉ là
+kiểm tra local, không chứng minh khả năng hoạt động qua Internet, engine
+Pikafish trên hạ tầng thật hoặc tải production.
 
-System Node on the development machine is old (6.14); validation used the bundled modern Node. The application itself needs no Node runtime.
+Xem [README](README.md) để biết kiến trúc và lệnh đóng gói,
+[TEST_REPORT_CODEX.md](TEST_REPORT_CODEX.md) để biết phạm vi/kết quả đã ghi,
+và [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) để biết các giới hạn hiện tại.

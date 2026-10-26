@@ -68,7 +68,7 @@ Kết quả kiểm thử từng đợt được ghi trong `TEST_REPORT_CODEX.md`
 2. **Không bịa trí thông minh.** Chưa có LLM chấm ngữ nghĩa, chưa huấn luyện mô hình, chưa có bộ dữ liệu người thật đã được cấp quyền. Engine quyết định nước hợp lệ/đánh giá theo phạm vi tìm kiếm; lời giải mẫu không được tự thêm biến không kiểm tra.
 3. **Engine thật cần kiểm thử thật.** Có adapter không đồng nghĩa Pikafish đã chạy. `configured_unverified` chỉ nói đường dẫn/cấu hình tồn tại; phải đo trên binary/NNUE đúng quyền, đúng hệ điều hành và bộ thế duyệt.
 4. **Không chốt luật từ lời kể.** Nguồn quốc gia, năm/phiên bản và ví dụ phân xử chiếu/đuổi/lặp cần được cung cấp hoặc đối chiếu. Giữ giới hạn rõ thay vì gọi mọi mốc đã có là chuẩn giải chính thức.
-5. **Tài khoản chỉ bền khi máy chủ bền.** Cookie/session và SQLite đã có code, nhưng hosting ephemeral sẽ làm mất database. Static Vercel không tạo backend tài khoản. Đọc `docs/DEPLOY_V5.md` trước khi mời người dùng.
+5. **Tài khoản chỉ bền khi máy chủ bền.** Cookie/session và SQLite đã có code, nhưng hosting ephemeral sẽ làm mất database. Static Vercel không tạo backend tài khoản. Hướng dẫn triển khai hiện hành nằm trong `docs/DEPLOY_GCP_V6.md`; chưa deploy hoặc mời người dùng khi chưa được chủ dự án chấp thuận.
 6. **Không dùng dữ liệu tự báo cáo làm chứng cứ hiệu quả.** Mẫu số độc lập, lượt có hỗ trợ, tài khoản thử và người thật phải phân biệt. Thang level/EXP cần ghi đúng là hoạt động/heuristic khi chưa hiệu chuẩn.
 
 ## Những thông tin thực sự còn thiếu để nâng chất lượng tiếp

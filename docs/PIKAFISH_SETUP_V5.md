@@ -1,4 +1,4 @@
-# Engine mạnh cho Cờ Chill V5
+# Engine mạnh cho Cờ Chill V6
 
 > Cập nhật V6 ngày26/10/2026: UI bot máy chủ/review tài khoản gửi
 > `requireStrong: true`. Nếu adapter phải fallback, API trả503 và không gửi
@@ -60,11 +60,17 @@ result = engine.analyze(fen, moves=[], selected_move=None, mode='quick')
 
 ## Kiểm tra
 
+Lệnh chuẩn để chạy toàn bộ kiểm tra source hiện hành từ thư mục gốc là:
+
 ```powershell
-python -m unittest tests.test_pikafish -v
+python tools/run_checks.py
 ```
 
-Kiểm thử: no binary/đường dẫn sai, handshake/readiness/search timeout, giới hạn output, tiến trình thoát, thiếu phân tích, bestmove/PV bất hợp lệ, cp/mate/dấu bên Đen, lịch sử, selected move từ cùng root, không trộn độ sâu, giới hạn tài nguyên, biến môi trường, queue bận và ván hết nước.
+Cần Node.js để chạy toàn bộ runner. Bộ kiểm thử Pikafish bao gồm: no
+binary/đường dẫn sai, handshake/readiness/search timeout, giới hạn output,
+tiến trình thoát, thiếu phân tích, bestmove/PV bất hợp lệ, cp/mate/dấu bên
+Đen, lịch sử, selected move từ cùng root, không trộn độ sâu, giới hạn tài
+nguyên, biến môi trường, queue bận và ván hết nước.
 
 Trước khi gọi là phân tích mạnh đã nghiệm thu: chủ sở hữu cung cấp engine/trọng số đúng quyền; chạy thật trên máy chủ dự kiến; đối chiếu bộ thế đã duyệt; đo thời gian/tài nguyên; thử mất dịch vụ; xác minh frontend không dùng fallback để chấm sai chắc chắn.
 

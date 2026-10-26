@@ -1,10 +1,11 @@
 """Small, server-authoritative friendly Xiangqi rooms for a single-instance pilot.
 
-Owns short SQLite transactions. Call outside a CloudStore write transaction.
-Polling is transport only: seats, legal moves, clocks and results live here.
+Owns short SQLite transactions, but can join a caller's transaction for history
+and identity deletion. Polling is transport only: seats, legal moves, clocks
+and results live here.
 Identity must come from a validated server session, never a request body.
 """
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 import hashlib
 import json
 from pathlib import Path
@@ -475,10 +476,11 @@ class OnlineRooms:
                     return True
         return False
 
-    def history(self, user):
+    def history(self, user, db=None):
         uid = self.identity(user)['id']
-        with self.connect() as db:
-            records = [json.loads(row['data']) for row in db.execute(
+        connection = nullcontext(db) if db is not None else self.connect()
+        with connection as connection_db:
+            records = [json.loads(row['data']) for row in connection_db.execute(
                 'SELECT data FROM online_results WHERE red_id=? OR black_id=? ORDER BY ended_at DESC LIMIT 100', (uid, uid))]
         return {'games': [self._review_record(x, uid) for x in records]}
 
@@ -491,15 +493,16 @@ class OnlineRooms:
                 'status': record['result'], 'startedAt': record['startedAt'], 'endedAt': record['endedAt'],
                 'opponent': record['players'][other(side)]['displayName'], 'serverVerified': True}
 
-    def delete_identity(self, user_id):
+    def delete_identity(self, user_id, db=None):
         """Explicit account deletion helper; do not silently retain identifiers."""
-        with self.connect() as db:
+        connection = nullcontext(db) if db is not None else self.connect()
+        with connection as connection_db:
             # Retain no personal game record on account deletion in this pilot.
-            db.execute('DELETE FROM online_results WHERE red_id=? OR black_id=?', (user_id, user_id))
-            for row in db.execute('SELECT code,data FROM online_rooms').fetchall():
+            connection_db.execute('DELETE FROM online_results WHERE red_id=? OR black_id=?', (user_id, user_id))
+            for row in connection_db.execute('SELECT code,data FROM online_rooms').fetchall():
                 room = json.loads(row['data'])
                 if self._side(room, user_id):
-                    db.execute('DELETE FROM online_rooms WHERE code=?', (row['code'],))
+                    connection_db.execute('DELETE FROM online_rooms WHERE code=?', (row['code'],))
                 elif user_id in room['spectators'] or user_id in room['banned'] or any(m['userId'] == user_id for m in room['messages']):
                     room['spectators'].pop(user_id, None)
                     room['seen'].pop(user_id, None)
@@ -508,4 +511,4 @@ class OnlineRooms:
                     room['nonces'] = {key: value for key, value in room['nonces'].items()
                                       if not key.startswith(user_id + ':')}
                     room['revision'] += 1
-                    self._save(db, room)
+                    self._save(connection_db, room)

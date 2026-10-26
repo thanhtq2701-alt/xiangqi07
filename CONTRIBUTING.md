@@ -1,35 +1,51 @@
-# Đóng góp cho Cờ Chill
+# Đóng góp cho Cờ Chill V6
 
-Đây là prototype local đang hoàn thiện. Đọc [README](README.md), [giới hạn](KNOWN_LIMITATIONS.md), [AGENTS.md](AGENTS.md) và đặc tả trong `docs/spec/` trước khi sửa. Đặc tả mô tả mục tiêu; báo cáo triển khai mô tả những gì thực sự đã có.
+Đọc [README](README.md), [giới hạn](KNOWN_LIMITATIONS.md), [AGENTS.md](AGENTS.md),
+[handoff V6](docs/CLAUDE_HANDOFF_V6.md) và các quyết định trong
+`docs/V6_DECISIONS.md` trước khi sửa. Đặc tả ở `docs/spec/` mô tả yêu cầu gốc;
+báo cáo triển khai và kiểm thử mô tả bằng chứng hiện có.
 
-## Thay đổi nhỏ, có bằng chứng
+## Quy trình thay đổi
 
-1. Mô tả lỗi hoặc hành vi muốn cải thiện, kèm bước tái hiện nếu có.
-2. Tách một nhóm thay đổi rõ ràng. Giữ ranh giới luật/engine, nghiệp vụ, lưu trữ và giao diện.
-3. Thêm kiểm thử khi sửa logic quan trọng; không bỏ hoặc nới assertion chỉ để test qua.
-4. Chạy kiểm tra và mô tả kết quả thực tế trong commit/PR. Nếu chưa chạy, ghi rõ.
-5. Cập nhật hướng dẫn hoặc giới hạn khi thay đổi ảnh hưởng người dùng.
+1. Mô tả hành vi cần sửa, kèm bước tái hiện nếu có.
+2. Tách thay đổi theo một mục tiêu; giữ rõ ranh giới luật/engine, backend,
+   persistence và giao diện.
+3. Thêm hoặc cập nhật test cho logic thay đổi. Không bỏ hoặc nới assertion để
+   làm test qua.
+4. Chạy bộ kiểm tra chuẩn từ thư mục gốc:
 
-```powershell
-python -m unittest discover -s tests -v
-python -m compileall -q app server.py tests
-node --check web/app.js
-git diff --check
-```
+   ```powershell
+   python tools/run_checks.py
+   git diff --check
+   ```
 
-Node hiện đại chỉ cần để kiểm tra cú pháp JS; app không cần Node để chạy. Chưa có bundler, TypeScript hay pipeline CI đã xác minh. HTTP tests dùng server và database tạm, không cần sửa dữ liệu học thật.
+   Cần Python 3.12 trở lên và Node.js cho bộ kiểm tra; app chạy bình thường
+   không cần Node/npm. Runner kiểm tra syntax Python/JavaScript, nghiệp vụ,
+   fixture và parity luật. Nếu chỉ sửa tài liệu, kiểm tra nội dung, liên kết
+   và diff là đủ.
+5. Ghi đúng lệnh và kết quả thực tế; cập nhật README, báo cáo hoặc giới hạn
+   khi thay đổi ảnh hưởng người dùng.
+6. Chỉ commit/push khi chủ repo cho phép; không sửa hoặc viết lại lịch sử Git.
 
 ## Điều kiện không được phá vỡ
 
-- Luật và engine quyết định nước hợp lệ, đánh giá và biến. Lời giải không được bịa thông tin cờ.
-- Phải phản tư trước lời giải; không coaching khi đang chơi ván live.
-- Không phóng đại engine local, bài tổng hợp hoặc heuristic thành ML được huấn luyện/kết quả học tập đã chứng minh.
-- Không commit database, reflection của người dùng, token, cookie hay dữ liệu không có quyền sử dụng.
-- Giữ xuất/xóa dữ liệu; kiểm tra cách ly phiên khách và lưu trữ khi sửa API.
-- Không sửa đặc tả gốc, tự quyết câu trả lời V4 hoặc viết lại lịch sử Git.
+- Luật và engine là nguồn sự thật cho nước hợp lệ, đánh giá và biến. Provider
+  giải thích không được tự tạo nước, biến hoặc điểm.
+- Phải cho người học suy nghĩ trước khi hiện lời giải; không coaching trong
+  ván live.
+- Ghi nhãn trung thực cho engine local, bài tập tổng hợp, heuristic và giải
+  thích theo mẫu; không tuyên bố ML đã huấn luyện hoặc hiệu quả đã kiểm chứng.
+- Không commit database, reflection, token, cookie hoặc dữ liệu không có
+  quyền sử dụng. Giữ khả năng xuất/xóa dữ liệu và kiểm tra cô lập tài khoản.
+- Không sửa đặc tả gốc trong `docs/spec/`, tự quyết câu trả lời đang chờ chủ
+  dự án, hoặc làm yếu test hiện có.
 
 ## Báo lỗi có ích
 
-Ghi hệ điều hành, phiên bản Python, commit đang chạy, bước tái hiện, kỳ vọng và thực tế. Với lỗi luật cờ, cung cấp FEN, bên đi, nước đi tọa độ và nguồn luật nếu có. Dùng thế cờ tổng hợp thay cho export cá nhân; che thông tin riêng tư trong ảnh/log.
+Ghi hệ điều hành, phiên bản Python, commit đang chạy, bước tái hiện, kỳ vọng
+và kết quả thực tế. Với lỗi luật, cung cấp FEN, bên đi, tọa độ nước và nguồn
+luật nếu có. Dùng thế cờ tổng hợp thay dữ liệu cá nhân; che thông tin riêng tư
+trong ảnh/log.
 
-Repo hiện chưa có giấy phép phát hành do chủ dự án lựa chọn. Tham khảo `THIRD_PARTY_NOTICES.md`; việc đổi Public không tự quyết định giấy phép hoặc cho phép lấy dataset bên ngoài.
+Repo chưa có giấy phép phát hành do chủ dự án lựa chọn. Tham khảo
+`THIRD_PARTY_NOTICES.md`; không tự thêm giấy phép hoặc dataset bên ngoài.

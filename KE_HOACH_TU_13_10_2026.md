@@ -1,5 +1,10 @@
 # Cờ Chill — tất cả việc cần làm từ ngày 13/10/2026
 
+> **Tài liệu kế hoạch lịch sử V4/V5 (12/10/2026), không phải hướng dẫn hiện
+> hành cho V6.** Dùng [README](README.md), [PROJECT_MEMORY_VI.md](PROJECT_MEMORY_VI.md),
+> [handoff V6](docs/CLAUDE_HANDOFF_V6.md) và [GITHUB_CHECKLIST_VI.md](GITHUB_CHECKLIST_VI.md)
+> cho entry point, kiểm tra và quy trình hiện tại.
+
 Lập ngày 12/10/2026. Đây là kế hoạch hành động đề xuất, không tự động chốt những câu trả lời V4 bạn chưa cung cấp. Mục tiêu tuần đầu: một vòng học dễ hiểu, chạy được, có nội dung cờ đã kiểm tra; tránh mở rộng quá nhiều tính năng.
 
 ## 0. Tối nay đã có gì / ngày mai bắt đầu từ đâu

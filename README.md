@@ -51,7 +51,7 @@ co_chill_server.py
 | online-play.js, v6-ui.js | Phòng PvP; màn vào, ngôn ngữ, cover, theme |
 | logo-co-chill.png, cover-co-chill.png, favicon.svg | Hình thương hiệu |
 
-Giữ toàn bộ thư mục này, không copy riêng app.js. Các lớp bổ sung bọc app cũ để tái dùng code; thứ tự script quan trọng. `server.py` và `web/` trong thư mục gốc là prototype cũ, không nằm trong pack V6.
+Giữ toàn bộ thư mục `online-preview/`, không copy riêng app.js. Các lớp bổ sung bọc app cũ để tái dùng code; thứ tự script quan trọng. Prototype từ thế hệ trước không phải entrypoint V6 và không nằm trong source pack.
 
 ## Kiểm tra và đóng gói
 

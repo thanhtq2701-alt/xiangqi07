@@ -1,5 +1,11 @@
 # Cờ Chill — báo cáo chuẩn bị công khai
 
+> **Báo cáo lịch sử ngày 12/10/2026, không phải trạng thái phát hành V6.**
+> Dùng [README](README.md), [TEST_REPORT_CODEX.md](TEST_REPORT_CODEX.md),
+> [KNOWN_LIMITATIONS.md](KNOWN_LIMITATIONS.md) và
+> [GITHUB_CHECKLIST_VI.md](GITHUB_CHECKLIST_VI.md) để biết hướng dẫn/trạng thái
+> hiện hành. Các lệnh và kết quả bên dưới chỉ ghi bằng chứng của snapshot này.
+
 Đối chiếu **12/10/2026**, từ commit nền `1eec2db`. Chủ dự án đã chọn: **chuẩn bị chỉn chu, báo cáo trước, quyết định Public sau**. Không thay visibility, triển khai hosting hoặc viết lại lịch sử trong đợt này.
 
 ## Khi nào có thể Public?

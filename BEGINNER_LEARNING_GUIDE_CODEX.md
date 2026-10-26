@@ -1,37 +1,58 @@
-# Hướng dẫn hiểu code Cờ Chill
+# Hướng dẫn đọc code Cờ Chill V6
 
-Bạn không cần học hết lập trình rồi mới tiếp tục. Bắt đầu bằng việc chạy app, theo một nước đi qua hệ thống, sau đó đọc từng mô-đun nhỏ.
+Bắt đầu bằng cách chạy ứng dụng và theo một luồng học qua frontend, API,
+nghiệp vụ và lưu trữ. Tài liệu này mô tả source V6 hiện tại; xem
+[README](README.md), [handoff](docs/CLAUDE_HANDOFF_V6.md) và
+[giới hạn](KNOWN_LIMITATIONS.md) để biết trạng thái/bằng chứng mới nhất.
 
-## Năm khái niệm quan trọng nhất
+## Năm khái niệm quan trọng
 
-1. **Luật khác đánh giá.** `Position.legal_moves()` trong `app/rules.py` trả lời nước nào được phép. `LocalEngine.analyze()` trong `app/engine.py` xếp các nước hợp lệ theo tìm kiếm nông. Hợp lệ không có nghĩa là hay; điểm engine không phải sự thật tuyệt đối về chiến lược.
-2. **Trạng thái và chuyển bước.** `app/service.py` giữ game, exercise, reflection, revealed, complete. Client không tự quyết mở đáp án: `reflect()` yêu cầu câu trả lời; `attempt()` kiểm tra luật và ghi kết quả. Chuyển bước sai phải bị server từ chối.
-3. **API là hợp đồng dữ liệu.** `web/app.js` gọi HTTP/JSON đến `server.py`, rồi `Service.dispatch()` chuyển yêu cầu vào nghiệp vụ. Ví dụ `/api/attempt` nhận id và move, trả correct, complete, lịch ôn. API nội bộ không đồng nghĩa với phải trả tiền cho AI.
-4. **Persistence và transaction.** `app/storage.py` lưu JSON có owner/kind/id trong SQLite. Transaction gom một hành động thành một lần thành công hoặc hoàn tác. Context manager phải đóng connection để tránh khóa file trên Windows. Cookie khách chỉ chọn đúng chủ sở hữu bản ghi.
-5. **Kiểm thử và bằng chứng.** `tests/` kiểm tra cả luật, dữ liệu, logic học và HTTP. Một test đạt chứng minh tình huống được test, không chứng minh engine mạnh hoặc người học đã tiến bộ. Test đối chiếu với chuyên gia/engine độc lập là bước tiếp theo.
+1. **Luật khác đánh giá.** `app/rules.py` quyết định nước hợp lệ. Engine phân
+   tích vị trí dựa trên nước hợp lệ; điểm tìm kiếm không phải chân lý chiến
+   lược tuyệt đối.
+2. **Backend giữ trạng thái có thẩm quyền.** Tài khoản, tiến độ và phòng PvP
+   không được coi dữ liệu client gửi lên là sự thật đã xác minh.
+3. **Reflection trước lời giải.** Luồng học phải ghi nhận người học đã suy
+   nghĩ trước khi tiết lộ lời giải; không coaching trong ván live.
+4. **Persistence và quyền riêng tư.** `app/cloud_store.py` xử lý tài khoản/
+   trạng thái; SQLite local nằm trong `var/`. Không đưa database hay dữ liệu
+   reflection vào Git.
+5. **Test chỉ chứng minh phạm vi đã chạy.** Bộ kiểm tra không xác nhận engine
+   production, chất lượng sư phạm, sức cờ hoặc trải nghiệm trên Internet.
 
-## Đi theo một lần thử
+## Theo một request
 
-Người dùng bấm quân → JavaScript gửi move → server kiểm tra phiên → Service đọc thế cờ → Rules kiểm tra hợp lệ → Engine score được so sánh → scheduler tạo lịch → Repository lưu attempt và skill trong một transaction → UI hiển thị kết quả.
+Mở ứng dụng bằng `python co_chill_server.py serve --port 8769`, rồi dùng
+DevTools Network để theo HTTP request cùng origin. Đọc
+`online-preview/index.html` để xem thứ tự nạp script, các client trong
+`online-preview/` để hiểu request, `co_chill_server.py` để theo route/API,
+rồi vào module `app/` tương ứng để kiểm tra luật, nghiệp vụ và persistence.
 
-Lời giải đi đường khác: Rules/Engine tạo dữ kiện → TemplateProvider tạo WHAT/WHY/HOW → service chỉ gửi sau reflection. Không có LLM đoán nước cờ. `recommend()` chọn bài cùng kỹ năng nhưng khác family chưa thấy trước, thay vì chỉ lặp lại đáp án vừa học.
+Không chuyển logic quyền truy cập hoặc luật sang client chỉ để đơn giản hóa UI.
+Engine/rules quyết định nước và phân tích; lời giải chỉ được gửi sau reflection.
 
 ## Đọc theo thứ tự
 
-1. README và RUN_AND_DEMO_CODEX: chạy và hiểu trải nghiệm.
-2. KNOWN_LIMITATIONS: hiểu những điều chưa được chứng minh.
-3. `tests/test_rules.py`, rồi `app/rules.py`: hiểu đầu vào/đầu ra từng luật.
-4. `tests/test_learning.py`, rồi `app/service.py`: hiểu cách kiểm thử vòng học.
-5. `app/learning.py`: vì sao lần sai ôn sớm và lần có gợi ý không tính chuyển giao độc lập.
-6. `web/app.js`, `server.py`: đi theo một HTTP request bằng DevTools Network.
+1. `README.md`, `RUN_AND_DEMO_CODEX.md`: khởi động và demo.
+2. `KNOWN_LIMITATIONS.md`, `TEST_REPORT_CODEX.md`: phạm vi chưa hoàn thành và
+   bằng chứng kiểm tra.
+3. `tests/test_rules.py`, `app/rules.py`: luật và vị trí.
+4. `tests/test_online_rooms.py`, `app/online_rooms.py`: luồng PvP phía server.
+5. `tests/test_cloud.py`, `app/cloud_store.py`: tài khoản, lưu trữ và quyền.
+6. `online-preview/index.html`, các script UI/client theo thứ tự nạp, rồi
+   route tương ứng trong `co_chill_server.py`.
 
-## Những lỗi thường gặp
+Chạy đầy đủ kiểm tra bằng `python tools/run_checks.py` từ thư mục gốc; cần
+Python 3.12 trở lên và Node.js. Không dùng lệnh test từ snapshot V4/V5 thay
+runner này.
 
-- Sai hệ tọa độ: code lưu hàng từ phía Đen, notation a0 từ phía Đỏ. Dùng `square()`/`index()`, không tự đổi theo cảm tính.
-- Mở đáp án ở frontend nhưng không khóa API: có thể bypass. Test phải gọi API trực tiếp.
-- Thử nhiều lần cộng nhiều điểm: lần đầu mới cập nhật scheduler; retry chỉ phục vụ học.
-- Nhầm text reflection dài là tư duy tốt: chưa có rubric thì không chấm tự động.
-- Chạy server ở cổng khác nhưng vào URL cũ: dùng đúng hostname/cổng và cùng trình duyệt để giữ phiên.
-- Sửa Python rồi không restart: server không hot reload. Dừng Ctrl+C, chạy lại.
+## Lỗi thường gặp
 
-Ngày đầu dành 45 phút: 10 phút demo, 15 phút theo một request, 10 phút đọc test Pháo/Mã, 10 phút tự giải thích data flow bằng lời mình. Sau đó gửi 3 chỗ bạn chưa hiểu cùng mã file/hàm.
+- Nhầm nước hợp lệ với nước tốt: kiểm tra luật trước khi diễn giải điểm engine.
+- Tiết lộ đáp án từ client: reflection gate phải được kiểm soát bởi luồng
+  nghiệp vụ/API, không chỉ ẩn nút trên giao diện.
+- Tin dữ liệu trạng thái từ client trong PvP: đối chiếu revision/game state
+  ở server.
+- Chạy ở cổng khác nhưng mở URL cũ: dùng đúng hostname và cổng server.
+- Sửa code nhưng quên restart: server local không tự reload; dừng bằng Ctrl+C
+  rồi chạy lại lệnh khởi động.

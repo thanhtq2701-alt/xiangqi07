@@ -4,7 +4,7 @@ Tài liệu này cập nhật phần backend đã viết sau bản kiểm kê g�
 
 ## Các phần hoạt động trong mã nguồn
 
-- `co_chill_server.py` phục vụ `online-preview/` và API cùng origin. Chạy cục bộ bằng `python co_chill_server.py serve --port 8769`; `server.py` vẫn là prototype/API cũ riêng.
+- `co_chill_server.py` phục vụ `online-preview/` và API cùng origin. Chạy cục bộ bằng `python co_chill_server.py serve --port 8769`.
 - `app/cloud_store.py` giữ đăng ký/đăng nhập, mật khẩu băm scrypt, phiên HttpOnly, một phiên tài khoản, đồng bộ có revision, thống kê/quản trị phân quyền và TOTP cho owner. Database nằm ở `var/` hoặc đường dẫn bền vững chỉ định qua `CO_CHILL_DB_PATH`.
 - `app/online_rooms.py` giữ bàn cờ, lượt, đồng hồ, ghế, kết quả và biên bản trên server. Hai người phải sẵn sàng; client không được tự khai FEN, đồng hồ hoặc kết quả. Các thao tác gồm đi quân, hòa 15 giây, đầu hàng có xác nhận, đi lại có đồng ý, xem ván, lời nhắn định sẵn và tái đấu đổi màu. Request nước đi có revision và nonce chống áp dụng hai lần.
 - API `/api/rooms/*` dùng tài khoản hoặc cookie khách riêng có hạn 24 giờ. Khách không có quyền đồng bộ học tập, engine hoặc quản trị. Host, Origin, CSRF và giới hạn tần suất được kiểm tra. Biên bản đã kết thúc của mỗi người nằm ở `/api/rooms/history`.
@@ -24,7 +24,7 @@ Tài liệu này cập nhật phần backend đã viết sau bản kiểm kê g�
 
 Bộ kiểm thử engine dùng tiến trình UCI giả do dự án tự viết. Nó kiểm tra giao thức, biến hợp lệ, bên Đen, cp/mate/bound, nước được chọn, timeout và dọn tiến trình; không đo sức cờ Pikafish thật. Cấu hình tồn tại chỉ được ghi `configured_unverified`. Chưa truy cập VM, chạy binary thật hoặc đo tải trên Google Cloud trong lượt này.
 
-Mô hình pilot: một máy/instance, một Gunicorn worker, nhiều thread, ổ SQLite bền vững và HTTPS cùng origin. Lệnh có sẵn trong `docs/DEPLOY_V5.md` là `gunicorn co_chill_server:application --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 45 --graceful-timeout 15`. Với VM dùng reverse proxy, bind Python vào loopback và cấu hình domain/HTTPS trước khi public. Không tăng worker tùy tiện: constructor phòng tạm dừng ván sau restart, semaphore engine chỉ có phạm vi một process.
+Mô hình pilot: một máy/instance, một Gunicorn worker, nhiều thread, ổ SQLite bền vững và HTTPS cùng origin. Ví dụ vận hành hiện hành nằm trong `docs/DEPLOY_GCP_V6.md`; với VM dùng reverse proxy, bind Python vào loopback và cấu hình domain/HTTPS trước khi public. Không tăng worker tùy tiện: constructor phòng tạm dừng ván sau restart, semaphore engine chỉ có phạm vi một process.
 
 Các việc vận hành còn cần nghiệm thu trên máy thật: đường dẫn/quyền binary và NNUE, metadata phiên bản, HTTPS/cookie, đăng ký hai máy, reconnect/tab nền, restart, backup/restore, tải thực với 5–10 người. Khi đặt sau proxy, kiểm tra IP phục vụ rate limit; không tin `X-Forwarded-For` tùy ý từ Internet.
 
@@ -42,12 +42,10 @@ Các việc vận hành còn cần nghiệm thu trên máy thật: đường d�
 Runtime: Python bundled của máy phát triển, gọi bằng đường dẫn tuyệt đối trong terminal. Lệnh có thể chạy lại bằng `python` khi máy đã cài Python phù hợp:
 
 ```text
-python -m unittest discover -s tests -v
-python -m unittest tests.test_online_rooms tests.test_online_http -v
-python -m py_compile co_chill_server.py app/online_rooms.py tests/test_online_http.py tests/test_online_rooms.py
+python tools/run_checks.py
 ```
 
-Lượt đầu trước ba test bổ sung: 141 test, 133 đạt và 8 lỗi `WinError 10013` do môi trường chặn kết nối localhost của `tests/test_http.py`. Không xóa/bỏ qua/sửa yếu test. Lượt riêng sau sửa chính: 33/33 test phòng và HTTP đạt trong 68,395 giây; sau đó thêm một test đầu vào sai kiểu. `py_compile` đạt. Kết quả chạy lại toàn bộ với quyền localhost được ghi ở phần dưới khi hoàn tất.
+Đây là runner chuẩn hiện tại; cần Node.js. Các lệnh trong phần nghiệm thu bên dưới được giữ lại như bằng chứng lịch sử của lượt kiểm thử, không thay thế lệnh chuẩn.
 
 ### Nghiệm thu tiếp tục ngày 26/10/2026
 
