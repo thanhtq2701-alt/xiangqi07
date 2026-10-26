@@ -1,5 +1,10 @@
 # Engine mạnh cho Cờ Chill V5
 
+> Cập nhật V6 ngày26/10/2026: UI bot máy chủ/review tài khoản gửi
+> `requireStrong: true`. Nếu adapter phải fallback, API trả503 và không gửi
+> điểm/biến thay thế. Phần fallback bên dưới chỉ mô tả chế độ cơ bản được
+> gọi rõ ràng. Chưa nghiệm thu Pikafish thật trên VM của chủ sản phẩm.
+
 ## Đã có và chưa có
 
 `app/pikafish.py` là bộ kết nối UCI có thể gọi một engine đã được chủ sở hữu cài trên máy chủ. Mã kiểm tra bắt tay, giới hạn thời gian, kiểm tra nước/biến bằng luật cờ, đánh giá riêng nước người học chọn và đóng tiến trình sau mỗi yêu cầu.
