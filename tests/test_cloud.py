@@ -6,7 +6,10 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
+<<<<<<< HEAD
 from unittest.mock import patch
+=======
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
 from urllib.parse import urlsplit
 
 from app.cloud_store import CloudStore, totp, verify_password, metrics, SCRYPT_PREFIX
@@ -175,6 +178,7 @@ class CloudTests(unittest.TestCase):
         self.assertEqual(self.client.request('/api/auth/login', 'POST', {'username': 'renamed', 'password': 'new-password-long'})[0], 200)
 
     def test_mfa_required_and_replay_protection(self):
+<<<<<<< HEAD
         # Replaying means the SAME code, even when slow CI crosses a 30s boundary.
         # Also prove that a genuinely new time-step code is accepted exactly once.
         with patch('time.time', return_value=1793000000.0) as clock:
@@ -191,6 +195,14 @@ class CloudTests(unittest.TestCase):
             self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': fresh_code})[0], 200)
             replay_client = Client(self.app, '127.0.0.4')
             self.assertEqual(replay_client.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': fresh_code})[0], 401)
+=======
+        admin, _ = self.admin()
+        other = Client(self.app, '127.0.0.3')
+        self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD})[0], 401)
+        self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': totp(TEST_TOTP, int(time.time() / 30))})[0], 401)
+        self.assertEqual(admin.request('/api/admin/stats')[0], 200)
+        self.assertNotIn(TEST_TOTP, json.dumps(admin.request('/api/export')[1]))
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
 
     def test_legacy_password_upgrades_only_after_valid_login(self):
         self.client.register()
@@ -414,6 +426,7 @@ class CloudTests(unittest.TestCase):
         self.assertIsNone(metrics(state)['independentRate'])
         self.assertIsNone(metrics(state)['verifiedLevel'])
 
+<<<<<<< HEAD
     def test_multistep_metrics_deduplicate_without_inventing_proficiency(self):
         first = {'id': 'line-a', 'puzzleId': 'line-1', 'success': True, 'completedAt': '2026-10-26T00:00:00Z',
                  'assisted': False, 'firstExposure': True, 'source': 'practice'}
@@ -434,6 +447,8 @@ class CloudTests(unittest.TestCase):
         raw['lineSession']['stage'] = 'finished'
         self.assertFalse(metrics(raw)['unfinished'])
 
+=======
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
 
 if __name__ == '__main__':
     unittest.main()

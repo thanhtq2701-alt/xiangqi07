@@ -57,6 +57,7 @@ class OnlineRoomTests(unittest.TestCase):
         self.assertNotEqual(joined['side'], r['side'])
         self.assert_api(409, 'room_full', lambda: self.rooms.join(self.c, r['code']))
 
+<<<<<<< HEAD
     def test_untrusted_collection_fields_are_bad_requests_not_server_errors(self):
         self.assert_api(400, None, lambda: self.rooms.create(self.a, {'preset': []}))
         self.assert_api(400, None, lambda: self.rooms.match(self.a, {'preset': {}}))
@@ -65,6 +66,8 @@ class OnlineRoomTests(unittest.TestCase):
         self.assert_api(400, 'canned_chat_only', lambda: self.rooms.action(self.a, self.code, 'chat', {'message': []}))
         self.assert_api(400, None, lambda: self.rooms.action(self.a, self.code, 'kick', {'userId': {}}))
 
+=======
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
     def test_both_ready_starts_game_without_client_fen(self):
         r = self.rooms.create(self.a, {'visibility': 'public', 'fen': 'fake'})
         self.code = r['code']
@@ -162,6 +165,7 @@ class OnlineRoomTests(unittest.TestCase):
         self.assertEqual(r['moves'], ['a3a4'])
         self.assertFalse(r['result']['over'])
 
+<<<<<<< HEAD
     def test_paused_players_must_finish_before_leaving_seat(self):
         self.started()
         self.now += 40
@@ -173,6 +177,8 @@ class OnlineRoomTests(unittest.TestCase):
         self.rooms.action(self.b, self.code, 'leave')
         self.assertFalse(self.rooms.has_live_context(self.b))
 
+=======
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
     def test_spectator_cannot_move_can_chat_and_owner_can_kick(self):
         self.started()
         self.rooms.join(self.c, self.code, spectator=True)

@@ -1,0 +1,929 @@
+[
+  {
+    "path": "app/__init__.py",
+    "role": "Đánh dấu thư mục app là một package Python thông thường và ghi một câu mô tả dự án. File này không phải trang web, không khởi động máy chủ và không được trình duyệt tải.",
+    "depends": [],
+    "missing": "Web trong online-preview vẫn chạy. Python hiện đại có thể nhận thư mục không có __init__.py như namespace package trong một số cách chạy, nên bỏ file không chắc gây lỗi ngay; tuy nhiên cấu trúc package, công cụ phân tích và cách phân phối sẽ kém rõ ràng.",
+    "groups": [
+      {
+        "title": "Mô tả package",
+        "start": 1,
+        "end": 1,
+        "symbols": [],
+        "explanation": "Dòng duy nhất là docstring, tức chuỗi mô tả để người đọc hoặc công cụ Python biết package dùng cho bản thử nghiệm học cờ tướng ưu tiên dữ liệu cục bộ. Nó không chứa thuật toán và không mở kết nối nào.",
+        "example": "",
+        "risk": ""
+      }
+    ],
+    "reading_tip": "Đọc một lần để hiểu vai trò đóng gói; phần luật thực tế nằm ở rules.py."
+  },
+  {
+    "path": "app/engine.py",
+    "role": "Bộ máy tìm nước Python dùng làm bản tham chiếu khi kiểm thử engine JavaScript. Nó chấm điểm vật chất và tìm kiếm có giới hạn; bản web tĩnh không gọi file này trong khi người chơi sử dụng.",
+    "depends": [
+      "app/rules.py",
+      "Thư viện chuẩn Python functools time typing"
+    ],
+    "missing": "Trang web vẫn chơi bằng online-preview/xiangqi.js, nhưng tools/check_browser_rules.py mất engine đối chiếu và dừng vì không import được LocalEngine.",
+    "groups": [
+      {
+        "title": "Hợp đồng engine và giá trị quân",
+        "start": 1,
+        "end": 12,
+        "symbols": [
+          "VALUES",
+          "ENGINE_VERSION",
+          "EngineAdapter.analyze"
+        ],
+        "explanation": "Các giá trị gán điểm tương đối cho quân cờ: Xe 900, Pháo 450, Mã 400, Tốt 100. Tướng có giá trị vật chất 0 vì kết quả thắng thua được xử lý bằng tình trạng hết nước đi. EngineAdapter mô tả giao diện analyze(fen) để sau này thay engine mà các phần gọi không phải biết toàn bộ thuật toán bên trong.",
+        "example": "Một engine thay thế cần nhận thế cờ FEN và trả về dữ liệu phân tích theo hợp đồng đã thống nhất.",
+        "risk": "Protocol là mô tả giao diện trong Python, không tự cung cấp dịch vụ API và không tự xác thực đầu ra."
+      },
+      {
+        "title": "Chấm điểm thế cờ và ưu tiên nước ăn quân",
+        "start": 15,
+        "end": 29,
+        "symbols": [
+          "evaluate",
+          "ordered"
+        ],
+        "explanation": "evaluate cộng giá trị quân của bên đang đến lượt và trừ giá trị đối thủ; Tốt đã qua sông được cộng thêm 40. ordered xét trước những nước ăn quân giá trị cao để tìm kiếm hiệu quả hơn. Điểm này là công thức đơn giản, không phải xác suất thắng hay sức cờ đã được huấn luyện.",
+        "example": "Ở cùng một bàn cờ, đổi bên đến lượt có thể đổi dấu điểm vì góc nhìn đánh giá thay đổi.",
+        "risk": "Chưa đánh giá sâu cấu trúc, thế chủ động, an toàn Tướng hay ưu thế vị trí như engine mạnh."
+      },
+      {
+        "title": "Khởi tạo phân tích và nhớ kết quả",
+        "start": 32,
+        "end": 48,
+        "symbols": [
+          "LocalEngine",
+          "LocalEngine.__init__",
+          "LocalEngine.analyze"
+        ],
+        "explanation": "Đối tượng giữ độ sâu tối đa và số giây được phép tính. analyze đọc FEN bằng bộ luật rồi lấy toàn bộ nước hợp lệ. Nếu không có nước, nó trả điểm thua và danh sách rỗng. lru_cache ghi nhớ tối đa 512 kết quả theo lời gọi để không tính lại cùng thế cờ trên cùng đối tượng.",
+        "example": "Gọi nhiều lần cùng FEN có thể dùng kết quả trong bộ nhớ thay vì tìm kiếm lại.",
+        "risk": "Đây là bộ nhớ tạm của tiến trình, không phải cơ sở dữ liệu hay dữ liệu tài khoản."
+      },
+      {
+        "title": "Tìm kiếm đối kháng có cắt nhánh",
+        "start": 50,
+        "end": 69,
+        "symbols": [
+          "search"
+        ],
+        "explanation": "Hàm lồng search giả lập lượt mình rồi lượt đối thủ. Điểm được đảo dấu sau mỗi lượt để hai bên đều chọn nước có lợi cho mình. Alpha và beta là ngưỡng giúp bỏ các nhánh không thể cải thiện lựa chọn hiện tại; ply làm kết quả chiếu hết phân biệt khoảng cách đến kết thúc. Mọi nhánh đều lấy nước từ legal_moves.",
+        "example": "Nếu một nước ăn Xe khiến đối thủ có nước đáp trả mạnh, tìm đủ độ sâu sẽ tính cả đáp trả đó thay vì chỉ đếm quân vừa ăn.",
+        "risk": "Hết thời gian ném TimeoutError; không được dùng nhánh đang tính dở như kết quả đầy đủ."
+      },
+      {
+        "title": "Giữ lần tìm hoàn tất và công bố giới hạn",
+        "start": 71,
+        "end": 84,
+        "symbols": [
+          "LocalEngine.analyze"
+        ],
+        "explanation": "Trước khi tìm sâu, chương trình tạo phương án dự phòng hợp lệ bằng cách chấm bàn cờ sau mỗi nước. Nó sau đó tăng độ sâu từng mức và chỉ thay kết quả khi đã xét xong tất cả nước gốc ở cùng mức đó. Kết quả có engine, depth, score, lines, nodes, fallback và truncated để bên sử dụng biết đã tính đến đâu.",
+        "example": "Nếu độ sâu 1 đã xong nhưng độ sâu 2 hết giờ, kết quả cuối giữ toàn bộ mức 1.",
+        "risk": "fallback=True luôn đánh dấu engine cục bộ này; không được quảng cáo đây là Pikafish hay mô hình ML."
+      },
+      {
+        "title": "Kiểm tra cấu trúc và tính hợp lệ của phân tích",
+        "start": 87,
+        "end": 99,
+        "symbols": [
+          "validate_analysis"
+        ],
+        "explanation": "Hàm kiểm tra metadata, buộc danh sách xếp hạng bao phủ tất cả nước hợp lệ và bắt mỗi biến thể bắt đầu bằng chính nước được xếp hạng. Sau đó nó chạy lại từng nước bằng Position.play để phát hiện chuỗi nước trái luật. Đây là cửa kiểm tra dành cho bên gọi; analyze không tự gọi hàm này.",
+        "example": "Một biến thể có nước Mã bị cản chân sẽ bị từ chối khi chạy lại chuỗi.",
+        "risk": "Chạy lại nước chỉ chứng minh hợp lệ theo bộ luật; không chứng minh điểm số đúng chiến lược hay là tối ưu toàn cục."
+      }
+    ],
+    "reading_tip": "Đọc evaluate trước để biết điểm có nghĩa gì, rồi đọc vòng tăng độ sâu. Chỉ đọc search chi tiết sau khi hiểu lượt đi và cây lựa chọn."
+  },
+  {
+    "path": "app/puzzles.py",
+    "role": "Nguồn Python của 12 bài tập tổng hợp nguyên gốc. File chứa thế cờ, chủ đề, nước mẫu và một nước bỏ lỡ minh họa; công cụ export chuyển dữ liệu này thành fixtures.js cho web.",
+    "depends": [
+      "app/rules.py"
+    ],
+    "missing": "Web vẫn dùng được fixtures.js đã xuất sẵn. Việc tạo lại bài tập và kiểm tra nguồn bài bằng các công cụ Python sẽ lỗi.",
+    "groups": [
+      {
+        "title": "Dựng thế cờ từ danh sách quân",
+        "start": 1,
+        "end": 9,
+        "symbols": [
+          "position"
+        ],
+        "explanation": "position nhận ánh xạ như ô a2 có Xe đỏ rồi tạo bàn 90 điểm. Nó đổi thành FEN, đọc lại bằng Position.from_fen và xuất FEN chuẩn hóa. Bước đọc lại giúp phát hiện dữ liệu bài không thỏa điều kiện cấu trúc của bộ luật.",
+        "example": "{'a2': 'R'} nghĩa là Xe đỏ ở a2; chữ thường r là Xe đen.",
+        "risk": "Tập quân truyền vào vẫn cần đủ hai Tướng và thỏa các giới hạn của bộ luật."
+      },
+      {
+        "title": "Dữ liệu gốc của mười hai bài",
+        "start": 12,
+        "end": 26,
+        "symbols": [
+          "BASE",
+          "DEFINITIONS"
+        ],
+        "explanation": "BASE đặt hai Tướng và Tốt chắn đường nhìn giữa chúng. Mỗi dòng DEFINITIONS bổ sung quân riêng cho một bài: mã ổn định, nhóm kỹ năng, tiêu đề, quân đặt thêm, nước mẫu và nước bỏ lỡ minh họa. Có bốn nhóm material, cannon, horse, safety; mỗi nhóm ba thế.",
+        "example": "cannon-file đặt Pháo ở b2, quân ngòi ở b4, mục tiêu ở b7 và nước mẫu b2b7.",
+        "risk": "Các thế được tổng hợp để dạy luật/quan sát, không phải ván của người chơi thật và không phải bộ dữ liệu đã được chuyên gia kiểm định."
+      },
+      {
+        "title": "Đóng gói thành ngân hàng bài",
+        "start": 29,
+        "end": 37,
+        "symbols": [
+          "bank",
+          "PUZZLES"
+        ],
+        "explanation": "bank biến từng dòng dữ liệu ngắn thành dictionary có tên trường rõ ràng như id, skill, fen và solution. PUZZLES gọi bank ngay khi import, tạo danh sách để các công cụ kiểm tra hoặc xuất bài sử dụng. Nhãn source ghi nguồn synthetic-codex-v1.",
+        "example": "export_preview_fixtures.py lấy PUZZLES để tạo các thuộc tính JavaScript tương ứng.",
+        "risk": "Trường verification ở đây là mô tả metadata; bản thân bank không chạy engine. Công cụ xuất dùng lời xác minh thận trọng riêng cho web."
+      }
+    ],
+    "reading_tip": "Khi thêm bài, đọc cấu trúc một dòng DEFINITIONS rồi chạy export và kiểm tra; đừng sửa fixtures.js một mình nếu muốn giữ nguồn nhất quán."
+  },
+  {
+    "path": "app/rules.py",
+    "role": "Bộ luật cờ tướng Python làm bản tham chiếu cho kiểm thử và tạo bài. Nó định nghĩa bàn cờ, đọc FEN, cách đi bảy loại quân, chống tự chiếu và xác định hết nước hợp lệ. Nó không phải backend trực tuyến của bản web tĩnh.",
+    "depends": [
+      "Thư viện chuẩn Python dataclasses"
+    ],
+    "missing": "Bản web vẫn dùng bộ luật JavaScript trong xiangqi.js, nhưng test_rules.py, nguồn bài tập, engine Python và các bước đối chiếu sẽ không chạy.",
+    "groups": [
+      {
+        "title": "Quy ước bàn cờ và ký hiệu",
+        "start": 1,
+        "end": 17,
+        "symbols": [
+          "START_FEN",
+          "NAMES",
+          "side",
+          "other"
+        ],
+        "explanation": "Bàn cờ có 90 điểm, lưu từ hàng trên xuống. Chữ hoa là đỏ với mã lượt w, chữ thường là đen với mã b. START_FEN là thế xuất phát; NAMES đổi chữ mã thành tên tiếng Việt. side lấy màu quân, other đổi sang bên đối thủ.",
+        "example": "R là Xe đỏ, r là Xe đen; w là mã nội bộ của đỏ chứ không có nghĩa bàn cờ đang có quân trắng.",
+        "risk": "side không tự kiểm tra ô trống; phần gọi cần loại dấu chấm trước khi hỏi màu."
+      },
+      {
+        "title": "Đổi tọa độ và tách nước đi",
+        "start": 20,
+        "end": 33,
+        "symbols": [
+          "square",
+          "index",
+          "parse_move"
+        ],
+        "explanation": "square đổi vị trí trong mảng thành tên a0 đến i9; index đổi ngược và báo lỗi nếu tọa độ sai. parse_move tách bốn ký tự thành ô nguồn và ô đích. Đây là cầu nối giữa dữ liệu mảng và ký hiệu người đọc được.",
+        "example": "a2a7 được tách thành ô a2 và a7 để chương trình di chuyển quân.",
+        "risk": "Tách được chuỗi chỉ xác nhận định dạng; nước đó vẫn phải được kiểm tra luật."
+      },
+      {
+        "title": "Lưu trạng thái và đọc FEN",
+        "start": 36,
+        "end": 86,
+        "symbols": [
+          "Position",
+          "Position.from_fen"
+        ],
+        "explanation": "Position là đối tượng bất biến chứa tuple bàn cờ và lượt. from_fen kiểm tra số hàng/cột, ký hiệu quân, số lượng mỗi loại, vị trí Tướng/Sĩ/Tượng/Tốt và yêu cầu bên vừa đi không còn bị chiếu. Nó chấp nhận hai biến thể ký hiệu Mã/Tượng n và b rồi chuẩn hóa thành h và e. Đầu vào hai hoặc sáu trường được chấp nhận nhưng trạng thái chỉ giữ bàn và lượt.",
+        "example": "FEN thiếu một Tướng hoặc đặt Tượng sai điểm sẽ bị từ chối trước khi dùng.",
+        "risk": "Kiểm tra này không chứng minh cả lịch sử ván là khả thi; tạo Position trực tiếp cũng không tự chạy các kiểm tra from_fen."
+      },
+      {
+        "title": "Xuất bàn cờ thành FEN",
+        "start": 88,
+        "end": 99,
+        "symbols": [
+          "Position.fen"
+        ],
+        "explanation": "fen quét từng hàng, gộp các ô trống liên tiếp thành số, nối mười hàng bằng dấu gạch chéo và thêm lượt đi. Chuỗi gọn này được dùng để so sánh trạng thái, lưu thế cờ và trao đổi giữa Python với JavaScript.",
+        "example": "Chín ô trống liên tiếp trên một hàng được viết là 9.",
+        "risk": "Chỉ xuất bàn và lượt; không bảo tồn các trường phụ hoặc lịch sử lặp của một ván."
+      },
+      {
+        "title": "Điểm có thể tới và luật Xe Pháo",
+        "start": 101,
+        "end": 132,
+        "symbols": [
+          "Position.targets",
+          "add"
+        ],
+        "explanation": "targets lấy loại quân ở ô nguồn. Hàm nhỏ add chỉ thêm điểm nằm trên bàn và không có quân cùng bên. Xe và Pháo cùng quét bốn hướng thẳng: Xe dừng ở quân đầu tiên; Pháo đi trên các ô trống trước ngòi, chỉ ăn quân đầu tiên sau đúng một ngòi.",
+        "example": "Pháo không được ăn khi giữa nó và mục tiêu có 0 hoặc 2 quân.",
+        "risk": "targets là bước sinh điểm tấn công/đi theo hình dạng; chưa bảo đảm Tướng bên mình an toàn."
+      },
+      {
+        "title": "Luật Mã và Tượng",
+        "start": 133,
+        "end": 142,
+        "symbols": [
+          "Position.targets"
+        ],
+        "explanation": "Nhánh Mã xét tám điểm lệch 2–1 và kiểm tra ô chân trước khi thêm đích. Nhánh Tượng xét bốn đường chéo hai điểm, yêu cầu mắt Tượng trống và đích vẫn ở nửa bàn của mình. Các bước kiểm tra mép bàn tránh đọc ra ngoài mảng.",
+        "example": "Mã c3 muốn tới d5 phải không bị chặn ở c4; Tượng c0 muốn tới e2 cần d1 trống.",
+        "risk": "Chỉ thay công thức đích mà bỏ chân Mã hoặc mắt Tượng sẽ tạo nước trái luật."
+      },
+      {
+        "title": "Luật Tướng Sĩ và Tốt",
+        "start": 143,
+        "end": 164,
+        "symbols": [
+          "Position.targets"
+        ],
+        "explanation": "Tướng đi một điểm thẳng, Sĩ một điểm chéo trong cung. Nhánh Tướng còn dò thẳng cột để phát hiện Tướng đối mặt. Tốt chỉ đi tiến trước sông; sau sông thêm hai hướng ngang, không thêm hướng lùi.",
+        "example": "Tốt đỏ ở b5 có thể đi b6, a5 hoặc c5; không được đi b4.",
+        "risk": "Đường nhìn giữa hai Tướng dùng để phát hiện chiếu; legal_moves không cho thực hiện việc ăn mất Tướng."
+      },
+      {
+        "title": "Nhận biết chiếu và tạo bàn giả lập",
+        "start": 166,
+        "end": 178,
+        "symbols": [
+          "Position.in_check",
+          "Position.after_unchecked"
+        ],
+        "explanation": "in_check tìm vị trí Tướng và xem có nằm trong targets của quân đối phương không. after_unchecked sao chép bàn, chuyển quân, xóa nguồn rồi đổi lượt, phục vụ giả lập nhanh khi đã biết nước. Bàn cũ vẫn được giữ nguyên.",
+        "example": "Bộ tìm kiếm có thể thử một nước, xem hậu quả, rồi xét nước khác từ cùng trạng thái gốc.",
+        "risk": "after_unchecked không xác minh bên đi hay luật; không nên dùng trực tiếp với nước người dùng nhập."
+      },
+      {
+        "title": "Lọc nước hợp lệ và thực hiện nước",
+        "start": 180,
+        "end": 197,
+        "symbols": [
+          "Position.legal_moves",
+          "Position.play"
+        ],
+        "explanation": "legal_moves chỉ xét quân bên đến lượt, loại nước ăn Tướng và loại mọi nước giả lập khiến Tướng mình còn bị chiếu. play kiểm tra định dạng, yêu cầu nước thuộc danh sách hợp lệ rồi trả trạng thái mới. Đây là cửa an toàn khi tiếp nhận nước từ bên ngoài.",
+        "example": "Nếu Xe đang che Tướng trước Xe đối phương, việc di chuyển Xe sang cột khác có thể bị loại do tự chiếu.",
+        "risk": "Không bỏ bước kiểm tra của play để làm test vượt qua hoặc cho người dùng đi tùy ý."
+      },
+      {
+        "title": "Kết thúc ván và mô tả nước",
+        "start": 199,
+        "end": 208,
+        "symbols": [
+          "Position.status",
+          "describe"
+        ],
+        "explanation": "status xác định bên hết nước hợp lệ là bên thua, phân biệt đang bị chiếu thành chiếu hết và không bị chiếu thành hết nước hợp lệ. describe chuyển nước thành câu tiếng Việt, có thêm quân bị ăn nếu có. Hai hàm phục vụ trạng thái và giải thích dễ đọc.",
+        "example": "Xe a2 → a7 ăn Xe mô tả một nước ăn quân bằng dữ liệu thật trên bàn.",
+        "risk": "File này không phân xử toàn bộ chiếu dai/đuổi dai; describe cũng giả định được gọi với nước có nguồn quân hợp lệ."
+      }
+    ],
+    "reading_tip": "Đọc tọa độ trước, sau đó targets → in_check → legal_moves → play. Khi so với web, tìm các phương thức cùng ý nghĩa trong xiangqi.js."
+  },
+  {
+    "path": "tests/__init__.py",
+    "role": "File rỗng đánh dấu thư mục tests là package Python thông thường. Không chứa code xử lý website hoặc bài kiểm tra.",
+    "depends": [],
+    "missing": "Web không bị ảnh hưởng. unittest discover đang dùng có thể vẫn tìm test_rules.py; một số cách import theo tên package và công cụ khác sẽ thay đổi hành vi. Giữ file giúp cấu trúc kiểm thử rõ ràng.",
+    "groups": [],
+    "reading_tip": "Không cần đọc nội dung vì file có 0 dòng; đọc test_rules.py để thấy các tình huống được kiểm tra."
+  },
+  {
+    "path": "tests/test_rules.py",
+    "role": "30 kiểm thử tự động cho bộ luật Python. Chúng mô tả những điều phải luôn đúng khi sửa code và được tools/check_all.py chạy bằng unittest.",
+    "depends": [
+      "app/rules.py",
+      "Thư viện chuẩn Python unittest"
+    ],
+    "missing": "Web vẫn tải, nhưng mất lớp bảo vệ các luật nền tảng; lệnh kiểm tra riêng không còn kiểm tra đủ và có thể gây hiểu nhầm nếu chỉ nhìn trạng thái chạy không lỗi.",
+    "groups": [
+      {
+        "title": "Chuẩn bị bàn kiểm tra và kiểm tra biểu diễn",
+        "start": 1,
+        "end": 30,
+        "symbols": [
+          "setup",
+          "RulesTests",
+          "test_coordinate_roundtrip",
+          "test_invalid_coordinates",
+          "test_fen_roundtrip",
+          "test_initial_legal_count",
+          "test_initial_perft_two"
+        ],
+        "explanation": "setup dựng các bàn nhỏ để mỗi test tập trung vào một luật. Nhóm đầu đổi qua lại cả 90 tọa độ, từ chối tọa độ sai, giữ FEN khi đọc rồi xuất và đối chiếu số nước từ thế đầu: 44 nước ở lượt đầu, tổng 1.920 khả năng ở hai nửa nước.",
+        "example": "Nếu công thức hàng cờ bị đảo nhầm, test tọa độ hoặc số nước sẽ báo lỗi ngay.",
+        "risk": "Số 1.920 là phép đếm cây nước hợp lệ ở độ sâu 2, không phải số ván đã có người chơi."
+      },
+      {
+        "title": "Kiểm tra đường đi cả bảy loại quân",
+        "start": 32,
+        "end": 96,
+        "symbols": [
+          "test_general_palace",
+          "test_advisor_diagonal_and_palace",
+          "test_elephant_eye",
+          "test_horse_leg_each_direction",
+          "test_rook_blocker",
+          "test_cannon_exactly_one_screen",
+          "test_red_pawn_after_river",
+          "test_general_cannot_exit_palace",
+          "test_elephant_river",
+          "test_black_elephant_river",
+          "test_cannon_cannot_jump_to_empty",
+          "test_red_pawn_before_river",
+          "test_black_pawn_direction",
+          "test_pawn_last_rank_sideways"
+        ],
+        "explanation": "Các ca thử kiểm cung Tướng/Sĩ, mắt và sông của Tượng hai màu, tám hướng chân Mã, vật cản Xe, đúng một ngòi Pháo và hướng Tốt trước/sau sông. Các kiểm tra vừa yêu cầu nước hợp lệ có mặt, vừa cấm nước trái luật.",
+        "example": "Pháo a1 ăn quân a6 chỉ được chấp nhận khi có đúng một quân ở giữa; Tốt đến hàng cuối vẫn được đi ngang.",
+        "risk": "Không được đổi giá trị kỳ vọng chỉ vì vừa sửa luật và test thất bại; cần xác minh nguyên nhân."
+      },
+      {
+        "title": "Kiểm tra an toàn Tướng và thắng thua",
+        "start": 98,
+        "end": 127,
+        "symbols": [
+          "test_flying_general_blocks_exposure",
+          "test_no_general_capture",
+          "test_self_check_rejected",
+          "test_check_requires_response",
+          "test_stalemate_is_loss",
+          "test_mate_is_loss"
+        ],
+        "explanation": "Nhóm này bảo đảm không thể mở mặt hai Tướng, ăn mất Tướng, tự chiếu hoặc bỏ qua nước chiếu của đối thủ. Hai tình huống kết thúc riêng xác nhận hết nước hợp lệ là thua trong cờ tướng dù Tướng có đang bị chiếu hay không.",
+        "example": "Dời quân duy nhất chắn giữa hai Tướng sang ngang phải bị từ chối.",
+        "risk": ""
+      },
+      {
+        "title": "Kiểm tra dữ liệu đầu vào và tính nguyên vẹn",
+        "start": 129,
+        "end": 157,
+        "symbols": [
+          "test_illegal_does_not_mutate",
+          "test_turn_and_capture",
+          "test_invalid_fen_rejected",
+          "test_move_input",
+          "test_legal_play_sequence_preserves_generals"
+        ],
+        "explanation": "Một nước sai phải báo lỗi mà không sửa bàn cũ; nước ăn quân đúng phải xóa nguồn, đặt quân ở đích và đổi lượt. Test FEN loại các thế sai số hàng, thiếu Tướng hoặc sai điểm quân. Chuỗi tối đa 40 nửa nước hợp lệ kiểm tra mỗi bên vẫn có một Tướng và bên vừa đi an toàn.",
+        "example": "Sau khi thử Xe a0 đi xuyên quân tới a9 ở thế đầu, FEN gốc phải còn nguyên.",
+        "risk": "40 nước do chương trình chọn là dữ liệu thử tự tạo, không phải kết quả người dùng thật."
+      },
+      {
+        "title": "Chạy trực tiếp bằng unittest",
+        "start": 160,
+        "end": 160,
+        "symbols": [
+          "unittest.main"
+        ],
+        "explanation": "Dòng cuối cho phép file tự chạy các test khi được thực thi trực tiếp. Cách chạy ổn định từ gốc gói là python -m unittest discover -s tests -p test_rules.py -v; check_all.py đã bao gồm bước này.",
+        "example": "",
+        "risk": ""
+      }
+    ],
+    "reading_tip": "Đọc tên test như danh sách yêu cầu. Trong từng test, assertIn là phải có, assertNotIn là không được có và assertRaises là phải từ chối đầu vào sai."
+  },
+  {
+    "path": "tools/check_all.py",
+    "role": "Lệnh tổng để kiểm tra gói nguồn gọn mà không cài thêm thư viện. Nó lần lượt chạy kiểm tra cú pháp, 51 test JavaScript, 30 test luật Python, đối chiếu bài tập và đối chiếu hai bộ luật/engine.",
+    "depends": [
+      "Python 3.10 trở lên",
+      "Node.js 18 trở lên",
+      "Sáu file JavaScript online-preview",
+      "Ba tools/test_preview_*.cjs",
+      "tests/test_rules.py",
+      "tools/check_online_preview.py",
+      "tools/check_browser_rules.py"
+    ],
+    "missing": "Web vẫn chạy nhưng không còn một lệnh chung để xác minh đầy đủ trước khi bàn giao; phải chạy từng công cụ riêng.",
+    "groups": [
+      {
+        "title": "Xác định thư mục và các tệp cần kiểm tra",
+        "start": 1,
+        "end": 15,
+        "symbols": [
+          "ROOT",
+          "SCRIPT_NAMES"
+        ],
+        "explanation": "ROOT lấy gốc gói từ vị trí script, giúp công cụ không phụ thuộc tên ổ đĩa. SCRIPT_NAMES liệt kê sáu file JavaScript phải qua kiểm tra cú pháp.",
+        "example": "Đổi tên learning.js cần cập nhật cả file tham chiếu trên web lẫn danh sách kiểm tra.",
+        "risk": ""
+      },
+      {
+        "title": "Kiểm tra phiên bản môi trường",
+        "start": 17,
+        "end": 32,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "Bộ đọc tham số nhận --node để chỉ rõ Node cần dùng. Công cụ yêu cầu Python từ 3.10 và Node từ 18, thử chạy Node lấy phiên bản rồi báo lỗi dễ hiểu nếu máy đang trỏ tới bản cũ.",
+        "example": "python tools/check_all.py --node C:\\duong-dan\\node.exe chọn đúng Node khi máy có nhiều bản.",
+        "risk": "Đây là yêu cầu chạy công cụ kiểm thử; trang web tĩnh không cần Node để người dùng mở bằng trình duyệt."
+      },
+      {
+        "title": "Lập danh sách các phép kiểm tra",
+        "start": 33,
+        "end": 40,
+        "symbols": [
+          "commands"
+        ],
+        "explanation": "Danh sách gồm sáu phép kiểm tra cú pháp, ba nhóm test JavaScript, một nhóm test Python, một bước kiểm dữ liệu bài và một bước đối chiếu Python với JavaScript. Nó dùng sys.executable để các bước Python đi cùng trình thông dịch hiện tại.",
+        "example": "Tổng có 12 bước lớn; mỗi bước có thể chứa nhiều test nhỏ.",
+        "risk": ""
+      },
+      {
+        "title": "Chạy từng bước và tổng hợp lỗi",
+        "start": 41,
+        "end": 62,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "Mỗi bước chạy trong gốc gói với giới hạn 300 giây. Công cụ giữ các bước thất bại để vẫn chạy tiếp và báo tổng cuối cùng cùng thời gian. Mã thoát 0 là không có bước lỗi, 1 là có lỗi; CI hoặc AI có thể dùng mã này để quyết định có đủ điều kiện tiếp tục.",
+        "example": "Một test luật lỗi không bị che bởi bước cú pháp chạy thành công.",
+        "risk": "Không thay thế kiểm tra giao diện bằng mắt, kiểm tra mạng hoặc thử hệ thống tài khoản vì các phần đó không nằm trong công cụ."
+      }
+    ],
+    "reading_tip": "Chạy file này trước khi tìm hiểu tất cả test; khi lỗi, đọc tên bước rồi mở đúng công cụ được nêu."
+  },
+  {
+    "path": "tools/check_online_preview.py",
+    "role": "Kiểm tra 12 bài trong fixtures.js có còn khớp nguồn Python, bộ luật và bản xuất mới hay không. Công cụ chỉ đọc và xác minh, không tải dữ liệu từ mạng.",
+    "depends": [
+      "online-preview/fixtures.js",
+      "app/puzzles.py",
+      "app/rules.py",
+      "tools/export_preview_fixtures.py"
+    ],
+    "missing": "Web vẫn học bài đã xuất nhưng không còn kiểm tra tự động bắt lỗi dữ liệu xuất cũ hoặc lệch nguồn.",
+    "groups": [
+      {
+        "title": "Nạp nguồn bài và công cụ xuất",
+        "start": 1,
+        "end": 10,
+        "symbols": [
+          "ROOT"
+        ],
+        "explanation": "Script đưa gốc gói vào đường tìm module rồi nhập PUZZLES, định nghĩa quân, bộ luật và hàm make_fixtures. Nhờ vậy nó có cả dữ liệu nguồn lẫn cách xuất chuẩn để so sánh.",
+        "example": "",
+        "risk": ""
+      },
+      {
+        "title": "Đọc JavaScript dữ liệu và phát hiện bản cũ",
+        "start": 13,
+        "end": 18,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "fixtures.js có dạng const FIXTURES = ...; phần nội dung được tách thành JSON để đọc bằng Python. Công cụ buộc đủ 12 bài, không trùng id và phải bằng kết quả make_fixtures mới tạo trong bộ nhớ.",
+        "example": "Sửa một vị trí trong puzzles.py nhưng quên chạy export sẽ báo Export is stale.",
+        "risk": "Định dạng khai báo fixtures.js là hợp đồng với công cụ; đổi sang mã JavaScript tùy ý sẽ không còn đọc được bằng JSON."
+      },
+      {
+        "title": "Đối chiếu luật và nội dung từng bài",
+        "start": 19,
+        "end": 37,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "Mỗi bài được kiểm mã, FEN, màu đến lượt, danh sách quân, nước mẫu và tập đầy đủ nước hợp lệ. Nó thực hiện nước mẫu để chắc Tướng bên đi an toàn, kiểm nhãn chủ đề/nguồn và yêu cầu các lời giải thích không trống. Tiêu đề không được chứa chính chuỗi tọa độ đáp án.",
+        "example": "Bài mẫu có legal thiếu một nước hợp lệ sẽ thất bại dù nước solution vẫn đi được.",
+        "risk": "Kiểm chuỗi và tính hợp lệ không thay thế thẩm định sư phạm hoặc bảo đảm đáp án tốt duy nhất."
+      },
+      {
+        "title": "Kiểm đủ nhóm kỹ năng và thông báo kết quả",
+        "start": 38,
+        "end": 43,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "Bước cuối yêu cầu các bài bao phủ đúng các nhóm kỹ năng đã định nghĩa. Nếu mọi assertion qua, công cụ in một dòng PASS; nếu một điều sai, Python báo vị trí assertion để sửa nguyên nhân.",
+        "example": "",
+        "risk": ""
+      }
+    ],
+    "reading_tip": "Dùng file này sau khi sửa puzzles.py hoặc export_preview_fixtures.py. Nếu báo cũ, chạy công cụ xuất rồi kiểm lại; không xóa assertion."
+  },
+  {
+    "path": "tools/export_preview_fixtures.py",
+    "role": "Cầu nối lúc phát triển giữa bài tập Python và dữ liệu JavaScript được web tải. Nó tạo fixtures.js kèm lời giải thích theo dữ liệu luật; không gọi LLM và không lấy ván từ mạng.",
+    "depends": [
+      "app/puzzles.py",
+      "app/rules.py",
+      "online-preview/fixtures.js là đầu ra bị ghi lại"
+    ],
+    "missing": "Web vẫn chạy với fixtures.js có sẵn, nhưng không còn cách tái tạo bài nhất quán từ nguồn Python.",
+    "groups": [
+      {
+        "title": "Nạp nguồn và đặt tên trung lập",
+        "start": 1,
+        "end": 37,
+        "symbols": [
+          "ROOT",
+          "SKILL_NAMES",
+          "TITLES"
+        ],
+        "explanation": "Script đọc ngân hàng bài và bộ luật rồi ánh xạ tên kỹ năng sang tiếng Việt. TITLES đặt các tên như Quan sát toàn bàn để không gợi trực tiếp nước mẫu ngay trước phần phản tư.",
+        "example": "Bài có mã loose-rook có thể hiện tên Quan sát toàn bàn trên giao diện.",
+        "risk": "Tiêu đề/nhóm là nội dung soạn trước, không phải engine tự nhận diện kiến thức chuyên sâu."
+      },
+      {
+        "title": "Tìm các ô nằm giữa trên đường thẳng",
+        "start": 40,
+        "end": 45,
+        "symbols": [
+          "intervening_squares"
+        ],
+        "explanation": "Hàm lấy ô nguồn và đích của Xe hoặc Pháo, xác nhận cùng hàng/cột rồi trả các ô ở giữa. Nó không gồm nguồn và đích, dùng để đếm vật cản hoặc ngòi.",
+        "example": "Từ b2 tới b7 cần xem b3, b4, b5, b6.",
+        "risk": "Không dùng hàm này cho đường chéo hay nước Mã; assertion sẽ từ chối hình dạng không thẳng."
+      },
+      {
+        "title": "Xác minh nước mẫu và tạo phần điều gì xảy ra",
+        "start": 48,
+        "end": 59,
+        "symbols": [
+          "make_fixtures"
+        ],
+        "explanation": "Với mỗi bài, chương trình đọc FEN, tách nước mẫu, xác định quân đi/quân bị ăn rồi thực hiện nước qua bộ luật. Nó yêu cầu đây là nước ăn quân và Tướng vẫn an toàn. Câu what được tạo từ quân và tọa độ thực, kèm việc thoát chiếu nếu đúng.",
+        "example": "Xe Đỏ đi a2 → a7, ăn Xe Đen là câu sinh từ bàn cờ chứ không đoán bằng ngôn ngữ.",
+        "risk": "Phiên bản này giả định mọi bài mẫu ăn quân; thêm bài phòng thủ không ăn quân cần chủ động mở rộng logic và test."
+      },
+      {
+        "title": "Tạo phần lý do và cách suy nghĩ dựa vào luật",
+        "start": 60,
+        "end": 84,
+        "symbols": [
+          "make_fixtures"
+        ],
+        "explanation": "Mỗi loại Xe, Pháo, Mã có nhánh giải thích riêng: Xe không có vật cản, Pháo đúng một ngòi, Mã chân trống. Nếu thế ban đầu đang bị chiếu, lời hướng dẫn chuyển ưu tiên sang thoát chiếu và xác minh an toàn. Loại quân chưa hỗ trợ khiến script dừng để người viết bổ sung nội dung đã kiểm tra.",
+        "example": "Với Pháo, lời why nêu cụ thể quân nào ở ô nào đang làm ngòi.",
+        "risk": "Đây là lời giải thích theo mẫu kiểm tra luật, không chấm đúng/sai bài viết của người học và không tự khẳng định nước tốt nhất."
+      },
+      {
+        "title": "Đóng gói dữ liệu công khai của bài",
+        "start": 85,
+        "end": 99,
+        "symbols": [
+          "make_fixtures"
+        ],
+        "explanation": "Mỗi object có id/family, skill, tiêu đề, mục tiêu, FEN, quân, solution, legal và ba phần what/why/how. Nhãn source ghi nguồn tổng hợp. phase=end chỉ giúp đặt bài ít quân vào mục tàn cuộc; phaseNote nói rõ chưa phải giáo trình tàn cuộc thẩm định.",
+        "example": "app.js dùng pieces hoặc fen để vẽ bàn, còn phần giải thích chỉ được trình bày sau bước phản tư.",
+        "risk": "solution nằm trong JavaScript công khai; ẩn đáp án trước phản tư là quy tắc giao diện, không phải cơ chế bảo mật chống đọc source."
+      },
+      {
+        "title": "Ghi file JavaScript dùng trên web",
+        "start": 102,
+        "end": 109,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "main ghi toàn bộ kết quả ra online-preview/fixtures.js bằng UTF-8, giữ dấu tiếng Việt và định dạng thụt dòng. Chạy lại sẽ ghi đè file dữ liệu đó theo nguồn hiện tại rồi in số bài.",
+        "example": "python tools/export_preview_fixtures.py tạo lại 12 bài trong bản hiện tại.",
+        "risk": "Không chỉnh riêng fixtures.js rồi chạy export nếu muốn giữ thay đổi; hãy chỉnh nguồn hoặc logic xuất trước."
+      }
+    ],
+    "reading_tip": "Đọc một bài từ puzzles.py, theo nó qua make_fixtures và tìm id tương ứng trong fixtures.js để hiểu luồng dữ liệu."
+  },
+  {
+    "path": "tools/check_browser_rules.py",
+    "role": "Đối chiếu luật và engine JavaScript với bản Python bằng các thế thử tự tạo. Node chạy mã JavaScript, Python cung cấp kết quả chuẩn nội bộ; không mở trình duyệt hoặc dùng dịch vụ ngoài.",
+    "depends": [
+      "app/rules.py",
+      "app/engine.py",
+      "app/puzzles.py",
+      "online-preview/xiangqi.js",
+      "Node.js hiện đại",
+      "Thư viện chuẩn Python"
+    ],
+    "missing": "Web vẫn chạy nhưng mất kiểm tra hai bản luật/engine có cho cùng kết quả. Sửa một bên có thể gây lệch âm thầm.",
+    "groups": [
+      {
+        "title": "Khởi tạo bàn nhỏ cho ca thử",
+        "start": 1,
+        "end": 26,
+        "symbols": [
+          "ROOT",
+          "setup"
+        ],
+        "explanation": "Script nhập bộ luật, engine và bài Python. setup dựng bàn với hai Tướng, quân chắn và các quân tùy chọn để kiểm tra một tình huống mà không cần chơi cả ván.",
+        "example": "",
+        "risk": ""
+      },
+      {
+        "title": "Sinh bộ thế luật gồm hai màu và ván tự tạo",
+        "start": 29,
+        "end": 83,
+        "symbols": [
+          "fixtures"
+        ],
+        "explanation": "fixtures bắt đầu từ thế đầu và 12 bài. Nó thêm cung, mắt Tượng, chân Mã, ngòi Pháo, tự chiếu, chiếu hết; mỗi thế nhỏ được quay và đổi màu để kiểm cả hai bên. Bốn chuỗi dùng seed cố định sinh tối đa 30 nửa nước mỗi chuỗi. Với từng thế, Python tính targets, legal, checks, status, evaluation và bàn sau mọi nước.",
+        "example": "Một lỗi chỉ xuất hiện ở Tốt đen có thể bị lộ nhờ ca đảo màu, dù bài mẫu chính dùng đỏ.",
+        "risk": "Những ván này được chương trình tạo để kiểm thử, không phải dữ liệu thật; hai bản cùng sai vẫn có thể qua đối chiếu."
+      },
+      {
+        "title": "Sinh đầu vào FEN hợp lệ và lỗi",
+        "start": 86,
+        "end": 108,
+        "symbols": [
+          "fen_cases"
+        ],
+        "explanation": "Danh sách có số/chuỗi rỗng, quá dài, sai lượt, thiếu Tướng, sai số quân/vị trí và các cách viết hợp lệ. Python ghi FEN chuẩn hoặc null nếu bị từ chối, để JavaScript phải xử lý tương đương.",
+        "example": "START_FEN dùng N/B thay H/E phải đọc về cùng bàn chuẩn.",
+        "risk": ""
+      },
+      {
+        "title": "Mã Node đối chiếu bàn và hợp lệ nước",
+        "start": 111,
+        "end": 144,
+        "symbols": [
+          "NODE_CHECK"
+        ],
+        "explanation": "Chuỗi NODE_CHECK là chương trình JavaScript được Python đưa cho Node. Nó đọc JSON qua đầu vào chuẩn, so sánh mọi điểm đích, nước hợp lệ, tình trạng chiếu và FEN con; đồng thời bảo đảm thử nước không làm đổi bàn cha. Nó kiểm 44 nước đầu và 1.920 khả năng sau hai nửa nước.",
+        "example": "Nếu JavaScript bỏ sót một nước Mã mà Python có, deepStrictEqual dừng với tên thế và loại kiểm tra.",
+        "risk": ""
+      },
+      {
+        "title": "Đối chiếu tìm kiếm và tình huống hết thời gian",
+        "start": 145,
+        "end": 183,
+        "symbols": [
+          "NODE_CHECK"
+        ],
+        "explanation": "Với các bài tập, Node phải đạt độ sâu 2 và có cùng điểm/xếp hạng/biến thể với Python. Mỗi biến thể được chạy lại bằng luật. Ca maxMs=0 kiểm kết quả dự phòng hợp lệ, ca độ sâu 1 kiểm độ dài nhánh, ca chiếu hết yêu cầu bestMove=null. Một lần tìm ở thế đầu ghi thời gian thực tế.",
+        "example": "Hết giờ phải ghi complete=false và truncated=true thay vì giả rằng đã tính đủ sâu.",
+        "risk": "Báo PASS ở đây là khớp bản tham chiếu nội bộ, không chứng nhận engine mạnh hay đúng mọi luật thi đấu."
+      },
+      {
+        "title": "Chọn Node chạy đối chiếu và trả kết quả",
+        "start": 186,
+        "end": 212,
+        "symbols": [
+          "main"
+        ],
+        "explanation": "Tham số --node được ưu tiên; nếu không có, script thử vị trí Node đi kèm môi trường hiện tại rồi mới PATH. Nó tạo phân tích Python đủ sâu, truyền JSON sang Node, thu stdout/stderr và trả lỗi nếu Node thất bại. Thời gian chờ tiến trình là 180 giây.",
+        "example": "Trên máy mới nên truyền --node nếu có nhiều Node hoặc đường dẫn Node đi kèm không tồn tại.",
+        "risk": "Công cụ không tự tải/cài Node và không tự thay dữ liệu web."
+      }
+    ],
+    "reading_tip": "Đầu tiên đọc tên các ca trong edge_cases. Khi kiểm thất bại, xem Python hay JavaScript lệch khỏi luật mong muốn trước khi sửa kết quả tham chiếu."
+  },
+  {
+    "path": "tools/test_preview_learning.cjs",
+    "role": "19 test cho vòng học và dữ liệu tiến độ ở learning.js: phản tư, lưu nháp, ghi hoàn thành, ôn cách quãng, đề xuất và làm sạch dữ liệu. Test chạy bằng Node, không cần mở website.",
+    "depends": [
+      "online-preview/learning.js",
+      "Node.js node:assert/strict"
+    ],
+    "missing": "Web vẫn chạy, nhưng các lỗi như mở đáp án sớm, tính trùng lượt học hoặc dời lịch ôn khi nộp lại sẽ ít được phát hiện.",
+    "groups": [
+      {
+        "title": "Tạo dữ liệu và thời gian kiểm thử cố định",
+        "start": 1,
+        "end": 18,
+        "symbols": [
+          "test",
+          "ready",
+          "completed",
+          "T0"
+        ],
+        "explanation": "Các helper tạo phiên đã điền phản tư hoặc đã hoàn thành để test không lặp nhiều code. T0 là mốc thời gian cố định; mỗi test truyền thời gian cụ thể để kiểm lịch ôn mà không phải chờ qua ngày.",
+        "example": "completed mô phỏng hoàn thành sau 10 giây; không ghi một lượt học thật lên web.",
+        "risk": ""
+      },
+      {
+        "title": "Cửa phản tư và danh tính phiên",
+        "start": 20,
+        "end": 54,
+        "symbols": [
+          "CC.fresh",
+          "CC.canReveal",
+          "CC.reveal",
+          "CC.createSession"
+        ],
+        "explanation": "Test bảo đảm trạng thái mới không dùng chung object, giải thích bị chặn nếu thiếu câu trả lời hoặc nước chọn, và chỉ boolean true mới có nghĩa người dùng chủ động nói chưa biết. Nhánh chưa biết luôn đánh dấu có trợ giúp, kể cả bên gọi cố gửi assisted=false. Mã phiên ổn định theo thời điểm bắt đầu.",
+        "example": "Chuỗi 'true' không được hiểu như true thật để tránh dữ liệu sai kiểu mở đáp án.",
+        "risk": ""
+      },
+      {
+        "title": "Hoàn thành đúng thời điểm và lịch ôn",
+        "start": 56,
+        "end": 124,
+        "symbols": [
+          "CC.markSeen",
+          "CC.finishPuzzle",
+          "CC.sanitize"
+        ],
+        "explanation": "Xem bài hoặc bỏ dở không tạo completedAt/dueAt; phiên để qua đêm phải hẹn ôn tính từ lúc hoàn thành. Nộp trùng không đổi lịch. Chuỗi thành công độc lập đi theo 1/2/7/14/30 ngày; sai quay về 1 ngày, dùng trợ giúp có lịch riêng. Test từ chối hoàn thành trước phản tư, sai bài hoặc thời gian không hợp lệ.",
+        "example": "Bắt đầu tối nay và xong ngày mai thì lịch ôn bắt đầu từ ngày mai, không phải từ lúc mở bài.",
+        "risk": "Các khoảng ngày là quy tắc hiện tại của sản phẩm, không phải kết quả mô hình học máy."
+      },
+      {
+        "title": "Đề xuất bài và tự đánh giá cuối phiên",
+        "start": 126,
+        "end": 154,
+        "symbols": [
+          "CC.recommend",
+          "CC.summarizeSession"
+        ],
+        "explanation": "Đề xuất ưu tiên bài chưa gặp cùng kỹ năng, loại bài đang học; nếu đã gặp hết thì chọn bài cũ nhất và không gọi sai là mới. Phiếu tự đánh giá được lưu như self_report, không sửa điểm khách quan hoặc ngày ôn; nộp lại không nhân đôi tổng kết.",
+        "example": "Tích Tôi hiểu rồi không được biến một lượt sai thành lượt làm đúng độc lập.",
+        "risk": ""
+      },
+      {
+        "title": "Khôi phục nháp và chống dữ liệu nhập sai",
+        "start": 156,
+        "end": 207,
+        "symbols": [
+          "CC.sanitize",
+          "CC.finishPuzzle"
+        ],
+        "explanation": "Các test khôi phục trạng thái trang, ô được chọn và bài trích từ ván. Dữ liệu hỏng, khóa __proto__/constructor, tên quá dài, ngày tương lai, lượt trùng và lịch sử sai thứ tự phải được loại/làm sạch. Các chỉ số được dựng lại từ lượt hợp lệ, không tin số completionCount do đầu vào tự khai.",
+        "example": "Một bản nhập tự đặt completionCount=99999 không được tạo 99.999 lần hoàn thành.",
+        "risk": "Đây là làm sạch dữ liệu cục bộ, không thay thế quyền truy cập máy chủ khi triển khai tài khoản."
+      },
+      {
+        "title": "Báo từng test và mã thoát",
+        "start": 209,
+        "end": 215,
+        "symbols": [
+          "tests.forEach"
+        ],
+        "explanation": "Bộ chạy thực hiện mọi test, in PASS hoặc FAIL với lỗi và đếm tổng. Nếu có ít nhất một lỗi, process.exitCode=1 để check_all.py biết bước kiểm thất bại.",
+        "example": "",
+        "risk": ""
+      }
+    ],
+    "reading_tip": "Theo thứ tự phản tư → hoàn thành → lịch ôn → khôi phục. Các test dùng câu tiếng Anh làm tên kỹ thuật; phần assert bên trong thể hiện yêu cầu cụ thể."
+  },
+  {
+    "path": "tools/test_preview_game_tools.cjs",
+    "role": "14 test cho ký pháp tiếng Việt, nhập ván, bảng lịch sử, lý do nước sai và chính sách lặp trong game-tools.js. Nó kiểm cách diễn đạt gắn với luật, không dùng engine để bịa lời giải.",
+    "depends": [
+      "online-preview/xiangqi.js",
+      "online-preview/game-tools.js",
+      "Node.js node:assert/strict"
+    ],
+    "missing": "Web vẫn chơi, nhưng dễ phát sinh lỗi nhập ván, ký hiệu mơ hồ hoặc phân xử lặp sai khi sửa game-tools.js.",
+    "groups": [
+      {
+        "title": "Dựng thế và đảo màu kiểm tra",
+        "start": 1,
+        "end": 16,
+        "symbols": [
+          "pos",
+          "rotate",
+          "mirroredMove",
+          "test"
+        ],
+        "explanation": "pos tạo bàn hợp lệ; rotate đảo 180 độ và đổi màu; mirroredMove chuyển nước tương ứng. Một tình huống được thử cho cả đỏ lẫn đen mà không viết lại mọi dữ liệu.",
+        "example": "Xe a2 của đỏ ở bàn gốc sẽ có vị trí tương ứng phía đen ở bàn quay.",
+        "risk": ""
+      },
+      {
+        "title": "Ký pháp cho mọi quân và các trường hợp cùng cột",
+        "start": 18,
+        "end": 85,
+        "symbols": [
+          "CC.notateMove",
+          "CC.parseNotation"
+        ],
+        "explanation": "Test đầu kiểm bảy loại quân, hướng tiến/bình/thoái và số lộ theo bên đang đi. Một chuỗi 100 thế tự tạo thử đổi mọi nước hợp lệ thành ký pháp rồi đọc ngược, bao phủ cả 14 tổ hợp màu/quân. Các ca nhiều Xe hoặc Tốt cùng lộ yêu cầu trước/sau/giữa để không mơ hồ; parser nhận tọa độ hoặc từ hướng đầy đủ.",
+        "example": "P2 bình 5 phải đọc thành h2e2 ở thế đầu; X9-8 phải bị yêu cầu làm rõ nếu có hai Xe cùng lộ 9.",
+        "risk": "Dữ liệu thử 100 thế là tự tạo; không phải 100 ván thật của người dùng."
+      },
+      {
+        "title": "Nhập toàn bộ ván và ghép lịch sử hai bên",
+        "start": 87,
+        "end": 107,
+        "symbols": [
+          "CC.parseGameNotation",
+          "CC.pairMoveHistory"
+        ],
+        "explanation": "Nhập ván phải hiểu số thứ tự và phối hợp ký pháp với tọa độ, tạo đủ các bàn trung gian. Một nước lỗi làm cả lần nhập bị từ chối và chỉ đúng nửa nước sai; giới hạn số nước được kiểm tra. Bảng lịch sử luôn giữ đỏ trái, đen phải, kể cả FEN bắt đầu từ lượt đen.",
+        "example": "Nhập P2-5 M2.3 a3a5 phải báo lỗi ở nửa nước thứ 3 vì Tốt không đi hai ô.",
+        "risk": ""
+      },
+      {
+        "title": "Giải thích nước trái luật bằng bằng chứng",
+        "start": 109,
+        "end": 135,
+        "symbols": [
+          "CC.illegalMoveReason"
+        ],
+        "explanation": "Test so khớp lời báo cho ô không quân, sai lượt, quân cùng bên, chân Mã, vật cản Xe, ngòi Pháo, Tốt đi lùi/đi ngang sớm, mắt Tượng, sông và cung. Nó còn kiểm việc dời quân chắn làm hai Tướng đối mặt hoặc tự chiếu.",
+        "example": "Thông báo Pháo có 0 quân ngòi phải xuất phát từ đúng tình trạng bàn, không phải phỏng đoán chiến thuật.",
+        "risk": "Đây là giải thích tính hợp lệ, không cho phép dùng nó để bật gợi ý chiến thuật trong ván đang chơi."
+      },
+      {
+        "title": "Lặp thế chiếu dai và ngưỡng cần xác minh",
+        "start": 137,
+        "end": 189,
+        "symbols": [
+          "CC.repetitionStatus"
+        ],
+        "explanation": "Nhóm cuối xác nhận chính sách hiện tại: đợi bốn lần xuất hiện mới xử lý chu kỳ chiếu dai nghiêm ngặt một phía; lặp yên tĩnh đơn giản được nhận diện riêng. Nghi đuổi quân và 100 nửa nước không ăn quân phải đánh dấu needsVerification, không tự bịa kết quả hòa. Ăn quân đặt lại bộ đếm, Tốt đi tiến không tự đặt lại.",
+        "example": "Một chu kỳ Mã có thể là đuổi quân sẽ nhận repetition-review để chờ xác minh.",
+        "risk": "Test này khóa hành vi bản prototype; không chứng minh đã triển khai đầy đủ luật thi đấu quốc tế hoặc mọi trường hợp đuổi dai."
+      },
+      {
+        "title": "Chạy toàn bộ nhóm và báo thất bại",
+        "start": 191,
+        "end": 196,
+        "symbols": [
+          "tests"
+        ],
+        "explanation": "Vòng cuối chạy từng tình huống, in tên test và stack lỗi nếu có, rồi đặt mã thoát khác 0 khi có thất bại. check_all.py sử dụng mã này để dừng đánh dấu phiên kiểm thành công.",
+        "example": "",
+        "risk": ""
+      }
+    ],
+    "reading_tip": "Nếu muốn sửa cách ghi biên bản, đọc test notateMove/parseNotation trước. Nếu sửa lặp, đọc cả giới hạn needsVerification để tránh phân xử quá khả năng."
+  },
+  {
+    "path": "tools/test_preview_experience.cjs",
+    "role": "18 test về trải nghiệm: lựa chọn giao diện, phản tư nhiều lần, di trú dữ liệu, xuất dữ liệu cá nhân, thống kê, đồng hồ và một số hành vi app.js thực. Dùng Node với DOM mô phỏng tối thiểu; không phải kiểm tra ảnh giao diện.",
+    "depends": [
+      "online-preview/xiangqi.js",
+      "online-preview/learning.js",
+      "online-preview/experience.js",
+      "online-preview/game-tools.js",
+      "online-preview/app.js",
+      "Các module chuẩn Node assert fs path vm"
+    ],
+    "missing": "Web vẫn chạy, nhưng nhiều lỗi nối giữa logic học và giao diện có thể lọt qua dù test luật vẫn xanh.",
+    "groups": [
+      {
+        "title": "Gom module và test lựa chọn với phản tư",
+        "start": 1,
+        "end": 62,
+        "symbols": [
+          "CC",
+          "session",
+          "CC.preferences",
+          "CC.reflectionCheck"
+        ],
+        "explanation": "Phần đầu ghép các hàm học, trải nghiệm và công cụ ván vào CC giống app. Test preferences chỉ nhận tùy chọn hợp lệ. Phản tư thiếu không tiêu hao lần thử hay mở đáp án; nước mẫu hoặc phương án thay thế cho phép tiếp tục mà không khẳng định đã chấm bài viết. Nước sai chỉ tăng tối đa ba lần và lượt có trợ giúp không biến thành thành công độc lập.",
+        "example": "Chọn theme='purple' ngoài danh sách sẽ quay về mặc định; trả lời thiếu một câu giữ nguyên số lần nộp.",
+        "risk": ""
+      },
+      {
+        "title": "Giữ suy nghĩ ban đầu khi lưu và nâng dữ liệu",
+        "start": 64,
+        "end": 102,
+        "symbols": [
+          "CC.sanitize",
+          "CC.finishPuzzle",
+          "CC.evidence"
+        ],
+        "explanation": "Dữ liệu phiên đi qua JSON và sanitize phải giữ nháp, mức trợ giúp, lần chọn đầu, câu đầu và nháp tự đánh giá. Sau khi sửa đáp án đúng, câu trả lời đầu vẫn được lưu riêng. Với dữ liệu cũ chưa lưu lịch sử đầu, hệ thống để null thay vì tự tạo chuyện người học từng nghĩ gì.",
+        "example": "Người học ban đầu chọn a3a4 rồi sửa h2e2: cả hai được lưu khác trường.",
+        "risk": "Giữ câu trả lời đầu không đồng nghĩa hệ thống đã hiểu hoặc chấm đúng lập luận tự do."
+      },
+      {
+        "title": "Xuất cá nhân và thống kê đủ mẫu",
+        "start": 104,
+        "end": 150,
+        "symbols": [
+          "CC.safeExport",
+          "CC.evidence"
+        ],
+        "explanation": "Các test chèn khóa đáp án ở nhiều tầng dữ liệu rồi bảo đảm safeExport không mang solution/alternatives/lời giải nội bộ ra bản xuất. Dữ liệu người dùng như tên, câu trả lời và ghi chú được giữ bằng bản sao. Thống kê phân biệt sáu lượt thử với sáu thế chưa gặp; ôn lại đúng không sửa lịch sử lần đầu sai.",
+        "example": "Sáu lần làm cùng một bài có thể đủ mẫu lượt thử nhưng chỉ là một lần gặp hình mới.",
+        "risk": "Loại đáp án khỏi bản xuất cá nhân không làm source JavaScript bí mật; nó chỉ giữ bản xuất đúng mục đích."
+      },
+      {
+        "title": "Đồng hồ theo thời gian thực và cộng giây",
+        "start": 152,
+        "end": 171,
+        "symbols": [
+          "CC.applyClockMove"
+        ],
+        "explanation": "Test trừ thời gian thực đã trôi qua rồi mới cộng increment nếu nước kịp hạn. Hết đúng thời điểm vẫn thua giờ, không được cộng giây cứu lại; để tab lâu vẫn tính thời gian. Đồng hồ tắt không làm mất giờ và thời gian đi lùi không cộng lợi thế.",
+        "example": "Còn 600 giây, nghĩ 12 giây và cộng 5 giây thì sau nước còn 593 giây.",
+        "risk": "Đây là đồng hồ cục bộ, không phải đồng hồ PvP có máy chủ chống sửa giờ."
+      },
+      {
+        "title": "Môi trường mô phỏng để chạy app thật",
+        "start": 173,
+        "end": 192,
+        "symbols": [
+          "appHarness",
+          "element"
+        ],
+        "explanation": "appHarness tạo document, sự kiện, localStorage và đồng hồ giả tối thiểu rồi chạy đúng file app.js trong Node vm. Nó cho test bấm hành động, gửi biểu mẫu, tăng thời gian và đọc HTML hoặc dữ liệu đã lưu. Nhờ vậy test kiểm hành vi thay vì chỉ tìm một chuỗi trong source. Hàm element(id) tạo hoặc lấy lại phần tử giả theo mã như main, để HTML sau mỗi lần render được giữ và có thể đọc lại trong assertion.",
+        "example": "app.advance(10000) mô phỏng chờ 10 giây để kiểm nút xem giải thích mà không chờ thật.",
+        "risk": "DOM mô phỏng không có trình bày CSS đầy đủ; test qua chưa chứng minh bố cục đẹp, responsive hoặc bấm trên thiết bị thật tốt."
+      },
+      {
+        "title": "Kiểm giao diện giữ đáp án và khóa huấn luyện khi chơi",
+        "start": 194,
+        "end": 243,
+        "symbols": [
+          "appHarness",
+          "tests"
+        ],
+        "explanation": "Các tình huống thực chạy app.js xác nhận lời giải vẫn ẩn cho đến khi người học chọn trợ giúp, chờ đủ và chấp nhận; lần sai đầu được giữ, lần thứ ba mới mở giải thích. Khi có ván đang diễn ra, các đường học/bài khai cuộc/luật/xem lại bị chặn bằng thông báo. Đi thẳng #learn khi chưa có phiên phải hiện trạng thái trống thay vì lỗi. Vòng cuối in PASS/FAIL và mã thoát.",
+        "example": "Người chơi mở #learn giữa ván sẽ thấy Ván đang diễn ra, không thấy đoạn ANSWER_SPOILER của bài mẫu.",
+        "risk": "Đây là chính sách không huấn luyện trong ván hiện tại; sửa điều hướng cần giữ các kiểm tra này."
+      }
+    ],
+    "reading_tip": "Đọc test phản tư và appHarness để thấy logic kết nối với thao tác thế nào. Sau khi test Node qua vẫn mở trình duyệt thử và quan sát giao diện."
+  }
+]

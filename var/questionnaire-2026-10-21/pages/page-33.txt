@@ -1,0 +1,22 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 33
+BS 09 Ván nhập chưa có kết quả hoặc thiếu lịch sử
+Mức 1 · Liên quan: V5 12
+Khi nhập FEN giữa ván hoặc chỉ một đoạn biên bản, người học cần chọn bên muốn học và đánh dấu 
+kết quả chưa biết thế nào? Có cho lưu là ván chưa đầy đủ để học chiến thuật, đồng thời bỏ các phán 
+quyết cần lịch sử không? Khi người dùng chỉ có ảnh/FEN của một vị trí, có cho phân tích chiến thuật và 
+làm bài nhưng không xác nhận phán quyết lịch sử không? Nếu người dùng xin kết quả thắng/hòa của 
+ván thiếu lịch sử, màn hình nên yêu cầu bổ sung gì?
+Đề xuất chưa duyệt: Cho lưu học với nhãn thiếu lịch sử; không tự gán kết quả thực chiến hoặc xét 
+lặp/không ăn đủ điều kiện từ FEN đơn lẻ.
+Cần điền: 1. Bên cần học; 2. Nhãn ván chưa đầy đủ; 3. Kết quả chưa biết; 4. Quyền học và giới hạn phán quyết; 
+5. Cảnh báo thiếu lịch sử; 6. Cách bổ sung chuỗi nước hoặc ghi Không còn biên bản
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 10 Một ván có nhiều bản ghi chú
+Mức 2 · Liên quan: V5 12, V5 44
+Cùng thế đầu và cùng chuỗi nước nhưng khác tên/ghi chú nên là hai ván độc lập hay hai bản ghi chú 
+của một ván? Khi báo nhập trùng, người dùng được mở bản đã có, giữ bản mới hay hợp nhất phần 
+nào?
+Đề xuất chưa duyệt: Giữ một biên bản chuẩn và các ghi chú riêng, cho lựa chọn rõ trước khi hợp nhất.
+Cần điền: 1. Cách nhận diện cùng ván; 2. Cách giữ ghi chú; 3. Các nút khi nhập trùng
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

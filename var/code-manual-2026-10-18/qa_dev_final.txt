@@ -1,0 +1,9 @@
+FINAL VISUAL QA — 18/10/2026 — PASS
+
+Đã xem trực tiếp đủ 19 PNG của bản render cuối: trang 046 đến 064, từng ảnh bằng view_image với detail=original. Phạm vi gồm phần cuối test luật, 7 công cụ, cấu hình VS Code/Git, README, bàn giao, manifest, nguồn tham khảo và hướng dẫn cuối.
+
+Không phát hiện lỗi cắt chữ, chồng nội dung, tràn lề, code identifier bị mất hoặc heading cô lập. Đường dẫn/tên test dài vẫn đọc đủ khi xuống dòng. Bảng trang 063 và hai lệnh chạy trang 064 nguyên vẹn. Không còn trang gần rỗng trong phạm vi này; ngắt trang giữa nội dung liên tục vẫn đọc tự nhiên.
+
+Không có blocker nội dung gây hiểu sai kiến trúc: phần tài khoản được nêu là chưa có; các file Python được phân biệt với web tĩnh; các giới hạn test và engine được ghi rõ. Nội dung vẫn có các từ kỹ thuật nhưng đi kèm vai trò và ví dụ cụ thể; không thấy cần sửa khẩn cấp.
+
+Không sửa DOCX hoặc source trong lượt QA.

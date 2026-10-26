@@ -1,0 +1,27 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 48
+M Vận hành dữ liệu và phát hành
+Về mục lục
+BS 39 Hạn mức sử dụng phân tích khi có nhiều người
+Mức 1 · Liên quan: V5 37, V5 40
+Điều kiện áp dụng: Không cần tự ước lượng số CPU, thread hoặc RAM.
+Khi nhiều người cùng dùng engine, bạn ưu tiên mọi người nhận lượt cơ bản, hay cho một người dùng 
+liên tục đến khi hết hạn mức? Khách và tài khoản có giới hạn khác nhau không? Người chạm giới hạn 
+được tiếp tục phần nào?
+Đề xuất chưa duyệt: Giới hạn hợp lý ở server, báo rõ trạng thái và giữ bài đã có; chưa tạo 
+premium/payment. Đội kỹ thuật đề xuất con số sau đo tải trong ngân sách bạn chốt.
+Cần điền: 1. Khách và tài khoản được dùng phân tích mạnh ở mức nào; 2. Cách xử lý khi xếp hàng/quá hạn mức; 
+3. Phần luyện tập vẫn mở khi hết lượt; 4. Có muốn xem lượng tài nguyên đã dùng trong quản trị không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 40 Dữ liệu nào được gửi tới dịch vụ giải thích bên ngoài
+Mức 1 · Liên quan: V5 01, V5 29, V5 30, V5 37
+Điều kiện áp dụng: Nếu chưa chọn LLM, có thể trả lời Chưa gửi dịch vụ ngoài; phần tích hợp LLM để sau.
+Nếu sau này dùng dịch vụ LLM cho lời giải, bạn cho phép gửi chỉ thế cờ và bằng chứng engine, hay cả
+câu trả lời tự do đã loại thông tin cá nhân? Người học cần được thông báo và lựa chọn như thế nào? 
+Nếu không đồng ý hoặc dịch vụ lỗi, lời giải mẫu có đủ không?
+Đề xuất chưa duyệt: Bản đầu chỉ dùng lời giải có căn cứ và mẫu; không gửi dữ liệu ra nhà cung cấp 
+mới trước khi có chính sách được duyệt. Không dùng dữ liệu người học để huấn luyện. Không coi việc 
+gỡ tên là đảm bảo đã ẩn danh hoàn toàn.
+Cần điền: 1. Những nhóm dữ liệu được gửi; 2. Những nhóm tuyệt đối không gửi; 3. Thông báo/lựa chọn của 
+người học; 4. Hành vi khi từ chối hoặc dịch vụ không hoạt động
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

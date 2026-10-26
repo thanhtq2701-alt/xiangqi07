@@ -1,0 +1,34 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 24
+H Chốt bản tiếp theo và chuẩn bị Vercel
+Về mục lục
+V5 39 Thứ tự triển khai trong đợt V5
+Mức 2
+V5 đã phải có tài khoản, đồng bộ và quản trị, đồng thời giữ vòng học hoạt động. Ngoài phần bắt buộc 
+đó, hãy chọn tối đa ba cải thiện quan trọng nhất: câu hỏi/lời giải, nội dung được duyệt, engine, mobile 
+hoặc công cụ biên tập. Bạn muốn thử từng bản nhỏ hay chờ một bản tích hợp cuối cùng?
+Đề xuất làm mốc Pikafish local trước là đề xuất của trợ lý, chưa được coi là bạn đã chọn. Hãy xếp thứ
+tự engine mạnh, tài khoản/admin, đồng bộ và UX trong phạm vi V5 đã chốt.
+Đề xuất chưa duyệt: nghiệm thu tài khoản và quyền truy cập trước, tiếp đến đồng bộ và thống kê, rồi 
+ghép các cải thiện trải nghiệm đã chốt. Mỗi đợt có kết quả quan sát được; không mở rộng sang PvP 
+hoặc trained ML chỉ vì đã có tài khoản.
+Cần điền: 1. Tối đa ba cải thiện ngoài tài khoản/đồng bộ/quản trị và giữ vòng học; 2. Ưu tiên trong câu hỏi/lời giải, 
+nội dung duyệt, engine, mobile, biên tập; 3. Thử từng bản nhỏ hay bản tích hợp; 4. Tiêu chí quan trọng nhất khi 
+duyệt; 5. Có đồng ý một mốc Pikafish local trước bản tài khoản online không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 40 Dịch vụ và quyền triển khai bản V5 lên web
+Mức 1
+Bạn đã có tài khoản hosting, dịch vụ đăng nhập hoặc database nào? Chỉ ghi tên dịch vụ và người quản 
+lý, không đưa thông tin đăng nhập. Với mong muốn chuyển sang Vercel đã trao đổi, bạn muốn chuyển 
+khi V5 đủ tính năng hay thử trước ở địa chỉ thử nghiệm? Có cần tên miền riêng trong cùng đợt không?
+Hosting giao diện, API tài khoản/database và dịch vụ chạy engine là các thành phần khác nhau. Đưa 
+giao diện lên Vercel không tự tạo Pikafish hoặc đồng bộ. Bạn chỉ cần nêu dịch vụ đang có và giới hạn; 
+đội kỹ thuật chọn cách kết nối rồi báo để bạn duyệt.
+Đề xuất chưa duyệt: chọn cách deploy sau khi chốt dữ liệu và ngân sách. Hosting frontend, xác thực và 
+database là các phần có thể tách riêng; chỉ chuyển địa chỉ web sẽ không tự tạo hệ thống tài khoản. 
+Chuẩn bị môi trường thử và cách quay lại bản ổn định; xin duyệt hành động cần quyền trước khi kết nối 
+hoặc phát hành.
+Cần điền: 1. Hosting/xác thực/database đã có; 2. Người quản lý từng dịch vụ; 3. Số người dùng đồng thời dự kiến; 
+4. Chuyển Vercel khi đủ V5 hay thử trước ở địa chỉ thử; 5. Thời điểm chuyển; 6. Tên miền riêng trong đợt này nếu 
+cần; 7. Quyền/kết nối/phát hành cần duyệt cụ thể
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

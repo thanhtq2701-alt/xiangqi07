@@ -1,0 +1,605 @@
+[
+  {
+    "id": "v6-rooks-palace-a",
+    "version": 1,
+    "format": "line-v1",
+    "title": "Hai Xe khép vòng vây",
+    "phase": "middle",
+    "chapterId": "coordination",
+    "skill": "safety",
+    "pieceTags": [
+      "rook",
+      "king"
+    ],
+    "familyId": "two-rooks-palace-checking",
+    "difficulty": "intermediate",
+    "difficultyLabel": "Trung cấp · mức dự kiến",
+    "goal": "Dùng chuỗi nước chiếu liên tục để chiếu hết trong tối đa 4 lượt đi của Đỏ.",
+    "learner": "w",
+    "fen": "3aka3/9/9/6R2/9/3R5/9/9/9/3K5 w",
+    "root": "n0",
+    "nodes": {
+      "n0": {
+        "id": "n0",
+        "fen": "3aka3/9/9/6R2/9/3R5/9/9/9/3K5 w",
+        "remaining": 4,
+        "choices": [
+          {
+            "move": "g6e6",
+            "reply": "d9e8",
+            "next": "n1"
+          },
+          {
+            "move": "d4d9",
+            "reply": "e9e8",
+            "next": "n2"
+          }
+        ],
+        "rejectedMoves": [
+          "g6h6",
+          "g6i6",
+          "g6f6",
+          "g6d6",
+          "g6c6",
+          "g6b6",
+          "g6a6",
+          "g6g5",
+          "g6g4",
+          "g6g3",
+          "g6g2",
+          "g6g1",
+          "g6g0",
+          "g6g7",
+          "g6g8",
+          "g6g9",
+          "d4e4",
+          "d4f4",
+          "d4g4",
+          "d4h4",
+          "d4i4",
+          "d4c4",
+          "d4b4",
+          "d4a4",
+          "d4d3",
+          "d4d2",
+          "d4d1",
+          "d4d5",
+          "d4d6",
+          "d4d7",
+          "d4d8",
+          "d0d1"
+        ]
+      },
+      "n1": {
+        "id": "n1",
+        "fen": "4ka3/4a4/9/4R4/9/3R5/9/9/9/3K5 w",
+        "remaining": 3,
+        "choices": [
+          {
+            "move": "d4d9",
+            "reply": null,
+            "next": null
+          }
+        ],
+        "rejectedMoves": [
+          "e6f6",
+          "e6g6",
+          "e6h6",
+          "e6i6",
+          "e6d6",
+          "e6c6",
+          "e6b6",
+          "e6a6",
+          "e6e5",
+          "e6e4",
+          "e6e3",
+          "e6e2",
+          "e6e1",
+          "e6e0",
+          "e6e7",
+          "e6e8",
+          "d4e4",
+          "d4f4",
+          "d4g4",
+          "d4h4",
+          "d4i4",
+          "d4c4",
+          "d4b4",
+          "d4a4",
+          "d4d3",
+          "d4d2",
+          "d4d1",
+          "d4d5",
+          "d4d6",
+          "d4d7",
+          "d4d8",
+          "d0e0",
+          "d0d1"
+        ]
+      },
+      "n2": {
+        "id": "n2",
+        "fen": "3R1a3/4k4/9/6R2/9/9/9/9/9/3K5 w",
+        "remaining": 3,
+        "choices": [
+          {
+            "move": "d9d8",
+            "reply": "e8e9",
+            "next": "n3"
+          },
+          {
+            "move": "g6g8",
+            "reply": "e8e7",
+            "next": "n5"
+          }
+        ],
+        "rejectedMoves": [
+          "d9e9",
+          "d9f9",
+          "d9c9",
+          "d9b9",
+          "d9a9",
+          "d9d7",
+          "d9d6",
+          "d9d5",
+          "d9d4",
+          "d9d3",
+          "d9d2",
+          "d9d1",
+          "g6h6",
+          "g6i6",
+          "g6f6",
+          "g6e6",
+          "g6d6",
+          "g6c6",
+          "g6b6",
+          "g6a6",
+          "g6g5",
+          "g6g4",
+          "g6g3",
+          "g6g2",
+          "g6g1",
+          "g6g0",
+          "g6g7",
+          "g6g9",
+          "d0d1"
+        ]
+      },
+      "n3": {
+        "id": "n3",
+        "fen": "4ka3/3R5/9/6R2/9/9/9/9/9/3K5 w",
+        "remaining": 2,
+        "choices": [
+          {
+            "move": "g6e6",
+            "reply": "f9e8",
+            "next": "n4"
+          }
+        ],
+        "rejectedMoves": [
+          "d8e8",
+          "d8f8",
+          "d8g8",
+          "d8h8",
+          "d8i8",
+          "d8c8",
+          "d8b8",
+          "d8a8",
+          "d8d7",
+          "d8d6",
+          "d8d5",
+          "d8d4",
+          "d8d3",
+          "d8d2",
+          "d8d1",
+          "d8d9",
+          "g6h6",
+          "g6i6",
+          "g6f6",
+          "g6d6",
+          "g6c6",
+          "g6b6",
+          "g6a6",
+          "g6g5",
+          "g6g4",
+          "g6g3",
+          "g6g2",
+          "g6g1",
+          "g6g0",
+          "g6g7",
+          "g6g8",
+          "g6g9",
+          "d0d1"
+        ]
+      },
+      "n4": {
+        "id": "n4",
+        "fen": "4k4/3Ra4/9/4R4/9/9/9/9/9/3K5 w",
+        "remaining": 1,
+        "choices": [
+          {
+            "move": "d8d9",
+            "reply": null,
+            "next": null
+          }
+        ],
+        "rejectedMoves": [
+          "d8e8",
+          "d8c8",
+          "d8b8",
+          "d8a8",
+          "d8d7",
+          "d8d6",
+          "d8d5",
+          "d8d4",
+          "d8d3",
+          "d8d2",
+          "d8d1",
+          "e6f6",
+          "e6g6",
+          "e6h6",
+          "e6i6",
+          "e6d6",
+          "e6c6",
+          "e6b6",
+          "e6a6",
+          "e6e5",
+          "e6e4",
+          "e6e3",
+          "e6e2",
+          "e6e1",
+          "e6e0",
+          "e6e7",
+          "e6e8",
+          "d0e0",
+          "d0d1"
+        ]
+      },
+      "n5": {
+        "id": "n5",
+        "fen": "3R1a3/6R2/4k4/9/9/9/9/9/9/3K5 w",
+        "remaining": 2,
+        "choices": [
+          {
+            "move": "d9d7",
+            "reply": null,
+            "next": null
+          }
+        ],
+        "rejectedMoves": [
+          "d9e9",
+          "d9f9",
+          "d9c9",
+          "d9b9",
+          "d9a9",
+          "d9d8",
+          "d9d6",
+          "d9d5",
+          "d9d4",
+          "d9d3",
+          "d9d2",
+          "d9d1",
+          "g8h8",
+          "g8i8",
+          "g8f8",
+          "g8e8",
+          "g8d8",
+          "g8c8",
+          "g8b8",
+          "g8a8",
+          "g8g7",
+          "g8g6",
+          "g8g5",
+          "g8g4",
+          "g8g3",
+          "g8g2",
+          "g8g1",
+          "g8g0",
+          "g8g9",
+          "d0d1"
+        ]
+      }
+    },
+    "exampleLine": [
+      "d4d9",
+      "e9e8",
+      "d9d8",
+      "e8e9",
+      "g6e6",
+      "f9e8",
+      "d8d9"
+    ],
+    "decisions": 4,
+    "source": "Cờ Chill tự dựng 2026-10-25",
+    "proof": {
+      "method": "exhaustive-checking-mate",
+      "maximumPlies": 7,
+      "defender": "all-legal-replies",
+      "engine": "XQ legal rules",
+      "expertReviewed": false,
+      "pikafishVerified": false,
+      "examined": 167
+    },
+    "verification": "Thế tự dựng. Đã kiểm tra đầy đủ phản ứng hợp lệ của Đen trong mục tiêu chiếu liên tục tối đa 4 lượt Đỏ; không phải kết quả Pikafish hay bài chuyên gia duyệt.",
+    "what": "Hai Xe phối hợp ép Tướng trong cung, tận dụng đường khống chế của Tướng Đỏ.",
+    "why": "Mỗi nước được chấp nhận tiếp tục chiếu và giữ được kết quả chiếu hết trong giới hạn bài trước mọi phản ứng hợp lệ của Đen. Đường trả lời được chọn để kéo dài khả năng chống đỡ trong mục tiêu này.",
+    "how": "Đếm đường thoát của Tướng, kiểm tra khả năng bắt quân đang chiếu và nhìn cả quân phòng thủ trước khi đổi Xe hoặc chuyển hướng tấn công."
+  },
+  {
+    "id": "v6-rooks-palace-b",
+    "version": 1,
+    "format": "line-v1",
+    "title": "Đổi hướng trong cung",
+    "phase": "middle",
+    "chapterId": "coordination",
+    "skill": "safety",
+    "pieceTags": [
+      "rook",
+      "king"
+    ],
+    "familyId": "two-rooks-palace-checking",
+    "difficulty": "intermediate",
+    "difficultyLabel": "Trung cấp · mức dự kiến",
+    "goal": "Dùng chuỗi nước chiếu liên tục để chiếu hết trong tối đa 4 lượt đi của Đỏ.",
+    "learner": "w",
+    "fen": "3aka3/5R3/5R3/9/9/9/9/9/9/3K5 w",
+    "root": "n0",
+    "nodes": {
+      "n0": {
+        "id": "n0",
+        "fen": "3aka3/5R3/5R3/9/9/9/9/9/9/3K5 w",
+        "remaining": 4,
+        "choices": [
+          {
+            "move": "f8f9",
+            "reply": "e9e8",
+            "next": "n1"
+          }
+        ],
+        "rejectedMoves": [
+          "f8g8",
+          "f8h8",
+          "f8i8",
+          "f8e8",
+          "f8d8",
+          "f8c8",
+          "f8b8",
+          "f8a8",
+          "f7g7",
+          "f7h7",
+          "f7i7",
+          "f7e7",
+          "f7d7",
+          "f7c7",
+          "f7b7",
+          "f7a7",
+          "f7f6",
+          "f7f5",
+          "f7f4",
+          "f7f3",
+          "f7f2",
+          "f7f1",
+          "f7f0",
+          "d0d1"
+        ]
+      },
+      "n1": {
+        "id": "n1",
+        "fen": "3a1R3/4k4/5R3/9/9/9/9/9/9/3K5 w",
+        "remaining": 3,
+        "choices": [
+          {
+            "move": "f9f8",
+            "reply": "e8e9",
+            "next": "n2"
+          },
+          {
+            "move": "f7f8",
+            "reply": "e8e7",
+            "next": "n4"
+          }
+        ],
+        "rejectedMoves": [
+          "f9g9",
+          "f9h9",
+          "f9i9",
+          "f9e9",
+          "f9d9",
+          "f7g7",
+          "f7h7",
+          "f7i7",
+          "f7e7",
+          "f7d7",
+          "f7c7",
+          "f7b7",
+          "f7a7",
+          "f7f6",
+          "f7f5",
+          "f7f4",
+          "f7f3",
+          "f7f2",
+          "f7f1",
+          "f7f0",
+          "d0d1"
+        ]
+      },
+      "n2": {
+        "id": "n2",
+        "fen": "3ak4/5R3/5R3/9/9/9/9/9/9/3K5 w",
+        "remaining": 2,
+        "choices": [
+          {
+            "move": "f7e7",
+            "reply": "d9e8",
+            "next": "n3"
+          }
+        ],
+        "rejectedMoves": [
+          "f8g8",
+          "f8h8",
+          "f8i8",
+          "f8e8",
+          "f8d8",
+          "f8c8",
+          "f8b8",
+          "f8a8",
+          "f8f9",
+          "f7g7",
+          "f7h7",
+          "f7i7",
+          "f7d7",
+          "f7c7",
+          "f7b7",
+          "f7a7",
+          "f7f6",
+          "f7f5",
+          "f7f4",
+          "f7f3",
+          "f7f2",
+          "f7f1",
+          "f7f0",
+          "d0d1"
+        ]
+      },
+      "n3": {
+        "id": "n3",
+        "fen": "4k4/4aR3/4R4/9/9/9/9/9/9/3K5 w",
+        "remaining": 1,
+        "choices": [
+          {
+            "move": "e7e8",
+            "reply": null,
+            "next": null
+          }
+        ],
+        "rejectedMoves": [
+          "f8g8",
+          "f8h8",
+          "f8i8",
+          "f8e8",
+          "f8f7",
+          "f8f6",
+          "f8f5",
+          "f8f4",
+          "f8f3",
+          "f8f2",
+          "f8f1",
+          "f8f0",
+          "f8f9",
+          "e7f7",
+          "e7g7",
+          "e7h7",
+          "e7i7",
+          "e7d7",
+          "e7c7",
+          "e7b7",
+          "e7a7",
+          "e7e6",
+          "e7e5",
+          "e7e4",
+          "e7e3",
+          "e7e2",
+          "e7e1",
+          "e7e0",
+          "d0e0",
+          "d0d1"
+        ]
+      },
+      "n4": {
+        "id": "n4",
+        "fen": "3a1R3/5R3/4k4/9/9/9/9/9/9/3K5 w",
+        "remaining": 2,
+        "choices": [
+          {
+            "move": "f9e9",
+            "reply": "d9e8",
+            "next": "n5"
+          }
+        ],
+        "rejectedMoves": [
+          "f9g9",
+          "f9h9",
+          "f9i9",
+          "f9d9",
+          "f8g8",
+          "f8h8",
+          "f8i8",
+          "f8e8",
+          "f8d8",
+          "f8c8",
+          "f8b8",
+          "f8a8",
+          "f8f7",
+          "f8f6",
+          "f8f5",
+          "f8f4",
+          "f8f3",
+          "f8f2",
+          "f8f1",
+          "f8f0",
+          "d0d1"
+        ]
+      },
+      "n5": {
+        "id": "n5",
+        "fen": "4R4/4aR3/4k4/9/9/9/9/9/9/3K5 w",
+        "remaining": 1,
+        "choices": [
+          {
+            "move": "e9e8",
+            "reply": null,
+            "next": null
+          }
+        ],
+        "rejectedMoves": [
+          "e9f9",
+          "e9g9",
+          "e9h9",
+          "e9i9",
+          "e9d9",
+          "e9c9",
+          "e9b9",
+          "e9a9",
+          "f8g8",
+          "f8h8",
+          "f8i8",
+          "f8e8",
+          "f8f7",
+          "f8f6",
+          "f8f5",
+          "f8f4",
+          "f8f3",
+          "f8f2",
+          "f8f1",
+          "f8f0",
+          "f8f9",
+          "d0d1"
+        ]
+      }
+    },
+    "exampleLine": [
+      "f8f9",
+      "e9e8",
+      "f9f8",
+      "e8e9",
+      "f7e7",
+      "d9e8",
+      "e7e8"
+    ],
+    "decisions": 4,
+    "source": "Cờ Chill tự dựng 2026-10-25",
+    "proof": {
+      "method": "exhaustive-checking-mate",
+      "maximumPlies": 7,
+      "defender": "all-legal-replies",
+      "engine": "XQ legal rules",
+      "expertReviewed": false,
+      "pikafishVerified": false,
+      "examined": 75
+    },
+    "verification": "Thế tự dựng. Đã kiểm tra đầy đủ phản ứng hợp lệ của Đen trong mục tiêu chiếu liên tục tối đa 4 lượt Đỏ; không phải kết quả Pikafish hay bài chuyên gia duyệt.",
+    "what": "Hai Xe phối hợp ép Tướng trong cung, tận dụng đường khống chế của Tướng Đỏ.",
+    "why": "Mỗi nước được chấp nhận tiếp tục chiếu và giữ được kết quả chiếu hết trong giới hạn bài trước mọi phản ứng hợp lệ của Đen. Đường trả lời được chọn để kéo dài khả năng chống đỡ trong mục tiêu này.",
+    "how": "Đếm đường thoát của Tướng, kiểm tra khả năng bắt quân đang chiếu và nhìn cả quân phòng thủ trước khi đổi Xe hoặc chuyển hướng tấn công."
+  }
+]

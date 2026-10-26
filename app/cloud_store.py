@@ -148,6 +148,7 @@ def metrics(state):
                 independent_recorded = True
     correct = sum(a.get('success') is True for a in independent)
     current = state.get('session')
+<<<<<<< HEAD
     # V6 multi-step completions are separate observations, not extra evidence
     # for the older one-step proficiency ratio (the pilot lines share a family).
     line_attempts = []
@@ -177,6 +178,16 @@ def metrics(state):
         'independentRate': correct / len(independent) if len(independent) >= 6 else None,
         'unfinished': bool((isinstance(current, dict) and current.get('stage') not in ('complete', 'summary'))
                            or (isinstance(line_current, dict) and line_current.get('stage') != 'finished')),
+=======
+    return {
+        'games': len(games), 'finishedGames': sum(isinstance(g, dict) and isinstance(g.get('status'), dict) and g['status'].get('over') is True for g in games),
+        'learningAttempts': len(attempts), 'reviews': sum(a.get('source') == 'review' for a in attempts),
+        'completedPositions': sum(isinstance(r, dict) and bool(r.get('completedAt')) for r in records.values()),
+        'assistedAttempts': sum(a.get('assisted') is True for a in attempts),
+        'independentSamples': len(independent), 'independentCorrect': correct,
+        'independentRate': correct / len(independent) if len(independent) >= 6 else None,
+        'unfinished': bool(isinstance(current, dict) and current.get('stage') not in ('complete', 'summary')),
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
         'verifiedLevel': None, 'source': 'client-reported',
     }
 

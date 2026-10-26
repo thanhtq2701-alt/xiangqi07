@@ -34,4 +34,8 @@ def bank():
 
 
 PUZZLES = bank()
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a

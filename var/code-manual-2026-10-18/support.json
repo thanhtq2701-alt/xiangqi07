@@ -1,0 +1,385 @@
+[
+  {
+    "path": ".gitignore",
+    "role": "Quy tắc giúp Git bỏ qua một số file sinh ra, dữ liệu riêng và thông tin môi trường; đây không phải mã chạy website.",
+    "depends": [],
+    "missing": "Website vẫn chạy. Khi dùng Git, nguy cơ đưa cache, database, bản xuất hoặc bí mật vào commit tăng nếu không có quy tắc tương đương.",
+    "groups": [
+      {
+        "title": "Bỏ qua môi trường và file sinh lại",
+        "start": 1,
+        "end": 4,
+        "symbols": [
+          "__pycache__/",
+          "*.py[cod]",
+          ".venv/",
+          "node_modules/"
+        ],
+        "explanation": "Bốn dòng đầu loại thư mục bytecode Python, file biên dịch Python, môi trường ảo và package Node khỏi việc thêm file chưa được theo dõi. Đây là phần có thể sinh lại từ môi trường hoặc công cụ. Nó giúp repo tập trung vào mã nguồn do bạn quản lý.",
+        "example": "Chạy test Python có thể tạo __pycache__; Git không cần đưa thư mục đó vào commit.",
+        "risk": "Gitignore không tự ngừng theo dõi file đã được commit trước đó."
+      },
+      {
+        "title": "Giữ cấu hình nhạy cảm ngoài Git",
+        "start": 5,
+        "end": 10,
+        "symbols": [
+          ".env",
+          ".env.*",
+          "!.env.example",
+          "var/",
+          "artifacts/",
+          ".openai/"
+        ],
+        "explanation": "Các mẫu .env thường chứa cấu hình môi trường; dấu ! ở .env.example cho phép giữ một bản ví dụ không có bí mật thật. var, artifacts và .openai loại dữ liệu chạy, sản phẩm tạm và cấu hình hosting của công cụ. Trình duyệt không đọc những mẫu này.",
+        "example": "Bạn có thể commit .env.example có tên biến và giá trị mẫu, nhưng không đưa API key thật vào đó.",
+        "risk": "Đây chỉ là lọc tên đường dẫn; secret đặt trong app.js vẫn có thể bị commit hoặc phát hành."
+      },
+      {
+        "title": "Bỏ qua dữ liệu người học và file tạm",
+        "start": 11,
+        "end": 18,
+        "symbols": [
+          "*.sqlite3",
+          "*.sqlite3-wal",
+          "*.sqlite3-shm",
+          "*.log",
+          "*.zip",
+          "co-chill-data*.json",
+          "co-chill-personal*.json",
+          "~$*"
+        ],
+        "explanation": "Nhóm cuối loại database SQLite và file hỗ trợ của nó, log, ZIP, các bản xuất cá nhân mang tiền tố đã biết và file khóa tạm của Word. Bỏ qua không có nghĩa xóa: các file vẫn nằm trên ổ đĩa.",
+        "example": "Một bản xuất mang tên co-chill-personal-2026.json được bỏ qua; một file đổi tên thành data.json không tự thuộc mẫu đó.",
+        "risk": "Vẫn xem git diff --cached trước commit; các mẫu không nhận diện được mọi thông tin riêng."
+      }
+    ],
+    "reading_tip": "Đọc từ trên xuống để hiểu mỗi mẫu áp dụng cho loại file nào. Không chỉnh để đưa database hoặc bí mật lên repo chỉ vì Git đang bỏ qua chúng."
+  },
+  {
+    "path": ".vscode/tasks.json",
+    "role": "Hai lệnh tiện ích để VS Code chạy server tĩnh hoặc bộ kiểm tra từ đúng thư mục dự án.",
+    "depends": [
+      "Python trong PATH",
+      "tools/check_all.py",
+      "online-preview/"
+    ],
+    "missing": "Mất các lựa chọn ở Terminal > Run Task. Website và test vẫn chạy được bằng lệnh terminal tương đương.",
+    "groups": [
+      {
+        "title": "Phiên bản định dạng và danh sách tác vụ",
+        "start": 1,
+        "end": 3,
+        "symbols": [
+          "version",
+          "tasks"
+        ],
+        "explanation": "version 2.0.0 là phiên bản định dạng cấu hình task của VS Code, không phải phiên bản Cờ Chill. tasks là một mảng: mỗi đối tượng bên trong mô tả một chương trình có thể khởi chạy.",
+        "example": "Một task phục vụ web và một task kiểm thử được khai báo riêng để bạn biết mình đang chạy việc gì.",
+        "risk": "File JSON cần đúng dấu ngoặc, dấu phẩy và chuỗi có dấu ngoặc kép."
+      },
+      {
+        "title": "Tác vụ mở server local",
+        "start": 4,
+        "end": 26,
+        "symbols": [
+          "label",
+          "type",
+          "command",
+          "args",
+          "options.cwd",
+          "isBackground",
+          "presentation"
+        ],
+        "explanation": "Task đầu dùng type process để chạy python trực tiếp với từng đối số riêng. -m http.server phục vụ file, 8769 là cổng, --bind 127.0.0.1 chỉ nhận kết nối local, --directory online-preview chọn đúng thư mục công khai. cwd đặt ở workspaceFolder để đường dẫn tương đối không phụ thuộc terminal trước đó. isBackground cho biết tiến trình kéo dài; presentation mở terminal chuyên dụng.",
+        "example": "Chọn Cờ Chill: Chạy web local rồi mở http://127.0.0.1:8769/#home.",
+        "risk": "isBackground không tạo dịch vụ tự chạy khi bật Windows. Nếu cổng bận, cần xử lý cổng; nếu python không có trong PATH thì task không chạy."
+      },
+      {
+        "title": "Tác vụ chạy kiểm thử",
+        "start": 27,
+        "end": 48,
+        "symbols": [
+          "tools/check_all.py",
+          "group.kind",
+          "isDefault",
+          "problemMatcher"
+        ],
+        "explanation": "Task thứ hai gọi python tools/check_all.py, chạy trong workspaceFolder và được gắn vào nhóm test mặc định. problemMatcher trống nghĩa VS Code không có bộ quy tắc riêng để biến dòng lỗi thành liên kết Problems; bạn đọc kết quả trong terminal. Task dùng Node mà runner tìm được, không tự cài Node mới.",
+        "example": "Khi node trong PATH quá cũ, chạy lệnh thủ công có --node trỏ đúng executable hiện đại.",
+        "risk": "Không thấy gạch đỏ trong editor không có nghĩa test đã đạt."
+      }
+    ],
+    "reading_tip": "So từng phần args với lệnh chạy ở README. Đây là cấu hình tiện ích, không phải backend hoặc pipeline deploy."
+  },
+  {
+    "path": "README.md",
+    "role": "Hướng dẫn sử dụng và bảo trì bộ code; giải thích phạm vi, cách chạy, kiểm thử và dữ liệu.",
+    "depends": [
+      "Các file được hướng dẫn trong bộ gọn"
+    ],
+    "missing": "Không làm JavaScript ngừng chạy, nhưng người tiếp nhận mất chỉ dẫn và dễ chạy nhầm app hoặc công bố sai tính năng.",
+    "groups": [
+      {
+        "title": "Nhận diện bộ nguồn và cách mở",
+        "start": 1,
+        "end": 23,
+        "symbols": [
+          "Mở và chạy trong VS Code"
+        ],
+        "explanation": "Phần đầu xác định đây là bản web tĩnh và tách khỏi app Python/SQLite gốc. Các bước mở folder, chạy Python HTTP và địa chỉ local là hướng dẫn cho người vận hành; chúng không được browser thực thi từ README.",
+        "example": "Đọc mục này trước khi dùng nút Run của VS Code để tránh chạy nhầm server.py ở repo cũ.",
+        "risk": "Ngày đóng gói không chứng minh mọi file giống HEAD hoặc phiên bản đang được hosting phục vụ."
+      },
+      {
+        "title": "Bản đồ file và kiến trúc",
+        "start": 24,
+        "end": 70,
+        "symbols": [
+          "Mười file chạy website",
+          "Kiến trúc và cách sửa"
+        ],
+        "explanation": "Hai phần này nối tên file với vai trò và trình bày luồng từ host đến browser. Danh sách trang # là điều hướng phía client. Các gợi ý sửa chỉ ra điểm bắt đầu; không có ý nói một thay đổi luôn chỉ tác động đúng một file.",
+        "example": "Đổi màu thường bắt đầu ở style.css; đổi điều kiện mở lời giải cần đọc cả app.js và các module học.",
+        "risk": "Không dùng tên thư mục app/ để kết luận có backend đang chạy."
+      },
+      {
+        "title": "Bảo trì và kiểm tra",
+        "start": 71,
+        "end": 125,
+        "symbols": [
+          "Những file giữ để bảo trì",
+          "Kiểm tra trước và sau khi sửa"
+        ],
+        "explanation": "Bảng phân biệt source runtime với reference/test. Các lệnh kiểm tra giúp người sửa tái hiện điều kiện đã kiểm chứng. Cảnh báo Node cũ là tình trạng máy khi đóng gói; runner mới là nơi kiểm tra phiên bản thực tế lúc chạy.",
+        "example": "Muốn kiểm tra một lỗi ký phổ nhanh, chạy riêng test_preview_game_tools.cjs, sau đó chạy toàn bộ khi đã sửa xong.",
+        "risk": "README là mô tả; kết quả của một lần chạy test phải được ghi riêng theo thời điểm."
+      },
+      {
+        "title": "Dữ liệu giới hạn và bàn giao",
+        "start": 126,
+        "end": 140,
+        "symbols": [
+          "localStorage",
+          "GitHub",
+          "hosting",
+          "AI_HANDOFF.md"
+        ],
+        "explanation": "Phần cuối phân biệt source với dữ liệu trình duyệt, chặn trước đáp án với bảo mật, và commit với deploy. Nó ghi hạn chế tài khoản, đồng bộ, engine, quyền sử dụng dữ liệu và trách nhiệm duyệt phát hành.",
+        "example": "Copy bộ source sang máy khác vẫn có giao diện nhưng không mang theo các ván đã chơi ở browser cũ.",
+        "risk": "Không đọc yêu cầu V5 như thể đã có triển khai tài khoản thật."
+      }
+    ],
+    "reading_tip": "Đọc trước và cập nhật cùng những thay đổi đã thực sự làm; không dùng README thay cho kiểm tra mã khi hai bên mâu thuẫn."
+  },
+  {
+    "path": "AI_HANDOFF.md",
+    "role": "Bối cảnh sản phẩm và quy tắc làm việc để bạn chủ động gửi cho Claude hoặc trợ lý mới.",
+    "depends": [
+      "README.md",
+      "SOURCE_MANIFEST.json",
+      "Các tài liệu quyết định do chủ dự án cung cấp"
+    ],
+    "missing": "Web vẫn hoạt động, nhưng trợ lý mới dễ mất bối cảnh, đoán nhầm yêu cầu hoặc đụng phần ngoài phạm vi.",
+    "groups": [
+      {
+        "title": "Phạm vi sản phẩm đang có",
+        "start": 1,
+        "end": 15,
+        "symbols": [
+          "Phạm vi thực tế"
+        ],
+        "explanation": "Khối này xác nhận nguồn web là online-preview, app/ chỉ dùng tham chiếu và V5 mới là kế hoạch nâng cấp. Nó nhắc vòng học và yêu cầu giải thích trung thực về engine nông, bài tự dựng, localStorage.",
+        "example": "Khi AI nói sẽ gọi server.py trong bộ gọn, so với phần này sẽ thấy nhầm kiến trúc.",
+        "risk": "Các quyết định chưa chốt cần câu trả lời của bạn; không tự suy ra từ mục tiêu chung."
+      },
+      {
+        "title": "Quy tắc khi trợ lý thay đổi code",
+        "start": 16,
+        "end": 24,
+        "symbols": [
+          "Quy tắc làm việc"
+        ],
+        "explanation": "Các quy tắc yêu cầu kiểm thử, không viết lại vô cớ, không làm yếu test, giữ dữ liệu riêng, và hỏi trước các hành động như push/deploy/xóa. Đây là hướng dẫn cho người hoặc công cụ đọc, không phải mã phân quyền được thực thi ở server.",
+        "example": "Bạn yêu cầu sửa màu vẫn nên nhận danh sách file và kết quả kiểm tra; điều đó không tự cấp phép deploy.",
+        "risk": "Đặt một quy tắc trong Markdown không tạo bảo vệ kỹ thuật cho database hoặc bí mật."
+      },
+      {
+        "title": "Lời nhắn mở đầu cho công việc mới",
+        "start": 25,
+        "end": 29,
+        "symbols": [
+          "Prompt có thể gửi cùng gói"
+        ],
+        "explanation": "Đoạn mẫu giúp truyền bối cảnh tối thiểu sang một cuộc chat mới. Câu cuối nói rõ không giả định extension tự nạp file này. Bạn cần đính kèm hoặc yêu cầu đọc khi bắt đầu.",
+        "example": "Gửi file này cùng một yêu cầu nhỏ như đổi màu trang chủ, rồi duyệt diff trước khi yêu cầu việc khác.",
+        "risk": "Không chứa mật khẩu hoặc credential trong prompt bàn giao."
+      }
+    ],
+    "reading_tip": "Đây là tài liệu hành vi cho trợ lý, không phải cấu hình Claude đặc biệt và không phải mã tài khoản người chơi."
+  },
+  {
+    "path": "SOURCE_MANIFEST.json",
+    "role": "Bản ghi nguồn gốc và dấu vân tay SHA256 của 23 file được sao chép vào gói.",
+    "depends": [
+      "23 file có tên trong files"
+    ],
+    "missing": "Website vẫn chạy; mất bằng chứng thuận tiện để so bản copy với nguồn tại thời điểm đóng gói.",
+    "groups": [
+      {
+        "title": "Thông tin thời điểm và phạm vi",
+        "start": 1,
+        "end": 6,
+        "symbols": [
+          "package_date",
+          "date_timezone",
+          "source_git_head",
+          "source_kind",
+          "note"
+        ],
+        "explanation": "Ngày, múi giờ và commit nền giúp định vị snapshot. source_kind giải thích gói lấy từ working tree; note ghi rõ manifest chỉ liệt kê file sao chép, không liệt kê sáu file được viết riêng cho gói. Vì vậy 23 mục files và 29 file tổng cộng không mâu thuẫn.",
+        "example": "README và chính manifest là file mới của gói nên không có bản ghi copied source tương ứng.",
+        "risk": "Commit nền không tự bảo đảm mọi file nằm nguyên dạng trong commit đó hoặc đã deploy."
+      },
+      {
+        "title": "Một bản ghi so sánh file",
+        "start": 7,
+        "end": 169,
+        "symbols": [
+          "original_relative_path",
+          "package_relative_path",
+          "bytes",
+          "sha256",
+          "matches_source_head"
+        ],
+        "explanation": "Mỗi đối tượng ghi vị trí file ở nguồn và gói, độ dài byte, hash nội dung và kết quả so với HEAD. SHA256 là dấu vân tay để phát hiện nội dung khác nhau; không phải mã hóa hay mật khẩu. matches_source_head false chỉ báo phép so đó khác, không tự chỉ ra nguyên nhân hoặc khẳng định code sai.",
+        "example": "Sau khi sửa app.js, hash hiện tại sẽ không còn khớp snapshot; đó là thay đổi cần xem diff, không nên sửa manifest cũ để giả vờ chưa đổi.",
+        "risk": "Khác xuống dòng hoặc cách mã hóa cũng có thể đổi hash; muốn hiểu khác gì phải so nội dung."
+      },
+      {
+        "title": "Kết thúc cấu trúc dữ liệu",
+        "start": 170,
+        "end": 170,
+        "symbols": [],
+        "explanation": "Ngoặc đóng cuối hoàn tất đối tượng JSON. Manifest là dữ liệu mô tả, không được app.js tải để vận hành bàn cờ. Bạn hoặc công cụ kiểm tra đọc nó khi cần đối chiếu.",
+        "example": "",
+        "risk": "Không xóa phần tử hoặc sửa số hash để che một bản sao thiếu file."
+      }
+    ],
+    "reading_tip": "Dùng để kiểm tra nguồn gốc; không coi hash là chữ ký chứng minh danh tính tác giả hoặc chất lượng chương trình."
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "role": "Thông tin nguồn tham khảo và giới hạn giấy phép kế thừa từ repo đầy đủ.",
+    "depends": [
+      "Bối cảnh repo đầy đủ ngoài bộ gọn"
+    ],
+    "missing": "Không ảnh hưởng chạy web, nhưng mất thông tin xuất xứ và cảnh báo khi bổ sung dữ liệu hoặc engine.",
+    "groups": [
+      {
+        "title": "Mô tả nguồn của bản triển khai gốc",
+        "start": 1,
+        "end": 5,
+        "symbols": [
+          "Sources and notices"
+        ],
+        "explanation": "Các đoạn đầu nói về code tự viết, tài liệu chủ sở hữu và chưa chọn giấy phép tái phân phối. File được giữ nguyên từ repo đầy đủ, nên có nhắc SQLite, docs/spec và đồ họa SVG/CSS. Bộ gọn hiện có logo PNG và không có backend SQLite; README đã làm rõ sự khác biệt này.",
+        "example": "Bạn thấy chữ SQLite ở đây không có nghĩa copy bộ Site là có database người chơi.",
+        "risk": "Không suy từ câu đồ họa SVG/CSS rằng mọi tài nguyên hiện tại đều là vector."
+      },
+      {
+        "title": "Danh mục nguồn tham khảo",
+        "start": 7,
+        "end": 13,
+        "symbols": [
+          "WXF",
+          "Pikafish",
+          "WCAG",
+          "MDN",
+          "OWASP"
+        ],
+        "explanation": "Các liên kết ghi những nguồn đã được tra ở giai đoạn trước: luật, engine thay thế tiềm năng, accessibility, HTTP và session. Chúng là tài liệu tham khảo chứ không phải code được import lúc chạy. Bản này không phân phối Pikafish hoặc trọng số của nó.",
+        "example": "Bạn có thể dùng mục WXF để tìm bản luật cần đọc khi thêm một case trọng tài.",
+        "risk": "Cần kiểm tra điều khoản hiện hành và đúng bản phát hành nếu sau này đưa phần mềm hoặc dữ liệu bên ngoài vào sản phẩm."
+      },
+      {
+        "title": "Phân biệt công khai với quyền sử dụng",
+        "start": 15,
+        "end": 15,
+        "symbols": [],
+        "explanation": "Dòng cuối yêu cầu xác định quyền của nguồn dữ liệu trước khi nhập vào dự án. Một trang xem được công khai không tự cho phép sao chép toàn bộ bài tập hoặc dùng ván riêng của người học làm tập dữ liệu.",
+        "example": "",
+        "risk": "Đây là thông tin quản trị nguồn; không phải một giấy phép mới cho repo."
+      }
+    ],
+    "reading_tip": "Giữ cùng source và cập nhật khi thêm thành phần thật; không xem danh sách tham khảo như danh sách phụ thuộc runtime."
+  },
+  {
+    "path": "online-preview/favicon.svg",
+    "role": "Biểu tượng vector ở tab trình duyệt, được index.html khai báo bằng link rel icon.",
+    "depends": [
+      "index.html"
+    ],
+    "missing": "Mất biểu tượng tab; chơi cờ và vòng học không phụ thuộc biểu tượng này.",
+    "groups": [
+      {
+        "title": "Khung tọa độ và nền",
+        "start": 1,
+        "end": 1,
+        "symbols": [
+          "svg",
+          "viewBox",
+          "rect"
+        ],
+        "explanation": "Toàn file viết trên một dòng XML. viewBox 0 0 64 64 đặt hệ tọa độ thiết kế 64 đơn vị mỗi cạnh; rect tạo nền xanh bo góc. SVG là mô tả hình bằng phần tử, không phải bitmap hoặc hàm JavaScript.",
+        "example": "Thay fill của rect đổi nền icon, nhưng không đổi màu các nút trên website.",
+        "risk": "Giữ XML hợp lệ và đường dẫn favicon.svg trong index.html."
+      },
+      {
+        "title": "Quân cờ trang trí ở giữa",
+        "start": 1,
+        "end": 1,
+        "symbols": [
+          "circle",
+          "text"
+        ],
+        "explanation": "Hai circle tạo mặt quân màu kem và viền đỏ. text đặt chữ 車 căn giữa theo text-anchor; font-family serif lấy font có sẵn trên máy. Trình duyệt rasterize các hình vector để vẽ icon ở nhiều kích thước.",
+        "example": "Đổi ký tự 車 chỉ thay icon, không thay luật hoặc bộ chữ quân trong app.js.",
+        "risk": "Hình icon không phải tài sản dùng để render các quân trên bàn chính."
+      }
+    ],
+    "reading_tip": "Có thể đọc toàn bộ ngay trong VS Code; các nhóm cùng dòng 1 vì file được viết gọn."
+  },
+  {
+    "path": "online-preview/logo-co-chill.png",
+    "role": "Ảnh bitmap 1024 × 1024 đang dùng làm logo thương hiệu ở header.",
+    "depends": [
+      "index.html gọi src",
+      "style.css quy định kích thước hiển thị"
+    ],
+    "missing": "Mất ảnh logo hoặc có biểu tượng ảnh hỏng; engine, luật và bài học vẫn có thể chạy.",
+    "groups": [
+      {
+        "title": "Dữ liệu ảnh thay cho các dòng lệnh",
+        "start": null,
+        "end": null,
+        "symbols": [],
+        "explanation": "PNG lưu điểm ảnh và metadata ảnh dưới dạng nhị phân; không có nhóm hàm hay số dòng code để giải thích. Kích thước gốc là 1024 × 1024; HTML/CSS quyết định nó hiện nhỏ hơn ở header. Mở file trong VS Code sẽ thấy ảnh xem trước.",
+        "example": "Muốn thay logo, dùng một ảnh được phép sử dụng, giữ tên này hoặc cập nhật src trong HTML.",
+        "risk": "Đổi đuôi jpg thành png bằng cách rename không chuyển định dạng ảnh."
+      },
+      {
+        "title": "Quan hệ giữa ảnh và bố cục",
+        "start": null,
+        "end": null,
+        "symbols": [
+          "brand-logo"
+        ],
+        "explanation": "Ảnh chỉ cung cấp nội dung thị giác. Kích thước, đường bo, khoảng cách và cách đặt cạnh tên Cờ Chill đến từ HTML/CSS. Vì vậy logo lớn hoặc méo có thể do CSS chứ không phải do dữ liệu PNG.",
+        "example": "Kiểm tra class brand-logo trong style.css trước khi thay ảnh chỉ vì logo trên header quá to.",
+        "risk": "Sửa file ảnh không tự thay icon tab hoặc các ký tự quân."
+      }
+    ],
+    "reading_tip": "Không chỉnh PNG bằng cách gõ code. Đọc nơi gọi ảnh trong index.html và style.css để hiểu cách nó tham gia giao diện."
+  }
+]

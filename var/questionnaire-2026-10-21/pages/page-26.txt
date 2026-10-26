@@ -1,0 +1,31 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 26
+I Chi tiết tài khoản quản trị và đồng bộ
+Về mục lục
+V5 42 Ai quản trị và được xem những dữ liệu nào
+Mức 1
+Trước mắt chỉ bạn quản trị hay có thêm người hỗ trợ? Với mỗi vai trò, họ được xem thống kê tổng hợp, 
+danh sách tài khoản, biên bản ván hay câu trả lời tự do đến mức nào? Có cần người chỉ đọc báo cáo 
+nhưng không khóa/xóa tài khoản không? Không ghi password hoặc thông tin riêng của người thử vào 
+đây.
+Đề xuất chưa duyệt: bắt đầu với một chủ sở hữu; quyền quản trị được gán qua bước xác minh, không 
+có lựa chọn tự đăng ký làm admin. Dashboard mặc định dùng thống kê và mã tài khoản; chỉ cho xem 
+nội dung riêng khi có mục đích và phạm vi đã thông báo. Backend kiểm tra quyền cho mọi yêu cầu; lưu 
+nhật ký thao tác quan trọng.
+Cần điền: 1. Chỉ chủ sở hữu hay thêm người hỗ trợ; 2. Các vai trò cần có; 3. Mỗi vai trò xem thống kê/danh sách 
+tài khoản/biên bản/câu trả lời tự do đến đâu; 4. Có vai trò chỉ đọc báo cáo không khóa/xóa không; 5. Ai được 
+khóa/xóa; 6. Cách thông báo phạm vi quyền xem cho người chơi
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 43 Bạn muốn biết có tài khoản mới theo cách nào
+Mức 1
+Chỉ cần mở dashboard thấy tài khoản mới, hay bạn muốn nhận thêm email hoặc thông báo ngoài web? 
+Muốn báo từng lần, gộp theo ngày hay chỉ báo khi có vấn đề? Nếu có xác minh email, cần phân biệt 
+người mới đăng ký và người đã xác minh như thế nào?
+Đề xuất chưa duyệt: server ghi nhận tài khoản ngay khi tạo thành công; dashboard cho thấy trạng thái 
+xác minh và thời điểm làm mới. Bản đầu dùng danh sách cập nhật khi mở/làm mới, có thể tự cập nhật 
+khi trang đang mở. Email/push là tùy chọn phải bật riêng; tránh gửi dữ liệu người học không cần thiết và 
+tránh tạo thông báo trùng.
+Cần điền: 1. Chỉ dashboard hay email/thông báo ngoài web thêm; 2. Thông báo từng lần/gộp ngày/chỉ khi vấn đề; 
+3. Mức chậm chấp nhận; 4. Phân biệt mới đăng ký và đã xác minh email; 5. Làm mới khi mở/thủ công/tự cập nhật 
+trang đang mở
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

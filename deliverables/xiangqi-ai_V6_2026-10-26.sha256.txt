@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 afed19ea999aed0cb5332d44795d85ac29ea2346075f92949f6e5dd3485fa2b8  xiangqi-ai_V6_2026-10-26.zip
+=======
+afed19ea999aed0cb5332d44795d85ac29ea2346075f92949f6e5dd3485fa2b8  xiangqi-ai_V6_2026-10-26.zip
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a

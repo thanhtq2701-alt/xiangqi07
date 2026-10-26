@@ -1,0 +1,549 @@
+0001 CỜ CHILL  |  BẢN LÀM VIỆC V4
+0002 Tiến độ và thông tincần bổ sung
+0003 Sản phẩm · Giao diện · Trải nghiệm học · Engine · API · Dữ liệu · Triển khai
+0004 Dành cho Trần Quốc ThanhNgày cập nhật 08 tháng 10 năm 2026
+0005 Bạn đang ở đâu
+0006 Bạn đã có một prototype web chạy trên máy, chứng minh được vòng học từ ván cờ đến suy nghĩ, thử lại, bài liên quan và lịch ôn. Đây là nền tảng có thể kiểm tra và tiếp tục phát triển; chưa phải sản phẩm AI hoàn chỉnh hoặc website công khai.
+0007 Bước tiếp theo có giá trị nhất là kiểm chứng chất lượng cờ và cách dạy bằng dữ liệu thật của bạn. Chưa cần mua API, gom hàng nghìn ván hoặc thêm PvP để chứng minh vòng học cơ bản.
+0008 Tài liệu này giúp bạn làm gì
+0009 Hiểu chính xác phần đã chạy, phần đang dùng giải pháp cục bộ và phần chưa được xây.
+0010 Biết việc cần làm trong 60 phút tới, trong 3 ngày tới và trước khi mời người dùng ngoài thử.
+0011 Trả lời 84 câu bổ sung có mã cố định, chia 14 nhóm; không cần trả lời lại toàn bộ V3.
+0012 Gửi 3 thế cờ mẫu có lập luận chuyên môn để thay dữ liệu minh họa bằng nội dung đáng tin cậy.
+0013 Cách trả lời ngắn nhất
+0014 Giữ nguyên mã câu. Gõ “Giữ đề xuất”, “Chưa biết, Codex quyết”, hoặc quyết định khác kèm ví dụ. Với câu chuyên môn cờ, ưu tiên một thế cờ cụ thể hơn một đoạn mô tả chung. Bạn có thể trả lời tất cả, nhưng 12 câu ưu tiên được liệt kê ở phần hướng dẫn.
+0015 Đây là tài liệu hỏi để chốt quyết định, không phải cam kết rằng mọi tính năng trong câu hỏi đã được triển khai.
+0016 
+0017 01 Tiến độ có bằng chứng
+0018 Kết quả dựa trên mã nguồn hiện tại, kiểm thử tự động và thao tác trực tiếp trong trình duyệt. Không dùng phần trăm hoàn thành vì các hạng mục chưa có độ lớn tương đương.
+0019 Hạng mục
+0020 Trạng thái thật
+0021 Giới hạn còn lại
+0022 Bàn cờ và luật
+0023 Chạy được
+0024 Có luật 7 quân, tự chiếu, lộ Tướng, chiếu hết; chưa đủ phán quyết giải đấu.
+0025 Chơi và nhập ván
+0026 Chạy được
+0027 Máy cục bộ, 2 người cùng máy, FEN và tọa độ; chưa PvP qua mạng.
+0028 Xem lại ván
+0029 Chạy được
+0030 Tối đa 3 điểm từ 24 nước Đỏ gần nhất; dựa trên search nông.
+0031 Tự suy nghĩ trước đáp án
+0032 Chạy được
+0033 3 câu bắt buộc trên server; chưa chấm được chất lượng lập luận.
+0034 WHAT WHY HOW
+0035 Giải pháp thay thế
+0036 Mẫu tiếng Việt từ dữ kiện hợp lệ; không phải LLM hay HLV hiểu sâu.
+0037 Thử lại và bài liên quan
+0038 Chạy được
+0039 12 thế tổng hợp, 4 kỹ năng; chưa được bạn/chuyên gia duyệt.
+0040 Lịch ôn và tiến bộ
+0041 Chạy được
+0042 Quy tắc 1/2/7/14/30 ngày; điểm thực hành chưa chứng minh thành thạo.
+0043 Lưu dữ liệu
+0044 Chạy cục bộ
+0045 SQLite và cookie khách; xuất/xóa dữ liệu; chưa tài khoản đa thiết bị.
+0046 Kiểm thử
+0047 59 test lõi và 6 HTTP đạt
+0048 Có browser smoke toàn vòng học; chưa chứng minh 100 người đồng thời.
+0049 Web công khai và AI mạnh
+0050 Chưa triển khai
+0051 Chưa hosting công khai, Pikafish, LLM, ML, OAuth, placement thật.
+0052 
+0053 Mốc hiện tại
+0054 Vòng học prototype đã hoạt động. Đang ở giai đoạn làm chắc nền và chuẩn bị kiểm chứng nội dung. Không nên gọi đây là “HLV AI tương đương chuyên gia”, “đã tăng trình người dùng” hoặc “đã train ML”.
+0055 Browser smoke đã ghi 2 lần thử kiểm tra và 1 bài mới đúng, có lịch 14 ngày, còn sau tải lại. Đây là dữ liệu kiểm thử của Codex, không phải kết quả học của một người dùng thật.
+0056 
+0057 02 Bạn nên làm gì tiếp
+0058 Trong 60 phút tới
+0059 Thời lượng
+0060 Việc làm
+0061 Đầu ra cần gửi
+0062 10 phút
+0063 Mở http://127.0.0.1:8765/ và đi hết demo.
+0064 Tên màn hình khiến bạn không biết bấm gì hoặc không hiểu ý.
+0065 15 phút
+0066 Tự chơi 6–10 nước, kết thúc để xem lại.
+0067 Một nhận xét về bàn cờ, một nhận xét về cách dạy.
+0068 20 phút
+0069 Chọn 3 thế cờ do bạn có quyền sử dụng.
+0070 FEN, nước đã đi, phương án chấp nhận, WHY/HOW và nguồn.
+0071 15 phút
+0072 Trả lời 12 câu ưu tiên trong tài liệu.
+0073 Quyết định và ví dụ; ghi Chưa biết nếu chưa có bằng chứng.
+0074 
+0075 Trong 3 ngày tiếp theo
+0076 Ngày 1: duyệt luật, sửa 3 lời giải mẫu theo cách bạn thật sự dạy; chốt tiêu chí “hiểu bài”.
+0077 Ngày 2: chuẩn bị 10–20 thế cờ đa dạng và ghi nguồn; kiểm tra lời giải bằng engine mạnh hoặc chuyên gia độc lập. Chưa gọi tất cả là gold set khi chưa duyệt.
+0078 Ngày 3: mời khoảng 3–5 người thử riêng nếu có thể; quan sát điểm mắc kẹt, không dẫn đáp án. Tách đánh giá dễ dùng khỏi đánh giá tiến bộ học tập.
+0079 Phần Codex có thể tự làm
+0080 Sửa lỗi, tăng độ rõ của trạng thái UI, giữ bản nháp, bổ sung điều hướng bàn phím, thiết kế API có phiên bản, adapter engine mạnh, schema dữ liệu và kiểm thử. Không cần bạn chọn framework hoặc tự viết code trước.
+0081 Phần cần bạn quyết định hoặc cung cấp
+0082 Lời giải chuyên môn đúng; phương án tốt nhưng khác engine; mức độ phù hợp người mới; dữ liệu có quyền dùng; phạm vi pilot; hạn mức chi phí thật; những đánh đổi trải nghiệm không có một đáp án khách quan.
+0083 Chưa cần làm bây giờ
+0084 Chưa mua domain/API chỉ để app “trông thật”. Chưa thu hàng loạt dữ liệu người dùng, xin mật khẩu hay gom puzzle từ sách/web chưa rõ quyền. Chưa thêm 3D, thanh toán hoặc PvP trước khi phần học đủ tin cậy.
+0085 
+0086 03 Kiến trúc và API hiện có
+0087 API là cách giao diện trao đổi dữ liệu với chương trình xử lý. API nội bộ của app hiện miễn phí; chỉ khi tích hợp dịch vụ bên ngoài mới có điều kiện giá, quota và quyền truy cập riêng.
+0088 Trình duyệt → HTTP JSON → Service → Rules và Engine → lời giải theo mẫu → SQLite → màn hình. Engine và lời giải tách riêng để thay thế sau này.
+0089 API hiện tại
+0090 Chức năng
+0091 GET /api/bootstrap
+0092 Cấu hình giao diện, kỹ năng và dashboard.
+0093 POST /api/game
+0094 Tạo ván với máy, local, demo hoặc nhập FEN + moves.
+0095 GET /api/game?id=…
+0096 Lấy ván thuộc phiên khách đang dùng.
+0097 POST /api/move và /api/bot
+0098 Đi nước hợp lệ; máy chỉ đi khi đúng lượt.
+0099 POST /api/review
+0100 Đóng ván để học và tạo các điểm xem lại.
+0101 GET /api/exercise?id=…
+0102 Lấy bài; chưa phản hồi thì không trả lời giải.
+0103 POST /api/reflect
+0104 Lưu 3 câu trả lời; review mới được mở phân tích.
+0105 POST /api/attempt
+0106 Kiểm tra nước, lưu lần đầu và lên lịch ôn.
+0107 POST /api/hint và /api/practice
+0108 Gợi ý có đánh dấu; chọn bài cùng kỹ năng chưa gặp.
+0109 GET /api/dashboard
+0110 Tiến bộ, ván đã lưu, điểm xem lại và bài đến hạn.
+0111 POST /api/feedback
+0112 Lưu góp ý cục bộ, không gửi ai.
+0113 GET /api/export và POST /api/delete
+0114 Tải JSON hoặc xóa dữ liệu của phiên khách.
+0115 
+0116 Hợp đồng hiện tại là prototype, chưa có OpenAPI/versioning, job queue, rate limit production hoặc tài khoản thật. Khi lên public phải bổ sung các phần này; không chỉ đổi URL localhost thành domain.
+0117 
+0118 04 Quyết định V3 đã được giữ
+0119 Không cần trả lời lại các điều dưới đây, trừ khi bạn thật sự muốn thay đổi.
+0120 Ngôn ngữ chính là tiếng Việt; trải nghiệm cờ tướng truyền thống, tập trung học và tư duy.
+0121 Desktop trước, có bố cục thích ứng màn hình nhỏ; không để 3D/PvP chặn vòng học.
+0122 Không mở đáp án trước tự suy nghĩ; sau đó có giải thích, thử lại và bài liên quan.
+0123 Engine và luật quyết định dữ kiện cờ; LLM không được tự tạo nước đi, điểm hay biến.
+0124 Không bắt buộc dịch vụ trả phí, đăng nhập production hoặc dataset lớn để chạy prototype.
+0125 Không claim ML, người dùng, tác động học tập hoặc quyền dữ liệu khi chưa có bằng chứng.
+0126 Ưu tiên bài cùng kỹ năng nhưng chưa gặp; tránh xem nhớ đáp án là hiểu bản chất.
+0127 Các mặc định kỹ thuật đề xuất
+0128 Giữ code đơn giản hiện tại đến khi yêu cầu thực tế buộc thay. API tương lai dùng phiên bản, validation rõ, quyền theo chủ bản ghi, idempotency cho attempt, timeout/cancel và job status cho phân tích dài. API key chỉ ở backend. Khi dịch vụ ngoài lỗi vẫn có đường học cục bộ được gắn nhãn.
+0129 Mục tiêu UI tiếp theo: ít thao tác hơn nhưng không bỏ suy nghĩ; giữ bản nháp; lỗi có cách phục hồi; trạng thái máy đang nghĩ rõ; lời giải có ví dụ cụ thể; phân biệt tự giải và có trợ giúp; không tạo áp lực streak.
+0130 Điều chưa thể tự suy ra từ V3
+0131 Chúng ta chưa có bộ thế cờ chủ dự án duyệt, rubric lập luận, dữ liệu usability thật, độ khó đã hiệu chỉnh, thỏa thuận dùng dữ liệu bên ngoài, kế hoạch pilot cụ thể hay kết quả benchmark engine sâu. V4 tập trung lấp những khoảng trống đó.
+0132 Nguyên tắc chốt sau khi bạn trả lời
+0133 Một ý kiến sẽ được chuyển thành yêu cầu có điều kiện đạt: hành vi cụ thể, dữ liệu cần, giao diện liên quan và cách test. Ý tưởng chưa đủ bằng chứng sẽ nằm ở danh sách thử nghiệm; không tự biến tất cả thành tính năng phải làm ngay.
+0134 
+0135 05 Cách trả lời V4 hiệu quả
+0136 Mỗi mã câu là một quyết định có ảnh hưởng đến sản phẩm. “Đề xuất” là phương án khởi đầu của Codex, không phải câu trả lời đã được bạn đồng ý.
+0137 Ký hiệu
+0138 Bạn làm gì
+0139 P0
+0140 Trả lời trước để chốt nội dung học và pilot gần nhất.
+0141 P1
+0142 Trả lời sau khi thử giao diện, trước public alpha.
+0143 Giữ đề xuất
+0144 Bạn chấp nhận phương án đang ghi.
+0145 Chưa biết
+0146 Ghi điều bạn chưa biết; Codex sẽ chọn mặc định hoặc lập thử nghiệm.
+0147 Bằng chứng
+0148 Kèm FEN, ảnh màn hình, lời người thử hoặc ví dụ cụ thể nếu có.
+0149 
+0150 12 câu cần trước
+0151 A01, A02, C03, E02, F01, F04, G02, J01, K01, L02, M01, N01.
+0152 Đọc mục A đến N để trả lời đủ nếu bạn muốn. Không cần dành nhiều thời gian chọn màu nếu phần lời giải chuyên môn vẫn chưa được xác minh.
+0153 Bản đồ câu hỏi
+0154 Nhóm
+0155 Phạm vi
+0156 A đến C
+0157 Mục tiêu pilot, thương hiệu/điều hướng, người mới và placement.
+0158 D đến F
+0159 Bàn cờ, xem lại, tự suy nghĩ, WHAT WHY HOW và phản hồi.
+0160 G đến I
+0161 Puzzle, bài học, lịch ôn, tiến bộ, mobile và khả năng tiếp cận.
+0162 J đến L
+0163 Engine, API, LLM, chi phí, đăng nhập và dữ liệu cá nhân.
+0164 M đến N
+0165 Nguồn dữ liệu, annotation, kiểm thử, triển khai và vận hành.
+0166 
+0167 Khi gửi lại, giữ file có câu trả lời hoặc gửi text theo mã. Không điền API key, mật khẩu, token, thông tin nhận diện trẻ em hoặc dữ liệu chưa được phép chia sẻ vào tài liệu này.
+0168 
+0169 A Mục tiêu và phạm vi kiểm chứng
+0170 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0171 A01  P0  Trong lần thử đầu, hành vi nào chứng minh app có ích: nêu được nước đáp, tự sửa sai, hay áp dụng ở thế mới? Cho một ví dụ cụ thể.
+0172 Đề xuất: Chọn một mục tiêu chính là giải thích được ý tưởng và áp dụng vào một thế khác; chưa dùng tỷ lệ thắng làm chỉ số chính.
+0173 Trả lời : Nêu được đáp án đúng cho nước đi và giải thích được nó (từ người chơi). VD beginner mắc sai lầm trong trận đấu nhưng sau đó giải thích và đi lại được nước đúng trong phần review  thành công/có ích
+0174 A02  P0  Ba đến năm người đầu tiên bạn có thể mời là ai theo nhóm trình độ, và họ đã biết luật đến mức nào?
+0175 Đề xuất: Chỉ ghi bí danh và trình độ; bắt đầu nhóm nhỏ tương đối đồng đều để hiểu lỗi trải nghiệm.
+0176 Trả lời : Bạn bè của tôi, trình độ biết luật, đã biết chơi, trình intermediate, biết luật full rồi
+0177 A03  P1  Một phiên học thực tế nên kéo dài bao lâu, và điểm nào người học được phép dừng rồi tiếp tục?
+0178 Đề xuất: Thử phiên 10–15 phút; hoàn tất một điểm xem lại và một bài liên quan; lưu giữa các bước.
+0179 Trả lời : Thử phiên 10–15 phút; hoàn tất một điểm xem lại và một bài liên quan; lưu giữa các bước, vừa đủ ngắn để người học không chán vừa đủ dài để đọng lại kiến thức trong user
+0180 A04  P1  Trong danh sách còn thiếu, xếp ba ưu tiên gần nhất và nói tính năng nào có thể chờ.
+0181 Đề xuất: Độ đúng engine/nội dung, chất lượng lời giải, khả năng dùng trên thiết bị thật; PvP và 3D để sau.
+0182 Trả lời : Luật đang khá ngu, chưa hoàn thiện, cần thêm luật và những nước đi chất lượng hơn
+0183 Chưa deploy được lên web thật sự, chưa có domain, cần có sớm
+0184 PvP chưa có, 3D thì không cần thiết có thể để sau. Phần học lại hay các nước đi chưa tốt, còn rất ngu, phải thay bằng các engine hiện có ngày nay
+0185 A05  P1  Điều kiện nào khiến bạn cho người ngoài thử, và lỗi nào bắt buộc dừng phát hành?
+0186 Đề xuất: Không còn lỗi luật/đáp án nghiêm trọng trong tập kiểm chứng; không mất dữ liệu; có đường báo lỗi và quay lại bản cũ.
+0187 Trả lời : Thử khi explanation còn chung chung mơ hồ, chưa quá chất lượng. Bắt buộc dừng phát hành khi các tính năng core như học và chơi bị ngừng, bắt buộc phải dừng
+0188 A06  P1  Bạn muốn kết quả đợt này là demo nội bộ, alpha mời riêng hay public? Ngày mong muốn có phải hạn cứng không?
+0189 Đề xuất: Chọn alpha mời riêng sau khi nội dung được duyệt; tách hạn demo khỏi hạn sản phẩm công khai.
+0190 Trả lời : Phải deploy được lên web rồi. Nếu cần sẽ mua domain
+0191 
+0192 B Nhận diện và cấu trúc giao diện
+0193 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0194 B01  P1  Trong giao diện đang mở, ba chỗ nào khác cảm giác thương hiệu bạn muốn nhất? Ghi màn hình và thay đổi cụ thể.
+0195 Đề xuất: Giữ bố cục học tập tối giản; đối chiếu xanh navy/vàng của V3 với xanh trầm hiện tại trước khi chốt bảng màu.
+0196 Trả lời : Giao diện đang cực cực cực kỳ tệ. Tôi sẽ vẽ tay bằng paint những trang của web và bạn làm theo đó
+0197 B02  P1  Logo Cờ Chill hiện có thuộc quyền của bạn không, và bạn có bản SVG/PNG gốc cùng quy tắc sử dụng không?
+0198 Đề xuất: Dùng biểu tượng tạm do code tạo cho tới khi bạn cung cấp file có quyền dùng; không lấy logo từ trang khác.
+0199 Trả lời : Có bản PNG. Ảnh là do AI của tôi tạo một thời gian về trước, có thể coi là thuộc quyền sở hữu của tôi
+0200 B03  P1  Ở trang đầu, bạn muốn người mới bấm demo hay chơi thật trước? Trường hợp quay lại nên thấy gì đầu tiên?
+0201 Đề xuất: Người mới thấy demo; người quay lại thấy bài đang dở hoặc kỹ năng đến hạn, không lặp onboarding.
+0202 Trả lời : Bấm demo để hiện tutorial cách sử dụng web trước. Sau đó mới bước vào phần chơi thật rồi đưa vào workaround. Khi quay lại sẽ thấy bài học từ những mistakes cũ, khi đó có thể học lại hoặc chơi tiếp rồi nhập vào data để review. Khi lượng bài học còn tồn nhiều quá sẽ yêu cầu họ học trước khi chơi tiếp
+0203 B04  P1  Năm mục điều hướng hiện tại có dễ hiểu không? Mục nào nên đổi tên, gộp hoặc chuyển vị trí?
+0204 Đề xuất: Giữ Chơi, Xem lại từ ván, Luyện, Tiến bộ và Trợ giúp dễ tìm; mỗi màn hình chỉ có một hành động chính.
+0205 Trả lời : Có dễ hiểu: Chơi (PvP, 2 người 1 máy, PvM), Luyện tập lại lỗi sai, Xem lại ván đấu, Puzzles và Lessons, Vậy thôi. Tôi chỉ muốn user vào chơi, học từ sai lầm của họ, rút ra bài học để sau này áp dụng được, có thể puzzles để luyện tập thêm, tích hợp AI explanation để nó thật hiệu quả và personal với từng user giúp họ tiến bộ
+0206 B05  P1  Bạn muốn xưng hô và giọng phản hồi thế nào? Viết lại một câu app đang nói theo đúng giọng bạn.
+0207 Đề xuất: Dùng bạn/mình hoặc câu trung tính, cụ thể, không phán xét; tránh gọi người học cẩu thả chỉ từ một nước sai.
+0208 Trả lời : Trung tính. Phần này user có thể chọn từ đầu (trung tính, bạn bè thân thiện, thầy giáo/học trò, anh em,…)
+0209 B06  P1  Thông tin nào cần nằm ngay màn hình và thông tin nào chỉ cần mở rộng: nguồn, độ sâu, điểm, dòng biến, hạn chế?
+0210 Đề xuất: Để WHY/HOW gần bàn cờ; kỹ thuật ở phần chi tiết nhưng vẫn có nhãn giới hạn engine dễ thấy.
+0211 Trả lời : Why, How gần bàn cờ lúc review, phần chơi và giải puzzle, phần career path kiểu Duolingo, vậy thôi
+0212 
+0213 C Người mới và đánh giá đầu vào
+0214 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0215 C01  P1  Người chưa biết chữ Hán hoặc ký hiệu tọa độ cần trợ giúp gì để chọn đúng quân?
+0216 Đề xuất: Có tùy chọn tên quân tiếng Việt, tooltip và bài hướng dẫn tương tác ngắn; không bắt xem video dài.
+0217 Trả lời : Sẽ có tutorial hướng dẫn chơi bắt đầu khi mới vào nếu chọn level beginner. Sẽ cố gắng làm thật ngắn gọn không dài đâu, vẫn đủ hợp lý để họ hiểu và chơi được
+0218 C02  P1  Dấu hiệu nào cho biết người học chưa biết luật và cần chuyển sang bài căn bản?
+0219 Đề xuất: Dựa vào một vài tình huống luật, không suy ra từ tuổi hay chỉ từ tự khai trình độ.
+0220 Trả lời : Nếu chưa biết luật sẽ có phần tự khai trình độ ban đầu. Tất cả đều được coi là biết luật và chơi được nếu không chọn mức “Chưa biết chơi’. Nếu chọn mức “Chưa biết chơi” sẽ được xem video tutorial hướng dẫn chơi bắt đầu khi mới vào. Sẽ có bài test đảm bảo họ biết chơi trước khi vào chơi thực tế.
+0221 C03  P0  Bạn hãy cung cấp hai thế placement, đáp án chấp nhận và dấu hiệu phân biệt người mới với intermediate.
+0222 Đề xuất: Chọn hai kỹ năng khác nhau, ghi rõ cách xử lý người đúng nước nhưng không giải thích được.
+0223 Trả lời : Sẽ có câu hỏi yêu cầu người chơi giải thích nước đi đó. Nếu phần giải thích trùng nhiều với AI explanation thì sẽ coi là đã biết và hiểu nước đi đó, nếu đáp án thiếu nhiều thì sẽ check với 1-2 hình khác nữa. Nếu đáp án vẫn trùng khá ít thì coi như chưa hiểu  đưa vào review và đưa ra câu hỏi hướng dẫn giúp họ gợi mở đáp án
+0224 C04  P1  Nếu tự khai giỏi nhưng placement thấp, app nên thông báo và cho thử lại thế nào?
+0225 Đề xuất: Gọi đây là mức khởi đầu tạm; cho thêm bài xác minh, không gắn nhãn trình độ chắc chắn sau hai câu.
+0226 Trả lời : Thì app không thông báo mà sẽ hạ level họ xuống bậc dưới, tiếp tục test đến bao giờ mức độ chắc chắn trong câu trả lời đủ constant thì sẽ coi level thật sự của họ là ở đó. Nếu trình độ chưa xác định được thì sẽ thử những puzzles/lessons ở trình độ cao hơn/thấp hơn 1 bậc để họ làm từ đó đánh giá trình độ chính xác
+0227 C05  P1  Mục tiêu cá nhân nào cần hỏi lúc đầu để thực sự thay đổi bài học, thay vì thu thông tin không dùng?
+0228 Đề xuất: Hỏi tối đa một mục tiêu học có thể dùng ngay; phong cách tấn công/phòng thủ không được hợp thức hóa nước kém.
+0229 Trả lời : Hỏi mục tiêu chính đến với web là gì? Có thể sẽ trình bày dưới dạng câu hỏi trắc nghiệm rất nhiều đáp án chỉ được chọn một, tất cả đáp án đều vô cùng cụ thể, không chung chung và không bị trùng nhau
+0230 C06  P1  Lúc người mới không hiểu phải điền gì vào reflection, trợ giúp nào đủ mà không lộ đáp án?
+0231 Đề xuất: Cho ví dụ cách mô tả trên một thế khác và nút Chưa biết ở từng câu; không điền sẵn lời giải thế đang làm.
+0232 Trả lời : Mình sẽ chia thành những câu hỏi nhỏ hơn nữa, nhỏ nhất có thể. VD khi hỏi chiến lược ở hình này bạn muốn làm gì? Mà user chưa trả lời được thì sẽ hỏi Nhìn vào hình này bạn đang nhìn thấy điều gì nổi bật, khi đó bạn định làm gì với nước đi này, hiệu quả đạt được sẽ là như nào theo bạn tưởng tượng?....
+0233 
+0234 D Bàn cờ và trải nghiệm chơi
+0235 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0236 D01  P1  Sau khi tự chơi một ván, thao tác chọn quân và điểm đến có gây nhầm không? Cần kéo thả hay bấm hai lần đã đủ?
+0237 Đề xuất: Giữ bấm chọn làm chuẩn cho chuột, cảm ứng và bàn phím; kéo thả chỉ là tùy chọn bổ sung.
+0238 Trả lời : Bấm chọn là main, kéo thả sẽ thêm sau. Thật ra cũng khá giống nhau, tôi muốn làm được cả hai ngay trong ngày hôm nay
+0239 D02  P1  Ván luyện cần cầm Đỏ/Đen, đổi bên và độ khó máy như thế nào để phù hợp mục tiêu học?
+0240 Đề xuất: Bổ sung chọn bên sau khi review hai phía được kiểm thử; không đặt tên mức Elo cho bot chưa benchmark.
+0241 Trả lời : Ván luyện được chọn màu quân. Ưu tiên chơi 2 ván (1 đỏ 1 đen) để đánh giá tổng quát hơn. Độ khó máy ban đầu thì phải dựa vào trình độ tự khai ban đầu thôi. Nếu ván 1 thắng thì sẽ tăng level lên 1 bậc, nếu ván 2 tiếp tục thắng thì sẽ tăng level lên 1 bậc nữa và cho cầm quân Đen ở ván 3. Nếu tiếp tục thắng thì up đến bao giờ thua thì thôi. Còn nếu thua ván 1 thì sẽ giảm level xuống đến bao giờ thắng thì sẽ lấy mức thắng đó làm nền để tiếp tục phát triển
+0242 D03  P1  Khi bấm nước sai, bạn muốn app chỉ báo không hợp lệ hay giải thích lý do luật cụ thể?
+0243 Đề xuất: Trong luyện luật giải thích rõ; trong ván chơi chỉ chỉ báo ngắn, không gợi nước hay hoặc đánh giá thế cờ.
+0244 Trả lời : Sẽ báo nước đi không hợp lệ (điều này rất dễ xảy ra ở beginner), sẽ có giải thích nhỏ tại sao không hợp lệ (VD mã bị cản, pháo không có ngòi,…) ngắn gọn thôi
+0245 D04  P1  Bạn cần đồng hồ và hình thức kết thúc ván nào ở alpha: đầu hàng, hòa, hết giờ, dừng để học?
+0246 Đề xuất: Phân biệt ván luyện dừng để học với ván tính kết quả; chỉ thêm đồng hồ sau khi xử lý nền/reconnect đúng.
+0247 Trả lời : Khi thi đấu sẽ KHÔNG CÓ VIỆC DỪNG. Nếu thua (bị chiếu hết, hết nước đi, hết giờ) thì sẽ thông báo thua vì bị chiếu hết, hết nước đi, hết giờ. Nếu hòa do hình cờ hòa hoặc hai bên đồng ý thì cũng sẽ công bố như vậy. Tương tự với việc thắng.
+0248 D05  P1  Việc lật bàn, lịch sử nước và ký hiệu nên hiện ra sao trên laptop và điện thoại?
+0249 Đề xuất: Bàn cờ luôn là trọng tâm; history thu gọn trên mobile; chọn chuẩn notation trước khi hỗ trợ nhập nhiều loại.
+0250 Trả lời : Bàn cờ nên thu gọn. Việc ghi chép cũng khá đơn giản theo notation của cờ tướng nên sẽ cố gắng đầy đủ (trên màn hình hiện 10 nước đi gần nhất là oke)
+0251 D06  P1  Khi mất mạng hoặc máy tìm nước quá lâu, người chơi cần biết gì và làm gì tiếp?
+0252 Đề xuất: Hiện trạng thái đang xử lý, timeout có nút thử lại; không gửi trùng nước; phục hồi ván từ server.
+0253 Trả lời : Khi máy đang tìm nước sẽ ghi là thinking… Nếu thời gian quá lâu thì sẽ nhắn “Vui lòng đợi thêm chút…” để người chơi còn biết. Khi mất mạng sẽ ghi “Lose connection…” để họ biết và reload mạng
+0254 
+0255 E Xem lại và tự suy nghĩ
+0256 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0257 E01  P1  Một ván có nhiều lỗi thì nên học một lỗi lớn nhất hay đi qua tối đa ba lỗi theo thứ tự thời gian?
+0258 Đề xuất: Mặc định một điểm quan trọng trước, cho xem thêm; ưu tiên cơ hội học rõ và bằng chứng chắc.
+0259 Trả lời : Nên học từ những lỗi được xếp vào loại strategic thinking trước rồi mới đến tactical positions. Không nên ôm đồm quá nhiều. Những gì được review sẽ xếp vào hạng “reviewed”, còn những lỗi chưa được review ngay sau ván đấu sẽ xếp vào waiting list trong persona của user và thuộc phần phải xem lại sau
+0260 E02  P0  Ba câu reflection hiện tại có khai thác đúng cách bạn dạy không? Viết lại chúng cho một thế cụ thể.
+0261 Đề xuất: Giữ đánh giá, nguy cơ, ứng viên và nước đáp; không thêm câu chỉ để làm người học chậm lại.
+0262 Trả lời : Có, lần lượt là: Đánh giá hình cờ, bên nào đang có ưu thế, ưu thế ở điểm gì/ Quân nào yếu và vị trị nào yếu, nên tấn công hay phòng thủ, tấn công hoặc phòng thủ như nào/ Những nước đi tiếp theo có thể là gì, đối phương sẽ đối phó ra sao (2-3 nước planning)
+0263 E03  P1  Với người giỏi, câu nào có thể gộp mà vẫn bảo đảm họ suy nghĩ trước khi xem lời giải?
+0264 Đề xuất: Gộp đánh giá và nguy cơ; luôn cần ý tưởng/nước ứng viên cùng một lý do. Chưa cho bỏ hết reflection.
+0265 Trả lời : Chọn đề xuất
+0266 E04  P1  Khi rời màn hình, reload hoặc đóng trình duyệt giữa câu trả lời, bạn muốn giữ và phục hồi thế nào?
+0267 Đề xuất: Tự lưu bản nháp riêng, phân biệt đã lưu nháp và đã gửi; không coi bản nháp là bài đã hoàn thành.
+0268 Trả lời : Lưu bản nháp riêng và bản đã gửi. Coi bản nháp là đang processing để khi user quay lại web sẽ hiện đúng câu trả lời đang dở và web ở trạng thái trước khi rời đi
+0269 E05  P1  Người chơi tự nhận không biết nên nhận gợi ý ngay hay một câu hỏi dẫn đường nữa? Cho ví dụ.
+0270 Đề xuất: Một gợi ý quá trình suy nghĩ trước; muốn xem đáp án vẫn được nhưng phải đánh dấu có trợ giúp.
+0271 Trả lời : Thêm câu hỏi dẫn đường. Khi các câu hỏi dẫn đường đã hết mà họ vẫn không biết thì sẽ nhắn “Cố suy nghĩ thêm một lần nữa xem” và cuối cùng mới đưa ra gợi ý là tổng hợp các câu trả lời từ những câu hỏi dẫn đường
+0272 E06  P1  Khi engine không chắc hoặc không tìm ra sai lầm rõ, màn hình review nên làm gì?
+0273 Đề xuất: Nói chưa đủ căn cứ gắn lỗi; cho phân tích một điểm để học, không bịa blunder để ép đủ ba lỗi.
+0274 Trả lời : Ghi là “Chưa xác định được lỗi trong ván đấu này” và thêm dòng “Bạn hãy tự nhận xét trận đấu của mình có lỗi ở đâu không?” để lấy thêm feedback và có thể coi đó là gợi ý cho engine
+0275 
+0276 F Chất lượng lời giải và cách dạy
+0277 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0278 F01  P0  Viết một lời giải WHAT WHY HOW theo đúng giọng HLV của bạn cho thế a2a7 trong demo hoặc một thế của bạn.
+0279 Đề xuất: Nêu việc quan sát được, hệ quả qua nước đáp hợp lệ và một quy trình suy nghĩ có thể mang sang thế khác.
+0280 Trả lời : Quan sát được hình cờ này hai bên đang phát triển quân, chưa có điểm yếu gì cả. Vậy việc cần làm bây giờ là phát triển đầy đủ các quân chủ lực thật chắc chắn, liên kết tốt với nhau. Do vậy mới cần lên tượng củng cố trung lộ và tạo liên kết thêm cho pháo mã
+0281 F02  P1  Một lời giải tối thiểu cần bao nhiêu biến, độ dài nào và yếu tố hình ảnh gì để người mới hiểu?
+0282 Đề xuất: Một dòng chính ngắn, một đối chiếu với nước đã chơi và mũi tên theo lựa chọn; tránh đổ nhiều biến cùng lúc.
+0283 Trả lời : Một vài biến  chính kiểu như “Tôi muốn tấn công (phòng thủ) nên sẽ nhắm vào quân/vị trí này, độ dài trước mắt hướng đến khoảng 5-6 nước của engine. Yếu tố hình ảnh sẽ khoanh vùng vào vị tí được nhắc đến để user có thể hình dùng đễ hơn
+0284 F03  P1  Nếu nước người học không trùng engine nhưng hợp lý, tiêu chí nào cho phép chấp nhận?
+0285 Đề xuất: Dựa vào nhóm nước tương đương đã kiểm chứng hoặc ngưỡng cùng độ sâu; tách tốt khách quan khỏi dễ học.
+0286 Trả lời : Nếu họ giải thích được nước đi của mình và dù không trùng nhưng fit với một trong nhiều strategy do engine đề xuất thì được coi là oke
+0287 F04  P0  Đưa rubric chấm lập luận gồm 3–5 tiêu chí và một câu trả lời đúng, một câu nửa đúng, một câu sai.
+0288 Đề xuất: Đánh giá nhận diện đe dọa, ứng viên, nước đáp và kết luận; không dùng số từ hay từ khóa làm bằng chứng duy nhất.
+0289 Trả lời : Đánh giá nhận diện đe dọa, quân/vị trí muốn tấn công, nước đi đề xuất phù hợp strategy đó (đúng 3+/5 là oke)
+0290 F05  P1  Bạn muốn phản hồi thế nào khi người học đúng nước do đoán, hoặc sai nước nhưng nhận diện nguy cơ đúng?
+0291 Đề xuất: Ghi nhận phần tư duy đúng và hỏi bước còn thiếu; không đồng nhất chọn đúng với hiểu bài.
+0292 Trả lời : Nếu trong phần giải thích của họ đúng 1-2 câu thì ghi nhận phần tư duy đúng và hỏi những bước còn thiếu. Nếu đi đúng nước mà đoán và không giải thích được thì sẽ xếp vào phần cần ôn tập lại sau này
+0293 F06  P1  Khi người dùng báo lời giải sai, quy trình nào xác minh, sửa và phản hồi cho họ?
+0294 Đề xuất: Lưu phiên bản lời giải, FEN, engine/độ sâu và feedback; bạn duyệt mẫu trước khi sửa dữ liệu dùng chung.
+0295 Trả lời : Tôi, hiện tại là tôi. Sẽ đưa vào engine ăn trộm được và check xem điểm dao động của nước engine đề xuất so với nước đi người dùng có nhiều không , bên nào tốt hơn. Nếu nước của user tốt hơn thì sẽ coi engine sai và phản hồi cảm ơn với user, còn nếu không sẽ giải thích cho họ và hướng những câu hỏi đến viêc user tìm được ra nước đi đúng
+0296 
+0297 G Puzzle và thư viện bài học
+0298 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0299 G01  P1  Bốn chủ đề hiện tại thiếu chủ đề nào có giá trị nhất với nhóm pilot? Gửi một ví dụ mỗi chủ đề mới.
+0300 Đề xuất: Thêm nội dung từ sai lầm thật trước, không tăng số lượng chỉ để kho trông lớn.
+0301 Trả lời : Những nước đi trong khai cuộc, Những nước đi trong trung cuộc, Những nước đi trong tàn cuộc, Tấn công nhanh, Phòng thủ, Kiểm soát,…
+0302 G02  P0  Hai thế như thế nào được coi là cùng ý tưởng nhưng đủ khác để kiểm tra chuyển giao? Đưa một cặp đạt và một cặp quá giống.
+0303 Đề xuất: Khác bố cục, quân tham gia hoặc nước đáp; lật gương đơn thuần không mặc nhiên là bài hoàn toàn mới.
+0304 Trả lời :  VD 2 hình này đều có ý tưởng là việc ghi pháo đỏ P8-9 thì bên đen có xu hướng M3.2 để phong tỏa X9 của đỏ, 2 hình anfy được coi là chung ý tưởng
+0305 G03  P1  Một bài có nhiều nước đúng hoặc chuỗi bắt buộc nên được chấm thế nào?
+0306 Đề xuất: Lưu tập đáp án/nhánh hợp lệ và điều kiện thành công; không ép một chuỗi tọa độ duy nhất nếu có phương án ngang giá.
+0307 Trả lời : Mình tập trung vào user thôi, nếu họ đi được một trong những nước đúng và giải thích được thì sẽ coi họ đã hoàn thành 
+0308 G04  P1  Độ khó cần dựa vào yếu tố nào: độ sâu tính toán, số ứng viên, nhiễu hay kiến thức cần biết?
+0309 Đề xuất: Dùng vài tiêu chí có thể kiểm tra, ghi mức tạm và hiệu chỉnh từ attempt thật sau này.
+0310 Trả lời : Độ sâu tính toán, số ứng viên (hình càng phức tạp, nhiều nước đi càng khó), kiến thức cần biết về việc chuyển quân, ghim, đổi quân cũng làm tăng độ khó
+0311 G05  P1  Khi hết bài chưa gặp cùng kỹ năng, bạn thích ôn bài cũ có nhãn, chuyển chủ đề hay chờ bổ sung?
+0312 Đề xuất: Nói rõ đã hết bài mới; ưu tiên chủ đề liên quan và không ghi lặp lại là chuyển giao mới.
+0313 Trả lời : Bài cũ được ôn theo spaced repetition, hạn chế users tự học một bài quá nhiều lần. Sẽ rcm họ chuyển chủ đề và chờ bổ sung, đồng thời thêm thông báo kiểu hôm nay bạn đã học tốt đủ thời gian rồi (15-30p, hẹn gặp lại ngày mai để đuổi khéo) khi data chưa đủ lớn
+0314 G06  P1  Một lesson nên kết thúc bằng điều gì để biết người học áp dụng được, và bạn có nội dung gốc nào dùng ngay?
+0315 Đề xuất: Bài ngắn gắn một ví dụ và một thế kiểm tra; ghi quyền dùng cho cả văn bản, ảnh và vị trí cờ.
+0316 Trả lời : Khi họ thật sự hoàn thành được một nước đi mà trước đó đã đi sai (giải thích được nước đi, hoàn thành các câu hỏi chỉ dẫn, đưa được nước đi đề xuất chấp nhận được). Data đang hơi thiếu, đang cần tìm thêm
+0317 
+0318 H Lịch ôn và dashboard
+0319 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0320 H01  P1  Bạn muốn người học biết lịch ôn theo kỹ năng hay theo từng bài, và câu giải thích lịch nên nói gì?
+0321 Đề xuất: Theo kỹ năng với bài mới nếu có; nêu vì sao ôn hôm nay, không tuyên bố khoảng cách là tối ưu khoa học.
+0322 Trả lời : Câu giải thích lịch sẽ ghi là giờ học vàng (như mochivocabulary). THời gian ôn sẽ được đếm ngược thông báo trên web, ôn theo kỹ năng mà đã mắc sai lầm từ trước còn lessons là họ tự học thêm, nếu muốn ôn lessons phải ôn riêng. Từng cái được tách riêng, không trùng nhau
+0323 H02  P1  Khi người học bỏ lỡ lịch vài ngày, app nên xử lý thế nào để không tạo áp lực?
+0324 Đề xuất: Giữ hàng đợi nhỏ, không phạt điểm vì bận; ưu tiên điểm yếu và bằng chứng còn ít.
+0325 Trả lời : Thông báo như Doulingo (tiếc quá ? ngày chưa gặp bạn rồi…) nhắn họ để họ biết đang missing.
+0326 H03  P1  Điểm 0–100 đang hiển thị có hữu ích hay dễ bị hiểu nhầm là trình độ? Bạn muốn cách diễn đạt khác nào?
+0327 Đề xuất: Dùng tiến độ thực hành và số bằng chứng; chưa dùng “thành thạo” khi chưa có lập luận tốt và chuyển giao đủ.
+0328 Trả lời : Mình khá thích cách diễn đạt của Ziga (cao thủ, kiện tướng, tập sựm…) như vậy cũng oke và thêm sao kiểu 1,2,3,4, sao (cao thủ 1 sao, tập sự 5 sao chẳng hạn). Từng level trình độ sẽ có coaching plan riêng và nhóm bài tập riêng
+0329 H04  P1  Bạn cần những tín hiệu nào để kết luận lỗi tư duy đang giảm trong ván thật?
+0330 Đề xuất: Tách luyện puzzle khỏi thực chiến; đo tái diễn lỗi trong các cơ hội tương đương, không chỉ đếm lỗi thô.
+0331 Trả lời : Đo tái diễn lỗi trong các trận đấu (những lỗi cùng chủ đề/kỹ năng). Luyện puzzle liên quan đến mistakes trong thực chiến nhưng không lặp lại hình đã gặp trước, tránh học vẹt
+0332 H05  P1  Người học muốn nhắc ôn qua kênh nào và tần suất tối đa nào thực sự dễ chịu?
+0333 Đề xuất: Bắt đầu nhắc trong app; email/push chỉ khi có đồng ý, dễ tắt và có nhu cầu đã xác minh.
+0334 Trả lời : Trước 30p khi đến giờ thực sự cần ôn lại. Có thể nhắc trên web hoặc email khi họ đồng ý, user có thể tắt. Khi có app mới nhắc trên app. Khi liên kết API Social thì nhắc qua đó luôn
+0335 H06  P1  Dashboard nên giúp người học quyết định hành động tiếp theo bằng thông tin nào?
+0336 Đề xuất: Một ưu tiên luyện, bài đến hạn, bài đang dở và xu hướng có đủ dữ liệu; không dựng biểu đồ trống hoặc số liệu mẫu.
+0337 Trả lời : Có thể sắp xếp những việc họ có thể làm thành những bảng như này. Sau đó những gì họ hay làm thì sẽ đẩy dần xuống thứ tự ở dưới, còn việc ít làm sẽ đẩy lên trên (mục tiêu để họ làm nhiều tất cả việc). Còn khi đến giờ ôn tập mà họ quên và vẫn mở web thì ưu tiên để mục (Ôn tập) lên trên đầu tiên
+0338 
+0339 I Mobile khả năng tiếp cận và lỗi giao diện
+0340 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0341 I01  P1  Người thử sẽ dùng model điện thoại, trình duyệt và kích thước màn hình nào? Có máy yếu hoặc mạng chậm không?
+0342 Đề xuất: Ghi thiết bị thật thay vì “hỗ trợ mọi thiết bị”; ưu tiên kiểm thử các tổ hợp được dùng nhiều nhất.
+0343 Trả lời : Giữ đề xuất
+0344 I02  P1  Trên mobile, bàn cờ và câu hỏi nên cùng màn hình hay chuyển thành từng bước?
+0345 Đề xuất: Bàn cờ vẫn xem lại được khi viết; tránh bàn phím che câu hỏi và tránh cuộn qua lại quá dài.
+0346 Trả lời : Vẫn nên split màn hình nhưng thay vì trái phải như trên PC thì sẽ để nhỏ hơn bàn cờ khi nhập đáp án cho câu hỏi
+0347 I03  P1  Có nhu cầu chữ lớn, tương phản cao, phân biệt quân không dựa vào màu, hoặc điều khiển bàn phím không?
+0348 Đề xuất: Coi đây là yêu cầu nền; nhãn quân rõ, focus rõ, có phương án thay thao tác kéo và không dùng màu làm tín hiệu duy nhất.
+0349 Trả lời : Có, sẽ cố gắng điều chỉnh
+0350 I04  P1  Loading, lỗi mạng, dữ liệu trống, hết bài và hết quota cần nói gì để người học biết hành động tiếp theo?
+0351 Đề xuất: Mỗi trạng thái có thông điệp cụ thể và nút phục hồi; giữ dữ liệu đã nhập và tránh chỉ hiện “Something went wrong”.
+0352 Trả lời : Tương tự PC, giữ đề xuất
+0353 I05  P1  Âm thanh, chuyển động và rung có giúp ích hay gây xao nhãng trong giờ học của nhóm bạn?
+0354 Đề xuất: Tắt mặc định hoặc rất nhẹ, có điều khiển; tôn trọng giảm chuyển động và không tự phát âm thanh dài.
+0355 Trả lời : Giữ đề xuất
+0356 I06  P1  Trong thử nghiệm UI, ba tác vụ nào bạn muốn người mới tự làm mà không được hướng dẫn?
+0357 Đề xuất: Tự mở demo, tự thử lại, tự tìm lịch ôn; ghi thời điểm mắc kẹt và lời họ nói thay vì chỉ hỏi có thích không.
+0358 Trả lời : Tự thử lại và ghi thời điểm bị stuck và phản hồi của web ở thời điểm đó để feedback,
+0359 
+0360 J Engine và độ đúng chuyên môn
+0361 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0362 J01  P0  Chuẩn luật cho alpha cần theo tài liệu cụ thể nào, nhất là chiếu dai/đuổi dai/hòa? Bạn có văn bản hoặc ví dụ trọng tài không?
+0363 Đề xuất: Giữ luật cơ bản hiện tại và gắn nhãn phần chưa đủ; không tự nhận tuân thủ luật Việt Nam khi chưa đối chiếu.
+0364 Trả lời : Giữ đề xuất, luật sẽ xem chính ở trong này https://zigavn.com/cotuong/luat-co-tuong
+0365 J02  P1  Bạn có engine hợp pháp đang dùng để đối chiếu không? Cho tên, phiên bản, cách chạy và phạm vi quyền sử dụng.
+0366 Đề xuất: Ưu tiên adapter engine UCI cục bộ; chưa phân phối binary/weights trước khi kiểm tra điều khoản đúng phiên bản.
+0367 Trả lời : Chưa có hợp pháp, đang cần đi cướp. Có cách nào cướp được engine free không, nếu mua engine thì có cướp được dữ liệu của họ không
+0368 J03  P1  Độ chính xác và thời gian chờ nên đánh đổi thế nào khi xem lại 1 điểm so với toàn ván?
+0369 Đề xuất: Phân tích nhanh có giới hạn rõ; nếu kết quả không ổn định thì nâng độ sâu ở điểm quan trọng, không đổi nhãn chắc chắn tùy tiện.
+0370 Trả lời : Giữ đề xuất
+0371 J04  P1  Cho một thế hy sinh quân mà đánh giá vật chất nông sẽ hiểu sai, cùng lời giải kiểm chứng.
+0372 Đề xuất: Dùng làm regression case bắt buộc khi thay engine; không đánh giá chiến lược chỉ bằng số điểm quân.
+0373 Trả lời : Giữ đề xuất
+0374 J05  P1  Khi hai engine hoặc bạn và engine bất đồng, ai quyết và bằng chứng nào cần lưu?
+0375 Đề xuất: Lưu cả kết quả/phiên bản/độ sâu, tìm sâu hơn và chờ domain review; không chọn ngầm kết quả đẹp hơn.
+0376 Trả lời : Tôi, sẽ note lại gửi về máy chủ xin nhận xét và tôi sẽ giải quyết nó. Chỉ cho tôi tôi có thể nhận lại nxet từ máy chủ kiểu gì, ở đâu và gửi lại phản hồi cho engine như nào
+0377 J06  P1  Bạn chấp nhận chỉ gắn nhãn critical khi các lần tìm kiếm ổn định và mức chênh đủ rõ không?
+0378 Đề xuất: Định nghĩa ngưỡng theo độ sâu/loại kết quả; mate score tách centipawn; không dùng một con số cho mọi mức chắc chắn.
+0379 Trả lời : Giữ đề xuất
+0380 
+0381 K API LLM và ngân sách
+0382 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0383 K01  P0  Mốc dưới 100 nghìn đồng/tháng trong V3 còn giữ không, và bao gồm hosting hay chỉ LLM? Hạn chi cứng tối đa là bao nhiêu?
+0384 Đề xuất: Giữ chế độ miễn phí cục bộ đến khi có nhu cầu rõ; không kích hoạt trả phí hoặc mua dịch vụ trước khi bạn duyệt ngân sách.
+0385 Trả lời : Có, hạn cứng là 200k/tháng
+0386 K02  P1  LLM cần cải thiện điều gì mà template chưa làm được: cách diễn đạt, hỏi tiếp, hay phản hồi lập luận? Xếp một ưu tiên.
+0387 Đề xuất: Dùng engine facts làm đầu vào cố định; thử riêng phản hồi sư phạm, không giao LLM quyền tính nước cờ.
+0388 Trả lời : Phản hồi lập luận  hỏi tiếp  cách diễn đạt
+0389 K03  P1  Bạn có tài khoản nhà cung cấp, gói API và hạn mức chi nào đã sẵn sàng không?
+0390 Đề xuất: Chỉ ghi tên dịch vụ và trạng thái; không dán key/token. Thuê bao chat không tự động được giả định là có API quota.
+0391 Trả lời : Chưa
+0392 K04  P1  Khi API lỗi, chậm hoặc hết ngân sách, trải nghiệm nào bạn muốn giữ bằng fallback?
+0393 Đề xuất: Tiếp tục chơi, reflection, template, attempt và lịch ôn; nói rõ đang dùng giải pháp cục bộ, không retry vô hạn.
+0394 Trả lời : Tiếp tục giữ những phần không cần API. Khi user muốn dùng phần liên quan API sẽ ghi phần này đang được sửa lỗi và bảo trì, vui lòng quay lại sau
+0395 K05  P1  Có tích hợp bắt buộc nào ngoài engine/LLM như Google login, mail, phân tích hành vi hoặc import nguồn ván không?
+0396 Đề xuất: Mỗi tích hợp phải có người dùng cần, dữ liệu gửi/nhận, quyền, giá và cách tắt; không thêm SDK chỉ để đủ danh sách.
+0397 Trả lời : Không cái tích hợp nào bắt buộc, chỉ khuyến khích họ làm vậy thôi, khi import ván cần nhập đầy đủ notation của ván đấu đó theo đúng chuẩn.
+0398 K06  P1  Bạn muốn nhận báo cáo chi phí/lỗi ở đâu và ai được phép thay cấu hình model hoặc prompt?
+0399 Đề xuất: Cấu hình backend có version, test trước phát hành, trần chi theo ngày/tháng; log bỏ dữ liệu nhạy cảm.
+0400 Trả lời : Chỉ tôi
+0401 
+0402 L Tài khoản dữ liệu và quyền riêng tư
+0403 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0404 L01  P1  Lúc nào guest cần nâng lên tài khoản: lưu đa thiết bị, tham gia pilot hay ngay lần đầu?
+0405 Đề xuất: Cho thử trước; chỉ yêu cầu tài khoản khi có lợi ích cụ thể. Không tự xây lưu mật khẩu nếu có provider phù hợp.
+0406 Trả lời : Khi tham gia đa thiết bị thì cần username và mật khẩu thật. Nếu chỉ là guests thì vẫn trải nghiệm bình thường
+0407 L02  P0  Pilot có người dưới 18 tuổi không, tại quốc gia nào, và ai chịu trách nhiệm rà soát thông báo/đồng ý trước khi thu dữ liệu?
+0408 Đề xuất: Chưa mở thu dữ liệu trẻ em công khai khi chưa có quy trình được rà soát; không xem tài liệu này là tư vấn pháp lý.
+0409 Trả lời : Không giới hạn
+0410 L03  P1  Những dữ liệu nào thật sự cần cho học tập, và dữ liệu nào bạn đồng ý không thu?
+0411 Đề xuất: Mặc định bỏ ngày sinh đầy đủ, trường/lớp, số điện thoại và tên thật; chỉ thêm khi có mục đích cần thiết đã rõ.
+0412 Trả lời : Hiện tại những thông tin không liên quan cờ tướng bỏ hết (trừ số tuổi). Sau đó sẽ thêm nhiều yếu tố khác nhưng hiện tại chưa có
+0413 L04  P1  Cần giữ ván, reflection, logs và feedback bao lâu? Khi người học xóa tài khoản, backup xử lý thế nào?
+0414 Đề xuất: Chốt lịch lưu theo loại dữ liệu và thời gian xóa; phân biệt xóa trong app với xóa các bản sao.
+0415 Trả lời : Luôn luôn giữ (sẽ để hạn mức 1 năm rồi xóa). Khi người  học xóa tài khoản thì sẽ mất hết dữ liệu, hệ thống vẫn lưu để train model AI, còn tài khoản thì mất hết
+0416 L05  P1  Nếu muốn dùng ván cho kho bài chung hoặc train model, người dùng được chọn độc lập và rút lại thế nào?
+0417 Đề xuất: Tách đồng ý phục vụ học cá nhân khỏi chia sẻ/huấn luyện; dùng bí danh không được xem là đã ẩn danh hoàn toàn.
+0418 Trả lời : Tất cả đều được hệ thống lưu lại để train model, còn người dùng không muốn lưu trong riêng tài khoản của mình (kiểu lịch sử đấu của Liên Quân) thì có lựa chọn xóa nó đi
+0419 L06  P1  Ai được đọc reflection, sửa annotation hoặc tải dữ liệu khi có HLV/nhóm hỗ trợ?
+0420 Đề xuất: Quyền tối thiểu, có nhật ký thay đổi; không gửi toàn bộ database cho người chỉ cần góp ý một thế cờ.
+0421 Trả lời : Có, giữ đề xuất
+0422 
+0423 M Nguồn dữ liệu và xác minh nội dung
+0424 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0425 M01  P0  Hãy gửi 3 thế đầu tiên theo mẫu cuối tài liệu, ưu tiên từ ván của bạn và những lỗi bạn từng thật sự dạy.
+0426 Đề xuất: Cần FEN, lượt, nước đã chơi, phương án chấp nhận, dòng kiểm chứng, WHAT WHY HOW và tình trạng quyền.
+0427 Trả lời : Chưa có hình mẫu, phần này bàn thêm
+0428 M02  P1  Trong các sách/web/ghi chép đang có, nguồn nào được phép sao chép, sửa và phân phối? Có bằng chứng bằng văn bản không?
+0429 Đề xuất: Lập sổ nguồn và phạm vi quyền; không suy ra quyền chỉ vì đọc được miễn phí hoặc tự nhập lại.
+0430 Trả lời : Không có bằng chứng, cơ bản cứ đánh ra rồi lưu lại thôi
+0431 M03  P1  Bạn có thể duyệt bao nhiêu thế mỗi tuần mà vẫn kiểm tra được kỹ nội dung?
+0432 Đề xuất: Chọn nhịp thực tế, duyệt theo checklist; 10 thế tốt có giá trị hơn 100 thế chưa chắc đáp án.
+0433 Trả lời : 10 thôi, mỗi ngày 1-2, không quá nhiều được
+0434 M04  P1  Annotation nào bắt buộc, và bạn muốn dùng Word, CSV hay công cụ biên tập để nhập?
+0435 Đề xuất: Giữ schema chung gồm ID/FEN/side/solution/alternatives/skill/family/level/source/verification/version.
+0436 Trả lời : Giữ đề xuất
+0437 M05  P1  Một thế có lỗi sẽ bị gỡ, sửa phiên bản hay giữ cho người đã làm xem lịch sử?
+0438 Đề xuất: Ngừng đề xuất bản lỗi; giữ lịch sử phiên bản, đánh dấu attempt bị ảnh hưởng và tính lại chỉ số khi cần.
+0439 Trả lời : Gỡ và gửi thông báo về người đã làm để họ thay đổi (nếu cần) và họ biết
+0440 M06  P1  Ai có thể kiểm tra độc lập một phần gold set để tránh mọi đáp án cùng phụ thuộc một người hoặc một engine?
+0441 Đề xuất: Nhờ chuyên gia khi có thể; ít nhất ghi rõ chỗ chỉ tự duyệt và dùng tập kiểm tra giữ riêng.
+0442 Trả lời : Giữ đề xuất
+0443 
+0444 N Kiểm thử triển khai và vận hành
+0445 Trả lời theo trải nghiệm hoặc bằng chứng của bạn. Nếu đồng ý với đề xuất, chỉ cần ghi “Giữ đề xuất”.
+0446 N01  P0  Kế hoạch thử thực tế gần nhất của bạn: ngày, số người dự kiến, thiết bị và nhiệm vụ họ làm?
+0447 Đề xuất: Chạy thử riêng có quan sát; nếu chưa có người thì ghi chưa có, không thay bằng số người dùng giả.
+0448 Trả lời : Chưa có, nếu xong trong hôm nay mai thử luôn
+0449 N02  P1  Người thử cần truy cập ngoài máy của bạn ngay không, hay một buổi dùng chung máy đã đủ để kiểm tra cách học?
+0450 Đề xuất: Nếu cần từ xa, làm public alpha có auth/quota/TLS/backup phù hợp; không mở thẳng dev server ra Internet.
+0451 Trả lời : Có, cần thử bản web
+0452 N03  P1  Bạn có tài khoản hosting/domain nào đang sở hữu và có thể quản trị không? Ai giữ quyền billing?
+0453 Đề xuất: Chỉ ghi dịch vụ và quyền truy cập sẵn có; chọn hosting sau khi đo tải engine và ngân sách, không chọn chỉ vì quen tên.
+0454 Trả lời : Chưa, chốt xong sẽ deploy
+0455 N04  P1  Lỗi nghiêm trọng cần được báo cho bạn bằng kênh nào, và trong bao lâu bạn có thể xử lý thực tế?
+0456 Đề xuất: Có severity, reproduction, phiên bản và chủ xử lý; tắt tính năng lỗi hoặc quay về bản ổn định khi cần.
+0457 Trả lời : Báo ngay trên feedback ở web. Tôi chưa biết tôi có thể xem những feedback đấy ở đau, như nào để lưu lại và hệ thống bằng một bản Excel hay Spreadsheets, hướng dẫn tôi phần này
+0458 N05  P1  Bạn muốn đo thành công pilot ra sao mà không nhầm thích giao diện với học tốt hơn?
+0459 Đề xuất: Đo hoàn tất tác vụ, hiểu lời giải và bài chuyển giao trễ; tách usability với learning, chưa kết luận nhân quả từ nhóm nhỏ.
+0460 Trả lời : Giữ đề xuất
+0461 N06  P1  Sau khi trả lời V4, bạn muốn ba tiêu chí nghiệm thu phiên bản kế tiếp là gì?
+0462 Đề xuất: Chốt thành tác vụ quan sát được, bộ dữ liệu dùng test và ngưỡng đạt; viết rõ phần chưa làm để tránh scope tăng vô hạn.
+0463 Trả lời : Các tính năng đều sử udnjg được, viết rõ phần cần hoàn thiện thêm, bộ dữ liệu đủ để AI học
+0464 
+0465 06 Mẫu gửi một thế cờ đáng tin cậy
+0466 Sao chép trang này cho mỗi thế. Bắt đầu với ba thế; chưa cần gom dataset lớn. Không gửi nội dung từ sách hoặc website nếu chưa có quyền phù hợp.
+0467 Mã và mục đích
+0468 Ví dụ THANH001. Kỹ năng muốn dạy và người học mục tiêu.
+0469 Trả lời : Oke
+0470 Thế cờ và biên bản
+0471 FEN đầy đủ, bên đi; nếu không có FEN thì mô tả tọa độ từng quân hoặc đính kèm ảnh do bạn có quyền dùng.
+0472 Trả lời : Oke
+0473 Nước đã chơi và ý định
+0474 Nước đã đi, người chơi lúc đó nghĩ gì; nếu không biết ý định thì ghi không biết, không suy đoán.
+0475 Trả lời : Oke
+0476 Đáp án và phương án khác
+0477 Nước hoặc tập nước chấp nhận, biến kiểm chứng, nước đáp mạnh nhất đã xét.
+0478 Trả lời : Oke
+0479 WHAT và WHY
+0480 Điều đã thay đổi; tại sao quyết định có vấn đề hoặc tốt, căn cứ bằng biến hợp lệ.
+0481 Trả lời : Oke
+0482 HOW và kiểm tra hiểu bài
+0483 Quy trình suy nghĩ muốn dạy; câu hỏi theo dõi; tiêu chí nhận biết người học thật sự hiểu.
+0484 Trả lời : Oke
+0485 Bài chuyển giao
+0486 Thế khác cùng kỹ năng, khác gì đủ để tránh nhớ đáp án; family để quản lý độ tương tự.
+0487 Trả lời : Oke
+0488 Nguồn và xác minh
+0489 Nguồn, tác giả, quyền dùng, ai duyệt, engine/phiên bản/độ sâu, ngày kiểm tra và điều chưa chắc.
+0490 Trả lời : Oke
+0491 
+0492 07 Mẫu quan sát một buổi thử
+0493 Mục đích là tìm vấn đề trong cách dùng và cách hiểu, không chứng minh sản phẩm tốt bằng lời khen. Không yêu cầu thông tin nhận diện không cần thiết.
+0494 Bối cảnh
+0495 Bí danh, trình độ tự khai, đã biết luật chưa, thiết bị/trình duyệt, ngày thử.
+0496 Trả lời : Chốt
+0497 Nhiệm vụ một
+0498 Tự vào demo và đến phần tự suy nghĩ. Họ mắc kẹt ở đâu? Có cần người hướng dẫn không?
+0499 Trả lời : Chốt
+0500 Nhiệm vụ hai
+0501 Sau khi xem lời giải, nhờ họ nói lại bằng lời mình và thử lại. Ghi đúng điều họ nói, không gợi ý đáp án.
+0502 Trả lời : Chốt
+0503 Nhiệm vụ ba
+0504 Cho một thế liên quan chưa thấy. Ghi nước, lý do, trợ giúp đã dùng và điều họ chuyển được từ bài trước.
+0505 Trả lời : Chốt
+0506 Theo dõi trễ
+0507 Nếu họ đồng ý, thử lại sau khoảng thời gian đã định bằng thế khác. Không hứa có tiến bộ chỉ từ một buổi.
+0508 Trả lời : Chốt
+0509 Phân loại vấn đề
+0510 Luật/đáp án, nội dung dạy, UI, tốc độ hoặc kỳ vọng sai. Ghi mức độ, cách tái hiện, ảnh nếu được phép.
+0511 Trả lời : Chốt
+0512 Quyết định tiếp theo
+0513 Một thay đổi đáng làm nhất; bằng chứng nào sẽ cho biết thay đổi có hiệu quả; chưa đủ dữ liệu thì ghi rõ.
+0514 Trả lời : Chốt
+0515 
+0516 08 Đọc gì và tìm thông tin gì
+0517 Đọc để giải quyết quyết định đang có, không học lan man toàn bộ AI. Mỗi nguồn dưới đây đi kèm một đầu ra nhỏ bạn có thể tự viết lại.
+0518 Ưu tiên
+0519 Tài liệu
+0520 Đọc xong làm được gì
+0521 Ngay
+0522 README.md và RUN_AND_DEMO_CODEX.md
+0523 Tự chạy server, làm demo, biết cách dừng và khởi động lại.
+0524 Ngay
+0525 KNOWN_LIMITATIONS.md và AI_USAGE.md
+0526 Nói đúng phần nào là luật/search/template; không nhầm với ML.
+0527 Tuần này
+0528 BEGINNER_LEARNING_GUIDE_CODEX.md
+0529 Theo được một nước đi từ UI qua API đến database.
+0530 Tuần này
+0531 WXF Rules và tài liệu luật Việt Nam bạn chọn
+0532 Ghi những trường hợp chiếu dai/đuổi dai/hòa cần implement.
+0533 Trước đổi engine
+0534 Official Pikafish repository
+0535 Hiểu UCI, version, cách benchmark và nghĩa vụ trước phân phối.
+0536 Trước public
+0537 W3C WCAG và OWASP session guidance
+0538 Có checklist khả năng tiếp cận và kiểm tra phiên người dùng.
+0539 Khi học API
+0540 MDN HTTP overview
+0541 Phân biệt request/response, GET/POST, status code và JSON.
+0542 
+0543 Nguồn chính thức đã đối chiếu
+0544 WXF World Xiangqi Ruleshttps://www.wxf-xiangqi.org/images/wxf-rules/2018_World_XiangQi_Rules_English2018.pdf
+0545 Pikafish chính thứchttps://github.com/official-pikafish/Pikafish
+0546 W3C WCAG 2.2 quick referencehttps://www.w3.org/WAI/WCAG22/quickref/
+0547 MDN HTTP overviewhttps://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview
+0548 OWASP Session Managementhttps://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html
+0549 Ngày tham chiếu 08/10/2026. Giá API, hạn mức, giấy phép của phiên bản tải về và yêu cầu pháp lý phải được kiểm tra lại trước khi chọn hoặc phát hành. Không cần gửi bí mật truy cập để trả lời V4.

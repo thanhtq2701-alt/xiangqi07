@@ -1,0 +1,323 @@
+{
+  "audit_date": "2026-10-21",
+  "scope": "Kiểm kê tài liệu, không sửa ứng dụng hoặc tài liệu nguồn. Đọc trọn hai nguồn; giữ đủ V5-01–V5-46 và các tiểu câu trong đoạn hỏi, không chỉ dòng Trả lời.",
+  "sources": [
+    {
+      "path": "docs/CO_CHILL_V5_QUESTIONS.md",
+      "file_last_write_utc": "2026-10-16T12:48:32Z",
+      "declared_revision_date": "2026-10-16",
+      "declared_question_count": 46,
+      "declared_group_count": 9,
+      "read_completely": true,
+      "authority_note": "Bản cập nhật tài khoản mới hơn báo cáo phát hành trong cùng ngày; giữ mã 01–41, cập nhật 25, 28, 32, 37, 39, 40 và thêm 42–46. Các đề xuất chưa phải câu trả lời."
+    },
+    {
+      "path": "BAO_CAO_UIUX_V5_2026_10_16.md",
+      "file_last_write_utc": "2026-10-16T05:40:49Z",
+      "declared_revision_date": "2026-10-16",
+      "reported_deployment_succeeded_utc": "2026-10-16T05:33:35Z",
+      "read_completely": true,
+      "authority_note": "Báo cáo lịch sử của Site phiên bản 3: đoạn 41 câu/8 nhóm và hoãn tài khoản đã bị bản V5 cập nhật cùng ngày thay thế. Các số kiểm thử, tính năng và hạn chế là ảnh chụp ngày 16/10, không tự xác nhận trạng thái ngày 21/10."
+    }
+  ],
+  "existing_ids": ["V5-01", "V5-02", "V5-03", "V5-04", "V5-05", "V5-06", "V5-07", "V5-08", "V5-09", "V5-10", "V5-11", "V5-12", "V5-13", "V5-14", "V5-15", "V5-16", "V5-17", "V5-18", "V5-19", "V5-20", "V5-21", "V5-22", "V5-23", "V5-24", "V5-25", "V5-26", "V5-27", "V5-28", "V5-29", "V5-30", "V5-31", "V5-32", "V5-33", "V5-34", "V5-35", "V5-36", "V5-37", "V5-38", "V5-39", "V5-40", "V5-41", "V5-42", "V5-43", "V5-44", "V5-45", "V5-46"],
+  "global_answer_status": "Hai nguồn không chứa câu trả lời đã điền cho 46 câu V5. Không tự điền Giữ đề xuất, không đổi đề xuất thành yêu cầu đã chốt; chỉ các quyết định trong phần Những gì đã chốt và tiêu chí tài khoản được coi là đã chốt.",
+  "groups": [
+    {"id": "A", "title": "Cách hỏi và bằng chứng hiểu bài", "ids": ["V5-01", "V5-02", "V5-03", "V5-04", "V5-05", "V5-06", "V5-07"]},
+    {"id": "B", "title": "Luật phán quyết và ký phổ", "ids": ["V5-08", "V5-09", "V5-10", "V5-11", "V5-12", "V5-13"]},
+    {"id": "C", "title": "Kho bài và lộ trình học", "ids": ["V5-14", "V5-15", "V5-16", "V5-17", "V5-18", "V5-19"]},
+    {"id": "D", "title": "Giao diện và tương tác trên bản mới", "ids": ["V5-20", "V5-21", "V5-22", "V5-23", "V5-24"]},
+    {"id": "E", "title": "Lịch ôn và số liệu tiến bộ", "ids": ["V5-25", "V5-26", "V5-27", "V5-28"]},
+    {"id": "F", "title": "Dữ liệu quyền riêng tư và chia sẻ", "ids": ["V5-29", "V5-30", "V5-31", "V5-32"]},
+    {"id": "G", "title": "Thử nghiệm thực tế và vận hành", "ids": ["V5-33", "V5-34", "V5-35", "V5-36", "V5-37", "V5-38"]},
+    {"id": "H", "title": "Chốt bản tiếp theo và chuẩn bị Vercel", "ids": ["V5-39", "V5-40", "V5-41"]},
+    {"id": "I", "title": "Chi tiết tài khoản quản trị và đồng bộ", "ids": ["V5-42", "V5-43", "V5-44", "V5-45", "V5-46"]}
+  ],
+  "questions": [
+    {
+      "id": "V5-01", "priority": 1, "title": "Một câu trả lời đủ ý trông như thế nào",
+      "decision_fields": ["Hình hoặc file cụ thể", "Mẫu câu trả lời đủ ý", "Mẫu câu trả lời đúng một phần", "Mẫu câu trả lời sai", "Các ý bắt buộc", "Ý chấp nhận cách nói khác", "Lỗi làm kết luận không còn đúng", "Phân biệt đủ từ khóa với giải thích quan hệ giữa các quân"],
+      "proposal_not_answer": "Kiểm tra quan sát, đe dọa, mục tiêu, nước hợp lệ, phản ứng đối phương; khi bộ chấm chưa đáng tin chỉ ghi câu trả lời và kết quả nước đi, chưa chứng nhận hiểu bài."
+    },
+    {
+      "id": "V5-02", "priority": 1, "title": "Bấm Chưa biết nên dẫn tới bước nào",
+      "decision_fields": ["Giữ hoặc bỏ chờ 10 giây", "Nếu giữ: mục đích quan sát lại hay hạn chế bấm nhanh", "Ví dụ câu gợi mở đầu tiên", "Điều kiện mở gợi ý tiếp", "Điều kiện mở lời giải", "Cách hỗ trợ tiếp cận nếu có thời gian chờ"],
+      "proposal_not_answer": "Mở ngay câu quan sát cụ thể; trả lời hoặc chủ động xin trợ giúp tiếp. Không giả đang xử lý. Nếu giữ chờ phải ghi Thời gian quan sát và có hỗ trợ tiếp cận."
+    },
+    {
+      "id": "V5-03", "priority": 1, "title": "Sau ba lần chưa đạt thì ghi nhận điều gì",
+      "decision_fields": ["Một lần thử là một câu trả lời, gửi cả bộ, hay một nước đi", "Sau ba lần vẫn chưa hiểu: kết thúc có hỗ trợ hay giữ chưa hoàn thành", "Trạng thái được ghi sau lần thứ ba", "Bài hoặc hướng dẫn tiếp theo", "Khi nào kết quả được tăng bằng chứng tự giải"],
+      "proposal_not_answer": "Một lần gửi cả bộ là một lần thử; sau ba lần mở hướng dẫn từng bước, ghi Đã học có hỗ trợ, cần ôn; chỉ kiểm tra độc lập sau đó tăng bằng chứng tự giải."
+    },
+    {
+      "id": "V5-04", "priority": 1, "title": "Nước khác vẫn hợp lý được chấp nhận ra sao",
+      "decision_fields": ["Hình có ít nhất hai nước chấp nhận cùng mục tiêu", "Nước A và B cùng mục tiêu/lý do chấp nhận", "Nước C và lý do không đạt", "Chấp nhận kết quả chưa đủ căn cứ để chấm khi engine không phân biệt được không", "Cách xử lý đánh giá chưa rõ"],
+      "proposal_not_answer": "Lưu danh sách nước đã duyệt với mục tiêu; không tính sai chắc chắn hoặc kết luận trình độ khi chưa rõ. So các nước từ cùng một thế và cùng phía."
+    },
+    {
+      "id": "V5-05", "priority": 2, "title": "Bạn muốn đoạn giải thích cuối cùng viết như thế nào",
+      "decision_fields": ["Hình minh họa cụ thể", "Lời giải ngắn hoàn chỉnh", "Nội dung chỉ hiện khi bấm Chi tiết hơn", "Câu nào bấm vào sẽ làm quân di chuyển trên bàn", "Câu kết dẫn sang bài tiếp theo với lời văn chính xác"],
+      "proposal_not_answer": "Câu hỏi/tiêu đề Việt cụ thể; lời giải 3–5 câu, nhánh minh họa mở khi yêu cầu; chỉ giới hạn Chi tiết hơn khi có chi phí thực và nói rõ."
+    },
+    {
+      "id": "V5-06", "priority": 2, "title": "Giảm số câu theo trình độ dựa vào bằng chứng nào",
+      "decision_fields": ["Một hình cụ thể", "Bộ câu cho người biết luật nhưng yếu chiến thuật", "Bộ câu cho người trung cấp", "Điều kiện quay lại câu hỏi nhỏ hoặc tăng hướng dẫn", "Bằng chứng cho việc giảm số câu/tự động đổi mức hướng dẫn"],
+      "proposal_not_answer": "Người học chọn mức hướng dẫn; tự đổi mức dựa nhiều bài tương đương hoàn thành độc lập. Tự khai và thắng máy nông chỉ là thông tin đầu."
+    },
+    {
+      "id": "V5-07", "priority": 2, "title": "Ví dụ phản hồi sai một phần cần sửa như thế nào",
+      "decision_fields": ["Câu trả lời gốc có ý đúng lẫn sai", "Đoạn chính xác cần trích là hợp lý", "Đoạn chính xác cần xem lại", "Lời nhận xét cho từng ý", "Câu hỏi tiếp theo", "Khi báo lỗi nhận xét chưa chắc: giữ bài đang học hay chuyển bài"],
+      "proposal_not_answer": "Dùng chữ Hợp lý/Cần xem lại cùng màu, không tô đỏ cả đoạn; chưa có bộ chấm kiểm chứng thì không tự tô theo từ khóa."
+    },
+    {
+      "id": "V5-08", "priority": 1, "title": "Chọn bộ luật thi đấu nào làm chuẩn",
+      "decision_fields": ["Tài liệu tổ chức cờ tướng có tên và phiên bản hoặc giao Codex đề xuất nguồn", "Bộ luật mặc định cho lặp/chiếu dai/đuổi dai/hòa", "Nếu quy ước nền tảng khác luật giải thì chọn mặc định nào", "Có cần chế độ quy ước riêng không"],
+      "proposal_not_answer": "Đối chiếu nguồn chính thức và chọn phiên bản; giữ nhãn giới hạn tới khi phán quyết nâng cao được kiểm thử; quy ước nền tảng phải mang tên riêng."
+    },
+    {
+      "id": "V5-09", "priority": 1, "title": "Mốc hòa do không bắt quân phải xác nhận bằng điều khoản",
+      "decision_fields": ["Nguồn/điều khoản xác nhận hoặc dùng quy ước riêng", "Mốc hòa và xử lý khác biệt 50 với 60 nước", "Đơn vị đếm: hai bên mỗi bên một lượt hay một lượt một bên", "Đi Tốt có ảnh hưởng cách đếm không", "Chiếu có ảnh hưởng cách đếm không", "Ngoại lệ khác hoặc nhờ Codex đối chiếu"],
+      "proposal_not_answer": "Chưa gọi 50 nước là luật chuẩn khi chưa có nguồn; chuyển điều khoản được chọn thành bộ đếm và test."
+    },
+    {
+      "id": "V5-10", "priority": 1, "title": "Cần những chuỗi lặp nào để bạn nghiệm thu",
+      "decision_fields": ["Chuỗi chiếu một bên", "Chuỗi đuổi quân", "Với mỗi chuỗi: thế ban đầu", "Với mỗi chuỗi: bên đi", "Với mỗi chuỗi: đủ nước trước khi lặp", "Kết quả phán quyết dự kiến", "Điểm chưa chắc đánh dấu cần kiểm chứng", "Ca bổ sung hai bên cùng chiếu/đổi mục tiêu/xen nước chờ nếu có"],
+      "proposal_not_answer": "Codex tạo test cơ bản theo luật đã chốt; ví dụ chủ sản phẩm dùng đối chiếu chuyên môn. Ảnh cuối ván đơn lẻ không đủ."
+    },
+    {
+      "id": "V5-11", "priority": 1, "title": "Ký phổ khi hai quân cùng loại cùng cột",
+      "decision_fields": ["Ứng dụng nguồn quen dùng", "Ảnh/text có hai Xe hoặc hai Mã cùng cột", "Ví dụ nhiều Tốt cùng cột", "Chọn cách ghi trước/sau, t/s hay ký hiệu khác", "Thống nhất cách hiển thị và nhập ký hiệu"],
+      "proposal_not_answer": "Ký phổ dễ đọc theo bên đi, tọa độ nội bộ ổn định; hỏi chọn khi nhập mơ hồ; lật bàn không đổi nội dung nước đã lưu."
+    },
+    {
+      "id": "V5-12", "priority": 2, "title": "Những file ván thực tế nào phải nhập được trước",
+      "decision_fields": ["Hai hoặc ba file gốc thật", "Tên ứng dụng xuất từng file", "Ảnh bàn cờ kết quả mong muốn", "Thứ tự ưu tiên dán ký phổ Việt/tải file/đọc ảnh", "Lỗi ở nước 17 có lưu chủ động 16 nước hợp lệ thành bản chưa hoàn chỉnh không", "Ứng dụng bên ngoài cần xuất sang"],
+      "proposal_not_answer": "Một định dạng có mẫu trước; chỉ rõ nước lỗi và cho chủ động lưu phần hợp lệ; OCR tách riêng, xác minh quân/bên đi; xuất phải thử ở ứng dụng đích."
+    },
+    {
+      "id": "V5-13", "priority": 2, "title": "Khi bạn và hệ thống bất đồng về một thế",
+      "decision_fields": ["Tạm ngừng tính điểm riêng bài lỗi trong bao lâu", "Gói thông tin chủ sản phẩm cần để quyết định", "Người hỗ trợ đối chiếu trường hợp khó nếu có", "Thời gian phản hồi mong muốn", "Cách thông báo sửa cho người đã gặp bài"],
+      "proposal_not_answer": "Lưu FEN, chuỗi nước, phiên bản luật, kết quả tìm kiếm, lý do; tạm gỡ khỏi bài tính kết quả; giữ lịch sử và không ghi đè bằng chứng."
+    },
+    {
+      "id": "V5-14", "priority": 1, "title": "Gói nội dung đầu tiên bạn có thể cung cấp",
+      "decision_fields": ["Số ván có quyền sử dụng", "Số hình có quyền sử dụng", "Hai chủ đề lỗi ưu tiên", "Ngày có thể gửi", "File mẫu", "Mỗi hình: bên đi, mục tiêu, các nước chấp nhận, lời giải ngắn, chủ đề, nguồn", "Mục chưa biết đáp án đánh dấu cần kiểm chứng"],
+      "proposal_not_answer": "Mục tiêu thu thập 8–12 hình duyệt kỹ ở hai nhóm lỗi, không phải dữ liệu đã có."
+    },
+    {
+      "id": "V5-15", "priority": 1, "title": "Ai được phép cho phép đưa một ván vào kho chung",
+      "decision_fields": ["Nguồn gói đầu: tự tạo/bạn bè đồng ý/nguồn khác", "Quyền được cho phép đối với ván/hình/lời bình/ảnh/bài sách hoặc website", "Người hoặc căn cứ cho phép đưa vào kho chung", "Dữ liệu cá nhân cần ẩn", "Cơ chế đồng ý riêng để chuyển dữ liệu riêng tư sang kho chung"],
+      "proposal_not_answer": "Mặc định riêng tư; đồng ý riêng, bỏ thông tin cá nhân; chỉ xuất bản có nguồn và quyền phù hợp; tải lên không tự chứng minh quyền tái xuất bản."
+    },
+    {
+      "id": "V5-16", "priority": 1, "title": "Bài mới và bài đổi hình cùng ý cần gọi thế nào",
+      "decision_fields": ["Nhãn cho Chưa gặp hình này", "Nhãn cho Đã gặp ý tương tự", "Hình lật gương/đổi màu quân tính bài mới hay củng cố", "Cách tính tỷ lệ tự giải bài mới", "Một cặp hình thuộc cùng nhóm tương đương"],
+      "proposal_not_answer": "Cùng chủ đề có thể mới; biến đổi gần như giống hệt không là chuyển giao độc lập; lời mời Thử thêm một bài, thống kê phân loại rõ."
+    },
+    {
+      "id": "V5-17", "priority": 2, "title": "Lộ trình đầu tiên nên có những bài nào",
+      "decision_fields": ["Nhóm người học/nhánh đầu cho người biết luật", "Thứ tự 5–7 mục tiêu", "Mục tiêu là điều kiện trước của mục sau", "Điều kiện chuyển hoặc khóa bước", "Nhãn khai/trung/tàn, kỹ năng, độ khó nếu cần"],
+      "proposal_not_answer": "Nhánh ngắn từ quân không được bảo vệ, ăn quân, phản công, phòng thủ; khóa có lý do học; ghi rõ mục chưa có nội dung, tránh nhân bản bài chỉ để gắn nhãn."
+    },
+    {
+      "id": "V5-18", "priority": 2, "title": "Tiêu chí độ khó ngoài số nước tính trước",
+      "decision_fields": ["Một hình dễ", "Một hình khó", "Lý do phân mức", "Cùng độ dài lời giải nhưng nhiều phương án gây nhiễu hơn có xếp khác mức không", "Tên mức người học nhìn thấy", "Các tiêu chí độ khó ngoài số nước tính trước"],
+      "proposal_not_answer": "Dựa độ dài lời giải, phương án hợp lý, độ ẩn đe dọa, yêu cầu giải thích; chủ sản phẩm duyệt mức ban đầu rồi chỉnh bằng dữ liệu; không gọi là Elo đã đo."
+    },
+    {
+      "id": "V5-19", "priority": 3, "title": "Công cụ biên tập đầu tiên cần làm được gì",
+      "decision_fields": ["Xếp ba việc ưu tiên: thay câu hỏi/thêm hình/sửa đáp án/gỡ bài lỗi hoặc việc khác", "Luồng duyệt và quyền phát hành", "Có cần xem trước trải nghiệm người học trước xuất bản không", "Ghi lý do sửa ở đâu", "Một ví dụ sửa thường gặp"],
+      "proposal_not_answer": "Nháp/Chờ duyệt/Đã xuất bản/Tạm gỡ; chủ sản phẩm phát hành; kiểm nước hợp lệ và xem trước cả vòng học; chưa cần vai trò biên tập phức tạp."
+    },
+    {
+      "id": "V5-20", "priority": 2, "title": "Logo gốc và hai hướng màu còn đang phân vân",
+      "decision_fields": ["File logo gốc chất lượng cao hơn nếu có", "Sau thử ba theme: giữ xanh hiện tại hay lấy đỏ cam logo làm chính", "Chi tiết logo bắt buộc giữ", "Chi tiết được giản lược khi nhỏ", "Quyền sở hữu/file dùng để tạo biến thể sáng tối"],
+      "proposal_not_answer": "Giữ màu hiện tại ở vòng thử; logo đọc được khi nhỏ, không mượn tài sản tham khảo; biến thể từ file chủ sản phẩm sở hữu sau khi chọn.",
+      "nuance": "Không hỏi lại toàn bộ thương hiệu/theme đã chốt; vẫn phải giữ phép so sánh xanh với đỏ cam còn mở trong chính V5-20."
+    },
+    {
+      "id": "V5-21", "priority": 2, "title": "Ba lỗi giao diện cụ thể sau khi thử bản mới",
+      "decision_fields": ["Ba lỗi cản việc học nhất trên trang chơi/câu hỏi/ôn", "Mỗi lỗi: đường dẫn", "Mỗi lỗi: thao tác", "Mỗi lỗi: kỳ vọng", "Mỗi lỗi: thực tế xảy ra", "Thiết bị và mức zoom", "Ảnh cả màn nếu liên quan kích thước"],
+      "proposal_not_answer": "Ưu tiên bàn không đọc được, mất ô nhập, không biết bước tiếp, mất dữ liệu; trang trí sau; không cần đo pixel."
+    },
+    {
+      "id": "V5-22", "priority": 2, "title": "Khi bàn phím điện thoại mở thì phần nào phải giữ",
+      "decision_fields": ["Thiết bị thật", "Ảnh khi đang gõ", "Phần tối thiểu cần thấy của bàn", "Phần tối thiểu của câu hỏi và nút gửi", "Chấp nhận bàn thu nhỏ khi gõ và phóng lại khi chạm không", "Cách gửi mong muốn/Enter và phím tắt"],
+      "proposal_not_answer": "Giữ câu đang gõ và nút gửi dễ chạm, mở lại bàn nhanh; không ép toàn bộ vào chiều cao nhỏ; Enter xuống dòng, Ctrl/Cmd+Enter gửi."
+    },
+    {
+      "id": "V5-23", "priority": 2, "title": "Giọng phản hồi và âm thanh cần mẫu nào",
+      "decision_fields": ["Sửa câu Nước đi chưa hợp lệ", "Sửa câu Bạn đã nhận trợ giúp ở hình này", "Sửa câu Bạn còn bài ôn chưa hoàn thành", "Từ cần tránh khi sai nhiều lần", "Âm gây khó chịu sau thử"],
+      "proposal_not_answer": "Mặc định trung tính, âm tự tạo ngắn, tắt nhanh và văn bản thay âm; không phán xét năng lực từ lỗi."
+    },
+    {
+      "id": "V5-24", "priority": 2, "title": "Hình minh họa luật nào cần làm rõ nhất",
+      "decision_fields": ["Hai tình huống dễ nhầm nhất: chân Mã/mắt Tượng/ngòi Pháo/qua sông/lộ mặt Tướng", "Cặp hình đối chiếu hay bật/tắt quân chắn", "Ảnh hoặc ví dụ cụ thể", "Yêu cầu quay đúng câu đang làm sau minh họa"],
+      "proposal_not_answer": "Đặt ví dụ hợp lệ cạnh ví dụ chỉ đổi một quân dẫn tới bị cấm, mô tả lý do; Codex lo bàn phím, focus, tương phản."
+    },
+    {
+      "id": "V5-25", "priority": 1, "title": "Sáu lần thử là sáu lần nào", "updated_in_account_revision": true,
+      "decision_fields": ["Phạm vi sáu mẫu có cùng kỹ năng không", "Có cùng độ khó không", "Lần nào được tính", "Xem đáp án có bị loại khỏi tự giải bài mới không", "Thử lại cùng hình có bị loại không", "Sửa bài sau trợ giúp có bị loại không"],
+      "proposal_not_answer": "Chỉ lần đầu hình đủ điều kiện, tách trợ giúp/bài đã gặp; hiện Chưa đủ dữ liệu và số mẫu, tỷ lệ từ ít nhất sáu lần hợp lệ; sáu chỉ là ngưỡng hiển thị.",
+      "locked_context": "Số đếm tài khoản/ván/lượt học thật hiển thị ngay khi ghi hợp lệ; không áp ngưỡng sáu cho mọi dashboard."
+    },
+    {
+      "id": "V5-26", "priority": 1, "title": "Một bài chưa hiểu sẽ được hẹn ôn như thế nào",
+      "decision_fields": ["Đã xem hướng dẫn nhưng chưa tự giải: Cần học tiếp ngay hay hẹn ngày mai", "Cách ghi và hẹn ôn khi có hỗ trợ", "Mốc ôn hình gốc", "Mốc ôn hình liên quan để sang hôm sau", "Hai mốc có độc lập không"],
+      "proposal_not_answer": "Bài dở giữ hàng đợi, chưa chạy chu kỳ hoàn tất; mỗi hình hoàn tất có lịch từ lúc kết thúc; trợ giúp ghi riêng/ôn sớm; tự đánh giá không là bằng chứng tự giải."
+    },
+    {
+      "id": "V5-27", "priority": 2, "title": "Nhắc lịch vừa đủ và lời nhắc nghỉ",
+      "decision_fields": ["Nhắc trong app trước khi có email/push có đủ không", "Kênh nhắc trước mắt", "Câu nhắc quá hạn", "Sắc đỏ quá hạn có trái cảm giác thoải mái không", "Có nút tạm nghỉ/tắt nhắc không", "Cách tính 30 phút học thực và thời gian tab nền", "Rà cách áp mong muốn nhắc mỗi sáu giờ ngoài 22h–7h"],
+      "proposal_not_answer": "Giữ hàng đợi, ưu tiên hạn sớm, tắt nhắc được, lời trung tính; 30 phút là học thực không tính tab nền; nghỉ một ngày không xóa kiến thức."
+    },
+    {
+      "id": "V5-28", "priority": 1, "title": "Dashboard cá nhân và quản trị cần giúp bạn biết điều gì", "updated_in_account_revision": true,
+      "decision_fields": ["Ba chỉ số đầu trang ngoài tài khoản mới/hoạt động: ván/lượt học hoàn tất/lượt ôn/bước bỏ dở/tỷ lệ trợ giúp hoặc khác", "Khoảng thời gian ngày/tuần/tháng hoặc tùy chọn", "Hoạt động tính khi đăng nhập hay khi chơi/học", "Cần xuất bảng thống kê không", "Bấm chỉ số xem chi tiết nào", "Phân biệt nhu cầu dashboard cá nhân và toàn hệ thống"],
+      "proposal_not_answer": "Mặc định 7 ngày, khoảng tùy chọn và mốc cập nhật; một tài khoản nhiều máy đếm một; tách test/trợ giúp; số đếm từ đầu, tỷ lệ học đủ mẫu; tài khoản không tự bằng người thật."
+    },
+    {
+      "id": "V5-29", "priority": 1, "title": "Một năm rồi xóa áp dụng cho dữ liệu nào",
+      "decision_fields": ["Mốc một năm từ tạo dữ liệu hay lần dùng cuối", "Thời hạn từng loại: ván, câu trả lời tự do, ghi chú, log lỗi, lịch sử học", "Có áp cho bản sao lưu không", "Phạm vi bản sao lưu và xóa", "Phạm vi công bố với người dùng"],
+      "proposal_not_answer": "Tách loại dữ liệu/công bố hạn trước tài khoản; xóa thực theo phạm vi; chỉ hứa lịch server và sao lưu khi đã triển khai/kiểm thử."
+    },
+    {
+      "id": "V5-30", "priority": 1, "title": "Dữ liệu sau khi xóa có được giữ lại không",
+      "decision_fields": ["Xác nhận chính sách xóa dữ liệu theo phạm vi công bố", "Cách thông báo đúng phạm vi khi người dùng yêu cầu xóa", "Có thật sự cần giữ thống kê tổng hợp không thể gắn cá nhân không", "Những thống kê tổng hợp cụ thể", "Điểm còn muốn trao đổi về xóa và đóng góp nội dung"],
+      "proposal_not_answer": "Không thu/dùng dữ liệu học để train; xóa là xóa, không ngầm giữ bản ẩn. Đóng góp hoặc mục đích tương lai phải thiết kế riêng, minh bạch, đồng ý chủ động.",
+      "guardrail": "Không biến câu này thành lựa chọn cho phép vi phạm nguyên tắc repository không chia sẻ dữ liệu người học để huấn luyện."
+    },
+    {
+      "id": "V5-31", "priority": 2, "title": "Chia sẻ ván với người khác cần lộ những gì",
+      "decision_fields": ["Link chứa thế cờ, biên bản hay cả tên/ghi chú/lời giải đã mở", "Nội dung được chia sẻ", "Nội dung phải riêng tư", "Cần thu hồi link không", "Cần thời hạn hết hiệu lực khi dùng backend không"],
+      "proposal_not_answer": "Chỉ dữ liệu cờ đã chọn, bỏ tên thật/câu trả lời riêng; đáp án chưa mở không xuất; link trang khác link đúng ván, local không tự hiện ở máy nhận."
+    },
+    {
+      "id": "V5-32", "priority": 1, "title": "Người chơi đăng nhập như thế nào và có chế độ khách không", "updated_in_account_revision": true,
+      "decision_fields": ["Phương thức đăng nhập ưu tiên email/Google/khác", "Có chế độ khách chơi thử không", "Bước bắt buộc đăng nhập, ví dụ lúc lưu đồng bộ", "Tên hiển thị có khác tên tài khoản đăng nhập không", "Quy tắc tên hiển thị"],
+      "proposal_not_answer": "Một phương thức xác thực có quản lý, tên riêng; khách biết dữ liệu trên máy đến khi chọn nhập tài khoản; đăng xuất/khôi phục truy cập; dịch vụ trong ngân sách, không mật khẩu rõ."
+    },
+    {
+      "id": "V5-33", "priority": 1, "title": "Nhóm bạn thử đầu tiên có quy mô nào",
+      "decision_fields": ["Số người thử dự kiến", "Khoảng tuổi", "Thiết bị", "Trình duyệt", "Số phiên mỗi người", "Ngày thử dự kiến"],
+      "proposal_not_answer": "5–8 người, mỗi người một phiên 15–20 phút và một lần quay lại ôn; pilot tìm lỗi chưa đủ chứng minh hiệu quả học.",
+      "locked_context": "Người thử được nêu là bạn bè trung cấp biết luật; không cần tên thật/thông tin liên hệ."
+    },
+    {
+      "id": "V5-34", "priority": 1, "title": "Phân biệt test nội bộ với người thử thật",
+      "decision_fields": ["Cách đánh dấu loại phiên/tài khoản", "Bài làm quen loại khỏi chỉ số nào", "Các chỉ số báo mentor", "Cách tách phiên nội bộ, có hướng dẫn và pilot thật"],
+      "proposal_not_answer": "Tách nội bộ/hướng dẫn/pilot có đồng ý; bài làm quen có thể loại khỏi kỹ năng; không dùng mốc bài thứ sáu biến test thành người thật."
+    },
+    {
+      "id": "V5-35", "priority": 1, "title": "Tiêu chí đạt của vòng thử đầu tiên",
+      "decision_fields": ["Tiêu chí quan sát: tự xong vòng học/không mất nháp/hiểu câu hỏi/làm hình khác cùng chủ đề/ôn đúng chỗ", "Ngưỡng số người hoặc phiên cho từng tiêu chí", "Lỗi phải sửa trước", "Người nghiệm thu", "Mức ban đầu/giới hạn mẫu cho chỉ số học"],
+      "proposal_not_answer": "Đi quân sai, lộ đáp án trước suy nghĩ, mất dữ liệu chặn phát hành; thích giao diện không chứng minh tiến bộ cờ."
+    },
+    {
+      "id": "V5-36", "priority": 2, "title": "Thời gian chờ thực tế nào chấp nhận được",
+      "decision_fields": ["Thiết bị ưu tiên đo", "Thao tác thực thấy chậm", "Thời gian chấp nhận cho chọn quân/lưu nháp", "Thời gian review cả ván chấp nhận so với thao tác trực tiếp", "Hành vi khi quá thời gian", "Cách hiện tiến độ/hủy công việc"],
+      "proposal_not_answer": "Mục tiêu đo chọn quân khoảng dưới 100ms, lưu trong lúc gõ; review hiển thị việc/tiến độ thật và hủy được. 0,1ms không là cam kết; mục tiêu chưa chứng minh đạt."
+    },
+    {
+      "id": "V5-37", "priority": 1, "title": "Phân bổ ngân sách cho tài khoản và các nâng cấp khác", "updated_in_account_revision": true,
+      "decision_fields": ["Ưu tiên ngân sách còn lại cho engine mạnh hay lời giải linh hoạt", "Thứ tự ưu tiên thêm", "Phân bổ cho từng nhóm nếu muốn", "Kênh báo sắp chạm hạn mức", "Chức năng trả phí được tạm dừng", "Cách xử lý chặn ghi mới trong hạn mức"],
+      "proposal_not_answer": "Ưu tiên tài khoản/lưu dữ liệu, giữ luật/vòng học, fallback engine nông/lời giải mẫu; không tự nâng gói/mất dữ liệu; rõ trạng thái và xuất khi chặn ghi; báo chi phí trước bật."
+    },
+    {
+      "id": "V5-38", "priority": 2, "title": "Nhận và xử lý phản hồi từ pilot",
+      "decision_fields": ["Biểu mẫu chung hay nút báo lỗi trong bài", "Kênh/nơi chủ sản phẩm xem phản hồi", "Trường tối thiểu", "Được đính kèm biên bản/câu trả lời/ảnh/mã bài/phiên bản nào", "Cách người thử đồng ý đính kèm", "Tần suất xem", "Theo dõi đã tái hiện/đang sửa/đã kiểm tra"],
+      "proposal_not_answer": "Loại lỗi, mô tả, kỳ vọng, ảnh tùy chọn; mã bài/phiên bản khi đồng ý, theo dõi trạng thái; không gửi dữ liệu nhạy cảm ngầm."
+    },
+    {
+      "id": "V5-39", "priority": 2, "title": "Thứ tự triển khai trong đợt V5", "updated_in_account_revision": true,
+      "decision_fields": ["Tối đa ba cải thiện ngoài tài khoản/đồng bộ/quản trị và giữ vòng học", "Ưu tiên trong câu hỏi/lời giải, nội dung duyệt, engine, mobile, biên tập", "Thử từng bản nhỏ hay bản tích hợp", "Tiêu chí quan trọng nhất khi duyệt"],
+      "proposal_not_answer": "Nghiệm thu tài khoản/quyền trước, đồng bộ/thống kê tiếp, rồi trải nghiệm; mỗi đợt kết quả quan sát được; không tự mở PvP/trained ML."
+    },
+    {
+      "id": "V5-40", "priority": 1, "title": "Dịch vụ và quyền triển khai bản V5 lên web", "updated_in_account_revision": true,
+      "decision_fields": ["Hosting/xác thực/database đã có", "Người quản lý từng dịch vụ", "Số người dùng đồng thời dự kiến", "Chuyển Vercel khi đủ V5 hay thử trước ở địa chỉ thử", "Thời điểm chuyển", "Tên miền riêng trong đợt này nếu cần", "Quyền/kết nối/phát hành cần duyệt cụ thể"],
+      "proposal_not_answer": "Chốt dữ liệu/ngân sách rồi deploy, frontend/xác thực/database có thể tách; đổi địa chỉ không tạo tài khoản; có thử nghiệm/quay lại ổn định, duyệt hành động cần quyền."
+    },
+    {
+      "id": "V5-41", "priority": 2, "title": "Những điều phải giữ khi nâng cấp",
+      "decision_fields": ["Dữ liệu bắt buộc giữ qua nâng cấp", "Dữ liệu được tạo lại", "Lỗi mất nháp/luật sai/lộ đáp án cần gỡ tính năng ngay khi sửa không", "Các lỗi phải gỡ ngay", "Người duyệt phát hành", "Áp mốc xử lý sự cố tối đa 12 giờ đã nêu"],
+      "proposal_not_answer": "Giữ ván/câu trả lời trước lời giải/lần thử/lịch ôn; sao lưu trước migration; mỗi bản ghi thay đổi/kiểm thử/giới hạn/rollback; chỉ nói triển khai sau kiểm link công khai."
+    },
+    {
+      "id": "V5-42", "priority": 1, "title": "Ai quản trị và được xem những dữ liệu nào", "added_in_account_revision": true,
+      "decision_fields": ["Chỉ chủ sở hữu hay thêm người hỗ trợ", "Các vai trò cần có", "Mỗi vai trò xem thống kê/danh sách tài khoản/biên bản/câu trả lời tự do đến đâu", "Có vai trò chỉ đọc báo cáo không khóa/xóa không", "Ai được khóa/xóa", "Cách thông báo phạm vi quyền xem cho người chơi"],
+      "proposal_not_answer": "Một chủ sở hữu, admin gán qua xác minh không tự đăng ký; thống kê/mã tài khoản mặc định; nội dung riêng có mục đích/phạm vi công bố; backend kiểm quyền và nhật ký."
+    },
+    {
+      "id": "V5-43", "priority": 1, "title": "Bạn muốn biết có tài khoản mới theo cách nào", "added_in_account_revision": true,
+      "decision_fields": ["Chỉ dashboard hay email/thông báo ngoài web thêm", "Thông báo từng lần/gộp ngày/chỉ khi vấn đề", "Mức chậm chấp nhận", "Phân biệt mới đăng ký và đã xác minh email", "Làm mới khi mở/thủ công/tự cập nhật trang đang mở"],
+      "proposal_not_answer": "Server ghi ngay khi tạo thành công, dashboard trạng thái xác minh/mốc cập nhật; email/push bật riêng, tối thiểu dữ liệu/tránh trùng."
+    },
+    {
+      "id": "V5-44", "priority": 1, "title": "Chuyển tiến độ local cũ vào tài khoản ra sao", "added_in_account_revision": true,
+      "decision_fields": ["Nhóm chuyển: ván/nháp/câu trả lời/kết quả/lịch ôn/tùy chọn giao diện", "Nếu cloud và local cùng có dữ liệu: xem trước hợp nhất hay chọn từng nhóm", "Cách chọn và hợp nhất", "Xác nhận trên máy dùng chung tránh gán nhầm chủ", "Điều bắt buộc không mất", "Cách báo mục không chuyển và xuất bản sao"],
+      "proposal_not_answer": "Hỏi có nhập local, xem số lượng/nội dung trước xác nhận; không coi mọi dữ liệu máy là của người đăng nhập; lặp nhập không nhân đôi; giữ xuất và báo thiếu."
+    },
+    {
+      "id": "V5-45", "priority": 1, "title": "Khi dùng hai máy hoặc mất mạng thì giữ tiến độ thế nào", "added_in_account_revision": true,
+      "decision_fields": ["Hai máy sửa cùng bài/câu trả lời khác: một phiên được sửa, chọn bản, hay người dùng quyết", "Quy tắc xung đột", "Mất mạng giữa bài: tiếp tục nháp hay dừng", "Vị trí hiện đang lưu/đã đồng bộ/chưa đồng bộ", "Mức chờ đồng bộ chấp nhận", "Cách bảo toàn các bản nháp và tránh đếm trùng hoàn thành"],
+      "proposal_not_answer": "Nháp local rõ chưa gửi, chỉ báo đồng bộ khi server xác nhận; giữ cả nháp và chọn khi xung đột; gửi lặp một hoàn thành chỉ có một kết quả/mốc ôn."
+    },
+    {
+      "id": "V5-46", "priority": 1, "title": "Khóa tài khoản và xử lý yêu cầu của người chơi", "added_in_account_revision": true,
+      "decision_fields": ["Khi khóa còn xem dữ liệu cũ không", "Khi khóa còn xuất dữ liệu không hay liên hệ", "Khóa có thời hạn hay đến khi mở lại", "Kênh yêu cầu mở lại/sửa thông tin/xóa tài khoản", "Nội dung xác nhận trước thao tác tránh nhầm người", "Quyền còn lại của người bị khóa"],
+      "proposal_not_answer": "Khóa khác xóa; lý do/thời điểm/người thực hiện; hiệu lực server kể cả phiên cũ; xóa xác nhận riêng; giữ đường yêu cầu dữ liệu/truy cập; không xem mật khẩu/giả đăng nhập/sửa kết quả tùy ý.",
+      "cross_reference": "Giữ chính sách lưu/xóa ở V5-29–30, không bắt điền lại."
+    }
+  ],
+  "locked_decisions_do_not_reask": [
+    "Tên chính thức Cờ Chill; Việt trước, đơn giản, dễ đọc, ít tạo áp lực.",
+    "Vòng học chơi/nhập → điểm cần học → suy nghĩ trước → lời giải có căn cứ → thử lại → bài liên quan → kết quả/lịch ôn.",
+    "Không coaching/nước tốt nhất/phân tích chiến thuật trong ván đang chạy; chỉ xem lại hoặc luyện tập.",
+    "Bài dở tiếp đúng chỗ; trì hoãn không là hoàn thành; lịch ôn theo lúc hoàn thành từng hình.",
+    "V5 có tài khoản thật, dữ liệu tập trung, nhiều thiết bị, quản trị thấy tài khoản mới và thống kê hệ thống. Đây là yêu cầu đã chốt, chưa tự chứng minh đã triển khai.",
+    "Vòng học giữ chạy trên máy tính và điện thoại; PvP trực tuyến và AI huấn luyện riêng để sau.",
+    "Ngân sách mong muốn 100.000 đồng/tháng, trần 200.000 đồng cho mọi dịch vụ; không tự tăng.",
+    "Bố cục bàn bên trái, ba theme sáng ấm/trắng lạnh/tối và nguyên tắc suy nghĩ trước đáp án đã chốt. V5-20 chỉ giữ câu màu xanh/đỏ cam còn phân vân sau trải nghiệm.",
+    "Ký phổ Việt hai cột Đỏ/Đen đã chọn; V5-11 hỏi thêm các ký hiệu quân trùng cột.",
+    "Trên điện thoại bàn trên/câu hỏi dưới đã chọn; V5-22 chỉ hỏi xử lý lúc bàn phím mở."
+  ],
+  "locked_account_acceptance_not_extra_questions": [
+    "Đăng ký trên A, quản trị B thấy đúng tài khoản và tổng tăng một.",
+    "Hoàn thành trên A, đăng nhập C thấy tiến độ/lịch ôn; báo rõ chưa đồng bộ.",
+    "Gửi lặp/nhập local lần nữa không nhân đôi tài khoản, lượt học, lịch ôn; xung đột nháp không âm thầm ghi đè.",
+    "Người chơi không đọc dữ liệu tài khoản khác/API admin; khóa/mở có hiệu lực server và nhật ký.",
+    "Thống kê khớp dữ liệu thật và tách test; xuất/xóa/sao lưu/khôi phục được kiểm tra; vòng học hiện tại vẫn hoạt động."
+  ],
+  "merge_and_duplicate_guidance": [
+    {"area": "Luật và Pikafish", "existing_ids": ["V5-04", "V5-08", "V5-09", "V5-10", "V5-13"], "instruction": "Engine mới không tự giải quyết lựa chọn phiên bản luật hoặc phán quyết lịch sử. Tham chiếu các mã này; chỉ hỏi phần mới như môi trường chạy/tài nguyên/phạm vi phân tích nếu nguồn mới nhất chưa chốt."},
+    {"area": "Lời giải và LLM", "existing_ids": ["V5-01", "V5-03", "V5-05", "V5-06", "V5-07"], "instruction": "Không lặp lại chấm hiểu bài, câu mẫu hay điều kiện mở lời giải trong phần bổ sung. Pikafish cho nước/biến/điểm; không tự chứng minh có bộ chấm lập luận."},
+    {"area": "Ngân sách/engine/hiệu năng", "existing_ids": ["V5-36", "V5-37", "V5-39"], "instruction": "Gộp hoặc tham chiếu ưu tiên engine và thời gian review. Không hỏi lại trần ngân sách; số mới về chi phí/thời gian phải là lựa chọn chưa điền, không cam kết."},
+    {"area": "VS Code, dịch vụ và triển khai", "existing_ids": ["V5-40", "V5-41"], "instruction": "Tách biên tập mã cục bộ khỏi hosting/backend. Giữ dịch vụ sẵn có, người quản lý, thời điểm web, tên miền, bảo toàn dữ liệu; phần mới chỉ hỏi thao tác chạy/khởi động/thư mục hoặc lựa chọn kỹ thuật thật sự còn mở."},
+    {"area": "Tài khoản/quản trị/thống kê", "existing_ids": ["V5-25", "V5-28", "V5-32", "V5-42", "V5-43"], "instruction": "Không hỏi lại có đưa tài khoản vào V5. Tách số đếm thật từ đầu với tỷ lệ học cần mẫu; bảng quản trị đã có mã hỏi chỉ số, quyền và thông báo."},
+    {"area": "Lưu local, chuyển tài khoản, offline và nâng cấp", "existing_ids": ["V5-29", "V5-30", "V5-41", "V5-44", "V5-45", "V5-46"], "instruction": "Dẫn chiếu giữa lưu giữ/xóa, migration, xung đột, khóa; không lặp cùng chính sách trong phần bổ sung engine/VS Code."},
+    {"area": "Kho bài/import/chia sẻ", "existing_ids": ["V5-11", "V5-12", "V5-14", "V5-15", "V5-16", "V5-31"], "instruction": "Giữ các yêu cầu mẫu thật và quyền sử dụng, không tự coi tài liệu/file mới là nội dung có quyền xuất bản. Thay engine không thay quyền dữ liệu."},
+    {"area": "Thử nghiệm và nghiệm thu", "existing_ids": ["V5-21", "V5-33", "V5-34", "V5-35", "V5-36", "V5-38", "V5-39", "V5-41"], "instruction": "Đã có mã hỏi thiết bị, lỗi, số người, thời gian, ngưỡng và người duyệt. Phần mới thêm tiêu chí riêng cho engine nếu thật sự thiếu; không nhân đôi khảo sát."}
+  ],
+  "critical_open_assumptions": [
+    "Báo cáo 16/10 và V5 là tài liệu lịch sử khác thời điểm. V5 tài khoản cập nhật thắng mệnh đề cũ tài khoản để sau; trạng thái triển khai hiện tại phải kiểm tra nguồn mới nhất của root.",
+    "Không có câu trả lời V5 đã điền trong hai nguồn được giao; nếu root có bản trả lời khác phải đối chiếu, không đoán từ dòng đề xuất.",
+    "Pikafish và VS Code không được nhắc tên trong hai nguồn. Không thể suy ra bản engine, binary CPU, hệ điều hành đích, nơi chạy, provider LLM, dịch vụ database hoặc cách deploy từ hai nguồn này.",
+    "Chọn engine mạnh không trao quyền cho phần giải thích bịa nước/biến/điểm hoặc chấm hiểu bài chắc chắn.",
+    "Bộ luật tổ chức, phiên bản, 50/60 nước, đơn vị đếm và ngoại lệ còn mở tại V5-08–10; không điền sẵn như điều đã xác nhận.",
+    "12 bài tự dựng có kiểm nước trong báo cáo không phải 8–12 hình chuyên gia/chủ sở hữu duyệt hoặc kho được cấp phép mà V5-14 đang đề nghị.",
+    "Ba lần thử, hoàn tất có hỗ trợ, hiểu bài và tự giải là các khái niệm khác nhau còn cần chi tiết V5-01–04/25–26; không dùng lượt làm hoạt động thay bằng chứng học.",
+    "Sáu mẫu chỉ là ngưỡng hiển thị đề xuất cho tỷ lệ, không là thống kê đáng tin và không áp lên số tài khoản/ván.",
+    "Cần giữ các subquestion bị thiếu ở dòng Trả lời: 01 cách nói khác/lỗi kết luận; 02 mục đích chờ; 05 câu bấm di chuyển bàn; 07 lời nhận xét chính xác; 09 đi Tốt/chiếu; 12 ứng dụng nguồn/ảnh đích; 13 tạm ngừng điểm/gói bằng chứng; 19 xem trước/lý do sửa; 22 phần tối thiểu thấy khi gõ; 27 đỏ quá hạn; 33 trình duyệt; 43 đăng ký so với xác minh.",
+    "Chi phí mục tiêu/trần, 100ms, pilot 5–8 người, review 7 ngày, nội dung 8–12 hình, mẫu 3–5 câu đều có mức chắc chắn khác nhau; chỉ ngân sách là đã chốt, các số còn lại là đề xuất hoặc mốc lịch sử cần giữ nhãn.",
+    "Không yêu cầu mật khẩu, mã xác thực, API key, tên thật hoặc liên hệ bạn bè; mẫu nội dung chưa có phải cho trả lời Chưa có/nhờ đề xuất.",
+    "Một Word là biểu mẫu duy nhất; TXT/báo cáo kiểm kê chỉ tham chiếu. Không ép người dùng điền thêm bộ phụ; giữ mã V5 để đối chiếu."
+  ],
+  "source_snapshot_facts_not_current_assertions": {
+    "site_version": 3,
+    "site_url": "https://co-chill-ngay-mai.cosmicanole32.chatgpt.site/",
+    "reported_current_2026_10_16": ["HTML/CSS/JavaScript thuần trong trình duyệt", "Engine JavaScript tìm tối đa hai nửa nước, điểm heuristic", "Lời giải mẫu có căn cứ, chưa có LLM", "12 bài tự dựng, chưa chuyên gia duyệt sư phạm", "Dữ liệu local và bản Python/SQLite riêng", "Phân tích tối đa 16 lượt gần nhất bên chọn, tối đa ba vị trí", "Import lỗi thì không nhập phần hợp lệ ở bản đã phát hành; V5-12 hỏi thay đổi", "Xuất để đọc chưa tự khôi phục; mất dữ liệu nếu xóa trình duyệt", "Chưa lưu góc lật bàn qua reload", "Đồng hồ sau xin thua/thỏa thuận hòa còn hiển thị mốc nước gần nhất"],
+    "reported_missing_2026_10_16": ["Tài khoản và đồng bộ", "PvP online", "Engine mạnh", "Chấm câu trả lời tự do", "OCR", "Kho ván lớn có phép", "Thông báo ngoài app", "Giáo trình đầy đủ", "Biên tập/admin", "Đánh giá tác động"],
+    "do_not_infer": "Không ghi những trạng thái trên như đã kiểm tra ở ngày 21/10 hoặc dùng để phủ định yêu cầu tài khoản V5 mới hơn."
+  }
+}

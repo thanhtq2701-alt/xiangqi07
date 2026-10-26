@@ -1,0 +1,26 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 53
+O Làm việc trong VS Code và kiến trúc API
+Về mục lục
+BS 48 Nguồn code chính để phát triển trong VS Code
+Mức 1 · Liên quan: V5 39, V5 41
+Điều kiện áp dụng: Không bỏ qua khi chuyển môi trường làm việc; không gửi token GitHub.
+Bạn có đồng ý dùng repository gốc làm nơi phát triển chính, giữ gói bàn giao như bản lưu, và lấy giao 
+diện online-preview làm nền cho bản web tiếp theo không? Nếu có một bản mới hơn đang sửa ở nơi 
+khác, chỉ rõ vị trí và việc đã đổi.
+Đề xuất chưa duyệt: Dùng E:\ThanhTQ\App cờ tướng\xiangqi-ai làm repo chính; đối chiếu thay đổi 
+chưa commit trước mọi lần ghép. Không xóa snapshot/tài liệu hoặc tạo lịch sử Git mới đè repo cũ.
+Cần điền: 1. Thư mục/repo chính bạn sẽ mở; 2. Có bản mới hơn ở nơi khác không; 3. Những file đang sửa cần 
+giữ; 4. Ai hoặc trợ lý nào cùng sửa để tránh ghi đè
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 49 Bạn muốn duyệt một bản sửa bằng bằng chứng nào
+Mức 1 · Liên quan: V5 35, V5 39, V5 40, V5 41
+Điều kiện áp dụng: Không cần trả lời lại có auto-approve hay không; chính sách đã chốt là không.
+Với mỗi đợt, bạn muốn xem link thử, ảnh trước/sau, video ngắn, danh sách file đổi hay kết quả test ở
+mức nào? Bạn muốn phản hồi theo từng tính năng hay duyệt cả gói? Những nội dung nào bắt buộc có 
+trước khi xin phép phát hành?
+Đề xuất chưa duyệt: Mỗi đợt có mục tiêu, link/bản chạy kiểm tra được, thay đổi chính, test thật và giới 
+hạn. Giữ yêu cầu duyệt trước push/deploy, đổi public, mua dịch vụ hoặc xóa dữ liệu; không bật lại auto￾approve.
+Cần điền: 1. Bằng chứng bạn ưu tiên theo thứ tự; 2. Duyệt từng tính năng hay cả đợt; 3. Tiêu chí báo cáo ngắn 
+bắt buộc; 4. Cách đánh dấu đồng ý hoặc yêu cầu sửa
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

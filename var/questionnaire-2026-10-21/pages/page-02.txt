@@ -1,0 +1,46 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 2
+Hiện trạng dùng làm điểm xuất phát
+Mốc phát hành có hồ sơ gần nhất: Site phiên bản 3 ngày 16/10/2026, source ứng dụng ở online￾preview. URL đã phát hành:
+Mở địa chỉ Cờ Chill đã ghi trong báo cáo
+Đây là mốc theo báo cáo phát hành và source local được đọc, không phải tuyên bố vừa kiểm thử lại 
+toàn bộ website công khai ngày 21/10. Nếu bạn đã sửa một bản mới ở nơi khác, ghi tại BS 48.
+Đã có trong bản được ghi nhận Chưa có hoặc còn giới hạn
+Chơi máy cơ bản/hai người cùng máy, luật hợp lệ, ký 
+phổ và nhập text.
+Chưa có PvP online; luật phân xử lịch sử chưa đầy đủ
+cho mọi trường hợp giải đấu.
+Xem lại, phản hồi trước lời giải, gợi ý có kiểm soát, thử
+lại và bài liên quan.
+Engine tự viết tối đa hai nửa nước; chưa có Pikafish 
+hoặc LLM chấm lập luận.
+Nháp, giữ chỗ dở, lịch ôn và tiến độ trong trình duyệt.
+Chưa có tài khoản, đồng bộ server và dashboard admin. 
+Đây là yêu cầu V5 đã chốt, chưa phải tính năng đang 
+chạy.
+12 bài tự dựng; ba theme, chữ quân Hán/Việt và giao 
+diện responsive.
+Chưa có kho bài lớn được chuyên gia duyệt, không có 
+bằng chứng tác động học tập đã kiểm định.
+Xuất dữ liệu, xóa dữ liệu local theo các thao tác hiện có.
+Xuất chưa tự phục hồi; chưa giữ hướng lật bàn qua 
+reload; đồng hồ lúc kết thúc ván còn lỗi hiển thị đã ghi 
+nhận.
+Các nguyên tắc tiếp tục giữ
+• Tên chính thức Cờ Chill; Việt trước, đơn giản, dễ đọc, ít tạo áp lực.
+• Vòng học chơi/nhập → điểm cần học → suy nghĩ trước → lời giải có căn cứ → thử lại → bài liên 
+quan → kết quả/lịch ôn.
+• Không coaching/nước tốt nhất/phân tích chiến thuật trong ván đang chạy; chỉ xem lại hoặc luyện 
+tập.
+• Bài dở tiếp đúng chỗ; trì hoãn không là hoàn thành; lịch ôn theo lúc hoàn thành từng hình.
+• V5 có tài khoản thật, dữ liệu tập trung, nhiều thiết bị, quản trị thấy tài khoản mới và thống kê hệ
+thống. Đây là yêu cầu đã chốt, chưa tự chứng minh đã triển khai.
+• Vòng học giữ chạy trên máy tính và điện thoại; PvP trực tuyến và AI huấn luyện riêng để sau.
+• Ngân sách mong muốn 100.000 đồng/tháng, trần 200.000 đồng cho mọi dịch vụ; không tự tăng.
+• Bố cục bàn bên trái, ba theme sáng ấm/trắng lạnh/tối và nguyên tắc suy nghĩ trước đáp án đã chốt. 
+V5-20 chỉ giữ câu màu xanh/đỏ cam còn phân vân sau trải nghiệm.
+• Ký phổ Việt hai cột Đỏ/Đen đã chọn; V5-11 hỏi thêm các ký hiệu quân trùng cột.
+• Trên điện thoại bàn trên/câu hỏi dưới đã chọn; V5-22 chỉ hỏi xử lý lúc bàn phím mở.
+Đối với chi phí, 100.000 đồng/tháng mong muốn và 200.000 đồng/tháng trần là câu trả lời trước đây. 
+Nếu muốn thay đổi do engine mạnh, chỉ cập nhật tại V5 37. Không coi việc bạn mua công cụ AI lập trình 
+là đã tăng ngân sách vận hành website.

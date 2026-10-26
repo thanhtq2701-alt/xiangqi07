@@ -1,0 +1,21 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 32
+BS 07 Xin hòa khi chơi cùng máy hoặc chơi với bot
+Mức 1 · Liên quan: V5 36, V5 41
+Trong hai người một máy, lời mời hòa cần người còn lại xác nhận ở đâu, có nút từ chối và thời hạn chờ
+không? Với bot, cho xin hòa theo điều kiện nào và ai quyết định chấp nhận? Phần engine lỗi và đồng hồ
+khi sự cố trả lời ở câu dịch vụ engine ngừng hoạt động, không cần lặp.
+Đề xuất chưa duyệt: Không tự coi một yêu cầu hòa là hai bên đồng ý; sự cố hệ thống cần nhãn kết quả
+riêng và không tự đổ lỗi hết giờ cho người chơi.
+Cần điền: 1. Xác nhận hoặc từ chối hòa local; 2. Thời hạn chờ và đồng hồ trong lúc xin hòa; 3. Điều kiện hòa với 
+bot; 4. Cách ghi kết quả
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 08 Ván cần kiểm chứng được xử lý trên màn hình ra sao
+Mức 1 · Liên quan: V5 08, V5 09, V5 10, V5 13
+Khi chưa phân xử được chuỗi lặp/đuổi hoặc thiếu lịch sử, màn ván cần cho tiếp tục chơi, kết thúc với 
+trạng thái chờ kiểm chứng hay chuyển sang học riêng? Đồng hồ và thống kê xử lý thế nào, ai nhận việc 
+kiểm chứng, và người chơi xem kết quả cập nhật ở đâu?
+Đề xuất chưa duyệt: Hiện Chờ kiểm chứng, không cộng thắng/thua/hòa chưa xác định; bảo toàn lịch sử
+và cho chọn hành động không làm mất bằng chứng.
+Cần điền: 1. Hành động tức thời; 2. Đồng hồ; 3. Trạng thái thư viện và thống kê; 4. Nơi xem kết quả sau xác minh
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

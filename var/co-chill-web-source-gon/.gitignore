@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+.env
+.env.*
+!.env.example
+node_modules/
+var/
+artifacts/
+*.sqlite3*
+*.zip
+~$*

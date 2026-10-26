@@ -1,0 +1,23 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 46
+BS 35 Phân tích nhanh và phân tích sâu hiển thị ra sao
+Mức 1 · Liên quan: V5 36, V5 43
+Điều kiện áp dụng: Chỉ bỏ phần thông báo ngoài app nếu không chọn email/push.
+Bạn muốn nhận kết quả sơ bộ rồi có nút phân tích kỹ hơn, hay chờ một kết quả cuối? Khi đang chờ có 
+được rời trang và quay lại xem kết quả không? Nếu hủy, giữ phần đã xong dưới nhãn nào?
+Đề xuất chưa duyệt: Phân tích là tác vụ có trạng thái rõ; không chấm sai chắc chắn bằng kết quả sơ bộ. 
+Có hủy và nhận lại kết quả hoàn chỉnh; không chạy vô hạn trong nền. Ngưỡng thời gian lấy từ V5-36.
+Cần điền: 1. Một kết quả cuối hay sơ bộ rồi nâng cấp; 2. Có cần tác vụ tiếp tục khi rời trang không; 3. Cách hiển 
+thị phần chưa hoàn tất/đã hủy; 4. Màn hình hoặc thông báo khi kết quả cuối sẵn sàng
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 36 Engine ngừng hoạt động thì người học làm gì tiếp
+Mức 1 · Liên quan: V5 41, V5 45
+Điều kiện áp dụng: Không bỏ qua khi engine chạy qua mạng.
+Trong từng tình huống xem lại ván, giải bài và chơi máy, bạn muốn chờ/thử lại, dùng chế độ cơ bản có 
+nhãn rõ hay chuyển sang bài đã được duyệt? Nếu đang chơi mà máy không trả nước, bạn muốn tạm 
+dừng có thông báo hay kết thúc như sự cố kỹ thuật?
+Đề xuất chưa duyệt: Giữ ván và nháp, không tính người chơi thua vì sự cố dịch vụ; không ghi nhận lỗi 
+học từ nước chưa đánh giá. Cho bài đã duyệt hoặc thử lại, mọi kết quả dự phòng gắn nhãn riêng.
+Cần điền: 1. Xem lại ván khi engine lỗi; 2. Chấm nước bài học khi engine lỗi; 3. Ván với máy bị gián đoạn và cách 
+xử lý đồng hồ/kết quả; 4. Câu thông báo người chơi cần đọc
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

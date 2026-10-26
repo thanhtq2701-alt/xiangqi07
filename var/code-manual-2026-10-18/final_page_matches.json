@@ -1,0 +1,374 @@
+[
+  {
+    "page": 1,
+    "matched": {
+      "old_page": 1,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 2,
+    "matched": {
+      "old_page": 2,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 3,
+    "matched": {
+      "old_page": 3,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 4,
+    "matched": {
+      "old_page": 4,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 5,
+    "matched": {
+      "old_page": 5,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 6,
+    "matched": {
+      "old_page": 6,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 7,
+    "matched": null
+  },
+  {
+    "page": 8,
+    "matched": null
+  },
+  {
+    "page": 9,
+    "matched": null
+  },
+  {
+    "page": 10,
+    "matched": null
+  },
+  {
+    "page": 11,
+    "matched": null
+  },
+  {
+    "page": 12,
+    "matched": null
+  },
+  {
+    "page": 13,
+    "matched": {
+      "old_page": 13,
+      "mean_delta": 0.03688888888888889,
+      "changed_fraction": 0.0005494949494949494
+    }
+  },
+  {
+    "page": 14,
+    "matched": {
+      "old_page": 14,
+      "mean_delta": 0.020828282828282828,
+      "changed_fraction": 0.00031616161616161617
+    }
+  },
+  {
+    "page": 15,
+    "matched": {
+      "old_page": 15,
+      "mean_delta": 0.02127979797979798,
+      "changed_fraction": 0.00033535353535353536
+    }
+  },
+  {
+    "page": 16,
+    "matched": {
+      "old_page": 16,
+      "mean_delta": 0.01780909090909091,
+      "changed_fraction": 0.00027272727272727274
+    }
+  },
+  {
+    "page": 17,
+    "matched": null
+  },
+  {
+    "page": 18,
+    "matched": null
+  },
+  {
+    "page": 19,
+    "matched": {
+      "old_page": 19,
+      "mean_delta": 0.031175757575757575,
+      "changed_fraction": 0.000501010101010101
+    }
+  },
+  {
+    "page": 20,
+    "matched": {
+      "old_page": 20,
+      "mean_delta": 0.012378787878787878,
+      "changed_fraction": 0.00021313131313131312
+    }
+  },
+  {
+    "page": 21,
+    "matched": null
+  },
+  {
+    "page": 22,
+    "matched": {
+      "old_page": 22,
+      "mean_delta": 0.036125252525252526,
+      "changed_fraction": 0.0005454545454545455
+    }
+  },
+  {
+    "page": 23,
+    "matched": {
+      "old_page": 23,
+      "mean_delta": 0.029706060606060607,
+      "changed_fraction": 0.0004707070707070707
+    }
+  },
+  {
+    "page": 24,
+    "matched": {
+      "old_page": 24,
+      "mean_delta": 0.015244444444444444,
+      "changed_fraction": 0.00024242424242424242
+    }
+  },
+  {
+    "page": 25,
+    "matched": {
+      "old_page": 25,
+      "mean_delta": 0.009640404040404041,
+      "changed_fraction": 0.00014848484848484849
+    }
+  },
+  {
+    "page": 26,
+    "matched": {
+      "old_page": 26,
+      "mean_delta": 0.0,
+      "changed_fraction": 0.0
+    }
+  },
+  {
+    "page": 27,
+    "matched": {
+      "old_page": 27,
+      "mean_delta": 0.01694242424242424,
+      "changed_fraction": 0.0002474747474747475
+    }
+  },
+  {
+    "page": 28,
+    "matched": {
+      "old_page": 28,
+      "mean_delta": 0.02644848484848485,
+      "changed_fraction": 0.00041212121212121214
+    }
+  },
+  {
+    "page": 29,
+    "matched": {
+      "old_page": 29,
+      "mean_delta": 0.02305050505050505,
+      "changed_fraction": 0.0003595959595959596
+    }
+  },
+  {
+    "page": 30,
+    "matched": {
+      "old_page": 30,
+      "mean_delta": 0.039604040404040405,
+      "changed_fraction": 0.0006131313131313131
+    }
+  },
+  {
+    "page": 31,
+    "matched": {
+      "old_page": 31,
+      "mean_delta": 0.042208080808080806,
+      "changed_fraction": 0.0006404040404040404
+    }
+  },
+  {
+    "page": 32,
+    "matched": {
+      "old_page": 32,
+      "mean_delta": 0.035463636363636364,
+      "changed_fraction": 0.0005474747474747475
+    }
+  },
+  {
+    "page": 33,
+    "matched": null
+  },
+  {
+    "page": 34,
+    "matched": null
+  },
+  {
+    "page": 35,
+    "matched": {
+      "old_page": 35,
+      "mean_delta": 0.009848484848484848,
+      "changed_fraction": 0.00014646464646464648
+    }
+  },
+  {
+    "page": 36,
+    "matched": {
+      "old_page": 36,
+      "mean_delta": 0.0380969696969697,
+      "changed_fraction": 0.0005898989898989899
+    }
+  },
+  {
+    "page": 37,
+    "matched": null
+  },
+  {
+    "page": 38,
+    "matched": {
+      "old_page": 38,
+      "mean_delta": 0.0368969696969697,
+      "changed_fraction": 0.0005525252525252526
+    }
+  },
+  {
+    "page": 39,
+    "matched": null
+  },
+  {
+    "page": 40,
+    "matched": null
+  },
+  {
+    "page": 41,
+    "matched": null
+  },
+  {
+    "page": 42,
+    "matched": null
+  },
+  {
+    "page": 43,
+    "matched": null
+  },
+  {
+    "page": 44,
+    "matched": null
+  },
+  {
+    "page": 45,
+    "matched": null
+  },
+  {
+    "page": 46,
+    "matched": null
+  },
+  {
+    "page": 47,
+    "matched": null
+  },
+  {
+    "page": 48,
+    "matched": null
+  },
+  {
+    "page": 49,
+    "matched": null
+  },
+  {
+    "page": 50,
+    "matched": null
+  },
+  {
+    "page": 51,
+    "matched": null
+  },
+  {
+    "page": 52,
+    "matched": null
+  },
+  {
+    "page": 53,
+    "matched": null
+  },
+  {
+    "page": 54,
+    "matched": null
+  },
+  {
+    "page": 55,
+    "matched": null
+  },
+  {
+    "page": 56,
+    "matched": null
+  },
+  {
+    "page": 57,
+    "matched": null
+  },
+  {
+    "page": 58,
+    "matched": null
+  },
+  {
+    "page": 59,
+    "matched": null
+  },
+  {
+    "page": 60,
+    "matched": null
+  },
+  {
+    "page": 61,
+    "matched": null
+  },
+  {
+    "page": 62,
+    "matched": {
+      "old_page": 64,
+      "mean_delta": 0.027049494949494948,
+      "changed_fraction": 0.0004333333333333333
+    }
+  },
+  {
+    "page": 63,
+    "matched": {
+      "old_page": 65,
+      "mean_delta": 0.010503030303030302,
+      "changed_fraction": 0.00017676767676767677
+    }
+  },
+  {
+    "page": 64,
+    "matched": {
+      "old_page": 66,
+      "mean_delta": 0.014856565656565656,
+      "changed_fraction": 0.00022626262626262625
+    }
+  }
+]

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 CỜ CHILL — HIỂU MÃ NGUỒN, CHẠY WEB VÀ BÀN GIAO SANG CHAT MỚI
 Cập nhật: 16/10/2026
 Dành cho: Trần Quốc Thanh, chủ sản phẩm đang bắt đầu học phát triển web
@@ -643,3 +644,650 @@ F. Kịch bản nghiệm thu bắt buộc trước khi gọi là đã hoàn thà
 Chưa chọn vendor, mua dịch vụ, tạo tài khoản cloud, thay đổi quyền
 GitHub hoặc deploy tính năng tài khoản trong lượt ghi nhận yêu cầu này.
 Các bước cần quyền cụ thể vẫn theo yêu cầu hỏi trước của chủ sở hữu.
+=======
+CỜ CHILL — HIỂU MÃ NGUỒN, CHẠY WEB VÀ BÀN GIAO SANG CHAT MỚI
+Cập nhật: 16/10/2026
+Dành cho: Trần Quốc Thanh, chủ sản phẩm đang bắt đầu học phát triển web
+
+QUYẾT ĐỊNH MỚI NHẤT TRONG V5 — 16/10/2026
+Chủ sản phẩm đã yêu cầu đưa tài khoản thật, lưu dữ liệu tập trung, dùng
+nhiều thiết bị và quản trị/thống kê toàn hệ thống vào chính đợt nâng cấp
+V5. Quyết định này thay phần trước đây để tài khoản/đồng bộ sang sau.
+Đọc mục 13 để biết phạm vi và tiêu chí nghiệm thu. Site version 3 và
+gói nguồn gọn hiện vẫn là bản localStorage, chưa có chức năng này.
+
+======================================================================
+0. ĐỌC PHẦN NÀY TRƯỚC
+======================================================================
+
+Bạn có thể copy mã nguồn sang một thư mục khác, mở bằng VS Code và chạy
+được giao diện giống bản ChatGPT Site. Hãy copy ĐÚNG CẤU TRÚC FILE, không
+ghép tất cả nội dung code vào một file hoặc chỉ copy index.html.
+
+Hiện có hai ứng dụng trong repo:
+
+  A. online-preview/                = website đang deploy lên ChatGPT Site
+  B. server.py + app/ + web/         = ứng dụng Python/SQLite local riêng
+
+Nếu mục tiêu là tiếp tục đúng website bạn đang xem online, bắt đầu ở A.
+Sửa web/app.js của B sẽ KHÔNG thay đổi giao diện trong A.
+
+Tôi đã chuẩn bị sẵn một gói nguồn gọn 24 file:
+  deliverables/Co_Chill_Web_Source_Gon.zip
+
+Gói gồm 10 tài sản web, README, .gitignore và mã kiểm thử/tham chiếu luật.
+Không có Word, báo cáo dài, dữ liệu người học, database hoặc secret.
+Không có .git, nên đây là bản sao code, chưa phải bản sao lịch sử Git.
+
+Repo gốc CHƯA bị xóa, đổi cấu trúc, untrack tài liệu hoặc push GitHub
+trong lượt tạo gói này. Website công khai cũng không bị sửa trong lượt này.
+Bạn có thể thử bản gọn trước rồi mới duyệt việc dọn repo chính.
+
+======================================================================
+1. MÃ CODE ĐANG Ở ĐÂU
+======================================================================
+
+Thư mục dự án đầy đủ:
+  E:\ThanhTQ\App cờ tướng\xiangqi-ai
+
+Mã website đang deploy:
+  E:\ThanhTQ\App cờ tướng\xiangqi-ai\online-preview
+
+File giao diện chính để bắt đầu đọc:
+  online-preview/index.html
+  online-preview/style.css
+  online-preview/app.js
+
+Trong VS Code:
+  1. Chọn File > Open Folder.
+  2. Mở thư mục xiangqi-ai để xem dự án đầy đủ, hoặc thư mục co-chill-web
+     sau khi giải nén ZIP để chỉ xem bản gọn.
+  3. Ở cột Explorer bên trái, mở online-preview.
+  4. Chọn file cần đọc. Không cần sửa gì để xem code.
+
+VS Code là trình soạn thảo. Một cửa sổ VS Code mới không tự chạy server,
+không tự copy code, không tự đồng bộ GitHub và không tự deploy website.
+
+Link công khai hiện tại:
+  https://co-chill-ngay-mai.cosmicanole32.chatgpt.site/
+
+Mã nguồn trên máy và bản web công khai là hai bản riêng. Bản công khai
+chỉ đổi sau khi thực hiện bước phát hành/deploy thành công.
+
+======================================================================
+2. MƯỜI FILE CẦN GIỮ ĐỂ GIỐNG WEB HIỆN TẠI
+======================================================================
+
+Tất cả nằm cùng trong online-preview/:
+
+1) index.html
+   Khung của trang: header, menu, vùng nội dung và danh sách CSS/script
+   cần tải. Giống bản vẽ các vùng và điểm nối của một căn nhà.
+
+2) style.css
+   Màu sắc, font, khoảng cách, bố cục, theme, màn hình điện thoại,
+   hình bàn cờ và quân. Thiếu CSS, phần lớn giao diện sẽ mất định dạng.
+
+3) app.js
+   Điều phối các trang và thao tác: chơi, nhập ván, xem lại, học, lịch ôn,
+   tiến độ, cài đặt; nối các module bên dưới với nút bấm trên màn hình.
+
+4) xiangqi.js
+   Luật đi quân, kiểm tra nước hợp lệ, Tướng an toàn và tìm kiếm cờ nông.
+   Đây là phần tính toán cờ, không phải AI ngôn ngữ hoặc mô hình ML.
+
+5) game-tools.js
+   Ký phổ Việt, phân tích văn bản ván cờ nhập vào, giải thích nước cấm,
+   xử lý chuỗi lặp trong phạm vi đã kiểm chứng.
+
+6) fixtures.js
+   Kho 12 bài tự dựng, thế ban đầu, mục tiêu/nước mẫu và lời giải.
+   Đây là nội dung thật được ứng dụng dùng, không phải file thừa.
+
+7) learning.js
+   Trạng thái một phiên học, kết quả, tiếp tục bài dở, bài liên quan,
+   lịch ôn và kiểm tra dữ liệu đã lưu.
+
+8) experience.js
+   Tùy chọn giao diện, điều kiện gửi suy nghĩ, đồng hồ, thống kê bằng
+   chứng học và dữ liệu xuất cho người dùng.
+
+9) logo-co-chill.png
+   Logo do bạn cung cấp. Không quyết định luật cờ nhưng thiếu sẽ mất
+   hình logo hoặc xuất hiện ảnh lỗi.
+
+10) favicon.svg
+    Biểu tượng của tab trình duyệt. Không quyết định logic; giữ để
+    bản sao giống bản đã phát hành.
+
+Tám file đầu là phần cốt lõi của ứng dụng/giao diện; hai file cuối là
+tài sản hình ảnh. Khuyến nghị giữ cả mười, không tiết kiệm bằng cách bỏ
+hai file ảnh nhỏ hoặc để đường dẫn hỏng.
+
+Thứ tự script trong index.html đang là:
+  xiangqi → game-tools → fixtures → learning → experience → app
+
+Không đổi thứ tự hoặc đổi tên tùy ý: module sau sử dụng phần module
+trước cung cấp. Chưa cần chuyển sang React, TypeScript hay framework
+khác chỉ để code chạy được.
+
+======================================================================
+3. COPY SANG VS CODE KHÁC CÓ CHẠY ĐƯỢC KHÔNG
+======================================================================
+
+Có, nếu đủ file, đúng đường dẫn và mở qua một web server tĩnh.
+
+Cách dễ nhất:
+
+  1. Giải nén Co_Chill_Web_Source_Gon.zip ra thư mục mới, ví dụ:
+       E:\ThanhTQ\co-chill-web
+     Không giải nén đè lên repo cũ.
+
+  2. Mở đúng thư mục có README.md trong VS Code.
+     ZIP có một thư mục gốc tên co-chill-web; tránh mở nhầm lớp ngoài.
+
+  3. Mở Terminal trong VS Code. Chạy ở thư mục có README.md:
+
+       python -m http.server 8769 --bind 127.0.0.1 --directory online-preview
+
+     Nếu máy có Python Launcher nhưng không nhận lệnh python, dùng:
+
+       py -m http.server 8769 --bind 127.0.0.1 --directory online-preview
+
+  4. Mở trình duyệt:
+       http://127.0.0.1:8769/
+
+  5. Giữ terminal chạy khi đang dùng web. Ctrl+C để dừng.
+
+Nếu muốn chạy ngay trong repo gốc:
+
+  cd "E:\ThanhTQ\App cờ tướng\xiangqi-ai"
+  python -m http.server 8769 --bind 127.0.0.1 --directory online-preview
+
+Nếu Python chưa nằm trong PATH, máy hiện tại có runtime này:
+
+  & "C:\Users\thanh\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe" -m http.server 8769 --bind 127.0.0.1 --directory online-preview
+
+Đường dẫn runtime trên chỉ dành cho máy hiện tại; không mặc định máy
+khác cũng có. Trên máy mới cần Python 3.10 trở lên hoặc một server tĩnh
+tương đương. Không cần API key, SQLite, npm install hay dịch vụ trả phí.
+
+Ở đây Python chỉ gửi file HTML/CSS/JS cho trình duyệt. Python không
+tính toán ván cờ hoặc lưu dữ liệu học cho bản Site này.
+
+Nếu cổng 8769 đang có chương trình khác, đổi sang 8770 và mở URL tương
+ứng. Đừng kết thúc một tiến trình chưa biết là của ứng dụng nào.
+
+Không nên dùng cách nhấp đúp index.html như cách chạy chính thức.
+Địa chỉ file:// có môi trường lưu trữ khác và có thể khác hành vi HTTP.
+
+Bạn sẽ có CÙNG CHỨC NĂNG, nhưng chưa chắc có CÙNG TIẾN ĐỘ:
+  - Tiến độ nằm trong localStorage của trình duyệt, không nằm trong code.
+  - https://...chatgpt.site và http://127.0.0.1:8769 là hai origin khác.
+  - Đổi trình duyệt, tên miền hoặc cổng không tự chuyển dữ liệu sang.
+  - Copy code không mang theo ván, nháp và lịch ôn của người dùng.
+  - Xuất dữ liệu có sẵn để đọc; chưa có chức năng nhập phục hồi tự động.
+
+======================================================================
+4. REPO GỌN NÊN GIỮ NHỮNG GÌ
+======================================================================
+
+Đề xuất dùng cấu trúc trong ZIP: chỉ code, README và cấu hình bỏ qua
+file tạm. Vẫn giữ kiểm thử luật vì mục tiêu là gọn mà còn bảo trì được.
+
+co-chill-web/
+  README.md                         Hướng dẫn chạy, test và giới hạn
+  .gitignore                        Ngăn commit secret, cache, file tạm
+  online-preview/                   10 file web liệt kê ở mục 2
+  tools/
+    test_preview_learning.cjs       19 kiểm thử trạng thái học
+    test_preview_game_tools.cjs     14 kiểm thử ký phổ/luật bổ sung
+    test_preview_experience.cjs     18 kiểm thử trải nghiệm/handler app
+    check_browser_rules.py         Đối chiếu luật/engine JS với Python
+    check_online_preview.py        Kiểm tra 12 bài mẫu
+    export_preview_fixtures.py      Tạo fixtures.js từ bài nguồn
+  app/
+    __init__.py
+    rules.py                        Luật tham chiếu để kiểm tra
+    engine.py                       Engine tham chiếu để đối chiếu
+    puzzles.py                      Nguồn bài mẫu do dự án tự dựng
+  tests/
+    __init__.py
+    test_rules.py                   30 kiểm thử luật tham chiếu
+
+Lưu ý quan trọng: app/ trong GÓI GỌN chỉ có bốn file trên, phục vụ kiểm
+thử và nội dung. Nó không phải toàn bộ backend app/ của repo cũ.
+Không có server.py, API HTTP hay SQLite trong gói gọn.
+
+Tại sao không bỏ toàn bộ test?
+  Web có thể mở được nhưng vẫn sai luật, lộ đáp án trước suy nghĩ,
+  tính sai lượt học hoặc lịch ôn. Test bắt những lỗi mà nhìn UI không
+  phát hiện được. Đây là code cần thiết để phát triển lâu dài.
+
+Nếu chỉ gửi một bản demo tĩnh lên hosting, chỉ cần online-preview/.
+Nếu giữ repo để sửa và phát triển, giữ toàn bộ gói gọn được đề xuất.
+
+Muốn bỏ cả Python tham chiếu về sau: trước hết cần có kiểm thử JS độc
+lập hoặc bộ dữ liệu kiểm tra tương đương bao phủ luật/engine/bài mẫu.
+Không xóa nguồn tham chiếu khi các script kiểm thử vẫn đang import nó.
+
+======================================================================
+5. CÁC FILE CÒN LẠI CÓ BỎ ĐƯỢC KHÔNG
+======================================================================
+
+Phải phân biệt ba câu hỏi:
+  A. Website tĩnh có cần file này để chạy không?
+  B. Dự án có cần file này để bảo trì hoặc nhớ quyết định không?
+  C. File có dữ liệu riêng hoặc giá trị cần sao lưu không?
+
+Không được suy từ A = không thành “có thể xóa sạch ngay”.
+
+Nhóm 1 — Word V3/V4/UI UX/V5, Final Pack, deliverables, báo cáo, inventory
+  Không cần cho trình duyệt chạy web. Có thể để ngoài repo code, trong
+  thư mục tài liệu sản phẩm riêng. Giữ bản gốc và câu trả lời đã chốt.
+  Chúng chứa yêu cầu sản phẩm mà code không diễn đạt hết.
+
+Nhóm 2 — server.py, web/, app/service.py, app/storage.py, app/learning.py,
+         Mo_Co_Chill.cmd, tools/start_local.ps1 và test HTTP/backend
+  Không được bản ChatGPT Site sử dụng. Có thể bỏ khỏi một repo CHỈ WEB
+  nếu đã lưu trữ bản backend riêng. Xóa chúng khỏi repo cũ sẽ làm bản
+  Python/SQLite và các test tương ứng không còn chạy được.
+
+Nhóm 3 — app/rules.py, app/engine.py, app/puzzles.py và công cụ đối chiếu
+  Không cần khi người dùng mở Site nhưng đang cần cho kiểm chứng luật
+  và tái tạo nội dung. Gói gọn giữ các file này có chủ đích.
+
+Nhóm 4 — var/, artifacts/, __pycache__, .pyc, log, ảnh kiểm thử
+  Phần lớn là file sinh ra, không nên commit. Nhưng var/ của repo gốc
+  có thể chứa SQLite, source checkout Sites và dữ liệu phát triển.
+  Không xóa cả var/ khi chưa kiểm tra và sao lưu phần dữ liệu cần giữ.
+
+Nhóm 5 — .git/
+  Không phải code chạy web nhưng là lịch sử Git, nhánh và cấu hình remote.
+  Giữ nó nếu đang tiếp tục chính repo đó. ZIP mới không có .git là đúng;
+  điều này không có nghĩa nên xóa .git trong repo gốc.
+
+Nhóm 6 — .gitignore
+  Nên giữ. File này nói với Git những file chưa theo dõi cần bỏ qua.
+  Thêm tên vào .gitignore KHÔNG tự bỏ file đã được Git theo dõi, không
+  xóa file đã push và không xóa dữ liệu trong lịch sử commit cũ.
+
+Nhóm 7 — cấu hình hosting .openai/hosting.json
+  Hiện ở var/site-preview/.openai/hosting.json trong checkout dành cho
+  Sites. Không cần để chạy bằng localhost, không phải credential.
+  Project ID và cấu hình này giúp cập nhật đúng Site đang có. Khi đổi
+  cấu trúc nguồn, cần điều chỉnh bước đóng gói/thư mục xuất bản tương ứng.
+  Không copy cấu hình trỏ dist/ sang repo không có dist/ rồi kỳ vọng tự chạy.
+
+Xóa file trên máy KHÔNG lập tức xóa khỏi bản web đã deploy. Bản deploy
+đang chạy là một snapshot độc lập. Nhưng xóa mất source sẽ gây khó sửa
+và phát hành phiên bản tiếp theo.
+
+======================================================================
+6. CÁCH DỌN CHÍNH REPO GITHUB MÀ KHÔNG MẤT DỮ LIỆU
+======================================================================
+
+Đã làm trong lượt này:
+  - Tạo gói nguồn gọn riêng, không ghi đè repo cũ.
+  - Giữ đúng 10 file web đã phát hành, không viết lại code.
+  - Giữ kiểm thử quan trọng và mã luật tham chiếu.
+  - Tạo file hướng dẫn/bàn giao này.
+
+Chưa làm:
+  - Chưa xóa hoặc untrack tài liệu trong repo gốc.
+  - Chưa đổi remote, đổi nhánh mặc định hoặc đổi quyền public GitHub.
+  - Chưa push các thay đổi của lượt này.
+
+Quy trình đề xuất khi bạn yêu cầu dọn repo chính:
+  1. Kiểm tra git status, nhánh, remote và commit chưa push.
+  2. Sao lưu tài liệu/câu trả lời và backend đầy đủ ra chỗ riêng.
+  3. Tạo một nhánh mới từ trạng thái hiện tại, ví dụ codex/web-only.
+  4. Chuẩn bị diff giữ cấu trúc gói gọn; liệt kê file bỏ khỏi Git và nơi
+     lưu bản gốc. Bạn duyệt danh sách này trước bước xóa/untrack.
+  5. Chạy test từ chính cấu trúc mới và chạy thử web.
+  6. Commit việc dọn cấu trúc; push đúng nhánh khi bạn yêu cầu.
+  7. Sau khi xem diff và chấp nhận mới merge/chuyển nhánh mặc định.
+
+Commit xóa file sẽ làm nhánh hiện tại gọn, nhưng phiên bản file cũ vẫn
+có trong lịch sử. Đây là hành vi bình thường và giúp khôi phục; không
+rewrite history hoặc force push chỉ để làm cây thư mục trông gọn hơn.
+
+Nếu tài liệu từng chứa secret, xóa ở commit mới không đủ xử lý secret
+đã lộ. Không có thao tác xóa lịch sử secret nào được thực hiện ở đây.
+
+======================================================================
+7. COMMIT, PUSH VÀ DEPLOY KHÁC NHAU THẾ NÀO
+======================================================================
+
+SỬA FILE → COMMIT → PUSH → DEPLOY
+             |        |        |
+             |        |        + Đưa phiên bản ra URL cho người khác dùng
+             |        + Đưa commit lên GitHub
+             + Lưu mốc thay đổi trong Git trên máy
+
+“Commit lên GitHub” thường được nói gộp; thực tế cần commit rồi push.
+Commit thành công chưa có nghĩa GitHub đã nhận code.
+
+Bạn tự làm được. AI cũng có thể kiểm tra thay đổi, chạy test, tạo commit
+và push nếu bạn yêu cầu cụ thể và máy có quyền truy cập repository.
+AI không cần đọc password/token từ bạn trong chat. Không đưa token vào
+file code, lệnh remote hoặc nội dung commit.
+
+Ví dụ khi đang ở REPO GIT CÓ SẴN và muốn commit phần web:
+
+  git status
+  git diff
+  git add online-preview
+  git diff --cached --stat
+  git commit -m "Improve home page and learning flow"
+
+Nếu thay cả test hoặc README, stage đúng những file đã sửa. Tránh
+git add . khi chưa biết các file mới là gì, đặc biệt Word và dữ liệu học.
+
+Trước khi push:
+
+  git branch --show-current
+  git remote -v
+
+Repo hiện tại đang ở nhánh codex-full. Khi bạn xác nhận muốn push nhánh
+này lên remote hiện tại, lệnh tương ứng là:
+
+  git push origin codex-full
+
+Đừng dùng lệnh trên trong một thư mục khác chưa kiểm tra nhánh/remote.
+
+Repo gốc hiện có remote:
+  https://github.com/thanhtq2701-alt/xiangqi07.git
+
+Lần kiểm tra local ngày 16/10/2026:
+  HEAD: 0c9f20b
+  Nhánh: codex-full
+  So với ref origin/codex-full được lưu trên máy: ahead 3 commit.
+  Chưa fetch trong lượt này, nên không khẳng định trạng thái remote mới
+  nhất chỉ từ ref local đó. Ba commit local liên quan:
+    261592a  Bản browser V4
+    77f3fbe  Cập nhật UI UX và Luật
+    0c9f20b  Báo cáo Site v3 và Word V5
+
+Gói ZIP chưa có .git hoặc remote. Không git init rồi cố push đè vào repo
+đang có lịch sử. Để chuyển chính repo hiện tại sang bản gọn, dùng quy
+trình nhánh ở mục 6; giữ lịch sử và xem diff trước.
+
+Push lên GitHub hiện KHÔNG tự cập nhật ChatGPT Site. Luồng phát hành
+Sites dùng source repository riêng, lưu version rồi deploy qua plugin.
+Muốn mỗi lần push tự deploy ở hosting khác phải cấu hình tích hợp và
+nhánh phát hành riêng. Chưa thực hiện kết nối GitHub/Vercel trong gói này.
+
+Quyền public của GitHub và quyền public của website là hai việc khác.
+Code có thể private trong khi web công khai cho người dùng truy cập.
+
+======================================================================
+8. BẠN MUỐN SỬA GÌ THÌ MỞ FILE NÀO
+======================================================================
+
+Màu, khoảng cách, bo góc, font, responsive:
+  online-preview/style.css
+
+Logo, menu khung, thứ tự tải tài nguyên:
+  online-preview/index.html và file ảnh liên quan
+
+Nội dung trang, nút, bố cục nội dung được tạo theo trạng thái:
+  online-preview/app.js
+
+Câu hỏi, điều kiện gửi, tùy chọn, cách tính thống kê:
+  online-preview/experience.js và phần dùng nó trong app.js
+
+Phiên học, lưu nháp, lịch ôn, chọn bài tiếp:
+  online-preview/learning.js và các handler trong app.js
+
+Luật quân cờ/tìm kiếm:
+  online-preview/xiangqi.js
+  Khi thay đổi quy tắc, đối chiếu app/rules.py và kiểm thử.
+
+Ký pháp/nhập ván/chuỗi lặp:
+  online-preview/game-tools.js
+
+Bài tập:
+  app/puzzles.py là nguồn tạo bài mẫu hiện tại.
+  tools/export_preview_fixtures.py tạo online-preview/fixtures.js.
+  Đừng sửa nguồn và bản xuất thành hai nội dung mâu thuẫn nhau.
+
+Không phải mỗi lần sửa đều phải sửa toàn bộ project. Sửa module liên
+quan rồi chạy test thích hợp; kiểm tra rộng hơn khi sửa luật/trạng thái.
+
+======================================================================
+9. KIỂM CHỨNG GÓI NGUỒN GỌN
+======================================================================
+
+Đã kiểm tra trên bản gọn trong var/co-chill-web-source-gon:
+  - 10/10 tài sản web giống từng byte với online-preview của repo gốc.
+  - 19/19 test trạng thái học qua.
+  - 14/14 test ký phổ/luật bổ sung qua; 4.054 nước round-trip ký pháp.
+  - 18/18 test trải nghiệm/handler qua.
+  - 30/30 test luật Python qua.
+  - 12/12 bài mẫu khớp nguồn, lời giải và tập nước hợp lệ.
+  - Đối chiếu JS/Python qua: 205 thế, 5.468 thế con, 25 ca FEN,
+    perft 2 = 1.920, 12 thế phân tích và 153 biến hợp lệ.
+
+Lệnh kiểm thử được giữ trong README của ZIP. Cần Node để chạy test JS;
+Node không cần cài thêm thư viện npm. Python chỉ dùng thư viện chuẩn
+cho nhóm kiểm tra được đưa vào gói này.
+
+Gói không mang 72 test backend nguyên bộ vì không chứa toàn bộ backend.
+Repo gốc vẫn giữ tất cả test, không bị xóa hoặc nới điều kiện.
+
+======================================================================
+10. TRẠNG THÁI SẢN PHẨM CẦN MANG SANG CHAT MỚI
+======================================================================
+
+Đã chốt và có bản thử:
+  - Tên Cờ Chill, tiếng Việt; dùng logo bạn cung cấp.
+  - Desktop: sidebar, bàn bên trái, nội dung học bên phải.
+  - Mobile: bố cục đáp ứng và menu phía dưới.
+  - Theme sáng ấm/trắng lạnh/tối, quân Hán/Việt, chữ lớn.
+  - Chơi/nhập ván → điểm cần học → tự suy nghĩ trước → giải thích
+    có căn cứ → thử lại → hình cùng chủ đề → ghi kết quả → lịch ôn.
+  - Không hướng dẫn chiến thuật trong ván đang chơi.
+  - Bài dở giữ chỗ; lịch ôn tính từ lúc hoàn thành từng hình.
+  - Cuối phiên có tự đánh giá; không coi ô tích là chứng minh hiểu bài.
+  - Chưa đủ mẫu thì nói chưa đủ dữ liệu, không bịa chỉ số tiến bộ.
+
+Giới hạn phải nói thật:
+  - Engine JavaScript local tối đa 2 ply, phân tích nông.
+  - Lời giải mẫu; chưa có LLM chấm câu trả lời tự do.
+  - 12 bài tự dựng; chưa chuyên gia duyệt sư phạm, không phải dataset lớn.
+  - Dữ liệu localStorage; chưa tài khoản hoặc đồng bộ thiết bị.
+  - Chưa PvP online, OCR, engine mạnh, giáo trình đầy đủ, admin nội dung.
+  - Chưa bộ phân xử WXF giải đấu đầy đủ; ca ngoài phạm vi cần kiểm chứng.
+  - Đáp án nằm trong mã client; reflection gate là UX, không khóa bảo mật.
+
+Lỗi/giới hạn nhỏ đã biết:
+  - Lật bàn chưa giữ góc sau reload.
+  - Đồng hồ sau xin thua/thỏa thuận hòa còn hiện mốc nước gần nhất.
+  - Giọng bạn học mới đổi lời mở đầu, chưa thay toàn bộ lời giải.
+  - JSON xuất chưa nhập phục hồi tự động.
+
+Thông tin bản deploy đã xác minh ở lượt trước:
+  Site version: 3
+  Project ID: appgprj_6acd061322c08191a4c912862bc05124
+  Sites source commit: 55bd70cd4c19c52192d5d80160d13982e1c7a80a
+  Saved version:
+    appgprj_6acd061322c08191a4c912862bc05124~appgver_1ec8525f71188191ad4884e327e2041c
+  Deployment: appgdep_6ad1b71f95b08191931f5018d8524692
+  Kết quả deploy: succeeded ngày 16/10/2026
+
+V5 bản cập nhật tài khoản có 46 câu, 9 nhóm. Chỉ điền một file Word:
+Co_Chill_V5_Cap_nhat_Tai_khoan.docx. Bản Word 41 câu cũ được giữ nguyên
+để đối chiếu. Câu 25, 28, 32, 37, 39, 40 được sửa và 42–46 là câu mới;
+những câu khác giữ mã để chuyển câu trả lời cũ. File TXT này chỉ đọc,
+không cần điền. Không coi các đề xuất chưa trả lời là đã duyệt.
+
+Tài liệu để đọc KHI CẦN, không phải mỗi lần đều đọc lại toàn bộ:
+  Bản trả lời UI/UX và Luật:
+    E:\ThanhTQ\App cờ tướng\10-13\UI UX + Luat.docx
+  Bản V4:
+    E:\ThanhTQ\App cờ tướng\10-14\V4.docx
+  Word V5 cần bạn trả lời:
+    E:\ThanhTQ\App cờ tướng\xiangqi-ai\deliverables\Co_Chill_V5_Cap_nhat_Tai_khoan.docx
+  Sổ quyết định đã tổng hợp:
+    docs/UIUX_DECISION_REGISTER_2026_10_15.md
+  Báo cáo phát hành mới nhất:
+    BAO_CAO_UIUX_V5_2026_10_16.md
+  Nội dung V5 dạng Markdown:
+    docs/CO_CHILL_V5_QUESTIONS.md
+
+======================================================================
+11. ĐOẠN BẠN CÓ THỂ GỬI NGUYÊN VĂN CHO CHAT MỚI
+======================================================================
+
+Tôi tiếp tục dự án Cờ Chill. Hãy đọc file sau trước:
+E:\ThanhTQ\App cờ tướng\xiangqi-ai\deliverables\HUONG_DAN_CODE_VA_BAN_GIAO_CHAT_MOI.txt
+
+Website đang chạy là bản static trong online-preview/, không phải bản
+server.py + web/. Site version 3 đang công khai tại:
+https://co-chill-ngay-mai.cosmicanole32.chatgpt.site/
+
+Đã có gói nguồn gọn 24 file ở deliverables/Co_Chill_Web_Source_Gon.zip.
+Repo gốc chưa dọn/xóa; tôi muốn chỉ giữ code, README và phần cần thiết.
+Trước khi xóa/untrack, hãy chuẩn bị danh sách file, nơi lưu tài liệu và
+backend cũ, cùng diff trên nhánh codex/web-only để tôi duyệt. Giữ lịch
+sử Git; không force push. Không tự đổi GitHub thành public, push hoặc
+deploy nếu tôi chưa yêu cầu hành động đó. Tôi đã tắt auto-approve.
+
+Giữ vòng học và các giới hạn trong file bàn giao. Không bỏ test để làm
+bản gọn. Đọc thêm tài liệu theo đúng phần đang sửa, không cần đọc lại
+toàn bộ lịch sử chat. V5 cập nhật có 46 câu, đã gộp quyết định ở mục 13: tài khoản
+thật, dữ liệu tập trung, đồng bộ nhiều thiết bị và quản trị/thống kê phải
+thuộc đợt V5. Đây là yêu cầu đã chốt; không hỏi lại có cần tài khoản hay
+không. Các câu V5 chưa được trả lời còn lại vẫn chưa chốt. Hãy kiểm tra
+trạng thái file/Git thực tế trước khi sửa.
+
+Việc tôi muốn làm tiếp cụ thể là: [điền một mục ưu tiên ở đây].
+
+======================================================================
+12. THỨ TỰ BẠN NÊN LÀM NGAY
+======================================================================
+
+1. Giữ nguyên thư mục xiangqi-ai đang có.
+2. Giải nén gói nguồn gọn sang thư mục riêng.
+3. Mở bằng VS Code, đọc README và chạy lệnh ở mục 3.
+4. Xác nhận web mở được và đúng giao diện bạn muốn tiếp tục.
+5. Mở chat mới, gửi đoạn ở mục 11, nói rõ đang sửa repo gốc hay bản gọn.
+6. Chọn một việc trước: dọn repo chính, sửa UI cụ thể, sửa lỗi đã biết,
+   hoặc triển khai câu trả lời V5. Tránh sửa hai bản song song mà không
+   xác định bản nào là nguồn chính.
+
+File bàn giao giúp chat mới bắt đầu với ngữ cảnh ngắn hơn. Nó không
+reset, tăng hoặc bảo đảm tiết kiệm một tỷ lệ usage cụ thể của tài khoản.
+Hãy giữ yêu cầu mỗi lượt cụ thể và chỉ yêu cầu đọc phần liên quan.
+
+======================================================================
+13. PHẠM VI V5 MỚI — TÀI KHOẢN VÀ QUẢN TRỊ TẬP TRUNG
+======================================================================
+
+Yêu cầu trực tiếp của chủ sản phẩm ngày 16/10/2026:
+“Tôi muốn cùng với đợt V5 sẽ là đợt bổ sung nâng cấp để có thể xem và
+quản lý được hệ thống tài khoản người chơi, từ bất cứ máy nào khi tạo
+tài khoản tôi đều biết được và thống kê được.”
+
+Trạng thái: ĐÃ CHỐT YÊU CẦU CHO ĐỢT V5; CHƯA TRIỂN KHAI/DEPLOY.
+
+Quyết định này thay ưu tiên cũ trong UX35/V5 32 về việc để tài khoản
+và đồng bộ sang sau. V5 32 trong bản mới hỏi cách đăng nhập; V5 42–46
+đã gộp các câu còn thiếu từ mục E vào cùng Word, không cần điền mục E
+trong file TXT này một lần nữa. Tài khoản và backend cũng thuộc bản nâng cấp V5
+khi chốt phương án hosting ở V5 40. PvP online, engine mạnh, chấm lập
+luận bằng LLM và trained ML không tự được đưa vào phạm vi chỉ vì thêm
+tài khoản. Giữ nguyên vòng học và các nguyên tắc dữ liệu đã chốt.
+
+A. Người chơi cần dùng được
+
+  - Đăng ký, đăng nhập, đăng xuất và khôi phục quyền truy cập bằng
+    phương thức sẽ chốt; không coi tên hiển thị local là tài khoản.
+  - Tài khoản tạo thành công trên bất kỳ thiết bị được hỗ trợ nào đều
+    lưu vào cùng hệ thống máy chủ, có mã tài khoản ổn định.
+  - Đăng nhập cùng tài khoản trên máy khác thấy ván, lượt học, bài dở,
+    lịch ôn và tiến độ đã đồng bộ. Dữ liệu chưa đồng bộ phải được báo rõ.
+  - Hai thiết bị không được âm thầm ghi đè nháp hoặc nhân đôi kết quả.
+  - Người chơi chỉ đọc/sửa dữ liệu được phép của chính mình.
+
+B. Chủ sản phẩm cần xem và quản lý được
+
+  - Có tài khoản quản trị riêng; đăng nhập được từ máy của chủ sở hữu
+    để mở trang quản trị. Quyền được xác minh ở máy chủ.
+  - Danh sách tài khoản thật: mã, tên hiển thị, ngày tạo, trạng thái
+    xác minh nếu có, lần hoạt động gần nhất, trạng thái hoạt động/khóa.
+  - Tìm kiếm, lọc theo thời gian/trạng thái, xem tiến độ người dùng
+    trong phạm vi đã công bố, khóa/mở tài khoản, xử lý yêu cầu dữ liệu.
+  - Hệ thống tự ghi nhận đăng ký thành công vào danh sách, không cần
+    người chơi gửi ảnh hoặc file JSON cho chủ sở hữu tổng hợp.
+  - Dashboard có dấu thời điểm cập nhật. Mục tiêu là chủ sở hữu biết
+    được có tài khoản mới; thông báo email/push bên ngoài là lựa chọn
+    cần chốt, chưa tự bật hoặc mua dịch vụ.
+  - Ghi nhật ký thao tác quản trị; không hiển thị password hoặc secret.
+
+C. Thống kê tối thiểu
+
+  - Tổng tài khoản hợp lệ, tài khoản mới theo ngày/tuần/tháng.
+  - Tài khoản hoạt động theo khoảng thời gian với định nghĩa rõ ràng.
+  - Số ván, lượt học bắt đầu/hoàn tất, bài đến hạn và lượt ôn hoàn tất.
+  - Các bước người học dừng trong vòng học; lượt độc lập và có hỗ trợ.
+  - Tách dữ liệu kiểm thử/nội bộ khỏi người dùng thật và số liệu báo cáo.
+  - Một tài khoản dùng hai máy vẫn chỉ tính một tài khoản. Số tài khoản
+    không tự bằng số người thật; lượt truy cập không bằng đăng ký.
+  - Không dựng lại thống kê lịch sử chưa từng được thu thập, không
+    coi kết quả thao tác là bằng chứng đã tăng trình độ cờ.
+
+D. Kiến trúc và dữ liệu
+
+  - Giữ frontend và các module luật/học hiện có khi tái sử dụng được.
+  - Bổ sung xác thực, backend/API, database bền vững và trang quản trị.
+    localStorage có thể làm bộ đệm, không còn là nguồn dữ liệu duy nhất.
+  - Các kiểm tra quyền phải có ở API/database; giấu menu admin là chưa đủ.
+  - Ghi kết quả có cơ chế chống gửi trùng; máy chủ xác minh những dữ
+    kiện quyết định kết quả trước khi dùng trong thống kê chính thức.
+  - Có kiểm thử đăng nhập, quyền từng người, quyền admin, đồng bộ nhiều
+    thiết bị, mất mạng/thử lại, sao lưu và khôi phục.
+  - Chọn cách chuyển dữ liệu local vào tài khoản theo hành động rõ ràng
+    của người dùng, có xem trước và chống trùng. Không âm thầm nhập dữ
+    liệu của người khác khi nhiều người dùng chung một trình duyệt.
+  - Tiếp tục cho xuất/xóa dữ liệu trong phạm vi công bố. Không dùng ván
+    hoặc câu trả lời để huấn luyện; không lưu password dạng rõ.
+  - Gói nguồn gọn 24 file là điểm xuất phát của Site v3. Backend, auth,
+    migration và test mới là code cần thiết được phép thêm khi làm V5;
+    không ép bản tài khoản thật chỉ nằm trong 10 file tĩnh.
+
+E. Những thông tin còn cần chốt trong V5
+
+  1. Phương thức đăng nhập: email, nhà cung cấp danh tính hoặc phương án
+     phù hợp khác; có giữ chế độ khách không.
+  2. Chủ sở hữu tài khoản admin và có cần thêm cộng tác viên không.
+     Không gửi password/token trong tài liệu; gán quyền qua quy trình
+     đã xác minh khi triển khai, không mở lựa chọn tự đăng ký admin.
+  3. Chỉ cần xem tài khoản mới trong dashboard hay còn nhận email/push;
+     tần suất và nội dung thông báo.
+  4. Admin được xem chi tiết nào: thống kê tổng hợp, biên bản, câu trả
+     lời tự do; thông báo và lựa chọn dữ liệu tương ứng cho người chơi.
+  5. Quy tắc chuyển tiến độ local, hợp nhất xung đột, xuất/xóa/lưu giữ.
+  6. Số người thử đồng thời và dịch vụ/tài khoản hosting đã có. Giữ
+     ngân sách mong muốn 100.000 đồng/tháng, trần 200.000 cho tất cả
+     dịch vụ theo quyết định trước cho tới khi chủ sở hữu thay đổi.
+
+F. Kịch bản nghiệm thu bắt buộc trước khi gọi là đã hoàn thành
+
+  1. Thiết bị A đăng ký tài khoản thử; server xác nhận thành công.
+  2. Chủ sở hữu trên thiết bị B thấy tài khoản đó trong admin và tổng
+     tài khoản tăng đúng một; biết trạng thái cập nhật của dashboard.
+  3. Người chơi học một bài trên A, đăng nhập trên C thấy dữ liệu đã lưu.
+  4. Tải lại/gửi lại yêu cầu không nhân đôi tài khoản, lượt học hoặc lịch ôn.
+  5. Tài khoản khác không xem được dữ liệu riêng hoặc API admin, kể cả
+     khi gọi API trực tiếp. Đăng xuất làm phiên tương ứng mất hiệu lực.
+  6. Khóa/mở tài khoản có tác dụng phía server và có nhật ký quản trị.
+  7. Thống kê khớp dữ liệu đã ghi; tài khoản test được loại hoặc lọc rõ.
+  8. Xuất/xóa, chuyển dữ liệu local và thử khôi phục bản sao lưu đều có
+     kết quả kiểm tra. Core learning loop vẫn qua test như trước.
+
+Chưa chọn vendor, mua dịch vụ, tạo tài khoản cloud, thay đổi quyền
+GitHub hoặc deploy tính năng tài khoản trong lượt ghi nhận yêu cầu này.
+Các bước cần quyền cụ thể vẫn theo yêu cầu hỏi trước của chủ sở hữu.
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a

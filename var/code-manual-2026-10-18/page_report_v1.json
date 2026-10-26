@@ -1,0 +1,1388 @@
+[
+  {
+    "page": 1,
+    "characters": 1857,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 1",
+      "Hiểu từng file",
+      "và từng nhóm code",
+      "của Cờ Chill",
+      "Sổ tay chi tiết dành cho chủ sản phẩm mới học phát triển web"
+    ],
+    "last_lines": [
+      "trong trình duyệt, lưu dữ liệu cục bộ, dùng engine nông và bài tập tự dựng. Chưa có hệ thống tài khoản ",
+      "tập trung, đồng bộ đa máy, dashboard quản trị toàn bộ người chơi hoặc LLM gọi qua API.",
+      "Trong lượt soạn tài liệu này không sửa mã ứng dụng, không cài công cụ, không commit, push hay ",
+      "deploy. Các file lịch sử, server.py và tài liệu đặc tả ở repo đầy đủ nằm ngoài bộ 29 file này; chúng ",
+      "không phải phụ thuộc để chạy bản Site tĩnh. Không nên xóa chúng chỉ vì chúng không có trong gói."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-001.png"
+  },
+  {
+    "page": 2,
+    "characters": 1630,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 2",
+      "Bản đồ kiến trúc trước khi đọc code",
+      "Website hiện tại có hai đường hoạt động riêng: người chơi dùng code JavaScript trong trình duyệt; ",
+      "người phát triển dùng Python và Node để kiểm tra hoặc tạo lại dữ liệu. Một chương trình HTTP tĩnh chỉ",
+      "đưa file tới trình duyệt, không quản lý người chơi."
+    ],
+    "last_lines": [
+      "lưu.",
+      "Database tập trung của tất cả người ",
+      "chơi.",
+      "Bảo trì Python tham chiếu, test Node và checker phát hiện ",
+      "lỗi trước khi phát hành. Backend tự chạy cùng website."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-002.png"
+  },
+  {
+    "page": 3,
+    "characters": 2232,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 3",
+      "Từ vựng và cách đọc một khối code",
+      "Từ hoặc ký hiệu Nghĩa cụ thể trong bộ code này",
+      "Hàm / function Một thao tác có tên. Gọi hàm với đầu vào; nó trả kết quả hoặc gây tác động như lưu ",
+      "dữ liệu, đổi màn hình."
+    ],
+    "last_lines": [
+      "Snapshot / hash Snapshot là bản nguồn tại một mốc. Hash giúp nhận ra nội dung đổi; không chứng ",
+      "minh chương trình đúng hoặc đã deploy.",
+      "Mỗi nhóm bên dưới có vị trí dòng, các tên nên tìm và lời giải thích theo mục đích. “Ví dụ” minh họa ",
+      "đường đi của dữ liệu; “Điểm cần giữ” chỉ điều kiện dễ bị phá khi sửa. Đây là phân tích theo nhóm ý ",
+      "nghĩa, không phải bản dịch từng dấu ngoặc hoặc bản sao hàng nghìn dòng code."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-003.png"
+  },
+  {
+    "page": 4,
+    "characters": 2153,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 4",
+      "Danh mục từng file",
+      "10 file đầu thuộc web chạy trong trình duyệt. 19 file sau hỗ trợ kiểm thử, phát triển và bàn giao. Các ",
+      "liên kết nhảy đến chương tương ứng; Word có thể yêu cầu giữ Ctrl khi nhấp.",
+      "01 online-preview/index.html — Khung trang và thứ tự tải"
+    ],
+    "last_lines": [
+      "Thứ tự học đề xuất",
+      "Lượt một: đọc 01 → 02 → 03 để hiểu trang xuất hiện và nhận thao tác. Lượt hai: đọc 04 → 05 → 07 → ",
+      "08 để hiểu luật, ván và vòng học. Lượt ba: đọc 06 → 14 → 20 để hiểu nguồn bài; đọc các chương kiểm ",
+      "thử để biết cách kiểm chứng. Các file cấu hình ở cuối dùng tra cứu khi chạy, chuyển máy hoặc bàn ",
+      "giao."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-004.png"
+  },
+  {
+    "page": 5,
+    "characters": 3075,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 5",
+      "01 Khung trang và thứ tự tải",
+      "online-preview/index.html",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\index.html",
+      "Kích thước: 5 846 byte • 62 dòng • 7 nhóm giải thích"
+    ],
+    "last_lines": [
+      "Điểm cần giữ Không đảo thứ tự tùy ý và không xóa defer khi chưa hiểu thời điểm DOM sẵn sàng.",
+      "01 03 Đầu trang và các điểm bấm dùng chung",
+      "Dòng 18–29 | skip-link, site-header, sidebar-toggle, brand, sound-toggle, avatar, profile-link",
+      "Header luôn có thương hiệu, nút thu gọn menu, nút âm thanh và lối vào hồ sơ. Logo dùng logo-co￾chill.png; tên và khẩu hiệu là chữ HTML riêng nên vẫn đọc được nếu hình lỗi. data-action là nhãn để bộ",
+      "xử lý click của app.js biết nút cần làm gì. Các id như avatar và sound-toggle cho phép JavaScript cập "
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-005.png"
+  },
+  {
+    "page": 6,
+    "characters": 3179,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 6",
+      "nhật ký tự tên hoặc trạng thái âm thanh. aria-label, aria-expanded và aria-pressed giúp công nghệ hỗ",
+      "trợ hiểu ý nghĩa, trạng thái nút. Skip-link phục vụ người dùng bàn phím đi thẳng tới nội dung chính.",
+      "Ví dụ Bấm âm thanh làm app.js đổi prefs.sound rồi cập nhật chữ và aria-pressed của đúng nút này.",
+      "Điểm cần giữ Đổi id mà không sửa nơi app.js truy cập có thể gây lỗi hoặc làm trạng thái không cập "
+    ],
+    "last_lines": [
+      "01 07 Thông báo ngắn và trường hợp tắt JavaScript",
+      "Dòng 59–62 | toast, aria-live, noscript",
+      "Toast là vùng nổi để app.js thông báo thao tác như đã lưu hoặc nước đi không hợp lệ. role=status và ",
+      "aria-live=polite giúp trình đọc màn hình thông báo thay đổi mà không ngắt lời quá gấp. hidden giữ hộp ",
+      "này khỏi xuất hiện khi chưa có nội dung. noscript chỉ hiện khi trình duyệt tắt hoặc không hỗ trợ"
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-006.png"
+  },
+  {
+    "page": 7,
+    "characters": 642,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 7",
+      "JavaScript, giải thích rằng bàn cờ và phiên học cần JavaScript. Nó không tạo chế độ chơi thay thế; ứng ",
+      "dụng hiện không có bản tương tác chạy thuần HTML.",
+      "Ví dụ toast('Đã lưu tên trên thiết bị.') đưa thông báo vào phần tử này rồi ẩn sau bảy giây.",
+      "Điểm cần giữ Không dùng noscript làm bằng chứng ứng dụng vẫn hoạt động khi JavaScript lỗi; lỗi tải "
+    ],
+    "last_lines": [
+      "Điểm cần giữ Không dùng noscript làm bằng chứng ứng dụng vẫn hoạt động khi JavaScript lỗi; lỗi tải ",
+      "script cần kiểm tra ở Console và Network.",
+      "Cách đọc và sửa file này",
+      "Đọc từ script xuống các id cố định. Sau đó mở app.js và tìm render(), document.addEventListener và ",
+      "các tên id tương ứng để thấy khung HTML được điều khiển ra sao."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-007.png"
+  },
+  {
+    "page": 8,
+    "characters": 2956,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 8",
+      "02 Bố cục và giao diện",
+      "online-preview/style.css",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\style.css",
+      "Kích thước: 32 677 byte • 403 dòng • 17 nhóm giải thích"
+    ],
+    "last_lines": [
+      "02 03 Đầu trang logo avatar và nút âm thanh",
+      "Dòng 32–45 | site-header, header-start, header-actions, brand, brand-logo, icon-button, sound￾button, profile-link, avatar",
+      "Header sticky giữ thanh đầu trang ở trên khi cuộn và dùng z-index để không bị nội dung che. Flex bố trí ",
+      "nhóm thương hiệu và nhóm tài khoản ở hai phía. Logo được cắt tròn, avatar có nền và viền, chữ tên ",
+      "phụ có kích thước nhỏ hơn. SVG dùng stroke currentColor nên tự đổi màu theo nút cha. Nút âm thanh "
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-008.png"
+  },
+  {
+    "page": 9,
+    "characters": 3064,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 9",
+      "có kiểu riêng khi aria-pressed=true; JavaScript chỉ đổi thuộc tính, CSS chọn cách hiện trạng thái bật. ",
+      "Các kích thước chạm được định nghĩa để nút không quá nhỏ.",
+      "Ví dụ Đổi aria-pressed của sound-toggle khiến nền nút thay ngay mà không phải gán style bằng ",
+      "JavaScript."
+    ],
+    "last_lines": [
+      "để cho thấy lựa chọn hiện tại. Tách kiểu thành lớp chung giúp chỉnh bán kính hoặc kích thước nút một ",
+      "lần mà nhiều trang cùng thay.",
+      "Ví dụ Nút Xóa toàn bộ dùng danger để người dùng nhận ra hành động khác với nút Lưu dùng primary.",
+      "Điểm cần giữ Màu danger chỉ là tín hiệu thị giác; logic hỏi xác nhận và giới hạn xóa phải ở JavaScript, ",
+      "không được coi CSS là lớp bảo vệ dữ liệu."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-009.png"
+  },
+  {
+    "page": 10,
+    "characters": 3504,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 10",
+      "02 07 Biểu mẫu ô nhập và thông báo tại chỗ",
+      "Dòng 117–131 | field, select, textarea, file-selector-button, aria-invalid, check-line, notice",
+      "Field quy định khoảng cách và nhãn cho một câu hỏi; các ô nhập có cùng viền, nền và kích thước. ",
+      "Textarea được phép kéo chiều cao nhưng không kéo ngang để tránh phá bố cục. File-selector-button "
+    ],
+    "last_lines": [
+      "cột. Nút ký phổ có kiểu nhẹ và gạch dưới khi hover để vẫn giống nội dung bảng. Game-result tạo ",
+      "khung kết thúc ván nổi bật. Một số lớp như move-list và notation-wrap là kiểu dự phòng hoặc còn sót ",
+      "từ cách dựng khác; trong app.js hiện tại bảng dùng notation-scroll.",
+      "Ví dụ Một ván dài không đẩy toàn bộ trang cao thêm hàng trăm hàng vì vùng ký phổ có chiều cao tối ",
+      "đa 280px."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-010.png"
+  },
+  {
+    "page": 11,
+    "characters": 3291,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 11",
+      "Điểm cần giữ Thêm sticky header của bảng phải giữ nền và z-index, nếu không chữ hàng cuộn phía ",
+      "dưới có thể chồng lên tiêu đề.",
+      "02 11 Danh sách bộ lọc và màn hình chưa có dữ liệu",
+      "Dòng 200–211 | list, list-row, row-main, mini-icon, filters, empty, empty-mark"
+    ],
+    "last_lines": [
+      "storage-warning có mục đích khác nhau.",
+      "02 14 Điều chỉnh chủ đề tối và chữ lớn",
+      "Dòng 255–264 | data-theme dark, piece:not(.red), board-caption, board-square.checked, board￾overlay, data-font large",
+      "Ngoài đổi biến màu, chủ đề tối cần ghi đè riêng mặt quân Đen, chữ Đỏ, chú thích bàn, Tướng bị chiếu ",
+      "và mũi tên để vẫn dễ thấy trên nền tối. Chủ đề chữ lớn tăng root và tăng cụ thể đoạn văn, nhãn, ô "
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-011.png"
+  },
+  {
+    "page": 12,
+    "characters": 3178,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 12",
+      "nhập, ghi chú cùng nút vì nhiều thành phần trước đó dùng px cố định. JavaScript chỉ đặt data-theme ",
+      "hoặc data-font; CSS làm phần còn lại. Đây là các tùy chọn hỗ trợ đọc chứ không thay đổi kích thước ",
+      "logic bàn hay dữ liệu bài.",
+      "Ví dụ Bật chữ lớn khiến câu hỏi và textarea tăng cỡ nhưng tọa độ nước đi vẫn giữ nguyên."
+    ],
+    "last_lines": [
+      "Điểm cần giữ Nếu cần báo cáo học tập chính thức, phải có luồng xuất riêng; @media print không đảm ",
+      "bảo mọi màn hình hiện tại đều ngắt trang hoàn hảo.",
+      "Cách đọc và sửa file này",
+      "Tìm class đang thấy trong HTML hoặc app.js rồi tìm cùng tên ở CSS. Đọc kiểu cơ sở trước, sau đó tìm ",
+      "các ghi đè dark, large và media ở cuối; không kết luận từ lần xuất hiện đầu tiên của một selector."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-012.png"
+  },
+  {
+    "page": 13,
+    "characters": 2779,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 13",
+      "03 Điều phối toàn bộ trải nghiệm",
+      "online-preview/app.js",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\app.js",
+      "Kích thước: 68 187 byte • 165 dòng • 34 nhóm giải thích"
+    ],
+    "last_lines": [
+      "trung tâm.",
+      "Ví dụ Câu trả lời lưu trên localhost:8769 không tự xuất hiện ở chatgpt.site vì hai địa chỉ có vùng ",
+      "localStorage khác nhau.",
+      "Điểm cần giữ Đổi KEY sẽ làm ứng dụng nhìn như mất dữ liệu cũ. Xóa dữ liệu trình duyệt sẽ xóa tiến ",
+      "độ; bản xuất hiện chưa có luồng nhập phục hồi tự động."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-013.png"
+  },
+  {
+    "page": 14,
+    "characters": 3182,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 14",
+      "03 03 Thông báo điều hướng và tìm dữ liệu",
+      "Dòng 14–22 | toast, go, route, activeGame, findPuzzle, dueRecords, completed, heading, empty",
+      "toast hiện thông báo ngắn rồi đặt hẹn ẩn sau bảy giây. go và route chuyển địa chỉ hash thành tên trang ",
+      "cùng mã đối tượng. activeGame tìm ván chưa kết thúc; findPuzzle ưu tiên kho bài mẫu, rồi vị trí từ ván, "
+    ],
+    "last_lines": [
+      "phiên hiện hành. Nó ghi đã gặp, tạo phiên qua CC.createSession, bỏ chọn quân, ẩn biến minh họa, lưu ",
+      "rồi mở #learn. currentPuzzle tìm bài của phiên hiện tại. accepted chỉ so nước được chọn với solution ",
+      "hoặc alternatives của bài; nó không tự đánh giá văn bản lý luận của người học.",
+      "Ví dụ Một nước hợp lệ nhưng không nằm trong phương án mẫu vẫn được phép đề xuất, song ",
+      "accepted sẽ trả false cho mục tiêu bài đó."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-014.png"
+  },
+  {
+    "page": 15,
+    "characters": 3182,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 15",
+      "Điểm cần giữ Đừng đổi accepted thành tuyên bố người học đã hiểu hoàn toàn; nó chỉ kiểm tra lựa ",
+      "chọn nước theo mục tiêu đã lưu.",
+      "03 07 Màn hình học trước khi có lời giải",
+      "Dòng 39–47 | learn, related_pending, reflect, helpReadyAt"
+    ],
+    "last_lines": [
+      "lessons dựng bộ lọc Khai cuộc, Trung cuộc và Tàn cuộc. Khai cuộc dùng bốn mục OPENINGS có tên, ",
+      "nước minh họa và đoạn giải thích; opening tạo thế xuất phát rồi cho xem trước hoặc sau đúng một ",
+      "nước. Hai tab còn lại đang dùng cùng kho FIXTURES ít quân, chia theo bốn kỹ năng; văn bản nhắc ",
+      "rằng chưa phải giáo trình phân giai đoạn hoàn chỉnh. Trạng thái đã mở hay đã hoàn thành lấy từ",
+      "state.records để người học biết mình đã gặp bài nào."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-015.png"
+  },
+  {
+    "page": 16,
+    "characters": 3019,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 16",
+      "Ví dụ Pháo đầu minh họa h2e2; chuyển giữa hai nút chỉ đổi replayIndex, không tạo một ván thi đấu hay ",
+      "điểm thành thạo.",
+      "Điểm cần giữ Đừng mô tả tab Tàn cuộc là kho tàn cuộc chuẩn đầy đủ hoặc bốn minh họa là thư viện ",
+      "biến khai cuộc hoàn chỉnh."
+    ],
+    "last_lines": [
+      "03 14 Ký phổ và quân đã bị bắt",
+      "Dòng 74–75 | notationTable, captures",
+      "notationTable chuyển lịch sử tọa độ qua CC.pairMoveHistory thành cặp nước Đỏ và Đen. Khi đang ",
+      "chơi, bảng chỉ hiển thị các hàng gần nhất; lúc xem lại, từng ký phổ trở thành nút để nhảy tới nửa nước ",
+      "tương ứng. captures đọc thế before của mỗi lượt rồi nhìn quân ở ô đích để biết quân nào bị bắt, sau đó "
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-016.png"
+  },
+  {
+    "page": 17,
+    "characters": 2927,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 17",
+      "gom theo màu bị mất. Cả hai dùng dữ liệu ván đã lưu, không suy từ giao diện hoặc từ danh sách quân ",
+      "hiện tại một cách phỏng đoán.",
+      "Ví dụ Ở trang replay, bấm ký phổ của Đen tại một hàng sẽ đặt replayIndex đến đúng thế sau nước đó.",
+      "Điểm cần giữ Muốn đổi ký phổ nên sửa công cụ ký phổ chung, tránh tự thay chuỗi trong bảng vì cách "
+    ],
+    "last_lines": [
+      "và sắp lại theo thứ tự ván. moments chỉ đưa người học vào từng hình sau khi ván đã xong.",
+      "Ví dụ Một thế nhập riêng không có chuỗi nước vẫn được phân tích để tạo gợi ý luyện, nhưng không ",
+      "được gọi là sai lầm đã xảy ra trong ván.",
+      "Điểm cần giữ Điểm vật chất và nhãn kỹ năng không phải chẩn đoán tư duy. Tìm kiếm nông, thời gian ",
+      "ngắn, không chứng minh nước tốt nhất toàn cục."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-017.png"
+  },
+  {
+    "page": 18,
+    "characters": 3125,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 18",
+      "03 18 Phát lại ván và trang ván cá nhân",
+      "Dòng 88–89 | replay, mistakes",
+      "replay chặn chỉ số phát lại trong khoảng từ thế ban đầu tới số nước cuối. Nó lấy FEN đã lưu sau lượt ",
+      "tương ứng để dựng bàn, cho đi trước, đi sau hoặc bấm ký phổ. Trang có xuất biên bản và xóa ván, "
+    ],
+    "last_lines": [
+      "chiếu, thành công hoặc lỗi; không tải tệp âm thanh. settings dựng form chủ đề, tên quân, chữ, mức tự",
+      "khai và giọng hướng dẫn, kèm xuất hoặc xóa dữ liệu. howto giới thiệu thao tác và chọn mức ban đầu; ",
+      "đây là điều chỉnh cách gợi mở, chưa phải bài kiểm tra xếp hạng.",
+      "Ví dụ Chọn dark khiến html có data-theme=dark; style.css tự áp dụng bộ màu tương ứng mà không ",
+      "cần dựng website khác."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-018.png"
+  },
+  {
+    "page": 19,
+    "characters": 3340,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 19",
+      "Điểm cần giữ Các đoạn try/catch âm thanh cho phép chơi tiếp khi trình duyệt chặn audio. Cài đặt mức ",
+      "người chơi không được biến thành Elo đã đo.",
+      "03 22 Hành trình học và trang tham khảo luật",
+      "Dòng 100–101 | learningPath, rulesPage"
+    ],
+    "last_lines": [
+      "download nhận tên file, nội dung chuỗi và MIME type. Nó đóng nội dung thành Blob, tạo một URL tạm ",
+      "trong trình duyệt, tạo liên kết tải xuống và bấm liên kết bằng mã. Sau ba giây, URL tạm được giải ",
+      "phóng để tránh giữ bộ nhớ không cần thiết. Hàm này được dùng cho JSON dữ liệu cá nhân và TXT ",
+      "biên bản. Nó không gửi file đến server và không tạo một bản sao tự động trên GitHub.",
+      "Ví dụ Xuất dữ liệu cá nhân tải một file JSON vào nơi tải xuống do trình duyệt của người dùng chọn."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-019.png"
+  },
+  {
+    "page": 20,
+    "characters": 3103,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 20",
+      "Điểm cần giữ File tải xuống chỉ là bản sao ở thời điểm xuất. Chỉnh mã nguồn hoặc chuyển hosting ",
+      "không tự mang theo file xuất hay tiến độ.",
+      "03 26 Điều phối click và các nút tùy chọn",
+      "Dòng 107–112 | document click listener, toggle-sidebar, toggle-sound, toggle-pieces, flip-board, "
+    ],
+    "last_lines": [
+      "đổi.",
+      "Ví dụ Chơi ván tiếp sau ván 3+2 hiện không giữ nguyên 3+2; đoạn rematch dùng 600 giây cộng 5 giây ",
+      "nếu có đồng hồ.",
+      "Điểm cần giữ Đổi bộ lọc không xóa ván. Hòa và xin thua phải giữ khác biệt về winner, reason và chế",
+      "độ chơi."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-020.png"
+  },
+  {
+    "page": 21,
+    "characters": 3352,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 21",
+      "03 29 Xuất xóa và phạm vi dữ liệu bị ảnh hưởng",
+      "Dòng 142–147 | export-game, delete-game, export, delete-learning, delete, click catch",
+      "export-game tạo TXT có FEN và ký phổ. delete-game chỉ xóa ván đã kết thúc sau xác nhận, đồng thời ",
+      "bỏ các bản ghi luyện và phiên trực tiếp gắn với vị trí của ván đó. export gọi CC.safeExport để tạo "
+    ],
+    "last_lines": [
+      "Listener bàn phím chỉ chạy khi tiêu điểm đang ở một nút data-square. Escape bỏ quân đang chọn và ",
+      "dựng lại màn hình. Bốn phím mũi tên chuyển focus sang giao điểm kế cận, đảo chiều bước khi bàn bị",
+      "lật và kiểm tra biên để không nhảy từ cuối hàng sang đầu hàng kế. Mã này di chuyển tiêu điểm để",
+      "người dùng chọn ô bằng bàn phím; nó không tự tạo nước đi mỗi khi bấm mũi tên. Việc kích hoạt nút ",
+      "vẫn đi qua cơ chế click và kiểm tra luật chung."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-021.png"
+  },
+  {
+    "page": 22,
+    "characters": 2359,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 22",
+      "Ví dụ Từ ô ở mép phải, ArrowRight không đưa focus sang hàng kế tiếp; ở bàn lật, hướng nhìn vẫn ",
+      "khớp hướng di chuyển focus.",
+      "Điểm cần giữ Không bỏ điều kiện biên hoặc bỏ nhãn aria-label của các ô, vì người dùng bàn phím và ",
+      "trình đọc màn hình cần biết ô đang đứng."
+    ],
+    "last_lines": [
+      "mốc Date.now giúp phát hiện thời gian trôi khi tab bị chậm.",
+      "Cách đọc và sửa file này",
+      "Bật Word Wrap trong VS Code vì nhiều hàm nằm trên một dòng rất dài. Đọc theo luồng render → hàm ",
+      "trang → data-action hoặc form → listener → CC hoặc XQ → save → render; số dòng trong sổ tay ",
+      "thuộc nguyên bản ngày 17/10 và sẽ đổi nếu định dạng lại mã."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-022.png"
+  },
+  {
+    "page": 23,
+    "characters": 2642,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 23",
+      "04 Luật cờ và máy tìm nước",
+      "online-preview/xiangqi.js",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\xiangqi.js",
+      "Kích thước: 12 433 byte • 251 dòng • 14 nhóm giải thích"
+    ],
+    "last_lines": [
+      "đúng kích thước và lượt w hoặc b, sao chép mảng rồi đóng băng mảng đó. Nhờ vậy, khi tạo một thế cờ",
+      "mới để thử nước đi, chương trình không vô tình sửa các ô của thế cờ cũ đang dùng để xem lại.",
+      "Ví dụ w là lượt Đỏ theo quy ước nội bộ của ứng dụng.",
+      "Điểm cần giữ Object.freeze chỉ áp dụng cho mảng board tại đây; không nên hiểu toàn bộ đối tượng ",
+      "Position là bất biến tuyệt đối."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-023.png"
+  },
+  {
+    "page": 24,
+    "characters": 2887,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 24",
+      "04 04 Đọc và kiểm tra chuỗi thế cờ",
+      "Dòng 37–77 | Position.fromFen",
+      "fromFen nhận chuỗi FEN, tách đúng mười hàng, mở rộng chữ số thành ô trống và đổi các bí danh n/b ",
+      "thành h/e. Sau đó hàm kiểm tra số lượng quân, một Tướng mỗi bên, vị trí trong cung, điểm Sĩ/Tượng "
+    ],
+    "last_lines": [
+      "Dòng 149–159 | Position.inCheck, Position.afterUnchecked",
+      "inCheck tìm Tướng của một màu rồi hỏi có quân đối phương nào tấn công vào ô đó không. ",
+      "afterUnchecked sao chép bàn, chuyển quân, xóa ô cũ và đổi lượt để tạo vị trí sau nước thử. Tách hai ",
+      "việc này giúp bộ luật và engine thử nhiều phương án mà không làm thay đổi ván thật.",
+      "Ví dụ Bộ lọc có thể giả sử Xe rời một cột rồi kiểm tra Tướng có lộ đường chiếu không."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-024.png"
+  },
+  {
+    "page": 25,
+    "characters": 2866,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 25",
+      "Điểm cần giữ afterUnchecked bỏ qua kiểm tra luật theo đúng tên; dữ liệu người dùng phải đi qua play ",
+      "hoặc danh sách legalMoves trước.",
+      "04 09 Lọc nước hợp lệ và xác định kết thúc",
+      "Dòng 161–184 | Position.legalMoves, Position.play, Position.status"
+    ],
+    "last_lines": [
+      "chuỗi tìm được chỉ phản ánh độ sâu đã hoàn thành.",
+      "04 13 Chỉ nhận kết quả tìm kiếm đã hoàn thành",
+      "Dòng 234–246 | analyze",
+      "Trước khi tìm sâu, analyze chuẩn bị một bảng điểm tĩnh cho tất cả nước gốc. Sau đó nó lần lượt hoàn ",
+      "thành toàn bộ bảng ở độ sâu một rồi hai; nếu hết giờ giữa chừng, bảng chưa xong bị bỏ. Kết quả trả"
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-025.png"
+  },
+  {
+    "page": 26,
+    "characters": 1193,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 26",
+      "gồm bestMove, ranked, pv, độ sâu thực tế, cờ complete/truncated, số nút và nhãn fallback để giao diện ",
+      "báo giới hạn trung thực.",
+      "Ví dụ Nếu mới hoàn tất độ sâu một trước khi hết giờ, depth là 1 dù requestedDepth là 2.",
+      "Điểm cần giữ Không trộn điểm một số nước đã tìm sâu với số khác chưa tìm; điểm depth 0 là dự"
+    ],
+    "last_lines": [
+      "Ví dụ app.js có thể gọi XQ.Position.fromFen(...) sau khi script này được nạp.",
+      "Điểm cần giữ Thứ tự nạp script phải bảo đảm xiangqi.js có trước những file sử dụng XQ.",
+      "Cách đọc và sửa file này",
+      "Đọc parseMove → Position.fromFen → targets → legalMoves → play trước. Sau khi hiểu luật mới đọc ",
+      "evaluate/analyze. Dùng Ctrl+G trong VS Code để tới các dòng của từng nhóm."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-026.png"
+  },
+  {
+    "page": 27,
+    "characters": 2605,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 27",
+      "05 Ký phổ và xử lý ván cờ",
+      "online-preview/game-tools.js",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\game-tools.js",
+      "Kích thước: 13 300 byte • 200 dòng • 11 nhóm giải thích"
+    ],
+    "last_lines": [
+      "quả parts thành ký phổ. Nếu nước sai, hàm dùng illegalMoveReason để báo lý do cụ thể. Kiểm tra ",
+      "trước khi định dạng ngăn lịch sử hiển thị đẹp nhưng chứa nước chưa được bộ luật chấp nhận.",
+      "Ví dụ Một nước Pháo bình lộ có thể hiện là P2-5.",
+      "Điểm cần giữ Muốn đặt ký phổ phải cung cấp thế cờ trước nước; vị trí sau nước không đủ để biết ",
+      "quân xuất phát và phân biệt trước/sau."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-027.png"
+  },
+  {
+    "page": 28,
+    "characters": 2800,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 28",
+      "05 04 Đọc một nước người dùng nhập",
+      "Dòng 50–67 | parseNotation",
+      "parseNotation chấp nhận tọa độ a0a1 hoặc ký phổ Việt. Với ký phổ, chương trình không suy đoán một ",
+      "nước bất kỳ: nó tạo ký hiệu cho toàn bộ nước hợp lệ hiện có rồi tìm nước khớp đầu vào đã chuẩn hóa. "
+    ],
+    "last_lines": [
+      "Dòng 152–164 | gameTimeline",
+      "gameTimeline phát lại toàn bộ lịch sử bằng pos.play, lưu mỗi Position cùng thông tin bên đi, có bắt ",
+      "quân không và có chiếu bên kế tiếp không. quietPlies đếm các nửa nước không bắt quân liên tiếp và ",
+      "về không khi có bắt quân. Kết quả là dữ liệu nền cho kiểm tra lặp thế và số nước, không phụ thuộc lời ",
+      "mô tả của người dùng."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-028.png"
+  },
+  {
+    "page": 29,
+    "characters": 2356,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 29",
+      "Ví dụ Hai lịch sử dẫn tới cùng bàn cờ vẫn có thể có chuỗi chiếu khác nhau; cần giữ các bước trung ",
+      "gian.",
+      "Điểm cần giữ Đếm không bắt quân tại đây chưa tự đủ để kết luận mọi điều kiện hòa theo luật thi đấu.",
+      "05 09 Nhận biết kết thúc và chiếu dai một phía"
+    ],
+    "last_lines": [
+      "Ví dụ app.js có thể gọi CC.parseGameNotation(...) mà không phải biết regex token bên trong.",
+      "Điểm cần giữ Đổi tên hoặc xóa một hàm công khai cần sửa đồng thời nơi gọi và bài kiểm thử.",
+      "Cách đọc và sửa file này",
+      "Đọc parseNotation và notateMove cùng nhau để hiểu chuyển đổi hai chiều; sau đó đọc ",
+      "illegalMoveReason. Chỉ đọc repetitionStatus khi đã hiểu lịch sử vị trí trong gameTimeline."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-029.png"
+  },
+  {
+    "page": 30,
+    "characters": 2952,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 30",
+      "06 Dữ liệu bài tập",
+      "online-preview/fixtures.js",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\fixtures.js",
+      "Kích thước: 23 121 byte • 506 dòng • 6 nhóm giải thích"
+    ],
+    "last_lines": [
+      "Đen g4 làm ngòi cho Pháo g2 ăn Xe g7. Sự thay đổi giúp phân biệt hướng đường Pháo và màu của ",
+      "quân ngòi.",
+      "Ví dụ Ngòi có thể thuộc bên mình hoặc đối phương; quan trọng là đúng một quân ở giữa.",
+      "Điểm cần giữ Đếm ngòi đúng vẫn chưa đủ: nước phải không để Tướng mình bị chiếu, nên luôn cần ",
+      "bộ luật kiểm tra."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-030.png"
+  },
+  {
+    "page": 31,
+    "characters": 2171,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 31",
+      "06 04 Ba bài Mã và chân Mã",
+      "Dòng 292–411 | horse-fork, horse-side, horse-back",
+      "Ba bài horse đổi hướng tiếp cận của Mã: c3→d5 ăn Xe, f3→h4 ăn Pháo, g5→e6 ăn Xe. Lời giải chỉ rõ ",
+      "chân Mã tương ứng c4, g3 và f5 đang trống, rồi nhắc kiểm tra đích và an toàn Tướng. Các ID được giữ"
+    ],
+    "last_lines": [
+      "Điểm cần giữ Rải đều ba hình mỗi nhóm chỉ phục vụ demo; chưa phải giáo trình đầy đủ, ngân hàng ",
+      "bài lớn hay kiểm chứng hiệu quả học.",
+      "Cách đọc và sửa file này",
+      "Đọc trọn bài loose-rook đầu tiên để hiểu tên các trường. Với 11 bài sau, so id/skill/fen/solution/why ",
+      "trước; không cần ghi nhớ toàn bộ mảng legal. Nếu bổ sung bài, chạy các kiểm tra fixture và luật."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-031.png"
+  },
+  {
+    "page": 32,
+    "characters": 2982,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 32",
+      "07 Phiên học và lịch ôn",
+      "online-preview/learning.js",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\learning.js",
+      "Kích thước: 17 914 byte • 388 dòng • 14 nhóm giải thích"
+    ],
+    "last_lines": [
+      "games, summaries và profile. copyState sao chép các vùng chính trước khi cập nhật để tránh thay đổi ",
+      "ngay đối tượng đang được giao diện sử dụng.",
+      "Ví dụ Người dùng chưa có dữ liệu bắt đầu bằng records rỗng và session bằng null.",
+      "Điểm cần giữ copyState là sao chép các lớp cần thiết, không phải nhân bản sâu toàn bộ cây dữ liệu; ",
+      "từng thao tác cập nhật phải tiếp tục sao chép nhánh mình sửa."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-032.png"
+  },
+  {
+    "page": 33,
+    "characters": 2957,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 33",
+      "07 04 Giữ ảnh chụp bài và tạo phiên học",
+      "Dòng 78–127 | hash, puzzleSnapshot, createSession",
+      "hash tạo chuỗi ngắn để góp phần đặt mã phiên; puzzleSnapshot giữ các trường bài tập cần thiết cùng ",
+      "đáp án và phương án thay thế đã được giới hạn. createSession ghép bài, nguồn và thời điểm thành "
+    ],
+    "last_lines": [
+      "năng quên cá nhân đã huấn luyện.",
+      "07 08 Kiểm tra điều kiện trước khi ghi hoàn thành",
+      "Dòng 185–202 | finishPuzzle",
+      "Phần đầu finishPuzzle xác minh phiên thuộc đúng bài và có mã hợp lệ. Nếu mã phiên đã được ghi ",
+      "trong lịch sử đang giữ, hàm trả lại trạng thái cũ để bấm hai lần không tạo thêm lượt. Nó yêu cầu đã qua "
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-033.png"
+  },
+  {
+    "page": 34,
+    "characters": 2866,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 34",
+      "suy nghĩ/giải thích, có kết quả boolean quan sát được và thời điểm hoàn thành không trước lúc bắt đầu ",
+      "hoặc lượt ôn trước. Sau đó tổng hợp cờ trợ giúp và tính lịch.",
+      "Ví dụ Bấm hoàn thành liên tiếp không được dời ngày bắt đầu lịch ôn trong những lượt còn được lưu.",
+      "Điểm cần giữ Hàm tin kết quả success do tầng gọi cung cấp sau khi kiểm tra nước; nó không tự chạy "
+    ],
+    "last_lines": [
+      "sanitizeSession nhận phiên đã lưu và dựng lại chỉ những trường được cho phép. Nó kiểm tra ID/thời ",
+      "gian, giới hạn văn bản, bộ đếm nộp/thử/trợ giúp, câu trả lời ban đầu, ghi chú và thông tin bài chờ. Nếu ",
+      "dữ liệu nói đang ở bước giải thích nhưng chưa đủ điều kiện suy nghĩ, bước được đưa về reflect; ",
+      "complete thiếu giờ hoàn thành thì hạ về explain.",
+      "Ví dụ Một bản lưu bị thiếu câu trả lời không thể cứ giữ cờ explain để vượt luồng đọc lại bình thường."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-034.png"
+  },
+  {
+    "page": 35,
+    "characters": 1699,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 35",
+      "Điểm cần giữ Hàng rào này giúp chịu dữ liệu lỗi; không chống người cố ý sửa JavaScript trên chính ",
+      "trình duyệt của họ.",
+      "07 13 Tái dựng hồ sơ và lịch ôn từ lịch sử hợp lệ",
+      "Dòng 316–361 | sanitizeRecord"
+    ],
+    "last_lines": [
+      "Điểm cần giữ Tên hồ sơ không phải tài khoản xác thực. File này không tự lưu vào ổ đĩa, không đăng ",
+      "nhập và không đồng bộ giữa thiết bị.",
+      "Cách đọc và sửa file này",
+      "Đọc fresh/createSession để hiểu hình dạng dữ liệu, rồi canReveal/reveal → finishPuzzle → ",
+      "recommend. Cuối cùng đọc sanitize để biết ứng dụng khôi phục dữ liệu an toàn thế nào."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-035.png"
+  },
+  {
+    "page": 36,
+    "characters": 2591,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 36",
+      "08 Tùy chọn và bằng chứng học",
+      "online-preview/experience.js",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\experience.js",
+      "Kích thước: 5 674 byte • 66 dòng • 7 nhóm giải thích"
+    ],
+    "last_lines": [
+      "đi cùng phản ứng đối thủ. HINTS cung cấp gợi ý cùng thứ tự, tập trung cách nhìn và kiểm tra thay vì ",
+      "đưa ngay tọa độ đáp án. Đây là nội dung viết sẵn để giữ quy trình suy nghĩ nhất quán giữa các bài.",
+      "Ví dụ Câu gợi ý đề nghị nhìn hai Tướng, số quân và vị trí trước khi kết luận thắng thua.",
+      "Điểm cần giữ Các câu không được LLM tạo riêng cho từng thế; gợi ý chung không thay thế xác minh ",
+      "luật hoặc phân tích engine."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-036.png"
+  },
+  {
+    "page": 37,
+    "characters": 2825,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 37",
+      "08 04 Kiểm tra nộp bài và số lần thử",
+      "Dòng 28–35 | reflectionCheck",
+      "reflectionCheck kiểm tra đủ ba câu trả lời không rỗng và đã chọn nước. Sau đó nó chỉ so nước chọn ",
+      "với solution hoặc alternatives, tăng số lần nộp tối đa ba và quyết định có mở đáp án không: khớp thì "
+    ],
+    "last_lines": [
+      "Điểm cần giữ Đây là đồng hồ phía máy người dùng; không phải nguồn thời gian máy chủ cho thi đấu ",
+      "trực tuyến hoặc chống gian lận.",
+      "Cách đọc và sửa file này",
+      "File ngắn nên đọc từ đầu; liên hệ reflectionCheck với learning.js.canReveal để phân biệt quy tắc nộp ",
+      "bài và quyền chuyển bước. safeExport khác hẳn việc lưu state nội bộ."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-037.png"
+  },
+  {
+    "page": 38,
+    "characters": 2290,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 38",
+      "09 Biểu tượng tab",
+      "online-preview/favicon.svg",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\online￾preview\\favicon.svg",
+      "Kích thước: 348 byte • 1 dòng • 2 nhóm giải thích"
+    ],
+    "last_lines": [
+      "Tài nguyên nhị phân",
+      "PNG lưu điểm ảnh và metadata ảnh dưới dạng nhị phân; không có nhóm hàm hay số dòng code để",
+      "giải thích. Kích thước gốc là 1024 × 1024; HTML/CSS quyết định nó hiện nhỏ hơn ở header. Mở file ",
+      "trong VS Code sẽ thấy ảnh xem trước.",
+      "Ví dụ Muốn thay logo, dùng một ảnh được phép sử dụng, giữ tên này hoặc cập nhật src trong HTML."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-038.png"
+  },
+  {
+    "page": 39,
+    "characters": 715,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 39",
+      "Điểm cần giữ Đổi đuôi jpg thành png bằng cách rename không chuyển định dạng ảnh.",
+      "10 02 Quan hệ giữa ảnh và bố cục",
+      "Tài nguyên nhị phân | brand-logo",
+      "Ảnh chỉ cung cấp nội dung thị giác. Kích thước, đường bo, khoảng cách và cách đặt cạnh tên Cờ Chill "
+    ],
+    "last_lines": [
+      "Ví dụ Kiểm tra class brand-logo trong style.css trước khi thay ảnh chỉ vì logo trên header quá to.",
+      "Điểm cần giữ Sửa file ảnh không tự thay icon tab hoặc các ký tự quân.",
+      "Cách đọc và sửa file này",
+      "Không chỉnh PNG bằng cách gõ code. Đọc nơi gọi ảnh trong index.html và style.css để hiểu cách nó ",
+      "tham gia giao diện."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-039.png"
+  },
+  {
+    "page": 40,
+    "characters": 2234,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 40",
+      "11 Nhận diện package Python",
+      "app/__init__.py",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\app\\__init__.py",
+      "Kích thước: 56 byte • 1 dòng • 1 nhóm giải thích"
+    ],
+    "last_lines": [
+      "Bàn cờ có 90 điểm, lưu từ hàng trên xuống. Chữ hoa là đỏ với mã lượt w, chữ thường là đen với mã b. ",
+      "START_FEN là thế xuất phát; NAMES đổi chữ mã thành tên tiếng Việt. side lấy màu quân, other đổi ",
+      "sang bên đối thủ.",
+      "Ví dụ R là Xe đỏ, r là Xe đen; w là mã nội bộ của đỏ chứ không có nghĩa bàn cờ đang có quân trắng.",
+      "Điểm cần giữ side không tự kiểm tra ô trống; phần gọi cần loại dấu chấm trước khi hỏi màu."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-040.png"
+  },
+  {
+    "page": 41,
+    "characters": 2525,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 41",
+      "12 02 Đổi tọa độ và tách nước đi",
+      "Dòng 20–33 | square, index, parse_move",
+      "square đổi vị trí trong mảng thành tên a0 đến i9; index đổi ngược và báo lỗi nếu tọa độ sai. ",
+      "parse_move tách bốn ký tự thành ô nguồn và ô đích. Đây là cầu nối giữa dữ liệu mảng và ký hiệu "
+    ],
+    "last_lines": [
+      "Nhánh Mã xét tám điểm lệch 2–1 và kiểm tra ô chân trước khi thêm đích. Nhánh Tượng xét bốn đường ",
+      "chéo hai điểm, yêu cầu mắt Tượng trống và đích vẫn ở nửa bàn của mình. Các bước kiểm tra mép bàn ",
+      "tránh đọc ra ngoài mảng.",
+      "Ví dụ Mã c3 muốn tới d5 phải không bị chặn ở c4; Tượng c0 muốn tới e2 cần d1 trống.",
+      "Điểm cần giữ Chỉ thay công thức đích mà bỏ chân Mã hoặc mắt Tượng sẽ tạo nước trái luật."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-041.png"
+  },
+  {
+    "page": 42,
+    "characters": 2476,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 42",
+      "12 07 Luật Tướng Sĩ và Tốt",
+      "Dòng 143–164 | Position.targets",
+      "Tướng đi một điểm thẳng, Sĩ một điểm chéo trong cung. Nhánh Tướng còn dò thẳng cột để phát hiện ",
+      "Tướng đối mặt. Tốt chỉ đi tiến trước sông; sau sông thêm hai hướng ngang, không thêm hướng lùi."
+    ],
+    "last_lines": [
+      "thức cùng ý nghĩa trong xiangqi.js.",
+      "13 Máy tìm nước tham chiếu",
+      "app/engine.py",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\app\\engine.py",
+      "Kích thước: 3 988 byte • 99 dòng • 6 nhóm giải thích"
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-042.png"
+  },
+  {
+    "page": 43,
+    "characters": 2844,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 43",
+      "Vai trò Bộ máy tìm nước Python dùng làm bản tham chiếu khi kiểm thử engine JavaScript. Nó chấm ",
+      "điểm vật chất và tìm kiếm có giới hạn; bản web tĩnh không gọi file này trong khi người chơi sử dụng.",
+      "Liên hệ với app/rules.py; Thư viện chuẩn Python functools time typing",
+      "Nếu thiếu file Trang web vẫn chơi bằng online-preview/xiangqi.js, nhưng "
+    ],
+    "last_lines": [
+      "legal_moves.",
+      "Ví dụ Nếu một nước ăn Xe khiến đối thủ có nước đáp trả mạnh, tìm đủ độ sâu sẽ tính cả đáp trả đó ",
+      "thay vì chỉ đếm quân vừa ăn.",
+      "Điểm cần giữ Hết thời gian ném TimeoutError; không được dùng nhánh đang tính dở như kết quả đầy ",
+      "đủ."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-043.png"
+  },
+  {
+    "page": 44,
+    "characters": 2366,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 44",
+      "13 05 Giữ lần tìm hoàn tất và công bố giới hạn",
+      "Dòng 71–84 | LocalEngine.analyze",
+      "Trước khi tìm sâu, chương trình tạo phương án dự phòng hợp lệ bằng cách chấm bàn cờ sau mỗi ",
+      "nước. Nó sau đó tăng độ sâu từng mức và chỉ thay kết quả khi đã xét xong tất cả nước gốc ở cùng "
+    ],
+    "last_lines": [
+      "position nhận ánh xạ như ô a2 có Xe đỏ rồi tạo bàn 90 điểm. Nó đổi thành FEN, đọc lại bằng ",
+      "Position.from_fen và xuất FEN chuẩn hóa. Bước đọc lại giúp phát hiện dữ liệu bài không thỏa điều kiện ",
+      "cấu trúc của bộ luật.",
+      "Ví dụ {'a2': 'R'} nghĩa là Xe đỏ ở a2; chữ thường r là Xe đen.",
+      "Điểm cần giữ Tập quân truyền vào vẫn cần đủ hai Tướng và thỏa các giới hạn của bộ luật."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-044.png"
+  },
+  {
+    "page": 45,
+    "characters": 2191,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 45",
+      "14 02 Dữ liệu gốc của mười hai bài",
+      "Dòng 12–26 | BASE, DEFINITIONS",
+      "BASE đặt hai Tướng và Tốt chắn đường nhìn giữa chúng. Mỗi dòng DEFINITIONS bổ sung quân riêng ",
+      "cho một bài: mã ổn định, nhóm kỹ năng, tiêu đề, quân đặt thêm, nước mẫu và nước bỏ lỡ minh họa. "
+    ],
+    "last_lines": [
+      "ràng.",
+      "File hiện trống. Không có hàm, biến hay khối thực thi để phân tích; vai trò đến từ tên và vị trí trong cấu ",
+      "trúc package.",
+      "Cách đọc và sửa file này",
+      "Không cần đọc nội dung vì file có 0 dòng; đọc test_rules.py để thấy các tình huống được kiểm tra."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-045.png"
+  },
+  {
+    "page": 46,
+    "characters": 2675,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 46",
+      "16 Kiểm thử luật Python",
+      "tests/test_rules.py",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\tests\\test_rules.py",
+      "Kích thước: 6 421 byte • 160 dòng • 5 nhóm giải thích"
+    ],
+    "last_lines": [
+      "test_self_check_rejected, test_check_requires_response, test_stalemate_is_loss, test_mate_is_loss",
+      "Nhóm này bảo đảm không thể mở mặt hai Tướng, ăn mất Tướng, tự chiếu hoặc bỏ qua nước chiếu ",
+      "của đối thủ. Hai tình huống kết thúc riêng xác nhận hết nước hợp lệ là thua trong cờ tướng dù Tướng ",
+      "có đang bị chiếu hay không.",
+      "Ví dụ Dời quân duy nhất chắn giữa hai Tướng sang ngang phải bị từ chối."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-046.png"
+  },
+  {
+    "page": 47,
+    "characters": 1161,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 47",
+      "16 04 Kiểm tra dữ liệu đầu vào và tính nguyên vẹn",
+      "Dòng 129–157 | test_illegal_does_not_mutate, test_turn_and_capture, test_invalid_fen_rejected, ",
+      "test_move_input, test_legal_play_sequence_preserves_generals",
+      "Một nước sai phải báo lỗi mà không sửa bàn cũ; nước ăn quân đúng phải xóa nguồn, đặt quân ở đích "
+    ],
+    "last_lines": [
+      "Dòng cuối cho phép file tự chạy các test khi được thực thi trực tiếp. Cách chạy ổn định từ gốc gói là ",
+      "python -m unittest discover -s tests -p test_rules.py -v; check_all.py đã bao gồm bước này.",
+      "Cách đọc và sửa file này",
+      "Đọc tên test như danh sách yêu cầu. Trong từng test, assertIn là phải có, assertNotIn là không được ",
+      "có và assertRaises là phải từ chối đầu vào sai."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-047.png"
+  },
+  {
+    "page": 48,
+    "characters": 2464,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 48",
+      "17 Điều phối bộ kiểm tra",
+      "tools/check_all.py",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\tools\\check_all.py",
+      "Kích thước: 3 072 byte • 62 dòng • 4 nhóm giải thích"
+    ],
+    "last_lines": [
+      "báo tổng cuối cùng cùng thời gian. Mã thoát 0 là không có bước lỗi, 1 là có lỗi; CI hoặc AI có thể dùng ",
+      "mã này để quyết định có đủ điều kiện tiếp tục.",
+      "Ví dụ Một test luật lỗi không bị che bởi bước cú pháp chạy thành công.",
+      "Điểm cần giữ Không thay thế kiểm tra giao diện bằng mắt, kiểm tra mạng hoặc thử hệ thống tài khoản ",
+      "vì các phần đó không nằm trong công cụ."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-048.png"
+  },
+  {
+    "page": 49,
+    "characters": 2480,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 49",
+      "Cách đọc và sửa file này",
+      "Chạy file này trước khi tìm hiểu tất cả test; khi lỗi, đọc tên bước rồi mở đúng công cụ được nêu.",
+      "18 Đối chiếu luật giữa hai ngôn ngữ",
+      "tools/check_browser_rules.py"
+    ],
+    "last_lines": [
+      "Chuỗi NODE_CHECK là chương trình JavaScript được Python đưa cho Node. Nó đọc JSON qua đầu ",
+      "vào chuẩn, so sánh mọi điểm đích, nước hợp lệ, tình trạng chiếu và FEN con; đồng thời bảo đảm thử",
+      "nước không làm đổi bàn cha. Nó kiểm 44 nước đầu và 1.920 khả năng sau hai nửa nước.",
+      "Ví dụ Nếu JavaScript bỏ sót một nước Mã mà Python có, deepStrictEqual dừng với tên thế và loại ",
+      "kiểm tra."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-049.png"
+  },
+  {
+    "page": 50,
+    "characters": 2485,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 50",
+      "18 05 Đối chiếu tìm kiếm và tình huống hết thời gian",
+      "Dòng 145–183 | NODE_CHECK",
+      "Với các bài tập, Node phải đạt độ sâu 2 và có cùng điểm/xếp hạng/biến thể với Python. Mỗi biến thể",
+      "được chạy lại bằng luật. Ca maxMs=0 kiểm kết quả dự phòng hợp lệ, ca độ sâu 1 kiểm độ dài nhánh, "
+    ],
+    "last_lines": [
+      "19 02 Đọc JavaScript dữ liệu và phát hiện bản cũ",
+      "Dòng 13–18 | main",
+      "fixtures.js có dạng const FIXTURES = ...; phần nội dung được tách thành JSON để đọc bằng Python. ",
+      "Công cụ buộc đủ 12 bài, không trùng id và phải bằng kết quả make_fixtures mới tạo trong bộ nhớ.",
+      "Ví dụ Sửa một vị trí trong puzzles.py nhưng quên chạy export sẽ báo Export is stale."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-050.png"
+  },
+  {
+    "page": 51,
+    "characters": 2437,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 51",
+      "Điểm cần giữ Định dạng khai báo fixtures.js là hợp đồng với công cụ; đổi sang mã JavaScript tùy ý sẽ",
+      "không còn đọc được bằng JSON.",
+      "19 03 Đối chiếu luật và nội dung từng bài",
+      "Dòng 19–37 | main"
+    ],
+    "last_lines": [
+      "sâu.",
+      "20 02 Tìm các ô nằm giữa trên đường thẳng",
+      "Dòng 40–45 | intervening_squares",
+      "Hàm lấy ô nguồn và đích của Xe hoặc Pháo, xác nhận cùng hàng/cột rồi trả các ô ở giữa. Nó không ",
+      "gồm nguồn và đích, dùng để đếm vật cản hoặc ngòi."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-051.png"
+  },
+  {
+    "page": 52,
+    "characters": 2494,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 52",
+      "Ví dụ Từ b2 tới b7 cần xem b3, b4, b5, b6.",
+      "Điểm cần giữ Không dùng hàm này cho đường chéo hay nước Mã; assertion sẽ từ chối hình dạng ",
+      "không thẳng.",
+      "20 03 Xác minh nước mẫu và tạo phần điều gì xảy ra"
+    ],
+    "last_lines": [
+      "Điểm cần giữ Không chỉnh riêng fixtures.js rồi chạy export nếu muốn giữ thay đổi; hãy chỉnh nguồn ",
+      "hoặc logic xuất trước.",
+      "Cách đọc và sửa file này",
+      "Đọc một bài từ puzzles.py, theo nó qua make_fixtures và tìm id tương ứng trong fixtures.js để hiểu ",
+      "luồng dữ liệu."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-052.png"
+  },
+  {
+    "page": 53,
+    "characters": 2602,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 53",
+      "21 Kiểm thử nhập ván và ký phổ",
+      "tools/test_preview_game_tools.cjs",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\tools\\test_preview_game_tools.cjs",
+      "Kích thước: 10 847 byte • 196 dòng • 6 nhóm giải thích"
+    ],
+    "last_lines": [
+      "hoặc tự chiếu.",
+      "Ví dụ Thông báo Pháo có 0 quân ngòi phải xuất phát từ đúng tình trạng bàn, không phải phỏng đoán ",
+      "chiến thuật.",
+      "Điểm cần giữ Đây là giải thích tính hợp lệ, không cho phép dùng nó để bật gợi ý chiến thuật trong ván ",
+      "đang chơi."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-053.png"
+  },
+  {
+    "page": 54,
+    "characters": 2598,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 54",
+      "21 05 Lặp thế chiếu dai và ngưỡng cần xác minh",
+      "Dòng 137–189 | CC.repetitionStatus",
+      "Nhóm cuối xác nhận chính sách hiện tại: đợi bốn lần xuất hiện mới xử lý chu kỳ chiếu dai nghiêm ngặt ",
+      "một phía; lặp yên tĩnh đơn giản được nhận diện riêng. Nghi đuổi quân và 100 nửa nước không ăn quân "
+    ],
+    "last_lines": [
+      "Test bảo đảm trạng thái mới không dùng chung object, giải thích bị chặn nếu thiếu câu trả lời hoặc ",
+      "nước chọn, và chỉ boolean true mới có nghĩa người dùng chủ động nói chưa biết. Nhánh chưa biết ",
+      "luôn đánh dấu có trợ giúp, kể cả bên gọi cố gửi assisted=false. Mã phiên ổn định theo thời điểm bắt ",
+      "đầu.",
+      "Ví dụ Chuỗi 'true' không được hiểu như true thật để tránh dữ liệu sai kiểu mở đáp án."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-054.png"
+  },
+  {
+    "page": 55,
+    "characters": 2555,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 55",
+      "22 03 Hoàn thành đúng thời điểm và lịch ôn",
+      "Dòng 56–124 | CC.markSeen, CC.finishPuzzle, CC.sanitize",
+      "Xem bài hoặc bỏ dở không tạo completedAt/dueAt; phiên để qua đêm phải hẹn ôn tính từ lúc hoàn ",
+      "thành. Nộp trùng không đổi lịch. Chuỗi thành công độc lập đi theo 1/2/7/14/30 ngày; sai quay về 1 "
+    ],
+    "last_lines": [
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\tools\\test_preview_experience.cjs",
+      "Kích thước: 16 812 byte • 243 dòng • 6 nhóm giải thích",
+      "Vai trò 18 test về trải nghiệm: lựa chọn giao diện, phản tư nhiều lần, di trú dữ liệu, xuất dữ liệu cá ",
+      "nhân, thống kê, đồng hồ và một số hành vi app.js thực. Dùng Node với DOM mô phỏng tối thiểu; không ",
+      "phải kiểm tra ảnh giao diện."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-055.png"
+  },
+  {
+    "page": 56,
+    "characters": 2875,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 56",
+      "Liên hệ với online-preview/xiangqi.js; online-preview/learning.js; online-preview/experience.js; online￾preview/game-tools.js; online-preview/app.js; Các module chuẩn Node assert fs path vm",
+      "Nếu thiếu file Web vẫn chạy, nhưng nhiều lỗi nối giữa logic học và giao diện có thể lọt qua dù test luật ",
+      "vẫn xanh.",
+      "23 01 Gom module và test lựa chọn với phản tư"
+    ],
+    "last_lines": [
+      "Điểm cần giữ Đây là đồng hồ cục bộ, không phải đồng hồ PvP có máy chủ chống sửa giờ.",
+      "23 05 Môi trường mô phỏng để chạy app thật",
+      "Dòng 173–192 | appHarness, element",
+      "appHarness tạo document, sự kiện, localStorage và đồng hồ giả tối thiểu rồi chạy đúng file app.js trong ",
+      "Node vm. Nó cho test bấm hành động, gửi biểu mẫu, tăng thời gian và đọc HTML hoặc dữ liệu đã lưu. "
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-056.png"
+  },
+  {
+    "page": 57,
+    "characters": 1356,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 57",
+      "Nhờ vậy test kiểm hành vi thay vì chỉ tìm một chuỗi trong source. Hàm element(id) tạo hoặc lấy lại phần ",
+      "tử giả theo mã như main, để HTML sau mỗi lần render được giữ và có thể đọc lại trong assertion.",
+      "Ví dụ app.advance(10000) mô phỏng chờ 10 giây để kiểm nút xem giải thích mà không chờ thật.",
+      "Điểm cần giữ DOM mô phỏng không có trình bày CSS đầy đủ; test qua chưa chứng minh bố cục đẹp, "
+    ],
+    "last_lines": [
+      "Điểm cần giữ Đây là chính sách không huấn luyện trong ván hiện tại; sửa điều hướng cần giữ các ",
+      "kiểm tra này.",
+      "Cách đọc và sửa file này",
+      "Đọc test phản tư và appHarness để thấy logic kết nối với thao tác thế nào. Sau khi test Node qua vẫn ",
+      "mở trình duyệt thử và quan sát giao diện."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-057.png"
+  },
+  {
+    "page": 58,
+    "characters": 2427,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 58",
+      "24 Lệnh tiện ích trong VS Code",
+      ".vscode/tasks.json",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\.vscode\\tasks.json",
+      "Kích thước: 956 byte • 48 dòng • 3 nhóm giải thích"
+    ],
+    "last_lines": [
+      "Ví dụ Khi node trong PATH quá cũ, chạy lệnh thủ công có --node trỏ đúng executable hiện đại.",
+      "Điểm cần giữ Không thấy gạch đỏ trong editor không có nghĩa test đã đạt.",
+      "Cách đọc và sửa file này",
+      "So từng phần args với lệnh chạy ở README. Đây là cấu hình tiện ích, không phải backend hoặc ",
+      "pipeline deploy."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-058.png"
+  },
+  {
+    "page": 59,
+    "characters": 2432,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 59",
+      "25 Quy tắc bỏ qua của Git",
+      ".gitignore",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\.gitignore",
+      "Kích thước: 193 byte • 18 dòng • 3 nhóm giải thích"
+    ],
+    "last_lines": [
+      "Điểm cần giữ Vẫn xem git diff --cached trước commit; các mẫu không nhận diện được mọi thông tin ",
+      "riêng.",
+      "Cách đọc và sửa file này",
+      "Đọc từ trên xuống để hiểu mỗi mẫu áp dụng cho loại file nào. Không chỉnh để đưa database hoặc bí ",
+      "mật lên repo chỉ vì Git đang bỏ qua chúng."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-059.png"
+  },
+  {
+    "page": 60,
+    "characters": 2368,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 60",
+      "26 Hướng dẫn chạy và bảo trì",
+      "README.md",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\README.md",
+      "Kích thước: 13 269 byte • 140 dòng • 4 nhóm giải thích"
+    ],
+    "last_lines": [
+      "26 04 Dữ liệu giới hạn và bàn giao",
+      "Dòng 126–140 | localStorage, GitHub, hosting, AI_HANDOFF.md",
+      "Phần cuối phân biệt source với dữ liệu trình duyệt, chặn trước đáp án với bảo mật, và commit với ",
+      "deploy. Nó ghi hạn chế tài khoản, đồng bộ, engine, quyền sử dụng dữ liệu và trách nhiệm duyệt phát ",
+      "hành."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-060.png"
+  },
+  {
+    "page": 61,
+    "characters": 2299,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 61",
+      "Ví dụ Copy bộ source sang máy khác vẫn có giao diện nhưng không mang theo các ván đã chơi ở",
+      "browser cũ.",
+      "Điểm cần giữ Không đọc yêu cầu V5 như thể đã có triển khai tài khoản thật.",
+      "Cách đọc và sửa file này"
+    ],
+    "last_lines": [
+      "Đoạn mẫu giúp truyền bối cảnh tối thiểu sang một cuộc chat mới. Câu cuối nói rõ không giả định ",
+      "extension tự nạp file này. Bạn cần đính kèm hoặc yêu cầu đọc khi bắt đầu.",
+      "Ví dụ Gửi file này cùng một yêu cầu nhỏ như đổi màu trang chủ, rồi duyệt diff trước khi yêu cầu việc ",
+      "khác.",
+      "Điểm cần giữ Không chứa mật khẩu hoặc credential trong prompt bàn giao."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-061.png"
+  },
+  {
+    "page": 62,
+    "characters": 2317,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 62",
+      "Cách đọc và sửa file này",
+      "Đây là tài liệu hành vi cho trợ lý, không phải cấu hình Claude đặc biệt và không phải mã tài khoản ",
+      "người chơi.",
+      "28 Dấu vân tay bộ nguồn"
+    ],
+    "last_lines": [
+      "hành bàn cờ. Bạn hoặc công cụ kiểm tra đọc nó khi cần đối chiếu.",
+      "Điểm cần giữ Không xóa phần tử hoặc sửa số hash để che một bản sao thiếu file.",
+      "Cách đọc và sửa file này",
+      "Dùng để kiểm tra nguồn gốc; không coi hash là chữ ký chứng minh danh tính tác giả hoặc chất lượng ",
+      "chương trình."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-062.png"
+  },
+  {
+    "page": 63,
+    "characters": 2082,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 63",
+      "29 Nguồn tham khảo và giấy phép",
+      "THIRD_PARTY_NOTICES.md",
+      "Vị trí: E:\\ThanhTQ\\App cờ tướng\\xiangqi￾ai\\deliverables\\Co_Chill_VSCode_2026_10_17\\THIRD_PARTY_NOTICES.md",
+      "Kích thước: 1 889 byte • 15 dòng • 3 nhóm giải thích"
+    ],
+    "last_lines": [
+      "liệu.",
+      "Điểm cần giữ Đây là thông tin quản trị nguồn; không phải một giấy phép mới cho repo.",
+      "Cách đọc và sửa file này",
+      "Giữ cùng source và cập nhật khi thêm thành phần thật; không xem danh sách tham khảo như danh ",
+      "sách phụ thuộc runtime."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-063.png"
+  },
+  {
+    "page": 64,
+    "characters": 2640,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 64",
+      "Theo một thao tác đi qua nhiều file",
+      "Ví dụ một nước cờ trong ván đang chơi",
+      "Trong app.js, boardHTML() tạo các nút có data-square. Listener click ở dòng 107 lấy ô được bấm và ",
+      "gọi selectSquare() ở dòng 104. Lần bấm vào quân của bên đến lượt đặt selected; lần bấm ô đích ghép "
+    ],
+    "last_lines": [
+      " → reveal → thử lại nếu chọn → finishPuzzle",
+      " → schedule → recommend → tự đánh giá",
+      "Hai ví dụ này cho thấy vì sao cần đọc cả nơi tạo giao diện và module xử lý dữ liệu. Một hàm pure có ",
+      "thể trả kết quả đúng, nhưng app vẫn phải gọi nó ở đúng thời điểm, giữ đúng state và lưu kết quả. ",
+      "Ngược lại, giao diện đẹp không thay thế được kiểm tra luật hoặc tính nguyên vẹn dữ liệu."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-064.png"
+  },
+  {
+    "page": 65,
+    "characters": 1804,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 65",
+      "Khi muốn thay đổi sản phẩm thì bắt đầu ở đâu",
+      "Bạn muốn thay gì Đọc và sửa trước Kiểm tra ảnh hưởng",
+      "Màu và khoảng cách style.css; class được tạo ở index.html và ",
+      "app.js."
+    ],
+    "last_lines": [
+      "push; bộ code này không tự thiết lập điều đó.",
+      "• Copy source mang theo giao diện, logic và bài tập đóng gói. Nó không mang theo dữ liệu ",
+      "localStorage của trình duyệt hoặc quyền quản trị tên miền.",
+      "• Node chạy kiểm thử JavaScript. Python HTTP gửi file tĩnh. Cả hai không tự cung cấp đăng nhập và ",
+      "database cho người chơi."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-065.png"
+  },
+  {
+    "page": 66,
+    "characters": 2307,
+    "first_lines": [
+      "CỜ CHILL SỔ TAY ĐỌC MÃ NGUỒN",
+      "Bản đọc code 18/10/2026 • 66",
+      "Quy trình đọc thử và bảo trì bộ nguồn",
+      "Bắt đầu bằng một thay đổi nhỏ có mục tiêu rõ. Trước khi sửa, mở đúng bộ nguồn và chạy được bản ",
+      "gốc. Đọc chương tương ứng, tìm tên hàm hoặc class trong VS Code, sau đó kiểm tra nơi gọi nó. Các ",
+      "tên xuất qua XQ/CC là hợp đồng giữa module nên không đổi tùy tiện."
+    ],
+    "last_lines": [
+      "Mọi vị trí dòng và số file trong sổ tay được kiểm tra với snapshot riêng ngày 18/10/2026. Việc lập tài ",
+      "liệu không phải một lần kiểm định lại toàn bộ luật thi đấu hoặc chất lượng engine. Các chương test giải ",
+      "thích mã test hiện có, không khẳng định mọi trường hợp ngoài tập test đều đúng. Báo cáo render và ",
+      "danh sách đối chiếu chỉ phục vụ kiểm tra tài liệu và được giữ ở thư mục làm việc, không đưa vào ",
+      "source chạy web."
+    ],
+    "outside_safe_page": [],
+    "image": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\var\\code-manual-2026-10-18\\pages\\page-066.png"
+  }
+]

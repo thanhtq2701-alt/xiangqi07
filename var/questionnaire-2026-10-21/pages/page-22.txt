@@ -1,0 +1,28 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 22
+V5 35 Tiêu chí đạt của vòng thử đầu tiên
+Mức 1
+Hãy chọn những điều có thể quan sát được: tự hoàn thành vòng học không cần người chỉ, không mất 
+nháp khi tải lại, hiểu câu hỏi cần trả lời gì, làm được bài khác cùng chủ đề hoặc quay lại ôn đúng chỗ. 
+Với mỗi điều, cần đạt ở bao nhiêu người hoặc phiên mới chấp nhận?
+Đề xuất chưa duyệt: lỗi đi quân sai, lộ đáp án trước suy nghĩ và mất dữ liệu là lỗi chặn phát hành. Các 
+chỉ số học cần ghi mức ban đầu và giới hạn mẫu; không dùng cảm giác thích giao diện để chứng minh 
+đã tiến bộ cờ.
+Cần điền: 1. Tiêu chí quan sát: tự xong vòng học/không mất nháp/hiểu câu hỏi/làm hình khác cùng chủ đề/ôn 
+đúng chỗ; 2. Ngưỡng số người hoặc phiên cho từng tiêu chí; 3. Lỗi phải sửa trước; 4. Người nghiệm thu; 5. Mức 
+ban đầu/giới hạn mẫu cho chỉ số học
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 36 Thời gian chờ thực tế nào chấp nhận được
+Mức 2
+Bạn muốn phản hồi gần như ngay lập tức và ghi 0,1 mili giây. Mục tiêu đó nhỏ hơn thời gian một khung 
+hình thông thường. Hãy thử trên thiết bị ưu tiên và cho biết thao tác nào bạn thấy chậm; review cả ván 
+có thể chờ lâu hơn chọn quân hay lưu nháp bao nhiêu?
+Tách thời gian chấp nhận cho chọn quân, máy đi một nước, phân tích một hình và phân tích cả ván. Có 
+thể ghi chưa biết để kỹ thuật đo rồi đưa hai phương án cho bạn duyệt.
+Đề xuất chưa duyệt: đo phản hồi chọn quân dưới khoảng 100 mili giây trên thiết bị pilot; lưu nháp trong 
+lúc gõ, không chỉ lúc rời trang. Review hiển thị công việc và tiến độ thật, cho hủy. Đây là mục tiêu cần 
+đo, chưa phải cam kết đã đạt.
+Cần điền: 1. Thiết bị ưu tiên đo; 2. Thao tác thực thấy chậm; 3. Thời gian chấp nhận cho chọn quân/lưu nháp; 4. 
+Thời gian review cả ván chấp nhận so với thao tác trực tiếp; 5. Hành vi khi quá thời gian; 6. Cách hiện tiến độ/hủy 
+công việc; 7. Chờ máy đi một nước; 8. Chờ một hình; 9. Chờ cả ván
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

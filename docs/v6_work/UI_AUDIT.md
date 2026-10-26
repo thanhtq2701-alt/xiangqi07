@@ -163,4 +163,8 @@ Viewport đề nghị: 360 × 800, 390 × 844, 768 × 1024, 1024 × 768, 1440 ×
 
 Kiểm tra: không tràn ngang toàn trang; không che focus; bàn 9 × 10 không méo; chạm được quân/ô ở màn nhỏ; popup và bàn phím ảo không che câu đang nhập; câu hỏi không mất khi đổi tab/reload; ảnh có alt phù hợp; decorative image alt rỗng; nút icon có accessible name; animation tôn trọng reduced motion; màu không phải tín hiệu duy nhất cho đúng/sai.
 
+<<<<<<< HEAD
 Cần bổ sung kiểm thử browser screenshot với các trang home/account/settings/lesson/learn/play/path, nhưng không viết snapshot chứa dữ liệu riêng người dùng. Các bài test logic hiện có vẫn phải giữ. Kết quả Unicode/font/ZIP trong báo cáo này là kiểm tra tĩnh, không được gọi là đã chạy thành công tất cả ma trận thiết bị.
+=======
+Cần bổ sung kiểm thử browser screenshot với các trang home/account/settings/lesson/learn/play/path, nhưng không viết snapshot chứa dữ liệu riêng người dùng. Các bài test logic hiện có vẫn phải giữ. Kết quả Unicode/font/ZIP trong báo cáo này là kiểm tra tĩnh, không được gọi là đã chạy thành công tất cả ma trận thiết bị.
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a

@@ -1,0 +1,23 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 9
+V5 10 Cần những chuỗi lặp nào để bạn nghiệm thu
+Mức 1
+Hãy gửi tối thiểu một chuỗi chiếu một bên và một chuỗi đuổi quân mà bạn muốn phân xử, có thế ban 
+đầu, bên đi, đủ nước trước khi lặp và kết quả dự kiến. Nếu chưa chắc, chỉ ghi “cần kiểm chứng”. Ảnh 
+cuối ván riêng lẻ không đủ để phân xử lịch sử.
+Đề xuất chưa duyệt: Codex tự tạo các test cơ bản theo bộ luật đã chốt; ví dụ bạn gửi dùng để đối chiếu 
+tình huống chuyên môn. Bổ sung ca hai bên cùng chiếu, đổi mục tiêu và xen nước chờ sau đó.
+Cần điền: 1. Chuỗi chiếu một bên; 2. Chuỗi đuổi quân; 3. Với mỗi chuỗi: thế ban đầu; 4. Với mỗi chuỗi: bên đi; 5. 
+Với mỗi chuỗi: đủ nước trước khi lặp; 6. Kết quả phán quyết dự kiến; 7. Điểm chưa chắc đánh dấu cần kiểm 
+chứng; 8. Ca bổ sung hai bên cùng chiếu/đổi mục tiêu/xen nước chờ nếu có
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 11 Ký phổ khi hai quân cùng loại cùng cột
+Mức 1
+Bạn đã chọn ký phổ Việt và hai cột Đỏ Đen. Cần thêm đúng ví dụ có hai Xe hoặc hai Mã cùng cột và 
+một ví dụ nhiều Tốt cùng cột: ứng dụng bạn quen viết “trước sau”, “t s” hay ký hiệu khác? Gửi ảnh hoặc 
+text để thống nhất cách hiển thị và nhập.
+Đề xuất chưa duyệt: xuất ký phổ dễ đọc theo bên đi; bên trong giữ tọa độ ổn định. Trường hợp nhập 
+mơ hồ phải hỏi chọn nước, không tự đoán. Việc lật bàn không đổi nội dung nước đã lưu.
+Cần điền: 1. Ứng dụng nguồn quen dùng; 2. Ảnh/text có hai Xe hoặc hai Mã cùng cột; 3. Ví dụ nhiều Tốt cùng cột; 
+4. Chọn cách ghi trước/sau, t/s hay ký hiệu khác; 5. Thống nhất cách hiển thị và nhập ký hiệu
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

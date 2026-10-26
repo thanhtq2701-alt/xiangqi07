@@ -1,0 +1,27 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 13
+V5 18 Tiêu chí độ khó ngoài số nước tính trước
+Mức 2
+Bạn lấy ví dụ mức 1 ăn quân một nước, mức 4 cần 3 đến 4 nước. Với hai hình cùng độ dài lời giải 
+nhưng một hình có nhiều lựa chọn gây nhiễu hơn, bạn muốn xếp khác mức không? Gửi một cặp dễ và 
+khó để làm mẫu.
+Đề xuất chưa duyệt: dùng độ dài lời giải, số phương án hợp lý, mức ẩn của đe dọa và yêu cầu giải 
+thích. Mức ban đầu do bạn duyệt, sau đó điều chỉnh bằng dữ liệu thực; không gọi đó là Elo đã đo.
+Cần điền: 1. Một hình dễ; 2. Một hình khó; 3. Lý do phân mức; 4. Cùng độ dài lời giải nhưng nhiều phương án gây 
+nhiễu hơn có xếp khác mức không; 5. Tên mức người học nhìn thấy; 6. Các tiêu chí độ khó ngoài số nước tính 
+trước
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 19 Công cụ biên tập đầu tiên cần làm được gì
+Mức 3
+Trong một lần sửa nội dung, bạn thường muốn thay câu hỏi, thêm hình, sửa đáp án hay gỡ bài lỗi? Xếp 
+ba việc quan trọng nhất. Bạn có cần xem trước trải nghiệm người học trước khi xuất bản không, và 
+muốn ghi lý do sửa ở đâu?
+Rà lại mức ưu tiên: nếu bạn muốn tự sửa câu hỏi/bài mà không nhờ người viết code, công cụ biên tập 
+có cần đưa lên cùng bản V5 không?
+Đề xuất chưa duyệt: bản biên tập đầu có trạng thái Nháp, Chờ duyệt, Đã xuất bản, Tạm gỡ; chỉ mình 
+bạn có quyền phát hành. Tự động kiểm tra nước hợp lệ và cho xem trước toàn bộ vòng học. Chưa cần 
+hệ thống vai trò phức tạp.
+Cần điền: 1. Xếp ba việc ưu tiên: thay câu hỏi/thêm hình/sửa đáp án/gỡ bài lỗi hoặc việc khác; 2. Luồng duyệt và 
+quyền phát hành; 3. Có cần xem trước trải nghiệm người học trước xuất bản không; 4. Ghi lý do sửa ở đâu; 5. 
+Một ví dụ sửa thường gặp; 6. Biên tập tối thiểu cùng V5 hay để sau
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

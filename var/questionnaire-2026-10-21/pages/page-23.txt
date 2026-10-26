@@ -1,0 +1,30 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 23
+V5 37 Phân bổ ngân sách cho tài khoản và các nâng cấp khác
+Mức 1
+Tài khoản, lưu tập trung và quản trị đã là yêu cầu của V5. Với trần 200.000 đồng mỗi tháng cho tất cả
+dịch vụ, bạn ưu tiên phần ngân sách còn lại cho engine mạnh hơn hay lời giải linh hoạt hơn? Khi dịch 
+vụ gần chạm hạn mức, cần báo cho bạn ở đâu và những chức năng trả phí nào được tạm dừng?
+Nhu cầu engine mạnh thêm chi phí CPU/máy chủ. Mức 100.000 mong muốn và trần 200.000 
+đồng/tháng là ràng buộc cũ, chưa tự tăng. Ghi rõ giữ hay điều chỉnh, tách ngân sách vận hành sản 
+phẩm khỏi phí công cụ AI lập trình bạn dùng cá nhân.
+Đề xuất chưa duyệt: giữ độ đúng luật và vòng học hiện có, ưu tiên nền tảng tài khoản/lưu dữ liệu; 
+engine nông và lời giải mẫu vẫn là phương án không trả phí. Không tự nâng gói, không đánh mất dữ
+liệu đã lưu để xử lý hạn mức. Nếu hạn mức chặn ghi mới, hiển thị rõ tình trạng và hỗ trợ xuất dữ liệu. 
+Báo phương án chi phí trước khi bật dịch vụ.
+Cần điền: 1. Ưu tiên ngân sách còn lại cho engine mạnh hay lời giải linh hoạt; 2. Thứ tự ưu tiên thêm; 3. Phân bổ
+cho từng nhóm nếu muốn; 4. Kênh báo sắp chạm hạn mức; 5. Chức năng trả phí được tạm dừng; 6. Cách xử lý 
+chặn ghi mới trong hạn mức; 7. Trần vận hành hiện tại; 8. Phần dành cho engine, tài khoản/database và lời giải; 9. 
+Chi phí một lần/tên miền nếu có
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 38 Nhận và xử lý phản hồi từ pilot
+Mức 2
+Bạn muốn dùng một biểu mẫu chung hay nút báo lỗi ngay trong bài? Chốt các trường tối thiểu và nơi 
+bạn sẽ xem phản hồi. Người thử có đồng ý đính kèm biên bản hoặc câu trả lời của họ không? Không tự
+gửi dữ liệu nhạy cảm trong nền.
+Đề xuất chưa duyệt: chọn loại lỗi, mô tả, kết quả mong muốn và ảnh tùy chọn; ứng dụng đính kèm mã 
+bài cùng phiên bản khi được đồng ý. Có mục cho bạn ghi đã tái hiện, đang sửa và đã kiểm tra lại.
+Cần điền: 1. Biểu mẫu chung hay nút báo lỗi trong bài; 2. Kênh/nơi chủ sản phẩm xem phản hồi; 3. Trường tối 
+thiểu; 4. Được đính kèm biên bản/câu trả lời/ảnh/mã bài/phiên bản nào; 5. Cách người thử đồng ý đính kèm; 6. 
+Tần suất xem; 7. Theo dõi đã tái hiện/đang sửa/đã kiểm tra
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

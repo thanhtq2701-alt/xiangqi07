@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "siteVersion": 4,
   "productVersion": "V5",
@@ -81,4 +82,89 @@
       "bytes": 2487269
     }
   ]
+=======
+{
+  "siteVersion": 4,
+  "productVersion": "V5",
+  "sourceCommit": "748aa97d42c3437a9a36cbc9bf16e3a5c1469a3c",
+  "localArchiveSha256": "2166e64b89d26a29ebbb69b262eb7f8e0b1967f8c39c8abb023b6595e8ed5e38",
+  "zipSha256": "57c83e24e2f548afa6a705b3003c2499a3602c937a86e38c7127140d44748bb8",
+  "files": [
+    {
+      "path": "index.html",
+      "sha256": "0f3547823aa4027536130caa1afd1bac3d2f414e31831a2f3d75c6f30caa0afb",
+      "bytes": 6374
+    },
+    {
+      "path": "style.css",
+      "sha256": "f1b7678ec2572d2294045815b3901dc03c2cefda82f92bdfa18064ca45cc93d5",
+      "bytes": 32677
+    },
+    {
+      "path": "v5.css",
+      "sha256": "a4b34b5e96197a78fa644428a746133d0ffec9947f0fba6804e8f9f89cac3638",
+      "bytes": 3372
+    },
+    {
+      "path": "app.js",
+      "sha256": "ca7d3aa558a595da75dea5f82bf2f425a602b34112d475d367f161d1835e7ae8",
+      "bytes": 78686
+    },
+    {
+      "path": "xiangqi.js",
+      "sha256": "1b8b63116dceeebfdbe8120447f8c659f751d621ef3ad89f76541229b17f4ec1",
+      "bytes": 12433
+    },
+    {
+      "path": "game-tools.js",
+      "sha256": "5c41a1ca29644dbb33a48c90a891ca39a291b802d9fcea90eaffdf7c8640cb90",
+      "bytes": 13300
+    },
+    {
+      "path": "fixtures.js",
+      "sha256": "604bf9a17871303423652aee560983c1eb892f0d1a27d0866a5f92c05998a180",
+      "bytes": 23121
+    },
+    {
+      "path": "learning.js",
+      "sha256": "254c9e27d8b89e52a6049a88f62daadc99cd096f199d87bee93394992091af12",
+      "bytes": 23383
+    },
+    {
+      "path": "experience.js",
+      "sha256": "7cec57f8f52f3dc32adbaf117598124bfc1abcb133f7ada8a1e8c7ec0a6c2f6e",
+      "bytes": 6258
+    },
+    {
+      "path": "cloud-client.js",
+      "sha256": "b70f14d960a8748801dedc4a3338cd1d6b63efd0860b27d7d5083ebc162eefa2",
+      "bytes": 9289
+    },
+    {
+      "path": "engine-client.js",
+      "sha256": "c935091ebf437b2382c2d7cc39fac45361557de88c58e234433a3c1d1dc1cff4",
+      "bytes": 3342
+    },
+    {
+      "path": "v5-ui.js",
+      "sha256": "95902c3682166883d0efc6682a0bd3a86f71a806778ad14dfbac7ef940c1223c",
+      "bytes": 30579
+    },
+    {
+      "path": "favicon.svg",
+      "sha256": "3047a88786861e5531815b5b3cddcbbff30298ffa77405c75e05857695db203b",
+      "bytes": 348
+    },
+    {
+      "path": "logo-co-chill.png",
+      "sha256": "e7ca5862873246c36bd3f4366add8aa23667c0c05ab7b2b0f04c7c574439e1b6",
+      "bytes": 751229
+    },
+    {
+      "path": "cover-co-chill.png",
+      "sha256": "0fdecbdaca5b52c75043aa7ace499b09bccf69b9177d5dd4c626f382f1d6de90",
+      "bytes": 2487269
+    }
+  ]
+>>>>>>> 71e1659b593f8a01f061cdc99eca6b2f3028031a
 }

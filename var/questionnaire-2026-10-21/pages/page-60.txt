@@ -1,0 +1,49 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 60
+C22 Sai một phần và bất đồng
+Ghi nhận ý đúng, hỏi cụ thể hơn phần chưa đúng rồi tổng hợp; chủ sở hữu chốt việc xác minh và giữ
+bằng chứng. Có nút báo loại lỗi cụ thể. Mong muốn tô màu chưa đồng nghĩa đã có bộ chấm đáng tin 
+cậy.
+Nguồn: V4 F05, V4 F06, UX17.06, UX17.07, UX17.08, UX33.08
+C23 Thử lại và hoàn thành
+Muốn người học vừa giải thích/đánh giá đúng vừa đi được nước chấp nhận. Giới hạn ba lần thử; sai thì 
+câu hỏi nhỏ hơn. Nếu rời sau bài gốc và trước bài liên quan, lần sau vào bài liên quan; trạng thái hai 
+hình tách nhau.
+Nguồn: V4 G03, V4 G06, UX18.04, UX18.06, UX18.08
+C24 Chủ đề và bài liên quan
+Chủ đề theo mục tiêu dễ hiểu như ăn quân, tấn công quân/vị trí yếu, phòng thủ, đổi quân lấy lợi thế. Mỗi 
+lần làm một bài; lời mời Thử thêm một bài, không tiết lộ quan hệ với bài trước. Có ba tầng hỗ trợ quan 
+sát, ý tưởng, nước cụ thể; trước phản hồi không lộ nước.
+Nguồn: UX19.01, UX19.03, UX19.05, UX19.06
+C25 Hết nội dung
+Ưu tiên đổi chủ đề hoặc chơi thêm để sinh bài học; nếu hết thật thì nói thẳng Bạn đã học hết mất rồi. 
+Bài ôn đã gặp không gọi là bài mới.
+Nguồn: V4 G05, UX19.07, UX22.06
+C26 Bài học
+Tổ chức nhãn khai/trung/tàn, trình độ, mục tiêu/kỹ năng. Bài có mục tiêu, lỗi thường gặp, câu hỏi thực 
+hành và nước cần đạt; không cố định độ dài. Text và bàn tương tác đủ cho bản đầu; video/âm thanh nội 
+dung để sau.
+Nguồn: V4 G01, V4 G04, UX20.01, UX20.02, UX20.03
+C27 Tra luật khi học
+Từ thuật ngữ mở hình minh họa, có Minh họa thêm dẫn tới luật và ví dụ cụ thể; quay lại đúng chỗ đang 
+học. Nội dung đổi có nhãn Có thay đổi và mở được phần chi tiết.
+Nguồn: UX20.04, UX20.06
+C28 Tiến bộ cá nhân
+Muốn biết trình độ, tiến độ hôm nay, lỗi tái diễn và kỹ năng cần cải thiện. Ưu tiên số lần thực hành/tỷ lệ
+bài mới đúng; từ sáu mẫu mới vẽ biểu đồ tỷ lệ. Bấm nhận xét xem lại câu hỏi và lời giải. Hệ xếp 
+hạng/EXP là mong muốn chưa có mô hình được kiểm định.
+Nguồn: V4 H03, V4 H04, UX21.01, UX21.03, UX21.04, UX21.06, UX21.07
+C29 Lịch ôn
+Dạng ngày nổi bật, tháng mở thêm; giữ toàn bộ hàng đợi quá hạn, ưu tiên hạn gần; trì hoãn không tính 
+hoàn thành. Hẹn từng hình từ lúc hoàn thành. Ôn lỗi từ ván và ôn lesson được chủ sở hữu muốn tách 
+riêng.
+Nguồn: V4 H01, UX22.01, UX22.02, UX22.03, UX22.04, REGISTER Quyết định phạm vi ưu tiên, V5 Những gì đã chốt
+C30 Nhắc học và nghỉ
+Có thể tắt nhắc; giờ yên lặng 22–7, nhắc việc chưa xong mỗi sáu giờ; nhắc nghỉ sau 30 phút/ngày. V4 
+còn mong nhắc trước hạn 30 phút nên cần hòa giải trong V5 27.
+Nguồn: V4 H05, UX22.05, UX22.08
+C31 Cài đặt và dữ liệu
+Tùy chọn chữ quân, tiếng, theme, chữ lớn dự kiến theo tài khoản; có mục Tài khoản trong Của tôi. Xuất 
+theo loại/khoảng ngày, biên bản không lộ đáp án chưa mở; xóa ván/lịch sử/toàn bộ dùng nút riêng và 
+nêu phạm vi.
+Nguồn: UX23.02, UX23.05, UX23.06, UX23.08

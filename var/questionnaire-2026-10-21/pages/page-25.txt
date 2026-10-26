@@ -1,0 +1,14 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 25
+V5 41 Những điều phải giữ khi nâng cấp
+Mức 2
+Khi có bản mới, cần giữ những dữ liệu nào và trường hợp nào có thể chấp nhận tạo lại? Bạn đã nêu tối 
+đa 12 giờ xử lý sự cố; đối với lỗi mất nháp, luật sai hoặc lộ đáp án, có cần gỡ tính năng ngay trong lúc 
+sửa không?
+Đề xuất chưa duyệt: giữ ván, câu trả lời trước lời giải, lần thử và lịch ôn; sao lưu trước đổi cấu trúc dữ
+liệu. Mỗi bản có danh sách thay đổi, kiểm thử, giới hạn và cách quay lại bản ổn định. Không ghi “đã 
+triển khai” trước khi kiểm tra trên link công khai.
+Cần điền: 1. Dữ liệu bắt buộc giữ qua nâng cấp; 2. Dữ liệu được tạo lại; 3. Lỗi mất nháp/luật sai/lộ đáp án cần gỡ
+tính năng ngay khi sửa không; 4. Các lỗi phải gỡ ngay; 5. Người duyệt phát hành; 6. Áp mốc xử lý sự cố tối đa 12 
+giờ đã nêu
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

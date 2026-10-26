@@ -1,0 +1,539 @@
+{
+  "scope": "Draft NEW owner-facing questions, not approved product decisions. Preserve V5-01 through V5-46; use related_v5 cross-references, do not ask duplicate fields again.",
+  "question_count": 22,
+  "questions": [
+    {
+      "id": "N-ENG01",
+      "group": "Engine",
+      "title": "Engine mạnh phục vụ việc gì trước",
+      "why": "Pikafish có thể cấp nước cho máy, phân tích ván, kiểm tra đáp án và hỗ trợ biên tập; mỗi việc có luồng và chi phí khác nhau.",
+      "question": "Trong bản đầu dùng engine mạnh, việc nào bắt buộc phải sử dụng Pikafish thật và việc nào vẫn có thể dùng chế độ cơ bản? Bạn muốn người dùng nhìn thấy tên engine và giới hạn phân tích ở đâu?",
+      "answer_fields": [
+        "Chọn các việc bắt buộc: chơi máy / xem lại ván / chấm nước bài học / duyệt nội dung",
+        "Thứ tự giữa các việc vừa chọn",
+        "Nhãn người dùng cần thấy khi dùng engine mạnh hoặc dự phòng"
+      ],
+      "proposal": "Ưu tiên phân tích sau ván và xác minh nước bài học; giữ luật hợp lệ cho mọi chế độ, ghi tên/phiên bản engine trong phần chi tiết. Thứ tự phát hành cuối cùng chốt tại V5-39.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không bỏ qua nếu yêu cầu engine mạnh thuộc đợt này.",
+      "related_v5": [
+        "V5-04",
+        "V5-37",
+        "V5-39"
+      ]
+    },
+    {
+      "id": "N-ENG02",
+      "group": "Engine",
+      "title": "Mục đích sử dụng và quyền dùng trọng số Pikafish",
+      "why": "Mã engine và file trọng số có điều kiện sử dụng riêng; kho Networks chính thức hiện ghi cần phép khi dùng trọng số thương mại.",
+      "question": "Đợt tới chỉ là thử nghiệm học tập, trình bày với mentor hay có quảng cáo, thu phí hoặc phục vụ một hoạt động thương mại? Bạn đã có văn bản cho phép dùng trọng số nào chưa? Nếu điều kiện chưa phù hợp, bạn muốn chờ xác minh quyền hay chọn engine/trọng số khác phù hợp?",
+      "answer_fields": [
+        "Mục đích của bản sắp phát hành",
+        "Kế hoạch quảng cáo/thu phí nếu đã có, chưa cần thiết kế thanh toán",
+        "Tên file/bản engine và tài liệu quyền sử dụng nếu đang sở hữu",
+        "Cách xử lý khi chưa xác nhận được quyền"
+      ],
+      "proposal": "Kiểm tra đúng bản mã và trọng số trước khi phát hành; không tự coi mọi gói Pikafish đều được dùng thương mại. Không mua giấy phép hoặc liên hệ bên thứ ba thay bạn khi chưa được giao.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Nếu chưa có engine/file/quyền, ghi Chưa có; đội kỹ thuật sẽ đề xuất phương án phù hợp.",
+      "related_v5": [
+        "V5-15",
+        "V5-37",
+        "V5-40"
+      ]
+    },
+    {
+      "id": "N-ENG03",
+      "group": "Engine",
+      "title": "Bạn sẽ công nhận engine đủ tốt bằng bộ thế nào",
+      "why": "Nhãn engine mạnh cần được kiểm tra bằng tình huống và cấu hình thực tế; tên Pikafish không tự bảo đảm mọi kết luận trong ứng dụng đúng.",
+      "question": "Chọn một nhóm thế bạn hoặc người hướng dẫn tin tưởng để so kết quả. Mỗi thế cần bên đi, mục tiêu, nguồn và nước/ý được chấp nhận. Có trường hợp nào tuyệt đối phải giải đúng trước khi bạn duyệt bản dùng thật?",
+      "answer_fields": [
+        "Nhóm tình huống bắt buộc: chiếu hết / cứu quân / chống đòn / tàn cuộc / khác",
+        "Các mã/file thế đã có; có thể trỏ về V5-14 thay gửi trùng",
+        "Người đủ khả năng giúp duyệt và phần chưa chắc",
+        "Số ca/tiêu chí bạn muốn đạt; cho phép đội kỹ thuật đề xuất nếu chưa biết"
+      ],
+      "proposal": "Dùng bộ thế có nguồn và đáp án đã đối chiếu; đo cả độ đúng lẫn thời gian trên máy thực. Không gán Elo hoặc sức mạnh tương đương sản phẩm khác khi chưa có đánh giá phù hợp.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Có thể ghi Nhờ đề xuất bộ kiểm tra nếu chưa có thế chuẩn; không cần tự tạo FEN.",
+      "related_v5": [
+        "V5-04",
+        "V5-10",
+        "V5-14",
+        "V5-35"
+      ]
+    },
+    {
+      "id": "N-ENG04",
+      "group": "Engine",
+      "title": "Mức khó khi chơi với máy nên biểu hiện thế nào",
+      "why": "Engine mạnh tối đa có thể khiến người học nản; mức khó của đối thủ khác mức phân tích dùng để dạy.",
+      "question": "Bạn muốn người chơi chọn vài mức bằng tên dễ hiểu, tự điều chỉnh theo kết quả hay luôn chơi máy mạnh nhất? Với mức dễ, bạn chấp nhận đôi lúc máy chọn nước kém hơn có kiểm soát không? Khi thua liên tiếp nên giữ mức, gợi ý giảm hay tự giảm?",
+      "answer_fields": [
+        "Tên/số mức trước mắt",
+        "Cách chọn mức ban đầu",
+        "Hành vi khi thắng hoặc thua liên tiếp",
+        "Có chấp nhận mức dễ chọn nước kém hơn có kiểm soát không"
+      ],
+      "proposal": "Tách sức mạnh đối thủ khỏi chất lượng phân tích sau ván; cho người học chủ động chọn mức, nói rõ các nhãn chưa phải Elo đã đo. Không đưa gợi ý chiến thuật trong ván để làm người chơi thắng dễ hơn.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 2,
+      "skip_if": "Nếu chưa nâng chế độ chơi máy trong đợt này, ghi Để sau; việc review bằng engine mạnh vẫn làm độc lập.",
+      "related_v5": [
+        "V5-06",
+        "V5-18"
+      ]
+    },
+    {
+      "id": "N-ENG05",
+      "group": "Engine",
+      "title": "Phân tích nhanh và phân tích sâu hiển thị ra sao",
+      "why": "Ván dài và nhiều người cùng phân tích cần hàng đợi; mục tiêu thời gian tổng đã hỏi ở V5-36.",
+      "question": "Bạn muốn nhận kết quả sơ bộ rồi có nút phân tích kỹ hơn, hay chờ một kết quả cuối? Khi đang chờ có được rời trang và quay lại xem kết quả không? Nếu hủy, giữ phần đã xong dưới nhãn nào?",
+      "answer_fields": [
+        "Một kết quả cuối hay sơ bộ rồi nâng cấp",
+        "Có cần tác vụ tiếp tục khi rời trang không",
+        "Cách hiển thị phần chưa hoàn tất/đã hủy",
+        "Màn hình hoặc thông báo khi kết quả cuối sẵn sàng"
+      ],
+      "proposal": "Phân tích là tác vụ có trạng thái rõ; không chấm sai chắc chắn bằng kết quả sơ bộ. Có hủy và nhận lại kết quả hoàn chỉnh; không chạy vô hạn trong nền. Ngưỡng thời gian lấy từ V5-36.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Chỉ bỏ phần thông báo ngoài app nếu không chọn email/push.",
+      "related_v5": [
+        "V5-36",
+        "V5-43"
+      ]
+    },
+    {
+      "id": "N-ENG06",
+      "group": "Engine",
+      "title": "Engine ngừng hoạt động thì người học làm gì tiếp",
+      "why": "Website cần giữ vòng học và dữ liệu khi dịch vụ engine quá tải, mất mạng hoặc lỗi.",
+      "question": "Trong từng tình huống xem lại ván, giải bài và chơi máy, bạn muốn chờ/thử lại, dùng chế độ cơ bản có nhãn rõ hay chuyển sang bài đã được duyệt? Nếu đang chơi mà máy không trả nước, bạn muốn tạm dừng có thông báo hay kết thúc như sự cố kỹ thuật?",
+      "answer_fields": [
+        "Xem lại ván khi engine lỗi",
+        "Chấm nước bài học khi engine lỗi",
+        "Ván với máy bị gián đoạn và cách xử lý đồng hồ/kết quả",
+        "Câu thông báo người chơi cần đọc"
+      ],
+      "proposal": "Giữ ván và nháp, không tính người chơi thua vì sự cố dịch vụ; không ghi nhận lỗi học từ nước chưa đánh giá. Cho bài đã duyệt hoặc thử lại, mọi kết quả dự phòng gắn nhãn riêng.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không bỏ qua khi engine chạy qua mạng.",
+      "related_v5": [
+        "V5-41",
+        "V5-45"
+      ]
+    },
+    {
+      "id": "N-ENG07",
+      "group": "Engine",
+      "title": "Ván không có sai lầm rõ thì kết thúc vòng học thế nào",
+      "why": "Engine mạnh có thể không tìm được vị trí đáng học, hoặc các nước tốt tương đương nhau.",
+      "question": "Khi không tìm thấy lỗi đủ căn cứ, bạn muốn thông báo điều gì và dẫn người chơi tới đâu: ghi nhận một quyết định tốt, ôn bài đến hạn, chọn chủ đề hay kết thúc phiên? Có bắt buộc tạo ra ba vị trí sau mọi ván không?",
+      "answer_fields": [
+        "Thông điệp khi không phát hiện lỗi rõ",
+        "Lối đi tiếp ưu tiên",
+        "Có muốn xem một quyết định tốt nếu có bằng chứng không"
+      ],
+      "proposal": "Không ép đủ số vị trí và không bịa sai lầm. Ghi đúng phạm vi đã phân tích, rồi đề nghị ôn đến hạn hoặc bài phù hợp.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không bỏ qua; đây là trạng thái rỗng của vòng học.",
+      "related_v5": [
+        "V5-17",
+        "V5-35"
+      ]
+    },
+    {
+      "id": "N-ENG08",
+      "group": "Engine",
+      "title": "Khi engine mới đổi kết luận về một bài cũ",
+      "why": "Nâng engine hoặc sửa bộ luật có thể thay đáp án; lịch sử lần học cần còn truy vết.",
+      "question": "Nếu một nước từng bị chấm sai được bản mới chấp nhận, bạn muốn thông báo cho người học, điều chỉnh thống kê và lịch ôn ra sao? Nếu bài đang làm dở đổi đáp án thì tiếp tục bản cũ có cảnh báo hay chuyển bài?",
+      "answer_fields": [
+        "Thông báo sửa kết luận ở đâu",
+        "Cách xử lý điểm/tỷ lệ cũ bị ảnh hưởng",
+        "Cách xử lý lịch ôn và bài đang dở",
+        "Ai duyệt sửa hàng loạt kết quả"
+      ],
+      "proposal": "Giữ dấu vết phiên bản, không âm thầm sửa câu trả lời đầu; tạm loại kết quả chưa chắc khỏi kết luận kỹ năng. Việc điều chỉnh có lý do và xem trước trước khi chủ sở hữu duyệt.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Nếu đợt này không thay engine/nội dung thì ghi Chưa áp dụng; vẫn cần chính sách trước lần thay đầu.",
+      "related_v5": [
+        "V5-13",
+        "V5-19",
+        "V5-41"
+      ]
+    },
+    {
+      "id": "N-ENG09",
+      "group": "Engine",
+      "title": "Thế cờ nhập thiếu lịch sử cần ghi nhận thế nào",
+      "why": "Một hình hoặc FEN không đủ để kết luận mọi tình huống chiếu dai, đuổi dai hoặc lặp trước đó.",
+      "question": "Khi người dùng chỉ có ảnh/FEN của một vị trí, có cho phân tích chiến thuật và làm bài nhưng không xác nhận phán quyết lịch sử không? Nếu người dùng xin kết quả thắng/hòa của ván thiếu lịch sử, màn hình nên yêu cầu bổ sung gì?",
+      "answer_fields": [
+        "Phạm vi được dùng khi chỉ có hình hiện tại",
+        "Nội dung cảnh báo dễ hiểu",
+        "Cách bổ sung chuỗi nước hoặc đánh dấu Không còn biên bản"
+      ],
+      "proposal": "Cho phân tích vị trí hiện tại với nhãn thiếu lịch sử; không tự phán các luật cần chuỗi nước. Bộ luật và ký phổ vẫn theo V5-08 đến V5-12, không đổi theo tên engine.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không cần gửi lại chuỗi đã cung cấp ở V5-10; chỉ ghi cách xử lý sản phẩm.",
+      "related_v5": [
+        "V5-08",
+        "V5-10",
+        "V5-12"
+      ]
+    },
+    {
+      "id": "N-ENG10",
+      "group": "Engine",
+      "title": "Người học có được thử các nhánh nếu đi khác không",
+      "why": "Phân tích có thể tạo công cụ khám phá sau lời giải, nhưng cần giữ bài đang học và ngăn lộ trước suy nghĩ.",
+      "question": "Sau khi mở lời giải, bạn muốn người học tự đi nước khác trên bàn để hỏi điều gì xảy ra không? Cần so hai phương án, quay về hình gốc, lưu nhánh cá nhân hoặc gửi nhánh cho bạn ở mức nào?",
+      "answer_fields": [
+        "Chọn các thao tác cần ở bản đầu",
+        "Giới hạn nhánh/lượt khám phá nếu muốn",
+        "Quay lại bài gốc và giữ trạng thái như thế nào",
+        "Có lưu hoặc chia sẻ nhánh cá nhân không"
+      ],
+      "proposal": "Chỉ bật sau reflection hoặc ở màn xem lại đã được phép; cho thử nhánh và quay về gốc trước, chưa cần cây biến phức tạp. Biến khám phá không tự tính là lần tự giải bài mới.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 2,
+      "skip_if": "Nếu không cần công cụ khám phá trong V5, ghi Để sau.",
+      "related_v5": [
+        "V5-04",
+        "V5-05",
+        "V5-31"
+      ]
+    },
+    {
+      "id": "N-OPS01",
+      "group": "Vận hành",
+      "title": "Hạn mức sử dụng phân tích khi có nhiều người",
+      "why": "Ngân sách đã hỏi ở V5-37; cần thêm chính sách trải nghiệm khi tài nguyên không đủ cho mọi yêu cầu.",
+      "question": "Khi nhiều người cùng dùng engine, bạn ưu tiên mọi người nhận lượt cơ bản, hay cho một người dùng liên tục đến khi hết hạn mức? Khách và tài khoản có giới hạn khác nhau không? Người chạm giới hạn được tiếp tục phần nào?",
+      "answer_fields": [
+        "Khách và tài khoản được dùng phân tích mạnh ở mức nào",
+        "Cách xử lý khi xếp hàng/quá hạn mức",
+        "Phần luyện tập vẫn mở khi hết lượt",
+        "Có muốn xem lượng tài nguyên đã dùng trong quản trị không"
+      ],
+      "proposal": "Giới hạn hợp lý ở server, báo rõ trạng thái và giữ bài đã có; chưa tạo premium/payment. Đội kỹ thuật đề xuất con số sau đo tải trong ngân sách bạn chốt.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không cần tự ước lượng số CPU, thread hoặc RAM.",
+      "related_v5": [
+        "V5-37",
+        "V5-40"
+      ]
+    },
+    {
+      "id": "N-OPS02",
+      "group": "Vận hành",
+      "title": "Dữ liệu nào được gửi tới dịch vụ giải thích bên ngoài",
+      "why": "Tài khoản và dữ liệu tập trung không đồng nghĩa được gửi câu trả lời người học cho một nhà cung cấp AI khác.",
+      "question": "Nếu sau này dùng dịch vụ LLM cho lời giải, bạn cho phép gửi chỉ thế cờ và bằng chứng engine, hay cả câu trả lời tự do đã loại thông tin cá nhân? Người học cần được thông báo và lựa chọn như thế nào? Nếu không đồng ý hoặc dịch vụ lỗi, lời giải mẫu có đủ không?",
+      "answer_fields": [
+        "Những nhóm dữ liệu được gửi",
+        "Những nhóm tuyệt đối không gửi",
+        "Thông báo/lựa chọn của người học",
+        "Hành vi khi từ chối hoặc dịch vụ không hoạt động"
+      ],
+      "proposal": "Bản đầu chỉ dùng lời giải có căn cứ và mẫu; không gửi dữ liệu ra nhà cung cấp mới trước khi có chính sách được duyệt. Không dùng dữ liệu người học để huấn luyện. Không coi việc gỡ tên là đảm bảo đã ẩn danh hoàn toàn.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Nếu chưa chọn LLM, có thể trả lời Chưa gửi dịch vụ ngoài; phần tích hợp LLM để sau.",
+      "related_v5": [
+        "V5-01",
+        "V5-29",
+        "V5-30",
+        "V5-37"
+      ]
+    },
+    {
+      "id": "N-OPS03",
+      "group": "Vận hành",
+      "title": "Khôi phục sau sự cố phải đạt mức nào",
+      "why": "Chính sách giữ dữ liệu một năm khác với khả năng khôi phục sau lỗi máy chủ.",
+      "question": "Nếu máy chủ hỏng, bạn cần mở lại dịch vụ trong khoảng nào và tối đa mất phần hoạt động chưa được sao lưu bao lâu? Những dữ liệu nào cần ưu tiên phục hồi? Ai kiểm tra rằng bản phục hồi thật sự dùng được?",
+      "answer_fields": [
+        "Thời gian gián đoạn chấp nhận cho pilot",
+        "Mức mất dữ liệu tối đa mong muốn hoặc yêu cầu đội kỹ thuật đề xuất",
+        "Thứ tự dữ liệu cần khôi phục",
+        "Người kiểm tra sau phục hồi"
+      ],
+      "proposal": "Đề xuất phương án sao lưu/khôi phục có kiểm thử theo ngân sách, công bố giới hạn thật; không hứa không mất dữ liệu tuyệt đối nếu chưa có hạ tầng chứng minh.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Có thể ghi Chưa biết và nêu tình huống bạn không chấp nhận thay vì tự chọn số kỹ thuật.",
+      "related_v5": [
+        "V5-29",
+        "V5-41"
+      ]
+    },
+    {
+      "id": "N-OPS04",
+      "group": "Vận hành",
+      "title": "Ai được truy cập bản thử và bản chính",
+      "why": "Có link truy cập được không đồng nghĩa nên cho mọi người đăng ký hoặc đưa bản thử lên kết quả tìm kiếm.",
+      "question": "Bản thử V5 dành cho người có lời mời, mọi người có link hay mọi người tự tìm thấy? Bản thử có dùng tài khoản/dữ liệu thật không, hay dữ liệu test riêng? Sau khi có bản chính, link chatgptsite cũ nên giữ làm demo, chuyển hướng hay ngừng dùng?",
+      "answer_fields": [
+        "Phạm vi truy cập bản thử",
+        "Phạm vi đăng ký tài khoản",
+        "Dữ liệu test hay dữ liệu thật và cách phân biệt",
+        "Cách xử lý link cũ và thông báo chuyển"
+      ],
+      "proposal": "Tách môi trường thử với dữ liệu thử, bảo vệ truy cập thật nếu cần riêng tư; không coi noindex là kiểm soát quyền. Chỉ chuyển hoặc ngừng link cũ khi chủ sở hữu duyệt.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không bỏ qua nếu chuyển hosting hoặc bật tài khoản.",
+      "related_v5": [
+        "V5-33",
+        "V5-34",
+        "V5-40"
+      ]
+    },
+    {
+      "id": "N-OPS05",
+      "group": "Vận hành",
+      "title": "Ngày học và thống kê dùng múi giờ nào",
+      "why": "Đồng bộ nhiều thiết bị có thể khiến một lượt học rơi vào hai ngày nếu mỗi máy tính ngày khác nhau.",
+      "question": "Bạn muốn báo cáo ngày/tuần theo giờ Việt Nam, theo múi giờ người học hay có lựa chọn? Khi người học đi nơi khác hoặc đổi múi giờ, lịch ôn đã tính từ lúc hoàn thành cần hiển thị thế nào?",
+      "answer_fields": [
+        "Múi giờ mặc định cho quản trị",
+        "Múi giờ hiển thị cho người học",
+        "Ngày bắt đầu tuần báo cáo",
+        "Cách muốn hiển thị hạn ôn khi đổi múi giờ"
+      ],
+      "proposal": "Lưu thời điểm thống nhất; quản trị dùng múi giờ được chốt và hiển thị nhãn. Đổi cách hiển thị không tự đặt lại mốc hoàn thành hoặc nhân đôi lượt học.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 2,
+      "skip_if": "Nếu chỉ dùng Việt Nam ở pilot, ghi giờ Việt Nam cho cả hai; không cần lựa chọn nhiều múi giờ ngay.",
+      "related_v5": [
+        "V5-25",
+        "V5-26",
+        "V5-27",
+        "V5-28"
+      ]
+    },
+    {
+      "id": "N-ACC01",
+      "group": "Tài khoản",
+      "title": "Khôi phục quyền quản trị của chính chủ sản phẩm",
+      "why": "Một hệ thống quản trị phải có đường khôi phục khi chủ sở hữu mất quyền truy cập; admin không nên có mật khẩu mặc định chung.",
+      "question": "Nếu bạn mất quyền truy cập tài khoản quản trị, ai được hỗ trợ xác minh và khôi phục? Bạn có sẵn sàng bật xác thực bổ sung cho admin không? Có cần người dự phòng chỉ đủ quyền vận hành sự cố không?",
+      "answer_fields": [
+        "Có người quản trị dự phòng không; chỉ ghi vai trò nếu không muốn tên",
+        "Cách liên hệ/kiểm chứng mong muốn khi mất quyền",
+        "Có đồng ý yêu cầu xác thực bổ sung cho admin không"
+      ],
+      "proposal": "Dùng cơ chế khôi phục của dịch vụ xác thực và xác minh chủ sở hữu; không tạo cửa hậu, không đưa mã dự phòng vào Word/repo. Đội kỹ thuật đề xuất cách thực hiện an toàn.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không bỏ qua nếu có quản trị thật; đừng ghi password, mã khôi phục hoặc thông tin định danh nhạy cảm.",
+      "related_v5": [
+        "V5-32",
+        "V5-42",
+        "V5-46"
+      ]
+    },
+    {
+      "id": "N-ACC02",
+      "group": "Tài khoản",
+      "title": "Một người đăng nhập bằng hai phương thức",
+      "why": "Người dùng có thể tạo tài khoản bằng email rồi đăng nhập Google; thống kê và tiến độ không được hợp nhất nhầm chỉ vì trùng tên.",
+      "question": "Nếu chọn nhiều phương thức ở V5-32, bạn có cần cho người dùng liên kết chúng thành một tài khoản không? Nếu đã lỡ tạo hai tài khoản có tiến độ riêng, họ tự yêu cầu hợp nhất hay chỉ được chọn một tài khoản dùng tiếp?",
+      "answer_fields": [
+        "Có cần liên kết nhiều phương thức không",
+        "Cách xử lý hai tài khoản đã có dữ liệu",
+        "Những dữ liệu phải giữ khi hợp nhất",
+        "Người dùng cần xác nhận điều gì"
+      ],
+      "proposal": "Ưu tiên một phương thức trước; nếu liên kết phải chứng minh quyền kiểm soát cả hai, xem trước dữ liệu và tránh ghi trùng. Không tự hợp nhất theo tên hiển thị hoặc email chưa xác minh.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 2,
+      "skip_if": "Bỏ qua nếu V5-32 chọn đúng một phương thức và chưa cần chuyển đổi.",
+      "related_v5": [
+        "V5-28",
+        "V5-32",
+        "V5-44"
+      ]
+    },
+    {
+      "id": "N-ACC03",
+      "group": "Tài khoản",
+      "title": "Tài khoản chưa xác minh được làm những gì",
+      "why": "Thống kê đăng ký và xác minh đã hỏi ở V5-43; còn cần chốt trải nghiệm khi xác minh chưa xong.",
+      "question": "Nếu phương thức đăng nhập cần xác minh email mà người dùng chưa nhận thư, họ được chơi, viết nháp hoặc lưu đồng bộ đến mức nào? Trang hỗ trợ nên cho gửi lại, đổi địa chỉ hay trở về chế độ khách?",
+      "answer_fields": [
+        "Chức năng được dùng trước xác minh",
+        "Hành vi khi thư chưa đến hoặc link hết hạn",
+        "Có cho đổi email trước xác minh không",
+        "Dữ liệu nháp được giữ ở đâu trong thời gian chờ"
+      ],
+      "proposal": "Hiển thị trạng thái rõ; giữ nháp khi có thể, hướng dẫn gửi lại qua dịch vụ xác thực với giới hạn chống spam. Không hiển thị tài khoản chưa xác minh như đã xác minh.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Bỏ qua nếu phương thức đã chọn không có bước xác minh email riêng.",
+      "related_v5": [
+        "V5-32",
+        "V5-43",
+        "V5-45"
+      ]
+    },
+    {
+      "id": "N-ACC04",
+      "group": "Tài khoản",
+      "title": "Giới hạn đối tượng và thông báo trước thu thập dữ liệu",
+      "why": "V5-33 hỏi nhóm pilot; mở đăng ký rộng có thể đưa thêm nhóm tuổi và phạm vi sử dụng khác.",
+      "question": "Ngoài nhóm bạn thử, đợt đầu có chủ động phục vụ trẻ vị thành niên hoặc lớp học không? Bạn muốn giới hạn đối tượng ở giai đoạn thử đến đâu và ai chịu trách nhiệm duyệt thông báo quyền riêng tư trước mở đăng ký?",
+      "answer_fields": [
+        "Nhóm tuổi/phạm vi người dùng dự kiến khi mở rộng",
+        "Có trường lớp hoặc người giám hộ tham gia không",
+        "Người duyệt thông báo thu thập/xóa dữ liệu",
+        "Điều kiện để mở đăng ký rộng hơn"
+      ],
+      "proposal": "Chỉ mở cho phạm vi đã chuẩn bị chính sách phù hợp; thu dữ liệu tối thiểu, không yêu cầu ngày sinh đầy đủ khi chỉ cần biết nhóm tuổi. Yêu cầu pháp lý cụ thể phải được đối chiếu theo phạm vi thực tế trước phát hành.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Nếu pilot chỉ nhóm người lớn đã chọn, ghi phạm vi đó; chưa cần thiết kế chức năng trường học.",
+      "related_v5": [
+        "V5-29",
+        "V5-30",
+        "V5-33"
+      ]
+    },
+    {
+      "id": "N-WORK01",
+      "group": "Quy trình",
+      "title": "Nguồn code chính để phát triển trong VS Code",
+      "why": "Hiện có repo gốc, bản online-preview và gói snapshot bàn giao; sửa nhiều bản song song sẽ gây lệch phiên bản.",
+      "question": "Bạn có đồng ý dùng repository gốc làm nơi phát triển chính, giữ gói bàn giao như bản lưu, và lấy giao diện online-preview làm nền cho bản web tiếp theo không? Nếu có một bản mới hơn đang sửa ở nơi khác, chỉ rõ vị trí và việc đã đổi.",
+      "answer_fields": [
+        "Thư mục/repo chính bạn sẽ mở",
+        "Có bản mới hơn ở nơi khác không",
+        "Những file đang sửa cần giữ",
+        "Ai hoặc trợ lý nào cùng sửa để tránh ghi đè"
+      ],
+      "proposal": "Dùng E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai làm repo chính; đối chiếu thay đổi chưa commit trước mọi lần ghép. Không xóa snapshot/tài liệu hoặc tạo lịch sử Git mới đè repo cũ.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không bỏ qua khi chuyển môi trường làm việc; không gửi token GitHub.",
+      "related_v5": [
+        "V5-39",
+        "V5-41"
+      ]
+    },
+    {
+      "id": "N-WORK02",
+      "group": "Quy trình",
+      "title": "Bạn muốn duyệt một bản sửa bằng bằng chứng nào",
+      "why": "Bạn đã yêu cầu hỏi trước khi approve; cần xác định gói thông tin giúp bạn quyết định nhanh mà không phải đọc toàn bộ code.",
+      "question": "Với mỗi đợt, bạn muốn xem link thử, ảnh trước/sau, video ngắn, danh sách file đổi hay kết quả test ở mức nào? Bạn muốn phản hồi theo từng tính năng hay duyệt cả gói? Những nội dung nào bắt buộc có trước khi xin phép phát hành?",
+      "answer_fields": [
+        "Bằng chứng bạn ưu tiên theo thứ tự",
+        "Duyệt từng tính năng hay cả đợt",
+        "Tiêu chí báo cáo ngắn bắt buộc",
+        "Cách đánh dấu đồng ý hoặc yêu cầu sửa"
+      ],
+      "proposal": "Mỗi đợt có mục tiêu, link/bản chạy kiểm tra được, thay đổi chính, test thật và giới hạn. Giữ yêu cầu duyệt trước push/deploy, đổi public, mua dịch vụ hoặc xóa dữ liệu; không bật lại auto-approve.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 1,
+      "skip_if": "Không cần trả lời lại có auto-approve hay không; chính sách đã chốt là không.",
+      "related_v5": [
+        "V5-35",
+        "V5-39",
+        "V5-40",
+        "V5-41"
+      ]
+    },
+    {
+      "id": "N-WORK03",
+      "group": "Quy trình",
+      "title": "API chỉ phục vụ Cờ Chill hay còn cho bên khác",
+      "why": "API là cổng trao đổi giữa giao diện và máy chủ; API công khai cho đối tác cần phạm vi, tài liệu và hạn mức khác.",
+      "question": "Trong đợt này, API chỉ cần phục vụ website Cờ Chill, hay bạn đã có ứng dụng/đối tác cụ thể muốn kết nối? Nếu có, họ cần đọc bài, gửi ván phân tích hay đọc thống kê nào, và chỉ dùng dữ liệu của ai?",
+      "answer_fields": [
+        "Chỉ Cờ Chill hay có bên sử dụng khác",
+        "Tên loại ứng dụng và mục đích nếu có",
+        "Dữ liệu/thao tác được phép",
+        "Mốc thời gian cần tích hợp"
+      ],
+      "proposal": "Bản đầu chỉ xây API cho chính ứng dụng với quyền kiểm tra ở server. Chưa mở API public hoặc cấp khóa cho bên thứ ba nếu chưa có nhu cầu cụ thể. Cấu trúc endpoint, token và framework do đội kỹ thuật đề xuất.",
+      "proposal_status": "Đề xuất chưa được chủ sản phẩm duyệt",
+      "priority": 2,
+      "skip_if": "Nếu chưa có đối tác/app khác, trả lời Chỉ phục vụ Cờ Chill là đủ.",
+      "related_v5": [
+        "V5-40",
+        "V5-42"
+      ]
+    }
+  ],
+  "source_notes": [
+    {
+      "source": "docs/CO_CHILL_V5_QUESTIONS.md",
+      "note": "Read all 46 questions. New questions avoid re-asking themes, budget total, authentication method, retention, roles, notifications, sync policy or broad launch order."
+    },
+    {
+      "source": "https://github.com/official-pikafish/Pikafish",
+      "note": "Official engine source is GPL-3.0; exact redistribution requirements need checking for chosen package."
+    },
+    {
+      "source": "https://github.com/official-pikafish/Networks",
+      "note": "Official Networks README retrieved by parent on 2026-10-21: published NNUE weights prohibit commercial use without permission. Keep separate from engine-code license; verify chosen version before launch."
+    },
+    {
+      "source": "https://github.com/official-pikafish/Pikafish/wiki/UCI-%26-Commands",
+      "note": "UCI controls position/search and produces engine output; owner need not choose UCI commands or technical parsing."
+    },
+    {
+      "source": "BAO_CAO_UIUX_V5_2026_10_16.md and docs/RULES_UIUX_2026_10_15.md",
+      "note": "Baseline report, not fresh live verification. Full tournament adjudication and account/cloud persistence not complete."
+    }
+  ],
+  "amend_existing_instead_of_duplicate": [
+    {
+      "id": "V5-37",
+      "change": "Add explicit budget split for engine CPU/server alongside authentication/database; current 100k desired/200k cap is prior owner constraint, verify only if latest strong-engine wish needs changing. Do not assume budget raised."
+    },
+    {
+      "id": "V5-39",
+      "change": "Latest assistant proposed engine milestone first; not owner-approved priority. Ask owner to rank strong engine vs accounts within already-required V5, and confirm whether small local engine milestone may precede cloud account release."
+    },
+    {
+      "id": "V5-40",
+      "change": "Clarify separate static frontend and persistent engine service; do not imply Vercel/static deployment alone gives Pikafish or accounts. Existing provider access question already covers account ownership—no need a duplicate provider question."
+    },
+    {
+      "id": "V5-04",
+      "change": "Update wording from shallow-engine uncertainty to calibrated Pikafish evidence and equivalent acceptable moves, preserving same-side score comparison; exact numerical thresholds delegated to engineering and owner-validated examples."
+    },
+    {
+      "id": "V5-36",
+      "change": "Add separate targets for bot response, one-position review and whole-game review here; avoid repeating numerical wait questions in N-ENG05."
+    },
+    {
+      "id": "V5-19",
+      "change": "If content editor becomes necessary for operator autonomy, ask updated priority here; do not create duplicate new editor-feature question."
+    }
+  ],
+  "engineering_defaults_do_not_burden_owner": [
+    "UCI process management, FEN conversion and coordinate mapping, MultiPV/searchmoves implementation.",
+    "Normalize score perspective; distinguish centipawn/mate/bounds; validate each PV with rules; no invented scores for unsearched moves.",
+    "Keep engine search outside long SQLite write transactions; queues, limits and cancellation prevent stale results from applying to a changed game.",
+    "Storage/schema migrations, idempotent completion, access checks per API, backup verification, secret management and password protection are technical duties, not optional owner choices.",
+    "Ruleset selection remains V5-08; do not silently adopt engine adjudication if it differs from chosen product rules. Unknown history cannot establish repetition facts.",
+    "No coaching during live game and no reveal before reflection remain decided invariants, not open survey choices.",
+    "No promises of ML training, user impact, Elo strength or accurate essay grading without evidence."
+  ]
+}

@@ -1,0 +1,16 @@
+from pathlib import Path
+r=Path(__file__).resolve().parents[2]
+p=r/'online-preview/app.js';s=p.read_text(encoding='utf-8')
+s=s.replace("function save(){window.CCCloudUI?.save(state);", "function save(){if(booting)return;window.CCCloudUI?.save(state);")
+s=s.replace("function selectSquare(sq){const [page,id]", "function selectSquare(sq){if(booting)return;const [page,id]")
+s=s.replace("setInterval(()=>{const g=activeGame();", "setInterval(()=>{if(booting)return;const g=activeGame();")
+p.write_text(s,encoding='utf-8')
+p=r/'online-preview/v5-ui.js';s=p.read_text(encoding='utf-8')
+s=s.replace("let adminData = null, adminError = '', contentData = null, accountReturn", "let adminData = null, adminError = '', contentData = null, editingContent=null, accountReturn")
+s=s.replace("ready = false; adminData=null; contentData=null; adminError='';", "ready = false; booting=false; adminData=null; contentData=null; editingContent=null; adminError='';")
+s=s.replace("<h2>Thế cờ mới</h2>","<h2>${editingContent?'Sửa bản nháp':'Thế cờ mới'}</h2>")
+s=s.replace("${btn('Duyệt & xuất bản','content-publish',p.id,'secondary')}", "${btn('Xem / sửa','content-edit',p.id,'secondary')}${btn('Duyệt & xuất bản','content-publish',p.id,'secondary')}")
+s=s.replace("data.status='draft';await client.request('/api/admin/content',{method:'POST',body:data});form.reset();toast('Đã lưu nháp. Chưa xuất bản cho người học.');", "data.status='draft';if(editingContent)data.version=editingContent.version;await client.request('/api/admin/content'+(editingContent?'/'+encodeURIComponent(editingContent.id):''),{method:editingContent?'PATCH':'POST',body:data});editingContent=null;const result=await client.request('/api/admin/content');contentData=result.content||[];await loadPublished();render();toast('Đã lưu nháp. Chưa xuất bản cho người học.');")
+s=s.replace("if(action==='content-list'){", "if(action==='content-edit'){editingContent=contentData?.find(p=>p.id===value)||null;render();const form=document.querySelector('[data-cloud-form=content]');if(editingContent&&form){for(const key of ['title','fen','solution','skill','what','why','how','source'])form.elements[key].value=editingContent[key]||'';form.elements.alternatives.value=(editingContent.alternatives||[]).join(', ');form.scrollIntoView({block:'start'});}}\n      if(action==='content-list'){")
+s=s.replace("status=\"guest\"", "status=\"guest\"")
+p.write_text(s,encoding='utf-8')

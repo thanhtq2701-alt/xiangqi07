@@ -1,0 +1,176 @@
+[
+  {
+    "path": ".gitignore",
+    "bytes": 193,
+    "lines": 18,
+    "sha256": "98c27423b8f9db0555b0553307f3173fc3d0c4c9326b57b90b691aeb94ea2f50"
+  },
+  {
+    "path": ".vscode/tasks.json",
+    "bytes": 956,
+    "lines": 48,
+    "sha256": "ed797442dd7285b642993de3908b870105164cd1be12e7f438132e735e4e649c"
+  },
+  {
+    "path": "AI_HANDOFF.md",
+    "bytes": 3668,
+    "lines": 29,
+    "sha256": "bb73c5537ddcc66f876ed992f5f71df7c2767e4ffcbfd04d58e7b606b30dd670"
+  },
+  {
+    "path": "app/__init__.py",
+    "bytes": 56,
+    "lines": 1,
+    "sha256": "a4bc4dc61a7d7911ebcf3d498daac21fd38ceccacba9e04823f088a1faebcb94"
+  },
+  {
+    "path": "app/engine.py",
+    "bytes": 3988,
+    "lines": 99,
+    "sha256": "e69b74d66c445c15a85abcc063bdbee60a1900460d3b45c0ecc96b15aca47096"
+  },
+  {
+    "path": "app/puzzles.py",
+    "bytes": 2182,
+    "lines": 37,
+    "sha256": "4dabd2d30d42afe5970b395102f2b39fc66cf000028b194e21dd69e04e03c3cb"
+  },
+  {
+    "path": "app/rules.py",
+    "bytes": 8805,
+    "lines": 208,
+    "sha256": "720b65228ff53b9eb6081fef12a7a3f4ee3e10ff424e139d45064ffa610a1b86"
+  },
+  {
+    "path": "online-preview/app.js",
+    "bytes": 68187,
+    "lines": 165,
+    "sha256": "203479bb39d5067ddd0b54705d81759609b6c9ed4ab9b411044f12a93da4d2c0"
+  },
+  {
+    "path": "online-preview/experience.js",
+    "bytes": 5674,
+    "lines": 66,
+    "sha256": "5eb313c6dcf375bbee59b4a98338def05caefe49e9fa6522f0d7b94b47a3cb8b"
+  },
+  {
+    "path": "online-preview/favicon.svg",
+    "bytes": 348,
+    "lines": 1,
+    "sha256": "3047a88786861e5531815b5b3cddcbbff30298ffa77405c75e05857695db203b"
+  },
+  {
+    "path": "online-preview/fixtures.js",
+    "bytes": 23121,
+    "lines": 506,
+    "sha256": "604bf9a17871303423652aee560983c1eb892f0d1a27d0866a5f92c05998a180"
+  },
+  {
+    "path": "online-preview/game-tools.js",
+    "bytes": 13300,
+    "lines": 200,
+    "sha256": "5c41a1ca29644dbb33a48c90a891ca39a291b802d9fcea90eaffdf7c8640cb90"
+  },
+  {
+    "path": "online-preview/index.html",
+    "bytes": 5846,
+    "lines": 62,
+    "sha256": "acc17ff62c78e50b3c17c9c12cf5773272a82869471893d19214129ab000001a"
+  },
+  {
+    "path": "online-preview/learning.js",
+    "bytes": 17914,
+    "lines": 388,
+    "sha256": "9e7b59698678ca0e2d50c2764f41fa447e73887871b61dc772cd8f8c25ff3423"
+  },
+  {
+    "path": "online-preview/logo-co-chill.png",
+    "bytes": 751229,
+    "lines": null,
+    "sha256": "e7ca5862873246c36bd3f4366add8aa23667c0c05ab7b2b0f04c7c574439e1b6"
+  },
+  {
+    "path": "online-preview/style.css",
+    "bytes": 32677,
+    "lines": 403,
+    "sha256": "f1b7678ec2572d2294045815b3901dc03c2cefda82f92bdfa18064ca45cc93d5"
+  },
+  {
+    "path": "online-preview/xiangqi.js",
+    "bytes": 12433,
+    "lines": 251,
+    "sha256": "1b8b63116dceeebfdbe8120447f8c659f751d621ef3ad89f76541229b17f4ec1"
+  },
+  {
+    "path": "README.md",
+    "bytes": 13269,
+    "lines": 140,
+    "sha256": "69689841ec0861fa8764a8f98fe3d2b2e9b6b6a08e4ebdaf7f6f263f2caa39d6"
+  },
+  {
+    "path": "SOURCE_MANIFEST.json",
+    "bytes": 6652,
+    "lines": 170,
+    "sha256": "6bc70277201bba66c4cf597a8fb6f2bd7ea8de96f1db04e17bee99c612e2143e"
+  },
+  {
+    "path": "tests/__init__.py",
+    "bytes": 0,
+    "lines": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "path": "tests/test_rules.py",
+    "bytes": 6421,
+    "lines": 160,
+    "sha256": "ede46b62b27310541d9338bebdf8520936b8e1b24e77393f0b5d855285d3f0c5"
+  },
+  {
+    "path": "THIRD_PARTY_NOTICES.md",
+    "bytes": 1889,
+    "lines": 15,
+    "sha256": "819b5d02acbea61e19d7cb578d5e6e3e9f02f2b4b9f9cc6faba150840adf08bf"
+  },
+  {
+    "path": "tools/check_all.py",
+    "bytes": 3072,
+    "lines": 62,
+    "sha256": "116410d3e3371019f9c9a450d55cd4a46d55d0022f8d4c3787a7d7422ac1d22d"
+  },
+  {
+    "path": "tools/check_browser_rules.py",
+    "bytes": 9887,
+    "lines": 212,
+    "sha256": "2eef259750d0064e6fc7317a8730013104df3665404f500a3dad6139bb585baf"
+  },
+  {
+    "path": "tools/check_online_preview.py",
+    "bytes": 2066,
+    "lines": 43,
+    "sha256": "6c17d4e1d16da6177d46e11ff7fb7ae9885504b3d7ef23c7a7dca0d10e216acc"
+  },
+  {
+    "path": "tools/export_preview_fixtures.py",
+    "bytes": 6416,
+    "lines": 109,
+    "sha256": "4959a69870ae602f600bc07c442789ac35d31abb76a4f73b127e7bd32bfe3e0e"
+  },
+  {
+    "path": "tools/test_preview_experience.cjs",
+    "bytes": 16812,
+    "lines": 243,
+    "sha256": "819c23ee03fc9f74fec9b608cbb1e9c6fa9baee4b248c984ea9f566329a1adb4"
+  },
+  {
+    "path": "tools/test_preview_game_tools.cjs",
+    "bytes": 10847,
+    "lines": 196,
+    "sha256": "9e7e9e70b838d97fd510d3f972a1a773fabbaed0d4a77b23c282663fe1597d07"
+  },
+  {
+    "path": "tools/test_preview_learning.cjs",
+    "bytes": 11651,
+    "lines": 215,
+    "sha256": "43f3e324e8f3efd8b44fac5710d3da8395103881d9d5f20db62bf0c2bb18966d"
+  }
+]

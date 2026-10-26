@@ -1,0 +1,25 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 52
+BS 46 Tài khoản chưa xác minh được làm những gì
+Mức 1 · Liên quan: V5 32, V5 43, V5 45
+Điều kiện áp dụng: Bỏ qua nếu phương thức đã chọn không có bước xác minh email riêng.
+Nếu phương thức đăng nhập cần xác minh email mà người dùng chưa nhận thư, họ được chơi, viết 
+nháp hoặc lưu đồng bộ đến mức nào? Trang hỗ trợ nên cho gửi lại, đổi địa chỉ hay trở về chế độ
+khách?
+Đề xuất chưa duyệt: Hiển thị trạng thái rõ; giữ nháp khi có thể, hướng dẫn gửi lại qua dịch vụ xác thực 
+với giới hạn chống spam. Không hiển thị tài khoản chưa xác minh như đã xác minh.
+Cần điền: 1. Chức năng được dùng trước xác minh; 2. Hành vi khi thư chưa đến hoặc link hết hạn; 3. Có cho đổi 
+email trước xác minh không; 4. Dữ liệu nháp được giữ ở đâu trong thời gian chờ
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 47 Giới hạn đối tượng và thông báo trước thu thập dữ liệu
+Mức 1 · Liên quan: V5 29, V5 30, V5 33
+Điều kiện áp dụng: Nếu pilot chỉ nhóm người lớn đã chọn, ghi phạm vi đó; chưa cần thiết kế chức năng trường học.
+Ngoài nhóm bạn thử, đợt đầu có chủ động phục vụ trẻ vị thành niên hoặc lớp học không? Bạn muốn 
+giới hạn đối tượng ở giai đoạn thử đến đâu và ai chịu trách nhiệm duyệt thông báo quyền riêng tư trước 
+mở đăng ký?
+Đề xuất chưa duyệt: Chỉ mở cho phạm vi đã chuẩn bị chính sách phù hợp; thu dữ liệu tối thiểu, không 
+yêu cầu ngày sinh đầy đủ khi chỉ cần biết nhóm tuổi. Yêu cầu pháp lý cụ thể phải được đối chiếu theo 
+phạm vi thực tế trước phát hành.
+Cần điền: 1. Nhóm tuổi/phạm vi người dùng dự kiến khi mở rộng; 2. Có trường lớp hoặc người giám hộ tham gia 
+không; 3. Người duyệt thông báo thu thập/xóa dữ liệu; 4. Điều kiện để mở đăng ký rộng hơn
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

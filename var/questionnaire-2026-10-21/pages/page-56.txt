@@ -1,0 +1,12 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 56
+Màn hình hoặc trạng thái Câu chốt yêu cầu
+Đăng ký đăng nhập khôi phục và tài khoản
+Chưa có route trong bản đọc
+V5 29, V5 30, V5 32, V5 44, V5 45, V5 46, BS 25
+Quản trị tài khoản dữ liệu và nội dung
+Chưa có route trong bản đọc
+V5 13, V5 19, V5 28, V5 38, V5 42, V5 43, V5 46, BS 25
+Mỗi màn cần kiểm tra: trạng thái bình thường, chưa có dữ liệu, đang tải, lỗi, mất mạng, thiếu quyền, 
+thao tác thành công và dữ liệu chưa lưu. Mặc định: nói đúng tình trạng, có bước tiếp, giữ nháp khi phù 
+hợp, không giả dữ liệu hoặc phần trăm tiến độ. Ngoại lệ điền tại BS 25.

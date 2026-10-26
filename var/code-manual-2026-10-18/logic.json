@@ -1,0 +1,741 @@
+[
+  {
+    "path": "online-preview/xiangqi.js",
+    "role": "Bộ luật cờ tướng và bộ tìm nước cục bộ chạy bằng JavaScript. Đây là nơi website hỏi một nước có hợp lệ không, ván đã kết thúc chưa và nước nào có điểm tốt hơn trong phạm vi tìm kiếm ngắn.",
+    "depends": [
+      "Không cần thư viện ngoài khi chạy trên trình duyệt.",
+      "game-tools.js và app.js gọi các thành phần được xuất qua XQ.",
+      "Bản bàn giao có app/rules.py và bài kiểm thử để đối chiếu luật, nhưng trình duyệt không nạp Python."
+    ],
+    "missing": "Trang có thể còn khung HTML và CSS nhưng bàn cờ không có bộ luật, không kiểm tra được FEN/nước đi, không có đối thủ máy hoặc phân tích cục bộ; các file gọi XQ sẽ lỗi.",
+    "groups": [
+      {
+        "title": "Vỏ mô đun và quy ước chung",
+        "start": 1,
+        "end": 17,
+        "symbols": [
+          "IIFE",
+          "START_FEN",
+          "NAMES",
+          "VALUES",
+          "ENGINE_VERSION",
+          "ELEPHANT_POINTS"
+        ],
+        "explanation": "Khối tự chạy bọc toàn bộ file để tên biến nội bộ không tràn ra trang. START_FEN mô tả thế xuất phát; NAMES chuyển mã quân thành tiếng Việt; VALUES gán điểm vật chất cho từng loại quân. ELEPHANT_POINTS liệt kê những giao điểm Tượng được phép đứng ở mỗi bên. ENGINE_VERSION giúp lời phân tích nói rõ bộ tìm nước nào đã tạo kết quả.",
+        "example": "Xe có giá trị 900, Pháo 450, Mã 400; đây là hệ số trong chương trình.",
+        "risk": "Các điểm số là quy ước heuristic; không phải sức cờ đã được đo, xác suất thắng hay mô hình ML."
+      },
+      {
+        "title": "Đổi màu quân và tọa độ",
+        "start": 18,
+        "end": 28,
+        "symbols": [
+          "side",
+          "other",
+          "square",
+          "index",
+          "parseMove"
+        ],
+        "explanation": "Bàn cờ được lưu thành mảng 90 phần tử, còn người dùng nhìn tọa độ a0 đến i9. square đổi số ô trong mảng thành tọa độ; index đổi ngược lại và từ chối chuỗi sai. parseMove tách một chuỗi bốn ký tự thành ô xuất phát và ô đích. side nhận biết Đỏ bằng chữ hoa, Đen bằng chữ thường; other đổi lượt chơi.",
+        "example": "parseMove('a0a1') trả về hai chỉ số để truy cập mảng bàn cờ.",
+        "risk": "Đúng định dạng tọa độ chưa có nghĩa là nước đi hợp lệ; việc đó thuộc legalMoves/play."
+      },
+      {
+        "title": "Tạo đối tượng thế cờ",
+        "start": 30,
+        "end": 35,
+        "symbols": [
+          "Position",
+          "Position.constructor"
+        ],
+        "explanation": "Position gom hai phần luôn đi cùng nhau: board là 90 ô và turn là bên đến lượt. Hàm khởi tạo yêu cầu đúng kích thước và lượt w hoặc b, sao chép mảng rồi đóng băng mảng đó. Nhờ vậy, khi tạo một thế cờ mới để thử nước đi, chương trình không vô tình sửa các ô của thế cờ cũ đang dùng để xem lại.",
+        "example": "w là lượt Đỏ theo quy ước nội bộ của ứng dụng.",
+        "risk": "Object.freeze chỉ áp dụng cho mảng board tại đây; không nên hiểu toàn bộ đối tượng Position là bất biến tuyệt đối."
+      },
+      {
+        "title": "Đọc và kiểm tra chuỗi thế cờ",
+        "start": 37,
+        "end": 77,
+        "symbols": [
+          "Position.fromFen"
+        ],
+        "explanation": "fromFen nhận chuỗi FEN, tách đúng mười hàng, mở rộng chữ số thành ô trống và đổi các bí danh n/b thành h/e. Sau đó hàm kiểm tra số lượng quân, một Tướng mỗi bên, vị trí trong cung, điểm Sĩ/Tượng và lộ xuất phát của Tốt. Cuối cùng, nó từ chối thế mà bên vừa đi vẫn bị chiếu hoặc hai Tướng đối mặt.",
+        "example": "Một hàng có tổng tám ô thay vì chín sẽ bị từ chối trước khi bàn cờ được dùng.",
+        "risk": "Đây là kiểm tra cấu trúc và tính hợp lệ cục bộ của thế; không chứng minh mọi FEN đều đạt tới được từ thế khai cuộc bằng một ván hoàn chỉnh."
+      },
+      {
+        "title": "Xuất thế cờ về chuỗi",
+        "start": 79,
+        "end": 90,
+        "symbols": [
+          "Position.fen"
+        ],
+        "explanation": "fen duyệt mười hàng, gom các ô trống liên tiếp thành con số, giữ ký hiệu quân và nối thêm lượt đi. Kết quả gọn hơn một mảng 90 phần tử và thuận tiện để lưu, nhập, so sánh hai vị trí hoặc đưa vào bài tập. Hàm này xuất dạng hai trường, dù bộ đọc có chấp nhận đầu vào dạng sáu trường.",
+        "example": "Một hàng chín ô trống được viết là 9.",
+        "risk": "Những trường bổ sung trong FEN sáu trường không được giữ lại; không dùng chuỗi xuất này như bản ghi đầy đủ đồng hồ hoặc lịch sử ván."
+      },
+      {
+        "title": "Liệt kê ô đi theo hình của Xe và Pháo",
+        "start": 92,
+        "end": 115,
+        "symbols": [
+          "Position.targets",
+          "add"
+        ],
+        "explanation": "targets bắt đầu từ một ô có quân rồi xây danh sách đích theo quy tắc di chuyển của loại quân đó. add chỉ thêm ô nằm trong bàn và không có quân cùng bên. Với Xe và Pháo, chương trình quét bốn hướng thẳng; Xe dừng ở quân đầu tiên, còn Pháo dùng biến screen để nhận biết đã có đúng một quân ngòi trước mục tiêu ăn hay chưa.",
+        "example": "Pháo có thể đi qua các ô trống trước ngòi, nhưng chỉ ăn quân đầu tiên sau ngòi.",
+        "risk": "targets chưa lọc trường hợp tự làm Tướng mình bị chiếu; danh sách này chưa phải toàn bộ nước hợp lệ cuối cùng."
+      },
+      {
+        "title": "Luật Mã Tượng Tướng Sĩ và Tốt",
+        "start": 116,
+        "end": 147,
+        "symbols": [
+          "Position.targets"
+        ],
+        "explanation": "Phần còn lại của targets kiểm tra tám hướng Mã cùng chân Mã; bốn đường chéo Tượng cùng mắt Tượng và giới hạn qua sông; bước Tướng/Sĩ trong cung; hướng tiến và quyền đi ngang của Tốt sau sông. Nhánh Tướng còn quét đường dọc để phát hiện Tướng đối phương trên cùng lộ trống. Kết quả vẫn là các ô đích theo chuyển động của quân.",
+        "example": "Mã bị chặn chân thì đích tương ứng không được thêm; Tốt chưa qua sông chỉ tiến.",
+        "risk": "Nhánh đối mặt của Tướng phục vụ phát hiện đe dọa; legalMoves sẽ loại nước bắt Tướng trực tiếp."
+      },
+      {
+        "title": "Phát hiện chiếu và dựng thế thử",
+        "start": 149,
+        "end": 159,
+        "symbols": [
+          "Position.inCheck",
+          "Position.afterUnchecked"
+        ],
+        "explanation": "inCheck tìm Tướng của một màu rồi hỏi có quân đối phương nào tấn công vào ô đó không. afterUnchecked sao chép bàn, chuyển quân, xóa ô cũ và đổi lượt để tạo vị trí sau nước thử. Tách hai việc này giúp bộ luật và engine thử nhiều phương án mà không làm thay đổi ván thật.",
+        "example": "Bộ lọc có thể giả sử Xe rời một cột rồi kiểm tra Tướng có lộ đường chiếu không.",
+        "risk": "afterUnchecked bỏ qua kiểm tra luật theo đúng tên; dữ liệu người dùng phải đi qua play hoặc danh sách legalMoves trước."
+      },
+      {
+        "title": "Lọc nước hợp lệ và xác định kết thúc",
+        "start": 161,
+        "end": 184,
+        "symbols": [
+          "Position.legalMoves",
+          "Position.play",
+          "Position.status"
+        ],
+        "explanation": "legalMoves duyệt quân của bên đến lượt, lấy đích từ targets, loại bắt Tướng trực tiếp rồi thử từng nước để bỏ nước khiến Tướng mình bị chiếu. play chỉ thực hiện nước nằm trong danh sách ấy, nếu không sẽ báo lỗi. status dùng việc còn nước hợp lệ và có bị chiếu để phân biệt đang chơi, chiếu hết hoặc hết nước hợp lệ.",
+        "example": "Trong chương trình này, hết nước hợp lệ dù không bị chiếu vẫn là thua theo luật cờ tướng.",
+        "risk": "Lặp thế, chiếu dai và số nước không bắt quân không nằm trong status; phần bổ sung thuộc game-tools.js."
+      },
+      {
+        "title": "Mô tả nước và chấm vật chất",
+        "start": 186,
+        "end": 201,
+        "symbols": [
+          "describe",
+          "evaluate"
+        ],
+        "explanation": "describe tạo câu tiếng Việt từ quân đang ở ô nguồn, ô đích và quân bị ăn, giúp giao diện diễn đạt nước cờ dễ đọc. evaluate cộng trừ giá trị quân theo góc nhìn bên đến lượt; Tốt đã qua sông được cộng thêm 40 điểm. Hàm không đọc câu trả lời của người học và không dự đoán tâm lý hay trình độ người chơi.",
+        "example": "Một nước có thể được mô tả thành 'Xe a2 → a7 ăn Xe'.",
+        "risk": "Đánh giá này chủ yếu dựa vào vật chất và Tốt qua sông; không đủ để kết luận chiến lược sâu hoặc thắng chắc."
+      },
+      {
+        "title": "Sắp xếp nước và chuẩn bị giới hạn tìm kiếm",
+        "start": 203,
+        "end": 218,
+        "symbols": [
+          "ordered",
+          "rank",
+          "analyze",
+          "now"
+        ],
+        "explanation": "ordered ưu tiên các nước ăn quân giá trị cao để tìm kiếm hiệu quả hơn. rank xếp kết quả theo điểm và dùng chuỗi nước làm tiêu chí phụ khi bằng điểm. analyze nhận FEN hoặc Position, chọn độ sâu một hoặc hai nửa nước và thời gian tối đa mặc định 400 ms. Nếu không có nước hợp lệ, hàm trả kết quả kết thúc ngay.",
+        "example": "Một nửa nước là một lần đi của một bên; độ sâu hai không phải hai lượt đầy đủ của cả hai bên.",
+        "risk": "Tùy chọn depth khác 1 được quy về 2; đây là bộ tìm kiếm nông có giới hạn thời gian."
+      },
+      {
+        "title": "Tìm kiếm đệ quy có cắt nhánh",
+        "start": 219,
+        "end": 233,
+        "symbols": [
+          "search"
+        ],
+        "explanation": "search thử các nước kế tiếp, đổi dấu điểm khi đổi bên và giữ chuỗi nước tốt nhất trong pv. Alpha và beta là hai ngưỡng giúp bỏ các nhánh không thể cải thiện kết quả hiện tại. Mỗi lần gọi tăng số nút đã xét và kiểm tra hạn giờ; hết thời gian thì ném một tín hiệu riêng để dừng lượt tìm kiếm an toàn.",
+        "example": "pv là dãy nước chương trình đã xét nối từ phương án hiện tại.",
+        "risk": "Đây là thuật toán tìm cây nước đi bằng quy tắc, không phải LLM hoặc mạng nơ ron; chuỗi tìm được chỉ phản ánh độ sâu đã hoàn thành."
+      },
+      {
+        "title": "Chỉ nhận kết quả tìm kiếm đã hoàn thành",
+        "start": 234,
+        "end": 246,
+        "symbols": [
+          "analyze"
+        ],
+        "explanation": "Trước khi tìm sâu, analyze chuẩn bị một bảng điểm tĩnh cho tất cả nước gốc. Sau đó nó lần lượt hoàn thành toàn bộ bảng ở độ sâu một rồi hai; nếu hết giờ giữa chừng, bảng chưa xong bị bỏ. Kết quả trả gồm bestMove, ranked, pv, độ sâu thực tế, cờ complete/truncated, số nút và nhãn fallback để giao diện báo giới hạn trung thực.",
+        "example": "Nếu mới hoàn tất độ sâu một trước khi hết giờ, depth là 1 dù requestedDepth là 2.",
+        "risk": "Không trộn điểm một số nước đã tìm sâu với số khác chưa tìm; điểm depth 0 là dự phòng tĩnh, không được gọi là phân tích sâu."
+      },
+      {
+        "title": "Công bố giao diện cho các file khác",
+        "start": 248,
+        "end": 251,
+        "symbols": [
+          "api",
+          "root.XQ",
+          "module.exports"
+        ],
+        "explanation": "Cuối file gom những hằng số, lớp và hàm cần dùng thành api rồi đóng băng danh sách đó. Trên trình duyệt, các file khác truy cập XQ.Position, XQ.analyze hoặc XQ.describe. Khi kiểm thử bằng Node, cùng API được xuất qua module.exports. Cách đóng gói này cho phép dùng chung một bộ luật cho trang web và bài kiểm thử.",
+        "example": "app.js có thể gọi XQ.Position.fromFen(...) sau khi script này được nạp.",
+        "risk": "Thứ tự nạp script phải bảo đảm xiangqi.js có trước những file sử dụng XQ."
+      }
+    ],
+    "reading_tip": "Đọc parseMove → Position.fromFen → targets → legalMoves → play trước. Sau khi hiểu luật mới đọc evaluate/analyze. Dùng Ctrl+G trong VS Code để tới các dòng của từng nhóm."
+  },
+  {
+    "path": "online-preview/game-tools.js",
+    "role": "Lớp hỗ trợ người chơi đọc/nhập ký phổ tiếng Việt, hiểu lý do nước sai và kiểm tra một số tình huống lặp thế. File dùng bộ luật XQ, không tự tạo luật thay thế.",
+    "depends": [
+      "online-preview/xiangqi.js cung cấp Position, parseMove, NAMES và các phép kiểm tra luật.",
+      "app.js dùng các hàm được gắn vào CC để nhập ván, hiện lịch sử và thông báo phán quyết."
+    ],
+    "missing": "Mất nhập ký phổ Việt, lịch sử nước định dạng Việt, giải thích nước không hợp lệ và kiểm tra lặp thế bổ sung. Bộ luật nền còn trong xiangqi.js nhưng những màn hình gọi CC của file này sẽ lỗi.",
+    "groups": [
+      {
+        "title": "Kết nối mô đun và chuẩn hóa đầu vào",
+        "start": 1,
+        "end": 17,
+        "symbols": [
+          "IIFE",
+          "factory",
+          "CODES",
+          "position",
+          "file",
+          "plain",
+          "normalize"
+        ],
+        "explanation": "Khối đầu nhận XQ từ trình duyệt hoặc require khi chạy Node, sau đó bổ sung API vào đối tượng CC dùng chung. CODES đặt tên viết tắt quân Việt; position nhận cả FEN lẫn Position; file tính số lộ theo góc nhìn mỗi bên. plain bỏ dấu và chữ hoa, còn normalize đổi từ tiến/thoái/bình thành ký hiệu để so khớp đầu vào linh hoạt hơn.",
+        "example": "P là Pháo, B là Tốt; dấu chấm biểu thị tiến trong ký phổ của ứng dụng.",
+        "risk": "CC được nhiều file cùng bổ sung; không thay cả đối tượng bằng dữ liệu riêng khiến API của file khác mất đi."
+      },
+      {
+        "title": "Phân tích thành phần của một nước ký phổ",
+        "start": 19,
+        "end": 41,
+        "symbols": [
+          "parts"
+        ],
+        "explanation": "parts lấy ô xuất phát, đích, loại quân và màu để tính tên quân, lộ, hướng và đích hiển thị. Hàm còn tìm các quân cùng loại trên cùng lộ, xếp theo phía trước/sau và thêm nhãn phân biệt. Trường hợp nhiều chồng Tốt có thể dùng số lộ hoặc thứ tự trong ngoặc để tránh hai quân cùng có một tên.",
+        "example": "Hai Xe cùng lộ có thể được phân biệt bằng 'X trước' và 'X sau'.",
+        "risk": "Các phần mở rộng [thứ tự] và lộ bổ sung được dùng để rõ nghĩa; không quảng cáo là toàn bộ chuẩn ký phổ thi đấu."
+      },
+      {
+        "title": "Đổi nước tọa độ thành ký phổ Việt",
+        "start": 43,
+        "end": 48,
+        "symbols": [
+          "notateMove"
+        ],
+        "explanation": "notateMove nhận thế cờ trước nước và chuỗi tọa độ, kiểm tra nước có trong legalMoves rồi ghép kết quả parts thành ký phổ. Nếu nước sai, hàm dùng illegalMoveReason để báo lý do cụ thể. Kiểm tra trước khi định dạng ngăn lịch sử hiển thị đẹp nhưng chứa nước chưa được bộ luật chấp nhận.",
+        "example": "Một nước Pháo bình lộ có thể hiện là P2-5.",
+        "risk": "Muốn đặt ký phổ phải cung cấp thế cờ trước nước; vị trí sau nước không đủ để biết quân xuất phát và phân biệt trước/sau."
+      },
+      {
+        "title": "Đọc một nước người dùng nhập",
+        "start": 50,
+        "end": 67,
+        "symbols": [
+          "parseNotation"
+        ],
+        "explanation": "parseNotation chấp nhận tọa độ a0a1 hoặc ký phổ Việt. Với ký phổ, chương trình không suy đoán một nước bất kỳ: nó tạo ký hiệu cho toàn bộ nước hợp lệ hiện có rồi tìm nước khớp đầu vào đã chuẩn hóa. Đúng một kết quả thì trả tọa độ; nhiều kết quả báo mơ hồ; không có kết quả thì yêu cầu sửa.",
+        "example": "P2-5 hoặc M2.3 có thể được đọc nếu chúng hợp lệ trong thế đang xét.",
+        "risk": "Không bỏ qua sự mơ hồ để chọn đại một quân; luật XQ vẫn quyết định nước nào được nhập."
+      },
+      {
+        "title": "Đọc một biên bản nhiều nước",
+        "start": 69,
+        "end": 86,
+        "symbols": [
+          "parseGameNotation",
+          "token"
+        ],
+        "explanation": "parseGameNotation nhận FEN đầu và văn bản biên bản, bỏ số thứ tự đầu nước rồi đọc từng token. Mỗi token đi qua parseNotation và pos.play trước khi thêm vào lịch sử, nên nước sau luôn được kiểm tra trên vị trí mới. Kết quả gồm moves dạng tọa độ và positions chứa các FEN, thuận tiện dựng màn xem lại.",
+        "example": "Nếu lỗi ở nửa nước thứ 12, thông báo chỉ rõ vị trí lỗi đó.",
+        "risk": "Giới hạn mặc định 200 nửa nước, cấu hình bị chặn trong 1–2000; chưa đọc chú thích xen trong ván và không nhận văn bản quá 20.000 ký tự."
+      },
+      {
+        "title": "Ghép lịch sử theo lượt Đỏ và Đen",
+        "start": 88,
+        "end": 99,
+        "symbols": [
+          "pairMoveHistory"
+        ],
+        "explanation": "pairMoveHistory đi lại ván từ FEN đầu, nhận lịch sử dưới dạng chuỗi hoặc đối tượng có move. Nó nhóm hai nửa nước thành một hàng red/black, thêm số thứ tự, ký phổ, chỉ số ply và FEN trước nước. Dữ liệu này giúp giao diện hiện cột Đỏ/Đen, chọn một nước và quay đúng vị trí để phân tích.",
+        "example": "Nếu thế ban đầu đến lượt Đen, hàng đầu vẫn chứa đúng ô Đen mà không tự thêm một nước Đỏ giả.",
+        "risk": "Hàm vẫn phát lại và kiểm tra luật; lịch sử bị sửa hỏng có thể khiến nó báo lỗi."
+      },
+      {
+        "title": "Đếm vật cản và giải thích nước sai",
+        "start": 101,
+        "end": 150,
+        "symbols": [
+          "between",
+          "illegalMoveReason"
+        ],
+        "explanation": "between đếm quân nằm giữa hai ô cùng hàng/cột. illegalMoveReason lần lượt kiểm tra tọa độ, ô trống, đúng lượt, quân cùng bên, quy tắc từng loại quân, hai Tướng đối mặt và việc để Tướng mình bị chiếu. Đầu ra là một câu tiếng Việt cụ thể giúp người mới hiểu vì sao nước bị từ chối; chuỗi rỗng nghĩa là không tìm thấy lỗi theo các kiểm tra này.",
+        "example": "Pháo ăn quân có hai ngòi sẽ được giải thích bằng số ngòi đang có.",
+        "risk": "Đây là giải thích bằng điều kiện đã viết sẵn, không phải AI sinh văn bản. Bộ luật nền vẫn là nguồn kiểm tra nước hợp lệ."
+      },
+      {
+        "title": "Dựng dữ liệu lịch sử cho trọng tài cục bộ",
+        "start": 152,
+        "end": 164,
+        "symbols": [
+          "gameTimeline"
+        ],
+        "explanation": "gameTimeline phát lại toàn bộ lịch sử bằng pos.play, lưu mỗi Position cùng thông tin bên đi, có bắt quân không và có chiếu bên kế tiếp không. quietPlies đếm các nửa nước không bắt quân liên tiếp và về không khi có bắt quân. Kết quả là dữ liệu nền cho kiểm tra lặp thế và số nước, không phụ thuộc lời mô tả của người dùng.",
+        "example": "Hai lịch sử dẫn tới cùng bàn cờ vẫn có thể có chuỗi chiếu khác nhau; cần giữ các bước trung gian.",
+        "risk": "Đếm không bắt quân tại đây chưa tự đủ để kết luận mọi điều kiện hòa theo luật thi đấu."
+      },
+      {
+        "title": "Nhận biết kết thúc và chiếu dai một phía",
+        "start": 166,
+        "end": 180,
+        "symbols": [
+          "repetitionStatus",
+          "allCheck"
+        ],
+        "explanation": "repetitionStatus so FEN hiện tại với các vị trí trong lịch sử, bao gồm lượt đi. Nó ưu tiên kết quả hết nước từ bộ luật. Khi cùng thế xuất hiện ít nhất bốn lần, chương trình xét chu kỳ gần nhất: nếu chỉ một bên chiếu ở mọi lượt của mình, bên đó bị xử thua theo quy tắc thử nghiệm đang cài; nếu cả hai cùng chiếu thì chuyển sang cần kiểm chứng.",
+        "example": "Lần xuất hiện đầu tiên cũng được tính trong số occurrences.",
+        "risk": "Phán quyết này là bộ xử lý bảo thủ của prototype, chưa phải trọng tài giải đấu hoàn chỉnh."
+      },
+      {
+        "title": "Giữ các tình huống phức tạp ở trạng thái cần kiểm chứng",
+        "start": 181,
+        "end": 197,
+        "symbols": [
+          "repetitionStatus",
+          "possibleChase"
+        ],
+        "explanation": "Với chu kỳ lặp còn lại, chương trình tìm bất kỳ khả năng bắt quân hợp lệ nào của hai bên như một dấu hiệu có thể đuổi bắt. Nếu có chiếu hoặc dấu hiệu ấy, nó trả needsVerification thay vì tự xử hòa. Chỉ chu kỳ yên tĩnh mới xử hòa; 100 nửa nước không bắt quân cũng chỉ yêu cầu kiểm chứng. Lặp ba lần phát cảnh báo trước.",
+        "example": "Một mối đe dọa ăn quân trong chu kỳ có thể khiến ứng dụng chưa chốt kết quả.",
+        "risk": "possibleChase cố ý có thể báo dư; không nhận diện đầy đủ đuổi bắt, ngoại lệ hay toàn bộ luật liên đoàn."
+      },
+      {
+        "title": "Xuất các công cụ công khai",
+        "start": 199,
+        "end": 200,
+        "symbols": [
+          "Object.freeze",
+          "notateMove",
+          "parseNotation",
+          "parseGameNotation",
+          "pairMoveHistory",
+          "illegalMoveReason",
+          "repetitionStatus"
+        ],
+        "explanation": "Khối cuối trả sáu hàm công khai cho bộ bọc đầu file đưa vào CC hoặc module.exports. Những hàm phụ như parts, between và gameTimeline được giữ bên trong để các nơi khác không dựa vào chi tiết dễ thay đổi. Tách API nhỏ giúp sửa cách tính ký phổ mà giữ nguyên lời gọi từ app.js.",
+        "example": "app.js có thể gọi CC.parseGameNotation(...) mà không phải biết regex token bên trong.",
+        "risk": "Đổi tên hoặc xóa một hàm công khai cần sửa đồng thời nơi gọi và bài kiểm thử."
+      }
+    ],
+    "reading_tip": "Đọc parseNotation và notateMove cùng nhau để hiểu chuyển đổi hai chiều; sau đó đọc illegalMoveReason. Chỉ đọc repetitionStatus khi đã hiểu lịch sử vị trí trong gameTimeline."
+  },
+  {
+    "path": "online-preview/learning.js",
+    "role": "Quản lý dữ liệu và các bước của một phiên học, lượt làm bài, bài liên quan, lịch ôn và bản tự đánh giá. Phần lớn hàm nhận trạng thái đầu vào rồi trả trạng thái mới; việc đọc/ghi localStorage thuộc app.js.",
+    "depends": [
+      "Không gọi mạng, database hay thư viện ngoài.",
+      "app.js điều phối giao diện, xác minh nước bằng XQ và lưu kết quả do các hàm CC ở đây trả về.",
+      "experience.js bổ sung kiểm tra nộp câu trả lời, số liệu hiển thị và xuất dữ liệu."
+    ],
+    "missing": "Không tạo/khôi phục được phiên học, không chặn mở giải thích đúng quy trình, không lưu hoàn thành và lịch ôn hay chọn bài liên quan bằng API hiện tại. Chơi cờ có thể còn logic luật nhưng vòng học sẽ đứt.",
+    "groups": [
+      {
+        "title": "Vỏ mô đun và hằng số học tập",
+        "start": 1,
+        "end": 16,
+        "symbols": [
+          "IIFE",
+          "factory",
+          "DAY",
+          "INTERVALS",
+          "STAGES",
+          "FORBIDDEN",
+          "MIN_TIME",
+          "MAX_TIME",
+          "MAX_HISTORY"
+        ],
+        "explanation": "File dùng vỏ mô đun để chạy trên trình duyệt lẫn Node và bổ sung các hàm vào CC. DAY đổi một ngày thành mili giây; INTERVALS đặt các mốc ôn 1, 2, 7, 14, 30 ngày. STAGES giới hạn tên các bước học. Các hằng số còn lại chặn tên thuộc tính nguy hiểm, thời gian vô lý và giới hạn số lượt lịch sử giữ lại.",
+        "example": "reflect, explain, retry, complete, summary và related_pending là các trạng thái được chấp nhận.",
+        "risk": "Lịch ôn là quy tắc minh bạch trong bản demo, chưa phải mô hình học máy hoặc hiệu quả sư phạm đã được kiểm chứng."
+      },
+      {
+        "title": "Kiểm tra kiểu dữ liệu mã nước và thời gian",
+        "start": 18,
+        "end": 48,
+        "symbols": [
+          "plain",
+          "text",
+          "validId",
+          "move",
+          "time",
+          "nowValue",
+          "iso"
+        ],
+        "explanation": "Các hàm nhỏ làm hàng rào trước dữ liệu được khôi phục hoặc đưa vào logic học. plain kiểm tra đối tượng; text giới hạn chiều dài; validId kiểm tra mã bản ghi; move kiểm tra định dạng nước. time chỉ chấp nhận thời điểm trong khoảng cho phép; nowValue yêu cầu thời gian hợp lệ; iso đổi thời gian thành chuỗi chuẩn có thể lưu và đọc lại.",
+        "example": "Mã bản ghi '__proto__' bị loại; thời gian hoàn thành sai kiểu sẽ không âm thầm được dùng.",
+        "risk": "move chỉ kiểm tra bốn ký tự tọa độ, chưa kiểm tra luật. XQ phải xác minh nước thật ở tầng gọi."
+      },
+      {
+        "title": "Sao chép dữ liệu an toàn và tạo trạng thái rỗng",
+        "start": 50,
+        "end": 76,
+        "symbols": [
+          "safeJson",
+          "fresh",
+          "copyState"
+        ],
+        "explanation": "safeJson đi qua dữ liệu lồng nhau với giới hạn độ sâu, số phần tử và độ dài chuỗi; nó loại kiểu không hỗ trợ và khóa thuộc tính nguy hiểm. fresh tạo cấu trúc trạng thái phiên bản 2 gồm records, session, games, summaries và profile. copyState sao chép các vùng chính trước khi cập nhật để tránh thay đổi ngay đối tượng đang được giao diện sử dụng.",
+        "example": "Người dùng chưa có dữ liệu bắt đầu bằng records rỗng và session bằng null.",
+        "risk": "copyState là sao chép các lớp cần thiết, không phải nhân bản sâu toàn bộ cây dữ liệu; từng thao tác cập nhật phải tiếp tục sao chép nhánh mình sửa."
+      },
+      {
+        "title": "Giữ ảnh chụp bài và tạo phiên học",
+        "start": 78,
+        "end": 127,
+        "symbols": [
+          "hash",
+          "puzzleSnapshot",
+          "createSession"
+        ],
+        "explanation": "hash tạo chuỗi ngắn để góp phần đặt mã phiên; puzzleSnapshot giữ các trường bài tập cần thiết cùng đáp án và phương án thay thế đã được giới hạn. createSession ghép bài, nguồn và thời điểm thành phiên mới ở bước reflect, có ba ô trả lời trống, chưa chọn nước, chưa xem giải thích và bộ đếm trợ giúp/thử lại bằng không. Snapshot giúp tiếp tục bài sinh từ ván sau khi tải lại.",
+        "example": "Một phiên bắt đầu từ bài liên quan có related=true nhưng vẫn phải suy nghĩ từ bước reflect.",
+        "risk": "hash không phải thuật toán bảo mật; snapshot có đáp án ở máy người dùng nên không phải cơ chế giấu đáp án khỏi người mở DevTools."
+      },
+      {
+        "title": "Điều kiện mở lời giải và chuyển bước",
+        "start": 129,
+        "end": 148,
+        "symbols": [
+          "canReveal",
+          "reveal"
+        ],
+        "explanation": "canReveal chỉ cho qua khi người học có ba câu trả lời không rỗng và nước dự kiến đúng định dạng, hoặc đã chọn không biết. reveal dùng điều kiện này để chuyển sang explain và đánh dấu đã xem giải thích; trường hợp không biết được đánh dấu có trợ giúp. Hàm không đánh giá nội dung suy luận bằng ngôn ngữ tự nhiên, cũng không tự quyết định nước đó hợp lệ theo luật.",
+        "example": "Chọn không biết có thể mở giải thích nhưng kết quả sau đó không được tính như tự giải không trợ giúp.",
+        "risk": "Đây là rào quy trình ở phía trình duyệt, không phải quyền truy cập máy chủ; kiểm tra số lần nộp và khớp đáp án nằm ở experience.js/app.js."
+      },
+      {
+        "title": "Phân biệt đã nhìn thấy với đã hoàn thành",
+        "start": 150,
+        "end": 175,
+        "symbols": [
+          "emptyRecord",
+          "markSeen"
+        ],
+        "explanation": "emptyRecord tạo hồ sơ riêng cho một bài: kỹ năng, số lần thấy, lịch sử làm bài và các mốc hoàn thành/ôn. markSeen cập nhật seenCount và lastSeenAt khi bài được mở. Chỉ nhìn bài không thêm một lượt làm thành công, không tạo completedAt và không đặt dueAt. Nhờ phân biệt này, hệ gợi ý biết bài nào thực sự chưa được tiếp xúc.",
+        "example": "Mở một hình rồi bỏ dở làm hình đó thành đã thấy, nhưng không tự tạo lịch ôn.",
+        "risk": "seenCount không phải số lần hoàn thành, số người học hay số lần trả lời đúng."
+      },
+      {
+        "title": "Tính khoảng cách ôn theo kết quả",
+        "start": 177,
+        "end": 183,
+        "symbols": [
+          "schedule"
+        ],
+        "explanation": "schedule nhận hồ sơ cũ, kết quả và cờ trợ giúp. Thành công không trợ giúp tăng chuỗi tối đa năm bậc, chọn khoảng 1, 2, 7, 14 hoặc 30 ngày. Thất bại đưa chuỗi về không và ôn sau một ngày; thành công có trợ giúp cũng đặt lại chuỗi nhưng ôn sau hai ngày. Hàm chỉ tính khoảng, chưa gắn ngày đến hạn.",
+        "example": "Lần đầu tự làm đúng được hẹn sau một ngày; lần tiếp theo tự đúng có thể tăng lên hai ngày.",
+        "risk": "Khoảng ôn cố định là quyết định sản phẩm hiện tại; không được gọi là dự đoán khả năng quên cá nhân đã huấn luyện."
+      },
+      {
+        "title": "Kiểm tra điều kiện trước khi ghi hoàn thành",
+        "start": 185,
+        "end": 202,
+        "symbols": [
+          "finishPuzzle"
+        ],
+        "explanation": "Phần đầu finishPuzzle xác minh phiên thuộc đúng bài và có mã hợp lệ. Nếu mã phiên đã được ghi trong lịch sử đang giữ, hàm trả lại trạng thái cũ để bấm hai lần không tạo thêm lượt. Nó yêu cầu đã qua suy nghĩ/giải thích, có kết quả boolean quan sát được và thời điểm hoàn thành không trước lúc bắt đầu hoặc lượt ôn trước. Sau đó tổng hợp cờ trợ giúp và tính lịch.",
+        "example": "Bấm hoàn thành liên tiếp không được dời ngày bắt đầu lịch ôn trong những lượt còn được lưu.",
+        "risk": "Hàm tin kết quả success do tầng gọi cung cấp sau khi kiểm tra nước; nó không tự chạy engine."
+      },
+      {
+        "title": "Lưu lượt làm bài và lấy hoàn thành làm mốc ôn",
+        "start": 203,
+        "end": 238,
+        "symbols": [
+          "finishPuzzle",
+          "attempt"
+        ],
+        "explanation": "Phần ghi của finishPuzzle lưu thời điểm bắt đầu/kết thúc, nguồn, câu trả lời, nước chọn ban đầu và cuối, kết quả và việc có trợ giúp. Hồ sơ được nối thêm lượt mới, giữ tối đa 200 lượt, cập nhật completedAt và đặt dueAt bằng thời điểm hoàn thành cộng số ngày ôn. Phiên hiện tại chuyển sang complete để giao diện tiếp tục sang bài liên quan hoặc tổng kết.",
+        "example": "Nếu người học bắt đầu hôm qua nhưng hoàn thành hôm nay, lịch ôn bắt đầu tính từ hôm nay.",
+        "risk": "Lịch sử giới hạn 200 lượt mỗi bài; completionCount ở đây phản ánh lịch sử giữ lại, không phải tổng trọn đời không giới hạn."
+      },
+      {
+        "title": "Chọn bài cùng kỹ năng ưu tiên chưa gặp",
+        "start": 240,
+        "end": 257,
+        "symbols": [
+          "recommend",
+          "exposed"
+        ],
+        "explanation": "recommend lọc danh sách về cùng skill và loại bài hiện tại. Sau đó nó đặt các bài chưa có dấu vết đã thấy lên trước; trong các bài cũ, ưu tiên bài lâu được xem nhất, dùng ID để ổn định thứ tự khi bằng nhau. Hàm trả cả bài, cờ unseen và mã lý do để giao diện giải thích vì sao đề xuất bài đó.",
+        "example": "Sau bài Pháo, hệ thống ưu tiên một ID Pháo khác chưa được mở.",
+        "risk": "Thuật toán dựa vào ID và skill, chưa đo độ tương tự sâu, độ khó thực hay chất lượng kiến thức; đây không phải mô hình gợi ý ML."
+      },
+      {
+        "title": "Ghi tự đánh giá cuối phiên",
+        "start": 259,
+        "end": 275,
+        "symbols": [
+          "summarizeSession"
+        ],
+        "explanation": "summarizeSession nhận các ô tự tích và lời ghi chú của người học, tạo bản ghi kind=self_report gắn với phiên. Nếu cùng ID tổng kết đã tồn tại, bản mới thay bản cũ để tránh nhân đôi khi lưu lại. Danh sách giữ tối đa 200 bản. Hàm cố ý chỉ cập nhật summaries và không dùng cảm nhận tự báo để tăng tỷ lệ làm đúng hoặc đổi lịch ôn.",
+        "example": "Tích 'hôm nay tôi kiểm tra an toàn Tướng' là lời tự đánh giá, khác với hệ thống quan sát một nước đúng.",
+        "risk": "Không biến các ô tích này thành bằng chứng người học đã thành thạo hoặc đã cải thiện được đo lường."
+      },
+      {
+        "title": "Làm sạch phiên khi mở lại trang",
+        "start": 277,
+        "end": 314,
+        "symbols": [
+          "sanitizeSession"
+        ],
+        "explanation": "sanitizeSession nhận phiên đã lưu và dựng lại chỉ những trường được cho phép. Nó kiểm tra ID/thời gian, giới hạn văn bản, bộ đếm nộp/thử/trợ giúp, câu trả lời ban đầu, ghi chú và thông tin bài chờ. Nếu dữ liệu nói đang ở bước giải thích nhưng chưa đủ điều kiện suy nghĩ, bước được đưa về reflect; complete thiếu giờ hoàn thành thì hạ về explain.",
+        "example": "Một bản lưu bị thiếu câu trả lời không thể cứ giữ cờ explain để vượt luồng đọc lại bình thường.",
+        "risk": "Hàng rào này giúp chịu dữ liệu lỗi; không chống người cố ý sửa JavaScript trên chính trình duyệt của họ."
+      },
+      {
+        "title": "Tái dựng hồ sơ và lịch ôn từ lịch sử hợp lệ",
+        "start": 316,
+        "end": 361,
+        "symbols": [
+          "sanitizeRecord"
+        ],
+        "explanation": "sanitizeRecord không tin nguyên các con số tổng hợp đã lưu. Nó loại lượt sai ID, trùng ID, thiếu kết quả boolean hoặc có thời điểm vô lý; rồi chạy schedule tuần tự trên các lượt còn lại để tính lại chuỗi, completedAt, dueAt và số hoàn thành. Cách làm này tránh một trường dueAt bị hỏng làm toàn bộ lịch ôn sai mà không cần xóa sạch lịch sử.",
+        "example": "Một lượt hoàn thành trước giờ bắt đầu sẽ bị bỏ thay vì tạo ngày ôn trong quá khứ.",
+        "risk": "Tối đa 200 lượt cuối được xem xét; dữ liệu không hợp lệ bị bỏ, không có máy chủ để phục hồi bản đã mất."
+      },
+      {
+        "title": "Làm sạch trạng thái tổng và xuất API",
+        "start": 363,
+        "end": 388,
+        "symbols": [
+          "sanitize",
+          "fresh",
+          "sanitizeRecord",
+          "sanitizeSession",
+          "safeJson",
+          "CC"
+        ],
+        "explanation": "sanitize chỉ nhận cấu trúc version=2, tạo nền rỗng rồi đưa tối đa 2.000 hồ sơ qua sanitizeRecord và phiên qua sanitizeSession. Nó giới hạn ván, tên người dùng và tổng kết; dữ liệu ván chỉ được sao chép an toàn ở bước này chứ chưa phát lại toàn bộ luật. Cuối file xuất các hàm công khai cho app.js và Node kiểm thử.",
+        "example": "Tên hồ sơ được giới hạn 80 ký tự; phiên bản không nhận diện được trở về trạng thái mới.",
+        "risk": "Tên hồ sơ không phải tài khoản xác thực. File này không tự lưu vào ổ đĩa, không đăng nhập và không đồng bộ giữa thiết bị."
+      }
+    ],
+    "reading_tip": "Đọc fresh/createSession để hiểu hình dạng dữ liệu, rồi canReveal/reveal → finishPuzzle → recommend. Cuối cùng đọc sanitize để biết ứng dụng khôi phục dữ liệu an toàn thế nào."
+  },
+  {
+    "path": "online-preview/experience.js",
+    "role": "Nhóm hàm nhỏ bổ sung trải nghiệm: chuẩn hóa tùy chỉnh giao diện, câu hỏi suy nghĩ, kiểm tra nộp bài, xuất dữ liệu cá nhân, đếm bằng chứng học và cập nhật đồng hồ.",
+    "depends": [
+      "Không dùng thư viện ngoài.",
+      "app.js truyền phiên, bài và trạng thái học vào các hàm CC ở đây.",
+      "learning.js cung cấp cấu trúc session/records mà các hàm này đọc."
+    ],
+    "missing": "Các chức năng tùy chọn, kiểm tra nộp suy nghĩ, thống kê, xuất dữ liệu và đồng hồ có thể lỗi khi app.js gọi API thiếu; file không chỉ là phần trang trí tùy chọn.",
+    "groups": [
+      {
+        "title": "Vỏ mô đun dùng chung",
+        "start": 1,
+        "end": 7,
+        "symbols": [
+          "IIFE",
+          "factory",
+          "module.exports",
+          "root.CC"
+        ],
+        "explanation": "Khối tự chạy tạo API rồi gắn vào CC trên trình duyệt, đồng thời hỗ trợ module.exports để kiểm thử bằng Node. Object.assign giữ các hàm đã được game-tools.js và learning.js thêm vào CC rồi bổ sung các hàm của file này. Vì các chức năng nhỏ không phụ thuộc DOM, bài kiểm thử có thể gọi trực tiếp mà không cần mở giao diện.",
+        "example": "CC.preferences và CC.finishPuzzle đến từ hai file khác nhau nhưng cùng được gọi qua CC.",
+        "risk": "Nếu đổi vỏ mô đun thành ghi đè toàn bộ CC, các API đã nạp trước đó sẽ mất."
+      },
+      {
+        "title": "Tùy chỉnh mặc định và kiểm tra giá trị",
+        "start": 8,
+        "end": 17,
+        "symbols": [
+          "DEFAULT_PREFS",
+          "preferences"
+        ],
+        "explanation": "DEFAULT_PREFS đặt chủ đề ấm, quân chữ Hán, chữ thường, tắt âm thanh và các lựa chọn ban đầu khác. preferences nhận dữ liệu đã lưu, chỉ chấp nhận các giá trị nằm trong danh sách cho phép; lựa chọn sai quay về mặc định. Hai cờ âm thanh và thanh bên chỉ được bật khi giá trị đúng là true, tránh chuỗi văn bản bị hiểu nhầm thành bật.",
+        "example": "theme chỉ nhận warm, cool hoặc dark; pieces nhận han hoặc vi.",
+        "risk": "Hàm chỉ trả cấu hình; app.js và CSS phải áp dụng nó thì người dùng mới thấy giao diện thay đổi."
+      },
+      {
+        "title": "Câu hỏi và gợi ý trước lời giải",
+        "start": 18,
+        "end": 27,
+        "symbols": [
+          "PROMPTS",
+          "HINTS"
+        ],
+        "explanation": "PROMPTS chứa ba câu hỏi dẫn người học quan sát ưu thế, quân/vị trí đáng chú ý và mục đích nước đi cùng phản ứng đối thủ. HINTS cung cấp gợi ý cùng thứ tự, tập trung cách nhìn và kiểm tra thay vì đưa ngay tọa độ đáp án. Đây là nội dung viết sẵn để giữ quy trình suy nghĩ nhất quán giữa các bài.",
+        "example": "Câu gợi ý đề nghị nhìn hai Tướng, số quân và vị trí trước khi kết luận thắng thua.",
+        "risk": "Các câu không được LLM tạo riêng cho từng thế; gợi ý chung không thay thế xác minh luật hoặc phân tích engine."
+      },
+      {
+        "title": "Kiểm tra nộp bài và số lần thử",
+        "start": 28,
+        "end": 35,
+        "symbols": [
+          "reflectionCheck"
+        ],
+        "explanation": "reflectionCheck kiểm tra đủ ba câu trả lời không rỗng và đã chọn nước. Sau đó nó chỉ so nước chọn với solution hoặc alternatives, tăng số lần nộp tối đa ba và quyết định có mở đáp án không: khớp thì mở, hoặc sau lần thứ ba. Cờ assisted bật khi đã cần nhiều lượt, không khớp hoặc trước đó đã dùng trợ giúp.",
+        "example": "Lần đầu chọn đúng mẫu có thể mở giải thích ngay; chọn khác mẫu cần tiếp tục theo quy trình.",
+        "risk": "Hàm không chấm đúng/sai lý luận tự do và không tự xác minh nước hợp lệ; giao diện phải gọi bộ luật trước."
+      },
+      {
+        "title": "Xuất dữ liệu cá nhân theo danh sách cho phép",
+        "start": 36,
+        "end": 48,
+        "symbols": [
+          "safeExport",
+          "list",
+          "string",
+          "answers",
+          "status"
+        ],
+        "explanation": "safeExport dựng một tệp dữ liệu mới chỉ với trường được chọn: tên, ván và nước đi, lượt học, câu trả lời, lịch ôn, bản nháp và tự đánh giá. Các hàm phụ chuẩn hóa mảng, chuỗi, ba câu trả lời và trạng thái ván. Nó không sao chép tùy tiện toàn bộ state, nhờ vậy không đưa các ảnh chụp đáp án và bài sinh sẵn vào phần xuất cho người học.",
+        "example": "File xuất có format='co-chill-personal-export', version=1 và thời điểm exportedAt.",
+        "risk": "Dữ liệu xuất có câu trả lời cá nhân; đây không phải tài khoản cloud hay bản sao hệ thống đầy đủ, và không bảo đảm nhập lại mọi cấu trúc nội bộ."
+      },
+      {
+        "title": "Đếm lượt học và lần đầu không trợ giúp",
+        "start": 49,
+        "end": 56,
+        "symbols": [
+          "evidence"
+        ],
+        "explanation": "evidence có thể tổng hợp toàn bộ records hoặc riêng một skill. Nó đếm mọi lượt, lượt có trợ giúp và lượt thành công độc lập; đồng thời lấy lượt đầu tiên đang lưu của từng bài để tạo firstCount/firstCorrect. Ngưỡng sáu chỉ đặt cờ đủ mẫu cho việc hiển thị tỷ lệ, giúp làm lại cùng hình nhiều lần không tăng giả số lần đầu tự giải.",
+        "example": "Làm cùng một hình sáu lần tăng count nhưng firstCount vẫn là một trong lịch sử hiện có.",
+        "risk": "Với giới hạn 200 lượt mỗi bài ở learning.js, lượt đầu đang giữ không nhất thiết là lần đầu trọn đời; số liệu vẫn là tín hiệu demo cục bộ."
+      },
+      {
+        "title": "Trừ thời gian và cộng thời gian sau nước",
+        "start": 57,
+        "end": 66,
+        "symbols": [
+          "applyClockMove"
+        ],
+        "explanation": "applyClockMove sao chép đồng hồ, nếu chế độ thời gian tắt thì trả ngay. Nếu bật, nó lấy thời gian còn lại của bên đi trừ thời gian kể từ mốc last; hết giờ thì trả expired=true và về không. Một nước hoàn thành khi còn giờ được cộng increment rồi cập nhật last. Cuối file xuất toàn bộ hàm trải nghiệm vừa định nghĩa.",
+        "example": "Với increment=2000, mỗi nước hợp lệ hoàn thành khi còn giờ được cộng hai giây.",
+        "risk": "Đây là đồng hồ phía máy người dùng; không phải nguồn thời gian máy chủ cho thi đấu trực tuyến hoặc chống gian lận."
+      }
+    ],
+    "reading_tip": "File ngắn nên đọc từ đầu; liên hệ reflectionCheck với learning.js.canReveal để phân biệt quy tắc nộp bài và quyền chuyển bước. safeExport khác hẳn việc lưu state nội bộ."
+  },
+  {
+    "path": "online-preview/fixtures.js",
+    "role": "Kho 12 bài tập tổng hợp viết sẵn cho demo, gồm bốn nhóm kỹ năng với ba hình mỗi nhóm. Đây là dữ liệu bài tập, không phải thư viện AI, dữ liệu người dùng hay bộ ván đấu thu thập trên mạng.",
+    "depends": [
+      "app.js đọc biến FIXTURES để dựng thư viện và phiên học.",
+      "xiangqi.js kiểm tra FEN, nước mẫu và danh sách nước hợp lệ; các công cụ/bài kiểm thử trong bộ bàn giao đối chiếu dữ liệu.",
+      "learning.js dùng id và skill để lưu lịch sử, gợi ý bài liên quan."
+    ],
+    "missing": "Website mất kho bài mẫu cùng lời giải, mục luyện tập và các đề xuất cùng chủ đề có thể trống hoặc lỗi. Những bài phát sinh từ ván không tự thay thế toàn bộ thư viện mẫu.",
+    "groups": [
+      {
+        "title": "Cấu trúc chung của mỗi bài",
+        "start": 1,
+        "end": 49,
+        "symbols": [
+          "FIXTURES",
+          "id",
+          "family",
+          "skill",
+          "skillName",
+          "title",
+          "description",
+          "goal",
+          "fen",
+          "turn",
+          "pieces",
+          "solution",
+          "legal",
+          "what",
+          "why",
+          "how",
+          "source",
+          "phase",
+          "phaseNote",
+          "verification"
+        ],
+        "explanation": "FIXTURES là một mảng đối tượng JavaScript. Mỗi bài có ID ổn định để nối lịch sử, nhãn skill để nhóm, văn bản để hiển thị và FEN để dựng thế. pieces là bản đồ ô→quân; solution là nước mẫu; legal là danh sách nước hợp lệ đã lưu. what/why/how chia lời giải thành chuyện gì xảy ra, lý do và cách nghĩ. Các trường nguồn/kiểm chứng nói rõ mức độ tin cậy.",
+        "example": "FEN là mô tả bàn cờ; 'a2a7' là một nước; skill='material' là nhãn chủ đề.",
+        "risk": "Các đáp án nằm trong file được tải xuống trình duyệt; rào suy nghĩ chỉ điều khiển trải nghiệm. Không dùng fixtures như nguồn luật độc lập khi có XQ."
+      },
+      {
+        "title": "Ba bài quan sát quân và đường đi",
+        "start": 2,
+        "end": 145,
+        "symbols": [
+          "loose-rook",
+          "loose-cannon",
+          "sideways-rook"
+        ],
+        "explanation": "Ba bài material giúp kiểm tra đường thẳng của Xe và nhận ra quân có thể ăn. loose-rook dùng Xe Đỏ a2 ăn Xe Đen a7; loose-cannon đổi sang Xe h2 ăn Pháo h7; sideways-rook đổi hướng ngang từ b3 sang g3. Dù cùng nguyên tắc, chúng có ID và bố trí riêng để học sinh áp dụng cách nhìn vào một hình khác.",
+        "example": "Tên loose-cannon mô tả quân mục tiêu Pháo; quân thực hiện nước mẫu vẫn là Xe.",
+        "risk": "Không diễn giải các tên ID như nhãn chiến thuật đã được chuyên gia thẩm định; lời giải hiện tại chỉ giải thích nước mẫu cụ thể."
+      },
+      {
+        "title": "Ba bài Pháo và một quân ngòi",
+        "start": 146,
+        "end": 291,
+        "symbols": [
+          "cannon-file",
+          "cannon-rank",
+          "cannon-enemy-screen"
+        ],
+        "explanation": "Ba bài cannon minh họa việc Pháo ăn quân cần đúng một ngòi. cannon-file cho Pháo b2 ăn Xe b7 qua Mã Đỏ b4; cannon-rank đổi sang đường ngang a3→h3 qua Mã c3; cannon-enemy-screen dùng Tốt Đen g4 làm ngòi cho Pháo g2 ăn Xe g7. Sự thay đổi giúp phân biệt hướng đường Pháo và màu của quân ngòi.",
+        "example": "Ngòi có thể thuộc bên mình hoặc đối phương; quan trọng là đúng một quân ở giữa.",
+        "risk": "Đếm ngòi đúng vẫn chưa đủ: nước phải không để Tướng mình bị chiếu, nên luôn cần bộ luật kiểm tra."
+      },
+      {
+        "title": "Ba bài Mã và chân Mã",
+        "start": 292,
+        "end": 411,
+        "symbols": [
+          "horse-fork",
+          "horse-side",
+          "horse-back"
+        ],
+        "explanation": "Ba bài horse đổi hướng tiếp cận của Mã: c3→d5 ăn Xe, f3→h4 ăn Pháo, g5→e6 ăn Xe. Lời giải chỉ rõ chân Mã tương ứng c4, g3 và f5 đang trống, rồi nhắc kiểm tra đích và an toàn Tướng. Các ID được giữ để lịch sử ổn định; nội dung thực tế mới quyết định bài đang dạy điều gì.",
+        "example": "horse-fork ở bản này là Mã ăn Xe trên d5; không nên tự mô tả thành bài chĩa đôi chỉ vì tên ID.",
+        "risk": "Tên horse-back cũng không bảo đảm nước mẫu là nước lùi theo mọi góc nhìn; cần đọc FEN, nước và lời giải thực tế."
+      },
+      {
+        "title": "Ba bài thoát chiếu để bảo vệ Tướng",
+        "start": 412,
+        "end": 505,
+        "symbols": [
+          "check-capture",
+          "check-cannon",
+          "check-blocker"
+        ],
+        "explanation": "Ba bài safety đặt Tướng Đỏ trong tình huống phải xử lý chiếu. check-capture cho Xe a2 ăn Xe chiếu ở a0; check-cannon cho Xe i2 ăn Xe ở i0; check-blocker cho Xe a2 ăn Xe ở e2. Các hình có rất ít nước hợp lệ, giúp nhấn mạnh ưu tiên thoát chiếu trước khi nghĩ đến mục tiêu khác.",
+        "example": "check-cannon vẫn là tình huống Xe trong dữ liệu hiện tại, không có Pháo theo tên ID.",
+        "risk": "Không sửa ID tùy tiện vì records dùng ID để nối tiến độ; nếu đổi cần có phương án chuyển dữ liệu."
+      },
+      {
+        "title": "Nguồn dữ liệu và kết thúc kho bài",
+        "start": 45,
+        "end": 506,
+        "symbols": [
+          "source",
+          "phase",
+          "phaseNote",
+          "verification",
+          "FIXTURES"
+        ],
+        "explanation": "Mỗi bản ghi đều gắn nguồn synthetic-codex-v1, nhãn phase=end và lời giải thích rằng ít quân chỉ được xếp vào tàn cuộc để tiện tìm. verification nói nước mẫu và danh sách hợp lệ đã được đối chiếu với bộ luật cục bộ, chưa được chuyên gia thẩm định và không khẳng định là đáp án tốt duy nhất. Dòng 506 kết thúc mảng; file không gọi mạng hoặc sinh bài tự động.",
+        "example": "Cả 12 hình đều là bài tổng hợp, không phải 12 ván thật, 12 người học hoặc dữ liệu đánh giá tác động.",
+        "risk": "Rải đều ba hình mỗi nhóm chỉ phục vụ demo; chưa phải giáo trình đầy đủ, ngân hàng bài lớn hay kiểm chứng hiệu quả học."
+      }
+    ],
+    "reading_tip": "Đọc trọn bài loose-rook đầu tiên để hiểu tên các trường. Với 11 bài sau, so id/skill/fen/solution/why trước; không cần ghi nhớ toàn bộ mảng legal. Nếu bổ sung bài, chạy các kiểm tra fixture và luật."
+  }
+]

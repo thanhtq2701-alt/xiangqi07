@@ -1,0 +1,4870 @@
+[
+  {
+    "path": "xiangqi-ai/PROJECT_MEMORY_VI.md",
+    "bytes": 16092
+  },
+  {
+    "path": "xiangqi-ai/__pycache__/server.cpython-314.pyc",
+    "bytes": 11537
+  },
+  {
+    "path": "xiangqi-ai/deliverables/HUONG_DAN_CODE_VA_BAN_GIAO_CHAT_MOI.txt",
+    "bytes": 36379
+  },
+  {
+    "path": "xiangqi-ai/app/service.py",
+    "bytes": 17146
+  },
+  {
+    "path": "xiangqi-ai/tests/__init__.py",
+    "bytes": 0
+  },
+  {
+    "path": "xiangqi-ai/docs/UIUX_DECISION_REGISTER_2026_10_15.md",
+    "bytes": 17470
+  },
+  {
+    "path": "xiangqi-ai/TEST_REPORT_CODEX.md",
+    "bytes": 13022
+  },
+  {
+    "path": "xiangqi-ai/var/server-error.log",
+    "bytes": 0
+  },
+  {
+    "path": "xiangqi-ai/app/__init__.py",
+    "bytes": 56
+  },
+  {
+    "path": "xiangqi-ai/BAO_CAO_UIUX_V5_2026_10_16.md",
+    "bytes": 14290
+  },
+  {
+    "path": "xiangqi-ai/.gitignore",
+    "bytes": 174
+  },
+  {
+    "path": "xiangqi-ai/tools/test_engine_client.cjs",
+    "bytes": 4347
+  },
+  {
+    "path": "xiangqi-ai/co_chill_server.py",
+    "bytes": 33163
+  },
+  {
+    "path": "xiangqi-ai/BEGINNER_LEARNING_GUIDE_CODEX.md",
+    "bytes": 4036
+  },
+  {
+    "path": "xiangqi-ai/online-preview/README.md",
+    "bytes": 5714
+  },
+  {
+    "path": "xiangqi-ai/CONTRIBUTING.md",
+    "bytes": 2586
+  },
+  {
+    "path": "xiangqi-ai/artifacts/improve_ui.py",
+    "bytes": 3074
+  },
+  {
+    "path": "xiangqi-ai/artifacts/co-chill-public-live.png",
+    "bytes": 190298
+  },
+  {
+    "path": "xiangqi-ai/online-preview/engine-client.js",
+    "bytes": 3342
+  },
+  {
+    "path": "xiangqi-ai/tests/test_rules.py",
+    "bytes": 6421
+  },
+  {
+    "path": "xiangqi-ai/.git/HEAD",
+    "bytes": 27
+  },
+  {
+    "path": "xiangqi-ai/PUBLIC_READINESS_VI.md",
+    "bytes": 6707
+  },
+  {
+    "path": "xiangqi-ai/artifacts/co-chill-v4-live.png",
+    "bytes": 52874
+  },
+  {
+    "path": "xiangqi-ai/.git/description",
+    "bytes": 73
+  },
+  {
+    "path": "xiangqi-ai/tools/update_inventory.py",
+    "bytes": 14102
+  },
+  {
+    "path": "xiangqi-ai/tools/create_v4_ui_supplement.py",
+    "bytes": 4790
+  },
+  {
+    "path": "xiangqi-ai/.env.example",
+    "bytes": 1021
+  },
+  {
+    "path": "xiangqi-ai/artifacts/co-chill-2026-10-09.png",
+    "bytes": 135026
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_Web_Source_Gon.zip",
+    "bytes": 804312
+  },
+  {
+    "path": "xiangqi-ai/Codex.docx",
+    "bytes": 44289
+  },
+  {
+    "path": "xiangqi-ai/app/pikafish.py",
+    "bytes": 19717
+  },
+  {
+    "path": "xiangqi-ai/server.py",
+    "bytes": 6732
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_Huong_dan_review_va_update_2026_10_20.docx",
+    "bytes": 58014
+  },
+  {
+    "path": "xiangqi-ai/THIRD_PARTY_NOTICES.md",
+    "bytes": 4656
+  },
+  {
+    "path": "xiangqi-ai/var/v5-acceptance.sqlite3",
+    "bytes": 86016
+  },
+  {
+    "path": "xiangqi-ai/requirements.txt",
+    "bytes": 179
+  },
+  {
+    "path": "xiangqi-ai/app/engine.py",
+    "bytes": 3988
+  },
+  {
+    "path": "xiangqi-ai/PROJECT_INVENTORY_VI.md",
+    "bytes": 25730
+  },
+  {
+    "path": "xiangqi-ai/__pycache__/server.cpython-312.pyc",
+    "bytes": 11055
+  },
+  {
+    "path": "xiangqi-ai/tests/test_pikafish.py",
+    "bytes": 13425
+  },
+  {
+    "path": "xiangqi-ai/var/merge_v5_accounts.py",
+    "bytes": 15267
+  },
+  {
+    "path": "xiangqi-ai/AGENTS.md",
+    "bytes": 1316
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_So_tay_hien_trang.html",
+    "bytes": 52095
+  },
+  {
+    "path": "xiangqi-ai/Mo_Co_Chill.cmd",
+    "bytes": 117
+  },
+  {
+    "path": "xiangqi-ai/web/favicon.svg",
+    "bytes": 279
+  },
+  {
+    "path": "xiangqi-ai/GITHUB_CHECKLIST_VI.md",
+    "bytes": 15932
+  },
+  {
+    "path": "xiangqi-ai/KE_HOACH_TU_13_10_2026.md",
+    "bytes": 13606
+  },
+  {
+    "path": "xiangqi-ai/BAO_CAO_CHATGPTSITE_V4_2026_10_15.md",
+    "bytes": 9211
+  },
+  {
+    "path": "xiangqi-ai/var/update_uiux_app.py",
+    "bytes": 23238
+  },
+  {
+    "path": "xiangqi-ai/tools/test_v5_ui.cjs",
+    "bytes": 11355
+  },
+  {
+    "path": "xiangqi-ai/inventory/VERIFICATION_VI.md",
+    "bytes": 2324
+  },
+  {
+    "path": "xiangqi-ai/docs/PIKAFISH_SETUP_V5.md",
+    "bytes": 7712
+  },
+  {
+    "path": "xiangqi-ai/var/build_clean_web_package.py",
+    "bytes": 8859
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/.gitignore",
+    "bytes": 193
+  },
+  {
+    "path": "xiangqi-ai/tools/check_online_preview.py",
+    "bytes": 2066
+  },
+  {
+    "path": "xiangqi-ai/online-preview/game-tools.js",
+    "bytes": 13300
+  },
+  {
+    "path": "xiangqi-ai/PRIVACY.md",
+    "bytes": 7152
+  },
+  {
+    "path": "xiangqi-ai/Mo_Co_Chill_V5.cmd",
+    "bytes": 894
+  },
+  {
+    "path": "xiangqi-ai/tools/export_preview_fixtures.py",
+    "bytes": 6416
+  },
+  {
+    "path": "xiangqi-ai/tools/check_browser_rules.py",
+    "bytes": 9887
+  },
+  {
+    "path": "xiangqi-ai/var/chill.sqlite3",
+    "bytes": 53248
+  },
+  {
+    "path": "xiangqi-ai/IMPLEMENTATION_REPORT_CODEX.md",
+    "bytes": 33065
+  },
+  {
+    "path": "xiangqi-ai/NHAT_KY_UY_QUYEN_TAM_THOI.md",
+    "bytes": 4414
+  },
+  {
+    "path": "xiangqi-ai/docs/V4_BO_SUNG_UI_UX_KIEN_TRUC_LUAT.md",
+    "bytes": 56604
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-preview.tar.gz",
+    "bytes": 7619
+  },
+  {
+    "path": "xiangqi-ai/online-preview/experience.js",
+    "bytes": 6258
+  },
+  {
+    "path": "xiangqi-ai/Answer V3.docx",
+    "bytes": 104658
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/10_README_VI_DRAFT.md",
+    "bytes": 1244
+  },
+  {
+    "path": "xiangqi-ai/online-preview/learning.js",
+    "bytes": 23383
+  },
+  {
+    "path": "xiangqi-ai/online-preview/style.css",
+    "bytes": 32677
+  },
+  {
+    "path": "xiangqi-ai/.git/info/exclude",
+    "bytes": 240
+  },
+  {
+    "path": "xiangqi-ai/docs/CO_CHILL_V5_QUESTIONS.md",
+    "bytes": 48777
+  },
+  {
+    "path": "xiangqi-ai/README.md",
+    "bytes": 15841
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/14_CODEX_TRACK.md",
+    "bytes": 1053
+  },
+  {
+    "path": "xiangqi-ai/var/finish_uiux_app.py",
+    "bytes": 27797
+  },
+  {
+    "path": "xiangqi-ai/XiangqiAI_V3_Final_Pack.zip",
+    "bytes": 16525
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/pre-merge-commit.sample",
+    "bytes": 416
+  },
+  {
+    "path": "xiangqi-ai/data/sources.csv",
+    "bytes": 599
+  },
+  {
+    "path": "xiangqi-ai/app/storage.py",
+    "bytes": 2189
+  },
+  {
+    "path": "xiangqi-ai/KNOWN_LIMITATIONS.md",
+    "bytes": 10970
+  },
+  {
+    "path": "xiangqi-ai/app/puzzles.py",
+    "bytes": 2182
+  },
+  {
+    "path": "xiangqi-ai/inventory/manifest.json",
+    "bytes": 53272
+  },
+  {
+    "path": "xiangqi-ai/.git/config",
+    "bytes": 319
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/sendemail-validate.sample",
+    "bytes": 2308
+  },
+  {
+    "path": "xiangqi-ai/online-preview/xiangqi.js",
+    "bytes": 12433
+  },
+  {
+    "path": "xiangqi-ai/RUN_AND_DEMO_CODEX.md",
+    "bytes": 2673
+  },
+  {
+    "path": "xiangqi-ai/online-preview/index.html",
+    "bytes": 6374
+  },
+  {
+    "path": "xiangqi-ai/tests/test_http.py",
+    "bytes": 5185
+  },
+  {
+    "path": "xiangqi-ai/AI_USAGE.md",
+    "bytes": 6865
+  },
+  {
+    "path": "xiangqi-ai/docs/DEPLOY_V5.md",
+    "bytes": 13522
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/commit-msg.sample",
+    "bytes": 896
+  },
+  {
+    "path": "xiangqi-ai/app/rules.py",
+    "bytes": 8805
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/pre-commit.sample",
+    "bytes": 1649
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_So_tay_Code_VSCode_2026_10_17.docx",
+    "bytes": 56243
+  },
+  {
+    "path": "xiangqi-ai/app/cloud_store.py",
+    "bytes": 21678
+  },
+  {
+    "path": "xiangqi-ai/vercel.json",
+    "bytes": 854
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/fsmonitor-watchman.sample",
+    "bytes": 4726
+  },
+  {
+    "path": "xiangqi-ai/artifacts/co-chill-public-preview.png",
+    "bytes": 191042
+  },
+  {
+    "path": "xiangqi-ai/.git/COMMIT_EDITMSG",
+    "bytes": 63
+  },
+  {
+    "path": "xiangqi-ai/docs/RULES_UIUX_2026_10_15.md",
+    "bytes": 7998
+  },
+  {
+    "path": "xiangqi-ai/tests/test_learning.py",
+    "bytes": 14365
+  },
+  {
+    "path": "xiangqi-ai/web/app.js",
+    "bytes": 40869
+  },
+  {
+    "path": "xiangqi-ai/web/style.css",
+    "bytes": 18704
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/pre-push.sample",
+    "bytes": 1374
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_V5_Tong_hop_cau_hoi_phat_trien_2026_10_21.docx",
+    "bytes": 259668
+  },
+  {
+    "path": "xiangqi-ai/DEVELOPMENT_JOURNAL.md",
+    "bytes": 5823
+  },
+  {
+    "path": "xiangqi-ai/RESEARCH_AND_IMPROVEMENTS_2026_10_09.md",
+    "bytes": 15284
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image8.png",
+    "bytes": 35198
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/update.sample",
+    "bytes": 3650
+  },
+  {
+    "path": "xiangqi-ai/tools/test_preview_learning.cjs",
+    "bytes": 17671
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-v4-preview.tar.gz",
+    "bytes": 32318
+  },
+  {
+    "path": "xiangqi-ai/online-preview/logo-co-chill.png",
+    "bytes": 751229
+  },
+  {
+    "path": "xiangqi-ai/online-preview/v5.css",
+    "bytes": 3372
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image6.png",
+    "bytes": 172603
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/THIRD_PARTY_NOTICES.md",
+    "bytes": 1889
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/11_DAILY_UPDATE_TEMPLATE.md",
+    "bytes": 658
+  },
+  {
+    "path": "xiangqi-ai/__pycache__/co_chill_server.cpython-312.pyc",
+    "bytes": 47383
+  },
+  {
+    "path": "xiangqi-ai/docs/V5_DECISIONS_2026_10_24.md",
+    "bytes": 18589
+  },
+  {
+    "path": "xiangqi-ai/app/learning.py",
+    "bytes": 5737
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/final_validation.json",
+    "bytes": 296
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_V4_Bo_sung_UI_UX_Kien_truc_Luat.docx",
+    "bytes": 60402
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_Giai_thich_tung_file_va_nhom_code_2026_10_18.docx",
+    "bytes": 111564
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image3.png",
+    "bytes": 92089
+  },
+  {
+    "path": "xiangqi-ai/tools/render_word_hidden.ps1",
+    "bytes": 1284
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/media.json",
+    "bytes": 1668
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/push-to-checkout.sample",
+    "bytes": 2783
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/17_ACTION_ITEMS_BEFORE_CODE.md",
+    "bytes": 977
+  },
+  {
+    "path": "xiangqi-ai/artifacts/polish.css",
+    "bytes": 3077
+  },
+  {
+    "path": "xiangqi-ai/artifacts/co-chill-home.png",
+    "bytes": 31274
+  },
+  {
+    "path": "xiangqi-ai/tools/test_preview_experience.cjs",
+    "bytes": 17946
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/pre-rebase.sample",
+    "bytes": 4898
+  },
+  {
+    "path": "xiangqi-ai/var/review-v4/image4.jpeg",
+    "bytes": 61629
+  },
+  {
+    "path": "xiangqi-ai/online-preview/favicon.svg",
+    "bytes": 348
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/post-update.sample",
+    "bytes": 189
+  },
+  {
+    "path": "xiangqi-ai/tests/test_cloud.py",
+    "bytes": 27366
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/pre-applypatch.sample",
+    "bytes": 424
+  },
+  {
+    "path": "xiangqi-ai/online-preview/cover-co-chill.png",
+    "bytes": 2487269
+  },
+  {
+    "path": "xiangqi-ai/artifacts/co-chill-uiux-v5-live.png",
+    "bytes": 66989
+  },
+  {
+    "path": "xiangqi-ai/web/index.html",
+    "bytes": 2127
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image5.png",
+    "bytes": 664182
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/AI_HANDOFF.md",
+    "bytes": 3668
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/16_FUTURE_FEATURE_BACKLOG.md",
+    "bytes": 745
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/prepare-commit-msg.sample",
+    "bytes": 1492
+  },
+  {
+    "path": "xiangqi-ai/online-preview/fixtures.js",
+    "bytes": 23121
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/13_CLAUDE_TRACK.md",
+    "bytes": 1196
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/pre-receive.sample",
+    "bytes": 544
+  },
+  {
+    "path": "xiangqi-ai/var/server-output.log",
+    "bytes": 60
+  },
+  {
+    "path": "xiangqi-ai/.git/gk/config",
+    "bytes": 67
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/12_SETUP_CHECKLIST.md",
+    "bytes": 913
+  },
+  {
+    "path": "xiangqi-ai/tools/test_preview_game_tools.cjs",
+    "bytes": 10847
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/README.md",
+    "bytes": 13269
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_V5_Cau_hoi_hoan_thien.docx",
+    "bytes": 51446
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image2.png",
+    "bytes": 557
+  },
+  {
+    "path": "xiangqi-ai/.git/index",
+    "bytes": 8783
+  },
+  {
+    "path": "xiangqi-ai/tools/start_local.ps1",
+    "bytes": 2776
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_V4_Tien_do_va_Bo_sung_Thong_tin.docx",
+    "bytes": 56440
+  },
+  {
+    "path": "xiangqi-ai/tools/build_v5_questions.py",
+    "bytes": 6542
+  },
+  {
+    "path": "xiangqi-ai/var/co_chill_accounts.sqlite3",
+    "bytes": 86016
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/guide.pdf",
+    "bytes": 502034
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/authoring_report.json",
+    "bytes": 3235
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17.zip",
+    "bytes": 813826
+  },
+  {
+    "path": "xiangqi-ai/online-preview/cloud-client.js",
+    "bytes": 9289
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/15_PARALLEL_COMPARISON_SCORECARD.md",
+    "bytes": 554
+  },
+  {
+    "path": "xiangqi-ai/var/review-v4/image5.png",
+    "bytes": 62817
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/page_report.json",
+    "bytes": 8222
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/05_MILESTONES.md",
+    "bytes": 467
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-uiux-v5.tar.gz",
+    "bytes": 773646
+  },
+  {
+    "path": "xiangqi-ai/tools/test_cloud_client.cjs",
+    "bytes": 14714
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/03_ARCHITECTURE.md",
+    "bytes": 1601
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/01_PRODUCT_SPEC.md",
+    "bytes": 2201
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/09_DATA_LICENSE_SOURCES.md",
+    "bytes": 1501
+  },
+  {
+    "path": "xiangqi-ai/var/review-v4/image2.png",
+    "bytes": 307349
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Lỗi typo.docx",
+    "bytes": 1256315
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image10.png",
+    "bytes": 44081
+  },
+  {
+    "path": "xiangqi-ai/app/content_store.py",
+    "bytes": 8539
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/SOURCE_MANIFEST.json",
+    "bytes": 6652
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image11.png",
+    "bytes": 70958
+  },
+  {
+    "path": "xiangqi-ai/.git/hooks/applypatch-msg.sample",
+    "bytes": 478
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/06_ROADMAP.md",
+    "bytes": 807
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/serve_qa.py",
+    "bytes": 885
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/07_LEARNING_MODEL_SPACED_REPETITION.md",
+    "bytes": 1404
+  },
+  {
+    "path": "xiangqi-ai/tools/create_v4_document.py",
+    "bytes": 45967
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/storage.cpython-314.pyc",
+    "bytes": 4670
+  },
+  {
+    "path": "xiangqi-ai/.git/logs/HEAD",
+    "bytes": 2577
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_V5_Cap_nhat_Tai_khoan.docx",
+    "bytes": 54376
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/package-tests.log",
+    "bytes": 7832
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/__init__.cpython-312.pyc",
+    "bytes": 219
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/build_guide.py",
+    "bytes": 45878
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/00_START_HERE.md",
+    "bytes": 1262
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/answers_full.txt",
+    "bytes": 165474
+  },
+  {
+    "path": "xiangqi-ai/online-preview/v5-ui.js",
+    "bytes": 30579
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/finish_ui.py",
+    "bytes": 3695
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/review_requirements.py",
+    "bytes": 24375
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/rules.cpython-314.pyc",
+    "bytes": 15391
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_learning.cpython-312.pyc",
+    "bytes": 36527
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_rules.cpython-314.pyc",
+    "bytes": 16206
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/02_FEEDBACK_AND_CORRECTIONS.md",
+    "bytes": 2626
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/08_AI_ML_PLAN.md",
+    "bytes": 1260
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image1.png",
+    "bytes": 63803
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/answers_blocks.json",
+    "bytes": 197362
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image17.png",
+    "bytes": 84994
+  },
+  {
+    "path": "xiangqi-ai/var/review-v4/V4-text.txt",
+    "bytes": 63068
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image19.png",
+    "bytes": 123302
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image7.png",
+    "bytes": 751229
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/version_fixes.py",
+    "bytes": 1197
+  },
+  {
+    "path": "xiangqi-ai/var/review-v4/image1.jpeg",
+    "bytes": 35825
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/text.txt",
+    "bytes": 6473
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_http.cpython-314.pyc",
+    "bytes": 10272
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image3.png",
+    "bytes": 17897
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image9.png",
+    "bytes": 55818
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/integrate_engine.py",
+    "bytes": 11391
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_pikafish.cpython-314.pyc",
+    "bytes": 24378
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/full-text.txt",
+    "bytes": 113532
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image22.jpeg",
+    "bytes": 22938
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/final_fixes.py",
+    "bytes": 2479
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/__init__.cpython-314.pyc",
+    "bytes": 221
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image4.png",
+    "bytes": 646688
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/pikafish.cpython-314.pyc",
+    "bytes": 30689
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/build_portable_package.py",
+    "bytes": 24555
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/finalize_portable_package.py",
+    "bytes": 3636
+  },
+  {
+    "path": "xiangqi-ai/var/review-web-design/image7.png",
+    "bytes": 154209
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/integrate_ui.py",
+    "bytes": 14863
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image14.png",
+    "bytes": 452240
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/package_report.json",
+    "bytes": 2643
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/13_CLAUDE_TRACK.md",
+    "bytes": 1196
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image2.png",
+    "bytes": 23026
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/10_README_VI_DRAFT.md",
+    "bytes": 1244
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image12.png",
+    "bytes": 121965
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/guide-final.pdf",
+    "bytes": 501888
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/content_store.cpython-312.pyc",
+    "bytes": 11612
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/pikafish.cpython-312.pyc",
+    "bytes": 28819
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/__init__.cpython-312.pyc",
+    "bytes": 157
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/14_CODEX_TRACK.md",
+    "bytes": 1053
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image1.png",
+    "bytes": 3733
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/06_ROADMAP.md",
+    "bytes": 807
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/puzzles.cpython-312.pyc",
+    "bytes": 3085
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/17_ACTION_ITEMS_BEFORE_CODE.md",
+    "bytes": 977
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/engine.cpython-312.pyc",
+    "bytes": 6657
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/package-files.json",
+    "bytes": 853
+  },
+  {
+    "path": "xiangqi-ai/var/review-v4/image3.jpeg",
+    "bytes": 59046
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/rules.cpython-312.pyc",
+    "bytes": 13941
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image16.png",
+    "bytes": 84831
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/01_PRODUCT_SPEC.md",
+    "bytes": 2201
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/05_MILESTONES.md",
+    "bytes": 467
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/source-46.png",
+    "bytes": 218699
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/__init__.cpython-314.pyc",
+    "bytes": 159
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image8.png",
+    "bytes": 123779
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image15.png",
+    "bytes": 11652
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image9.png",
+    "bytes": 4738
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image6.png",
+    "bytes": 5548
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/final_page_matches.json",
+    "bytes": 6329
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/page_report.json",
+    "bytes": 78031
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/storage.cpython-312.pyc",
+    "bytes": 4437
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_rules.cpython-312.pyc",
+    "bytes": 15658
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image13.jpeg",
+    "bytes": 36714
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/cloud_store.cpython-312.pyc",
+    "bytes": 33319
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/node-preflight.log",
+    "bytes": 109
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/engine.cpython-314.pyc",
+    "bytes": 7252
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/build_handoff_word.py",
+    "bytes": 43507
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/source-47.png",
+    "bytes": 199267
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/16_FUTURE_FEATURE_BACKLOG.md",
+    "bytes": 745
+  },
+  {
+    "path": "xiangqi-ai/docs/spec/04_PROTOTYPE_7_DAY.md",
+    "bytes": 1346
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image5.jpeg",
+    "bytes": 122308
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/manifest.json",
+    "bytes": 659
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/page_report_v1.json",
+    "bytes": 79627
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/08_AI_ML_PLAN.md",
+    "bytes": 1260
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_pikafish.cpython-312.pyc",
+    "bytes": 23259
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/logic.json",
+    "bytes": 55296
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/build_report.json",
+    "bytes": 3091
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/qa_root_final.txt",
+    "bytes": 436
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image4.jpeg",
+    "bytes": 30547
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/service.cpython-312.pyc",
+    "bytes": 25253
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/Codex.txt",
+    "bytes": 14781
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/ui.json",
+    "bytes": 66901
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/12_SETUP_CHECKLIST.md",
+    "bytes": 913
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/question_bank.json",
+    "bytes": 271867
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/prior_answers.json",
+    "bytes": 61544
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/live-verification.json",
+    "bytes": 814
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/learning.cpython-314.pyc",
+    "bytes": 9326
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/requirements_review.json",
+    "bytes": 102283
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/puzzles.cpython-314.pyc",
+    "bytes": 3137
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_learning.cpython-314.pyc",
+    "bytes": 38529
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/build_report.json",
+    "bytes": 2940
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/Co_Chill_V5_Cap_nhat_Tai_khoan.docx.txt",
+    "bytes": 59419
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/learning.cpython-312.pyc",
+    "bytes": 8508
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tests/__init__.py",
+    "bytes": 0
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/puzzles.py",
+    "bytes": 2182
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/support.json",
+    "bytes": 22968
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/render_qa.py",
+    "bytes": 692
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/page_comparison.json",
+    "bytes": 4132
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/__init__.py",
+    "bytes": 56
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/final_report.json",
+    "bytes": 594
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/logo-co-chill.png",
+    "bytes": 751229
+  },
+  {
+    "path": "xiangqi-ai/app/__pycache__/service.cpython-314.pyc",
+    "bytes": 27070
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/answers_paragraphs.json",
+    "bytes": 163630
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/11_DAILY_UPDATE_TEMPLATE.md",
+    "bytes": 658
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/15_PARALLEL_COMPARISON_SCORECARD.md",
+    "bytes": 554
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/COMMIT_EDITMSG",
+    "bytes": 19
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image11.jpeg",
+    "bytes": 4404
+  },
+  {
+    "path": "xiangqi-ai/tools/__pycache__/update_inventory.cpython-314.pyc",
+    "bytes": 23821
+  },
+  {
+    "path": "xiangqi-ai/tools/__pycache__/export_preview_fixtures.cpython-312.pyc",
+    "bytes": 8923
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/v5_audit.json",
+    "bytes": 44071
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/qa_dev.txt",
+    "bytes": 1204
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tests/test_rules.py",
+    "bytes": 6421
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/qa_summary.txt",
+    "bytes": 28881
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/write_support.py",
+    "bytes": 17976
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/build_manual.py",
+    "bytes": 27435
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/engine_accounts.json",
+    "bytes": 36326
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/07_LEARNING_MODEL_SPACED_REPETITION.md",
+    "bytes": 1404
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_http.cpython-312.pyc",
+    "bytes": 9776
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image10.png",
+    "bytes": 5034
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image20.png",
+    "bytes": 127590
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/snapshot.json",
+    "bytes": 4960
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/09_DATA_LICENSE_SOURCES.md",
+    "bytes": 1501
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/03_ARCHITECTURE.md",
+    "bytes": 1601
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/export_preview_fixtures.py",
+    "bytes": 6416
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-14.png",
+    "bytes": 269896
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/fixtures.js",
+    "bytes": 23121
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/V4_blocks.json",
+    "bytes": 62877
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/02_FEEDBACK_AND_CORRECTIONS.md",
+    "bytes": 2626
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/page_summary.json",
+    "bytes": 33656
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/04_PROTOTYPE_7_DAY.md",
+    "bytes": 1346
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image18.png",
+    "bytes": 118737
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/qa_dev_final.txt",
+    "bytes": 1121
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/README.md",
+    "bytes": 7420
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-05.png",
+    "bytes": 244527
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-07.png",
+    "bytes": 228816
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/.gitignore",
+    "bytes": 107
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/description",
+    "bytes": 73
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/rules.py",
+    "bytes": 8805
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/detail-041.png",
+    "bytes": 75094
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/learning.js",
+    "bytes": 17914
+  },
+  {
+    "path": "xiangqi-ai/online-preview/app.js",
+    "bytes": 78686
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/dev.json",
+    "bytes": 60904
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/logo-co-chill.png",
+    "bytes": 751229
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/check_browser_rules.py",
+    "bytes": 9887
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/qa_heading_055.png",
+    "bytes": 39317
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/engine.py",
+    "bytes": 3988
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/config",
+    "bytes": 130
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/index.html",
+    "bytes": 5846
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/style.css",
+    "bytes": 32677
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/experience.js",
+    "bytes": 5674
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/learning.js",
+    "bytes": 17914
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-15.png",
+    "bytes": 260983
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-14.png",
+    "bytes": 269896
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/render_pages.py",
+    "bytes": 1317
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/xiangqi.js",
+    "bytes": 12433
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/favicon.svg",
+    "bytes": 348
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-07.png",
+    "bytes": 228816
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-05.png",
+    "bytes": 244527
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-02.png",
+    "bytes": 249432
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/check_online_preview.py",
+    "bytes": 2066
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/test_preview_experience.cjs",
+    "bytes": 16812
+  },
+  {
+    "path": "xiangqi-ai/.git/refs/heads/codex-full",
+    "bytes": 41
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/00_START_HERE.md",
+    "bytes": 1262
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/UX_blocks.json",
+    "bytes": 106760
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/favicon.svg",
+    "bytes": 348
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-13.png",
+    "bytes": 196685
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/FINAL_QA.json",
+    "bytes": 1040
+  },
+  {
+    "path": "xiangqi-ai/tools/__pycache__/check_online_preview.cpython-312.pyc",
+    "bytes": 3575
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/qa_logic.txt",
+    "bytes": 1528
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-10.png",
+    "bytes": 272345
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-11.png",
+    "bytes": 238080
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-08.png",
+    "bytes": 232050
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/FETCH_HEAD",
+    "bytes": 167
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-09.png",
+    "bytes": 237432
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/style.css",
+    "bytes": 32677
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/qa_ui.txt",
+    "bytes": 1467
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-12.png",
+    "bytes": 265093
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/qa.pdf",
+    "bytes": 788939
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.openai/hosting.json",
+    "bytes": 110
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/test_preview_game_tools.cjs",
+    "bytes": 10847
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/fixtures.js",
+    "bytes": 23121
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/V4_fulltext.txt",
+    "bytes": 62872
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/Older V3.txt",
+    "bytes": 127631
+  },
+  {
+    "path": "xiangqi-ai/tests/__pycache__/test_cloud.cpython-312.pyc",
+    "bytes": 44863
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/index",
+    "bytes": 1040
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/build_master.py",
+    "bytes": 32647
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-13.png",
+    "bytes": 238142
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/image21.jpeg",
+    "bytes": 16703
+  },
+  {
+    "path": "xiangqi-ai/docs/materials/Answer V3.txt",
+    "bytes": 150125
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/xiangqi.js",
+    "bytes": 12433
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-04.png",
+    "bytes": 229083
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/extract_prior_sources.py",
+    "bytes": 1063
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-10.png",
+    "bytes": 174726
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/Co_Chill_V5_Cau_hoi_hoan_thien.docx.txt",
+    "bytes": 48525
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-09.png",
+    "bytes": 193478
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/HEAD",
+    "bytes": 21
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-09.png",
+    "bytes": 237432
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-12.png",
+    "bytes": 265093
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-08.png",
+    "bytes": 232050
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-08.png",
+    "bytes": 162570
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-11.png",
+    "bytes": 174084
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-06.png",
+    "bytes": 269111
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-09.png",
+    "bytes": 163801
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/test_preview_learning.cjs",
+    "bytes": 11651
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/.vscode/tasks.json",
+    "bytes": 956
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/final-3.png",
+    "bytes": 1117459
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-15.png",
+    "bytes": 260771
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/final-1.png",
+    "bytes": 1153297
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-11.png",
+    "bytes": 238080
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/media/image1.png",
+    "bytes": 30658
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/index.html",
+    "bytes": 5846
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-15.png",
+    "bytes": 255904
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-13.png",
+    "bytes": 198294
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-04.png",
+    "bytes": 229083
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-10.png",
+    "bytes": 272345
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-03.png",
+    "bytes": 256318
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/UX_fulltext.txt",
+    "bytes": 106755
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/media/image4.jpeg",
+    "bytes": 38544
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/final-17.png",
+    "bytes": 182397
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/source-word.pdf",
+    "bytes": 5458616
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-06.png",
+    "bytes": 269111
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-01.png",
+    "bytes": 229151
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-01.png",
+    "bytes": 229123
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages/page-02.png",
+    "bytes": 249432
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-01.png",
+    "bytes": 201796
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/game-tools.js",
+    "bytes": 13300
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/check_all.py",
+    "bytes": 3072
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-04.png",
+    "bytes": 180075
+  },
+  {
+    "path": "xiangqi-ai/var/reading-guide-2026-10-20/pages-final/page-03.png",
+    "bytes": 255571
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/media/image3.jpeg",
+    "bytes": 46376
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/contact-1.png",
+    "bytes": 1238923
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-14.png",
+    "bytes": 204016
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-05.png",
+    "bytes": 174868
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-01.png",
+    "bytes": 247525
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-04.png",
+    "bytes": 179921
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/contact-3.png",
+    "bytes": 1218445
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tests/__init__.py",
+    "bytes": 0
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/experience.js",
+    "bytes": 5674
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/engine.py",
+    "bytes": 3988
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-06.png",
+    "bytes": 181272
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-14.png",
+    "bytes": 163886
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/contact-1.png",
+    "bytes": 1223576
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-07.png",
+    "bytes": 169363
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-12.png",
+    "bytes": 192649
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/Co_Chill_V5.pdf",
+    "bytes": 273218
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-08.png",
+    "bytes": 181662
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-07.png",
+    "bytes": 151630
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-05.png",
+    "bytes": 177262
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/app.js",
+    "bytes": 68187
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-07.png",
+    "bytes": 169284
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/check_online_preview.py",
+    "bytes": 2066
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-15.png",
+    "bytes": 173485
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-03.png",
+    "bytes": 164453
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-11.png",
+    "bytes": 190235
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/export_preview_fixtures.py",
+    "bytes": 6416
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/final-2.png",
+    "bytes": 1079938
+  },
+  {
+    "path": "xiangqi-ai/var/v5-2026-10-23/media/image2.jpeg",
+    "bytes": 42779
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-08.png",
+    "bytes": 182156
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-05.png",
+    "bytes": 174754
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-16.png",
+    "bytes": 226557
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tests/test_rules.py",
+    "bytes": 6421
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/final-13.png",
+    "bytes": 695293
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-01.png",
+    "bytes": 219877
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-12.png",
+    "bytes": 185294
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/test_preview_experience.cjs",
+    "bytes": 16812
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-03.png",
+    "bytes": 171113
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/app.js",
+    "bytes": 68187
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-14.png",
+    "bytes": 179384
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-03.png",
+    "bytes": 170914
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/experience.js",
+    "bytes": 5674
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/contact-2.png",
+    "bytes": 1080351
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/final-4.png",
+    "bytes": 835803
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/rules.py",
+    "bytes": 8805
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/index.html",
+    "bytes": 5846
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-15.png",
+    "bytes": 238880
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/xiangqi.js",
+    "bytes": 12433
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-06.png",
+    "bytes": 153804
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-13.png",
+    "bytes": 174812
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/__init__.py",
+    "bytes": 56
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/page-02.png",
+    "bytes": 185550
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/game-tools.js",
+    "bytes": 13300
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/final-9.png",
+    "bytes": 636404
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-061.png",
+    "bytes": 283184
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-10.png",
+    "bytes": 179065
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-04.png",
+    "bytes": 155777
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-02.png",
+    "bytes": 185570
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-13.png",
+    "bytes": 175102
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-02.png",
+    "bytes": 209231
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-12.png",
+    "bytes": 197682
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/favicon.svg",
+    "bytes": 348
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-06.png",
+    "bytes": 181256
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-060.png",
+    "bytes": 293219
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/contact-3.png",
+    "bytes": 805470
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/check_browser_rules.py",
+    "bytes": 9887
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-16.png",
+    "bytes": 245666
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-058.png",
+    "bytes": 284338
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/contact-2.png",
+    "bytes": 1022999
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/puzzles.py",
+    "bytes": 2182
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/page-10.png",
+    "bytes": 196086
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/style.css",
+    "bytes": 32677
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-render/contact-4.png",
+    "bytes": 863087
+  },
+  {
+    "path": "xiangqi-ai/var/migration-2026-10-17/render/Co_Chill_Code.pdf",
+    "bytes": 457982
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/test_preview_game_tools.cjs",
+    "bytes": 10847
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/fixtures.js",
+    "bytes": 23121
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/logo-co-chill.png",
+    "bytes": 751229
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-11.png",
+    "bytes": 225424
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/contact-4.png",
+    "bytes": 1337618
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-052.png",
+    "bytes": 307634
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-063.png",
+    "bytes": 190463
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/manual.pdf",
+    "bytes": 965405
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-055.png",
+    "bytes": 350661
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-048.png",
+    "bytes": 319107
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-064.png",
+    "bytes": 273480
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-039.png",
+    "bytes": 283286
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/contact-5.png",
+    "bytes": 359888
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/test_preview_learning.cjs",
+    "bytes": 11651
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-043.png",
+    "bytes": 291365
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-09.png",
+    "bytes": 163802
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-036.png",
+    "bytes": 311155
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/page-17.png",
+    "bytes": 217703
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/dist/game-tools.js",
+    "bytes": 13300
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-033.png",
+    "bytes": 337220
+  },
+  {
+    "path": "xiangqi-ai/var/uiux-review/v5-account-render/Co_Chill_V5.pdf",
+    "bytes": 326233
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-062.png",
+    "bytes": 300393
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-027.png",
+    "bytes": 314812
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/learning.js",
+    "bytes": 17914
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-049.png",
+    "bytes": 307305
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-046.png",
+    "bytes": 311126
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/__pycache__/build_manual.cpython-312.pyc",
+    "bytes": 37050
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-047.png",
+    "bytes": 287189
+  },
+  {
+    "path": "xiangqi-ai/.git/refs/remotes/origin/codex-full",
+    "bytes": 41
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-054.png",
+    "bytes": 316645
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-045.png",
+    "bytes": 277818
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-059.png",
+    "bytes": 305203
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-042.png",
+    "bytes": 327492
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-041.png",
+    "bytes": 303202
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-037.png",
+    "bytes": 326970
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-057.png",
+    "bytes": 305131
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-034.png",
+    "bytes": 328486
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-056.png",
+    "bytes": 320995
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-026.png",
+    "bytes": 154915
+  },
+  {
+    "path": "xiangqi-ai/.git/logs/refs/heads/codex-full",
+    "bytes": 2577
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-006.png",
+    "bytes": 363122
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-029.png",
+    "bytes": 271091
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-020.png",
+    "bytes": 335648
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-003.png",
+    "bytes": 231389
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-004.png",
+    "bytes": 293871
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-010.png",
+    "bytes": 365669
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-013.png",
+    "bytes": 323331
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-025.png",
+    "bytes": 334271
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-028.png",
+    "bytes": 330810
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-032.png",
+    "bytes": 342192
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tests/__pycache__/test_rules.cpython-312.pyc",
+    "bytes": 15698
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-009.png",
+    "bytes": 357782
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-066.png",
+    "bytes": 273239
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-064.png",
+    "bytes": 300642
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/online-preview/app.js",
+    "bytes": 68187
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-053.png",
+    "bytes": 304727
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-023.png",
+    "bytes": 323987
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-030.png",
+    "bytes": 344281
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-040.png",
+    "bytes": 313333
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/info/exclude",
+    "bytes": 240
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-051.png",
+    "bytes": 300223
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-052.png",
+    "bytes": 300326
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-018.png",
+    "bytes": 348116
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-060.png",
+    "bytes": 298572
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-048.png",
+    "bytes": 303155
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-051.png",
+    "bytes": 303164
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-054.png",
+    "bytes": 309629
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-001.png",
+    "bytes": 225035
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-044.png",
+    "bytes": 315757
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-035.png",
+    "bytes": 200363
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-008.png",
+    "bytes": 345957
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-038.png",
+    "bytes": 296496
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-012.png",
+    "bytes": 91436
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-024.png",
+    "bytes": 337839
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-011.png",
+    "bytes": 352980
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-022.png",
+    "bytes": 270136
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/__pycache__/engine.cpython-312.pyc",
+    "bytes": 6697
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-021.png",
+    "bytes": 364114
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-047.png",
+    "bytes": 140180
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-039.png",
+    "bytes": 94309
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-014.png",
+    "bytes": 355787
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-056.png",
+    "bytes": 333243
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-017.png",
+    "bytes": 334813
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/logs/HEAD",
+    "bytes": 508
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-062.png",
+    "bytes": 289173
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-031.png",
+    "bytes": 253208
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-057.png",
+    "bytes": 163556
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-015.png",
+    "bytes": 358989
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-029.png",
+    "bytes": 271212
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-005.png",
+    "bytes": 350991
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-041.png",
+    "bytes": 305195
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/__pycache__/__init__.cpython-312.pyc",
+    "bytes": 259
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-038.png",
+    "bytes": 296186
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-065.png",
+    "bytes": 190474
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-019.png",
+    "bytes": 373364
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-059.png",
+    "bytes": 298768
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-066.png",
+    "bytes": 273250
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-050.png",
+    "bytes": 274294
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-040.png",
+    "bytes": 279606
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-017.png",
+    "bytes": 334748
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-049.png",
+    "bytes": 306411
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-016.png",
+    "bytes": 345247
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-063.png",
+    "bytes": 267587
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-033.png",
+    "bytes": 337054
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-065.png",
+    "bytes": 190482
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/__pycache__/rules.cpython-312.pyc",
+    "bytes": 13981
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-018.png",
+    "bytes": 347619
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-037.png",
+    "bytes": 327341
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-034.png",
+    "bytes": 328247
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-058.png",
+    "bytes": 300011
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-032.png",
+    "bytes": 342477
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-020.png",
+    "bytes": 335280
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-061.png",
+    "bytes": 290430
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-015.png",
+    "bytes": 358633
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-006.png",
+    "bytes": 363122
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-053.png",
+    "bytes": 317592
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-046.png",
+    "bytes": 301974
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-045.png",
+    "bytes": 275222
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-027.png",
+    "bytes": 315089
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-030.png",
+    "bytes": 344751
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-028.png",
+    "bytes": 330819
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-025.png",
+    "bytes": 334053
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-003.png",
+    "bytes": 231389
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-055.png",
+    "bytes": 302751
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-036.png",
+    "bytes": 310893
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/app/__pycache__/puzzles.cpython-312.pyc",
+    "bytes": 3125
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-002.png",
+    "bytes": 183171
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-001.png",
+    "bytes": 225035
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-004.png",
+    "bytes": 293871
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-042.png",
+    "bytes": 301453
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-019.png",
+    "bytes": 372893
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/pre-rebase.sample",
+    "bytes": 4898
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/pre-merge-commit.sample",
+    "bytes": 416
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/pre-commit.sample",
+    "bytes": 1649
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-013.png",
+    "bytes": 324241
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-035.png",
+    "bytes": 200282
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-014.png",
+    "bytes": 355439
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/post-update.sample",
+    "bytes": 189
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-021.png",
+    "bytes": 364450
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-022.png",
+    "bytes": 270235
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/commit-msg.sample",
+    "bytes": 896
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/sendemail-validate.sample",
+    "bytes": 2308
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/01/ae462a70f863df07047eff3056a9649fde171c",
+    "bytes": 934
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-026.png",
+    "bytes": 154915
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-016.png",
+    "bytes": 345561
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-009.png",
+    "bytes": 336687
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-050.png",
+    "bytes": 311344
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/06/6783fc837f6940b27149734bed5bcab6933d15",
+    "bytes": 1743
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/pre-receive.sample",
+    "bytes": 544
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/pre-push.sample",
+    "bytes": 1374
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages/page-007.png",
+    "bytes": 342939
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-008.png",
+    "bytes": 334935
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-005.png",
+    "bytes": 350991
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-024.png",
+    "bytes": 337841
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/06/b4bf28ad590f65ad0b07624611ee8822cf69a3",
+    "bytes": 1842
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/prepare-commit-msg.sample",
+    "bytes": 1492
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/fsmonitor-watchman.sample",
+    "bytes": 4726
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-002.png",
+    "bytes": 183171
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/update.sample",
+    "bytes": 3650
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-044.png",
+    "bytes": 292124
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-031.png",
+    "bytes": 252981
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-012.png",
+    "bytes": 361719
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/06/1084086a2bb5cc4d163ae6d05eb251ba967d52",
+    "bytes": 7122
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-55.txt",
+    "bytes": 2500
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-61.txt",
+    "bytes": 3437
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-62.txt",
+    "bytes": 2591
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/applypatch-msg.sample",
+    "bytes": 478
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-51.txt",
+    "bytes": 2498
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-54.png",
+    "bytes": 94560
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-007.png",
+    "bytes": 84980
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-043.png",
+    "bytes": 330008
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-53.png",
+    "bytes": 193802
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-54.txt",
+    "bytes": 1218
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-010.png",
+    "bytes": 380441
+  },
+  {
+    "path": "xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/tools/__pycache__/export_preview_fixtures.cpython-312.pyc",
+    "bytes": 9006
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-53.txt",
+    "bytes": 2453
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-56.png",
+    "bytes": 68940
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-023.png",
+    "bytes": 324746
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/08/30c682e6966d639990d6075cbd7d5c0263328f",
+    "bytes": 15367
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-60.txt",
+    "bytes": 3758
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/pre-applypatch.sample",
+    "bytes": 424
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-49.png",
+    "bytes": 171707
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/hooks/push-to-checkout.sample",
+    "bytes": 2783
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0c/9f20b2a81033193cd7bf81bcd4aeacc7d31c5a",
+    "bytes": 195
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-41.txt",
+    "bytes": 2057
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-57.png",
+    "bytes": 194571
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-52.txt",
+    "bytes": 2520
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/03/b2fb74cb90ed6a7aa4a44f177ad16029dd004f",
+    "bytes": 411
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-61.png",
+    "bytes": 263691
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/01/f071452c3a9971fe834b39a56a828ef23d7d13",
+    "bytes": 1222
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/04/96efa4bbe5629e9b5f135dda89849c6d9396a1",
+    "bytes": 14551
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0c/d6d6661e69c420b5778b6f686352d174afa0c2",
+    "bytes": 1387
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-51.png",
+    "bytes": 185736
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-43.txt",
+    "bytes": 2295
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-40.txt",
+    "bytes": 1968
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-47.txt",
+    "bytes": 2366
+  },
+  {
+    "path": "xiangqi-ai/var/code-manual-2026-10-18/pages-v1/page-011.png",
+    "bytes": 357731
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-57.txt",
+    "bytes": 2839
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-58.png",
+    "bytes": 265076
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-46.txt",
+    "bytes": 2367
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/08/af333db492e5d055375d573081b203a20f002e",
+    "bytes": 1224
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-39.png",
+    "bytes": 144410
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-55.png",
+    "bytes": 224503
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/08/bbf3284998680b7645280472687598c3778614",
+    "bytes": 789499
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-32.png",
+    "bytes": 154510
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-33.txt",
+    "bytes": 2102
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-60.png",
+    "bytes": 275646
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-62.png",
+    "bytes": 228607
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-29.txt",
+    "bytes": 1955
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-45.txt",
+    "bytes": 2671
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-50.txt",
+    "bytes": 1190
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-49.txt",
+    "bytes": 2354
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-29.png",
+    "bytes": 154001
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-42.png",
+    "bytes": 186139
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-59.png",
+    "bytes": 283705
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-44.txt",
+    "bytes": 2944
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-56.txt",
+    "bytes": 818
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-28.png",
+    "bytes": 118496
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-26.txt",
+    "bytes": 2842
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-59.txt",
+    "bytes": 3788
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-31.png",
+    "bytes": 123892
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-38.txt",
+    "bytes": 1798
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-52.png",
+    "bytes": 178491
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-50.png",
+    "bytes": 85997
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-48.png",
+    "bytes": 192115
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-58.txt",
+    "bytes": 3380
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-21.txt",
+    "bytes": 2156
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-47.png",
+    "bytes": 170697
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-35.png",
+    "bytes": 166697
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-25.txt",
+    "bytes": 1268
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-18.png",
+    "bytes": 219772
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-37.png",
+    "bytes": 147288
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-41.png",
+    "bytes": 156480
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-46.png",
+    "bytes": 174168
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-14.png",
+    "bytes": 179184
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-17.png",
+    "bytes": 180893
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-27.png",
+    "bytes": 214644
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-39.txt",
+    "bytes": 1896
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-26.png",
+    "bytes": 213260
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-20.txt",
+    "bytes": 2568
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-19.png",
+    "bytes": 190034
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-48.txt",
+    "bytes": 2612
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-37.txt",
+    "bytes": 1919
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-22.txt",
+    "bytes": 2767
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-30.png",
+    "bytes": 143291
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-13.txt",
+    "bytes": 2551
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-15.png",
+    "bytes": 158284
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-28.txt",
+    "bytes": 1590
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-36.png",
+    "bytes": 127033
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-22.png",
+    "bytes": 196210
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-42.txt",
+    "bytes": 2490
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-14.txt",
+    "bytes": 2395
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-33.png",
+    "bytes": 157231
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-34.txt",
+    "bytes": 1623
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-44.png",
+    "bytes": 213381
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-31.txt",
+    "bytes": 1661
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-24.txt",
+    "bytes": 3442
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-23.png",
+    "bytes": 217905
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-30.txt",
+    "bytes": 1889
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-27.txt",
+    "bytes": 3035
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-43.png",
+    "bytes": 173057
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-12.txt",
+    "bytes": 2361
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-18.txt",
+    "bytes": 3189
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/05/2da338036c2eb483030c025abcfe486a8d7f33",
+    "bytes": 11031
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-38.png",
+    "bytes": 141102
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0a/8bb271fab18e8cb17a167aaa54317b32acf3ef",
+    "bytes": 4542
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-01.txt",
+    "bytes": 2493
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-11.txt",
+    "bytes": 2561
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-12.png",
+    "bytes": 167306
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-36.txt",
+    "bytes": 1638
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-25.png",
+    "bytes": 94390
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-23.txt",
+    "bytes": 3097
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/14/b8d0e05d334c081cc8f8376ea1da09c5d1bed9",
+    "bytes": 4472
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-10.png",
+    "bytes": 177264
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/12/061f3c5eda442ff8676bbe8270e5800315d65c",
+    "bytes": 7301
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-09.txt",
+    "bytes": 2367
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0d/bfcae065f7760a6138f5d5d4a9cbc757984d68",
+    "bytes": 156
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-32.txt",
+    "bytes": 2040
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-16.txt",
+    "bytes": 1168
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-19.txt",
+    "bytes": 2574
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-09.png",
+    "bytes": 168533
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-40.png",
+    "bytes": 149366
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0d/13c1b271a1846ee1c4e0dd5628569fb316eec6",
+    "bytes": 284
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-16.png",
+    "bytes": 85612
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-20.png",
+    "bytes": 184837
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-34.png",
+    "bytes": 123252
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-17.txt",
+    "bytes": 2482
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-05.png",
+    "bytes": 222943
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-07.txt",
+    "bytes": 1177
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/11/12405169898c2619c250d6bf7ddbe7bebd9d61",
+    "bytes": 729
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-02.png",
+    "bytes": 260262
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-01.png",
+    "bytes": 194055
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-15.txt",
+    "bytes": 2248
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/14/ae3abf2bc6738b248f17c069e26f3e48cfb053",
+    "bytes": 344
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/15/4cf638f58b398f86a2b7b85c6acebdabe38dd5",
+    "bytes": 2626
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-13.png",
+    "bytes": 187354
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-08.png",
+    "bytes": 191057
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-04.png",
+    "bytes": 183636
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/12/b80e89b3ef750c5313c8f8791817ebb48c0fb4",
+    "bytes": 121
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/18/24d9e9a9fbebb735a4e9883385d6a0e53ca403",
+    "bytes": 7508
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-24.png",
+    "bytes": 248624
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/23/c4555c110ae432a38b5ffd0c84a581a118d27f",
+    "bytes": 18476
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0b/8656bf35e90be90aaef3a5074aaf6adbb6b254",
+    "bytes": 1860
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-45.png",
+    "bytes": 190486
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-06.txt",
+    "bytes": 2326
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-03.png",
+    "bytes": 228984
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/11/6738d21e0f4d0c654df9049a8e9f8b3a02ac11",
+    "bytes": 243
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/16/f62b7b18bad9caaa7c7947cd7c7aa7db6c8a55",
+    "bytes": 241
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/21/a9b81ac7aca868edbbae2335f3148182fe37fb",
+    "bytes": 5956
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-02.txt",
+    "bytes": 3600
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/24/fefeec94c5b871c02386720af1a6fe94b1806f",
+    "bytes": 1573
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-08.txt",
+    "bytes": 2588
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-21.png",
+    "bytes": 160695
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/21/df510ce4f6b0ed31c69f15f8d41ba544ace0e8",
+    "bytes": 490
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-35.txt",
+    "bytes": 2305
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/17/0ebce488827e059918266c326b63c458ee15b9",
+    "bytes": 30713
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1b/8928f1deec4dad0724e362a134cda98b141d08",
+    "bytes": 3220
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-63.txt",
+    "bytes": 2591
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-63.png",
+    "bytes": 228638
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1c/da0e4e6889718a560bf0eaefd411c1426e41fa",
+    "bytes": 7277
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-10.txt",
+    "bytes": 2462
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/17/28afbfa1cd0c5b38435d82c7a7ef771f97654e",
+    "bytes": 177
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1f/2609e5d5472939f1abac9463d89107cf2eb3d2",
+    "bytes": 5524
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-05.txt",
+    "bytes": 3224
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2d/aaad1d95acc8041c813679d60affba9e0b365c",
+    "bytes": 9560
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/12/55191a27d9834740de7549c92022e9d4b67590",
+    "bytes": 16161
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/18/6ee9ba2c143f8be0a4da16ca88bd69dbcbe285",
+    "bytes": 2961
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/07/e78b8eab45a5565138cd296958bcdc281869b3",
+    "bytes": 7315
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/09/0d4fa3f2a06860561a71b1cb52549358a24ce3",
+    "bytes": 207
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0f/ca258e703a4609c01abf713cd9d07d79b2b212",
+    "bytes": 810
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1f/1c59e44f86bb220951cac896fa68e8fa339124",
+    "bytes": 177
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-11.png",
+    "bytes": 188501
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/11/aeb2b47dbab9747787a87680b01724f4164ca3",
+    "bytes": 498
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/23/9cab8407a9460e66843ce754c748ec057ba243",
+    "bytes": 13432
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/28/66ae44635f90e2dc971bcc4df074e9e64be2e8",
+    "bytes": 5601
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2a/7c02a60d2aafb27d1fa8017ee07f629640bdd5",
+    "bytes": 6122
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/10/aedaab3b419f4ff4cc27af40b8e1996aa1e58a",
+    "bytes": 385
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-06.png",
+    "bytes": 165217
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/23/b0807ebe29e1c51808283412e0fb5686bf4d87",
+    "bytes": 809
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/25/5bf5387ab6adb777c170ee6a08cbfe3f9a2bd7",
+    "bytes": 498
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-07.png",
+    "bytes": 87533
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1e/ec2dbe1d8f31c8428ee3aec9fef49017088ebf",
+    "bytes": 193
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1f/2bfcb2398b1ed91aae221fb0ed865f12895471",
+    "bytes": 5462
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1a/023a384f095171b59c556caeefd5273e0e20b4",
+    "bytes": 3856
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/20/164757e423eb3fe844cb51a71c3cd54cbcc7dc",
+    "bytes": 897
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2b/e56598dd51a744a6ebae2b07bbac3e92b729ea",
+    "bytes": 236
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/3b/049f409d949030cc2da6a19bc8bddd62eff9e8",
+    "bytes": 1935
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/14/cbb4b3436b9146e20e042e5b46ee8a81ac9430",
+    "bytes": 432
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/46/f810ac31ae7d24a9322a0c4cc4f073092e17ea",
+    "bytes": 2118
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-03.txt",
+    "bytes": 2641
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2b/35501f3466b4035992b959124680beaf3bbfe8",
+    "bytes": 178
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/47/e9111ea8331006788624688e14635a3d09629e",
+    "bytes": 4783
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/0e/1a8351aadc51f3ccaa49033cc72ca603207060",
+    "bytes": 1848
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/1f/2e6c7da2d8c1e36f11acb6d7f24db36ac1ad68",
+    "bytes": 12946
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/31/d498d60bc42cb254219ee196568328f0ff2c1e",
+    "bytes": 7238
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2f/f8037ea2da9f45e22274887c7cef7307ae9b8a",
+    "bytes": 6510
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/39/293ec5a03ec502132332a9fb6c07deb6835068",
+    "bytes": 150
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/34/99a8802c9f9c8f7a700d240e6754cb876157bf",
+    "bytes": 591
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/49/ed4d81034a2d385a1a56add426b07cd59482f5",
+    "bytes": 209
+  },
+  {
+    "path": "xiangqi-ai/var/questionnaire-2026-10-21/pages/page-04.txt",
+    "bytes": 2542
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2f/aebf75316bfb07101f2d34c6793f42ce3806f8",
+    "bytes": 11359
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/28/4373604d71541cdacc4893e1932f7a188b0dad",
+    "bytes": 452
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2b/393617a72067d452cb0124f215bdae08c2b4e6",
+    "bytes": 324
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/18/c7ed084f781c5d42f5b0a18448a3e13d1be87c",
+    "bytes": 788
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2b/5a592239cc2ae5874eb560d5e8771e6e68ae9c",
+    "bytes": 191
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/20/c38121d2aa7bdb674322abe8c2cd6ed90bc332",
+    "bytes": 360
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/3e/64935bfbb486b73fd6b6fc73e4e6b71bc30238",
+    "bytes": 204
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/36/6aa3286a677bc03ca1c297db6ee13bb138edc5",
+    "bytes": 6085
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/24/7f98769c5daa434cf1294486ad2ec3145b3137",
+    "bytes": 201
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/44/a98790ec876a6643f722793b519e80e608c643",
+    "bytes": 9420
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/26/1592a6802701259e092fb993bd78fa7d3c5498",
+    "bytes": 198
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4c/d3ea6caef36bfb231abd1774a1524b64159db2",
+    "bytes": 1359
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2c/9f84c1697e7dfb5abeeac184134062af8108ce",
+    "bytes": 368
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/3c/cf1fb5c82ae916061d0584232023c336d5ea36",
+    "bytes": 3700
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4f/8881aeb7b438fcf04cc6eb2509608f72a6b151",
+    "bytes": 3577
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2c/2a95e6532240c07c0d2a1795a7ddf95c07e13d",
+    "bytes": 395
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/26/6497a54e97a54f050c51d692c49eaf042b61e7",
+    "bytes": 594
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/18/f564646e8dd2d5cd0a97526beb7bfab358b5d2",
+    "bytes": 2455
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/32/7d17ce24a6c6caa940e67fb2aa80dc7055fa03",
+    "bytes": 5231
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/36/9fbb16b95891ac4cdd1a8050911c1e03145d25",
+    "bytes": 104
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/24/bdb2aed0a4995c71e0da09d099ec7440ec0db6",
+    "bytes": 2606
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2e/f38596983ecb63026d0a7dfea8355b5c7854c4",
+    "bytes": 100
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/40/f3cd8e95f72dcae92dd50c899b3f30bd4926f9",
+    "bytes": 2267
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/16/d2478316c8b84ed2baa5c9329157c970775e9f",
+    "bytes": 7084
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/47/77dd1eb59f0db00a6ee2a5681dfa97983c2379",
+    "bytes": 5150
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/3d/c401763c54ed3eaf241e5784a3e885b7b13dbb",
+    "bytes": 18365
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4a/f0154733fdb35bf032cb62115b820f62033b97",
+    "bytes": 109
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/24/fe1c5be92207f3816c5415384a828faef07d40",
+    "bytes": 5888
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4a/dc1f4ebb2af8f7209ee5e46b9a00b540feee67",
+    "bytes": 7474
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/3e/1937e19a251dea7b91eed421dae30dcafa3cb6",
+    "bytes": 2860
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/40/accf19b5caf37533c3e09cf630d358a939181e",
+    "bytes": 308
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/37/22153e14d482ec213a47b973d53ffbcfc0cbc4",
+    "bytes": 4085
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/5c/3134d22e58146a5ad1783bbc18177a6ed519d8",
+    "bytes": 1366
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/39/2e633cd482bb7e88f0b6625c73936c90d39a1f",
+    "bytes": 53826
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/56/a7295bc1cc0e9673593cf59feb1134a22b4167",
+    "bytes": 4190
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/52/5181ac7f1222c8f4dd79053bc9fe751461bcd3",
+    "bytes": 316
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/54/b0caa95b04f6c6e520ca8123d77d70ebb2bd53",
+    "bytes": 11239
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/54/f9b01de9a5a784bd595a89912ae21f1e9d7dbf",
+    "bytes": 3018
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/53/07182d66f62434e74c2a328dd5992b5f31ef7a",
+    "bytes": 1809
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/58/4588257278abb43de017d5436ac59b445db383",
+    "bytes": 4908
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/43/9a4dcd44d4c451a9d1f0178ef42f36800809a2",
+    "bytes": 357
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/38/dd40699071dd8f52d4808627a68ec26d848e48",
+    "bytes": 1649
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4f/34e6b3b69594297b5132c270c6b188fc921eed",
+    "bytes": 154
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2b/ba65cbb8a9ecb6ca9648095797c29ba6e10fb6",
+    "bytes": 2758
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/44/3d9fed3ccc61192766d962a2a3ffcd1b3a8963",
+    "bytes": 781
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/40/3488c6c3644e56e7748734be057a3cf2497af2",
+    "bytes": 8847
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/50/76b44cca658af5a964cbff3d4a56649e137fe8",
+    "bytes": 2640
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4d/ac1b0a76e7a41a474599b9684a1b2ea9ff9e8a",
+    "bytes": 116
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/13/76cb7ce9948bb3a0301cf57a8b2aad77a4f282",
+    "bytes": 6458
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/68/1469096116cd6cb4431afa66a0440b2e4a1b83",
+    "bytes": 2148
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/40/a12a9ecf8250707bf16d78f1dd68dffa8421b7",
+    "bytes": 54126
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/45/ee8df69e48479bc96c151489c88b324618890a",
+    "bytes": 154
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/50/52fbe0964d0aa06649f35de7743049e8c99275",
+    "bytes": 244
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/54/3357b6f8052fa97c12c306b0c2d4c197318308",
+    "bytes": 3132
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/60/4d9211d20f24996da48737cc7172622cb9dad2",
+    "bytes": 243
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/2a/f66611bf975027a173bedad8b42cb5290a12e7",
+    "bytes": 7811
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6f/08ada3f1958aace5a3044de79ac89e012f6d8a",
+    "bytes": 420
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4f/7359768a4bf2a66cbf4f4bf486b387c5b544d5",
+    "bytes": 10114
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/57/8c080cc9f21f4ef9cd96cf47273aebcae3f567",
+    "bytes": 2070
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/4c/e03b8b6aba12786361d58e12c4fc64f4ef6983",
+    "bytes": 7471
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/59/3959387a699f0ab23ec7d922149c537c42bf94",
+    "bytes": 2134
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/53/a3af6e4f73a14e34f1d63fc36e0ea819a2eff5",
+    "bytes": 148
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/73/7df43be685f1ce81e6093decfa6077ca0bdf43",
+    "bytes": 219
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/51/9ae63007d082f1ce0058194945b65a75364b6e",
+    "bytes": 5706
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/5e/740149fa309f22972979cc64fc8b46e52b2448",
+    "bytes": 12936
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/47/458b7a4db29497f6247f37f9d5e808e8f7f0f8",
+    "bytes": 566
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/68/a83687a0aca0171ad21e678d3858123f923ecf",
+    "bytes": 7272
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/58/0b048fa482482dab3a99d0ff7bdf9b33245a81",
+    "bytes": 1004
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6b/049e61eb96e9bc666fb934c8e313679e00903d",
+    "bytes": 3566
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/66/85ec8674f7b749fa8aaa2894e5b0afefdccb00",
+    "bytes": 7281
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/40/e44bb5b3348250e37d5be4a61291421af7cf67",
+    "bytes": 2005
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6d/b08ccabcc9800cba5ce122d704dc5ae2f8e587",
+    "bytes": 1024
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/62/12df719b5b5810a2fad24876b25806f685e5b7",
+    "bytes": 9141
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/76/4bd67a20aee93b23164962e275991d66746f1e",
+    "bytes": 6338
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/76/8ba8858e3cd13f1cb5584c141be0f02ec19601",
+    "bytes": 242
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/67/ba038c87ff96362519471650105e3ac51eac7a",
+    "bytes": 1076
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6e/6aaa116e0fbf9b5bce843c156cf4e8f3b8d02b",
+    "bytes": 8015
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6f/26fd83e85bf595ba6f6a1c51a29fce1397abec",
+    "bytes": 1025
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/5c/4a4cbf6e30cd3a99dbe365da95639f332b54bd",
+    "bytes": 5210
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6c/d4f795ef6a2ff7b136054a9b08640f26c3269d",
+    "bytes": 166
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/52/9d14a73522b2bfeb77af4dae59a5eddb2b760b",
+    "bytes": 340
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7e/01be204078893b9124ec6a48c0febee8f6892c",
+    "bytes": 13986
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/51/9152818c186286ee47df0949f8dae4eeb27674",
+    "bytes": 2705
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/86/1d259953fa990bbd1c264cff31a4d82173f6dc",
+    "bytes": 7307
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6b/c111f9dcec26a12654d552eb75491bb4cf3b69",
+    "bytes": 1894
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/81/1b2a73df3be186f204285f5e41c56d08787632",
+    "bytes": 1223
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/74/32940a84ccb54d2dd6dd949f811e94d004b579",
+    "bytes": 1518
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/54/4042fab7a833efcc772bbeefac25a77fbf0b1e",
+    "bytes": 1109
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/60/7f0d061ba38627b5104f7c2e486a40ca6c3dfb",
+    "bytes": 6463
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7b/502d19bf8acd5b977ff7cbcf2c76c77a52d831",
+    "bytes": 3736
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/72/b6e361470cc9b35257c3e10df654e5db647d31",
+    "bytes": 66
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6c/074aad35c4de7a4f6fae944b82c3daf17dc764",
+    "bytes": 1168
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/84/9da065684aaeb4a556230b4fc4afaae719919e",
+    "bytes": 7910
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7e/69bc7f7434ec3a7b1c77f7697ba1d9ef6b2742",
+    "bytes": 2271
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7c/4ad10995c6d231880e44cb8a1812d3704af7bf",
+    "bytes": 419
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/72/6ec9d236f7c91660e4100290503468865f5ea1",
+    "bytes": 524
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7b/8cc3963fc2bd9cd3bb68c02d2252bcce4055df",
+    "bytes": 1080
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/59/566e46362ba09777b0e135cd613f7ca4d94c5c",
+    "bytes": 1226
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/72/7f4d16246cd2b183f502533a3c8c0ba8e90ae7",
+    "bytes": 1342
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/86/f3415fb93954ea69e5d87bbcf539ffeddf8182",
+    "bytes": 30207
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/43/3faa6676a820f87c5ef2daf7dbaaf2d84bad45",
+    "bytes": 10624
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/77/48724130bb678c8a5dd2a2e82519c4f7bf2fa1",
+    "bytes": 3851
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6e/1433573e360bd1381e91f133ab889f553a9c2c",
+    "bytes": 810
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/80/79ab52bdc8082c27b86d53cb4245010ea62ed0",
+    "bytes": 2574
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/5b/e49cc63ca163df0e3da13bf9f5db3e33181f7a",
+    "bytes": 1340
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6f/adcb340a3be66ddb37ce7bfcbb02848b4eed07",
+    "bytes": 2752
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/71/71bf233802e66c3bf0cfcd2113ca34fafe1d1f",
+    "bytes": 6736
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6c/c09140b7199089d42fe41936ef10e3b234a28f",
+    "bytes": 2466
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8b/efdba2fa055ac6e3edda8106fa34a485100ab4",
+    "bytes": 316
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/79/394b619cabf142d01589b195dd9dd1f57e0405",
+    "bytes": 6872
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8c/5b2c9d56d5f36dfc7f1cd0e9c617357b3b5da6",
+    "bytes": 1142
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/5c/ad6a066a117652b3419e8332c570c81a66aad2",
+    "bytes": 1142
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/87/de6e9469155260d0b1c29d1b2898f7ffbc65ff",
+    "bytes": 1459
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6d/5284d5bd6ceee5b7d4bc1eac3d1729a7b5d640",
+    "bytes": 11129
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/79/f25deffffad441ba8072d9eed62ca3a3b21c2a",
+    "bytes": 4929
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/63/c75b1f7f66e440d2e736fa6a92e655b215a92b",
+    "bytes": 7004
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/76/aeff343f9593b8a264d467d94228eecdafb6e2",
+    "bytes": 2109
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/71/01a5bb42f653a380209c127eb23f3b3248cd20",
+    "bytes": 2318
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7f/0eac23247dd8f80e9cbbccd1951e8b8e628b88",
+    "bytes": 1188
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/56/63965ced7d8a3a0c3808e111a0ea2eedd084a5",
+    "bytes": 5215
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/85/d74f03043198252047c431f83fb2475cbffcdd",
+    "bytes": 393
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/73/ffbcaf0b6e15efbdd6351c425345d2ae82d7e7",
+    "bytes": 219
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/74/c7651d1278c9a49704fc1b11efd9016ca03aee",
+    "bytes": 498
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7e/d0200b5f2931a46b77a99b41844793121bf80b",
+    "bytes": 1226
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8e/e88167d95e00f89ee662fc1fb25dc1792fe7c4",
+    "bytes": 6068
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/71/d9a6cf083870653b9ffb9ef3b0631a004b4451",
+    "bytes": 436
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8d/a01f03ee76117b5961aa508bf6af5f96fe60b7",
+    "bytes": 15025
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7a/26ee581bf04d2c04ab419f93dbbe38b4bfb42e",
+    "bytes": 58034
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/6c/2df34c931d883599f5fe55300ea144b7dfc075",
+    "bytes": 56
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/94/2cbff0c009c75d068511c51ea242bf789636c5",
+    "bytes": 1565
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9e/7bbd05bc9008786406ce680cb871e98a400e25",
+    "bytes": 1256
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a3/48ed27fa7ee492d114182776108199e4a3ba6c",
+    "bytes": 19766
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/94/288dc48d06c775aeac0d07ecd1ae079556c0a7",
+    "bytes": 1564
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a1/cbaf17b5bc2c6828254b542b8d4a28a85989ba",
+    "bytes": 8170
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7f/d6ebf35510b6f7552d38ba7d4273deb4b3fc3d",
+    "bytes": 219
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7d/229e58116955045f6c89d38d6e451bb549aba5",
+    "bytes": 1941
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/82/95cb3f78c003e7fe498cecd775b9cc766dc814",
+    "bytes": 5475
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/7f/011d4118bf786082a09da26cde97175fcae6f7",
+    "bytes": 243
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a7/2610f5ea57fe22f72b27a9c72d5d5913b382b6",
+    "bytes": 572
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8a/6dfc3db33ff169d28a3bb5e4c9f9abd88d8803",
+    "bytes": 5077
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/77/f3fbe0d490ad3a9f9f4b46b5b93e203b4d2bf9",
+    "bytes": 196
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8d/14e350436821bab283a0c131db9ef4463b0cdf",
+    "bytes": 3402
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/99/14bb404e505efc4e6bf918a47745a1d88dd6bd",
+    "bytes": 863
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a2/acc6f32b22733932b74ff0c6eda29c9d94bba2",
+    "bytes": 507
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/83/b475162ce7a5d394a8a458086715ab84eaccd5",
+    "bytes": 5210
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9d/8eee8b31bea354b0963290f78a57705199c0b9",
+    "bytes": 55
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a7/f69c0eec208fc4ee866e72dfffa6c47c913886",
+    "bytes": 3374
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8f/5ae217f15d194e69c4c9d86ec843d00309e52b",
+    "bytes": 659
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9e/8f5d3a793060786ebfec489a073a3996dc8938",
+    "bytes": 863
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/90/fcce4f2aabb395f37192c04f7342c750bb86c4",
+    "bytes": 6996
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/87/64ae337c17f71ececa8bc1822c4d0349adde8a",
+    "bytes": 387
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/55/b2c396c1688f9ec5f4931e184af1faa2b02848",
+    "bytes": 2311
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9c/87f10e0d19398bfbc50d901b531a8748964704",
+    "bytes": 186
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a5/a56c0776714a52d6dead3b061360c49ee1d70f",
+    "bytes": 88
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/aa/68e4eec41ef15ec97d4faf91e5553fcc30bdfd",
+    "bytes": 2657
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/68/2d761bc8825f8fc4199a26ddff23f960fe2232",
+    "bytes": 2462552
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9f/04f1c4c23563ad3bdd9dc58e2bec3f36cc6fc8",
+    "bytes": 165
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a6/36c0bb3bb51d036434176fd9a5ecb95e5d7f65",
+    "bytes": 1354
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8a/62f22fa5e6fcc85bd411aec8a738742d3a1f1e",
+    "bytes": 338
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9f/3caebb50c659b5df32b41467a24debce3c352b",
+    "bytes": 349
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9a/abb8001da3dbf3939f0fd23120b45fb7767a45",
+    "bytes": 155
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/99/8b9392f82848108ba48dfb6bc91b9f329e85a2",
+    "bytes": 286
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/8b/92cc8cf5c8bb5d7d2c712f5053305fd699af19",
+    "bytes": 209
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b1/ae14cff877df7abadf95f3ee11236c878949a6",
+    "bytes": 107
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b3/f49419f22aea6aa32ffd1ccb5fd28ce36f604d",
+    "bytes": 5592
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/aa/78421a0ca13898cea4db346d0a81848d85ad07",
+    "bytes": 195
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/88/ca3e59a2a7ee3987400b06e8b9d24f741be86e",
+    "bytes": 762
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/80/973177ede4144e8825979b681c4ad162adc173",
+    "bytes": 740
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bb/11c23fb35985ac37788ab8db9c702bd2414fa5",
+    "bytes": 284
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9c/48130d12e30084227bc10d1f2dc13bf1034db2",
+    "bytes": 2356
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9d/255369fbe046903fd909ea8592d637ab78eb66",
+    "bytes": 2489
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/99/66e907372f8f6c3eaf48129040fae4d432a93b",
+    "bytes": 3081
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9c/18236fb36b6ff56c727d119004d059920ea768",
+    "bytes": 5394
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/94/865e349e4567e7f77de3702c7f260d6f2e5417",
+    "bytes": 15017
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ac/0355fcb62ab5adbd476372687d1d9a4504c58a",
+    "bytes": 30961
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a7/e995a288c84470d87048e2807900e0e50f21e9",
+    "bytes": 4169
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/97/cd3daed80cbce54f028dc72e457a8efefcf243",
+    "bytes": 809
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a1/3cfa0d81735c063171a9ea9ae56950aa20ae4c",
+    "bytes": 5217
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a9/7d4c4691c6c9d3b0f77ef4422046f4098fd35b",
+    "bytes": 49115
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b6/a5dba028c900beda9c04851d383459b3c69da9",
+    "bytes": 15023
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a0/247d1534073fca681bb4ff8f38d02c537897a4",
+    "bytes": 1254
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ae/2bdc805b2c271e67781ae4948a3b2e5e12ceec",
+    "bytes": 2672
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ad/0aef823fb8683d696d91ab3932936dc448d71c",
+    "bytes": 52100
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a0/dfa91b97f91aa504e451f5898c9d523a12f0ce",
+    "bytes": 218
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b2/1edcb5ca7eacd5cc8cd27875715352434a2df3",
+    "bytes": 564
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/99/8352a94f8dd22ac9abf43588d88e35eddeb823",
+    "bytes": 488
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b2/f0bef20efcfb6a37d19ab030ceb8d7735769be",
+    "bytes": 2178
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9e/a72c63a30f6060925ef6426097cce0adadfd3c",
+    "bytes": 104
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ab/7b38b6d1bff7e69f72c0f7318f4688f9a8ed66",
+    "bytes": 244
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c4/3d056d6876e2c52bf41c1b5e37c6ac9f75050a",
+    "bytes": 7209
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b9/f08370f3fef8106c18aedebb35e1cd42210115",
+    "bytes": 794
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ad/1c0c2104f81d8ed2b668e5a0369452f9ca6e13",
+    "bytes": 2500
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b7/c46c1eeece9c20534cefffddfd8a5003779294",
+    "bytes": 1512
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d2/67969b2ab937e4b4d5a290d5d1254215bc646f",
+    "bytes": 1188
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b0/4290c0d069b193be917e928ea2d8d3d641d9ff",
+    "bytes": 3479
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a6/96c3fd94c64c7adde2803ea963055c685a7635",
+    "bytes": 6519
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9b/7ce2e45220a1993b4f2974c86cc35117c23b71",
+    "bytes": 4538
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bd/26e2ddc2730fe3d50f8854f63c8d4fe618b997",
+    "bytes": 1406
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/aa/b4c5eae0d354bc9819dc12b7aed8d894c5ed08",
+    "bytes": 533
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bb/9f0ecc5e6744863ed0bcc7d19e2b0955ce41c0",
+    "bytes": 3209
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bd/969686c3d2a9b99b651c10dac7c5a23b20bac0",
+    "bytes": 900
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/be/7025fe1f5f80df79064b0d07c51cb1d647a5fb",
+    "bytes": 548
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/aa/4313fbca683275c030b86e487927b5dd3034f7",
+    "bytes": 394
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b3/b1a919095c3c28b55eb5a2b056276ca7ea090a",
+    "bytes": 236
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a2/5a4851e16a1ccd4e37a3607f7610dd2c55571a",
+    "bytes": 5610
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/cb/c102889d8e693cfff923d39c3e32a22ce54e45",
+    "bytes": 2433
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/91/949af3d17208be53948bf2d5d63fe4136ad92a",
+    "bytes": 547
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a8/a19b644957394c7930917c3315125ee5398985",
+    "bytes": 521
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b1/0a9db78c9045a45b0d7a78909f694e2be2c268",
+    "bytes": 3031
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9f/8ff53e27c45d3b83d97b954ff049cf3d48a12d",
+    "bytes": 134
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bb/0051c075bd29d7ab0ba167814853418a91c5aa",
+    "bytes": 628
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c8/63f5ba19d7a55469c92093a1ff17f02d1ecbab",
+    "bytes": 1224112
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a3/201e22713852b0cdc28dd614b3918ca7b7ac9c",
+    "bytes": 706
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bc/d38c74f4c187a429d749ffdb74e3671185b075",
+    "bytes": 1222
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c8/2c93462f119c48e14f403ee7a09923f26c735f",
+    "bytes": 594
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c5/b377e2c0a9922419a9d082b4106b2e519e0c75",
+    "bytes": 349
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b5/700900f7179a247701b5d0f3ff0cdc5971b8d1",
+    "bytes": 27114
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/9c/f52066d4672a56aea72da59f9971b219059d8d",
+    "bytes": 746
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/be/0a409039504a326aebda5605d93a9324ee2901",
+    "bytes": 340
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a6/8c3ad5a3ad92964f31aa733d396ddfadb01378",
+    "bytes": 7043
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c0/f2f13289e163e73a4f2f38b62131e90b7d50d6",
+    "bytes": 80587
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b7/d443d42e2b6940cdfbfa5888abb2a9edc9002b",
+    "bytes": 6244
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ba/abbb1794d8461c469fccb6c0bb0ff8765812af",
+    "bytes": 192
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b3/af5d2fef483c2f22146ab305eb69eb646ffc95",
+    "bytes": 816
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/cd/ba49c390517f569dc5c5d5131ed3b0656b3c15",
+    "bytes": 281
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/b7/bf1b1a643a1ac9f56756789a19333a2250c0d0",
+    "bytes": 3265
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a0/b47a834f4c38fcac269245d17de65e5bd1b6bb",
+    "bytes": 99
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d7/852719fa9e3be19c6cf3cd4bb7a38bc2638d68",
+    "bytes": 1676
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bf/d6e42e6360b2a5898d17691f06221db16c4f15",
+    "bytes": 3243
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d1/edaed1c0e8af914f7a4eef76cd9bcafcccdc91",
+    "bytes": 4030
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bb/84a654f688f3cd0410e8199f3b7d5688dc520f",
+    "bytes": 218
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/a1/388d207f685f685c250311713e00d2aad637f9",
+    "bytes": 591
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bf/d50052aac9837c8f792486909ce4fd50ab1751",
+    "bytes": 222
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/cb/45f21d77366d5eb8fa2075c69eb67dfe97af31",
+    "bytes": 1488
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/bd/891a42f583ee6b492c1574c4e6a898afe1040f",
+    "bytes": 1490
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c2/89884a38ecc271b02a5e6bdbe752d9fa76638d",
+    "bytes": 92
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c5/04abdb4eab4d9749dfbbfac9b8e8e934926969",
+    "bytes": 542
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c4/b1c06a774e792555073e0699b735af366929d5",
+    "bytes": 164
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c4/255eb3f49a45c3d036449624bfe591be57a90e",
+    "bytes": 4714
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d2/5f20ab14581a893e831f78ac21d836a02d9a8b",
+    "bytes": 159525
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c5/a83f6fbfd662ea2d57288071dc06ea243d8a7e",
+    "bytes": 2459
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/dd/ad4c32f2a049c03751df07d0496c10c0f7253c",
+    "bytes": 6091
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c3/71128f43d25a77f16ea3b2f2a2965b661166a2",
+    "bytes": 1224
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c3/38dc05acceaed85acea24f22613f6ab4daf998",
+    "bytes": 2631
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ea/21c1ef55cf742d5fd0d9baf9c18ee764331665",
+    "bytes": 3127
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d7/0860d5b3891de45ab08a164877164bb2e22d4f",
+    "bytes": 6159
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e6/9de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+    "bytes": 15
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ce/a02fbc111f613126aaec41cdb4a2a9f042df5a",
+    "bytes": 2797
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/cd/bb5489ad4608065a6af53f19be898ca9d1166a",
+    "bytes": 1185
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/db/1c67585224091a210fd2b6c52d3ebc3f408427",
+    "bytes": 888
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ce/a6afe89e83cbc5056dd6561df4ff5fe0309d20",
+    "bytes": 1221
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/de/d829f06a71edf24490dd1d60f08e4c673377cf",
+    "bytes": 252760
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/df/9e229f64f0b1acf1798a1a160056fbc19078d2",
+    "bytes": 15120
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c5/388adfac247f9183fde611fd37a4454de7cf03",
+    "bytes": 340
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e8/0a8eb28d9324669c74d3271c86cc6ceb179dab",
+    "bytes": 7084
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c8/a83bbfe9cce76f18c3f75e9d813ba8dd775cea",
+    "bytes": 5871
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/eb/70b2f4b29391dfac94b51260fccf1d0f1e5106",
+    "bytes": 3176
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ef/9b241ba7b704c6509ab33c446cc0b54b3cf125",
+    "bytes": 8459
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/cb/100f932dd73f337f55c3bcd4a8e8f0a68f0b0e",
+    "bytes": 1884
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c1/80a6ba3b30e2b7841fb66507da2d2d1ed2b830",
+    "bytes": 341
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ec/5b2626cb0e27565bd40006992d61026ec383f5",
+    "bytes": 7522
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/fb/4edf97a142cda93b908ec2c05a873c11eaa146",
+    "bytes": 46
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d9/b8a329f792f1928eaf624f56fcb6d05bf6eb6d",
+    "bytes": 547
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e7/795eedea9137937723bcafb9aa40d65209ff49",
+    "bytes": 664
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ec/0603ab1013e51fe66e5992a98263795188813a",
+    "bytes": 3624
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e5/b64ce1633e4e74f7f0afca3926659ae9e09692",
+    "bytes": 943
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d0/63ad6a7ecfc72781ab6459b6d9637a8c65cec6",
+    "bytes": 3867
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c6/064e541bb33692424a178cb32f719aa6345910",
+    "bytes": 219
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c7/33a5df2d93f47360a181a9f8bc9fe7a928d7f3",
+    "bytes": 3345
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d9/c89c6cc4e0562de10fb5fbc9e0def74e18215d",
+    "bytes": 1547
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d0/b364a9814166ae10354651d1093b9b75319032",
+    "bytes": 6756
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/dd/c6ee546112149fa505c178dc925eb3ff347fbf",
+    "bytes": 2956
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/cc/8ec26b9806f96d68c8201fe6dcb533f01076e3",
+    "bytes": 1491
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f7/2a3b4dc9db1ec66fc1b921e0c9f75701c75a40",
+    "bytes": 1382
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d5/06478df094a58c4d908f7b9da1968187f4dbf8",
+    "bytes": 139
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d5/8a90cce21d48e376e12938d4441044ec2319b4",
+    "bytes": 27135
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e3/1eb103bd37936067d3b28c69725e0e8d53214e",
+    "bytes": 55524
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ec/e472095635624115f4b0dc9b6bd82fc34d3c1f",
+    "bytes": 109259
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/dd/5c7776bd3981c173b44f5aa2350559686a5d36",
+    "bytes": 2276
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/fc/5396757ef2502ad0db258ba39958bb6654a336",
+    "bytes": 645
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c7/679b87ea0306638b2625327364164ef603f2bd",
+    "bytes": 1021
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e4/f3eec9021dca3cb588b078f5c9c6c9f28cf52e",
+    "bytes": 5126
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/20/c38121d2aa7bdb674322abe8c2cd6ed90bc332",
+    "bytes": 360
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/__pycache__/rules.cpython-312.pyc",
+    "bytes": 13969
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/23/c4555c110ae432a38b5ffd0c84a581a118d27f",
+    "bytes": 18476
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/47/e9111ea8331006788624688e14635a3d09629e",
+    "bytes": 4783
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/db/cf308a8e2b4a4f488e539c22160ab307bf2307",
+    "bytes": 23572
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e6/74eaa9789349353d21857d0d199a3d73a3cc5e",
+    "bytes": 1222
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f3/af9ad97949c16a93644a072724d4dfafc60b62",
+    "bytes": 626
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c2/cb4c5a8374aca587cabfa8231717df11fcd04a",
+    "bytes": 5393
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/refs/heads/main",
+    "bytes": 41
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e0/2c44636481e6ab940e70dbbe4912b9ad274c66",
+    "bytes": 1342
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/4f/8dded4726ac4ec39451e54f612aa06f944b1b9",
+    "bytes": 164
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/de/c85d1c5fcf9021a1e040e29cd7a58e01f243c1",
+    "bytes": 1113
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/76/aeff343f9593b8a264d467d94228eecdafb6e2",
+    "bytes": 2109
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f2/22f3efb1752a2d2006900a2102a1ba3875ed98",
+    "bytes": 1312
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f4/ea3a33250f9ba2a3a2437a1232eae3c6cb6c78",
+    "bytes": 821
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/6f/26fd83e85bf595ba6f6a1c51a29fce1397abec",
+    "bytes": 1025
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e6/6c6c060ef71e52db3b5f944a1cad4c5ecca9b3",
+    "bytes": 197
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f2/5b7e76d1304b71c3adac8a55f7f6f4e4e7d3a4",
+    "bytes": 200
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e0/03b412f9d6745920267ba861af7206360a344c",
+    "bytes": 855
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/2d/aaad1d95acc8041c813679d60affba9e0b365c",
+    "bytes": 9560
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/55/bd70cd4c19c52192d5d80160d13982e1c7a80a",
+    "bytes": 167
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f3/f19f93d9f77b21d177b3e3862b0abf32e60f8f",
+    "bytes": 491
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f6/3ad1811bc0bbc0cfc18eb64bac401ce5452685",
+    "bytes": 1256
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/c6/2867eb7c3ef13dd51df3d0db1e94fb98716981",
+    "bytes": 214
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d7/05865664a055d4afc253cef5d228dd56d730d5",
+    "bytes": 219
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f2/4db66209c40da54cf27f64f6d95925bb9c3061",
+    "bytes": 2098
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ee/2babfe409203c296ff0d903bddf333fa8e4e87",
+    "bytes": 1081
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f3/e1035375b936aa7ccc9f298af05480d83c3908",
+    "bytes": 11061
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/__pycache__/engine.cpython-312.pyc",
+    "bytes": 6685
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f0/e52e2e7bf6d5679e819b1d8889c6d3a83e6590",
+    "bytes": 7094
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f1/88b309c671698babe061b5ce1aa2874dee98a5",
+    "bytes": 285
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/fb/18ce4875450908e7c29afd48dcf89b6b9cbd42",
+    "bytes": 71
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e4/b4fa125b75c46d1d23fc97cd0f8faa0f504abe",
+    "bytes": 14744
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e9/d0f6dc9e80cbfa169afc3ea0651f401dfd1ec4",
+    "bytes": 499
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f0/b5af94db4ba37a551572dafd30f0c2a35001c2",
+    "bytes": 154
+  },
+  {
+    "path": "xiangqi-ai/.git/refs/codex/turn-diffs/checkpoints/bd941715ae822bfe50d6738da5b377f4/df604e43a2d86a72c0ad23fa77ab507f/1792842025975/fb393d9a-4596-49d8-af87-b55e75cf785b",
+    "bytes": 41
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/18/6ee9ba2c143f8be0a4da16ca88bd69dbcbe285",
+    "bytes": 2961
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/9b/afb60fc313e0427ef4d4b24aa4e984e3923490",
+    "bytes": 78
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f6/30b739c0ae7e945b6f4e7a8282e59f8ba15b92",
+    "bytes": 1187
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/28/66ae44635f90e2dc971bcc4df074e9e64be2e8",
+    "bytes": 5601
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/c2/cb4c5a8374aca587cabfa8231717df11fcd04a",
+    "bytes": 5393
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/d2/1500d153e60af41ca9895ef73b57ea8a0c5feb",
+    "bytes": 2397
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/5c/4a4cbf6e30cd3a99dbe365da95639f332b54bd",
+    "bytes": 5210
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/fa/d35977a128703d1fcef52b19db8abcb54692d3",
+    "bytes": 1014
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f1/9a262747df843b80c6bffc60a40a67264a1cc9",
+    "bytes": 100
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/54/3357b6f8052fa97c12c306b0c2d4c197318308",
+    "bytes": 3132
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f4/91d33f39044c08279a87d5a42d3984f3d4cf0e",
+    "bytes": 2898
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ff/6ba10702698add57c7abaab520884ef1c364a3",
+    "bytes": 49117
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/e1/3373c336c0021ec580fb3670ceaf49441b672f",
+    "bytes": 1188
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/f2/9d2633654de04aff8681da91ac73a4ea4d295c",
+    "bytes": 721030
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/47/458b7a4db29497f6247f37f9d5e808e8f7f0f8",
+    "bytes": 566
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f2/9d2633654de04aff8681da91ac73a4ea4d295c",
+    "bytes": 721030
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/fc/37eb0632f74c551c1d28b928187158d11a790e",
+    "bytes": 9143
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/aa/24b4770a5682211a103547a4f612dab5ff2eab",
+    "bytes": 77
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f9/f24d596800fd2d8d5e44c6486a3dadeb54665f",
+    "bytes": 5349
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/ea/01535b81fedbcc429582a2ba15bc2ae77e0377",
+    "bytes": 9859
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f6/b0e81059257313c798a47570cb3607b6524fea",
+    "bytes": 27192
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/__pycache__/__init__.cpython-312.pyc",
+    "bytes": 247
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/app/__pycache__/puzzles.cpython-312.pyc",
+    "bytes": 3113
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/info/commit-graphs/commit-graph-chain",
+    "bytes": 41
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tests/__pycache__/test_rules.cpython-312.pyc",
+    "bytes": 15686
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f9/9eedf06d78d48938e89652a3b1ec5e3d42412f",
+    "bytes": 7097
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/f6/b0e81059257313c798a47570cb3607b6524fea",
+    "bytes": 27192
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/logs/refs/heads/main",
+    "bytes": 508
+  },
+  {
+    "path": "xiangqi-ai/.git/logs/refs/remotes/origin/codex-full",
+    "bytes": 462
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/10/6cccf0d5a77d1b39a33c9024231beb2dc91a43",
+    "bytes": 153
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f1/ef4883954a5b3823ddce091e3868c9bb0a2a13",
+    "bytes": 1186
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/a1/3cfa0d81735c063171a9ea9ae56950aa20ae4c",
+    "bytes": 5217
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/e5/9eebf119b53f46e974dfb166baef32e031111b",
+    "bytes": 251
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/fa/62682b5b7a0f61fea0a88f2b31a25b91161139",
+    "bytes": 1222
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/d9/d7210cd199a258f908b03ff69ebf1ab52d6020",
+    "bytes": 106
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/24/bdb2aed0a4995c71e0da09d099ec7440ec0db6",
+    "bytes": 2606
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/6e/68ef813e191207463d2c1823c493d9a6552372",
+    "bytes": 77
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/f6/d06e92a2e5e8c44ee1f3a60f3bcc7c8249694c",
+    "bytes": 140
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/9d/255369fbe046903fd909ea8592d637ab78eb66",
+    "bytes": 2489
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/7e/69bc7f7434ec3a7b1c77f7697ba1d9ef6b2742",
+    "bytes": 2271
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/e5/34389f4f52793474a796002f9db7849d6be989",
+    "bytes": 57
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/2b/e56598dd51a744a6ebae2b07bbac3e92b729ea",
+    "bytes": 236
+  },
+  {
+    "path": "xiangqi-ai/var/site-preview/.git/objects/4e/a27de5c90c3080cd673f3a00e669aa3f579bfb",
+    "bytes": 134
+  },
+  {
+    "path": "xiangqi-ai/.git/objects/info/commit-graphs/graph-2671e5e5a0405782b24de46ca933581bad8c7bb6.graph",
+    "bytes": 2163
+  },
+  {
+    "path": "xiangqi-ai/var/co-chill-web-source-gon/tools/__pycache__/export_preview_fixtures.cpython-312.pyc",
+    "bytes": 8994
+  }
+]

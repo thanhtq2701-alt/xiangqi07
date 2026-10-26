@@ -1,0 +1,156 @@
+{
+  "output": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_Giai_thich_tung_file_va_nhom_code_2026_10_18.docx",
+  "files": 29,
+  "groups": 196,
+  "paragraphs": 1299,
+  "tables": 3,
+  "source_hashes_unchanged": true,
+  "all_line_ranges_valid": true,
+  "chapters": [
+    {
+      "number": 1,
+      "path": "online-preview/index.html",
+      "groups": 7
+    },
+    {
+      "number": 2,
+      "path": "online-preview/style.css",
+      "groups": 17
+    },
+    {
+      "number": 3,
+      "path": "online-preview/app.js",
+      "groups": 34
+    },
+    {
+      "number": 4,
+      "path": "online-preview/xiangqi.js",
+      "groups": 14
+    },
+    {
+      "number": 5,
+      "path": "online-preview/game-tools.js",
+      "groups": 11
+    },
+    {
+      "number": 6,
+      "path": "online-preview/fixtures.js",
+      "groups": 6
+    },
+    {
+      "number": 7,
+      "path": "online-preview/learning.js",
+      "groups": 14
+    },
+    {
+      "number": 8,
+      "path": "online-preview/experience.js",
+      "groups": 7
+    },
+    {
+      "number": 9,
+      "path": "online-preview/favicon.svg",
+      "groups": 2
+    },
+    {
+      "number": 10,
+      "path": "online-preview/logo-co-chill.png",
+      "groups": 2
+    },
+    {
+      "number": 11,
+      "path": "app/__init__.py",
+      "groups": 1
+    },
+    {
+      "number": 12,
+      "path": "app/rules.py",
+      "groups": 10
+    },
+    {
+      "number": 13,
+      "path": "app/engine.py",
+      "groups": 6
+    },
+    {
+      "number": 14,
+      "path": "app/puzzles.py",
+      "groups": 3
+    },
+    {
+      "number": 15,
+      "path": "tests/__init__.py",
+      "groups": 0
+    },
+    {
+      "number": 16,
+      "path": "tests/test_rules.py",
+      "groups": 5
+    },
+    {
+      "number": 17,
+      "path": "tools/check_all.py",
+      "groups": 4
+    },
+    {
+      "number": 18,
+      "path": "tools/check_browser_rules.py",
+      "groups": 6
+    },
+    {
+      "number": 19,
+      "path": "tools/check_online_preview.py",
+      "groups": 4
+    },
+    {
+      "number": 20,
+      "path": "tools/export_preview_fixtures.py",
+      "groups": 6
+    },
+    {
+      "number": 21,
+      "path": "tools/test_preview_game_tools.cjs",
+      "groups": 6
+    },
+    {
+      "number": 22,
+      "path": "tools/test_preview_learning.cjs",
+      "groups": 6
+    },
+    {
+      "number": 23,
+      "path": "tools/test_preview_experience.cjs",
+      "groups": 6
+    },
+    {
+      "number": 24,
+      "path": ".vscode/tasks.json",
+      "groups": 3
+    },
+    {
+      "number": 25,
+      "path": ".gitignore",
+      "groups": 3
+    },
+    {
+      "number": 26,
+      "path": "README.md",
+      "groups": 4
+    },
+    {
+      "number": 27,
+      "path": "AI_HANDOFF.md",
+      "groups": 3
+    },
+    {
+      "number": 28,
+      "path": "SOURCE_MANIFEST.json",
+      "groups": 3
+    },
+    {
+      "number": 29,
+      "path": "THIRD_PARTY_NOTICES.md",
+      "groups": 3
+    }
+  ]
+}
