@@ -16,7 +16,7 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'docs' / 'CO_CHILL_V5_QUESTIONS.md'
-OUTPUT = ROOT / 'deliverables' / 'Co_Chill_V5_Cau_hoi_hoan_thien.docx'
+OUTPUT = ROOT / 'deliverables' / 'Co_Chill_V5_Cap_nhat_Tai_khoan.docx'
 
 
 def set_style(style, size, bold=False):
@@ -123,11 +123,11 @@ def build():
         elif line.startswith('## '):
             finish_question()
             heading = line[3:]
-            if re.match(r'^[A-H] ', heading):
+            if re.match(r'^[A-I] ', heading):
                 group_count += 1
                 p = add_text(doc, heading, 'Heading 1')
                 p.paragraph_format.page_break_before = group_count == 1
-            elif heading == 'Cách gửi lại V5':
+            elif heading in ('Cách gửi lại V5', 'Cách nghiệm thu phần tài khoản đã chốt'):
                 p = add_text(doc, heading, 'Heading 1')
             else:
                 add_text(doc, heading, 'Subtitle')
@@ -152,8 +152,8 @@ def build():
             if in_question:
                 question_paragraphs.append(p)
     finish_question()
-    assert question_count == 41, question_count
-    assert group_count == 8, group_count
+    assert question_count == 46, question_count
+    assert group_count == 9, group_count
     OUTPUT.parent.mkdir(exist_ok=True)
     doc.save(OUTPUT)
     print(f'Created {OUTPUT} with {question_count} questions in {group_count} groups')

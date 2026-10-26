@@ -9,7 +9,7 @@
   // Transparent demo scheduling, not a trained or clinically validated model.
   const DAY = 86400000;
   const INTERVALS = [1, 2, 7, 14, 30];
-  const STAGES = ['reflect', 'explain', 'retry', 'complete', 'summary', 'related_pending'];
+  const STAGES = ['reflect', 'explain', 'retry', 'complete', 'summary', 'related_pending', 'parked'];
   const FORBIDDEN = new Set(['__proto__', 'prototype', 'constructor']);
   const MIN_TIME = Date.UTC(2000, 0, 1);
   const MAX_TIME = Date.UTC(2100, 0, 1);
@@ -62,7 +62,7 @@
   }
 
   function fresh() {
-    return { version: 2, records: {}, session: null, games: [], summaries: [], profile: { name: '' } };
+    return { version: 2, records: {}, session: null, lineSession: null, lineAttempts: [], lessonViews: [], games: [], summaries: [], profile: { name: '' } };
   }
 
   function copyState(state) {
@@ -84,6 +84,7 @@
   function puzzleSnapshot(puzzle) {
     if (!plain(puzzle) || !validId(puzzle.id)) return null;
     const result = { id: puzzle.id };
+    if (Number.isInteger(puzzle.version) && puzzle.version > 0) result.version = puzzle.version;
     ['fen', 'skill', 'title', 'what', 'why', 'how', 'source', 'gameId'].forEach(key => {
       if (typeof puzzle[key] === 'string') result[key] = text(puzzle[key], key === 'why' || key === 'how' ? 10000 : 3000);
     });
@@ -104,6 +105,7 @@
       puzzle: puzzleSnapshot(puzzle),
       source,
       related: options.related === true,
+      firstExposure: options.firstExposure === true,
       stage: 'reflect',
       answers: ['', '', ''],
       candidate: null,
@@ -128,6 +130,7 @@
 
   function canReveal(session) {
     if (!plain(session)) return false;
+    if (session.stage === 'parked') return false;
     // Legal move validation belongs to the Xiangqi rules module before submission.
     return session.unknown === true || (
       Array.isArray(session.answers) && session.answers.length === 3 &&
@@ -182,6 +185,68 @@
     };
   }
 
+  // Vietnam has a fixed UTC+7 offset. Tomorrow at the same local clock time
+  // is exactly 24 hours later, independent of the browser's time zone.
+  function nextVietnamDay(value) { return iso(nowValue(value) + DAY); }
+
+  function reviewDueAt(record) {
+    if (!plain(record)) return null;
+    const dates = [time(record.dueAt), time(record.pendingReview && record.pendingReview.dueAt)].filter(value => value !== null);
+    return dates.length ? iso(Math.min(...dates)) : null;
+  }
+
+  function parkPuzzle(state, session, puzzle, options) {
+    options = options || {};
+    if (!plain(puzzle) || !validId(puzzle.id) || !plain(session) || session.puzzleId !== puzzle.id || !validId(session.id)) {
+      throw new TypeError('Pending review must match the active puzzle.');
+    }
+    const timestamp = nowValue(options.now);
+    const previous = (state.records || {})[puzzle.id] || emptyRecord(puzzle);
+    if (previous.pendingReview && previous.pendingReview.sessionId === session.id) return state;
+    if (session.stage !== 'reflect' || Number(session.submissionCount) < 3 || !canReveal(session)) {
+      throw new Error('Three complete unsuccessful submissions are required before parking.');
+    }
+    if (session.candidate === puzzle.solution || (puzzle.alternatives || []).includes(session.candidate)) {
+      throw new Error('An accepted candidate must not be parked as unsuccessful.');
+    }
+    const started = time(session.startedAt);
+    if (started === null || timestamp < started) throw new RangeError('Pending review cannot precede the session start.');
+    const parked = sanitizeSession(Object.assign({}, session, {
+      stage: 'parked', assisted: true, seenExplanation: false, completedAt: null
+    }), timestamp);
+    const result = copyState(state);
+    result.records[puzzle.id] = Object.assign({}, previous, {
+      seenCount: Math.max(1, previous.seenCount || 0),
+      lastSeenAt: previous.lastSeenAt || session.startedAt,
+      pendingReview: { status: 'incomplete', sessionId: session.id, parkedAt: iso(timestamp), dueAt: nextVietnamDay(timestamp), session: parked }
+    });
+    result.session = parked;
+    // This is a continuation reminder, never a completed SRS attempt.
+    return result;
+  }
+
+  function resumeParked(state, puzzleId, options) {
+    const previous = validId(puzzleId) && (state.records || {})[puzzleId];
+    const pending = previous && previous.pendingReview;
+    const timestamp = nowValue(options && options.now);
+    if (!pending || !pending.session || !pending.session.puzzle) throw new Error('There is no saved incomplete position to resume.');
+    if (time(pending.parkedAt) === null || timestamp < time(pending.parkedAt)) throw new RangeError('Resume cannot precede the pending review.');
+    const old = sanitizeSession(pending.session, timestamp);
+    if (!old || old.puzzleId !== puzzleId) throw new Error('The saved incomplete position is invalid.');
+    const session = createSession(old.puzzle, { now: timestamp, source: old.source, related: old.related, firstExposure: false });
+    Object.assign(session, {
+      answers: old.answers.slice(), candidate: old.candidate, assisted: true,
+      firstAnswers: old.firstAnswers ? old.firstAnswers.slice() : old.answers.slice(),
+      firstCandidate: old.firstCandidate || old.candidate,
+      helpLevel: Math.max(1, old.helpLevel || 0),
+      coachFeedback: 'Tiếp tục hình đang học. Bản trả lời trước vẫn được giữ; lượt này có hỗ trợ.'
+    });
+    const result = copyState(state);
+    result.session = session;
+    result.records[puzzleId] = Object.assign({}, previous, { pendingReview: Object.assign({}, pending, { status: 'in_progress' }) });
+    return result;
+  }
+
   function finishPuzzle(state, session, puzzle, options) {
     options = options || {};
     if (!plain(puzzle) || !validId(puzzle.id) || !plain(session) || session.puzzleId !== puzzle.id || !validId(session.id)) {
@@ -211,6 +276,8 @@
       firstCandidate: move(session.firstCandidate),
       firstAnswers: Array.isArray(session.firstAnswers) ? [0, 1, 2].map(index => text(session.firstAnswers[index], 1500)) : null,
       unknown: session.unknown === true,
+      firstExposure: session.firstExposure === true && !assisted &&
+        !(previous.attempts || []).length && (previous.seenCount || 0) <= 1 && (session.submissionCount || 0) <= 1,
       success: options.success,
       assisted,
       intervalDays: nextSchedule.intervalDays
@@ -226,7 +293,9 @@
       completedAt: iso(completed),
       dueAt: iso(completed + nextSchedule.intervalDays * DAY),
       lastSuccess: options.success,
-      assisted
+      assisted,
+      learningStatus: assisted ? 'assisted' : options.success ? 'independent_move' : 'needs_practice',
+      pendingReview: null
     });
     result.session = Object.assign({}, session, {
       answers: session.answers.slice(),
@@ -284,6 +353,7 @@
       puzzle: puzzleSnapshot(raw.puzzle),
       source: text(raw.source, 100) || 'practice',
       related: raw.related === true,
+      firstExposure: raw.firstExposure === true,
       stage: STAGES.includes(raw.stage) ? raw.stage : 'reflect',
       answers: [0, 1, 2].map(index => text(Array.isArray(raw.answers) ? raw.answers[index] : '', 10000)),
       candidate: move(raw.candidate),
@@ -298,7 +368,8 @@
     result.submissionCount = Math.min(3, Math.max(0, Math.floor(Number(raw.submissionCount) || 0)));
     result.retryCount = Math.min(3, Math.max(0, Math.floor(Number(raw.retryCount) || 0)));
     result.helpLevel = Math.min(3, Math.max(0, Math.floor(Number(raw.helpLevel) || 0)));
-    result.helpReadyAt = Number.isFinite(raw.helpReadyAt) ? Math.min(raw.helpReadyAt, now + 10000) : 0;
+    // Guidance opens immediately; migrate the old artificial countdown away.
+    result.helpReadyAt = 0;
     result.firstCandidate = move(raw.firstCandidate);
     result.firstAnswers = Array.isArray(raw.firstAnswers) ? [0, 1, 2].map(index => text(raw.firstAnswers[index], 1500)) : null;
     result.coachFeedback = text(raw.coachFeedback, 1000);
@@ -340,6 +411,7 @@
         firstCandidate: move(rawAttempt.firstCandidate),
         firstAnswers: Array.isArray(rawAttempt.firstAnswers) ? [0, 1, 2].map(index => text(rawAttempt.firstAnswers[index], 1500)) : null,
         unknown: rawAttempt.unknown === true,
+        firstExposure: rawAttempt.firstExposure === true && result.attempts.length === 0 && !assisted,
         success: rawAttempt.success,
         assisted,
         intervalDays: scheduleResult.intervalDays
@@ -349,13 +421,27 @@
         completedAt: iso(completed),
         dueAt: iso(completed + scheduleResult.intervalDays * DAY),
         lastSuccess: attempt.success,
-        assisted
+        assisted,
+        learningStatus: assisted ? 'assisted' : attempt.success ? 'independent_move' : 'needs_practice'
       });
     });
     result.completionCount = result.attempts.length;
     if (result.completionCount) {
       result.seenCount = Math.max(1, result.seenCount);
       result.lastSeenAt = result.lastSeenAt || result.completedAt;
+    }
+    if (plain(raw.pendingReview)) {
+      const pending = raw.pendingReview;
+      const parkedAt = time(pending.parkedAt);
+      const session = sanitizeSession(pending.session, now);
+      if (parkedAt !== null && parkedAt <= now + 300000 && session && session.puzzleId === id &&
+          pending.sessionId === session.id && session.stage === 'parked' && session.submissionCount >= 3 &&
+          session.puzzle && session.candidate !== session.puzzle.solution &&
+          !(session.puzzle.alternatives || []).includes(session.candidate) &&
+          (time(result.completedAt) === null || parkedAt >= time(result.completedAt))) {
+        result.pendingReview = { status: pending.status === 'in_progress' ? 'in_progress' : 'incomplete',
+          sessionId: session.id, parkedAt: iso(parkedAt), dueAt: nextVietnamDay(parkedAt), session };
+      }
     }
     return result;
   }
@@ -369,7 +455,29 @@
       if (record) result.records[id] = record;
     });
     result.session = sanitizeSession(raw.session, timestamp);
-    result.games = Array.isArray(raw.games) ? raw.games.filter(plain).slice(-200).map(game => safeJson(game, 0)) : [];
+    // V6 data stays inside the same per-account snapshot as legacy learning.
+    // Replay accepted moves instead of trusting a saved checkpoint/completion.
+    const lineApi = typeof globalThis !== 'undefined' && globalThis.CCLine ||
+      (typeof module !== 'undefined' && module.exports ? require('./line-practice.js') : null);
+    const curriculum = typeof globalThis !== 'undefined' && globalThis.CCCurriculum ||
+      (typeof module !== 'undefined' && module.exports ? require('./curriculum.js') : null);
+    if (lineApi && curriculum) {
+      const exercise = raw.lineSession && curriculum.findExercise(raw.lineSession.exerciseId);
+      if (exercise) result.lineSession = lineApi.restore(exercise, raw.lineSession, { now: timestamp });
+      const seenAttempts = new Set();
+      for (const attempt of (Array.isArray(raw.lineAttempts) ? raw.lineAttempts : []).slice(-2000)) {
+        const item = attempt && curriculum.findExercise(attempt.puzzleId);
+        const clean = item && lineApi.sanitizeAttempt(item, attempt, { now: timestamp });
+        if (clean && !seenAttempts.has(clean.id)) { seenAttempts.add(clean.id); result.lineAttempts.push(clean); }
+      }
+      const seenLessons = new Set();
+      result.lessonViews = (Array.isArray(raw.lessonViews) ? raw.lessonViews : []).filter(view => {
+        if (!plain(view) || !curriculum.findLesson(view.id) || seenLessons.has(view.id) || time(view.at) === null || time(view.at) > timestamp + 300000) return false;
+        seenLessons.add(view.id); return true;
+      }).map(view => ({ id: view.id, at: iso(time(view.at)), kind: 'viewed' }));
+    }
+    // 200 is a display/archive boundary, not permission to erase older games.
+    result.games = Array.isArray(raw.games) ? raw.games.filter(plain).map(game => safeJson(game, 0)) : [];
     result.profile.name = plain(raw.profile) ? text(raw.profile.name, 80) : '';
     if (Array.isArray(raw.summaries)) result.summaries = raw.summaries.slice(-200).filter(summary =>
       plain(summary) && validId(summary.id) && time(summary.at) !== null && time(summary.at) <= timestamp + 300000
@@ -384,5 +492,5 @@
     return result;
   }
 
-  return { DAY, INTERVALS: INTERVALS.slice(), fresh, sanitize, createSession, canReveal, reveal, markSeen, finishPuzzle, recommend, summarizeSession };
+  return { DAY, INTERVALS: INTERVALS.slice(), fresh, sanitize, createSession, canReveal, reveal, markSeen, finishPuzzle, recommend, summarizeSession, nextVietnamDay, reviewDueAt, parkPuzzle, resumeParked };
 });

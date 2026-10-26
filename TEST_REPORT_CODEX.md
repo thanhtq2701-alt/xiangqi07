@@ -1,58 +1,77 @@
-# Kiểm thử phát hành UI UX ngày 16/10/2026
+# Kiểm thử V6 — 26/10/2026
 
-- Python unittest: 72/72 qua, 43.521 giây; chạy lại ngoài sandbox sau lỗi quyền HTTP socket, không sửa yếu kiểm thử.
-- Browser learning state: 19/19; experience/app handlers: 18/18; notation/rule extensions: 14/14. Tổng 51 kiểm thử Node qua.
-- Browser/Python parity: 205 thế, 5.468 thế con; perft 2 = 1.920; 25 FEN, 10 nhóm lỗi; engine 12 thế/153 biến.
-- Fixture validation: 12/12. JavaScript syntax qua; static package Sites thành công.
-- Manual: phản hồi trước đáp án, trợ giúp có chờ quan sát, retry, bài liên quan, tự đánh giá, tiến độ; timed local game/ký phổ/lật bàn/xin thua; nhập ván và phân tích; theme tối/chữ lớn/quân Việt; laptop 1366×900 và mobile 390×844 không tràn ngang. Không có console error ghi nhận. Public Site v3 mở được với UI mới.
+## Phạm vi
 
-Xem [báo cáo](BAO_CAO_UIUX_V5_2026_10_16.md) để biết lệnh, giới hạn và các lỗi hiển thị còn lại. Những kết quả bên dưới thuộc các lượt trước.
+Tests chạy trên source hiện tại; không xác nhận binary Pikafish thật, VM
+Google Cloud, production HTTPS/DNS, hai mạng Internet, tải lớn hoặc kiểm toán
+bảo mật. Không bỏ/giảm test để qua. Bộ legacy vẫn giữ trong repo gốc.
 
-# Test report
+## Python
 
-## Latest update 9 October 2026
+Core pack gồm 103 test: 30 rules, 22 cloud, 17 Pikafish adapter, 21 online rooms,
+13 online HTTP. Runner cuối đã chạy một lượt đủ 103/103 đạt (436,190 giây).
+Legacy 34 learning và 8 HTTP đạt;
+8 HTTP ban đầu gặp WinError10013 vì localhost bị chặn, sau cấp quyền chạy lại
+đạt8/8. Tổng145 Python test qua các lượt, không gọi là một lượt discover145.
 
-`python -m unittest discover -s tests -v`: **72 passed in 64.517 seconds**, outside sandbox for localhost access. Seven new tests cover draft persistence without answer reveal/scoring, ownership and validation, late autosave after submission, unfinished practice resume/completion, draft export/delete, required HTTP fields and HTTP draft/resume gating. Existing 65 tests unchanged except additions. Python compileall and bundled Node syntax check pass.
+Một test content từng báo fail ở lượt trước nhưng không còn traceback lưu;
+hai test content đã qua lượt kiểm tra gần nhất. Không kết luận nguyên nhân
+khi chưa có bằng chứng và không bỏ test. Gói dùng core103, không mang legacy.
 
-Browser: draft saved, navigation home showed resume, reload restored text without answer, Vietnamese pieces preserved reflection, keyboard selected a2 and moved to a7, related b3g3 solved, progress persisted. Viewport 390×844 measured client/scroll widths 375/375 on home and exercise; board about 329 px. Initial viewport attempt affected another tab; final measurements were from the visible mobile test tab. Error/warning logs empty at final check. Screenshot: artifacts/co-chill-2026-10-09.png. Not a full accessibility audit or real learner study.
+## JavaScript và parity
 
-## Original handoff evidence
+155/155 test JavaScript đạt: học cơ bản 26; experience 20; notation 14
+(4.054 roundtrip); cloud client 21; engine client 11; V5 UI 11; V6 UI 10;
+V6 learning 19; V6 online UI 13; V6 learning UI 10. Kiểm tra syntax toàn bộ
+14 file JS và compile Python đạt. Không có eslint/TypeScript/build riêng.
 
-Date: 8 October 2026. Environment: Windows, Python 3.14, bundled modern Node for syntax verification.
+Fixture checker: 12 bài khớp luật. Parity Python/JS: 205 vị trí, 5.468 vị trí
+con, 25 FEN cases, perft2=1.920, 12 thế engine/153 biến, 10 input sai: PASS.
+Lệnh tái lập: `python tools/run_checks.py`, có thể truyền `--node PATH`.
 
-Final command `python -m unittest discover -s tests -v`: **65 passed, 39.380 seconds**. No failing tests were deleted or weakened.
+## Trình duyệt thực
 
-Coverage includes all seven pieces, horse legs in eight directions, elephant eyes/river, exact cannon screens, general palace, flying general, self-check, pawn direction/crossing, capture, invalid FEN/moves, state immutability, checkmate and stalemate loss. Initial move count 44 and depth-2 perft 1920 pass.
+Chrome headless, database thử riêng, không dùng tài khoản/người chơi thật:
 
-Engine coverage: all 12 puzzle solutions checked; 20 successive bot positions with legal moves and PV replay; timeout legal fallback; cache; invalid line rejection. Local self-consistency is not independent expert validation.
+- Hai context guest: tạo/join/ready, đi quân đồng bộ, reload giữ màu/history,
+  khóa bài học trong ván, hòa có chấp nhận, history riêng mỗi người.
+- Tái đấu đổi bên/gameID, đầu hàng ghi kết quả mới. Không pageerror.
+- Học:3 câu suy nghĩ nháp giữ qua reload, không hiện giải thích trước gate,
+  đi4 quyết định có đối thủ đáp, xem/phát lại explanation, finish một attempt,
+  lịch ôn sau completion, reload giữ tiến độ, mở bài liên quan và lịch ôn.
+- Chọn theme cool và EN, viewport390px không tràn ngang. Ảnh desktop/mobile
+  đã mở kiểm tra; tiếng Anh một phần và nội dung học vẫn Việt như giới hạn.
+- Bản đã giải nén chạy server riêng: đăng ký qua form thật, đồng bộ theme
+  sang context trình duyệt thứ hai, đăng nhập mới thu hồi phiên cũ. Không
+  pageerror; mật khẩu test sinh ngẫu nhiên trong bộ nhớ, không ghi file/log.
 
-Learning coverage: full demo → reflection → retry → unseen related exercise → schedule → dashboard; required fields; pre-reflection hint/attempt rejection; idempotent retries/review; failed first attempt retained; hint assistance; no false mistake required; due queue; guest ownership; local export/delete; persistence after repository reopen; atomic invalid import; provider failure/invention fallback.
+Bằng chứng local: var/v6/online-browser-result.json,
+var/v6/learning-browser-result.json và ảnh cùng thư mục. Không đưa DB/log
+kiểm thử vào gói public. Browser automation tự thao tác, chưa thay người chơi
+thử tính dễ dùng hoặc hai mạng thật.
 
-HTTP coverage: all public assets, security headers, secret/source/database path denial, Host/Origin checks, cookie flags, cross-guest record rejection, full reflection/retry flow and export answer gate, invalid request responses.
+## Gói nguồn
 
-Additional checks: Python compileall passed; modern Node `--check web/app.js` passed; Git diff whitespace check passed. No framework build, TypeScript typecheck or external linter is configured; these were not represented as passing.
+Builder chỉ lấy allowlist; verifier đối chiếu manifest/hash/CRC, không merge
+vào thư mục tồn tại, từ chối đường dẫn unsafe và file runtime/private thường
+gặp. Cần chạy lại bộ checks trên thư mục vừa giải nén để xác minh đủ dependency.
+Hash đảm bảo khớp nội dung, không tự chứng minh không có lỗ hổng hoặc secret.
 
-Manual browser smoke: demo loaded, history visible; critical moment had no answer before reflection; three answers saved; explanation shown; a2a7 retried; related h2h7 exercise solved after its own reflection; dashboard showed two first attempts, one independent transfer success and a 14-day skill schedule; reload preserved records. A final new bot game accepted b0c2 and returned a legal Black reply. Layout inspected at desktop, narrow panel and a phone-sized viewport; document scrollWidth equaled clientWidth (375 px), with no horizontal overflow. Browser error/warning log was empty at the final check. No public users or impact metrics inferred.
+### Kết quả kiểm tra bản giải nén
 
-Failures diagnosed during development:
+Bản thử gồm 90 file, không thiếu asset được index tham chiếu; không có var,
+.git, node_modules, database, log hoặc tài liệu trả lời cá nhân. Quét mẫu
+private key/token phổ biến không thấy kết quả; đây không phải kiểm toán secret.
 
-- Black pawn on an impossible pre-river odd file: corrected synthetic fixture before delivery.
-- Three rules-test fixtures were misconstructed (own piece on intended horse destination; spare pawn preventing stalemate; undefended checking pawn). Corrected setup while preserving the intended assertions.
-- SQLite `with connection` commits but does not close: introduced ClosingConnection to fix Windows file handles.
-- Sandbox blocked temporary SQLite locations and loopback sockets: tests use workspace temp directory; HTTP checks run with approved outside-sandbox permission.
-- In-app browser could not reach the initial sandbox server: restarted loopback server outside sandbox on 8765; browser flow then passed.
+Chạy checks trên bản giải nén: 155 test JS, syntax, fixture/parity đều đạt.
+Python đạt 102/103; test còn lại bị lỗi giả tại ranh giới TOTP30 giây: test
+tạo mã mới nhưng coi là phát lại mã cũ. Đã sửa test để cố định đồng hồ, dùng
+lại đúng mã, đồng thời bổ sung kiểm tra mã ở bước thời gian sau được chấp
+nhận một lần và phát lại từ client khác bị từ chối. Không đổi logic bảo mật
+production. Test đã sửa đạt khi chạy riêng; không loại bỏ/làm yếu assertion.
 
-V4 document checks: valid DOCX ZIP/XML, 84 unique A01–N06 questions, 12 prioritized P0 IDs and all intended sections. Rendering attempted twice; runtime lacks LibreOffice. No page-by-page visual verification or rendered-page count claimed.
-
-12 October 2026 launcher validation: Windows PowerShell `tools/start_local.ps1 -NoBrowser` started the server successfully and exited 0; a second invocation reused it and exited 0; subsequent GET `/` returned HTTP 200. `git diff --check` passed. Browser auto-opening, Windows reboot and actual ChatGPT closure were not exercised. Earlier 72-test suite results remain historical; game logic is unchanged by this launcher-only update.
-
-## 12 October 2026 — public-readiness recheck
-
-72/72 tests passed in 42.073s. Python compileall and modern Node --check web/app.js passed. Documentation-only changes; no fresh browser demo claimed. Historical blob scan and its limits are recorded in PUBLIC_READINESS_VI.md.
-
-12 October 2026 public preview: both guided fixtures completed in browser; progress 2/2 survived reload, explanation hidden before new reflection; viewport 390x844 measured client/scroll width 375/375. No browser console errors observed. Modern Node syntax passed; python tools/check_online_preview.py verifies exported positions, both solutions and complete legal-move sets against app/rules.py. Full local 72-test suite was passed earlier today; local runtime is unchanged.
-
-
-## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
-
-Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.
+Gói cuối giữ nguyên toàn bộ runtime đã chạy ở bản giải nén, chỉ cập nhật
+test xác thực và tài liệu. Verifier kiểm CRC/hash/manifest cho ZIP cuối;
+test xác thực đã sửa được kiểm lại từ bản giải nén cuối. Như vậy core103 và
+JS155 đều có kết quả đạt qua các lượt kiểm tra, không tuyên bố bản thử ban
+đầu đạt tất cả trong một lượt.

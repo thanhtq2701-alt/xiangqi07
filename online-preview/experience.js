@@ -31,25 +31,33 @@
     // This checks only the candidate, never claims to grade free-form reasoning.
     const matches=session.candidate===puzzle.solution||(puzzle.alternatives||[]).includes(session.candidate);
     const attempts=Math.min(3,Math.max(0,Math.floor(Number(session.submissionCount)||0))+1);
-    return {ready:true,matches,attempts,reveal:matches||attempts>=3,assisted:session.assisted===true||attempts>1||!matches};
+    return {ready:true,matches,attempts,reveal:matches,park:!matches&&attempts>=3,assisted:session.assisted===true||attempts>1||!matches};
   }
   function safeExport(state) {
     // Exports deliberately contain no hidden solutions, generated moments or answer key snapshots.
     const list=value=>Array.isArray(value)?value:[], string=value=>typeof value==='string'?value:'';
     const answers=value=>list(value).slice(0,3).map(string);
+    const pending=value=>value?{status:string(value.status),parkedAt:string(value.parkedAt),dueAt:string(value.dueAt),
+      answers:answers(value.session?.answers),candidate:string(value.session?.candidate),
+      firstAnswers:Array.isArray(value.session?.firstAnswers)?answers(value.session.firstAnswers):null,
+      firstCandidate:string(value.session?.firstCandidate)}:null;
     const status=value=>({over:value?.over===true,winner:['w','b'].includes(value?.winner)?value.winner:null,
       reason:string(value?.reason),needsVerification:value?.needsVerification===true});
     return {format:'co-chill-personal-export',version:1,exportedAt:new Date().toISOString(),
       profile:{name:string(state.profile?.name)},
       games:list(state.games).filter(Boolean).map(g=>({id:string(g.id),title:string(g.title),createdAt:Number.isFinite(g.createdAt)?g.createdAt:null,initialFen:string(g.initialFen),player:string(g.player),mode:string(g.mode),status:status(g.status),moves:list(g.moves).map(m=>string(typeof m==='string'?m:m?.move))})),
-      records:Object.values(state.records||{}).filter(Boolean).map(r=>({puzzleId:string(r.puzzleId),skill:string(r.skill),dueAt:string(r.dueAt),attempts:list(r.attempts).filter(Boolean).map(a=>({startedAt:string(a.startedAt),completedAt:string(a.completedAt),answers:answers(a.answers),candidate:string(a.candidate),firstAnswers:Array.isArray(a.firstAnswers)?answers(a.firstAnswers):null,firstCandidate:string(a.firstCandidate),success:a.success===true,assisted:a.assisted===true,source:string(a.source)}))})),
+      records:Object.values(state.records||{}).filter(Boolean).map(r=>({puzzleId:string(r.puzzleId),skill:string(r.skill),dueAt:string(r.dueAt),pendingReview:pending(r.pendingReview),attempts:list(r.attempts).filter(Boolean).map(a=>({startedAt:string(a.startedAt),completedAt:string(a.completedAt),answers:answers(a.answers),candidate:string(a.candidate),firstAnswers:Array.isArray(a.firstAnswers)?answers(a.firstAnswers):null,firstCandidate:string(a.firstCandidate),success:a.success===true,assisted:a.assisted===true,firstExposure:a.firstExposure===true,source:string(a.source)}))})),
       draft:state.session?{puzzleId:string(state.session.puzzleId),stage:string(state.session.stage),answers:answers(state.session.answers),candidate:string(state.session.candidate),firstAnswers:Array.isArray(state.session.firstAnswers)?answers(state.session.firstAnswers):null,firstCandidate:string(state.session.firstCandidate),summaryNote:string(state.session.summaryNote),summaryChecks:list(state.session.summaryChecks).map(string)}:null,
+      lineDraft:state.lineSession?{exerciseId:string(state.lineSession.exerciseId),version:state.lineSession.version,stage:string(state.lineSession.stage),nodeId:string(state.lineSession.nodeId),answers:answers(state.lineSession.answers),firstAnswers:answers(state.lineSession.firstAnswers),candidate:string(state.lineSession.candidate),history:list(state.lineSession.history).map(h=>({move:string(h.move),reply:string(h.reply),at:string(h.at)})),pendingReviewAt:string(state.lineSession.pendingReviewAt)}:null,
+      lineAttempts:list(state.lineAttempts).map(a=>({id:string(a.id),puzzleId:string(a.puzzleId),version:a.version,startedAt:string(a.startedAt),completedAt:string(a.completedAt),dueAt:string(a.dueAt),answers:answers(a.answers),candidate:string(a.candidate),success:a.success===true,assisted:a.assisted===true,firstExposure:a.firstExposure===true,learnerDecisions:a.learnerDecisions,history:list(a.history).map(h=>({move:string(h.move),reply:string(h.reply),at:string(h.at)}))})),
+      lessonViews:list(state.lessonViews).map(v=>({id:string(v.id),at:string(v.at),kind:'viewed'})),
       summaries:list(state.summaries).filter(Boolean).map(s=>({id:string(s.id),kind:'self_report',sessionId:string(s.sessionId),at:string(s.at),checks:list(s.checks).map(string),note:string(s.note)}))};
   }
   function evidence(records,skill) {
     const attempts=Object.values(records||{}).filter(r=>!skill||r.skill===skill).flatMap(r=>r.attempts||[]);
     // First encounters only: repeated practice must not inflate unseen accuracy.
-    const firsts=Object.values(records||{}).filter(r=>!skill||r.skill===skill).map(r=>(r.attempts||[])[0]).filter(Boolean);
+    // Older records never recorded prior exposure; do not invent that evidence.
+    const firsts=Object.values(records||{}).filter(r=>!skill||r.skill===skill).map(r=>(r.attempts||[])[0]).filter(a=>a&&a.firstExposure===true&&!a.assisted);
     return {count:attempts.length,eligible:attempts.length>=6,firstCount:firsts.length,
       firstEligible:firsts.length>=6,firstCorrect:firsts.filter(a=>a.success&&!a.assisted).length,
       independent:attempts.filter(a=>a.success&&!a.assisted).length,assisted:attempts.filter(a=>a.assisted).length};

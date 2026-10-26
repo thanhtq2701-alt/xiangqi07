@@ -206,6 +206,93 @@ test('out-of-order imported history cannot move the completion anchor backwards'
   assert.throws(() => CC.finishPuzzle(restored, ready(T0 - 10000), puzzle, { now: T0, success: true }), /previous review/);
 });
 
+test('three failed full submissions park incomplete without showing the answer or creating completion', () => {
+  const value = CC.createSession(puzzle, { now: T0, firstExposure: true });
+  Object.assign(value, { answers: ['Observation', 'Threat', 'Plan'], candidate: 'a2a3', submissionCount: 3, assisted: true,
+    firstAnswers: ['First observation', 'First threat', 'First plan'], firstCandidate: 'a2a3' });
+  const state = CC.parkPuzzle(CC.fresh(), value, puzzle, { now: T0 + 10000 });
+  const record = state.records[puzzle.id];
+  assert.equal(state.session.stage, 'parked'); assert.equal(CC.canReveal(state.session), false);
+  assert.equal(state.session.seenExplanation, false); assert.equal(state.session.completedAt, null);
+  assert.equal(record.completedAt, null); assert.equal(record.dueAt, null);
+  assert.equal(record.completionCount, 0); assert.equal(record.attempts.length, 0);
+  assert.equal(record.pendingReview.dueAt, new Date(T0 + 10000 + CC.DAY).toISOString());
+  assert.equal(CC.reviewDueAt(record), record.pendingReview.dueAt);
+  assert.equal(CC.parkPuzzle(state, value, puzzle, { now: T0 + 50000 }), state);
+  const restored = CC.sanitize(JSON.parse(JSON.stringify(state)), { now: T0 + 20000 });
+  assert.deepEqual(restored.records[puzzle.id].pendingReview, record.pendingReview);
+  assert.equal(restored.records[puzzle.id].completionCount, 0);
+  assert.throws(() => CC.finishPuzzle(state, state.session, puzzle, { now: T0 + 20000, success: false }), /reflection/);
+  assert.throws(() => CC.reveal(state.session), /Reflect/);
+});
+
+test('parking rejects partial responses, early attempts and matching candidate', () => {
+  const value = CC.createSession(puzzle, { now: T0 });
+  Object.assign(value, { answers: ['One', 'Two', 'Three'], candidate: 'a2a3', submissionCount: 2 });
+  assert.throws(() => CC.parkPuzzle(CC.fresh(), value, puzzle, { now: T0 + 1000 }), /Three/);
+  value.submissionCount = 3; value.answers[1] = '';
+  assert.throws(() => CC.parkPuzzle(CC.fresh(), value, puzzle, { now: T0 + 1000 }), /Three/);
+  value.answers[1] = 'Two'; value.candidate = puzzle.solution;
+  assert.throws(() => CC.parkPuzzle(CC.fresh(), value, puzzle, { now: T0 + 1000 }), /accepted/);
+});
+
+test('parked draft survives another activity and resumes as assisted with fresh submission budget', () => {
+  const value = CC.createSession(puzzle, { now: T0 });
+  Object.assign(value, { answers: ['One', 'Two', 'Three'], candidate: 'a2a3', submissionCount: 3 });
+  let state = CC.parkPuzzle(CC.fresh(), value, puzzle, { now: T0 + 1000 });
+  state.session = CC.createSession({ ...puzzle, id: 'another' }, { now: T0 + 2000 });
+  state = CC.sanitize(state, { now: T0 + CC.DAY });
+  const resumed = CC.resumeParked(state, puzzle.id, { now: T0 + CC.DAY });
+  assert.deepEqual(resumed.session.answers, value.answers);
+  assert.equal(resumed.session.stage, 'reflect'); assert.equal(resumed.session.submissionCount, 0);
+  assert.equal(resumed.session.assisted, true); assert.equal(resumed.session.firstExposure, false);
+  assert.notEqual(resumed.session.id, value.id); assert.equal(resumed.session.seenExplanation, false);
+  assert.equal(resumed.records[puzzle.id].pendingReview.status, 'in_progress');
+  assert.equal(resumed.records[puzzle.id].completionCount, 0);
+  assert.throws(() => CC.resumeParked(state, puzzle.id, { now: T0 }), /precede/);
+});
+
+test('pending reminders cannot overwrite a prior completed SRS anchor or forge a distant due date', () => {
+  let state = completed(); const prior = state.records[puzzle.id].completedAt;
+  const value = CC.createSession(puzzle, { now: T0 + CC.DAY });
+  Object.assign(value, { answers: ['One', 'Two', 'Three'], candidate: 'a2a3', submissionCount: 3 });
+  state = CC.parkPuzzle(state, value, puzzle, { now: T0 + CC.DAY + 1000 });
+  assert.equal(state.records[puzzle.id].completedAt, prior);
+  assert.equal(state.records[puzzle.id].completionCount, 1);
+  state.records[puzzle.id].pendingReview.dueAt = '2099-01-01T00:00:00.000Z';
+  const restored = CC.sanitize(state, { now: T0 + 2 * CC.DAY });
+  assert.equal(restored.records[puzzle.id].pendingReview.dueAt, new Date(T0 + 2 * CC.DAY + 1000).toISOString());
+  assert.equal(CC.reviewDueAt(restored.records[puzzle.id]), state.records[puzzle.id].dueAt);
+});
+
+test('display limit never deletes a 201st or older game in sanitization', () => {
+  const state = CC.fresh(); state.games = Array.from({ length: 350 }, (_, i) => ({ id: 'game-' + i, moves: ['a0a1'] }));
+  const restored = CC.sanitize(state, { now: T0 });
+  assert.deepEqual(restored.games, state.games);
+  assert.equal(restored.games[0].id, 'game-0'); assert.equal(restored.games.length, 350);
+});
+
+test('first-exposure evidence requires an explicit new unassisted encounter, never legacy guessing', () => {
+  for (const flag of [undefined, false, true]) {
+    const value = ready(T0, { firstExposure: flag });
+    const state = CC.finishPuzzle(CC.markSeen(CC.fresh(), puzzle, { now: T0 }), value, puzzle, { now: T0 + 1000, success: true });
+    assert.equal(state.records[puzzle.id].attempts[0].firstExposure, flag === true);
+    delete state.records[puzzle.id].attempts[0].firstExposure;
+    assert.equal(CC.sanitize(state, { now: T0 + 2000 }).records[puzzle.id].attempts[0].firstExposure, false);
+  }
+  const value = ready(T0, { firstExposure: true }); value.assisted = true;
+  const state = CC.finishPuzzle(CC.fresh(), value, puzzle, { now: T0 + 1000, success: true });
+  assert.equal(state.records[puzzle.id].attempts[0].firstExposure, false);
+  assert.equal(state.records[puzzle.id].learningStatus, 'assisted');
+});
+
+test('tomorrow reminder is fixed UTC+7 elapsed day, not host-local midnight or completed SRS', () => {
+  assert.equal(CC.nextVietnamDay('2026-10-23T23:30:00+07:00'), '2026-10-24T16:30:00.000Z');
+  assert.equal(CC.reviewDueAt({ dueAt: null }), null);
+  assert.equal(CC.reviewDueAt({ pendingReview: { dueAt: 'garbage' } }), null);
+  assert.equal(CC.summarizeSession(completed(), {}, { now: T0 + 30000 }).records[puzzle.id].completionCount, 1);
+});
+
 let failures = 0;
 tests.forEach(({ name, action }) => {
   try { action(); console.log('PASS ' + name); }

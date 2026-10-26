@@ -1,28 +1,48 @@
-# Cập nhật giới hạn ngày 16/10/2026
+# Giới hạn V6 — 26/10/2026
 
-Site phiên bản 3 vẫn dùng engine browser tối đa 2 ply, giải thích mẫu, 12 bài tự dựng và dữ liệu localStorage. Chưa có LLM chấm lập luận, PvP trực tuyến, tài khoản/đồng bộ, OCR, engine mạnh hoặc bộ phân xử WXF đầy đủ. Lặp/đuổi hỗn hợp được gắn cần kiểm chứng. Thống kê hoạt động không chứng minh hiệu quả học tập. Xuất JSON để đọc, chưa nhập phục hồi tự động. Góc lật bàn chưa lưu qua reload; khi xin thua/thỏa thuận hòa, đồng hồ kết thúc còn hiện mốc nước gần nhất. Tùy chọn giọng chỉ đổi lời mở đầu. Xem [báo cáo mới](BAO_CAO_UIUX_V5_2026_10_16.md) để biết phạm vi chính xác; các mục dưới là lịch sử và bối cảnh backend local.
+Đây là source pilot có kiểm thử, chưa là xác nhận sẵn sàng production.
 
-# Known limitations
+## Chưa hoàn tất theo V6
 
-1. Local search depth is at most 2 plies (one move and one response). Its material-oriented estimates can miss long tactics, sacrifices, strategic factors and horizon effects. Timeout may leave depth 0/1, explicitly reported. No Pikafish binary or NNUE is installed or distributed.
-2. Movement legality is tested, but tournament adjudication is incomplete: no formal perpetual check/chase, no official move-limit draw or arbiter policy. Threefold repetition stops the demonstration game with a disclosed demo rule. FEN structural validity does not prove historical reachability.
-3. Twelve synthetic exercises cover only four elementary themes. Their solutions are checked against the local engine, not an independent strong engine or human gold set. Engine tests sharing the same rules are not independent proof of full correctness.
-4. Explanations are deterministic Vietnamese templates. They include legal candidate lines but do not deeply diagnose a learner's strategic intent. Free-text reflection is stored without automated semantic grading. No LLM, trained ML, RAG or personalized coaching model.
-5. Review covers up to the latest 24 Red moves. Bot plays Black. No Black learner review, clocks, online PvP, undo negotiation, PGN/Vietnamese notation import, review tree or evaluation timeline UI.
-6. No real placement test or progression across difficulty levels. Mastery values are bounded practice scores initialized at 50 upon first evidence, not proven competence or Elo. Unseen means an unexposed authored family, not guaranteed cognitive novelty; themes remain very simple.
-7. Spaced repetition uses 1/2/7/14/30 day rules. No reminder delivery, retention model, scientific efficacy validation or calendar integration. Current bank exhaustion is labeled and repeats honestly.
-8. SQLite guest persistence is local, unencrypted and tied to a browser cookie. No OAuth, multi-device sync, user recovery, production migrations, backup automation or production auth. Local database file access is outside guest API isolation.
-9. Development HTTP server binds loopback only. No public hosting, production ASGI stack, distributed jobs, abuse quotas, production TLS, 100-concurrent-user validation or service-level guarantees. Review requests serialize SQLite writes and can take up to about 48 seconds for 24 uncached positions.
-10. UI has responsive layouts, accessible names, Vietnamese piece labels and keyboard arrow navigation but has not undergone a full WCAG audit, screen-reader user testing or wide device/browser compatibility testing. Reflection drafts now autosave to the local server and restore on reload after saving; offline persistence, cross-tab conflict resolution and feedback/import draft saving remain absent. Force-closing before save can lose changes. No drag and drop. Hash links restore a game/exercise on reload, but do not implement full browser back/forward routing.
-11. Feedback saves locally and is available in export, not delivered to the project owner. No pilot results, improvement claims or research conclusions exist.
+- Chưa truy cập/kiểm tra VM Google Cloud, Pikafish/NNUE thật, HTTPS, DNS,
+  tải thực, backup/restore trên hạ tầng của chủ sản phẩm.
+- Chưa có email/Gmail tự khôi phục mật khẩu, OAuth, nhập phục hồi JSON tiến độ
+  đầy đủ, public profile/lịch sử cộng đồng, chat tự do có quản trị.
+- Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
+  xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
+- Kho bài nhỏ: 12 cơ bản +8 hướng dẫn +2 bài nhiều lượt. Hai bài mới cùng họ
+  chiếu hết; chưa có kho nâng cao 6–7 quyết định hoặc coverage từng chương.
+  Chưa đủ 10 hình khác nhau/chương để đánh giá cấp.
+- Ngôn ngữ EN chưa phủ hết các chuỗi động, màn mới, quản trị/PvP. Bài học vẫn
+  tiếng Việt theo yêu cầu. Auto-flip hai người cùng máy, câu trả lời bằng mũi
+  tên, dashboard/calendar đúng thiết kế cuối chưa đầy đủ.
+- Chưa xác minh mọi phán quyết lặp/chiếu dai/đuổi dai theo luật giải đấu Việt
+  Nam. Friendly không ranked; trường hợp ngoài phạm vi cần xác minh.
 
-Highest-value next step: owner-review a small diverse gold set with exact FEN, acceptable alternatives, deeper-engine checks, WHAT/WHY/HOW, learner level and source permission. Then replace the shallow engine through the existing adapter before expanding claims or public deployment.
+## Giới hạn kỹ thuật và dữ liệu
 
-12 October 2026: `Mo_Co_Chill.cmd` provides on-demand background startup independent of ChatGPT. It is not a Windows service or login task: run it again after reboot. It opens the default browser, whose guest cookie may differ from the in-app browser. Logs stay in ignored `var/`. Automatic recovery from a crashed server and log rotation are not implemented. Launcher reuse checks HTTP page markers, not a cryptographic app identity.
+- Một VM/instance, một process worker. Tăng worker/replica cần thiết kế lại
+  semaphore engine, transaction/lifecycle phòng và xử lý restart.
+- PvP polling2 giây; tab nền/mạng yếu có thể quá hạn30 giây và bị coi mất kết
+  nối. Cả hai mất/restart thì tạm dừng. Cần nghiệm thu hai mạng và thiết bị thật.
+- Ghép cộng đồng theo thời gian, chưa theo trình độ. Không chống được dùng
+  engine bên ngoài hoặc thiết bị khác; chỉ khóa coaching/engine của app.
+- Chat chỉ mẫu trung tính. Guest room cookie24 giờ; hết cookie chưa tự xóa
+  dữ liệu room. Chưa có retention tự động toàn bộ phòng và backup.
+- Xóa danh tính có ghế trong phòng hiện xóa cả biên bản chung liên quan của
+  đối thủ. Cần chính sách ẩn danh/lưu giữ rõ trước mở pilot rộng.
+- Thống kê học do client đồng bộ, không phải hệ thống chứng nhận chống gian
+  lận. Người xem source có thể đọc đáp án; gate reflection là thiết kế học.
+- Lịch ôn nhiều lượt hiện1 ngày độc lập,2 ngày có trợ giúp; chưa thống nhất với
+  thuật toán lịch ôn tiến triển của bài cơ bản hoặc kiểm chứng hiệu quả.
+- Những nhánh bài hợp lệ ngoài cây duyệt dừng chờ kiểm chứng; chưa tự chuyển
+  engine/LLM để chấm. Xem giải thích trước khi giải xong được ghi có trợ giúp.
+- Database/localStorage/backup chưa mã hóa ở mức ứng dụng. Người vận hành
+  có quyền hệ điều hành có thể đọc dữ liệu. Cần cấu hình lưu bền và HTTPS.
+- Quên mật khẩu chưa có quy trình tự phục hồi đã triển khai. Không dùng
+  tài khoản pilot như kho lưu duy nhất cho dữ liệu quan trọng.
+- Báo cáo kiểm thử không phải kiểm toán bảo mật, khả năng truy cập hay xác
+  nhận sức cờ/hiệu quả giáo dục. Đọc TEST_REPORT_CODEX.md đúng phạm vi từng test.
 
-Public preview: online-preview/ is a separate static guided demo, not the full Python app. No free play/import/online engine/account/synchronized database. Reflection gating is UI-only and static answers are inspectable. Two original synthetic exercises, localStorage completion markers, next-day demo reminder date without notifications. See online-preview/README.md.
-
-
-## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
-
-Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.
+Không chứa secret/database người chơi, không tự cập nhật ChatGPT Site hoặc
+cochill.vn. Đưa source lên GitHub không tự chạy máy chủ.

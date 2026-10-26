@@ -8,12 +8,22 @@
   <title>Cờ Chill · Chơi một ván, hiểu thêm một chút</title>
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="v5.css">
+  <link rel="stylesheet" href="v6.css">
   <script src="xiangqi.js" defer></script>
   <script src="game-tools.js" defer></script>
   <script src="fixtures.js" defer></script>
   <script src="learning.js" defer></script>
   <script src="experience.js" defer></script>
+  <script src="curriculum.js" defer></script>
+  <script src="line-practice.js" defer></script>
+  <script src="cloud-client.js" defer></script>
+  <script src="engine-client.js" defer></script>
   <script src="app.js" defer></script>
+  <script src="v5-ui.js" defer></script>
+  <script src="online-play.js" defer></script>
+  <script src="v6-learning-ui.js" defer></script>
+  <script src="v6-ui.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Đến nội dung chính</a>
@@ -45,9 +55,10 @@
     <div class="sidebar-note"><span class="sidebar-note-dot" aria-hidden="true"></span><span>Mỗi lần hiểu thêm một chút.</span></div>
   </aside>
   <div class="workspace">
+    <div class="account-strip"><a id="account-link" href="#account">Đăng nhập / đăng ký</a><span id="sync-status" role="status">Khách · lưu trên máy</span><a id="admin-link" href="#admin" hidden>Quản trị</a><a href="#help">Trợ giúp</a></div>
     <div id="storage-warning" class="storage-warning" role="status" hidden></div>
     <main id="main" tabindex="-1"></main>
-    <footer><a href="#path">Hành trình học</a><a href="#settings">Cài đặt & dữ liệu</a><a href="#about">Về bản thử</a><span>Lưu trên trình duyệt này</span></footer>
+    <footer><a href="#path">Hành trình học</a><a href="#settings">Cài đặt & dữ liệu</a><a href="#about">Về bản thử</a><span id="storage-location">Lưu trên trình duyệt này</span></footer>
   </div>
   <nav class="mobile-nav" aria-label="Điều hướng điện thoại">
     <a href="#home"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10H3zM9 20v-7h6v7"/></svg><span>Trang chủ</span></a>
