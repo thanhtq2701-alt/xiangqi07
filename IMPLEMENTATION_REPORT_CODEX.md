@@ -1,131 +1,109 @@
-# Cập nhật phát hành ngày 16/10/2026
+# Báo cáo triển khai V6 — 26/10/2026
 
-Đã triển khai và phát hành Site phiên bản 3 dựa trên UI UX + Luật, UX35. [Báo cáo đầy đủ](BAO_CAO_UIUX_V5_2026_10_16.md) ghi file thay đổi, kiến trúc, lệnh, kiểm thử, trạng thái engine/LLM, dữ liệu, quyền, giới hạn và demo. Các phần bên dưới được giữ làm lịch sử các đợt trước.
+## Kết quả thực tế
 
-# Implementation report
+Gói source tiếp tục từ repository V5 và ZIP chủ sản phẩm gửi ngày24/10.
+Không rewrite toàn bộ, không deploy ChatGPT Site/cochill.vn, không push GitHub,
+không thay DNS hoặc tạo hạ tầng trả phí. Gói để chủ sản phẩm cập nhật repository
+và tiếp tục với Claude. Phần chưa đáp ứng V6 ghi ở KNOWN_LIMITATIONS.md và
+docs/V6_DECISIONS.md; hoàn thiện pack không có nghĩa hoàn tất toàn bộ roadmap.
 
-## Update 9 October 2026
+## Đã xây/cập nhật
 
-Added server-owned reflection drafts (`POST /api/draft`), pending learning summaries in dashboard, home resume entry, hash-based reload recovery, Vietnamese piece labels, keyboard board navigation, responsive/readability polish and clearer request/error handling. Files changed: app/service.py, web/app.js, web/index.html, web/style.css, tests/test_learning.py, tests/test_http.py and handoff documentation. JSON storage avoids a migration; drafts stay private to the guest, export/delete with other records, do not open answers or score, and cannot overwrite submitted reflections.
+- Giao diện: font không chân, cover rộng, chọn tài khoản/khách, thẻ3 theme,
+  hỗ trợ English một phần giao diện. Giữ ảnh do chủ sản phẩm cung cấp.
+- Nội dung: 3 khóa/7 chương,8 bài hướng dẫn và2 bài nhiều lượt bổ sung cho12 bài cơ
+  bản. Bài có bàn cờ ví dụ/phát lại, provenance và giới hạn rõ.
+- Nhiều lượt:3suy nghĩ ban đầu, nước ứng viên, phản ứng đối thủ từ cây kiểm
+  tra luật, retry,3 lần sai hẹn lại, nhánh ngoài cây chưa chấm sai, explanation,
+  hoàn thành một lần, bài liên quan, lịch ôn và self-report. Lưu/khôi phục nháp
+  theo tài khoản, không coi xem bài là mastery.
+- PvP: backend giữ trạng thái/luật/đồng hồ; guest hoặc account tạo/join/watch,
+  phòng công khai/riêng và match theo preset,ready,hòa,đi lại,đầu hàng,tái đấu,
+  khán giả/chat mẫu, history riêng. UI polling và nối đầy đủ API.
+- Account V5 được giữ: scrypt,cookie,CSRF,role,TOTP,revision/conflict.
+  Sửa transfer guest để không bỏ sót hoặc ghi đè tiến độ chỉ có bài nhiều lượt.
+  Admin metrics bổ sung bài nhiều lượt, dedupe, không nâng proficiency giả.
+- Sửa test TOTP phụ thuộc đồng hồ thật: giữ đúng mã phát lại và thêm ca mã
+  mới ở bước thời gian kế tiếp; giữ nguyên bảo vệ xác thực production.
+- Engine: thêm requireStrong để lỗi Pikafish không thành kết quả heuristic
+  giả mạnh. Bot server/review tài khoản dùng chế độ này. Guest intermediate
+  được hướng dẫn đăng nhập/dùng bài kiểm chứng thay phân tích nông.
+- Công cụ: run_checks.py, builder V6 allowlist, verifier manifest/path/hash;
+  hướng dẫn GitHub/Claude/GCP và báo cáo cập nhật.
 
-Verified 72 tests (64.517s), Python compileall, Node --check, browser draft/reload/full learning flow and a 390×844 layout. No new build system, external engine, LLM, dataset or paid service. Engine and scoring remain the original prototype. Drafts lack durable offline support and multi-tab conflict resolution; full browser history routing and screen-reader audit remain outstanding. Run command stays `python server.py --port 8765`.
+## Kiến trúc
 
-Research and complete change report: RESEARCH_AND_IMPROVEMENTS_2026_10_09.md, with official sources for 11 inspected services and 3 inaccessible targets. No owner answers from the new V4 questionnaire were used. Earlier evidence below describes the initial implementation.
+Frontend HTML/CSS/JavaScript không bundler; Python WSGI + SQLite cho API.
+Luật hai phía có test parity. Browser phân lớp app cũ + UI mở rộng, shared
+save/cloud boundary. Server chỉ phục vụ assets trong online-preview.
+Pikafish qua subprocess UCI cùng máy; không nhận lệnh shell/path từ client.
+Một worker nhiều thread cho pilot; không tự mở rộng đa process.
 
-## Outcome and evidence
+## File thay đổi chính
 
-Built a working Vietnamese-first local Xiangqi learning prototype from an empty application baseline. The complete loop was exercised in the browser: load synthetic game, open critical moment, answer three reflection questions, reveal grounded analysis, retry a2a7, receive a different related exercise, solve h2h7, record both attempts, schedule a 14-day review, view progress and reload with persistence intact. These are QA records, not real learner-impact results.
+- online-preview/index.html,app.js,v5-ui.js,learning.js,experience.js,
+  engine-client.js: nối modules, guard, lưu dữ liệu, export và engine.
+- online-preview/v6-ui.js,v6.css: presentation/theme/language.
+- online-preview/curriculum.js,line-practice.js,v6-learning-ui.js: chương,
+  state machine bài nhiều lượt và màn học.
+- online-preview/online-play.js: lobby/phòng/chơi/xem/history.
+- co_chill_server.py,app/online_rooms.py,app/cloud_store.py: API/PvP/metrics.
+- tests/test_online_rooms.py,test_online_http.py,test_cloud.py: regression.
+- tools/test_v6_*.cjs,test_engine_client.cjs,test_v5_ui.cjs: test UI/learning.
+- tools/run_checks.py,build_v6_pack.py,verify_source_pack.py: kiểm tra/đóng gói.
+- README,AGENTS,CLAUDE,docs và các báo cáo: cấu trúc/run/handoff/quyết định.
 
-Final automated run: **65 tests passed in 39.380 seconds**, including rules, engine lines, 20 successive bot positions, learning services, SQLite persistence and real HTTP integration. Python compilation, modern Node JavaScript syntax check and Git whitespace check also passed. No TypeScript/typecheck or bundler is configured; the application intentionally has no dependency installation or frontend build step.
+Manifest trong ZIP là danh sách chính xác từng file/byte/hash. Không có DB,
+log,secret,.git,node_modules,tài liệu trả lời cá nhân hoặc ZIP cũ lồng bên trong.
+Repository gốc vẫn giữ tài liệu lịch sử và prototype legacy, không xóa chúng.
 
-## Input audit
+## Kiểm thử và lệnh
 
-Read both supplied Word documents completely by extracting all text-bearing document parts, and read all 18 Markdown files plus manifest in the Final Pack. Long output was re-read in bounded chunks after truncation. The entire parent `App cờ tướng` folder contained only the supplied materials, an older discovery-question document, a temporary Word lock file and a duplicate ZIP. Hash comparison confirmed `10-07.zip` equals the Final Pack. No source code, dependency manifest, tests, engine binary or Git repository was present. There was no existing application to run or preserve.
+Chi tiết kết quả ở TEST_REPORT_CODEX.md. Các lệnh thực hiện gồm:
+python -m unittest (bộ core và legacy), Python compile, node --check,
+tools/check_online_preview.py,tools/check_browser_rules.py,các test JS,
+tools/run_checks.py,browser Chrome với database thử riêng,build_v6_pack và
+verify_source_pack. Browser E2E đi qua cả học4 quyết định và PvP2 cửa sổ.
+Môi trường hạn chế socket phải cấp quyền local cho kiểm thử; không yếu test.
 
-The current user request and autonomous Codex.docx supersede the archive's older audit-only/stop instructions. The original spec files are copied unchanged to `docs/spec/`. Raw discovery text and source attachments remain local and ignored by Git. No other project directories were modified.
+Không có eslint/tsc/npm build vì dự án chưa dùng các hệ đó. Syntax và hành
+vi được kiểm tra bằng công cụ được đóng trong pack; không báo lint giả.
 
-Local Git branch: `codex-full`. First implementation commit: `6cd4f79` (`feat: implement local Xiangqi learning loop with rules and persistence`). Documentation and the requested V4 document are recorded separately. No remote was configured or push performed.
+## Real / fallback / pending
 
-## Architecture actually used
-
-- Browser: semantic HTML, CSS and JavaScript without a framework; SVG/CSS board with clickable accessible cell labels.
-- HTTP: Python standard-library loopback server with JSON requests, static-file allowlist, Host/Origin checks, request size limit, security headers and HttpOnly/SameSite guest cookie.
-- Domain: immutable board state and deterministic legal move generation; bounded local search behind `EngineAdapter`; application services enforce the learning state machine.
-- Teaching: `ExplanationProvider` interface and canonical Vietnamese `TemplateProvider`. Unverified provider output falls back. No model API exists at runtime.
-- Learning: theme recommendation prioritizes unseen families; first-attempt-only evidence; assisted/independent outcomes are separate; transparent date scheduler.
-- Persistence: SQLite repository with owner-scoped JSON records, transactional writes, explicit connection closure, local export and deletion.
-
-The suggested Next.js/FastAPI/Supabase stack was not an existing implementation. Choosing Python standard library + plain JS + SQLite removes install/API/auth barriers and keeps the loop runnable. The domain boundaries are portable to FastAPI/PostgreSQL and a richer frontend later. This is a documented prototype deviation, not a claim of production readiness.
-
-## Main files and behavior
-
-| File | Responsibility |
+| Phần | Trạng thái |
 |---|---|
-| `app/rules.py` | FEN validation, coordinates, all seven piece movements, blocking, self-check, flying general, terminal states |
-| `app/engine.py` | Cached uniform-depth root ranking, legal PVs, bounded search and disclosed timeout fallback |
-| `app/puzzles.py` | Twelve original synthetic fixtures, four skills, source/family/solution metadata |
-| `app/learning.py` | Grounded WHAT/WHY/HOW, tentative skill tags, recommendation and 1/2/7/14/30-day scheduling |
-| `app/service.py` | Games, move history, review, reflection gate, hints, retry, progress, export gate |
-| `app/storage.py` | SQLite ownership and transaction repository; connections close on context exit |
-| `server.py` | Local HTTP entry point and session boundaries; only four public static assets |
-| `web/` | Home, board, import, review, practice, lessons, dashboard, data controls |
-| `tests/` | 65 automated tests across rules, search, services and HTTP |
-| `docs/spec/` | Unchanged finalized specifications |
-| `data/sources.csv` | Current provenance register |
-| `tools/create_v4_document.py` | Reproducible owner-requested V4 questionnaire builder |
+| Luật, API tài khoản, SQLite, PvP | Code chạy/test local thật; chưa nghiệm thu Internet |
+| UCI adapter | Có; test protocol bằng tiến trình giả |
+| Pikafish VM của chủ sản phẩm | Chưa kiểm tra binary/NNUE/kết nối thật |
+| Máy cơ bản | Tìm kiếm heuristic có nhãn, không Elo/ML |
+| Explanation | Template có căn cứ, chưa LLM |
+| Bài/cây đáp án | Tự dựng, kiểm tra luật/mục tiêu hữu hạn; chưa chuyên gia duyệt |
+| Thống kê và ôn | Quy tắc/client state, không bằng chứng hiệu quả giáo dục |
 
-Also created README, RUN_AND_DEMO_CODEX, TEST_REPORT_CODEX, BEGINNER_LEARNING_GUIDE_CODEX, AI_USAGE, KNOWN_LIMITATIONS, PRIVACY, THIRD_PARTY_NOTICES and DEVELOPMENT_JOURNAL.
+Nguồn dữ liệu: đặc tả/câu trả lời chủ sản phẩm, ảnh thương hiệu chủ sản phẩm,
+các thế cờ synthetic của dự án. Không scrape, không dùng ván người chơi để
+huấn luyện. Quyền ảnh/tài liệu và license code cần chủ sản phẩm xác nhận;
+Pikafish/weights không được phân phối kèm.
 
-## Real versus fallback
+## Chạy ngày mai và demo
 
-**Real execution:** legal move generation, bot search, game history, imported move validation, critical selection, server-side reflection gate, legal candidate lines, retries, recommendations, first attempts, dates, feedback storage, dashboard, guest isolation and SQLite persistence.
+Trong thư mục giải nén: `python co_chill_server.py serve --port 8769`.
+Mở http://127.0.0.1:8769. Giữ terminal. Tests: `python tools/run_checks.py`
+(cần Node). GitHub: docs/GITHUB_V6_CHO_NGUOI_MOI.md.
 
-**Fallbacks and simplifications:** shallow material-oriented local engine instead of Pikafish; deterministic template instead of LLM; elementary synthetic fixtures instead of an expert gold set; local guest instead of cloud auth; heuristic score/schedule instead of validated mastery/ML. Imported FEN is structurally validated but historical reachability is not proven. Review currently focuses Red and the latest 24 Red plies.
+Demo60 giây: vào khách → Hành trình → bài nhiều lượt → trả lời3 câu và chọn
+nước → đối thủ đáp → hoàn tất → explanation/phát lại → ghi nhận → lịch ôn.
+Có thể chọn bài cơ bản nếu chưa giải được; không bật đáp án trước suy nghĩ.
+PvP dùng hai cửa sổ/hồ sơ tách biệt trên cùng server để tạo/join/ready/chơi.
+Chạy Internet cần triển khai và nghiệm thu GCP riêng.
 
-Engine status: `chill-local-1.0`, maximum depth 2 plies, a 2-second per-position search deadline, LRU cache up to 512 entries. An unfinished iteration is discarded, preserving common comparison depth. Legal PV validation follows search. Bot strength is low; strategic coaching beyond the horizon is not supported. No engine binary, NNUE weights or external dataset was installed.
+## 5 khái niệm nên học
 
-LLM status: none. The provider boundary is ready for future work, but the current verifier intentionally permits only canonical grounded template output. A real LLM needs evaluation and stronger fact constraints before enabling arbitrary prose. Reflection text is stored, not semantically graded.
-
-## Commands and material failures
-
-| Commands or checks | Result and purpose |
-|---|---|
-| `Get-ChildItem`, `rg --files --hidden`, ZIP/XML extraction | Inventoried all local materials; read complete specifications |
-| `git status --short` initially | Reported no Git repository; truthful empty-baseline finding |
-| `node --version`, `python --version`, `git --version` | Found system Node 6.14, Python 3.14, Git 2.52; app needs only Python |
-| Puzzle-bank analysis script | All 12 authored solutions match depth-2 local search |
-| `python -m unittest discover -s tests -v` | Final 65/65 passed; HTTP tests require loopback socket permission |
-| `python -m compileall -q app server.py tests` | Passed |
-| Bundled modern `node.exe --check web/app.js` | Passed; no dependency/bundler build required |
-| `git diff --check` | Passed |
-| `python server.py` / `python server.py --port 8765` | Started; final browser-accessible server uses 8765 outside socket-restricted sandbox |
-| Browser actions in Codex | Complete flow, reload persistence and responsive layout inspected |
-| `git init -b codex-full`, `git add`, `git commit` | Created local history; `.git` writes required sandbox escalation |
-| Bundled Word builder and structural QA | Valid DOCX; 84 unique questions and all 12 P0 IDs verified |
-| `render_docx.py ... --emit_pdf` | Blocked: LibreOffice `soffice.exe` is not available in the runtime; retry outside sandbox confirmed missing renderer |
-
-Early failures fixed: invalid synthetic black-pawn placement; test positions with an unintended friendly blocker or surviving pawn; SQLite context manager not closing connections on Windows. Assertions were preserved, test fixtures corrected to represent the intended rules. Windows sandbox socket error 10013 was resolved by running local HTTP checks/server outside the sandbox, without changing application networking safeguards.
-
-## Manual verification and code review
-
-Verified the normal demo loop including a new unseen exercise and persisted results. Observed no solution in review before reflection. Checked source/API paths so the JSON export also omits unrevealed analysis. Reviewed legal movement, local turn ownership, first-attempt idempotence, failure retention, same-skill unseen selection, late-study due dates, source disclosure, and public static-path restrictions. Browser test data remains clearly demonstration evidence; no claim of real user learning is made.
-
-Full screen-reader/mobile-device accessibility certification, tournament adjudication, production load testing, public deployment and expert content validation remain open. See KNOWN_LIMITATIONS for the complete list. The V4 Word file is structurally checked but not visually paginated/rendered because the required renderer is absent; do not claim the explicit page breaks prove its actual Word page count.
-
-## Run tomorrow
-
-```powershell
-cd "E:\ThanhTQ\App cờ tướng\xiangqi-ai"
-python server.py --port 8765
-```
-
-Open http://127.0.0.1:8765/. No package install or API key. Keep the terminal open; Ctrl+C stops it. Use the same browser/hostname for the guest session.
-
-60-second demo: home demo → review → answer 3 prompts → reveal → retry a2a7 → related unseen puzzle → reflect → h2h7 on a fresh session → dashboard. See RUN_AND_DEMO_CODEX for alternatives and later-session behavior.
-
-## Five concepts for the owner
-
-1. Legal moves and move quality are different questions; rules are deterministic, search estimates quality.
-2. A learning state machine protects reflection before revelation and distinguishes first attempts from retries.
-3. An API is a data contract; it does not automatically mean a paid AI service.
-4. Transactions and ownership keep saved progress coherent and sessions separate.
-5. Automated tests establish specific evidence, while expert review and real pilot observations answer different questions.
-
-Next highest-value work: owner-reviewed diverse positions plus a grounded explanation rubric, followed by a stronger engine adapter and independent benchmark before widening usage.
-
-## 12 October 2026 — independent Windows launcher
-
-Added `Mo_Co_Chill.cmd` and `tools/start_local.ps1`: discover Python 3.10+, start hidden server outside the chat lifecycle, wait for HTTP readiness, reuse an existing responsive app, and open the default browser. Failure messages point to ignored local logs; occupied ports are not killed. README explains reboot behavior and browser-cookie continuity. Commands verified: `powershell.exe -NoProfile -ExecutionPolicy Bypass -File tools/start_local.ps1 -NoBrowser` twice and HTTP GET `/` (200). Server remains reachable after launcher exits. No game logic or database migration changed; no new external services. Automatic Windows startup and hosting are not installed.
-
-## 12 October 2026 — repository presentation
-
-Polished README for fresh clones, added contribution guidance and owner-reviewed public-readiness report, corrected GitHub status and journal ordering. Rechecked 72 tests, Python/JS syntax, and 97 historical blobs including two DOCX XML payloads. No runtime, engine, data, original specification, visibility or history changes. Details and pending privacy/license decisions: PUBLIC_READINESS_VI.md.
-
-## 12 October 2026 — public static preview and tomorrow plan
-
-Added KE_HOACH_TU_13_10_2026.md with prioritized owner tasks, V4, UI/UX, games/rules, hosting, daily Git workflow and a proposed seven-day plan. Added online-preview/ source mirror and tools/check_online_preview.py. A separate Sites deployment publishes only four selected static assets: two fixture exercises, reflection, explanation, retry, related fixture and local completion/review markers. Existing Python app and SQLite are unchanged. No server-side gate or online engine in this preview. Browser flow, persistence, mobile width and fixture integrity checked.
-
-
-## Cập nhật ChatGPT Site V4 ngày 15 tháng 10 năm 2026
-
-Bản public đã được nâng từ demo hai bài lên prototype trình duyệt có luật, chơi máy/hai người, review, 12 bài, resume, lịch ôn và tự đánh giá. Xem [báo cáo đầy đủ](BAO_CAO_CHATGPTSITE_V4_2026_10_15.md) để biết kiểm thử, phần thật/giới hạn và các mục V4 chưa làm. Ứng dụng Python local vẫn là triển khai riêng.
+1. Frontend hiển thị/thao tác; backend kiểm quyền và giữ sự thật dùng chung.
+2. Database khác source; Git giữ code, không nên giữ dữ liệu người chơi.
+3. State machine giữ các bước suy nghĩ/practice/explain/finish không bị nhảy.
+4. Engine/rules cung cấp bằng chứng; LLM nếu thêm chỉ giải thích bằng chứng.
+5. Test + version control + deploy là ba việc riêng: test đạt không tự
+   publish, push không tự tạo server và copy source không copy tài khoản.

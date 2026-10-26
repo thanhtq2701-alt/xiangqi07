@@ -2,6 +2,8 @@
 
 Hoàn thiện đối chiếu và bộ V5 ngày 16 tháng 10 năm 2026.
 
+**Quyết định mới cùng ngày, thay ưu tiên trước:** chủ sản phẩm yêu cầu chính đợt nâng cấp V5 có tài khoản thật, dữ liệu tập trung, đồng bộ nhiều thiết bị và trang quản trị để xem đăng ký mới/thống kê toàn hệ thống. Phần phía dưới nói để tài khoản sang sau là bối cảnh của Site v3, không còn là phạm vi ưu tiên của V5. Chưa triển khai tính năng này. Phạm vi, câu hỏi còn thiếu và tiêu chí nghiệm thu: mục 13 trong [file bàn giao](../deliverables/HUONG_DAN_CODE_VA_BAN_GIAO_CHAT_MOI.txt). V5 32 trong bản Word mới đã đổi sang câu hỏi phương thức đăng nhập; V5 40 đã tính backend/tài khoản. V5 cập nhật có 46 câu, thêm 42–46; người dùng chỉ điền Word mới, file TXT là bàn giao để đọc. PvP, engine mạnh và LLM không tự được thêm vào phạm vi.
+
 ## Phạm vi và nguồn
 
 Nguồn mới: `E:\ThanhTQ\App cờ tướng\10-13\UI UX + Luat.docx`, gồm các nhóm UX01–UX34, phần UX35 trả lời câu hỏi bổ sung, 22 ảnh tham chiếu và các mẫu cuối tài liệu. File gốc được giữ nguyên. Đã đọc đầy đủ văn bản và xem đủ 22 ảnh. Bản trích XML phục vụ đối chiếu ở `var/uiux-review/full-text.txt`; các nhãn `~p` trong đó chỉ là page break lưu trong XML, không phải số trang đã kiểm chứng.
@@ -82,3 +84,7 @@ Sau mỗi lần nhận câu trả lời, bổ sung ngày, mã V5, quyết địn
 ## Kết quả phát hành ngày 16 tháng 10 năm 2026
 
 Site phiên bản 3 đã phát hành thành công. Trạng thái triển khai thực, kết quả kiểm thử và giới hạn được ghi tại [báo cáo phát hành](../BAO_CAO_UIUX_V5_2026_10_16.md); bảng phía trên giữ vai trò đối chiếu ý định, không phải lời tuyên bố mọi mục đã hoàn tất.
+
+## Bản Word V5 hợp nhất phần tài khoản
+
+Bản hiện dùng để trả lời là `deliverables/Co_Chill_V5_Cap_nhat_Tai_khoan.docx`: 46 câu trong 9 nhóm. Giữ mã cũ; cập nhật câu 25, 28, 32, 37, 39, 40 và thêm 42–46. Nguồn Markdown và builder đã cập nhật. Word 41 câu trước đó giữ nguyên để đối chiếu, không cần điền thêm file TXT.

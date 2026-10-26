@@ -50,7 +50,8 @@ test('wrong candidates get at most three submissions and never become independen
   const value = session(); value.candidate = 'a3a4';
   for (let attempt = 1; attempt <= 3; attempt++) {
     const result = CC.reflectionCheck(value, puzzle);
-    assert.equal(result.attempts, attempt); assert.equal(result.reveal, attempt === 3);
+    assert.equal(result.attempts, attempt); assert.equal(result.reveal, false);
+    assert.equal(result.park, attempt === 3);
     assert.equal(result.assisted, true); value.submissionCount = result.attempts;
   }
   assert.equal(CC.reflectionCheck(value, puzzle).attempts, 3);
@@ -69,7 +70,7 @@ test('new sessions round-trip through migration without losing defaults', () => 
 
 test('migration retains assistance, drafts, first submission and summary drafts', () => {
   const state = CC.fresh(); state.session = session();
-  Object.assign(state.session, { candidate: 'a3a4', firstCandidate: 'b2e2', firstAnswers: ['Đầu 1', 'Đầu 2', 'Đầu 3'], helpLevel: 2, helpReadyAt: T0 + 10000, assisted: true, submissionCount: 1, retryCount: 2, coachFeedback: 'Hãy xem lại đường quân', selected: 'h2', summaryNote: 'Nhớ kiểm tra', summaryChecks: ['0', '3'] });
+  Object.assign(state.session, { candidate: 'a3a4', firstCandidate: 'b2e2', firstAnswers: ['Đầu 1', 'Đầu 2', 'Đầu 3'], helpLevel: 2, helpReadyAt: 0, assisted: true, submissionCount: 1, retryCount: 2, coachFeedback: 'Hãy xem lại đường quân', selected: 'h2', summaryNote: 'Nhớ kiểm tra', summaryChecks: ['0', '3'] });
   const restored = CC.sanitize(JSON.parse(JSON.stringify(state)), { now: T0 + 2000 });
   assert.deepEqual(restored.session, state.session);
   assert.equal(restored.session.seenExplanation, false);
@@ -130,23 +131,37 @@ test('export preserves personal initial-answer and self-assessment drafts withou
 });
 
 test('evidence threshold is six attempts but unseen accuracy requires six separate positions', () => {
-  const attempts = Array.from({ length: 6 }, () => ({ success: true, assisted: false }));
+  const attempts = Array.from({ length: 6 }, (_, i) => ({ success: true, assisted: false, firstExposure: i === 0 }));
   const five = CC.evidence({ one: { skill: 'cannon', attempts: attempts.slice(0, 5) } });
   assert.equal(five.eligible, false); assert.equal(five.firstEligible, false);
   const sixRepeated = CC.evidence({ one: { skill: 'cannon', attempts } });
   assert.equal(sixRepeated.eligible, true); assert.equal(sixRepeated.firstCount, 1); assert.equal(sixRepeated.firstEligible, false);
-  const records = Object.fromEntries(attempts.map((a, i) => ['p' + i, { skill: i < 3 ? 'cannon' : 'horse', attempts: [{ ...a, assisted: i === 0 }, { success: false, assisted: true }] }]));
+  const records = Object.fromEntries(attempts.map((a, i) => ['p' + i, { skill: i < 3 ? 'cannon' : 'horse', attempts: [{ ...a, firstExposure: true, success: i !== 0 }, { success: false, assisted: true }] }]));
   const all = CC.evidence(records);
   assert.equal(all.firstEligible, true); assert.equal(all.firstCount, 6); assert.equal(all.firstCorrect, 5);
-  assert.equal(all.count, 12); assert.equal(all.assisted, 7);
+  assert.equal(all.count, 12); assert.equal(all.assisted, 6);
   assert.equal(CC.evidence(records, 'horse').count, 6);
   assert.equal(CC.evidence(records, 'horse').firstEligible, false);
   assert.equal(CC.evidence(records, 'material').count, 0);
 });
 
 test('a later correct review cannot rewrite a failed first encounter', () => {
-  const result = CC.evidence({ sample: { skill: 'cannon', attempts: [{ success: false, assisted: false }, ...Array.from({ length: 8 }, () => ({ success: true, assisted: false }))] } });
+  const result = CC.evidence({ sample: { skill: 'cannon', attempts: [{ success: false, assisted: false, firstExposure: true }, ...Array.from({ length: 8 }, () => ({ success: true, assisted: false }))] } });
   assert.equal(result.firstCorrect, 0); assert.equal(result.firstCount, 1); assert.equal(result.independent, 8);
+});
+
+test('legacy and previously assisted records cannot fabricate unseen-performance evidence', () => {
+  const records = { legacy: { attempts: [{ success: true, assisted: false }] }, helped: { attempts: [{ success: true, assisted: true, firstExposure: true }] } };
+  assert.equal(CC.evidence(records).firstCount, 0);
+  assert.equal(CC.evidence(records).firstEligible, false);
+});
+
+test('old artificial observation timer is removed while draft assistance survives', () => {
+  const state = CC.fresh(); state.session = session();
+  Object.assign(state.session, { helpReadyAt: T0 + 10000, helpLevel: 1, assisted: true });
+  const restored = CC.sanitize(state, { now: T0 });
+  assert.equal(restored.session.helpReadyAt, 0); assert.equal(restored.session.helpLevel, 1);
+  assert.deepEqual(restored.session.answers, state.session.answers);
 });
 
 test('clock subtracts elapsed wall time then adds increment only after a timely move', () => {
@@ -181,7 +196,9 @@ function appHarness(initialState, initialHash = '#learn') {
   storage.set('co-chill-v4-browser', JSON.stringify(initialState));
   const document = { getElementById: element, documentElement: { dataset: {} }, body: { classList: { toggle() {} } }, querySelector: () => null, querySelectorAll: () => [], addEventListener: (kind, fn) => { listeners[kind] = fn; } };
   // Modules loaded in the host share the same simulated clock as the app VM.
-  const sandbox = { CC: { ...CC, sanitize: (raw, options) => CC.sanitize(raw, options || { now }) }, XQ, FIXTURES: [puzzle], document, location: { hash: initialHash }, console, Date: class extends Date { static now() { return now; } },
+  const sandbox = { CC: { ...CC, sanitize: (raw, options) => CC.sanitize(raw, options || { now }),
+    parkPuzzle: (state, session, puzzle, options) => CC.parkPuzzle(state, session, puzzle, options || { now }),
+    resumeParked: (state, puzzleId, options) => CC.resumeParked(state, puzzleId, options || { now }) }, XQ, FIXTURES: [puzzle], document, location: { hash: initialHash }, console, Date: class extends Date { static now() { return now; } },
     localStorage: { getItem: k => storage.get(k) || null, setItem: (k, v) => storage.set(k, v), removeItem: k => storage.delete(k) },
     setInterval() {}, setTimeout() {}, clearTimeout() {}, confirm: () => true, FormData: class { constructor() {} } };
   sandbox.window = { addEventListener() {}, scrollTo() {} };
@@ -191,31 +208,32 @@ function appHarness(initialState, initialHash = '#learn') {
     submit() { listeners.submit({ target: { id: 'reflection-form' }, preventDefault() {} }); }, stored: () => JSON.parse(storage.get('co-chill-v4-browser')) };
 }
 
-test('actual app keeps answer hidden until requested help has been read and explicitly accepted', () => {
+test('actual app opens observation help immediately and reveals only after explicit guided request', () => {
   const state = CC.fresh(); state.session = CC.createSession(puzzle, { now: T0 });
   const app = appHarness(state);
   assert.equal(app.html().includes('ANSWER_SPOILER'), false);
   app.click('guided-reveal'); assert.equal(app.run('state.session.stage'), 'reflect');
   app.click('unknown'); assert.equal(app.run('state.session.assisted'), true);
   assert.equal(app.html().includes('ANSWER_SPOILER'), false);
-  app.click('guided-reveal'); assert.equal(app.run('state.session.stage'), 'reflect');
-  app.advance(9999); app.click('guided-reveal'); assert.equal(app.run('state.session.stage'), 'reflect');
-  app.advance(1); app.click('guided-reveal'); assert.equal(app.run('state.session.stage'), 'explain');
+  app.click('guided-reveal'); assert.equal(app.run('state.session.stage'), 'explain');
   assert.equal(app.html().includes('ANSWER_SPOILER'), true);
   assert.equal(app.run('state.session.unknown'), true);
 });
 
-test('actual app wrong first submission preserves thoughts, offers gated help, reveals at third attempt', () => {
+test('actual app third unmatched submission parks next-day work without revealing or completing it', () => {
   const state = CC.fresh(); state.session = session(); state.session.candidate = 'a3a4';
   const app = appHarness(state); app.submit();
   assert.equal(app.run('state.session.submissionCount'), 1); assert.equal(app.run('state.session.stage'), 'reflect');
   assert.equal(app.run('state.session.firstCandidate'), 'a3a4'); assert.equal(app.html().includes('ANSWER_SPOILER'), false);
-  app.click('guided-reveal'); assert.equal(app.run('state.session.stage'), 'reflect');
   app.run('state.session.answers[0] = "Đã sửa suy nghĩ"'); app.submit();
   assert.equal(app.run('state.session.submissionCount'), 2); assert.equal(app.run('state.session.stage'), 'reflect');
-  app.submit(); assert.equal(app.run('state.session.submissionCount'), 3); assert.equal(app.run('state.session.stage'), 'explain');
+  app.submit(); assert.equal(app.run('state.session.submissionCount'), 3); assert.equal(app.run('state.session.stage'), 'parked');
   assert.notEqual(app.run('state.session.firstAnswers[0]'), 'Đã sửa suy nghĩ');
   assert.equal(app.stored().session.firstCandidate, 'a3a4'); assert.equal(app.stored().session.assisted, true);
+  assert.equal(app.html().includes('ANSWER_SPOILER'), false);
+  assert.equal(app.stored().records.sample.completionCount, 0);
+  assert.equal(app.stored().records.sample.dueAt, null);
+  assert.equal(app.stored().records.sample.pendingReview.dueAt, new Date(T0 + CC.DAY).toISOString());
 });
 
 test('actual app blocks training answers and opening guidance during a live game', () => {

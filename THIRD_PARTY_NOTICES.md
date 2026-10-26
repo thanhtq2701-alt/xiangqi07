@@ -1,15 +1,27 @@
-# Sources and notices
+# Nguồn và quyền sử dụng V6 — 26/10/2026
 
-No external chess implementation, engine binary, NNUE weights, book puzzles, annotations, images or puzzle database has been copied into this implementation. UI graphics are original SVG/CSS; fonts use the user's system fonts. Python's standard library supplies HTTP, SQLite and tests. The project owner has not selected a public redistribution license for the project's own code.
+- Đặc tả: tài liệu chủ sản phẩm V3/V4/V5/V6, Final Pack. `docs/spec/` giữ bản
+  đặc tả gốc; câu trả lời cá nhân/Word gốc không đóng trong source public.
+- Logo và cover do chủ sản phẩm cung cấp, dùng tại
+  `online-preview/logo-co-chill.png` và `cover-co-chill.png`. Chưa có kiểm
+  toán giấy phép độc lập cho mọi thành phần hình.
+- 12 bài cơ bản, 8 hướng dẫn và 2 bài nhiều lượt tự dựng; không scrape kho
+  ván, sao chép chú giải hoặc trích sách chỉ vì tài liệu đã cũ. Các hình nguồn
+  sách/video chưa rõ quyền không được đưa vào bộ bài.
+- UI dùng SVG/CSS và font hệ thống, không tải font/tracker bên ngoài.
+- Python standard library + JavaScript thuần cho local. Gunicorn trong
+  requirements.txt dành cho Linux production; giữ giấy phép dependency khi
+  phân phối môi trường cài sẵn.
+- app/pikafish.py là adapter dự án, không chứa engine binary/NNUE/mã nguồn
+  Pikafish sao chép. Tests dùng UCI giả tự tạo. Kiểm tra giấy phép đúng binary,
+  source và weights trước tải hoặc phân phối.
 
-Product sources are the owner-provided Word files and Final Pack, whose original text is retained locally; raw personal discovery documents are excluded from Git. `docs/spec/` contains the finalized owner specification unchanged.
+Nguồn chính thức tham khảo: [Pikafish](https://github.com/official-pikafish/Pikafish),
+[UCI commands](https://github.com/official-pikafish/Pikafish/wiki/UCI-%26-Commands),
+[networks](https://github.com/official-pikafish/Networks),
+[WCAG](https://www.w3.org/WAI/WCAG22/quickref/).
+Dẫn nguồn không cấp quyền sao chép nội dung hoặc chứng nhận tuân thủ.
 
-Reference sources checked on 8 October 2026:
-
-- World Xiangqi Federation, [World Xiangqi Rules](https://www.wxf-xiangqi.org/images/wxf-rules/2018_World_XiangQi_Rules_English2018.pdf): reference for future complete rule adjudication; no tournament compliance claim.
-- [Official Pikafish repository](https://github.com/official-pikafish/Pikafish): candidate replacement engine. It is a Xiangqi UCI engine; its repository describes GPLv3 distribution obligations. Review the exact release, code and weights terms before bundling. Nothing from Pikafish is currently distributed.
-- [W3C WCAG 2.2 quick reference](https://www.w3.org/WAI/WCAG22/quickref/): future accessibility acceptance checklist; not a certification.
-- [MDN HTTP overview](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview): beginner API reading.
-- [OWASP session management](https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html): future security review reference.
-
-These references are for verification/learning, not authorization to import copyrighted datasets. Public visibility is not a data license. Document permissions for every future data source, and do not reuse user games for shared training without an appropriate consent process.
+Chủ dự án chưa chọn giấy phép mã nguồn chung. Repo public không tự xác định
+quyền tái phân phối mọi phần. Trước công bố, xác nhận quyền ảnh/tài liệu,
+chọn license phù hợp cho phần mình sở hữu và giữ notice của dependency.
