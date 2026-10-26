@@ -1,8 +1,8 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-title Co Chill V5 - local server
-echo Co Chill V5: http://127.0.0.1:8769/#home
+title Co Chill V6 - local server
+echo Co Chill V6: http://127.0.0.1:8769/#home
 echo Keep this window open. Press Ctrl+C to stop.
 echo This is a local address, not a public website.
 where py >nul 2>nul
@@ -25,6 +25,6 @@ echo Python 3.12 or newer was not found. Install Python and reopen this file.
 :finished
 echo.
 echo If port 8769 is busy, use the existing Co Chill server or select another port.
-echo Instructions: docs\DEPLOY_V5.md
+echo Instructions: README.md and docs\DEPLOY_GCP_V6.md
 pause
 endlocal

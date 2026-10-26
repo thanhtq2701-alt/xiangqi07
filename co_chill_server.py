@@ -1,4 +1,4 @@
-"""Cờ Chill pilot WSGI server: same-origin website, accounts and SQLite sync.
+"""Cờ Chill pilot WSGI server: website, accounts, rooms and SQLite sync.
 
 Local: python co_chill_server.py serve --port 8769
 Production (single instance, persistent volume): gunicorn co_chill_server:application
@@ -15,17 +15,22 @@ from pathlib import Path
 import re
 import secrets
 import time
+from socketserver import ThreadingMixIn
+from threading import Lock
 from http import HTTPStatus
 from http.cookies import SimpleCookie
 from urllib.parse import parse_qs, unquote, urlsplit
-from wsgiref.simple_server import make_server, WSGIRequestHandler
+from wsgiref.simple_server import make_server, WSGIRequestHandler, WSGIServer
 
-from app.cloud_store import APIError, CloudStore, MAX_STATE_BYTES, SESSION_SECONDS, metrics, personal_export, sha, utc, verify_password
+from app.cloud_store import APIError, CloudStore, MAX_STATE_BYTES, SESSION_SECONDS, display_name, metrics, personal_export, sha, utc, verify_password
 from app import content_store
 from app.rules import Position
+from app.online_rooms import OnlineRooms
 
 ROOT = Path(__file__).resolve().parent
 COOKIE = 'co_chill_session'
+ROOM_COOKIE = 'co_chill_room_guest'
+GUEST_ROOM_SECONDS = 24 * 3600
 MAX_BODY = MAX_STATE_BYTES + 65536
 
 
@@ -45,6 +50,12 @@ class CloudApplication:
             from app.pikafish import AnalysisEngine
             engine = AnalysisEngine()
         self.engine = engine
+        self.rooms = OnlineRooms(self.store.path)
+        with self.store.connect(True) as db:
+            db.execute('''CREATE TABLE IF NOT EXISTS room_guest_sessions (
+                token_hash TEXT PRIMARY KEY, user_id TEXT UNIQUE NOT NULL,
+                display_name TEXT NOT NULL, csrf TEXT NOT NULL,
+                created_at REAL NOT NULL, expires_at REAL NOT NULL)''')
 
     def valid_host(self, environ):
         host = environ.get('HTTP_HOST', '')
@@ -59,18 +70,18 @@ class CloudApplication:
     def expected_origin(self, environ):
         return self.public_origin or environ.get('wsgi.url_scheme', 'http') + '://' + environ.get('HTTP_HOST', '')
 
-    def cookie(self, token='', clear=False):
-        value = f'{COOKIE}={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age={0 if clear else SESSION_SECONDS}'
+    def cookie(self, token='', clear=False, name=COOKIE, seconds=SESSION_SECONDS):
+        value = f'{name}={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age={0 if clear else seconds}'
         if self.public_origin.startswith('https://'):
             value += '; Secure'
         return value
 
     @staticmethod
-    def read_cookie(environ):
+    def read_cookie(environ, name=COOKIE):
         cookie = SimpleCookie()
         try:
             cookie.load(environ.get('HTTP_COOKIE', ''))
-            return cookie[COOKIE].value if COOKIE in cookie else ''
+            return cookie[name].value if name in cookie else ''
         except Exception:
             return ''
 
@@ -141,6 +152,25 @@ class CloudApplication:
                 elif path == '/api/auth/register':
                     self.store.throttle('register-ip', ip, 20, 3600)
             token = self.read_cookie(environ)
+            if path == '/api/rooms' or path.startswith('/api/rooms/'):
+                status, result, extra = self.dispatch_rooms(token, path, method, data, environ)
+                return self.response(start_response, status, result, headers=extra)
+            # Room operations use their own short write transactions. Check live
+            # server-owned rooms before entering the legacy API transaction.
+            if path == '/api/engine/analyze' and write:
+                with self.store.connect() as db:
+                    actor = self.store.session(db, token)
+                    actor = dict(actor) if actor else None
+                if actor:
+                    csrf = environ.get('HTTP_X_CSRF_TOKEN', '')
+                    if not csrf or not hmac.compare_digest(csrf, actor['csrf']):
+                        raise APIError(403, 'Mã bảo vệ phiên không hợp lệ. Hãy tải lại trang.', 'csrf_rejected')
+                if actor and self.rooms.has_live_context(actor):
+                    raise APIError(409, 'Kết thúc hoặc rời phần xem ván trực tuyến trước khi mở máy phân tích.', 'live_online_no_coaching')
+            if path in ('/api/auth/login', '/api/auth/register') and write:
+                guest = self.room_guest(environ)
+                if guest and self.rooms.has_live_context(guest):
+                    raise APIError(409, 'Hãy hoàn tất ván khách hoặc rời phần xem trước khi đổi tài khoản.', 'guest_game_live')
             # Rate-limit before transaction: failure counters survive rollback.
             if path in ('/api/account', '/api/engine/analyze', '/api/feedback') and write:
                 self.store.throttle('action-' + path, sha(token) if token else ip, 30 if path == '/api/engine/analyze' else 20, 60)
@@ -163,13 +193,108 @@ class CloudApplication:
 
     def session_result(self, user, csrf=None):
         return {'authenticated': bool(user), 'user': self.store.user_view(user) if user else None, 'csrf': csrf or (user['csrf'] if user else None),
-                'capabilities': {'accounts': True, 'cloudSync': True, 'passwordLogin': True, 'emailLogin': False, 'oauth': False, 'passwordRecovery': False, 'adminMfa': True, 'guestCloudSync': False},
-                'privacy': {'training': False, 'guestStorage': 'browser-only', 'deletion': 'server-hard-delete', 'maxStateBytes': MAX_STATE_BYTES}}
+                'capabilities': {'accounts': True, 'cloudSync': True, 'passwordLogin': True, 'emailLogin': False, 'oauth': False, 'passwordRecovery': False, 'adminMfa': True, 'guestCloudSync': False,
+                                 'onlineRooms': True, 'guestRooms': True, 'ranked': False, 'freeTextChat': False},
+                'privacy': {'training': False, 'guestStorage': 'learning-browser-only', 'guestRoomStorage': 'server',
+                            'deletion': 'server-hard-delete', 'maxStateBytes': MAX_STATE_BYTES}}
+
+    def room_guest(self, environ):
+        token = self.read_cookie(environ, ROOM_COOKIE)
+        if not re.fullmatch(r'[0-9a-f]{64}', token):
+            return None
+        with self.store.connect() as db:
+            row = db.execute('SELECT * FROM room_guest_sessions WHERE token_hash=? AND expires_at>?', (sha(token), time.time())).fetchone()
+        if not row:
+            return None
+        return {'id': row['user_id'], 'displayName': row['display_name'], 'csrf': row['csrf'],
+                'expiresAt': row['expires_at'], 'guest': True}
+
+    def room_session_result(self, actor):
+        guest = bool(actor and actor.get('guest'))
+        return {'authenticated': bool(actor and not guest), 'guest': guest,
+                'user': self.rooms.identity(actor) if actor else None,
+                'csrf': actor['csrf'] if actor else None,
+                'expiresAt': utc(actor['expiresAt']) if guest else None,
+                'capabilities': {'onlineRooms': True, 'guestRooms': True, 'ranked': False,
+                                 'freeTextChat': False, 'transport': 'polling'},
+                'notice': 'Khách có phiên phòng 24 giờ; tiến độ học khách vẫn ở trình duyệt.' if guest else None}
+
+    def dispatch_rooms(self, token, path, method, data, environ):
+        """Authenticate in a short read connection, then let rooms transact.
+
+        Guest tokens are separate capabilities, never account or admin sessions.
+        No user/seat/role field supplied by a browser is trusted as identity.
+        """
+        ip = environ.get('REMOTE_ADDR', 'unknown')
+        headers = []
+        with self.store.connect() as db:
+            user = self.store.session(db, token)
+            user = dict(user) if user else None
+        guest = self.room_guest(environ)
+        # An expired or revoked account cookie must not silently downgrade to
+        # a leftover guest identity (which could display another person's room).
+        if token and not user:
+            raise APIError(401, 'Phiên tài khoản đã hết hạn. Hãy đăng nhập lại.', 'session_expired')
+        actor = user or guest
+        if path == '/api/rooms/session' and method == 'GET':
+            return 200, self.room_session_result(actor), headers
+        if path == '/api/rooms/guest' and method == 'POST':
+            if user:
+                raise APIError(409, 'Bạn đang dùng tài khoản; không cần tạo phiên khách.', 'already_authenticated')
+            if guest:
+                return 200, self.room_session_result(guest), headers
+            self.store.throttle('room-guest-ip', ip, 20, 3600)
+            name = display_name(data.get('displayName', 'Khách Cờ Chill'))
+            now, new_token, csrf = time.time(), secrets.token_hex(32), secrets.token_hex(32)
+            actor = {'id': 'guest_' + secrets.token_hex(16), 'displayName': name, 'csrf': csrf,
+                     'expiresAt': now + GUEST_ROOM_SECONDS, 'guest': True}
+            with self.store.connect(True) as db:
+                db.execute('DELETE FROM room_guest_sessions WHERE expires_at<=?', (now,))
+                db.execute('INSERT INTO room_guest_sessions VALUES (?,?,?,?,?,?)',
+                           (sha(new_token), actor['id'], name, csrf, now, actor['expiresAt']))
+            headers.append(('Set-Cookie', self.cookie(new_token, name=ROOM_COOKIE, seconds=GUEST_ROOM_SECONDS)))
+            return 201, self.room_session_result(actor), headers
+        if not actor:
+            raise APIError(401, 'Hãy đăng nhập hoặc chọn phiên khách để vào phòng.', 'room_session_required')
+        write = method in ('POST', 'PUT', 'PATCH', 'DELETE')
+        self.store.throttle('room-write' if write else 'room-read', actor['id'], 120 if write else 180, 60)
+        if write:
+            csrf = environ.get('HTTP_X_CSRF_TOKEN', '')
+            if not csrf or not hmac.compare_digest(csrf, actor['csrf']):
+                raise APIError(403, 'Mã bảo vệ phiên phòng không hợp lệ. Hãy tải lại trang.', 'csrf_rejected')
+        if path == '/api/rooms/guest' and method == 'DELETE':
+            if not guest or user:
+                raise APIError(409, 'Đang dùng phiên tài khoản; thao tác này chỉ xóa phiên khách.', 'not_guest_session')
+            with self.store.connect(True) as db:
+                self.rooms.delete_identity(guest['id'], db=db)
+                db.execute('DELETE FROM room_guest_sessions WHERE user_id=?', (guest['id'],))
+            headers.append(('Set-Cookie', self.cookie(clear=True, name=ROOM_COOKIE)))
+            return 200, {'deleted': True, 'guest': False}, headers
+        if path == '/api/rooms':
+            if method == 'GET':
+                return 200, self.rooms.list_public(actor), headers
+            if method == 'POST':
+                return 201, self.rooms.create(actor, data), headers
+        if path == '/api/rooms/match' and method == 'POST':
+            return 200, self.rooms.match(actor, data), headers
+        if path == '/api/rooms/history' and method == 'GET':
+            return 200, self.rooms.history(actor), headers
+        match = re.fullmatch(r'/api/rooms/([0-9a-fA-F]{10})(?:/([a-z-]+))?', path)
+        if match:
+            code, action = match.groups()
+            if action is None and method == 'GET':
+                return 200, self.rooms.snapshot(actor, code), headers
+            if method == 'POST' and action in ('join', 'watch'):
+                return 200, self.rooms.join(actor, code, spectator=action == 'watch'), headers
+            if method == 'POST' and action:
+                return 200, self.rooms.action(actor, code, action, data), headers
+        raise APIError(404, 'Không tìm thấy thao tác phòng.', 'room_route_not_found')
 
     def dispatch(self, db, user, token, path, method, data, environ):
         headers = []
         if path == '/api/health' and method == 'GET':
-            return 200, {'ok': True, 'service': 'co-chill-v5', 'persistence': 'sqlite-single-instance'}, headers
+            return 200, {'ok': True, 'service': 'co-chill-v6', 'persistence': 'sqlite-single-instance',
+                         'rooms': {'enabled': True, 'transport': 'polling', 'ranked': False, 'workers': 1}}, headers
         if path == '/api/session' and method == 'GET':
             return 200, self.session_result(user), headers
         if path == '/api/content' and method == 'GET':
@@ -203,6 +328,7 @@ class CloudApplication:
                 raise APIError(401, 'Mật khẩu hiện tại chưa đúng.', 'invalid_credentials')
             if user['role'] == 'admin':
                 raise APIError(409, 'Tài khoản chủ quản trị cần được bàn giao quyền trên máy chủ trước khi xóa.', 'owner_deletion_requires_operator')
+            self.rooms.delete_identity(uid, db=db)
             self.store.delete_user(db, uid)
             headers.append(('Set-Cookie', self.cookie(clear=True)))
             return 200, {'ok': True, 'deleted': True, 'notice': 'Đã xóa tài khoản, tiến độ và phản hồi trên cơ sở dữ liệu đang chạy. Bản xuất hoặc bản sao lưu do người vận hành giữ cần được xóa riêng.'}, headers
@@ -215,6 +341,7 @@ class CloudApplication:
             state['state'] = personal_export(state['state'])
             feedback = [self.feedback_view(row) for row in db.execute('SELECT id,category,message,context,status,created_at,updated_at FROM feedback WHERE user_id=? ORDER BY created_at', (uid,))]
             return 200, {'format': 'co-chill-account-export-v1', 'exportedAt': utc(), 'account': self.store.user_view(user), **state, 'feedback': feedback,
+                         'onlineGames': self.rooms.history(user, db=db)['games'],
                          'answerKeysIncluded': False, 'notice': 'Bản sao dữ liệu cá nhân để đọc; không bao gồm khóa đáp án hoặc dùng như bản sao lưu toàn database.'}, headers
         if path == '/api/feedback' and method == 'POST':
             category, message = data.get('category', 'other'), data.get('message')
@@ -238,10 +365,19 @@ class CloudApplication:
             purpose = data.get('purpose', 'review-scan')
             if purpose not in ('review', 'review-scan', 'practice', 'bot'):
                 raise APIError(400, 'Mục đích phân tích không hợp lệ.')
+            if 'requireStrong' in data and type(data['requireStrong']) is not bool:
+                raise APIError(400, 'requireStrong phải là true hoặc false.', 'invalid_engine_policy')
             state = self.store.state(db, uid)['state']
             state = state.get('learning', state.get('state', state))
             games = state.get('games', []) if isinstance(state, dict) else []
             games = games if isinstance(games, list) else []
+            # Online reviews use the server's completed record, not a modified
+            # client JSON claiming that a different game has already finished.
+            if purpose in ('review', 'review-scan') and str(data.get('gameId', '')).startswith('online-'):
+                verified = next((g for g in self.rooms.history(user, db=db)['games'] if g['id'] == data['gameId']), None)
+                if not verified:
+                    raise APIError(409, 'Chưa có biên bản online hoàn tất của bạn để xem lại.', 'online_game_not_finished')
+                games = [g for g in games if isinstance(g, dict) and g.get('id') != data['gameId']] + [verified]
             active = any(isinstance(g, dict) and isinstance(g.get('status'), dict) and g['status'].get('over') is not True for g in games)
             if active and purpose != 'bot':
                 raise APIError(409, 'Kết thúc ván đang chơi trước khi mở phân tích hoặc hướng dẫn.', 'live_game_no_coaching')
@@ -256,8 +392,17 @@ class CloudApplication:
                 if exc.__class__.__name__ == 'EngineUnavailable':
                     raise APIError(429, 'Máy phân tích đang bận. Bản nháp của bạn vẫn được giữ.', 'engine_busy', retryAfter=5)
                 raise
+            if data.get('requireStrong') is True and result.get('fallback') is not False:
+                # A request for the configured strong engine must never silently
+                # consume a shallow local score or move, even when the adapter
+                # recovers from an unavailable binary by producing a fallback.
+                raise APIError(503, 'Pikafish chưa sẵn sàng. Bản nháp vẫn được giữ; hãy thử lại hoặc chọn bài đã được duyệt.',
+                               'engine_unavailable', retryAfter=5)
             if purpose == 'bot':
                 result = {key: result.get(key) for key in ('best_move', 'engine', 'engine_name', 'fallback', 'status', 'warnings', 'provenance')}
+            # A room may have started while a slow engine request was running.
+            if self.rooms.has_live_context(user):
+                raise APIError(409, 'Ván trực tuyến đang hoạt động; kết quả phân tích đã được bỏ.', 'live_online_no_coaching')
             return 200, result, headers
         if not path.startswith('/api/admin/'):
             raise APIError(404, 'Không tìm thấy chức năng.')
@@ -425,19 +570,27 @@ class CloudApplication:
 
 
 _application = None
+_application_lock = Lock()
 
 
 def application(environ, start_response):
     """Lazy factory avoids creating a database just by importing test helpers."""
     global _application
     if _application is None:
-        _application = CloudApplication()
+        with _application_lock:
+            if _application is None:
+                _application = CloudApplication()
     return _application(environ, start_response)
 
 
 class QuietHandler(WSGIRequestHandler):
     def log_message(self, fmt, *args):
         pass  # Never log cookies, query strings or learner content.
+
+
+class LocalThreadedServer(ThreadingMixIn, WSGIServer):
+    """Local pilot only; production still runs one Gunicorn worker + threads."""
+    daemon_threads = True
 
 
 def main():
@@ -456,7 +609,7 @@ def main():
         return
     if args.command == 'serve':
         app = CloudApplication(db_path=args.db)
-        with make_server(args.host, args.port, app, handler_class=QuietHandler) as server:
+        with make_server(args.host, args.port, app, server_class=LocalThreadedServer, handler_class=QuietHandler) as server:
             print(f'Co Chill: http://{args.host}:{server.server_port} (Ctrl+C to stop)', flush=True)
             server.serve_forever()
         return
@@ -484,6 +637,7 @@ def main():
             ids = [row['id'] for row in db.execute("SELECT id FROM users WHERE role!='admin' AND last_activity<?", (time.time() - 365 * 86400,))]
             if args.confirm:
                 for uid in ids:
+                    OnlineRooms.delete_identity_in_db(db, uid)
                     store.delete_user(db, uid)
             print(f'{len(ids)} inactive accounts ' + ('deleted.' if args.confirm else 'eligible. Run with --confirm to delete. Admin owner is excluded.'))
 
