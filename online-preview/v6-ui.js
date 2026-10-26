@@ -24,10 +24,18 @@
     'Giữ ván cờ và tiến độ khi đổi máy.':'Keep your games and progress across devices.',
     'Chào bạn trở lại':'Welcome back', 'Bắt đầu một hành trình':'Start your journey',
     'Tên đăng nhập':'Username', 'Mật khẩu':'Password', 'Tên hiển thị':'Display name',
+    'Mật khẩu · ít nhất 10 ký tự':'Password · at least 10 characters',
+    'Ví dụ: co_thu_07':'Example: co_thu_07', '6 chữ số':'6 digits',
     'Tên hiển thị (không cần tên thật)':'Display name (your real name is not required)',
     'Mã xác thực quản trị (nếu có)':'Administrator verification code (if applicable)',
     'Quên mật khẩu?':'Forgot your password?', 'Đăng nhập →':'Sign in →',
     'Chưa kết nối máy chủ tài khoản':'Account service is unavailable',
+    'Bản web tĩnh vẫn chơi và học trên máy này. Tài khoản cần chạy cùng API Cờ Chill. Nếu bạn đã mở đúng máy chủ, hãy thử kết nối lại.':'You can play and learn on this device. Accounts need the Cờ Chill account service. If this is the main website, try reconnecting.',
+    'học với chế độ khách':'learn as a guest',
+    'Chưa dùng email hoặc tài khoản mạng xã hội. Không yêu cầu ngày sinh hay số điện thoại.':'This version uses a username and password. Your date of birth and phone number are not required.',
+    'Tôi đã đọc':'I have read', 'cách lưu và xóa dữ liệu':'how data is saved and deleted',
+    '. Một tài khoản chỉ có một phiên đăng nhập đang hoạt động.':'. Each account can have one active sign-in session.',
+    'Bản này chưa có email khôi phục. Liên hệ chủ website để xác minh quyền sở hữu; không tạo tài khoản mới với kỳ vọng tự nhận lại dữ liệu cũ.':'Email recovery is not available in this version. Contact the website owner to verify ownership; a new account will not automatically recover old progress.',
     'Thử kết nối lại':'Try again', 'Đăng xuất':'Sign out', 'Đồng bộ ngay':'Sync now',
     'Xuất dữ liệu tài khoản':'Export account data', 'Xuất dữ liệu cá nhân':'Export my data',
     'Xem / chuyển dữ liệu khách':'Review / transfer guest data',
@@ -41,6 +49,10 @@
     'Đã biết chơi':'Familiar with the game', 'Giọng hướng dẫn':'Coaching tone',
     'Trung tính':'Neutral', 'Bạn học cùng':'Study companion', 'Bật âm thanh nhẹ':'Enable gentle sounds',
     'Lưu tùy chọn':'Save preferences', 'Dữ liệu và quyền riêng tư':'Data & privacy',
+    'Khách lưu trên trình duyệt. Khi đăng nhập, tiến độ được đồng bộ vào tài khoản; xem trạng thái lưu ở đầu trang.':'Guest progress stays in this browser. When signed in, progress syncs to your account; check the save status at the top.',
+    'Không gửi ván hoặc câu trả lời để huấn luyện. Bản xuất không chứa đáp án ẩn của bài tập.':'Games and answers are not sent for training. Exports do not include hidden puzzle solutions.',
+    'File xuất là bản sao để đọc; chưa có nhập phục hồi tự động. Xóa dữ liệu không thể hoàn tác.':'The export is a readable copy; automatic restore is not available yet. Deleting data cannot be undone.',
+    'Âm thanh được tổng hợp trên thiết bị. Không sử dụng âm thanh từ ứng dụng khác.':'Sounds are generated on your device. No audio from other apps is used.',
     'Tài khoản, xuất và xóa dữ liệu':'Account, export & delete data',
     'Xóa lịch sử học và lịch ôn':'Delete learning history & review schedule',
     'Xóa toàn bộ dữ liệu':'Delete all data', 'Quay về hồ sơ →':'Back to profile →',
@@ -204,10 +216,13 @@
       '.site-header','.sidebar','.mobile-nav','.account-strip','footer','.skip-link',
       '.v6-entry','.v6-home-copy','.home-card','.next-up','.home-bottom','.v6-language-panel','.v6-theme-fieldset',
       '#main .crumb','#main .page-top','#main button','#main .field > span','#main option',
-      '#main .filters','#main .button-row a','#main .panel > h2','#main .panel > h3',
+      '#main .filters','#main a.primary','#main a.secondary','#main a.quiet','#main .panel > h2','#main .panel > h3',
+      '#main .settings-grid .panel > p','#main .settings-grid .check-line',
+      '#main [data-cloud-form="login"]','#main [data-cloud-form="register"]','#main details > summary',
       '#main .v6-section-heading','#main .v6-interface-label'
     ];
     for(const element of document.querySelectorAll(selectors.join(',')))translateElement(element);
+    if(page==='account')for(const element of document.querySelectorAll('#main .panel > p,#main details > p'))translateElement(element);
     for(const element of document.querySelectorAll('[data-v6-action="language"]'))element.setAttribute('aria-pressed',String(element.dataset.value===language));
     for(const note of document.querySelectorAll('.v6-language-note'))note.hidden=language!=='en';
     if (!gated) {

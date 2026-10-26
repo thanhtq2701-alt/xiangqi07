@@ -204,7 +204,17 @@
       familyId: exercise.familyId, startedAt: next.startedAt, completedAt: next.completedAt, dueAt: next.dueAt,
       answers: answers(next.firstAnswers), candidate: next.firstCandidate, success: true, assisted: next.assisted,
       firstExposure: next.firstExposure && !next.assisted, learnerDecisions: next.history.length, source: next.source,
+      finalNodeId: next.nodeId, history: copy(next.history),
       verification: exercise.proof?.method || 'authored-line', reasoningGraded: false } };
   }
-  return Object.freeze({ DAY, validate, create, currentPosition, submit, restore, reveal, retry, resumeParked, finish });
+  function sanitizeAttempt(exercise, raw, options = {}) {
+    if (!plain(raw) || raw.puzzleId !== exercise.id || raw.version !== exercise.version || raw.success !== true || !Array.isArray(raw.history)) return null;
+    const restored = restore(exercise, {kind:'line-v1',id:raw.id,exerciseId:raw.puzzleId,version:raw.version,stage:'finished',nodeId:raw.finalNodeId,
+      history:raw.history,answers:raw.answers,firstAnswers:raw.answers,firstCandidate:raw.candidate,assisted:raw.assisted,firstExposure:raw.firstExposure,
+      startedAt:raw.startedAt,updatedAt:raw.completedAt,completedAt:raw.completedAt,seenExplanation:true,failureCount:raw.assisted?1:0,attempts:[]},options);
+    if (!restored) return null;
+    const pending = {...restored,stage:'explain',completedAt:null,dueAt:null};
+    return finish(exercise,pending,{now:restored.completedAt}).attempt;
+  }
+  return Object.freeze({ DAY, validate, create, currentPosition, submit, restore, reveal, retry, resumeParked, finish, sanitizeAttempt });
 });

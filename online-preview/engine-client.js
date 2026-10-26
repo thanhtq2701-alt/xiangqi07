@@ -37,5 +37,11 @@
     return validate(position,{engine:'browser-basic',engine_name:'Máy cơ bản trên thiết bị',fallback:true,status:'fallback',confidence:'limited',best_move:raw.bestMove,
       candidates:lines.slice(0,3),selected:lines.find(x=>x.move===selectedMove)||null,search:{depth:raw.depth,exhaustive_root:false},warnings:['Tìm kiếm nông; chưa chứng minh nước tối ưu.']});
   }
-  return {validate,difference,local};
+  function requireStrong(result) {
+    if (!result || result.fallback !== false || !['ready','terminal'].includes(result.status)) {
+      throw new Error('Pikafish chưa sẵn sàng. Giữ lại ván và thử lại sau; máy cơ bản không thay thế phân tích mạnh.');
+    }
+    return result;
+  }
+  return {validate,difference,local,requireStrong};
 });

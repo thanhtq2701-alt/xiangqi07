@@ -75,6 +75,14 @@ test('local fallback remains labelled and its legal evidence is independently ch
   }
 });
 
+test('strong analysis refuses fallback or incomplete evidence and accepts explicit ready/terminal', () => {
+  for(const value of [null,{}, {fallback:true,status:'ready'}, {fallback:false,status:'fallback'}])
+    assert.throws(()=>Engine.requireStrong(value));
+  for(const status of ['ready','terminal']) {
+    const value={fallback:false,status}; assert.equal(Engine.requireStrong(value),value);
+  }
+});
+
 let failed=0;
 for(const {name,run} of tests) {
   try {run();console.log('PASS '+name);}

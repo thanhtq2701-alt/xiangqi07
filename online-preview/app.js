@@ -96,8 +96,8 @@ async function maybeBot(g){
      const cloud=window.CCCloudUI?.snapshot();
      if(!cloud?.client.session.authenticated)throw new Error('Cần đăng nhập để dùng máy chủ. Chọn máy cơ bản để chơi không cần tài khoản.');
      if(cloud.client.pending&&!await cloud.client.flush())throw new Error('Chưa đồng bộ được ván.');
-     const a=await cloud.client.request('/api/engine/analyze',{method:'POST',body:{purpose:'bot',gameId:g.id,fen:g.fen,mode:'quick'}});
-     move=a.best_move;g.engineLabel=a.fallback?'Máy cơ bản dự phòng':a.engine_name||'Engine máy chủ';
+     const a=CoChillEngine.requireStrong(await cloud.client.request('/api/engine/analyze',{method:'POST',body:{purpose:'bot',gameId:g.id,fen:g.fen,mode:'quick',requireStrong:true}}));
+     move=a.best_move;g.engineLabel=a.engine_name||'Engine máy chủ';
    }else{
      await new Promise(r=>setTimeout(r,50));
      const a=XQ.analyze(pos,{depth:g.depth,maxMs:g.depth===2?550:180});move=a.bestMove;g.engineLabel='Máy cơ bản · '+a.depth+' nửa nước';
@@ -116,6 +116,7 @@ async function analyzeGame(g,analysisMode='quick'){
  const task={controller:new AbortController(),route:location.hash};analysisTask=task;busy=true;analysisProgress='Đang chuẩn bị phân tích…';render();
  try{
    const cloud=window.CCCloudUI?.snapshot(),remote=!!cloud?.client.session.authenticated;
+   if(!remote&&prefs.level==='intermediate')throw new Error('Phân tích ở mức đã biết chơi cần tài khoản và Pikafish trên máy chủ. Biên bản vẫn được giữ; bạn có thể luyện bài đã kiểm chứng trong Bài học.');
    if(remote&&cloud.client.pending&&!await cloud.client.flush())throw new Error('Chưa đồng bộ được ván. Mở Tài khoản để xử lý trước khi phân tích.');
    const turns=g.moves.map((m,i)=>({...m,ply:i})).filter(m=>g.mode==='local'||m.side===g.player).slice(-20),found=[];
    let fallback=false,engineName='Máy cơ bản trên thiết bị';
@@ -124,7 +125,7 @@ async function analyzeGame(g,analysisMode='quick'){
      analysisProgress=`Đang kiểm tra vị trí ${n+1} / ${turns.length}`;
      if($('analysis-progress'))$('analysis-progress').textContent=analysisProgress;
      const m=turns[n],pos=XQ.Position.fromFen(m.before);
-     const raw=remote?await cloud.client.request('/api/engine/analyze',{method:'POST',signal:task.controller.signal,body:{purpose:'review-scan',gameId:g.id,fen:g.initialFen,moves:g.moves.slice(0,m.ply).map(x=>x.move),selectedMove:m.move,mode:analysisMode}}):CoChillEngine.local(pos,m.move,XQ.analyze);
+     const raw=remote?CoChillEngine.requireStrong(await cloud.client.request('/api/engine/analyze',{method:'POST',signal:task.controller.signal,body:{purpose:'review-scan',gameId:g.id,fen:g.initialFen,moves:g.moves.slice(0,m.ply).map(x=>x.move),selectedMove:m.move,mode:analysisMode,requireStrong:true}})):CoChillEngine.local(pos,m.move,XQ.analyze);
      const a=CoChillEngine.validate(pos,raw);fallback=fallback||a.fallback;engineName=a.engine_name;
      const best=a.candidates[0],actual=a.selected,loss=CoChillEngine.difference(best,actual);
      if(!best||!actual||loss===null||loss<80||best.move===m.move)continue;

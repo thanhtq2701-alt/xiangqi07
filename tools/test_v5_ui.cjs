@@ -124,6 +124,20 @@ test('an account without saved preferences starts with defaults rather than anot
 
 function publishedPuzzle(version=1){return {id:'custom-test',version,status:'published',title:'Owner-reviewed test',skill:'cannon',fen:XQ.START_FEN,solution:'h2e2',alternatives:[],what:'VERSIONED_ANSWER_SECRET',why:'SOURCE_REASON_SECRET',how:'NEXT_STEP_SECRET',source:'Original synthetic test'};}
 
+test('guest transfer recognizes V6-only drafts and refuses overwriting V6 account progress',async()=>{
+  const C=require('../online-preview/curriculum.js'),L=require('../online-preview/line-practice.js');
+  const guest=CC.fresh();guest.lineSession=L.create(C.exercises[0]);
+  const session={authenticated:true,user:{id:'A',username:'account_a',displayName:'Account A',role:'user'},csrf:'test-csrf'};
+  const target={dataset:{action:'cloud-import-guest'},disabled:false};
+  const event={target:{closest:selector=>selector==='[data-action]'?target:null}};
+  const empty=harness({guest,session});await settle();await empty.dispatch('click',event);
+  assert.equal(empty.run('state.lineSession.exerciseId'),C.exercises[0].id);
+  const remote=CC.fresh();remote.lineSession=L.create(C.exercises[1]);
+  const occupied=harness({guest,session,remote});await settle();await occupied.dispatch('click',event);
+  assert.equal(occupied.run('state.lineSession.exerciseId'),C.exercises[1].id);
+  assert.match(occupied.element('toast').textContent,/đã có tiến độ/);
+});
+
 test('custom lesson version survives saved draft migration',()=>{
   const puzzle=publishedPuzzle(7),state=CC.fresh();state.session=CC.createSession(puzzle);
   state.session.answers=['Private answer 1','Private answer 2','Private answer 3'];

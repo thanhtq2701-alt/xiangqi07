@@ -62,7 +62,7 @@
   }
 
   function fresh() {
-    return { version: 2, records: {}, session: null, games: [], summaries: [], profile: { name: '' } };
+    return { version: 2, records: {}, session: null, lineSession: null, lineAttempts: [], lessonViews: [], games: [], summaries: [], profile: { name: '' } };
   }
 
   function copyState(state) {
@@ -455,6 +455,27 @@
       if (record) result.records[id] = record;
     });
     result.session = sanitizeSession(raw.session, timestamp);
+    // V6 data stays inside the same per-account snapshot as legacy learning.
+    // Replay accepted moves instead of trusting a saved checkpoint/completion.
+    const lineApi = typeof globalThis !== 'undefined' && globalThis.CCLine ||
+      (typeof module !== 'undefined' && module.exports ? require('./line-practice.js') : null);
+    const curriculum = typeof globalThis !== 'undefined' && globalThis.CCCurriculum ||
+      (typeof module !== 'undefined' && module.exports ? require('./curriculum.js') : null);
+    if (lineApi && curriculum) {
+      const exercise = raw.lineSession && curriculum.findExercise(raw.lineSession.exerciseId);
+      if (exercise) result.lineSession = lineApi.restore(exercise, raw.lineSession, { now: timestamp });
+      const seenAttempts = new Set();
+      for (const attempt of (Array.isArray(raw.lineAttempts) ? raw.lineAttempts : []).slice(-2000)) {
+        const item = attempt && curriculum.findExercise(attempt.puzzleId);
+        const clean = item && lineApi.sanitizeAttempt(item, attempt, { now: timestamp });
+        if (clean && !seenAttempts.has(clean.id)) { seenAttempts.add(clean.id); result.lineAttempts.push(clean); }
+      }
+      const seenLessons = new Set();
+      result.lessonViews = (Array.isArray(raw.lessonViews) ? raw.lessonViews : []).filter(view => {
+        if (!plain(view) || !curriculum.findLesson(view.id) || seenLessons.has(view.id) || time(view.at) === null || time(view.at) > timestamp + 300000) return false;
+        seenLessons.add(view.id); return true;
+      }).map(view => ({ id: view.id, at: iso(time(view.at)), kind: 'viewed' }));
+    }
     // 200 is a display/archive boundary, not permission to erase older games.
     result.games = Array.isArray(raw.games) ? raw.games.filter(plain).map(game => safeJson(game, 0)) : [];
     result.profile.name = plain(raw.profile) ? text(raw.profile.name, 80) : '';
