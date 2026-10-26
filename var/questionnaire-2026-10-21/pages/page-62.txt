@@ -1,0 +1,40 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 62
+Nguồn đối chiếu và cách gửi lại
+Repository gốc: E:\ThanhTQ\App cờ tướng\xiangqi-ai. Các đường dẫn dưới đây dùng R để chỉ đúng 
+thư mục này; chữ R không phải biến terminal.
+V5 cập nhật đủ 46 câu
+R\docs\CO_CHILL_V5_QUESTIONS.md
+Bản Word V5 tài khoản
+R\deliverables\Co_Chill_V5_Cap_nhat_Tai_khoan.docx
+V4 đã trả lời
+E:\ThanhTQ\App cờ tướng\10-14\V4.docx
+UI UX và Luật đã trả lời
+E:\ThanhTQ\App cờ tướng\10-13\UI UX + Luat.docx
+Sổ quyết định và phạm vi luật
+R\docs\UIUX_DECISION_REGISTER_2026_10_15.md
+R\docs\RULES_UIUX_2026_10_15.md
+Báo cáo bản phát hành
+R\BAO_CAO_UIUX_V5_2026_10_16.md
+Đặc tả nền
+R\docs\spec\01_PRODUCT_SPEC.md
+R\docs\spec\07_LEARNING_MODEL_SPACED_REPETITION.md
+Cách tự review
+R\deliverables\Co_Chill_Huong_dan_review_va_update_2026_10_20.docx
+Các trao đổi ngày 21/10 về VS Code, engine mạnh và yêu cầu gom một file được đưa vào nhóm bổ
+sung. Phần chữ V4 và UI UX được đọc đầy đủ, kể cả bảng; ảnh thiết kế được đối chiếu qua hồ sơ đã 
+có, không có một vòng đánh giá lại toàn bộ ảnh gốc trong lần tổng hợp này.
+Nguồn kỹ thuật tham khảo cho Pikafish
+Mã nguồn và giấy phép engine
+Giao thức UCI
+Điều kiện trọng số NNUE
+Các nguồn engine được tra ngày 21/10/2026. Điều kiện áp dụng cần kiểm tra lại với đúng phiên bản khi 
+triển khai. UCI, độ sâu và tham số kỹ thuật không phải câu hỏi bắt buộc bạn tự quyết.
+Chốt một lần trước khi bắt đầu code
+Bạn gửi lại chính file này đã điền và file mẫu đặt tên theo mã câu. Không cần gửi lại V3/V4 nếu không 
+có thay đổi. Sau khi nhận, người triển khai phải tổng hợp: quyết định cuối cùng, mâu thuẫn còn lại, 
+phạm vi đợt đầu, tiêu chí nghiệm thu, chi phí dự kiến và hành động cần duyệt. Câu để trống hoặc lời đề
+xuất chưa được đồng ý không được biến thành quyết định của bạn.
+Xác nhận cuối: tôi đã điền các phần cần làm trong đợt tới và ghi rõ phần chưa chốt.
+Người trả lời: ____________________ Ngày: ____________________
+Các câu vẫn cần trao đổi: _______________________________________

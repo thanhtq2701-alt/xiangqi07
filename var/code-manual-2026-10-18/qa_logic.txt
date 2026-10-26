@@ -1,0 +1,13 @@
+QA hình ảnh ngày 18/10/2026 — phạm vi trang 029–047
+
+Đã xem trực tiếp đủ 19 PNG bằng view_image ở detail=original: 029, 030, 031, 032, 033, 034, 035, 036, 037, 038, 039, 040, 041, 042, 043, 044, 045, 046, 047.
+
+Kết quả: chữ Việt đọc rõ; không thấy chữ chồng, bị cắt, vượt lề hoặc mã định danh dài tràn khỏi trang. Các dòng tên hàm dài ở trang 029, 030, 046, 047 xuống dòng bình thường. Đường dẫn dài cũng xuống dòng trong vùng nội dung. Số trang và footer tách khỏi nội dung.
+
+Điểm có thể chỉnh để bố cục tốt hơn:
+1. Trang 039 chỉ có phần còn lại của logo khoảng một phần tư trang, sau đó trắng nhiều. Nên cân nhắc đưa toàn mục 10 logo sang một trang hoặc để mục kế tiếp tiếp tục trong phần trống nếu không làm hỏng cấu trúc chương.
+2. Cuối trang 042 bắt đầu mục 13 engine.py nhưng chỉ có tiêu đề, đường dẫn, vị trí và kích thước; phần vai trò chuyển sang trang 043. Không phải mất nội dung, nhưng nên giữ phần giới thiệu file với ít nhất đoạn vai trò.
+
+Điểm nhẹ, không cản đọc: câu lưu ý của 07 12 đi sang đầu trang 035; câu lưu ý PNG đi sang đầu trang 039. Trang 047 khá thoáng vì kết thúc phần test nhưng vẫn có hai nhóm giải thích đầy đủ, không gần trắng như trang 039.
+
+Không chỉnh DOCX hoặc mã nguồn trong lượt QA.

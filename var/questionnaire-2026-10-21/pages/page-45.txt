@@ -1,0 +1,26 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 45
+BS 33 Bạn sẽ công nhận engine đủ tốt bằng bộ thế nào
+Mức 1 · Liên quan: V5 04, V5 10, V5 14, V5 35
+Điều kiện áp dụng: Có thể ghi Nhờ đề xuất bộ kiểm tra nếu chưa có thế chuẩn; không cần tự tạo FEN.
+Chọn một nhóm thế bạn hoặc người hướng dẫn tin tưởng để so kết quả. Mỗi thế cần bên đi, mục tiêu, 
+nguồn và nước/ý được chấp nhận. Có trường hợp nào tuyệt đối phải giải đúng trước khi bạn duyệt bản 
+dùng thật?
+Đề xuất chưa duyệt: Dùng bộ thế có nguồn và đáp án đã đối chiếu; đo cả độ đúng lẫn thời gian trên 
+máy thực. Không gán Elo hoặc sức mạnh tương đương sản phẩm khác khi chưa có đánh giá phù hợp.
+Cần điền: 1. Nhóm tình huống bắt buộc: chiếu hết / cứu quân / chống đòn / tàn cuộc / khác; 2. Các mã/file thế đã 
+có; có thể trỏ về V5-14 thay gửi trùng; 3. Người đủ khả năng giúp duyệt và phần chưa chắc; 4. Số ca/tiêu chí bạn 
+muốn đạt; cho phép đội kỹ thuật đề xuất nếu chưa biết
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 34 Mức khó khi chơi với máy nên biểu hiện thế nào
+Mức 2 · Liên quan: V5 06, V5 18
+Điều kiện áp dụng: Nếu chưa nâng chế độ chơi máy trong đợt này, ghi Để sau; việc review bằng engine mạnh vẫn làm độc lập.
+Bạn muốn người chơi chọn vài mức bằng tên dễ hiểu, tự điều chỉnh theo kết quả hay luôn chơi máy 
+mạnh nhất? Với mức dễ, bạn chấp nhận đôi lúc máy chọn nước kém hơn có kiểm soát không? Khi thua 
+liên tiếp nên giữ mức, gợi ý giảm hay tự giảm?
+Đề xuất chưa duyệt: Tách sức mạnh đối thủ khỏi chất lượng phân tích sau ván; cho người học chủ
+động chọn mức, nói rõ các nhãn chưa phải Elo đã đo. Không đưa gợi ý chiến thuật trong ván để làm 
+người chơi thắng dễ hơn.
+Cần điền: 1. Tên/số mức trước mắt; 2. Cách chọn mức ban đầu; 3. Hành vi khi thắng hoặc thua liên tiếp; 4. Có 
+chấp nhận mức dễ chọn nước kém hơn có kiểm soát không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

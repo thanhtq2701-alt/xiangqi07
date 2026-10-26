@@ -1,0 +1,27 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 8
+B Luật phán quyết và ký phổ
+Về mục lục
+V5 08 Chọn bộ luật thi đấu nào làm chuẩn
+Mức 1
+Bạn đã đưa nguồn Ziga và Wikipedia, đồng thời muốn luật thi đấu. Cần chốt một tài liệu của tổ chức cờ
+tướng có tên và phiên bản để xử lý lặp, chiếu dai, đuổi dai và hòa. Nếu quy định của nền tảng tham 
+khảo khác luật giải, bạn muốn chế độ nào làm mặc định?
+Đề xuất chưa duyệt: dùng một bộ luật có phiên bản xác định sau khi đối chiếu nguồn chính thức. Giữ
+nhãn giới hạn của bản thử cho tới khi các phán quyết nâng cao có kiểm thử; quy ước nền tảng nếu có 
+phải mang tên riêng.
+Cần điền: 1. Tài liệu tổ chức cờ tướng có tên và phiên bản hoặc giao Codex đề xuất nguồn; 2. Bộ luật mặc định 
+cho lặp/chiếu dai/đuổi dai/hòa; 3. Nếu quy ước nền tảng khác luật giải thì chọn mặc định nào; 4. Có cần chế độ
+quy ước riêng không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 09 Mốc hòa do không bắt quân phải xác nhận bằng điều khoản
+Mức 1
+Bạn ghi 50 nước không ăn quân. Hãy gửi điều khoản hoặc xác nhận muốn dùng đó như quy ước riêng; 
+khi đối chiếu cần xử lý cả khác biệt mốc 50 và 60 nước giữa các nguồn. “Một nước” ở đây là mỗi bên đi 
+một lượt hay một lượt của một bên? Đi Tốt hoặc chiếu có ảnh hưởng cách đếm không?
+Đề xuất chưa duyệt: chưa gọi mốc 50 là luật thi đấu chuẩn nếu chưa có nguồn xác nhận. Codex sẽ
+chuyển điều khoản được chọn thành bộ đếm và test, bạn không cần tự viết thuật toán.
+Cần điền: 1. Nguồn/điều khoản xác nhận hoặc dùng quy ước riêng; 2. Mốc hòa và xử lý khác biệt 50 với 60 nước; 
+3. Đơn vị đếm: hai bên mỗi bên một lượt hay một lượt một bên; 4. Đi Tốt có ảnh hưởng cách đếm không; 5. Chiếu 
+có ảnh hưởng cách đếm không; 6. Ngoại lệ khác hoặc nhờ Codex đối chiếu
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

@@ -1,0 +1,10 @@
+VISUAL QA — 18/10/2026
+Phạm vi: đã xem trực tiếp từng PNG trang 048–066 (19 trang) bằng view_image, detail=original. Đã phóng riêng tiêu đề 22 03 trên trang 055 để xác nhận đủ ký tự.
+
+Kết quả: PASS. Chữ tiếng Việt và code đọc được; không thấy chữ chồng, cắt khỏi trang, tràn lề, tiêu đề cô lập hoặc trang gần rỗng do lỗi dàn trang. Các đường dẫn dài xuống dòng trong lề; các tên hàm/khóa dài vẫn đầy đủ. Bảng trang 065 không tràn, hàng/cột đọc rõ; hai dòng lệnh trang 066 nằm trọn trên trang.
+
+Trang kiểm tra: 048, 049, 050, 051, 052, 053, 054, 055, 056, 057, 058, 059, 060, 061, 062, 063, 064, 065, 066.
+
+Ghi chú không cản phát hành: trang 057 còn khoảng nửa trang trắng sau phần kết thúc chương kiểm thử, trước chương mới ở 058; đây là ngắt chương rõ ràng, không có nội dung bị cắt. Các phần tiếp nối 051, 052, 057, 061 và 062 bắt đầu bằng nội dung của mục trước nhưng đọc liên tục được. Không yêu cầu sửa bố cục.
+
+Không sửa DOCX hoặc source code trong lượt QA này.

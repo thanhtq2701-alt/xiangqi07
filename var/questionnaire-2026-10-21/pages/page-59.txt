@@ -1,0 +1,50 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 59
+C11 Tương tác bàn cờ
+Bấm quân rồi bấm đích là thao tác chính; bấm lại quân để hủy chọn. Bấm ngoài bàn không làm đồng hồ
+dừng. Chưa chốt kéo thả cho V5 sau câu trả lời mới UX11.02.
+Nguồn: V4 D01, UX03.06, UX11.02, UX24.04
+C12 Ván đang chạy
+Hiển thị đồng hồ, biên bản và nút lật bàn; không đi lại, không xem lịch sử bàn cờ, không coaching, 
+không dừng để học. Đầu hàng là thua; muốn học phải kết thúc ván. Undo chỉ thuộc luyện tập.
+Nguồn: V4 D04, UX11.01, UX11.05, UX11.06, UX11.07, UX35
+C13 Báo nước sai
+Nước sai không được thực hiện; báo ngắn lý do luật như cản chân Mã hay thiếu ngòi Pháo, ngay trên 
+bàn. Chủ sở hữu muốn ghi nhận lần bấm sai vào hồ sơ; phạm vi thống kê cần tách thao tác nhầm khỏi 
+thiếu hiểu luật.
+Nguồn: V4 D03, UX03.06, UX11.03
+C14 Quân và ký hiệu
+Quân Hán mặc định, đổi sang tiếng Việt khi người dùng chọn; không hiện đích hợp lệ. Vòng chọn trắng, 
+dấu nước gần nhất, cảnh báo Tướng bị chiếu; danh sách quân bị ăn không dùng số đếm. Ký phổ hai 
+cột Đỏ/Đen và số nước.
+Nguồn: UX03.06, UX04.02, UX04.06, UX12.02, UX12.05, UX12.07
+C15 Nhập ván
+Muốn kéo file, dán text và chọn ảnh đúng loại ký phổ; ưu tiên biên bản Việt. Lỗi ở nước nào dừng và 
+báo đúng nước ấy. Dựng thế bằng đặt quân để bản sau; nhập trùng phải báo.
+Nguồn: UX13.01, UX13.02, UX13.04, UX13.05, UX13.06, UX13.08, UX33.01
+C16 Thư viện ván
+Hiện ngày, màu quân, đối thủ, kết quả, trạng thái review. Có bộ lọc chưa review/đang học/đã học/bên 
+cầm/thời gian/chủ đề; thích thẻ thu nhỏ desktop, bảng cuộn trên mobile. Có yêu thích và thư mục; quay 
+lại giữ bộ lọc và vị trí.
+Nguồn: UX14.01, UX14.02, UX14.03, UX14.05, UX14.08
+C17 Mở và phân trang ván
+Mở ván từ thế đầu với tổng quan review rồi dẫn tới điểm cần chú ý. Phân trang 20 ván mỗi trang, tối đa 
+10 trang. Có xuất riêng ván sang ứng dụng khác.
+Nguồn: UX14.04, UX14.07, UX14.08
+C18 Tổng quan review
+Trước reflection chỉ báo vị trí cần xem lại, ẩn tên chiến thuật/gợi ý; tối đa ba điểm, theo thời gian, có 
+quay lại. Timeline đánh giá để bản sau. Phân tích cần tiến độ thật và resume.
+Nguồn: UX15.01, UX15.02, UX15.03, UX15.04, UX15.05, UX15.06
+C19 Bộ câu hỏi phản hồi
+Hỏi đánh giá thế và ưu thế; quân/vị trí yếu, nên công hay thủ và cách thực hiện; nước tiếp theo cùng 
+phản ứng đối phương 2–3 nước. Người giỏi có thể gộp đánh giá/nguy cơ nhưng vẫn nêu ý tưởng ứng 
+viên và lý do.
+Nguồn: V4 E02, V4 E03
+C20 Màn suy nghĩ
+Các câu cùng một trang; đầu vào text. Có nút Chưa biết để hỏi nhỏ hơn. Giữ nháp và bản đã gửi riêng; 
+không sửa bản phản hồi trước đáp án sau khi gửi.
+Nguồn: V4 C06, V4 E04, UX16.01, UX16.03, UX16.04, UX16.05, UX16.07
+C21 Lời giải có căn cứ
+Lời giải cụ thể theo thế, ngắn, có Chi tiết hơn. Bấm một câu làm bàn phát biến tương ứng, bấm lại trở
+về; nêu chiến lược rồi các nước phục vụ cùng mục tiêu. Engine/độ sâu/điểm để trong chi tiết.
+Nguồn: UX04.04, UX17.02, UX17.04, UX17.05, UX20.08

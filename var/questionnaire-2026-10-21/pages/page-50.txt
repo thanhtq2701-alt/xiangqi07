@@ -1,0 +1,12 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 50
+BS 43 Ngày học và thống kê dùng múi giờ nào
+Mức 2 · Liên quan: V5 25, V5 26, V5 27, V5 28
+Điều kiện áp dụng: Nếu chỉ dùng Việt Nam ở pilot, ghi giờ Việt Nam cho cả hai; không cần lựa chọn nhiều múi giờ ngay.
+Bạn muốn báo cáo ngày/tuần theo giờ Việt Nam, theo múi giờ người học hay có lựa chọn? Khi người 
+học đi nơi khác hoặc đổi múi giờ, lịch ôn đã tính từ lúc hoàn thành cần hiển thị thế nào?
+Đề xuất chưa duyệt: Lưu thời điểm thống nhất; quản trị dùng múi giờ được chốt và hiển thị nhãn. Đổi 
+cách hiển thị không tự đặt lại mốc hoàn thành hoặc nhân đôi lượt học.
+Cần điền: 1. Múi giờ mặc định cho quản trị; 2. Múi giờ hiển thị cho người học; 3. Ngày bắt đầu tuần báo cáo; 4. 
+Cách muốn hiển thị hạn ôn khi đổi múi giờ
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

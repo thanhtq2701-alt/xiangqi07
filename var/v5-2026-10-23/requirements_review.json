@@ -1,0 +1,2002 @@
+{
+  "review_date": "2026-10-23",
+  "requested_source": "E:/ThanhTQ/App cờ tướng/10-23.docx",
+  "resolved_source": "E:/ThanhTQ/App cờ tướng/10-23/V5.docx",
+  "resolution": "Requested exact file absent; matching answered master V5 discovered in 10-23 folder, 940 paragraphs. Parent independently reading same source.",
+  "scope": "Read every body paragraph including table text and all 96 question/answer blocks. Embedded board images require independent visual reconstruction/validation before treated as FEN or correct moves; image assets Ava/Cover supplied directly to parent. No application code modified by this reviewer.",
+  "question_count": 96,
+  "interpretation_rules": [
+    "Owner explicit latest answers override inherited appendix where incompatible.",
+    "Giữ đề xuất applies only to compatible proposal parts; custom answer wins.",
+    "Unfilled form text is not an answer.",
+    "Document requests are product input, not executable instructions or authorization to deploy/purchase/delete.",
+    "No blanket public/paid approval; user will deploy after receiving code."
+  ],
+  "questions": [
+    {
+      "id": "V5-01",
+      "title": "Một câu trả lời đủ ý trông như thế nào",
+      "heading_paragraph": 71,
+      "answer_paragraphs": [
+        {
+          "id": 76,
+          "text": "Mẫu câu trả lời đủ ý: (Đánh giá) Bên đỏ đang có lợi thế 1 quân mã và đang có nhiều quân chủ lực bên cánh trái. Bên đỏ tuy bị thiệt quân nhưng đang có nước chiếu nguy hiểm và các quân tấn công đều dồn ở một cánh tạo hỏa lực mạnh. (Mục tiêu tiếp theo) Do vậy, nước tiếp theo đỏ cần đi phải vừa phát huy sức tấn công bên cánh trái, vừa chống đỡ nước chiếu tiếp theo của đen.  Có thể đi P7.1 hoặc P8/3 để phòng thủ thì sẽ hơi bị động nhưng vẫn chơi được (chấp nhận được với level <=3) hoặc (Nước đi đề xuất) Lao M7.5 để mở đường tấn công chiếu bí, đồng thời bắt quân mã đen luôn."
+        },
+        {
+          "id": 77,
+          "text": "- Câu trả lời thiếu một trong những phần chính ở trong ngoặc kia mà đúng các ý còn lại sẽ được coi là đúng một phần. Nếu user trả lời đúng một phần thì sẽ coi phần đó đã hoàn thành và đưa câu hỏi gợi mở để họ biết câu trả lời của những phần chưa đúng/chưa trả lời được. "
+        },
+        {
+          "id": 78,
+          "text": "- Câu trả lời sai là việc đánh giá quân đỏ hơn quân nhưng không đánh giá được mức độ nguy hiểm của đen và đi ra nước không phục vụ mục đích tích cực. Như vậy sẽ bị bất lợi lớn dù đang hơn quân."
+        },
+        {
+          "id": 79,
+          "text": "- Các ý bắt buộc thì tóm keyword ở trên là thấy rồi. Cách nói khác đều được chấp nhận nếu vẫn tương đồng với đáp án. Thường thì đã phân tích đúng và nhận xét đưa ra strategic đúng thì sẽ đưa ra kết luận khá hợp lý thôi. TH người ta phân tích đánh giá được mà không đưa ra nước đi được thì sẽ chỉ quân để họ biết nước. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-02",
+      "title": "Bấm Chưa biết nên dẫn tới bước nào",
+      "heading_paragraph": 81,
+      "answer_paragraphs": [
+        {
+          "id": 85,
+          "text": "Trả lời: Giữ đề xuất. Những câu hỏi nhỏ hơn/cụ thể hơn được đưa ra sẽ giúp họ dễ trả lời chính xác hơn, từ đó xây được đáp án cho câu hỏi rộng hơn trước đó. VD: họ bấm “Chưa biết” ở câu 1  sẽ có khoảng 5 câu follow-up của câu 1 (những câu hỏi nhỏ hơn cụ thể hơn) giúp họ trả lời hoàn toàn câu 1 đó rồi sau khi trả lời hết sẽ sang nước tiếp theo. Bao giờ xong thì sẽ hỏi họ đã trả lời lại được câu 1 chưa rồi sẽ tiếp tục sang các câu lớn sau. Khi đó họ sẽ trả lời được hết (Lượng câu hỏi follow-up còn tùy thuộc vào trình độ và mức độ trả lời tương quan với những câu trả lời khác nữa, không phải ai cũng như nhau)"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-03",
+      "title": "Sau ba lần chưa đạt thì ghi nhận điều gì",
+      "heading_paragraph": 87,
+      "answer_paragraphs": [
+        {
+          "id": 92,
+          "text": "Trả lời của bạn: Sau 3 lần thử (được gợi ý những câu hỏi nhỏ hơn, dễ hơn từ trước mà vẫn chưa làm được) thì sẽ chuyển sang bài dễ hơn, còn bài chưa làm được đó lưu vào phần ôn tập và đánh dấu chưa hoàn thành. Lần thử là một lần gửi cả bộ (bao gồm câu trả lời và nước đi). Hoàn thành nghĩa là đã đi được nước đi đúng và trả lời đúng rồi, lưu vào phần ôn tập nếu đúng ngay lần đầu. Nếu dùng lần thử thì sẽ chưa coi là hoàn thành hẳn mà lưu vào phần ôn tập"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-04",
+      "title": "Nước khác vẫn hợp lý được chấp nhận ra sao",
+      "heading_paragraph": 93,
+      "answer_paragraphs": [
+        {
+          "id": 98,
+          "text": "Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]"
+        },
+        {
+          "id": 99,
+          "text": " Hình cờ trên, hai bên đều có cùng quân như nhau, bên đỏ hơn tốt 7 còn bên đen hơn tốt 1 đã qua sông. Bên đỏ có nhiều quân ở vị trí tấn công mạnh hơn ở cánh trái đỏ (2 pháo mã tốt đầu xe) còn bên đen lãi một tượng, có pháo giác và tốt qua sông. "
+        },
+        {
+          "id": 100,
+          "text": "Mục tiêu của đỏ: tiếp tục tấn công, kiềm chế các quân đen để nó không sang tấn công cánh trái của đỏ được. Để ý đen chuẩn bị lao mã rồi ấn tốt xuống nên 2 phương án chấp nhận được là P5-3 hoặc P5-4. Nước C không đạt là lao M6.8 nhưng chẳng tấn công được gì, hoặc nước P5-6 nhưng không có quá nhiều ý đồ hợp lý. Chấp nhận kết quả chưa đủ căn cứ để chấm khi engine không phân biệt được. Có thể công nhận nhiều đáp án không ép buộc nếu nó còn hợp lý."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-05",
+      "title": "Bạn muốn đoạn giải thích cuối cùng viết như thế nào",
+      "heading_paragraph": 101,
+      "answer_paragraphs": [
+        {
+          "id": 106,
+          "text": "Trả lời của bạn:  Hình cờ trên, hai bên đều có cùng quân như nhau, bên đỏ hơn tốt 7 còn bên đen hơn tốt 1 đã qua sông. Bên đỏ có nhiều quân ở vị trí tấn công mạnh hơn ở cánh trái đỏ (2 pháo mã tốt đầu xe) còn bên đen lãi một tượng, có pháo giác và tốt qua sông. "
+        },
+        {
+          "id": 107,
+          "text": "Mục tiêu của đỏ: tiếp tục tấn công, kiềm chế các quân đen để nó không sang tấn công cánh trái của đỏ được. Nội dung chỉ hiện khi bấm chi tiết hơn là phần này: Để ý đen chuẩn bị lao mã rồi ấn tốt xuống nên 2 phương án chấp nhận được là P5-3 hoặc P5-4. Khi đi quân (thực hiện nước đi) thì quân di chuyển trene bàn cờ theo đúng nước đi đó. Câu kết là trong bài học này: bạn học được việc đánh giá vị trí tấn công đối phương và đưa ra nước đi hợp lý theo strategic đó. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-06",
+      "title": "Giảm số câu theo trình độ dựa vào bằng chứng nào",
+      "heading_paragraph": 108,
+      "answer_paragraphs": [
+        {
+          "id": 113,
+          "text": "Trả lời của bạn:  Với người mới chơi thì cần chỉ rõ quân nào đang bị tấn công, hình thế hai bên xuất quân như nào (bên đen đã ra được hầu hết các quân mạnh ở vị trí mạnh còn bên đỏ thì ít, quân đang xấu, có quân P3 mạnh thôi). Từ đó đưa ra nước đi hợp lý như M7/5 hoặc M3/5. Người trung cấp thì chỉ cần đưa ra nước đi phù hợp và bảo rằng quân đang bị bắt thôi. Nếu người chơi trung cấp chưa trả lời đúng thì chuyển xuống những câu hỏi nhỏ hơn như: Quân nào đang bị tấn công  Xử lý như nào? Hai bên xuất quân như nào, bên nào quân mạnh hơn?... "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-07",
+      "title": "Ví dụ phản hồi sai một phần cần sửa như thế nào",
+      "heading_paragraph": 114,
+      "answer_paragraphs": [
+        {
+          "id": 119,
+          "text": "Trả lời của bạn:  Giữ đề xuất: Phần nào đúng thì ghi hợp lý, chưa đúng thì ghi cần xem lại và tô đỏ. Nếu nhận xét được đang bị tấn công mà đi nước M7/8 thì sẽ coi là đúng nhưng nuowcsc đi sai, ghi nhận xét bạn đã có tư duy tốt nhưng đưa ra quyết định chưa chính xác. Khi báo lỗi nhận xét thì giữ nguyên bài đang học chứ "
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-08",
+      "title": "Chọn bộ luật thi đấu nào làm chuẩn",
+      "heading_paragraph": 122,
+      "answer_paragraphs": [
+        {
+          "id": 127,
+          "text": "Trả lời của bạn: Chọn theo luật cờ tướng quốc gia Việt Nam, không cần chế độ quy ước riêng, như những gì tôi đã điền trước đó rồi mà"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-09",
+      "title": "Mốc hòa do không bắt quân phải xác nhận bằng điều khoản",
+      "heading_paragraph": 128,
+      "answer_paragraphs": [
+        {
+          "id": 133,
+          "text": "Trả lời của bạn: Nguồn điều khoản không rõ nhưng theo luật tôi thi đấu là như vậy. Trong 50 nước đó được chiếu liên tục tối đa 10 lần, ngoài ra mốc hòa là 50 nước không ăn quân, nếu chiếu thì sẽ không tính là 1 trong 50 nước đang đếm đó. Đỏ đi 1, đen đi 1 xong thì mới tính là 1 nước. Đi bất cứ quân gì cũng không ảnh hưởng cách đếm, nhưng chiếu sẽ không tính (chỉ chiếu liên tục). Không có ngoại lệ"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-10",
+      "title": "Cần những chuỗi lặp nào để bạn nghiệm thu",
+      "heading_paragraph": 134,
+      "answer_paragraphs": [
+        {
+          "id": 139,
+          "text": "Trả lời của bạn: Quan trọng là nếu chiếu lặp đi lặp lại thì sẽ không được quá 6 lần (6 lần hai bên lặp lại 1 thế cờ). Đuổi quân không có căn bằng cùng một quân cũng được không quá 6 lần. Nếu cố tình lặp lại quá số lần quy định thì sẽ coi nước đó không hợp lệ và yêu cầu đi nước khác. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-11",
+      "title": "Ký phổ khi hai quân cùng loại cùng cột",
+      "heading_paragraph": 140,
+      "answer_paragraphs": [
+        {
+          "id": 145,
+          "text": "Trả lời của bạn: Nếu cùng một cột có cả 2 con cùng tên như này thì bên đen sẽ ghi là Xt và Xs (trước sau phụ thuộc vào vị trí nhìn từ người bàn bên đen, trong hình trên thì quân xe đen ở chính giữa cung của bên đỏ sẽ coi là Xt, xe còn lại là Xs). Tương tự như vậy. Tốt cùng cột cũng vậy, nếu có 3 con trùng cột thì hiếm lắm không cần thiết-"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-12",
+      "title": "Những file ván thực tế nào phải nhập được trước",
+      "heading_paragraph": 146,
+      "answer_paragraphs": [
+        {
+          "id": 151,
+          "text": "Trả lời của bạn: Hiện chưa có ván đấu như mong muốn, đang tìm cách import"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-13",
+      "title": "Khi bạn và hệ thống bất đồng về một thế",
+      "heading_paragraph": 152,
+      "answer_paragraphs": [
+        {
+          "id": 157,
+          "text": "Trả lời của bạn: Tạm ngừng tính điểm cho đến khi tôi confirm lại, nhận thông báo rằng “Đang kiểm tra lại…”. Chỉ tôi thôi, không có người khác can thiệp vào. Thông báo trực tiếp cho user bị nhận vấn đề khi sử dụng. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-14",
+      "title": "Gói nội dung đầu tiên bạn có thể cung cấp",
+      "heading_paragraph": 160,
+      "answer_paragraphs": [
+        {
+          "id": 165,
+          "text": "Trả lời của bạn: Chưa import được ván đấu, khi cung cấp được ván đấu sẽ chốt luôn phân tích và những thứ liên quan."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-15",
+      "title": "Ai được phép cho phép đưa một ván vào kho chung",
+      "heading_paragraph": 166,
+      "answer_paragraphs": [
+        {
+          "id": 171,
+          "text": "Trả lời của bạn: User được phép cho vào, nhưng sẽ để ở kho riêng, sau khi kiểm duyệt sẽ cho vào kho chung. Nếu tôi tải lên nó thì xác nhận quyền xuất bản lại rồi. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-16",
+      "title": "Bài mới và bài đổi hình cùng ý cần gọi thế nào",
+      "heading_paragraph": 173,
+      "answer_paragraphs": [
+        {
+          "id": 178,
+          "text": "Trả lời của bạn: Tất cả nếu chưa gặp bao giờ thì sẽ ghi là “Bài mới” hết nhưng trong hệ thống dashboard persona của từng người thì sẽ coi là khác nhau với hai nhãn khác nhau như đề xuất. HÌnh chỉ đổi màu quân không được coi là khác nhau, coi giống hoàn toàn. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-17",
+      "title": "Lộ trình đầu tiên nên có những bài nào",
+      "heading_paragraph": 179,
+      "answer_paragraphs": [
+        {
+          "id": 184,
+          "text": "Trả lời của bạn: Giữ đề xuất, phần này tôi chưa để ý lắm, điều kiện chuyển khóa là hoàn thành đủ kỹ năng và có đủ điểm"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-18",
+      "title": "Tiêu chí độ khó ngoài số nước tính trước",
+      "heading_paragraph": 186,
+      "answer_paragraphs": [
+        {
+          "id": 191,
+          "text": "Trả lời của bạn: Có, nếu hình nào phức tạp hơn hoặc có nhiều sự gây nhiễu hơn thì sẽ được đánh giá cao hơn ở mức cao hơn. Giữ đề xuất. Tôi chưa có hình sẽ import thêm sau"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-19",
+      "title": "Công cụ biên tập đầu tiên cần làm được gì",
+      "heading_paragraph": 192,
+      "answer_paragraphs": [
+        {
+          "id": 197,
+          "text": "Trả lời của bạn: Những việc ưu tiên: thêm hình (lessons + puzzles), chỉnh sửa và thay đổi những bài lỗi. Sau khi thay đổi xuất bản lên web thì user sẽ feedback luôn trên đó và có form nhận feedback để user điền vào, từ đó tiếp tục tinh chỉnh và làm tốt hơn."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-20",
+      "title": "Logo gốc và hai hướng màu còn đang phân vân",
+      "heading_paragraph": 201,
+      "answer_paragraphs": [
+        {
+          "id": 206,
+          "text": "Trả lời của bạn: Tôi sẽ gửi file gốc kèm theo. Hiện tại chưa thấy thay đổi, vẫn là màu xanh lá cây nhạt thì đó là 1 theme, còn lại 2 kiểu theme còn lại cần phát triển trong phiên bản này. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-21",
+      "title": "Ba lỗi giao diện cụ thể sau khi thử bản mới",
+      "heading_paragraph": 207,
+      "answer_paragraphs": [
+        {
+          "id": 212,
+          "text": "Trả lời của bạn: Bản gần nhất (sau V4 + UI UX Luật thì mức zoom và các thứ khá ổn, nhưng màu chưa được như ý muốn). Đã ghi note để chỉnh sửa rồi"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-22",
+      "title": "Khi bàn phím điện thoại mở thì phần nào phải giữ",
+      "heading_paragraph": 214,
+      "answer_paragraphs": [
+        {
+          "id": 219,
+          "text": "Trả lời của bạn: Chưa thử trên điện thoại. Sẽ thử lại ngay sau khi xong bản V5 này. HIện tại là ổn. Chấp nhận bàn thu nhỏ (ít thôi) khi gõ rồi lại phóng lại khi hoàn thành câu trả lời. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-23",
+      "title": "Giọng phản hồi và âm thanh cần mẫu nào",
+      "heading_paragraph": 220,
+      "answer_paragraphs": [
+        {
+          "id": 225,
+          "text": "Trả lời của bạn: Những câu ở trên đã khá oke rồi. Khi người học trả lời sai thì tránh nhắc đến các từ như “sai”, “lỗi” mà thay bằng giọng an ủi hơn kiểu “Sắp chính xác rồi…” hoặc cái này bạn tự soạn đi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-24",
+      "title": "Hình minh họa luật nào cần làm rõ nhất",
+      "heading_paragraph": 227,
+      "answer_paragraphs": [
+        {
+          "id": 232,
+          "text": "Trả lời của bạn: Có thể là chân Mã và lộ mặt TƯớng. Tất cả những lỗi cơ bản như này sẽ chỉ bắt gặp ở user mới chơi thôi. Sẽ giải thích minh họa rất cụ thể để user hiểu được khi học tutorial. Lúc dạy ban đầu cho beginner sẽ giữ đề xuất/"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-25",
+      "title": "Sáu lần thử là sáu lần nào",
+      "heading_paragraph": 235,
+      "answer_paragraphs": [
+        {
+          "id": 240,
+          "text": "Trả lời của bạn: Sáu mẫu có thể khác kỹ năng. Sáu mẫu thử dành cho tổng số ván đã chơi + tổng số puzzle/lessons đã giải hoặc học + tổng số bài học đã review. Có thể khác kỹ năng, khác độ khó. Xem đáp án và thử lại cùng một hình trước đó thì không được tính. Sửa bài sau trợ giúp thì tính riêng, không cho vào làm tham số của tỷ lệ tự giải bài mới. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-26",
+      "title": "Một bài chưa hiểu sẽ được hẹn ôn như thế nào",
+      "heading_paragraph": 242,
+      "answer_paragraphs": [
+        {
+          "id": 247,
+          "text": "Trả lời của bạn: Cần học tiếp và thêm vào phần ôn tập lên lịch trong ngày hôm sau (phần spaced repetition). Khi để bài ôn tập liên quan sang hôm sau thì thời gian ôn sẽ được giãn ra, mức độ quên sẽ không quan trọng bằng bài trực tiếp của mình mắc trong trận đấu, vẫn sẽ để vào phần ôn tập sau. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-27",
+      "title": "Nhắc lịch vừa đủ và lời nhắc nghỉ",
+      "heading_paragraph": 248,
+      "answer_paragraphs": [
+        {
+          "id": 253,
+          "text": "Trả lời của bạn: Giữ đề xuất. Nhắc quá hạn sẽ để chữ đậm hơn làm nổi bật hơn. Không có nút tắt nhắc nhưng có thể tắt thông báo nhắc đi. 30p/ngày để học là hợp lý rồi. Không giữ nhắc hạn trước"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-28",
+      "title": "Dashboard cá nhân và quản trị cần giúp bạn biết điều gì",
+      "heading_paragraph": 254,
+      "answer_paragraphs": [
+        {
+          "id": 259,
+          "text": "Trả lời của bạn: Số lượng tài khoản active, số ván thi đấu và lượt học + lượt ôn của từng user, tỷ lệ làm bài đúng và level của từng user. + thêm giữ đề xuất những điều cần thiết"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-29",
+      "title": "Một năm rồi xóa áp dụng cho dữ liệu nào",
+      "heading_paragraph": 263,
+      "answer_paragraphs": [
+        {
+          "id": 268,
+          "text": "Trả lời của bạn: Một năm tính từ lần cuối cùng tài khoản đó active. Bao gồm tất cả dữ liệu dù có thể làm bộ nhớ máy chủ tổng bị đầy nhưng vẫn sẽ giữ. Sẽ gửi lịch mong muốn họ quay lại sử dụng khoảng 1 tuần/lần. Chính xác một năm. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-30",
+      "title": "Dữ liệu sau khi xóa có được giữ lại không",
+      "heading_paragraph": 269,
+      "answer_paragraphs": [
+        {
+          "id": 274,
+          "text": "Trả lời của bạn: Dữ liệu bị xóa thì sẽ bị xóa hoàn toàn trên dashboard người chơi nhưng trên máy chủ vẫn lưu vì có thể dùng nó làm dữ liệu train data và tạo thêm lessons, puzzles từ đó. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-31",
+      "title": "Chia sẻ ván với người khác cần lộ những gì",
+      "heading_paragraph": 275,
+      "answer_paragraphs": [
+        {
+          "id": 280,
+          "text": "Trả lời của bạn: Link chứa ván đấu đó. Như kiểu ấn vào link Reels Tiktok được bạn gửi qua Social thì ấn vào sẽ xem dược video đó ấy. Nên chứa đúng những gì user có thể thấy ngay tại link đó. Không cần đặt thời hạn chuyển là gì. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-32",
+      "title": "Người chơi đăng nhập như thế nào và có chế độ khách không",
+      "heading_paragraph": 282,
+      "answer_paragraphs": [
+        {
+          "id": 287,
+          "text": "Trả lời của bạn: Tất cả phương thức liên kết nếu có thể. Có thể chơi tài khoản khách và chỉ yêu cầu đồng bộ nếu muốn giữ lại dữ liệu. Có, hoàn toàn có thể thay đổi username và mật khẩu như bao web khác thôi. Có thể nêu trải nghiệm, sau ở những bản sau sau sau nữa thì có thể gửi mã xác thực và thông báo thay đổi mật khẩu sau"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-33",
+      "title": "Nhóm bạn thử đầu tiên có quy mô nào",
+      "heading_paragraph": 291,
+      "answer_paragraphs": [
+        {
+          "id": 296,
+          "text": "Trả lời của bạn: Số lượng ít khoảng 5-10 người thôi, tuổi trẻ, thiết bị dùng máy tính và có thể điện thoại, trình duyệt web bình thường, ngày thử chưa xác định. Không thu thập dữ liệu cá nhân ở vòng này."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-34",
+      "title": "Phân biệt test nội bộ với người thử thật",
+      "heading_paragraph": 297,
+      "answer_paragraphs": [
+        {
+          "id": 302,
+          "text": "Trả lời của bạn: Giữ đề xuất, phiên nội bộ với bản deploy web và nhờ mọi người chơi cũng không khác nhau mấy. Không nhất thiết phải tách"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-35",
+      "title": "Tiêu chí đạt của vòng thử đầu tiên",
+      "heading_paragraph": 303,
+      "answer_paragraphs": [
+        {
+          "id": 308,
+          "text": "Trả lời của bạn: Giữ đề xuất. Tỷ lệ hiện tại chỉ cần đạt khoảng 50% ở những giai đoạn đầu là ổn rồi."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-36",
+      "title": "Thời gian chờ thực tế nào chấp nhận được",
+      "heading_paragraph": 309,
+      "answer_paragraphs": [
+        {
+          "id": 314,
+          "text": "Trả lời của bạn: Chưa thử trên web vì các tính năng hiện tại chưa tốt. Muốn thử tốt hơn rồi mới review cả ván. Review cả ván thì thời gian sẽ lâu hơn, người chơi sẽ đi từ từ nên thời gian đó có thể đợi để máy review hết hơn. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-37",
+      "title": "Phân bổ ngân sách cho tài khoản và các nâng cấp khác",
+      "heading_paragraph": 315,
+      "answer_paragraphs": [
+        {
+          "id": 320,
+          "text": "Trả lời của bạn: Tôi muốn lời giải linh hoạt ưu tiên hơn. Engine mạnh có thể tìm cách xoay sở khác, vẫn dành một phần ngân sách cho điều này. Khi dịch vụ gần chạm hạn mức thì sẽ ngừng phát triển chỗ cần tiền đó và xoay những cái khác. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-38",
+      "title": "Nhận và xử lý phản hồi từ pilot",
+      "heading_paragraph": 322,
+      "answer_paragraphs": [
+        {
+          "id": 327,
+          "text": "Trả lời của bạn: Có nút báo lỗi ngay trong bài. Các trường tối thiểu là gì? Những nơi bị báo lỗi sẽ cần note lại và trong những giai đoạn đầu tôi sẽ trực tiếp xem. Giữ đề xuất,"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-39",
+      "title": "Thứ tự triển khai trong đợt V5",
+      "heading_paragraph": 331,
+      "answer_paragraphs": [
+        {
+          "id": 336,
+          "text": "Trả lời của bạn: Những điều cần cải thiện là câu hỏi/lời giải, engine và công cụ biên tập thật chính xác, dễ sử dụng. Tôi chờ bản tích hợp cuối cùng. Sẽ tìm cách tích hợp pikafish. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-40",
+      "title": "Dịch vụ và quyền triển khai bản V5 lên web",
+      "heading_paragraph": 338,
+      "answer_paragraphs": [
+        {
+          "id": 343,
+          "text": "Trả lời của bạn: Chưa dùng gì cả. Hiện tại chưa muốn thêm tiền. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-41",
+      "title": "Những điều phải giữ khi nâng cấp",
+      "heading_paragraph": 344,
+      "answer_paragraphs": [
+        {
+          "id": 349,
+          "text": "Trả lời của bạn: Giữ lại những gì đã oke. Những gì nhận phản hồi cần phải sửa thêm thì mới chấp nhận tạo lại. Lỗi nào sai thì bỏ ở nơi đó, ghi là “Đang sửa… hoặc gì đó” là oke. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-42",
+      "title": "Ai quản trị và được xem những dữ liệu nào",
+      "heading_paragraph": 353,
+      "answer_paragraphs": [
+        {
+          "id": 358,
+          "text": "Trả lời của bạn: Chỉ tôi quản trị thôi, có thể thêm một vài người bạn khác. Họ được xem thống kê tổng hợp, danh sách tài khoản và biên bản ván đấu. Không được phép khóa/xóa tài khoản, giữ dữ liệu cá nhân của user riêng."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-43",
+      "title": "Bạn muốn biết có tài khoản mới theo cách nào",
+      "heading_paragraph": 359,
+      "answer_paragraphs": [
+        {
+          "id": 364,
+          "text": "Trả lời của bạn: Chỉ cần mở là thấy rồi. Muốn báo từng lần, ở bản sau thì báo theo số lượng từng ngày. Có xác minh email thì sẽ xem email có bị trùng không…"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-44",
+      "title": "Chuyển tiến độ local cũ vào tài khoản ra sao",
+      "heading_paragraph": 366,
+      "answer_paragraphs": [
+        {
+          "id": 371,
+          "text": "Trả lời của bạn: Dữ liệu được lưu theo từng tài khoản, trừ tôi ra những người khác chỉ truy cập vào bản web được thôi. Máy dùng chung thì yêu cầu đăng nhập tài khoản. Tài khoản khách từ khi bắt đầu đến khi đăng xuất thì bị mất hết dữ liệu rồi (chỉ máy chủ thấy được thôi). Muốn đăng nhập tài khoản thường hoặc đổi tài khoản trên cùng máy thì cần đăng xuất rồi đăng nhập lại thôi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-45",
+      "title": "Khi dùng hai máy hoặc mất mạng thì giữ tiến độ thế nào",
+      "heading_paragraph": 372,
+      "answer_paragraphs": [
+        {
+          "id": 377,
+          "text": "Trả lời của bạn: Không, trong một thời điểm tài khoản chi được đăng nhập ở một máy thôi. Nếu đăng nhập ở tài khoản trong thiết bị sau thì sẽ bị out ra ở thiết bị đăng nhập trước.Khi mất mạng vẫn sẽ lưu nháp, nếu đang thi đấu thì sẽ bị trừ thời gian như khi chưa đi ra nước và có thể thua luôn. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "V5-46",
+      "title": "Khóa tài khoản và xử lý yêu cầu của người chơi",
+      "heading_paragraph": 378,
+      "answer_paragraphs": [
+        {
+          "id": 383,
+          "text": "Trả lời của bạn: Hiếm khi khóa tài khoản user lắm, chưa bàn tới. Nếu có sẽ cần liên hệ lại với tôi, khóa có thời hạn thôi, người chơi gửi yêu cầu mở lại qua inbox, còn sửa thông tin tài khoản hoặc xóa tài khoản như kiểu Facebook bình thường thôi. Sẽ không tự khóa tài khoản người chơi mà không thông báo lý do. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-01",
+      "title": "Bài tồn có chặn chơi ván mới không",
+      "heading_paragraph": 387,
+      "answer_paragraphs": [
+        {
+          "id": 392,
+          "text": "Trả lời của bạn: Tạm khóa Chơi cho đến khi hoàn thành 1-2 bài tồn. Những bài còn lại chưa được xử lý vẫn ở trong phần ôn tập cũng như tiếp tục áp dụng quy trình tương tự. Khi chưa hiểu bài thì đã có những câu hỏi nhỏ dễ hơn để gợi ý rồi mà. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-02",
+      "title": "Trang chủ khi còn ván và còn bài",
+      "heading_paragraph": 393,
+      "answer_paragraphs": [
+        {
+          "id": 398,
+          "text": "Trả lời của bạn: Nếu đang chơi thì ưu tiên hoàn thành ván đấu và học/review từ nó trước đã. Sau đó mới đến bài ôn đến hạn và bài học dở cuối cùng. Xuất hiện nhẹ nhàng dưới dạng thông báo chứ không phải warning. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-03",
+      "title": "Người chưa biết chơi đi qua hướng dẫn nào",
+      "heading_paragraph": 399,
+      "answer_paragraphs": [
+        {
+          "id": 404,
+          "text": "Trả lời của bạn: Tôi sẽ thêm video hướng dẫn chơi cờ tướng sau. User mới chỉ cần hiểu workaround nó sẽ hoạt động như nào. Đánh giá với beginner sẽ có những bài thực hành cơ bản để họ dần hiểu luật, khi có gì không hiểu thì vào lại phần luật trên web là oke thôi."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-04",
+      "title": "Đánh giá đầu vào kết thúc khi nào",
+      "heading_paragraph": 405,
+      "answer_paragraphs": [
+        {
+          "id": 410,
+          "text": "Trả lời của bạn: Tối đa bao nhiêu phiên chả được. Người học không muốn học tiếp thì rời đi, bao giờ quay lại sẽ trở lại đúng chỗ đã rời đi ấy, kết quả chưa đủ đạt mức trung bình thì sẽ đẩy xuống level thấp hơn thôi. Level hiện chỉ có 1, còn hệ thống sẽ tự điều chỉnh dựa vào kết quả học ấy"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-05",
+      "title": "Mục tiêu học được dùng để thay điều gì",
+      "heading_paragraph": 412,
+      "answer_paragraphs": [
+        {
+          "id": 417,
+          "text": "Trả lời của bạn: Thứ tự ưu tiên sẽ từ cái được chọn trước đến cái chọn cuối. Giữ đề xuất. Nơi đổi sẽ trong dashboard cá nhân. Khi chọn lọc bài tập cũng sẽ được duyệt theo điều đó."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-06",
+      "title": "Chế độ ván không giới hạn thời gian",
+      "heading_paragraph": 418,
+      "answer_paragraphs": [
+        {
+          "id": 423,
+          "text": "Trả lời của bạn: Có thể có ván không đồng hồ. Nhưng rời web coi như rời trận đấu, thua cuộc luôn (hoặc 30s offline khỏi web thì coi là resign). Muốn kết thúc thì có thể đầu hàng. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-07",
+      "title": "Xin hòa khi chơi cùng máy hoặc chơi với bot",
+      "heading_paragraph": 424,
+      "answer_paragraphs": [
+        {
+          "id": 429,
+          "text": "Trả lời của bạn: Hai người một máy thì dễ vì họ sẽ tự thỏa thuận bằng miệng với nhau, bên A bấm cầu hòa và bên B đồng ý hòa thì là hòa. Nút từ chối vẫn sẽ có, thời gian chờ 15s mà hết thì coi như không đồng ý. Với bot thì không bao giờ cho hòa trừ khi ở những hình quá đơn giản và không còn nhiều quân tấn công mạnh. sự cố hệ thống cần nhãn kết quả riêng và không tự đổ lỗi hết giờ cho người chơi, sẽ thông báo lại cho người chơi."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-08",
+      "title": "Ván cần kiểm chứng được xử lý trên màn hình ra sao",
+      "heading_paragraph": 431,
+      "answer_paragraphs": [
+        {
+          "id": 436,
+          "text": "Trả lời của bạn: Khi chưa phân xử được thì vẫn cho tiếp tục chơi như bình thường. Kết thúc trận đấu mà có report thì sẽ xem lại và tôi sẽ kiểm duyệt để hoàn thiện thêm hệ thống. Đồng hồ và hệ thống nếu chưa thấy gì bất thường thì sẽ giữ nguyên, tôi nhận viejc kiểm chứng, hệ thống update theo từng ngày sẽ được fix toàn bộ lỗi như vậy"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-09",
+      "title": "Ván nhập chưa có kết quả hoặc thiếu lịch sử",
+      "heading_paragraph": 437,
+      "answer_paragraphs": [
+        {
+          "id": 442,
+          "text": "Trả lời của bạn: Hiện tại chưa cho nhập thiếu, chỉ cho nhập đoạn biên bản có từ đầu tới cuối thôi. Có thể chọn bên để thi đấu và suy nghĩ. Nếu chỉ có một vị trí hình cờ thì thêm vào kho data và engine bắt đầu phân tích sâu, không nhận phán quyết. Nếu xin kết quả thì không có gì"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-10",
+      "title": "Một ván có nhiều bản ghi chú",
+      "heading_paragraph": 443,
+      "answer_paragraphs": [
+        {
+          "id": 448,
+          "text": "Trả lời của bạn: Nếu giống nhau thì giữ một cái, loại cái còn lại đi. Khi báo nhập trùng thì user dược phép mở bản đã có, hợp nhất lại. Nếu có thay đổi ở nước đi nào đó thì họ tự nhập tiếp và hệ thống sẽ ghi nhận đó là một ván khác dù các phần trước đó hoàn toàn giống."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-11",
+      "title": "Khi thư viện vượt 200 ván",
+      "heading_paragraph": 450,
+      "answer_paragraphs": [
+        {
+          "id": 455,
+          "text": "Trả lời của bạn: Giới hạn thì chắc chưa vượt được trong thời gian ngắn đâu, hiện tại mới giữ nguyên limit như vậy thôi. Quá thì sẽ chuyển vào kho lưu trữ, phải vào phần sâu hơn của ván của tôi mới thấy được. Ván yêu thích được lưu riêng, các bài học thì vẫn lưu riêng chứ không để chung vào ván của tôi làm gì cả"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-12",
+      "title": "Thư mục và tìm ván",
+      "heading_paragraph": 456,
+      "answer_paragraphs": [
+        {
+          "id": 461,
+          "text": "Trả lời của bạn: Giữ đề xuất. Một thư mục thôi chứ nhiều làm gì."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-13",
+      "title": "Khi chưa tìm ra điểm cần học",
+      "heading_paragraph": 462,
+      "answer_paragraphs": [
+        {
+          "id": 467,
+          "text": "Trả lời của bạn: Viết nhận xét về ván và chuyển sang bài khác. Thông báo: Bạn đã chơi tốt rồi rồi chuyển sang các phần khác hoặc tiếp tục chơi. Không bắt buộc tìm ra 3 lỗi mỗi ván (các điểm có thể cải thiện). Nhiều hơn 3 hoặc ít hơn 3 cũng được, không fix, phụ thuộc vào engine"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-14",
+      "title": "Xem toàn ván trước khi làm câu hỏi",
+      "heading_paragraph": 468,
+      "answer_paragraphs": [
+        {
+          "id": 473,
+          "text": "Trả lời của bạn: Mở điểm nào ra thì biên bản cờ sẽ hiện đến đó (10 nước trước hình đó), lúc chuyển sang bài mới có thể xem diễn biến qua ký phổ nếu muốn. Ưu tiên sử dụng câu hỏi, reflection chỉ máy chủ biết chứ user không biết được. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-15",
+      "title": "Sửa ý sau phản hồi ở đâu",
+      "heading_paragraph": 474,
+      "answer_paragraphs": [
+        {
+          "id": 479,
+          "text": "Trả lời của bạn: Sửa vào ô riêng hoặc sửa lại câu trả lời trước đó luôn cũng được, không vấn đề gì. Màn so trước sau thì user thấy thôi để họ tiếp tục nhập, sau một lần trả lời lại thì cũng coi như là lần trả lời thứ hai, không liên quan đến cái trước"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-16",
+      "title": "So hai phương án trên điện thoại",
+      "heading_paragraph": 480,
+      "answer_paragraphs": [
+        {
+          "id": 485,
+          "text": "Trả lời của bạn: Nếu để 2 bàn cờ để so sánh thì càng tốt, lần lượt từng bước cũng là một phương án chấp nhận được. Trở về thế gốc thì ấn nút back thôi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-17",
+      "title": "Công cụ tự suy nghĩ trước khi mở lời giải",
+      "heading_paragraph": 486,
+      "answer_paragraphs": [
+        {
+          "id": 491,
+          "text": "Trả lời của bạn: Nước ứng viên thì chỉ ghi một thôi. Nếu user có thể vẽ được mũi tên và đánh dấu quân thì càng tốt. Không hỗ trợ mô phỏng đi vài nước hợp lệ trước khi submit đáp án. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-18",
+      "title": "Màn kết thúc một hình và một phiên",
+      "heading_paragraph": 492,
+      "answer_paragraphs": [
+        {
+          "id": 497,
+          "text": "Trả lời của bạn: Sau khi xong một vòng workaround trong ván đấu thì sẽ hiện các nút tùy chọn để user có thể chọn việc làm triếp theo hoặc họ cũng có thể rời web luôn. Tự đánh giá là recommend thôi không phải bắt buộc, không điền thì vẫn coi là hoàn tất. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-19",
+      "title": "Yêu thích bỏ qua và ghi chú bài",
+      "heading_paragraph": 498,
+      "answer_paragraphs": [
+        {
+          "id": 503,
+          "text": "Trả lời của bạn: Tất cả bài học đều ở kho bài học, những ván đã đấu đều được lưu trong Ván của tôi. Những bài được yêu thích và lưu sẽ được hiện ở mục riêng trong ván của tôi để user dễ tìm hơn, ghi chú cá nhân được ghi sau lời giải. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-20",
+      "title": "Bài học giảng trước và bài kiểm tra hiểu",
+      "heading_paragraph": 504,
+      "answer_paragraphs": [
+        {
+          "id": 509,
+          "text": "Trả lời của bạn: Phẩn giảng trước khi người chơi không biết gì sẽ coi là bài giảng, phần thực hành có reflection yêu cầu suy nghĩ và sửa đổi. Người học chỉ đọc/xem minh họa thì coi là đã xem, bài kiểm tra độc lập là bài tập follow up sau đó. Nếu người học chỉ đọc hoặc xem thì phần bài kiểm tra sẽ vào phần Ôn tập của họ"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-21",
+      "title": "Tiến bộ cá nhân trước khi có xếp hạng được kiểm định",
+      "heading_paragraph": 510,
+      "answer_paragraphs": [
+        {
+          "id": 515,
+          "text": "Trả lời của bạn: HIển thị mức trình độ dựa theo đánh giá (tự khai rồi điều chỉnh dần qua các bài tập). EXP nên hoạt động ngay làm web trở nên thú vị hơn, tuyệt đối không hiểu là thước đo đánh giá trình độ. Trình độ nên được dựa vào mức level hơn."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-22",
+      "title": "Một lượt ôn khi có nhiều loại bài",
+      "heading_paragraph": 516,
+      "answer_paragraphs": [
+        {
+          "id": 521,
+          "text": "Trả lời của bạn: Giữ đề xuất. Ưu tiên những bài học mà phù hợp với mục tiêu của user hơn, từ đó có lịch riêng và hình riêng. Sau hình đầu tiên sẽ hỏi user muốn làm gì tiếp rồi hướng họ theo kiểu lựa chọn mà họ muốn"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-23",
+      "title": "Tùy chọn tài khoản và nhu cầu riêng trên thiết bị",
+      "heading_paragraph": 522,
+      "answer_paragraphs": [
+        {
+          "id": 527,
+          "text": "Trả lời của bạn: Có thể thay đổi được trong settings mà. Với từng máy thiết bị khác nhau sẽ cố gắng lưu thiết kế/định dạng ở trên từng máy, tuy nhiên khá phức tạp không cần vội. Nút tắt âm thanh có thể xuất hiện ở mọi page nhỏ nhỏ trên góc để người chơi tránh bị phiền, gần nút Home cũng được."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-24",
+      "title": "Cách dùng thuận tiện cho nhu cầu tiếp cận",
+      "heading_paragraph": 528,
+      "answer_paragraphs": [
+        {
+          "id": 533,
+          "text": "Trả lời của bạn: Chưa có nhóm thử nào cả. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-25",
+      "title": "Nội dung và hành động của các trang chưa có dữ liệu hoặc bị lỗi",
+      "heading_paragraph": 534,
+      "answer_paragraphs": [
+        {
+          "id": 539,
+          "text": "Trả lời của bạn: Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-26",
+      "title": "Trợ giúp thông tin sản phẩm và báo lỗi",
+      "heading_paragraph": 540,
+      "answer_paragraphs": [
+        {
+          "id": 545,
+          "text": "Trả lời của bạn: Có, nên thêm thì tốt hơn. Sau khi bấm quay lại trang Home (nút Home luôn có ở mọi trang) thì sẽ có phần Trợ giúp. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-27",
+      "title": "Hình thức tổng thể cần giữ và cần thay",
+      "heading_paragraph": 549,
+      "answer_paragraphs": [
+        {
+          "id": 554,
+          "text": "Trả lời của bạn: Về cơ bản layout hiện tại là đẹp rồi, thay màu cho các theme khác nhau thôi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-28",
+      "title": "Chi tiết bàn cờ và trạng thái quân cần nghiệm thu",
+      "heading_paragraph": 555,
+      "answer_paragraphs": [
+        {
+          "id": 560,
+          "text": "Trả lời của bạn: Chưa có điểm nào khó nhận ra, click thì sẽ tiện hơn, drag and drop thêm vào thì càng tốt. Không điều chỉnh quá kỹ những phần không cần thiết làm gì. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-29",
+      "title": "Các màn tài khoản cần tên và đường đi nào",
+      "heading_paragraph": 561,
+      "answer_paragraphs": [
+        {
+          "id": 566,
+          "text": "Trả lời của bạn: Nhìn theo vài app web lớn hiện tại đang làm như Gmail hoặc Facebook. Quay về đúng bài, chỉ quay về Home khi user tự muốn như vậy. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-30",
+      "title": "Bố cục quản trị từ tổng quan tới chi tiết",
+      "heading_paragraph": 567,
+      "answer_paragraphs": [
+        {
+          "id": 572,
+          "text": "Trả lời của bạn: Tôi dùng admin trên máy tính thôi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-31",
+      "title": "Engine mạnh phục vụ việc gì trước",
+      "heading_paragraph": 576,
+      "answer_paragraphs": [
+        {
+          "id": 582,
+          "text": "Trả lời của bạn: Việc dùng Pikafish hoặc engine mạnh cần có khi đưa ra đánh giá các nước đi và nước đi tối ưu. Dùng chế độ cơ bản hạn chế thôi cho đến khi dùng được Pikafish thật. Giới hạn phân tích (20 nước chẳng hạn) còn lại không cần nhìn tên engine để làm gì"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-32",
+      "title": "Mục đích sử dụng và quyền dùng trọng số Pikafish",
+      "heading_paragraph": 583,
+      "answer_paragraphs": [
+        {
+          "id": 589,
+          "text": "Trả lời của bạn: Thử nghiệm học tập và trình bày với người khác. Chưa có văn bản cho phép dùng Pikafish, nếu chưa được thì tìm cách cướp hoặc dùng lén hoặc tìm engine khác được phép và phù hợp"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-33",
+      "title": "Bạn sẽ công nhận engine đủ tốt bằng bộ thế nào",
+      "heading_paragraph": 591,
+      "answer_paragraphs": [
+        {
+          "id": 597,
+          "text": "Trả lời của bạn: Giữ đề xuất. Tôi tin engine sẽ làm được. Hi vọng nó là Pikafish"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-34",
+      "title": "Mức khó khi chơi với máy nên biểu hiện thế nào",
+      "heading_paragraph": 598,
+      "answer_paragraphs": [
+        {
+          "id": 604,
+          "text": "Trả lời của bạn: Sẽ tìm hiểu thêm làm thế nào để set trình độ cho engine từng người một. Tự điều chỉnh từ người chơi. Khi level thấp thì việc chọn nước dễ là dễ hiểu thôi. Khi thua liên tiếp thì hệ thống tự giảm. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-35",
+      "title": "Phân tích nhanh và phân tích sâu hiển thị ra sao",
+      "heading_paragraph": 605,
+      "answer_paragraphs": [
+        {
+          "id": 611,
+          "text": "Trả lời của bạn: Nhận kết quả phân tích nhanh rồi nếu muốn phân tích kỹ thì bấm thêm nút và đượi thêm. Khi đang chờ mà rời trang sẽ mất hết và hủy phân tích, nếu hủy sẽ mất hết luôn. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-36",
+      "title": "Engine ngừng hoạt động thì người học làm gì tiếp",
+      "heading_paragraph": 612,
+      "answer_paragraphs": [
+        {
+          "id": 618,
+          "text": "Trả lời của bạn: Giữ đề xuất ở câu hỏi 1. Máy không trẩ nước thì tạm dừng có thông báo và nếu lâu quá thì kết thúc và xin lỗi/ thông báo sau.Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-37",
+      "title": "Khi engine mới đổi kết luận về một bài cũ",
+      "heading_paragraph": 619,
+      "answer_paragraphs": [
+        {
+          "id": 625,
+          "text": "Trả lời của bạn: Chỉ có một engine thôi, engine sẽ được update liên tục nhưng hiếm có chuyện thay đổi kết quả phân tích cũ lắm chứ khi có report hoặc báo cáo yêu cầu sửa đổi thôi. "
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-38",
+      "title": "Người học có được thử các nhánh nếu đi khác không",
+      "heading_paragraph": 626,
+      "answer_paragraphs": [
+        {
+          "id": 632,
+          "text": "Trả lời của bạn: Sẽ hỏi câu hỏi, yêu cầu phân tích và đưa ra nước đi. Nếu sai sẽ đi nhánh khác với đánh giá nhận định khác. Muốn quay về hình gốc thì bấm back thôi. Nếu muốn dùng biến tự khám phá thì có lưu và không nhận được phân tích nữa"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-39",
+      "title": "Hạn mức sử dụng phân tích khi có nhiều người",
+      "heading_paragraph": 635,
+      "answer_paragraphs": [
+        {
+          "id": 641,
+          "text": "Trả lời của bạn: Ưu tiên lợi ích nhiều người hơn một người chứ. Ưu tiên tài khoản hơn là khách. Chạm giới hạn thì ra thông báo và lời khen khuyên họ đi nghỉ thôi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-40",
+      "title": "Dữ liệu nào được gửi tới dịch vụ giải thích bên ngoài",
+      "heading_paragraph": 642,
+      "answer_paragraphs": [
+        {
+          "id": 648,
+          "text": "Trả lời của bạn: Giữ đề xuất. Nếu dịch vụ lỗi thì bỏ, tránh làm engine hệ thống máy chủ bị quá tải."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-41",
+      "title": "Khôi phục sau sự cố phải đạt mức nào",
+      "heading_paragraph": 649,
+      "answer_paragraphs": [
+        {
+          "id": 655,
+          "text": "Trả lời của bạn: Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-42",
+      "title": "Ai được truy cập bản thử và bản chính",
+      "heading_paragraph": 656,
+      "answer_paragraphs": [
+        {
+          "id": 662,
+          "text": "Trả lời của bạn: Bản nào được deploy cũng là bản chính hết, chỉ là phiên bản được update lên thôi. Sau khi có bản chính (bản deploy vercel) thì sẽ chỉ dùng trên đó, dừng không còn là chatgptsite nữa. Bản sau khi tôi gửi V5 này thì cũng vậy, sau khi hoàn thiện sẽ hướng dẫn tôi deploy trên Vercel chứ không còn chatgptsite nữa"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-43",
+      "title": "Ngày học và thống kê dùng múi giờ nào",
+      "heading_paragraph": 663,
+      "answer_paragraphs": [
+        {
+          "id": 669,
+          "text": "Trả lời của bạn: Múi giờ mặc định Việt Nam. Khi đi nơi khác hoặc đổi múi giờ thì vẫn giữ nguyên Việt Nam, lịch ôn hay các khoảng thời gian cũng vậy, đồng hồ của web giữ nguyên không đổi."
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-44",
+      "title": "Khôi phục quyền quản trị của chính chủ sản phẩm",
+      "heading_paragraph": 672,
+      "answer_paragraphs": [
+        {
+          "id": 678,
+          "text": "Trả lời của bạn: Sao mất được, bật xác thực bổ sung cho admin chứ. Không cần người dự phòng. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-45",
+      "title": "Một người đăng nhập bằng hai phương thức",
+      "heading_paragraph": 679,
+      "answer_paragraphs": [
+        {
+          "id": 685,
+          "text": "Trả lời của bạn: Có thể dùng chung một tài khoản ở nhiều thiết bị khác nhau nhưng không được cùng một thời điểm sử dụng 2 hoặc nhiều thiết bị. Tạo 2 tài khoản thì phải chịu, không hợp nhất làm gì"
+        }
+      ],
+      "explicit_keep_proposal": false,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-46",
+      "title": "Tài khoản chưa xác minh được làm những gì",
+      "heading_paragraph": 686,
+      "answer_paragraphs": [
+        {
+          "id": 692,
+          "text": "Trả lời của bạn: Nếu chưa có tài khoản thì sẽ chơi dưới dạng khách. Đương nhiên tích hợp email hoặc social accounts chỉ là optionial thôi kiểu bên playcotuong.com ấy, vẫn phân biệt đã xác minh và chưa xác minh. Giữ đề xuất."
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-47",
+      "title": "Giới hạn đối tượng và thông báo trước thu thập dữ liệu",
+      "heading_paragraph": 693,
+      "answer_paragraphs": [
+        {
+          "id": 699,
+          "text": "Trả lời của bạn: Giữ đề xuất. Nói chung những người này không phải lo gì đâu, sẽ cố gắng range người nhiều nhất có thể"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-48",
+      "title": "Nguồn code chính để phát triển trong VS Code",
+      "heading_paragraph": 702,
+      "answer_paragraphs": [
+        {
+          "id": 708,
+          "text": "Trả lời của bạn: Giữ đề xuất. Tôi có thể copy sang repo khác để tránh việc người ta nhìn vào mình sử dụng AI quá nhiều.  Còn lại oke"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-49",
+      "title": "Bạn muốn duyệt một bản sửa bằng bằng chứng nào",
+      "heading_paragraph": 709,
+      "answer_paragraphs": [
+        {
+          "id": 715,
+          "text": "Trả lời của bạn: Tự kiểm thử web, phản hồi theo web đã hoàn thiên jvaf đánh giá tiếp tục sửa đổi. Giữ đề xuất"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    },
+    {
+      "id": "BS-50",
+      "title": "API chỉ phục vụ Cờ Chill hay còn cho bên khác",
+      "heading_paragraph": 716,
+      "answer_paragraphs": [
+        {
+          "id": 722,
+          "text": "Trả lời của bạn: Chưa có đối tác cụ thể cần kết nối. Giữ đề xuất. Chưa dùng tiền ở bước này"
+        }
+      ],
+      "explicit_keep_proposal": true,
+      "interpretation": "Explicit custom answers override incompatible suggested defaults; blanks are not consent."
+    }
+  ],
+  "actionable_decisions": [
+    {
+      "question_ids": [
+        "V5-01",
+        "V5-02",
+        "V5-06",
+        "V5-07"
+      ],
+      "paragraph_ids": [
+        76,
+        77,
+        78,
+        79,
+        85,
+        113,
+        119
+      ],
+      "owner_decision": "Assess observation/evaluation, strategic objective and candidate move; accept semantically equivalent wording; preserve correct parts and ask smaller follow-ups for missing parts, adaptive to guidance level.",
+      "implementation_implication": "Build structured reflection and scaffold choices. Do not mark prose correct by keyword or falsely claim a working LLM grader. Guided questions must not reveal tactical solution before initial response."
+    },
+    {
+      "question_ids": [
+        "V5-03"
+      ],
+      "paragraph_ids": [
+        92
+      ],
+      "owner_decision": "Attempt is one complete answer plus a move. After three unsuccessful guided attempts move to easier material; original remains incomplete in review. Independent first attempt and assisted/repeated attempts are distinct.",
+      "implementation_implication": "Persist immutable attempts and assistance. Do not equate viewed explanation or eventual correct move with independently understood reasoning."
+    },
+    {
+      "question_ids": [
+        "V5-04",
+        "V5-05"
+      ],
+      "paragraph_ids": [
+        99,
+        100,
+        106,
+        107
+      ],
+      "owner_decision": "Multiple sensible moves serving the same objective are acceptable; accept insufficient evidence rather than forcing a verdict. Short strategic explanation, details show candidate moves and animate when executed.",
+      "implementation_implication": "Use curated accepted moves or engine comparisons from same side/root. Embedded examples need board reconstruction and validation before publishing as exercises."
+    },
+    {
+      "question_ids": [
+        "V5-08"
+      ],
+      "paragraph_ids": [
+        127
+      ],
+      "owner_decision": "Owner intends national Vietnamese competition rules, no custom mode.",
+      "implementation_implication": "Keep precise version/source unresolved; do not label unverified thresholds official."
+    },
+    {
+      "question_ids": [
+        "V5-11"
+      ],
+      "paragraph_ids": [
+        145
+      ],
+      "owner_decision": "Two same-type pieces on a file use front/back t/s from player perspective, e.g. Xt and Xs. Three same-file pawns deferred.",
+      "implementation_implication": "Render/import unambiguously; reject unresolved notation with clear error rather than misparse."
+    },
+    {
+      "question_ids": [
+        "V5-12",
+        "V5-14",
+        "V5-18"
+      ],
+      "paragraph_ids": [
+        151,
+        165,
+        191
+      ],
+      "owner_decision": "Real game files and full exercise collection are not yet supplied. Owner will send them later.",
+      "implementation_implication": "Do not invent a supplied dataset; keep existing authored demo label and support import/authoring to unblock owner."
+    },
+    {
+      "question_ids": [
+        "V5-13",
+        "V5-19",
+        "V5-38"
+      ],
+      "paragraph_ids": [
+        157,
+        197,
+        327
+      ],
+      "owner_decision": "Owner reviews reported content; stop scoring disputed item until owner confirms. Content editor prioritizes add diagrams/lessons/puzzles, repair faulty items. In-lesson feedback with audit/status.",
+      "implementation_implication": "Quarantine disputed content, preserve versions and evidence, add feedback in lesson and admin inbox; do not expose answers to unauthorized users through feedback payload."
+    },
+    {
+      "question_ids": [
+        "V5-15"
+      ],
+      "paragraph_ids": [
+        171
+      ],
+      "owner_decision": "Learner uploads start private then require review before shared repository; owner upload asserts own permission.",
+      "implementation_implication": "Need source/rights metadata and separate explicit contribution action; uploading alone cannot prove third-party publishing rights."
+    },
+    {
+      "question_ids": [
+        "V5-16"
+      ],
+      "paragraph_ids": [
+        178
+      ],
+      "owner_decision": "Unseen exercises may be labelled Bài mới, but dashboard separates previously seen theme; pure color swap is identical.",
+      "implementation_implication": "Track position equivalence and prior exposure for independent-success denominator. Avoid calling equivalent practice independent transfer."
+    },
+    {
+      "question_ids": [
+        "V5-17",
+        "V5-18"
+      ],
+      "paragraph_ids": [
+        184,
+        191
+      ],
+      "owner_decision": "Short initial learning route accepted; unlock on sufficient skill and points; difficulty incorporates ambiguity, not just line length.",
+      "implementation_implication": "Use explicit provisional learning criteria and no Elo claims; numerical thresholds not yet supplied."
+    },
+    {
+      "question_ids": [
+        "V5-20",
+        "V5-21",
+        "BS-27",
+        "BS-28"
+      ],
+      "paragraph_ids": [
+        206,
+        212,
+        554,
+        560
+      ],
+      "owner_decision": "Keep current layout, improve all three themes, use supplied original branding. Click is primary; drag optional, no unnecessary fine controls.",
+      "implementation_implication": "Theme tokens plus assets; preserve familiar routes and existing board geometry, check contrast in all themes."
+    },
+    {
+      "question_ids": [
+        "V5-22"
+      ],
+      "paragraph_ids": [
+        219
+      ],
+      "owner_decision": "Mobile not tested yet; allow slightly smaller board while keyboard is open, restore after answering.",
+      "implementation_implication": "Keep active input/submit accessible and no forced microscopic board."
+    },
+    {
+      "question_ids": [
+        "V5-23",
+        "V5-24"
+      ],
+      "paragraph_ids": [
+        225,
+        232
+      ],
+      "owner_decision": "Gentle encouraging feedback, avoid harsh sai/lỗi for learner performance. Tutorial emphasizes horse-leg and facing generals.",
+      "implementation_implication": "Use precise but kind text, do not falsely say almost correct for completely wrong reasoning. Keep rule errors factual."
+    },
+    {
+      "question_ids": [
+        "V5-25"
+      ],
+      "paragraph_ids": [
+        240
+      ],
+      "owner_decision": "Six qualifying activities may span skills and difficulty; views/retries excluded from independent new-puzzle rate, assisted corrections separate.",
+      "implementation_implication": "Show activity gate separately from independent-answer denominator. Do not mix games played into puzzle success numerator or denominator."
+    },
+    {
+      "question_ids": [
+        "V5-26",
+        "V5-27"
+      ],
+      "paragraph_ids": [
+        247,
+        253
+      ],
+      "owner_decision": "Incomplete after assistance goes to continue-learning and next-day review; original-game mistakes more important than related exercises. No advance-30-minute reminder. Overdue text bold, notification dismissal allowed.",
+      "implementation_implication": "Separate incomplete dueAt from completed learning SRS anchor; retain per-position schedule. Reminder activity timing and quiet hours remain."
+    },
+    {
+      "question_ids": [
+        "V5-28"
+      ],
+      "paragraph_ids": [
+        259
+      ],
+      "owner_decision": "Admin wants active accounts, games, learning/review per user, success ratio and level, with proposed genuine stats and date filters.",
+      "implementation_implication": "Central authenticated store, count users across devices once, provisional levels clearly marked."
+    },
+    {
+      "question_ids": [
+        "V5-29"
+      ],
+      "paragraph_ids": [
+        268
+      ],
+      "owner_decision": "Retention desired one year from last active account, all data; weekly come-back reminder desired.",
+      "implementation_implication": "Do not promise automated cleanup/reminders until implemented; weekly outbound messaging needs provider and consent and is not current-task authorization to send."
+    },
+    {
+      "question_ids": [
+        "V5-31"
+      ],
+      "paragraph_ids": [
+        280
+      ],
+      "owner_decision": "Share link must load exactly selected game on other device, not merely home page; no expiry requested.",
+      "implementation_implication": "Public shared snapshot limited to approved game data; private reflection text never automatically included."
+    },
+    {
+      "question_ids": [
+        "V5-32",
+        "BS-46"
+      ],
+      "paragraph_ids": [
+        287,
+        692
+      ],
+      "owner_decision": "Guest play allowed; account needed to retain/sync progress. Social/email optional, as many as practical; username/password editing desired; verification later but status truthful.",
+      "implementation_implication": "Choose practical local credentials with safe password hash or managed provider boundary; do not fake social login. No keys/services currently available."
+    },
+    {
+      "question_ids": [
+        "V5-33",
+        "V5-35"
+      ],
+      "paragraph_ids": [
+        296,
+        308
+      ],
+      "owner_decision": "Pilot around 5–10 young friends, desktop and maybe phone; no date yet. 50% early usability target accepted.",
+      "implementation_implication": "No invented participants/outcomes. Critical legality/leak/data-loss defects remain release blockers regardless of 50% target."
+    },
+    {
+      "question_ids": [
+        "V5-37",
+        "V5-39",
+        "V5-40"
+      ],
+      "paragraph_ids": [
+        320,
+        336,
+        343
+      ],
+      "owner_decision": "Prioritize flexible explanations, strong engine, accurate easy content editor; wants integrated final build. No services/accounts acquired and no new spending now.",
+      "implementation_implication": "Implement concrete local capabilities and external adapters; documentation explicitly distinguishes configured/available/unavailable. No paid integration automatically."
+    },
+    {
+      "question_ids": [
+        "V5-41"
+      ],
+      "paragraph_ids": [
+        349
+      ],
+      "owner_decision": "Preserve working data/features. Disable faulty affected part with under-repair notice while fixed.",
+      "implementation_implication": "Migration/backups and targeted feature availability; never blanket-delete working content."
+    },
+    {
+      "question_ids": [
+        "V5-42",
+        "BS-30"
+      ],
+      "paragraph_ids": [
+        358,
+        572
+      ],
+      "owner_decision": "Owner admin on desktop; possible friends can see aggregate stats, account list and game records but cannot lock/delete; private learner data stays restricted.",
+      "implementation_implication": "Server roles owner/report-reader; no self-selected admin; private reflection access not implied by game access."
+    },
+    {
+      "question_ids": [
+        "V5-43"
+      ],
+      "paragraph_ids": [
+        364
+      ],
+      "owner_decision": "Open admin and immediately see new accounts; notification per registration, later daily summary.",
+      "implementation_implication": "Refreshable real account list/status and last-update timestamp; no external email requirement for first version."
+    },
+    {
+      "question_ids": [
+        "V5-44",
+        "V5-45",
+        "BS-45"
+      ],
+      "paragraph_ids": [
+        371,
+        377,
+        685
+      ],
+      "owner_decision": "One active device per account. New login logs old one out. Guest data discarded from user session on logout. Multiple accounts never merged. Offline drafts continue, timed game clock continues.",
+      "implementation_implication": "Server revocation/session generations and distinct local identity buckets; never attach arbitrary shared-browser guest data without confirmation. Do not silently retain guest data server-side."
+    },
+    {
+      "question_ids": [
+        "V5-46"
+      ],
+      "paragraph_ids": [
+        383
+      ],
+      "owner_decision": "No unexplained bans. If needed temporary with reason and appeal to owner; user edit/delete account expected.",
+      "implementation_implication": "Restrict lock to owner and surface reason; establish actual support destination rather than invented inbox."
+    },
+    {
+      "question_ids": [
+        "BS-01",
+        "BS-02"
+      ],
+      "paragraph_ids": [
+        392,
+        398
+      ],
+      "owner_decision": "Block starting new game until 1–2 overdue items completed; active game first, then its review, then due review, then unfinished lessons.",
+      "implementation_implication": "Backlog threshold unspecified; avoid indefinite deadlock if content unresolved or three-attempt learner cannot complete. Explicit custom lock intent overrides generic keep-proposal phrase."
+    },
+    {
+      "question_ids": [
+        "BS-03",
+        "BS-04",
+        "BS-05"
+      ],
+      "paragraph_ids": [
+        404,
+        410,
+        417
+      ],
+      "owner_decision": "Interactive tutorial now, video later; resume assessment without time limit, adapt learning level; goals prioritized by chosen order and editable in profile.",
+      "implementation_implication": "Label level provisional and based on actual evidence; beginner initial level 1, no fake calibrated ability."
+    },
+    {
+      "question_ids": [
+        "BS-06",
+        "BS-07"
+      ],
+      "paragraph_ids": [
+        423,
+        429
+      ],
+      "owner_decision": "Untimed mode may exist but leaving/resignation after ~30 seconds offline desired; draw offer on shared-device requires both sides with reject/15s expiration; bot draw only simple low-material cases.",
+      "implementation_implication": "Clarify leave vs offline timing; system engine failure must not be user loss. Do not claim draw without valid criteria."
+    },
+    {
+      "question_ids": [
+        "BS-08",
+        "BS-09"
+      ],
+      "paragraph_ids": [
+        436,
+        442
+      ],
+      "owner_decision": "Uncertain adjudication continues and owner reviews reports afterwards. Full game import only; isolated position can enter content/analysis without game verdict.",
+      "implementation_implication": "Separate complete replay validation from position-analysis import; no historical verdict from single FEN."
+    },
+    {
+      "question_ids": [
+        "BS-10",
+        "BS-11",
+        "BS-12"
+      ],
+      "paragraph_ids": [
+        448,
+        455,
+        461
+      ],
+      "owner_decision": "Same start and moves deduplicated; variations count new game. Over 200 displayed moves to archive, no deletion. Favorites/learning separate; simple single-folder approach.",
+      "implementation_implication": "Stable game identity, preserve notes on merge and ask before destructive removal; archive access and all data retained."
+    },
+    {
+      "question_ids": [
+        "BS-13"
+      ],
+      "paragraph_ids": [
+        467
+      ],
+      "owner_decision": "Number of learning moments no longer fixed at three: may be fewer or more; if none, write game note and offer next activity.",
+      "implementation_implication": "Supersedes old C18 max-three. Never invent error or call game perfect because shallow search found none."
+    },
+    {
+      "question_ids": [
+        "BS-14",
+        "BS-15",
+        "BS-17"
+      ],
+      "paragraph_ids": [
+        473,
+        479,
+        491
+      ],
+      "owner_decision": "Replay at learning point shows up to ten previous moves; one candidate move, no pre-submit branch simulation; optional personal arrows/marks. Revisions count another attempt.",
+      "implementation_implication": "Keep immutable original response internally even if editable presentation allowed; no engine/line leak before initial reflection."
+    },
+    {
+      "question_ids": [
+        "BS-16",
+        "BS-18",
+        "BS-19",
+        "BS-20"
+      ],
+      "paragraph_ids": [
+        485,
+        497,
+        503,
+        509
+      ],
+      "owner_decision": "Two boards nice if readable, otherwise stepwise acceptable; self-evaluation optional; private notes after explanation; illustration viewed != learned, follow-up test enters review if not attempted.",
+      "implementation_implication": "Ensure follow-up tests retain reflection gate and resume; optional summary must not erase completion or schedule."
+    },
+    {
+      "question_ids": [
+        "BS-21",
+        "BS-22",
+        "BS-23",
+        "BS-24",
+        "BS-25",
+        "BS-26"
+      ],
+      "paragraph_ids": [
+        515,
+        521,
+        527,
+        533,
+        539,
+        545
+      ],
+      "owner_decision": "EXP now for activity, explicitly not ability; goals prioritize review; ask after each item; global small mute/Home; help on Home; accepted accessible and truthful empty/error states.",
+      "implementation_implication": "Keep game/learning counts auditable, no trained or validated skill claim; reusable accessible UI shell."
+    },
+    {
+      "question_ids": [
+        "BS-29"
+      ],
+      "paragraph_ids": [
+        566
+      ],
+      "owner_decision": "Login/session recovery returns to exact unfinished activity, Home only by choice.",
+      "implementation_implication": "Persist return route and local draft before redirect or forced logout; no cross-account private state leak."
+    },
+    {
+      "question_ids": [
+        "BS-31",
+        "BS-33",
+        "BS-34"
+      ],
+      "paragraph_ids": [
+        582,
+        597,
+        604
+      ],
+      "owner_decision": "Strong engine preferred for objective move evaluation and optimal moves; basic fallback limited; no need prominent engine name, analysis depth details useful. Bot difficulty should adapt, repeated losses lower difficulty.",
+      "implementation_implication": "Expose truthful engine provenance in detail and status. Do not claim depth 20 or Pikafish when unavailable; no Elo without testing."
+    },
+    {
+      "question_ids": [
+        "BS-32"
+      ],
+      "paragraph_ids": [
+        589
+      ],
+      "owner_decision": "Intended upcoming use educational/demo, no paid ads or monetization described. No engine rights acquired; permitted alternative acceptable.",
+      "implementation_implication": "Only lawful, license-compatible engine/weights. Ignore request to steal/use secretly; do not contact or purchase without authorization."
+    },
+    {
+      "question_ids": [
+        "BS-35",
+        "BS-36",
+        "BS-37",
+        "BS-38"
+      ],
+      "paragraph_ids": [
+        611,
+        618,
+        625,
+        632
+      ],
+      "owner_decision": "Quick then optional deeper analysis. Leaving cancels unfinished analysis. Engine outage pauses bot game and may end technical-result; versions generally stable but reports may lead corrections; manual alternate branches can save without new analysis.",
+      "implementation_implication": "Cancellation only discards analysis job, not game/draft. Version results and preserve prior evidence; valid PV replay required."
+    },
+    {
+      "question_ids": [
+        "BS-39",
+        "BS-40",
+        "BS-41"
+      ],
+      "paragraph_ids": [
+        641,
+        648,
+        655
+      ],
+      "owner_decision": "Fair-share engine priority accounts over guest; notify cap and suggest rest. Accept no sending learner data to new external LLM until policy; basic explanations first. Backup proposal accepted without concrete recovery times.",
+      "implementation_implication": "Resource limits; provider off by default, no learner training. Document actual recovery limits and test restore."
+    },
+    {
+      "question_ids": [
+        "BS-42",
+        "BS-43"
+      ],
+      "paragraph_ids": [
+        662,
+        669
+      ],
+      "owner_decision": "Owner will deploy future primary site on Vercel, stop relying on ChatGPT Site; Vietnam time for all views regardless travel.",
+      "implementation_implication": "Provide deployment-ready code/instructions, do not deploy or deactivate old site automatically. Store UTC, render Asia/Ho_Chi_Minh."
+    },
+    {
+      "question_ids": [
+        "BS-44",
+        "BS-47",
+        "BS-48",
+        "BS-49",
+        "BS-50"
+      ],
+      "paragraph_ids": [
+        678,
+        699,
+        708,
+        715,
+        722
+      ],
+      "owner_decision": "Admin additional authentication desired, no backup admin; audience broad but unspecific. Main repository approved; user reviews running complete web. API first-party only and no spend.",
+      "implementation_implication": "No backdoor; provider/second-factor setup needed. Do not infer legal readiness for minors. Preserve original repo/history; prepare test evidence before approval to publish."
+    }
+  ],
+  "conflicts_and_open_points": [
+    {
+      "id": "privacy_delete",
+      "sources": [
+        "V5-30:P274",
+        "BS-40:P648",
+        "AGENTS.md"
+      ],
+      "issue": "Owner requests delete only dashboard while retaining hidden server copies for training, conflicting with accepted no-training policy and genuine deletion.",
+      "safe_resolution": "Implement truthful hard deletion plus separately labelled archive if needed; no hidden retention or training. Explain this choice plainly in report."
+    },
+    {
+      "id": "rules_authority",
+      "sources": [
+        "V5-08:P127",
+        "V5-09:P133",
+        "V5-10:P139"
+      ],
+      "issue": "Wants official Vietnam rules but no exact source; assertions 50 complete turns/check exclusions/10 checks and >6 repetitions may conflict or be incomplete.",
+      "safe_resolution": "Verify official version, keep unverified adjudication labelled pending and legal-move engine intact. Do not silently implement assertions as official tournament law."
+    },
+    {
+      "id": "engine_rights",
+      "sources": [
+        "BS-32:P589"
+      ],
+      "issue": "Requests unauthorized/secret use if permission missing, while allowing suitable licensed alternative.",
+      "safe_resolution": "Choose permitted path only; inspect exact code and NNUE rights, document provenance and permissions; no covert access."
+    },
+    {
+      "id": "sample_label",
+      "sources": [
+        "V5-34:P302"
+      ],
+      "issue": "Giữ đề xuất plus says no need separate internal/test/public usage.",
+      "safe_resolution": "Keep test flag in storage and honest reporting; may hide unnecessary UI but never mix test data into actual-user claims."
+    },
+    {
+      "id": "success_denominator",
+      "sources": [
+        "V5-25:P240"
+      ],
+      "issue": "Six activities includes games/lessons/review, but independent new-puzzle success needs only eligible first encounters.",
+      "safe_resolution": "Use six-activity display gate separately; ratio denominator remains qualified independent first attempts, showing denominator and insufficient sample label."
+    },
+    {
+      "id": "reasoning_grader_missing",
+      "sources": [
+        "V5-01:P76-P79",
+        "V5-03:P92",
+        "V5-07:P119"
+      ],
+      "issue": "Wants semantic answer grading/adaptive scaffolding but supplies examples without validated rubric or configured LLM.",
+      "safe_resolution": "Implement explicit answer fields and guided feedback, move validation and transparent reasoning-unverified status; do not certify understanding from keyword presence."
+    },
+    {
+      "id": "completion_assisted",
+      "sources": [
+        "V5-03:P92",
+        "V5-26:P247",
+        "BS-18:P497"
+      ],
+      "issue": "Repeated/assisted solutions never fully completed yet need next-day review; completion and incomplete due scheduling must not be conflated.",
+      "safe_resolution": "Separate incomplete/assisted/independent status, continuation due date versus SRS completedAt; optional summary has no bearing."
+    },
+    {
+      "id": "play_lock_threshold",
+      "sources": [
+        "BS-01:P392",
+        "V5-03:P92"
+      ],
+      "issue": "Wants lock until 1–2 overdue complete but no trigger threshold; unresolved/bad content could prevent completion forever.",
+      "safe_resolution": "Choose small documented configurable learning requirement, exempt active games and quarantined content, provide supported-learning exit or keep gating limited until agreed. Do not silently interpret generic keep-proposal as no-lock."
+    },
+    {
+      "id": "leave_clock",
+      "sources": [
+        "BS-06:P423",
+        "V5-45:P377",
+        "BS-36:P618"
+      ],
+      "issue": "Leave immediately loses OR 30s offline; timed clocks continue but system engine failure must pause/not lose.",
+      "safe_resolution": "Document chosen 30s explicit disconnect grace, distinguish network/client abandonment from server engine outage, avoid background-tab false resignation."
+    },
+    {
+      "id": "guest_retention",
+      "sources": [
+        "V5-44:P371",
+        "V5-32:P287"
+      ],
+      "issue": "Guest should lose data on logout but parenthetically server still sees all; no consent/identity model.",
+      "safe_resolution": "Guest local-session data only until explicit account import; do not secretly upload guest answers to admin."
+    },
+    {
+      "id": "auth_ambiguous",
+      "sources": [
+        "V5-32:P287",
+        "V5-43:P364",
+        "BS-45:P685",
+        "BS-46:P692"
+      ],
+      "issue": "All providers desired yet no accounts/budget, verification partly deferred, link-versus-merge question answered only about devices.",
+      "safe_resolution": "Implement one secure usable auth path plus clearly unavailable provider buttons only if useful; never fake verification. No account merging."
+    },
+    {
+      "id": "minor_scope",
+      "sources": [
+        "V5-33:P296",
+        "BS-47:P699"
+      ],
+      "issue": "Broad young audience without concrete age range or collection policy.",
+      "safe_resolution": "No DOB/school data; privacy minimum and pre-launch legal/policy review as unresolved. Local demo can proceed without pretending blanket readiness."
+    },
+    {
+      "id": "retention_backups",
+      "sources": [
+        "V5-29:P268",
+        "BS-41:P655"
+      ],
+      "issue": "Exactly one year inactivity desired for all data, but backup retention/deletion semantics unresolved.",
+      "safe_resolution": "Implement actual lifecycle only when backed by test/ops; state backup limitations; weekly reminder remains optional unconfigured."
+    },
+    {
+      "id": "analysis_cancellation",
+      "sources": [
+        "BS-35:P611",
+        "V5-41:P349"
+      ],
+      "issue": "Leaving analysis loses everything could be read as delete game, contrary preserve data.",
+      "safe_resolution": "Cancel and discard unfinished analysis result only; retain source game, drafts and already saved learning records."
+    },
+    {
+      "id": "critical_moments_count",
+      "sources": [
+        "BS-13:P467",
+        "C18:P845"
+      ],
+      "issue": "New answer explicitly removes fixed max-three from inherited appendix.",
+      "safe_resolution": "Latest answer supersedes old appendix; allow variable number with transparent pagination/limits for resources."
+    },
+    {
+      "id": "upload_rights",
+      "sources": [
+        "V5-15:P171",
+        "P1"
+      ],
+      "issue": "Owner upload assumed sufficient rights; books/web references only offered, not supplied or rights-verified.",
+      "safe_resolution": "Keep rights/source declaration with owner contribution; no scraping or whole-book training; separate future knowledge ingestion work."
+    },
+    {
+      "id": "gentle_truth",
+      "sources": [
+        "V5-23:P225",
+        "BS-13:P467"
+      ],
+      "issue": "Suggested praise almost-correct or played-well may overstate wrong answers or shallow engine evidence.",
+      "safe_resolution": "Use warm precise feedback: Cùng xem lại..., Chưa tìm thấy điểm cần học rõ trong lượt phân tích này, without false claims."
+    },
+    {
+      "id": "engine_update",
+      "sources": [
+        "BS-37:P625"
+      ],
+      "issue": "Owner believes one continuously updated engine rarely changes verdict, but versioning remains necessary.",
+      "safe_resolution": "Store engine/version/search metadata and preserve prior results even when UI remains simple."
+    }
+  ],
+  "recommended_implementation_order": [
+    "Preserve working board and learning flow, inspect existing tests and baseline first.",
+    "Secure deployable central persistence/auth with isolated users, revocable single active session, honest guest mode and admin roles/statistics.",
+    "Connect latest online-preview to backend/API while keeping offline drafts and explicit sync status; public frontend alone is not a backend.",
+    "Repair/refine reflection attempts, pending versus completed review scheduling, resume, feedback/editor and counts.",
+    "Add external UCI engine adapter with bounded computation/PV validation and clearly labelled fallback; install compatible engine only if available/authorized.",
+    "Use supplied branding, finish theme variants, improve account/admin/error/mobile states without redesigning approved layout.",
+    "Test rules, gating, scheduling, account isolation/revocation/deletion, fallback failures, migration and end-to-end web flow.",
+    "Deliver run commands, Vercel/Render configuration tradeoffs, truthful real/fallback status, remaining owner decisions and manual demo; no actual deploy/push without current concrete approval."
+  ],
+  "not_authorized_or_not_supplied": [
+    "No paid service credentials/configuration",
+    "No real game import files or complete exercise dataset",
+    "No LLM provider/key",
+    "No confirmed exact Pikafish binary/weights/license setup",
+    "No explicit permission to deploy/push/change repository visibility/deactivate Site",
+    "No permission to train on learner private data",
+    "No permission to scrape copyrighted books/sites"
+  ]
+}

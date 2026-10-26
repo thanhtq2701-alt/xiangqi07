@@ -1,0 +1,13 @@
+{
+  "output": "E:\\ThanhTQ\\App cờ tướng\\xiangqi-ai\\deliverables\\Co_Chill_Giai_thich_tung_file_va_nhom_code_2026_10_18.docx",
+  "bytes": 111564,
+  "pages": 64,
+  "source_files": 29,
+  "code_groups": 196,
+  "source_hashes_unchanged": true,
+  "internal_navigation_links": 29,
+  "visual_qa": "PASS",
+  "scope": "Portable VS Code source snapshot, not historical full repository",
+  "app_tests": "Not rerun for this documentation-only task",
+  "renderer": "Installed Word hidden read-only export followed by pypdfium2; packaged renderer unavailable because LibreOffice missing"
+}

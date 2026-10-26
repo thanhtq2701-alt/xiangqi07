@@ -1,0 +1,131 @@
+Python 3.12.14 | Node v24.19.0 | 12 checks
+
+[1/12] JavaScript syntax: xiangqi.js
+PASS
+
+[2/12] JavaScript syntax: game-tools.js
+PASS
+
+[3/12] JavaScript syntax: fixtures.js
+PASS
+
+[4/12] JavaScript syntax: learning.js
+PASS
+
+[5/12] JavaScript syntax: experience.js
+PASS
+
+[6/12] JavaScript syntax: app.js
+PASS
+
+[7/12] test_preview_learning.cjs
+PASS fresh creates independent state objects
+PASS all reflection answers and a candidate gate explanation
+PASS explicit unknown permits learning and marks assistance
+PASS session identity is stable for a specific start and distinct at another start
+PASS exposure and unfinished related exercises have no completion or due date
+PASS completion anchors the due date at finish, even after an overnight pause
+PASS pending related stage resumes exactly without opening an answer or scheduling review
+PASS completion is immutable and repeated submission cannot shift the schedule
+PASS correct independent reviews follow explicit 1/2/7/14/30 day intervals
+PASS incorrect and assisted attempts have honest independent schedules
+PASS cannot complete before reflection, with a mismatched puzzle, or with invalid times
+PASS recommendation prefers unseen same-skill positions and excludes current position
+PASS all-seen recommendation picks the least recent and never falsely says unseen
+PASS self-assessment never changes objective performance, completion or review time
+PASS roundtrip keeps draft stage, board selection and dynamic game snapshot
+PASS sanitization rejects corrupt input, prototype keys and oversized data
+PASS invalid imported dates cannot fabricate progress or bypass reflection
+PASS duplicate imported completions do not count twice
+PASS out-of-order imported history cannot move the completion anchor backwards
+19/19 learning-state tests passed
+PASS
+
+[8/12] test_preview_game_tools.cjs
+PASS Vietnamese notation uses moving-side files and movement directions for all seven pieces
+  round-trip validated 4054 legal moves, all 14 side/piece combinations
+PASS every legal move round-trips across deterministic real game positions, both sides and every piece
+PASS two pieces on one file use front/back, parsing rejects ambiguous source file
+PASS pawn stacks on multiple files and middle pawns remain unambiguous
+PASS notation parser accepts full direction words, exact coordinate moves, and case
+PASS game import parses numbered Vietnamese notation and coordinates atomically
+PASS paired move history keeps red left, black right even for black-to-move imports
+PASS illegal reasons describe only rule violations, including blockers and movement
+PASS moving a blocker cannot expose either facing generals or self-check
+PASS four occurrences are required, strict one-sided perpetual check loses for either color
+PASS ordinary quiet repetition is bounded, with board AND turn included
+PASS possible chase is never silently adjudicated as an ordinary repetition draw
+PASS capture resets the natural move count; a pawn advance does not
+PASS 100 quiet plies require verification, without fabricating an automatic draw
+14/14 game-tools tests passed
+PASS
+
+[9/12] test_preview_experience.cjs
+PASS preferences accept only supported options and exact booleans
+PASS incomplete reflection never consumes attempts or exposes a solution
+PASS a matching first move and a legal alternative reveal without claiming to grade prose
+PASS wrong candidates get at most three submissions and never become independent success
+PASS new sessions round-trip through migration without losing defaults
+PASS migration retains assistance, drafts, first submission and summary drafts
+PASS finishing and reloading retain first answers separately from corrected answers
+PASS legacy records migrate without inventing initial response history
+PASS export omits answer keys at every exported nested boundary
+PASS export preserves personal initial-answer and self-assessment drafts without key snapshots
+PASS evidence threshold is six attempts but unseen accuracy requires six separate positions
+PASS a later correct review cannot rewrite a failed first encounter
+PASS clock subtracts elapsed wall time then adds increment only after a timely move
+PASS clock exact expiry and time away cannot be rescued by increment
+PASS actual app keeps answer hidden until requested help has been read and explicitly accepted
+PASS actual app wrong first submission preserves thoughts, offers gated help, reveals at third attempt
+PASS actual app blocks training answers and opening guidance during a live game
+PASS a fresh direct learn route displays an empty state without dereferencing a missing session
+18/18 experience tests passed
+PASS
+
+[10/12] Python reference rules
+test_advisor_diagonal_and_palace (test_rules.RulesTests.test_advisor_diagonal_and_palace) ... ok
+test_black_elephant_river (test_rules.RulesTests.test_black_elephant_river) ... ok
+test_black_pawn_direction (test_rules.RulesTests.test_black_pawn_direction) ... ok
+test_cannon_cannot_jump_to_empty (test_rules.RulesTests.test_cannon_cannot_jump_to_empty) ... ok
+test_cannon_exactly_one_screen (test_rules.RulesTests.test_cannon_exactly_one_screen) ... ok
+test_check_requires_response (test_rules.RulesTests.test_check_requires_response) ... ok
+test_coordinate_roundtrip (test_rules.RulesTests.test_coordinate_roundtrip) ... ok
+test_elephant_eye (test_rules.RulesTests.test_elephant_eye) ... ok
+test_elephant_river (test_rules.RulesTests.test_elephant_river) ... ok
+test_fen_roundtrip (test_rules.RulesTests.test_fen_roundtrip) ... ok
+test_flying_general_blocks_exposure (test_rules.RulesTests.test_flying_general_blocks_exposure) ... ok
+test_general_cannot_exit_palace (test_rules.RulesTests.test_general_cannot_exit_palace) ... ok
+test_general_palace (test_rules.RulesTests.test_general_palace) ... ok
+test_horse_leg_each_direction (test_rules.RulesTests.test_horse_leg_each_direction) ... ok
+test_illegal_does_not_mutate (test_rules.RulesTests.test_illegal_does_not_mutate) ... ok
+test_initial_legal_count (test_rules.RulesTests.test_initial_legal_count) ... ok
+test_initial_perft_two (test_rules.RulesTests.test_initial_perft_two) ... ok
+test_invalid_coordinates (test_rules.RulesTests.test_invalid_coordinates) ... ok
+test_invalid_fen_rejected (test_rules.RulesTests.test_invalid_fen_rejected) ... ok
+test_legal_play_sequence_preserves_generals (test_rules.RulesTests.test_legal_play_sequence_preserves_generals) ... ok
+test_mate_is_loss (test_rules.RulesTests.test_mate_is_loss) ... ok
+test_move_input (test_rules.RulesTests.test_move_input) ... ok
+test_no_general_capture (test_rules.RulesTests.test_no_general_capture) ... ok
+test_pawn_last_rank_sideways (test_rules.RulesTests.test_pawn_last_rank_sideways) ... ok
+test_red_pawn_after_river (test_rules.RulesTests.test_red_pawn_after_river) ... ok
+test_red_pawn_before_river (test_rules.RulesTests.test_red_pawn_before_river) ... ok
+test_rook_blocker (test_rules.RulesTests.test_rook_blocker) ... ok
+test_self_check_rejected (test_rules.RulesTests.test_self_check_rejected) ... ok
+test_stalemate_is_loss (test_rules.RulesTests.test_stalemate_is_loss) ... ok
+test_turn_and_capture (test_rules.RulesTests.test_turn_and_capture) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 0.273s
+
+OK
+PASS
+
+[11/12] Exported exercises match source
+PASS: all 12 synthetic fixtures, grounded text, provenance and complete legal-move sets match project rules.
+PASS
+
+[12/12] Browser/Python rule and engine parity
+{"positions":205,"childPositions":5468,"fenCases":25,"perft2":1920,"enginePositions":12,"engineLines":153,"invalidInputs":10,"initialSearch":{"depth":1,"complete":false,"elapsedMs":250},"result":"PASS"}
+PASS
+
+Result: 12/12 checks passed in 18.2s

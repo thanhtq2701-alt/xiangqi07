@@ -1,0 +1,13 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 54
+BS 50 API chỉ phục vụ Cờ Chill hay còn cho bên khác
+Mức 2 · Liên quan: V5 40, V5 42
+Điều kiện áp dụng: Nếu chưa có đối tác/app khác, trả lời Chỉ phục vụ Cờ Chill là đủ.
+Trong đợt này, API chỉ cần phục vụ website Cờ Chill, hay bạn đã có ứng dụng/đối tác cụ thể muốn kết 
+nối? Nếu có, họ cần đọc bài, gửi ván phân tích hay đọc thống kê nào, và chỉ dùng dữ liệu của ai?
+Đề xuất chưa duyệt: Bản đầu chỉ xây API cho chính ứng dụng với quyền kiểm tra ở server. Chưa mở
+API public hoặc cấp khóa cho bên thứ ba nếu chưa có nhu cầu cụ thể. Cấu trúc endpoint, token và 
+framework do đội kỹ thuật đề xuất.
+Cần điền: 1. Chỉ Cờ Chill hay có bên sử dụng khác; 2. Tên loại ứng dụng và mục đích nếu có; 3. Dữ liệu/thao tác 
+được phép; 4. Mốc thời gian cần tích hợp
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

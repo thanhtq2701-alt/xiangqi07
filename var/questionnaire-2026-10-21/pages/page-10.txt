@@ -1,0 +1,26 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 10
+V5 12 Những file ván thực tế nào phải nhập được trước
+Mức 2
+Gửi hai hoặc ba file gốc thật bạn đang có, tên ứng dụng xuất và một ảnh kết quả bàn cờ mong muốn. 
+Chọn thứ tự giữa dán ký phổ Việt, tải file ván và đọc ảnh. Nếu lỗi tại nước thứ 17, có giữ 16 nước đầu 
+thành bản nhập chưa hoàn chỉnh không?
+Đề xuất chưa duyệt: hỗ trợ một định dạng có mẫu trước, chỉ rõ nước lỗi và cho người dùng chủ động 
+lưu phần hợp lệ. Nhận dạng ảnh để riêng vì phải xác minh từng quân và bên đi. Xuất sang ứng dụng 
+ngoài cần thử với chính ứng dụng đó.
+Cần điền: 1. Hai hoặc ba file gốc thật; 2. Tên ứng dụng xuất từng file; 3. Ảnh bàn cờ kết quả mong muốn; 4. Thứ
+tự ưu tiên dán ký phổ Việt/tải file/đọc ảnh; 5. Lỗi ở nước 17 có lưu chủ động 16 nước hợp lệ thành bản chưa hoàn 
+chỉnh không; 6. Ứng dụng bên ngoài cần xuất sang
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+V5 13 Khi bạn và hệ thống bất đồng về một thế
+Mức 2
+Bạn là người chốt nội dung. Khi có phản hồi sai luật hoặc lời giải, bạn muốn tạm ngừng tính điểm cho 
+riêng bài đó trong bao lâu và nhận gói thông tin nào để quyết định? Ai có thể giúp đối chiếu một trường 
+hợp khó khi bạn chưa chắc?
+Đề xuất chưa duyệt: lưu FEN, chuỗi nước, phiên bản luật, kết quả tìm kiếm và lý do phản hồi; tạm gỡ
+khỏi bài tính kết quả. Giữ lịch sử thay đổi và thông báo sửa cho người đã gặp bài. Không ghi đè bằng 
+chứng cũ.
+Cần điền: 1. Tạm ngừng tính điểm riêng bài lỗi trong bao lâu; 2. Gói thông tin chủ sản phẩm cần để quyết định; 3. 
+Người hỗ trợ đối chiếu trường hợp khó nếu có; 4. Thời gian phản hồi mong muốn; 5. Cách thông báo sửa cho 
+người đã gặp bài
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

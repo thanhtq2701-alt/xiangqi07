@@ -1,0 +1,26 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 1
+Cờ Chill bộ câu hỏi hợp nhất V5
+Một file để chốt bản web tiếp theo
+96 câu: giữ đủ 46 câu V5 và thêm 50 câu sau khi gộp phần trùng. Các nhóm có số câu khác nhau theo 
+nhu cầu. File này thay các biểu mẫu V5 trước để bạn trả lời; tài liệu gốc vẫn được giữ nguyên.
+Mục tiêu là làm rõ các quyết định còn thiếu để tiếp tục đúng hướng của bạn: học từ ván thật, suy nghĩ 
+trước đáp án, phân tích có căn cứ, thực hành tiếp, lịch ôn, tài khoản nhiều thiết bị và quản trị. Phần mới 
+bổ sung Pikafish, giao diện từng màn, vận hành và cách làm việc trong VS Code.
+Cách điền
+• Điền ngay dưới mỗi câu. Dùng số 1, 2, 3 tương ứng với các mục Cần điền; thêm dòng/ảnh tùy ý. 
+Không cần vừa chỗ trống hoặc tự viết FEN, code, SQL hay chọn framework.
+• Nếu đồng ý toàn bộ, ghi Giữ đề xuất. Nếu chỉ đồng ý một phần, ghi rõ phần giữ và phần đổi. Không 
+có lựa chọn nào được điền sẵn thay bạn.
+• Nếu chưa biết, ghi Chưa rõ và mô tả kết quả mong muốn hoặc Giao kỹ thuật đề xuất rồi gửi tôi 
+duyệt. Bỏ trống không đồng nghĩa đồng ý.
+• V5 01–46 giữ mã cũ. Nếu bạn đã có câu trả lời ở file khác, chép phần đó vào đúng mã rồi chỉ bổ
+sung các mục còn thiếu. Không phải điền hai file.
+• Câu Chỉ khi triển khai được ghi Chưa làm đợt này nếu không thuộc bản tới. Tài khoản, đồng bộ và 
+admin đã thuộc V5; lựa chọn này không tự bỏ phần đã chốt.
+• Không ghi mật khẩu, token, API key, mã khôi phục hoặc dữ liệu riêng của người thử. Chỉ ghi tên 
+dịch vụ, vai trò và file mẫu đã loại dữ liệu riêng.
+Người trả lời: ____________________ Ngày bắt đầu: ______________
+Mốc mong muốn có bản thử: __________ Ngày gửi lại: ______________
+Đề xuất trong file là để bạn quyết định. Ghi đồng ý thiết kế không tự cho phép mua dịch vụ, đổi 
+public, push/deploy hoặc xóa dữ liệu; các hành động cần quyền vẫn xin duyệt trên bản cụ thể.

@@ -1,0 +1,14 @@
+VISUAL QA — CODE MANUAL — 2026-10-18
+Reviewer: code_manual_ui
+Scope: Every full-resolution PNG page 010 through 028 inclusive was opened with view_image(detail=original), 19 pages total.
+
+Result: PASS. No clipped text, overlap, unreadable characters, footer collision, solitary orphan heading, or identifier extending beyond the text area found on these pages. Long identifiers and source paths wrap within margins. Vietnamese accents and monospace names are readable.
+
+Page observations:
+- 010–012: CSS groups readable. Some groups continue naturally on the next page. Page 011 starts with the preceding group's short “Điểm cần giữ” paragraph; cosmetic only.
+- 013–022: app.js documentation readable and consistently structured. Pages 015, 019 and 020 start with the preceding group's short caution paragraph; these are ordinary paragraph continuations, not lost or clipped content. No heading appears alone at a page bottom.
+- 023–025: xiangqi.js text and names remain within margins. Page 025 begins a caution continued from page 024; readable.
+- 026: roughly the lower half is blank because the xiangqi.js chapter ends and the next file starts on a new page. This is a deliberate file boundary, not an accidental near-empty page; the top contains the continuation, final code group and reading guide.
+- 027–028: game-tools.js text, file path and identifiers readable; no layout defects found.
+
+No document or source files edited during QA.

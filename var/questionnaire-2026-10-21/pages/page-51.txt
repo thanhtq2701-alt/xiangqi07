@@ -1,0 +1,26 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 51
+N Tài khoản và quyền truy cập bổ sung
+Về mục lục
+BS 44 Khôi phục quyền quản trị của chính chủ sản phẩm
+Mức 1 · Liên quan: V5 32, V5 42, V5 46
+Điều kiện áp dụng: Không bỏ qua nếu có quản trị thật; đừng ghi password, mã khôi phục hoặc thông tin định danh nhạy cảm.
+Nếu bạn mất quyền truy cập tài khoản quản trị, ai được hỗ trợ xác minh và khôi phục? Bạn có sẵn sàng 
+bật xác thực bổ sung cho admin không? Có cần người dự phòng chỉ đủ quyền vận hành sự cố không?
+Đề xuất chưa duyệt: Dùng cơ chế khôi phục của dịch vụ xác thực và xác minh chủ sở hữu; không tạo 
+cửa hậu, không đưa mã dự phòng vào Word/repo. Đội kỹ thuật đề xuất cách thực hiện an toàn.
+Cần điền: 1. Có người quản trị dự phòng không; chỉ ghi vai trò nếu không muốn tên; 2. Cách liên hệ/kiểm chứng 
+mong muốn khi mất quyền; 3. Có đồng ý yêu cầu xác thực bổ sung cho admin không
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 45 Một người đăng nhập bằng hai phương thức
+Mức 2 · Liên quan: V5 28, V5 32, V5 44
+Điều kiện áp dụng: Bỏ qua nếu V5-32 chọn đúng một phương thức và chưa cần chuyển đổi.
+Nếu chọn nhiều phương thức ở V5-32, bạn có cần cho người dùng liên kết chúng thành một tài khoản 
+không? Nếu đã lỡ tạo hai tài khoản có tiến độ riêng, họ tự yêu cầu hợp nhất hay chỉ được chọn một tài 
+khoản dùng tiếp?
+Đề xuất chưa duyệt: Ưu tiên một phương thức trước; nếu liên kết phải chứng minh quyền kiểm soát cả
+hai, xem trước dữ liệu và tránh ghi trùng. Không tự hợp nhất theo tên hiển thị hoặc email chưa xác 
+minh.
+Cần điền: 1. Có cần liên kết nhiều phương thức không; 2. Cách xử lý hai tài khoản đã có dữ liệu; 3. Những dữ liệu 
+phải giữ khi hợp nhất; 4. Người dùng cần xác nhận điều gì
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

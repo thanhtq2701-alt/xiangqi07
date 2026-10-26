@@ -1,0 +1,36 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 57
+Mẫu gửi ví dụ và tiêu chí nghiệm thu
+Một hình cờ hoặc ván mẫu
+Tên file nên bắt đầu bằng mã câu, ví dụ V5_14_hinh_01.png. Không cần biết FEN; ảnh rõ 90 giao điểm 
+và bên đến lượt là đủ để kỹ thuật dựng lại rồi xác minh với bạn. Với luật lặp/chiếu/đuổi cần toàn bộ
+chuỗi nước liên quan, ảnh cuối đơn lẻ không đủ.
+Mã hình/van: __________ Thuộc câu: __________
+Nguồn và quyền dùng: __________________________________________
+Bên đi, mục tiêu bài, đoạn lịch sử cần xét: _________________________
+Nước chấp nhận và vì sao: ______________________________________
+Nước không đạt và vì sao: ______________________________________
+Lời giải của bạn hoặc ghi Cần kiểm chứng: _________________________
+Tên/chủ đề kỹ năng, độ khó dự kiến: ______________________________
+Một vấn đề giao diện
+Mã câu / trang / thiết bị / trình duyệt / zoom: ______________________
+Bước thao tác: ________________________________________________
+Thực tế đang xảy ra: ___________________________________________
+Bạn muốn thay đổi thành: _______________________________________
+Ảnh hoặc bản phác: ____________________________________________
+Cách nhận biết đã sửa xong: _____________________________________
+Các điều kiện nền phải kiểm tra khi phát hành
+• Không cho nước sai luật; mỗi biến engine được phát lại qua luật. Nếu các bộ luật bất đồng, dừng và 
+báo cần kiểm chứng.
+• Không lộ đáp án trước phản hồi hoặc coaching trong ván; giữ câu đầu và phân biệt có hỗ trợ với tự
+giải.
+• Không mất nháp hoặc tính hai lần khi gửi lại; lịch ôn bắt đầu từ hoàn thành hình và không được thay 
+đổi bởi tự đánh giá.
+• Tài khoản tạo trên A thấy đúng trong admin B; học trên A thấy tiến độ đã đồng bộ khi đăng nhập C.
+• A không truy cập dữ liệu B; người thường không gọi chức năng admin; khóa và quyền xem có hiệu 
+lực phía server.
+• Engine lỗi có trạng thái rõ và phục hồi; hết hạn mức không làm biến mất dữ liệu đã có. Nhãn engine, 
+phiên bản và dữ liệu thật phải đúng.
+• Xuất/xóa và phục hồi được thử; dữ liệu test tách khỏi pilot; báo cáo không bịa người dùng hoặc hiệu 
+quả.
+• Bạn xem bản thử có changelog, test, giới hạn và cách quay lại trước khi duyệt push/deploy.

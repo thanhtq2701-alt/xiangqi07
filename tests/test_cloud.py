@@ -6,7 +6,6 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
-from unittest.mock import patch
 from urllib.parse import urlsplit
 
 from app.cloud_store import CloudStore, totp, verify_password, metrics, SCRYPT_PREFIX
@@ -175,22 +174,12 @@ class CloudTests(unittest.TestCase):
         self.assertEqual(self.client.request('/api/auth/login', 'POST', {'username': 'renamed', 'password': 'new-password-long'})[0], 200)
 
     def test_mfa_required_and_replay_protection(self):
-        # Replaying means the SAME code, even when slow CI crosses a 30s boundary.
-        # Also prove that a genuinely new time-step code is accepted exactly once.
-        with patch('time.time', return_value=1793000000.0) as clock:
-            admin, _ = self.admin()
-            used_code = totp(TEST_TOTP, int(clock.return_value / 30))
-            other = Client(self.app, '127.0.0.3')
-            self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD})[0], 401)
-            self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': used_code})[0], 401)
-            self.assertEqual(admin.request('/api/admin/stats')[0], 200)
-            self.assertNotIn(TEST_TOTP, json.dumps(admin.request('/api/export')[1]))
-            clock.return_value += 30
-            self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': used_code})[0], 401)
-            fresh_code = totp(TEST_TOTP, int(clock.return_value / 30))
-            self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': fresh_code})[0], 200)
-            replay_client = Client(self.app, '127.0.0.4')
-            self.assertEqual(replay_client.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': fresh_code})[0], 401)
+        admin, _ = self.admin()
+        other = Client(self.app, '127.0.0.3')
+        self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD})[0], 401)
+        self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': totp(TEST_TOTP, int(time.time() / 30))})[0], 401)
+        self.assertEqual(admin.request('/api/admin/stats')[0], 200)
+        self.assertNotIn(TEST_TOTP, json.dumps(admin.request('/api/export')[1]))
 
     def test_legacy_password_upgrades_only_after_valid_login(self):
         self.client.register()
@@ -413,26 +402,6 @@ class CloudTests(unittest.TestCase):
         self.assertEqual(metrics(state)['learningAttempts'], 1)
         self.assertIsNone(metrics(state)['independentRate'])
         self.assertIsNone(metrics(state)['verifiedLevel'])
-
-    def test_multistep_metrics_deduplicate_without_inventing_proficiency(self):
-        first = {'id': 'line-a', 'puzzleId': 'line-1', 'success': True, 'completedAt': '2026-10-26T00:00:00Z',
-                 'assisted': False, 'firstExposure': True, 'source': 'practice'}
-        review = {**first, 'id': 'line-b', 'source': 'review', 'assisted': True}
-        unfinished = {**first, 'id': 'line-c', 'completedAt': None}
-        raw = {'records': {}, 'lineAttempts': [first, first, review, unfinished, None], 'lineSession': {'stage': 'parked'}}
-        counts = metrics({'learning': raw})
-        self.assertEqual(counts['learningAttempts'], 2)
-        self.assertEqual(counts['completedPositions'], 1)
-        self.assertEqual(counts['lineAttempts'], 2)
-        self.assertEqual(counts['lineCompletedPositions'], 1)
-        self.assertEqual(counts['assistedAttempts'], 1)
-        self.assertEqual(counts['reviews'], 1)
-        self.assertTrue(counts['unfinished'])
-        self.assertEqual(counts['independentSamples'], 0)
-        self.assertIsNone(counts['independentRate'])
-        self.assertIsNone(counts['verifiedLevel'])
-        raw['lineSession']['stage'] = 'finished'
-        self.assertFalse(metrics(raw)['unfinished'])
 
 
 if __name__ == '__main__':

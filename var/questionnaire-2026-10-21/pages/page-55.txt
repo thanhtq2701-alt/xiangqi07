@@ -1,0 +1,67 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 55
+Bản đồ các màn hình cần đối chiếu
+Bảng này giúp không bỏ quên trang. Không phải yêu cầu bạn thiết kế lại từ đầu. Nếu giữ giao diện đã 
+chọn, ghi Giữ hiện tại tại câu liên quan; nếu sửa, dùng ảnh/khung phác và mã màn hình. Các route là 
+tên trong source đang đọc, không chứng minh có tính năng tài khoản online.
+Màn hình hoặc trạng thái Câu chốt yêu cầu
+Trang chủ
+#home V5 21, V5 27, BS 01, BS 02, BS 25, BS 26
+Bắt đầu và cách học
+#howto
+V5 01, V5 02, V5 06, V5 24, BS 03, BS 04, BS 05, BS 25, 
+BS 26
+Chọn ván và nhập ván
+#play
+V5 08, V5 09, V5 11, V5 12, BS 02, BS 06, BS 09, BS 10, 
+BS 25
+Ván đang chạy
+#game/:id
+V5 08, V5 09, V5 10, V5 23, V5 36, V5 41, BS 06, BS 07, 
+BS 08, BS 24, BS 25
+Ván của tôi
+#mistakes
+V5 12, V5 29, V5 30, V5 31, BS 08, BS 09, BS 10, BS 11, 
+BS 12, BS 25
+Xem lại toàn ván
+#replay/:id V5 11, V5 12, V5 31, BS 12, BS 14, BS 25
+Tổng quan điểm cần học
+#moments/:id V5 04, V5 13, V5 36, BS 08, BS 13, BS 14, BS 25
+Suy nghĩ trước đáp án
+#learn stage reflect
+V5 01, V5 02, V5 03, V5 06, V5 07, V5 22, V5 45, BS 14, 
+BS 15, BS 17, BS 24, BS 25
+Phân tích và lời giải
+#learn stage explanation
+V5 04, V5 05, V5 07, V5 13, V5 23, BS 15, BS 16, BS 17, 
+BS 24, BS 25
+Thử lại
+#learn stage retry V5 01, V5 03, V5 04, V5 26, BS 15, BS 17, BS 18, BS 25
+Bài liên quan
+#learn related exercise
+V5 02, V5 14, V5 15, V5 16, V5 18, V5 26, BS 17, BS 18, 
+BS 19, BS 25
+Danh sách bài học
+#lessons
+V5 14, V5 15, V5 16, V5 17, V5 18, BS 19, BS 20, BS 25, 
+BS 26
+Minh họa khai cuộc
+#opening/:id V5 05, V5 14, V5 17, BS 19, BS 20, BS 25
+Hành trình học
+#path V5 06, V5 14, V5 17, V5 18, BS 20, BS 25
+Tiến độ và góc cá nhân
+#profile V5 25, V5 28, V5 32, V5 44, BS 04, BS 21, BS 25
+Lịch ôn
+#review V5 26, V5 27, V5 45, BS 01, BS 22, BS 25
+Tự nhìn lại cuối phiên
+#summary V5 03, V5 26, BS 18, BS 25
+Cài đặt và dữ liệu
+#settings
+V5 20, V5 23, V5 29, V5 30, V5 31, V5 32, V5 44, V5 45, 
+V5 46, BS 05, BS 23, BS 24, BS 25, BS 26
+Luật và minh họa
+#rules
+V5 08, V5 09, V5 10, V5 11, V5 13, V5 24, BS 03, BS 25, 
+BS 26
+Về Cờ Chill
+#about V5 23, V5 29, V5 30, V5 37, BS 25, BS 26

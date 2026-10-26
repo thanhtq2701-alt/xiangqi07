@@ -1,0 +1,24 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 49
+BS 41 Khôi phục sau sự cố phải đạt mức nào
+Mức 1 · Liên quan: V5 29, V5 41
+Điều kiện áp dụng: Có thể ghi Chưa biết và nêu tình huống bạn không chấp nhận thay vì tự chọn số kỹ thuật.
+Nếu máy chủ hỏng, bạn cần mở lại dịch vụ trong khoảng nào và tối đa mất phần hoạt động chưa được 
+sao lưu bao lâu? Những dữ liệu nào cần ưu tiên phục hồi? Ai kiểm tra rằng bản phục hồi thật sự dùng 
+được?
+Đề xuất chưa duyệt: Đề xuất phương án sao lưu/khôi phục có kiểm thử theo ngân sách, công bố giới 
+hạn thật; không hứa không mất dữ liệu tuyệt đối nếu chưa có hạ tầng chứng minh.
+Cần điền: 1. Thời gian gián đoạn chấp nhận cho pilot; 2. Mức mất dữ liệu tối đa mong muốn hoặc yêu cầu đội kỹ
+thuật đề xuất; 3. Thứ tự dữ liệu cần khôi phục; 4. Người kiểm tra sau phục hồi
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 42 Ai được truy cập bản thử và bản chính
+Mức 1 · Liên quan: V5 33, V5 34, V5 40
+Điều kiện áp dụng: Không bỏ qua nếu chuyển hosting hoặc bật tài khoản.
+Bản thử V5 dành cho người có lời mời, mọi người có link hay mọi người tự tìm thấy? Bản thử có dùng 
+tài khoản/dữ liệu thật không, hay dữ liệu test riêng? Sau khi có bản chính, link chatgptsite cũ nên giữ
+làm demo, chuyển hướng hay ngừng dùng?
+Đề xuất chưa duyệt: Tách môi trường thử với dữ liệu thử, bảo vệ truy cập thật nếu cần riêng tư; không 
+coi noindex là kiểm soát quyền. Chỉ chuyển hoặc ngừng link cũ khi chủ sở hữu duyệt.
+Cần điền: 1. Phạm vi truy cập bản thử; 2. Phạm vi đăng ký tài khoản; 3. Dữ liệu test hay dữ liệu thật và cách phân 
+biệt; 4. Cách xử lý link cũ và thông báo chuyển
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

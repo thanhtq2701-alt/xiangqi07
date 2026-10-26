@@ -1,0 +1,2 @@
+usage: check_all.py [-h] [--node NODE]
+check_all.py: error: Node.js 18 or newer is required; found v6.14.0

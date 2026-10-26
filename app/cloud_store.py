@@ -148,35 +148,14 @@ def metrics(state):
                 independent_recorded = True
     correct = sum(a.get('success') is True for a in independent)
     current = state.get('session')
-    # V6 multi-step completions are separate observations, not extra evidence
-    # for the older one-step proficiency ratio (the pilot lines share a family).
-    line_attempts = []
-    line_completed = set()
-    raw_lines = state.get('lineAttempts', [])
-    for attempt in raw_lines if isinstance(raw_lines, list) else []:
-        if not isinstance(attempt, dict):
-            continue
-        identity, puzzle_id = attempt.get('id'), attempt.get('puzzleId')
-        if (not isinstance(identity, str) or not identity or identity in seen
-                or not isinstance(puzzle_id, str) or not puzzle_id
-                or attempt.get('success') is not True
-                or not isinstance(attempt.get('completedAt'), str) or not attempt['completedAt']):
-            continue
-        seen.add(identity)
-        line_attempts.append(attempt)
-        line_completed.add(puzzle_id)
-    attempts.extend(line_attempts)
-    line_current = state.get('lineSession')
     return {
         'games': len(games), 'finishedGames': sum(isinstance(g, dict) and isinstance(g.get('status'), dict) and g['status'].get('over') is True for g in games),
         'learningAttempts': len(attempts), 'reviews': sum(a.get('source') == 'review' for a in attempts),
-        'completedPositions': sum(isinstance(r, dict) and bool(r.get('completedAt')) for r in records.values()) + len(line_completed),
-        'lineAttempts': len(line_attempts), 'lineCompletedPositions': len(line_completed),
+        'completedPositions': sum(isinstance(r, dict) and bool(r.get('completedAt')) for r in records.values()),
         'assistedAttempts': sum(a.get('assisted') is True for a in attempts),
         'independentSamples': len(independent), 'independentCorrect': correct,
         'independentRate': correct / len(independent) if len(independent) >= 6 else None,
-        'unfinished': bool((isinstance(current, dict) and current.get('stage') not in ('complete', 'summary'))
-                           or (isinstance(line_current, dict) and line_current.get('stage') != 'finished')),
+        'unfinished': bool(isinstance(current, dict) and current.get('stage') not in ('complete', 'summary')),
         'verifiedLevel': None, 'source': 'client-reported',
     }
 

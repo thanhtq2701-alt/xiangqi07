@@ -1,0 +1,21 @@
+CỜ CHILL | BỘ CÂU HỎI HỢP NHẤT V5 | 21/10/2026
+Bản để điền • Trang 39
+BS 21 Tiến bộ cá nhân trước khi có xếp hạng được kiểm định
+Mức 2 · Liên quan: V5 25, V5 28
+Bạn muốn ranking và EXP nhưng chưa có thang trình độ được kiểm định. Trong V5, nên hiển thị mức 
+tự khai, mức hướng dẫn hiện tại và số hoạt động đã hoàn thành bằng nhãn nào? Có cần EXP hoạt 
+động ngay không; nếu có, nó dùng vào việc gì và tuyệt đối không được hiểu là chỉ số nào?
+Đề xuất chưa duyệt: Hiển thị hoạt động và mức hướng dẫn có nhãn tạm; không gọi thành tích hoạt 
+động là Elo hay trình độ đã đo.
+Cần điền: 1. Nhãn mức tự khai; 2. Nhãn mức hướng dẫn; 3. Có EXP và mục đích; 4. Thông tin cần thấy khi bấm 
+chỉ số
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]
+BS 22 Một lượt ôn khi có nhiều loại bài
+Mức 2 · Liên quan: V5 26, V5 27
+Bạn muốn ôn lỗi từ ván và lesson tách nhau. Trên lịch ngày/tháng, người học chọn một hình, một kỹ
+năng hay một nhóm; nếu cùng lúc nhiều bài đến hạn, có nút bắt đầu phiên ngắn không? Sau hình đầu 
+tiên có tự chuyển bài hay hỏi tiếp tục?
+Đề xuất chưa duyệt: Cho chọn phiên ngắn nhưng vẫn giữ hàng đợi; mỗi hình có kết quả/lịch riêng, 
+không coi phần còn lại đã làm.
+Cần điền: 1. Nhóm ôn tách thế nào; 2. Đơn vị chọn; 3. Cách bắt đầu phiên ngắn; 4. Hành động sau mỗi hình
+Trả lời của bạn: [Điền theo số ở trên hoặc ghi Giữ đề xuất / Chưa rõ / Để sau kèm lý do]

@@ -1,0 +1,808 @@
+[
+  {
+    "page": 1,
+    "chars": 1874,
+    "first": [
+      "Bản để điền • Trang 1",
+      "Cờ Chill bộ câu hỏi hợp nhất V5"
+    ],
+    "last": [
+      "Người trả lời: ____________________ Ngày bắt đầu: ______________",
+      "Mốc mong muốn có bản thử: __________ Ngày gửi lại: ______________",
+      "Đề xuất trong file là để bạn quyết định. Ghi đồng ý thiết kế không tự cho phép mua dịch vụ, đổi"
+    ]
+  },
+  {
+    "page": 2,
+    "chars": 2718,
+    "first": [
+      "Bản để điền • Trang 2",
+      "Hiện trạng dùng làm điểm xuất phát"
+    ],
+    "last": [
+      "• Trên điện thoại bàn trên/câu hỏi dưới đã chọn; V5-22 chỉ hỏi xử lý lúc bàn phím mở.",
+      "Đối với chi phí, 100.000 đồng/tháng mong muốn và 200.000 đồng/tháng trần là câu trả lời trước đây.",
+      "Nếu muốn thay đổi do engine mạnh, chỉ cập nhật tại V5 37. Không coi việc bạn mua công cụ AI lập trình"
+    ]
+  },
+  {
+    "page": 3,
+    "chars": 2045,
+    "first": [
+      "Bản để điền • Trang 3",
+      "Thứ tự trả lời và mục lục"
+    ],
+    "last": [
+      "Chuyển FEN/tọa độ, quản lý tiến trình UCI, cấu trúc API/database, cache/hàng đợi, giới hạn tài nguyên,",
+      "kiểm tra biến hợp lệ, xác thực/phân quyền, giữ phiên bản và test là việc của kỹ thuật. Bạn quyết định",
+      "trải nghiệm, dữ liệu được phép dùng, giới hạn chi phí và kết quả cần đạt. Chưa có câu trả lời không cho"
+    ]
+  },
+  {
+    "page": 4,
+    "chars": 1868,
+    "first": [
+      "Bản để điền • Trang 4",
+      "A Cách hỏi và bằng chứng hiểu bài"
+    ],
+    "last": [
+      "quan sát” và cho phép chế độ hỗ trợ tiếp cận.",
+      "Cần điền: 1. Giữ hoặc bỏ chờ 10 giây; 2. Nếu giữ: mục đích quan sát lại hay hạn chế bấm nhanh; 3. Ví dụ câu gợi",
+      "mở đầu tiên; 4. Điều kiện mở gợi ý tiếp; 5. Điều kiện mở lời giải; 6. Cách hỗ trợ tiếp cận nếu có thời gian chờ"
+    ]
+  },
+  {
+    "page": 5,
+    "chars": 2362,
+    "first": [
+      "Bản để điền • Trang 5",
+      "V5 03 Sau ba lần chưa đạt thì ghi nhận điều gì"
+    ],
+    "last": [
+      "Cần điền: 1. Hình có ít nhất hai nước chấp nhận cùng mục tiêu; 2. Nước A và B cùng mục tiêu/lý do chấp nhận; 3.",
+      "Nước C và lý do không đạt; 4. Chấp nhận kết quả chưa đủ căn cứ để chấm khi engine không phân biệt được",
+      "không; 5. Cách xử lý đánh giá chưa rõ; 6. Ví dụ nào bắt buộc phải công nhận nhiều đáp án"
+    ]
+  },
+  {
+    "page": 6,
+    "chars": 1737,
+    "first": [
+      "Bản để điền • Trang 6",
+      "V5 05 Bạn muốn đoạn giải thích cuối cùng viết như thế nào"
+    ],
+    "last": [
+      "Cần điền: 1. Một hình cụ thể; 2. Bộ câu cho người biết luật nhưng yếu chiến thuật; 3. Bộ câu cho người trung cấp;",
+      "4. Điều kiện quay lại câu hỏi nhỏ hoặc tăng hướng dẫn; 5. Bằng chứng cho việc giảm số câu/tự động đổi mức",
+      "hướng dẫn"
+    ]
+  },
+  {
+    "page": 7,
+    "chars": 872,
+    "first": [
+      "Bản để điền • Trang 7",
+      "V5 07 Ví dụ phản hồi sai một phần cần sửa như thế nào"
+    ],
+    "last": [
+      "Cần điền: 1. Câu trả lời gốc có ý đúng lẫn sai; 2. Đoạn chính xác cần trích là hợp lý; 3. Đoạn chính xác cần xem",
+      "lại; 4. Lời nhận xét cho từng ý; 5. Câu hỏi tiếp theo; 6. Khi báo lỗi nhận xét chưa chắc: giữ bài đang học hay",
+      "chuyển bài"
+    ]
+  },
+  {
+    "page": 8,
+    "chars": 1899,
+    "first": [
+      "Bản để điền • Trang 8",
+      "B Luật phán quyết và ký phổ"
+    ],
+    "last": [
+      "Cần điền: 1. Nguồn/điều khoản xác nhận hoặc dùng quy ước riêng; 2. Mốc hòa và xử lý khác biệt 50 với 60 nước;",
+      "3. Đơn vị đếm: hai bên mỗi bên một lượt hay một lượt một bên; 4. Đi Tốt có ảnh hưởng cách đếm không; 5. Chiếu",
+      "có ảnh hưởng cách đếm không; 6. Ngoại lệ khác hoặc nhờ Codex đối chiếu"
+    ]
+  },
+  {
+    "page": 9,
+    "chars": 1744,
+    "first": [
+      "Bản để điền • Trang 9",
+      "V5 10 Cần những chuỗi lặp nào để bạn nghiệm thu"
+    ],
+    "last": [
+      "mơ hồ phải hỏi chọn nước, không tự đoán. Việc lật bàn không đổi nội dung nước đã lưu.",
+      "Cần điền: 1. Ứng dụng nguồn quen dùng; 2. Ảnh/text có hai Xe hoặc hai Mã cùng cột; 3. Ví dụ nhiều Tốt cùng cột;",
+      "4. Chọn cách ghi trước/sau, t/s hay ký hiệu khác; 5. Thống nhất cách hiển thị và nhập ký hiệu"
+    ]
+  },
+  {
+    "page": 10,
+    "chars": 1818,
+    "first": [
+      "Bản để điền • Trang 10",
+      "V5 12 Những file ván thực tế nào phải nhập được trước"
+    ],
+    "last": [
+      "Cần điền: 1. Tạm ngừng tính điểm riêng bài lỗi trong bao lâu; 2. Gói thông tin chủ sản phẩm cần để quyết định; 3.",
+      "Người hỗ trợ đối chiếu trường hợp khó nếu có; 4. Thời gian phản hồi mong muốn; 5. Cách thông báo sửa cho",
+      "người đã gặp bài"
+    ]
+  },
+  {
+    "page": 11,
+    "chars": 1906,
+    "first": [
+      "Bản để điền • Trang 11",
+      "C Kho bài và lộ trình học"
+    ],
+    "last": [
+      "Cần điền: 1. Nguồn gói đầu: tự tạo/bạn bè đồng ý/nguồn khác; 2. Quyền được cho phép đối với ván/hình/lời",
+      "bình/ảnh/bài sách hoặc website; 3. Người hoặc căn cứ cho phép đưa vào kho chung; 4. Dữ liệu cá nhân cần ẩn;",
+      "5. Cơ chế đồng ý riêng để chuyển dữ liệu riêng tư sang kho chung"
+    ]
+  },
+  {
+    "page": 12,
+    "chars": 1744,
+    "first": [
+      "Bản để điền • Trang 12",
+      "V5 16 Bài mới và bài đổi hình cùng ý cần gọi thế nào"
+    ],
+    "last": [
+      "dung được ghi rõ.",
+      "Cần điền: 1. Nhóm người học/nhánh đầu cho người biết luật; 2. Thứ tự 5–7 mục tiêu; 3. Mục tiêu là điều kiện",
+      "trước của mục sau; 4. Điều kiện chuyển hoặc khóa bước; 5. Nhãn khai/trung/tàn, kỹ năng, độ khó nếu cần"
+    ]
+  },
+  {
+    "page": 13,
+    "chars": 1884,
+    "first": [
+      "Bản để điền • Trang 13",
+      "V5 18 Tiêu chí độ khó ngoài số nước tính trước"
+    ],
+    "last": [
+      "Cần điền: 1. Xếp ba việc ưu tiên: thay câu hỏi/thêm hình/sửa đáp án/gỡ bài lỗi hoặc việc khác; 2. Luồng duyệt và",
+      "quyền phát hành; 3. Có cần xem trước trải nghiệm người học trước xuất bản không; 4. Ghi lý do sửa ở đâu; 5.",
+      "Một ví dụ sửa thường gặp; 6. Biên tập tối thiểu cùng V5 hay để sau"
+    ]
+  },
+  {
+    "page": 14,
+    "chars": 1808,
+    "first": [
+      "Bản để điền • Trang 14",
+      "D Giao diện và tương tác trên bản mới"
+    ],
+    "last": [
+      "dữ liệu. Màu và trang trí xử lý sau các lỗi thao tác. Không cần đo từng pixel.",
+      "Cần điền: 1. Ba lỗi cản việc học nhất trên trang chơi/câu hỏi/ôn; 2. Mỗi lỗi: đường dẫn; 3. Mỗi lỗi: thao tác; 4. Mỗi",
+      "lỗi: kỳ vọng; 5. Mỗi lỗi: thực tế xảy ra; 6. Thiết bị và mức zoom; 7. Ảnh cả màn nếu liên quan kích thước"
+    ]
+  },
+  {
+    "page": 15,
+    "chars": 1689,
+    "first": [
+      "Bản để điền • Trang 15",
+      "V5 22 Khi bàn phím điện thoại mở thì phần nào phải giữ"
+    ],
+    "last": [
+      "Có nút tắt nhanh và văn bản thay âm thanh. Không biến lỗi thành phán xét năng lực người học.",
+      "Cần điền: 1. Sửa câu Nước đi chưa hợp lệ; 2. Sửa câu Bạn đã nhận trợ giúp ở hình này; 3. Sửa câu Bạn còn bài",
+      "ôn chưa hoàn thành; 4. Từ cần tránh khi sai nhiều lần; 5. Âm gây khó chịu sau thử"
+    ]
+  },
+  {
+    "page": 16,
+    "chars": 877,
+    "first": [
+      "Bản để điền • Trang 16",
+      "V5 24 Hình minh họa luật nào cần làm rõ nhất"
+    ],
+    "last": [
+      "nói rõ lý do. Codex tự lo cơ chế bàn phím, focus và tương phản, bạn chỉ cần phản hồi chỗ khó dùng.",
+      "Cần điền: 1. Hai tình huống dễ nhầm nhất: chân Mã/mắt Tượng/ngòi Pháo/qua sông/lộ mặt Tướng; 2. Cặp hình",
+      "đối chiếu hay bật/tắt quân chắn; 3. Ảnh hoặc ví dụ cụ thể; 4. Yêu cầu quay đúng câu đang làm sau minh họa"
+    ]
+  },
+  {
+    "page": 17,
+    "chars": 1828,
+    "first": [
+      "Bản để điền • Trang 17",
+      "E Lịch ôn và số liệu tiến bộ"
+    ],
+    "last": [
+      "đánh giá “đã hiểu” là bằng chứng tự giải.",
+      "Cần điền: 1. Đã xem hướng dẫn nhưng chưa tự giải: Cần học tiếp ngay hay hẹn ngày mai; 2. Cách ghi và hẹn ôn",
+      "khi có hỗ trợ; 3. Mốc ôn hình gốc; 4. Mốc ôn hình liên quan để sang hôm sau; 5. Hai mốc có độc lập không"
+    ]
+  },
+  {
+    "page": 18,
+    "chars": 2392,
+    "first": [
+      "Bản để điền • Trang 18",
+      "V5 27 Nhắc lịch vừa đủ và lời nhắc nghỉ"
+    ],
+    "last": [
+      "giúp hoặc khác; 2. Khoảng thời gian ngày/tuần/tháng hoặc tùy chọn; 3. Hoạt động tính khi đăng nhập hay khi",
+      "chơi/học; 4. Cần xuất bảng thống kê không; 5. Bấm chỉ số xem chi tiết nào; 6. Phân biệt nhu cầu dashboard cá",
+      "nhân và toàn hệ thống"
+    ]
+  },
+  {
+    "page": 19,
+    "chars": 1922,
+    "first": [
+      "Bản để điền • Trang 19",
+      "F Dữ liệu quyền riêng tư và chia sẻ"
+    ],
+    "last": [
+      "Cần điền: 1. Xác nhận chính sách xóa dữ liệu theo phạm vi công bố; 2. Cách thông báo đúng phạm vi khi người",
+      "dùng yêu cầu xóa; 3. Có thật sự cần giữ thống kê tổng hợp không thể gắn cá nhân không; 4. Những thống kê tổng",
+      "hợp cụ thể; 5. Điểm còn muốn trao đổi về xóa và đóng góp nội dung"
+    ]
+  },
+  {
+    "page": 20,
+    "chars": 1924,
+    "first": [
+      "Bản để điền • Trang 20",
+      "V5 31 Chia sẻ ván với người khác cần lộ những gì"
+    ],
+    "last": [
+      "Cần điền: 1. Phương thức đăng nhập ưu tiên email/Google/khác; 2. Có chế độ khách chơi thử không; 3. Bước bắt",
+      "buộc đăng nhập, ví dụ lúc lưu đồng bộ; 4. Tên hiển thị có khác tên tài khoản đăng nhập không; 5. Quy tắc tên hiển",
+      "thị"
+    ]
+  },
+  {
+    "page": 21,
+    "chars": 1598,
+    "first": [
+      "Bản để điền • Trang 21",
+      "G Thử nghiệm thực tế và vận hành"
+    ],
+    "last": [
+      "người dùng thật.",
+      "Cần điền: 1. Cách đánh dấu loại phiên/tài khoản; 2. Bài làm quen loại khỏi chỉ số nào; 3. Các chỉ số báo mentor; 4.",
+      "Cách tách phiên nội bộ, có hướng dẫn và pilot thật"
+    ]
+  },
+  {
+    "page": 22,
+    "chars": 2082,
+    "first": [
+      "Bản để điền • Trang 22",
+      "V5 35 Tiêu chí đạt của vòng thử đầu tiên"
+    ],
+    "last": [
+      "Cần điền: 1. Thiết bị ưu tiên đo; 2. Thao tác thực thấy chậm; 3. Thời gian chấp nhận cho chọn quân/lưu nháp; 4.",
+      "Thời gian review cả ván chấp nhận so với thao tác trực tiếp; 5. Hành vi khi quá thời gian; 6. Cách hiện tiến độ/hủy",
+      "công việc; 7. Chờ máy đi một nước; 8. Chờ một hình; 9. Chờ cả ván"
+    ]
+  },
+  {
+    "page": 23,
+    "chars": 2330,
+    "first": [
+      "Bản để điền • Trang 23",
+      "V5 37 Phân bổ ngân sách cho tài khoản và các nâng cấp khác"
+    ],
+    "last": [
+      "Cần điền: 1. Biểu mẫu chung hay nút báo lỗi trong bài; 2. Kênh/nơi chủ sản phẩm xem phản hồi; 3. Trường tối",
+      "thiểu; 4. Được đính kèm biên bản/câu trả lời/ảnh/mã bài/phiên bản nào; 5. Cách người thử đồng ý đính kèm; 6.",
+      "Tần suất xem; 7. Theo dõi đã tái hiện/đang sửa/đã kiểm tra"
+    ]
+  },
+  {
+    "page": 24,
+    "chars": 2595,
+    "first": [
+      "Bản để điền • Trang 24",
+      "H Chốt bản tiếp theo và chuẩn bị Vercel"
+    ],
+    "last": [
+      "Cần điền: 1. Hosting/xác thực/database đã có; 2. Người quản lý từng dịch vụ; 3. Số người dùng đồng thời dự kiến;",
+      "4. Chuyển Vercel khi đủ V5 hay thử trước ở địa chỉ thử; 5. Thời điểm chuyển; 6. Tên miền riêng trong đợt này nếu",
+      "cần; 7. Quyền/kết nối/phát hành cần duyệt cụ thể"
+    ]
+  },
+  {
+    "page": 25,
+    "chars": 935,
+    "first": [
+      "Bản để điền • Trang 25",
+      "V5 41 Những điều phải giữ khi nâng cấp"
+    ],
+    "last": [
+      "Cần điền: 1. Dữ liệu bắt buộc giữ qua nâng cấp; 2. Dữ liệu được tạo lại; 3. Lỗi mất nháp/luật sai/lộ đáp án cần gỡ",
+      "tính năng ngay khi sửa không; 4. Các lỗi phải gỡ ngay; 5. Người duyệt phát hành; 6. Áp mốc xử lý sự cố tối đa 12",
+      "giờ đã nêu"
+    ]
+  },
+  {
+    "page": 26,
+    "chars": 2168,
+    "first": [
+      "Bản để điền • Trang 26",
+      "I Chi tiết tài khoản quản trị và đồng bộ"
+    ],
+    "last": [
+      "Cần điền: 1. Chỉ dashboard hay email/thông báo ngoài web thêm; 2. Thông báo từng lần/gộp ngày/chỉ khi vấn đề;",
+      "3. Mức chậm chấp nhận; 4. Phân biệt mới đăng ký và đã xác minh email; 5. Làm mới khi mở/thủ công/tự cập nhật",
+      "trang đang mở"
+    ]
+  },
+  {
+    "page": 27,
+    "chars": 2265,
+    "first": [
+      "Bản để điền • Trang 27",
+      "V5 44 Chuyển tiến độ local cũ vào tài khoản ra sao"
+    ],
+    "last": [
+      "Cần điền: 1. Hai máy sửa cùng bài/câu trả lời khác: một phiên được sửa, chọn bản, hay người dùng quyết; 2. Quy",
+      "tắc xung đột; 3. Mất mạng giữa bài: tiếp tục nháp hay dừng; 4. Vị trí hiện đang lưu/đã đồng bộ/chưa đồng bộ; 5.",
+      "Mức chờ đồng bộ chấp nhận; 6. Cách bảo toàn các bản nháp và tránh đếm trùng hoàn thành"
+    ]
+  },
+  {
+    "page": 28,
+    "chars": 1188,
+    "first": [
+      "Bản để điền • Trang 28",
+      "V5 46 Khóa tài khoản và xử lý yêu cầu của người chơi"
+    ],
+    "last": [
+      "Cần điền: 1. Khi khóa còn xem dữ liệu cũ không; 2. Khi khóa còn xuất dữ liệu không hay liên hệ; 3. Khóa có thời",
+      "hạn hay đến khi mở lại; 4. Kênh yêu cầu mở lại/sửa thông tin/xóa tài khoản; 5. Nội dung xác nhận trước thao tác",
+      "tránh nhầm người; 6. Quyền còn lại của người bị khóa"
+    ]
+  },
+  {
+    "page": 29,
+    "chars": 1464,
+    "first": [
+      "Bản để điền • Trang 29",
+      "J Giao diện và trải nghiệm từng bước"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Ván đang chạy được cảnh báo dễ thấy và có Tiếp tục ván; danh sách bài dở/đến",
+      "hạn vẫn truy cập được nhưng không mở coaching khi ván sống.",
+      "Cần điền: 1. Việc ưu tiên; 2. Nhãn nút chính; 3. Thông tin vẫn phải thấy"
+    ]
+  },
+  {
+    "page": 30,
+    "chars": 1416,
+    "first": [
+      "Bản để điền • Trang 30",
+      "BS 03 Người chưa biết chơi đi qua hướng dẫn nào"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Dùng mức hướng dẫn tạm, cho điều chỉnh; không hạ cấp âm thầm hoặc dùng",
+      "thắng bot để công bố trình độ đã hiệu chuẩn.",
+      "Cần điền: 1. Giới hạn bài đầu vào; 2. Trạng thái chưa kết luận; 3. Lựa chọn của người học; 4. Nhãn từng loại mức"
+    ]
+  },
+  {
+    "page": 31,
+    "chars": 1228,
+    "first": [
+      "Bản để điền • Trang 31",
+      "BS 05 Mục tiêu học được dùng để thay điều gì"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Nếu có chế độ luyện không giờ, gọi tên riêng và tách kết thúc luyện khỏi",
+      "thắng/thua thi đấu; vẫn không có coaching khi ván đang sống.",
+      "Cần điền: 1. Có ván không đồng hồ; 2. Hành vi rời và trở lại; 3. Cách kết thúc để học; 4. Cách ghi kết quả"
+    ]
+  },
+  {
+    "page": 32,
+    "chars": 1533,
+    "first": [
+      "Bản để điền • Trang 32",
+      "BS 07 Xin hòa khi chơi cùng máy hoặc chơi với bot"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Hiện Chờ kiểm chứng, không cộng thắng/thua/hòa chưa xác định; bảo toàn lịch sử",
+      "và cho chọn hành động không làm mất bằng chứng.",
+      "Cần điền: 1. Hành động tức thời; 2. Đồng hồ; 3. Trạng thái thư viện và thống kê; 4. Nơi xem kết quả sau xác minh"
+    ]
+  },
+  {
+    "page": 33,
+    "chars": 1574,
+    "first": [
+      "Bản để điền • Trang 33",
+      "BS 09 Ván nhập chưa có kết quả hoặc thiếu lịch sử"
+    ],
+    "last": [
+      "nào?",
+      "Đề xuất chưa duyệt: Giữ một biên bản chuẩn và các ghi chú riêng, cho lựa chọn rõ trước khi hợp nhất.",
+      "Cần điền: 1. Cách nhận diện cùng ván; 2. Cách giữ ghi chú; 3. Các nút khi nhập trùng"
+    ]
+  },
+  {
+    "page": 34,
+    "chars": 1233,
+    "first": [
+      "Bản để điền • Trang 34",
+      "BS 11 Khi thư viện vượt 200 ván"
+    ],
+    "last": [
+      "riêng được xác nhận.",
+      "Cần điền: 1. Thao tác thư mục ưu tiên; 2. Một hay nhiều thư mục/nhãn; 3. Phạm vi xóa thư mục; 4. Trường tìm",
+      "kiếm"
+    ]
+  },
+  {
+    "page": 35,
+    "chars": 1726,
+    "first": [
+      "Bản để điền • Trang 35",
+      "BS 13 Khi chưa tìm ra điểm cần học"
+    ],
+    "last": [
+      "phép và giữ trạng thái đã tiếp xúc để không tính bằng chứng độc lập sai.",
+      "Cần điền: 1. Diễn biến đã chơi được xem; 2. Phần phân tích bị khóa; 3. Nhãn khi đã xem diễn biến; 4. Lối chuyển",
+      "sang suy nghĩ"
+    ]
+  },
+  {
+    "page": 36,
+    "chars": 1219,
+    "first": [
+      "Bản để điền • Trang 36",
+      "BS 15 Sửa ý sau phản hồi ở đâu"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Một bàn rõ quân với đổi nhánh, nhãn nhánh và nút về thế gốc; hai bàn chỉ khi đủ",
+      "diện tích.",
+      "Cần điền: 1. Cách so mặc định; 2. Thông tin luôn thấy; 3. Nút đổi nhánh và về thế gốc"
+    ]
+  },
+  {
+    "page": 37,
+    "chars": 1447,
+    "first": [
+      "Bản để điền • Trang 37",
+      "BS 17 Công cụ tự suy nghĩ trước khi mở lời giải"
+    ],
+    "last": [
+      "lưu khi bỏ qua.",
+      "Cần điền: 1. Màn sau hình gốc; 2. Màn sau bài liên quan; 3. Tự đánh giá tùy chọn/bắt buộc; 4. Ảnh hưởng nếu bỏ",
+      "qua"
+    ]
+  },
+  {
+    "page": 38,
+    "chars": 1375,
+    "first": [
+      "Bản để điền • Trang 38",
+      "BS 19 Yêu thích bỏ qua và ghi chú bài"
+    ],
+    "last": [
+      "ghi kết quả, không lộ đáp án của hình đó trước reflection.",
+      "Cần điền: 1. Phần giảng được xem; 2. Phần thực hành có reflection; 3. Nhãn sau chỉ xem; 4. Cách chuyển sang",
+      "kiểm tra"
+    ]
+  },
+  {
+    "page": 39,
+    "chars": 1422,
+    "first": [
+      "Bản để điền • Trang 39",
+      "BS 21 Tiến bộ cá nhân trước khi có xếp hạng được kiểm định"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Cho chọn phiên ngắn nhưng vẫn giữ hàng đợi; mỗi hình có kết quả/lịch riêng,",
+      "không coi phần còn lại đã làm.",
+      "Cần điền: 1. Nhóm ôn tách thế nào; 2. Đơn vị chọn; 3. Cách bắt đầu phiên ngắn; 4. Hành động sau mỗi hình"
+    ]
+  },
+  {
+    "page": 40,
+    "chars": 1490,
+    "first": [
+      "Bản để điền • Trang 40",
+      "BS 23 Tùy chọn tài khoản và nhu cầu riêng trên thiết bị"
+    ],
+    "last": [
+      "thực tế để chỉnh, không bắt người dùng chọn tiêu chuẩn hay bỏ chuột.",
+      "Cần điền: 1. Nhu cầu thực tế không nêu danh tính; 2. Tác vụ và trở ngại; 3. Thứ tự thông báo nước đi; 4. Mẫu",
+      "mong muốn"
+    ]
+  },
+  {
+    "page": 41,
+    "chars": 1567,
+    "first": [
+      "Bản để điền • Trang 41",
+      "BS 25 Nội dung và hành động của các trang chưa có dữ liệu hoặc bị lỗi"
+    ],
+    "last": [
+      "Đề xuất chưa duyệt: Cách học, Luật, Giới hạn hiện tại và Phản hồi có lối tìm rõ; không thêm màn ngắt",
+      "vòng học không cần thiết.",
+      "Cần điền: 1. Mục trợ giúp cần có; 2. Tên và vị trí link; 3. Nội dung tối thiểu; 4. Đường quay lại"
+    ]
+  },
+  {
+    "page": 42,
+    "chars": 1865,
+    "first": [
+      "Bản để điền • Trang 42",
+      "K Hoàn thiện hình thức và các màn tài khoản"
+    ],
+    "last": [
+      "Cần điền: 1. Ảnh trạng thái khó nhìn; 2. Kéo thả có cần ở đợt này không; 3. Tọa độ hiện thường trực hay bật tắt;",
+      "4. Tốc độ chuyển nước và chế độ giảm chuyển động; 5. Có ghi thống kê nước sai luật không và cách phân biệt",
+      "bấm nhầm với chưa hiểu luật"
+    ]
+  },
+  {
+    "page": 43,
+    "chars": 1758,
+    "first": [
+      "Bản để điền • Trang 43",
+      "BS 29 Các màn tài khoản cần tên và đường đi nào"
+    ],
+    "last": [
+      "tách khỏi nút xem thường dùng, không hiển thị câu trả lời riêng tư ngoài mục đích đã thông báo.",
+      "Cần điền: 1. Trang mặc định và thứ tự menu admin; 2. Thông tin trong hàng danh sách tài khoản; 3. Các tab chi",
+      "tiết theo quyền được phép; 4. Hành động khóa/xuất/xóa và bước xác nhận; 5. Có quản trị trên điện thoại không"
+    ]
+  },
+  {
+    "page": 44,
+    "chars": 2230,
+    "first": [
+      "Bản để điền • Trang 44",
+      "L Pikafish và phân tích có căn cứ"
+    ],
+    "last": [
+      "Cần điền: 1. Mục đích của bản sắp phát hành; 2. Kế hoạch quảng cáo/thu phí nếu đã có, chưa cần thiết kế thanh",
+      "toán; 3. Tên file/bản engine và tài liệu quyền sử dụng nếu đang sở hữu; 4. Cách xử lý khi chưa xác nhận được",
+      "quyền"
+    ]
+  },
+  {
+    "page": 45,
+    "chars": 1985,
+    "first": [
+      "Bản để điền • Trang 45",
+      "BS 33 Bạn sẽ công nhận engine đủ tốt bằng bộ thế nào"
+    ],
+    "last": [
+      "người chơi thắng dễ hơn.",
+      "Cần điền: 1. Tên/số mức trước mắt; 2. Cách chọn mức ban đầu; 3. Hành vi khi thắng hoặc thua liên tiếp; 4. Có",
+      "chấp nhận mức dễ chọn nước kém hơn có kiểm soát không"
+    ]
+  },
+  {
+    "page": 46,
+    "chars": 1786,
+    "first": [
+      "Bản để điền • Trang 46",
+      "BS 35 Phân tích nhanh và phân tích sâu hiển thị ra sao"
+    ],
+    "last": [
+      "học từ nước chưa đánh giá. Cho bài đã duyệt hoặc thử lại, mọi kết quả dự phòng gắn nhãn riêng.",
+      "Cần điền: 1. Xem lại ván khi engine lỗi; 2. Chấm nước bài học khi engine lỗi; 3. Ván với máy bị gián đoạn và cách",
+      "xử lý đồng hồ/kết quả; 4. Câu thông báo người chơi cần đọc"
+    ]
+  },
+  {
+    "page": 47,
+    "chars": 1766,
+    "first": [
+      "Bản để điền • Trang 47",
+      "BS 37 Khi engine mới đổi kết luận về một bài cũ"
+    ],
+    "last": [
+      "về gốc trước, chưa cần cây biến phức tạp. Biến khám phá không tự tính là lần tự giải bài mới.",
+      "Cần điền: 1. Chọn các thao tác cần ở bản đầu; 2. Giới hạn nhánh/lượt khám phá nếu muốn; 3. Quay lại bài gốc và",
+      "giữ trạng thái như thế nào; 4. Có lưu hoặc chia sẻ nhánh cá nhân không"
+    ]
+  },
+  {
+    "page": 48,
+    "chars": 1946,
+    "first": [
+      "Bản để điền • Trang 48",
+      "M Vận hành dữ liệu và phát hành"
+    ],
+    "last": [
+      "gỡ tên là đảm bảo đã ẩn danh hoàn toàn.",
+      "Cần điền: 1. Những nhóm dữ liệu được gửi; 2. Những nhóm tuyệt đối không gửi; 3. Thông báo/lựa chọn của",
+      "người học; 4. Hành vi khi từ chối hoặc dịch vụ không hoạt động"
+    ]
+  },
+  {
+    "page": 49,
+    "chars": 1772,
+    "first": [
+      "Bản để điền • Trang 49",
+      "BS 41 Khôi phục sau sự cố phải đạt mức nào"
+    ],
+    "last": [
+      "coi noindex là kiểm soát quyền. Chỉ chuyển hoặc ngừng link cũ khi chủ sở hữu duyệt.",
+      "Cần điền: 1. Phạm vi truy cập bản thử; 2. Phạm vi đăng ký tài khoản; 3. Dữ liệu test hay dữ liệu thật và cách phân",
+      "biệt; 4. Cách xử lý link cũ và thông báo chuyển"
+    ]
+  },
+  {
+    "page": 50,
+    "chars": 890,
+    "first": [
+      "Bản để điền • Trang 50",
+      "BS 43 Ngày học và thống kê dùng múi giờ nào"
+    ],
+    "last": [
+      "cách hiển thị không tự đặt lại mốc hoàn thành hoặc nhân đôi lượt học.",
+      "Cần điền: 1. Múi giờ mặc định cho quản trị; 2. Múi giờ hiển thị cho người học; 3. Ngày bắt đầu tuần báo cáo; 4.",
+      "Cách muốn hiển thị hạn ôn khi đổi múi giờ"
+    ]
+  },
+  {
+    "page": 51,
+    "chars": 1879,
+    "first": [
+      "Bản để điền • Trang 51",
+      "N Tài khoản và quyền truy cập bổ sung"
+    ],
+    "last": [
+      "minh.",
+      "Cần điền: 1. Có cần liên kết nhiều phương thức không; 2. Cách xử lý hai tài khoản đã có dữ liệu; 3. Những dữ liệu",
+      "phải giữ khi hợp nhất; 4. Người dùng cần xác nhận điều gì"
+    ]
+  },
+  {
+    "page": 52,
+    "chars": 1876,
+    "first": [
+      "Bản để điền • Trang 52",
+      "BS 46 Tài khoản chưa xác minh được làm những gì"
+    ],
+    "last": [
+      "phạm vi thực tế trước phát hành.",
+      "Cần điền: 1. Nhóm tuổi/phạm vi người dùng dự kiến khi mở rộng; 2. Có trường lớp hoặc người giám hộ tham gia",
+      "không; 3. Người duyệt thông báo thu thập/xóa dữ liệu; 4. Điều kiện để mở đăng ký rộng hơn"
+    ]
+  },
+  {
+    "page": 53,
+    "chars": 1886,
+    "first": [
+      "Bản để điền • Trang 53",
+      "O Làm việc trong VS Code và kiến trúc API"
+    ],
+    "last": [
+      "hạn. Giữ yêu cầu duyệt trước push/deploy, đổi public, mua dịch vụ hoặc xóa dữ liệu; không bật lại auto￾approve.",
+      "Cần điền: 1. Bằng chứng bạn ưu tiên theo thứ tự; 2. Duyệt từng tính năng hay cả đợt; 3. Tiêu chí báo cáo ngắn",
+      "bắt buộc; 4. Cách đánh dấu đồng ý hoặc yêu cầu sửa"
+    ]
+  },
+  {
+    "page": 54,
+    "chars": 919,
+    "first": [
+      "Bản để điền • Trang 54",
+      "BS 50 API chỉ phục vụ Cờ Chill hay còn cho bên khác"
+    ],
+    "last": [
+      "framework do đội kỹ thuật đề xuất.",
+      "Cần điền: 1. Chỉ Cờ Chill hay có bên sử dụng khác; 2. Tên loại ứng dụng và mục đích nếu có; 3. Dữ liệu/thao tác",
+      "được phép; 4. Mốc thời gian cần tích hợp"
+    ]
+  },
+  {
+    "page": 55,
+    "chars": 2201,
+    "first": [
+      "Bản để điền • Trang 55",
+      "Bản đồ các màn hình cần đối chiếu"
+    ],
+    "last": [
+      "V5 08, V5 09, V5 10, V5 11, V5 13, V5 24, BS 03, BS 25,",
+      "BS 26",
+      "Về Cờ Chill"
+    ]
+  },
+  {
+    "page": 56,
+    "chars": 639,
+    "first": [
+      "Bản để điền • Trang 56",
+      "Màn hình hoặc trạng thái Câu chốt yêu cầu"
+    ],
+    "last": [
+      "V5 13, V5 19, V5 28, V5 38, V5 42, V5 43, V5 46, BS 25",
+      "Mỗi màn cần kiểm tra: trạng thái bình thường, chưa có dữ liệu, đang tải, lỗi, mất mạng, thiếu quyền,",
+      "thao tác thành công và dữ liệu chưa lưu. Mặc định: nói đúng tình trạng, có bước tiếp, giữ nháp khi phù"
+    ]
+  },
+  {
+    "page": 57,
+    "chars": 2229,
+    "first": [
+      "Bản để điền • Trang 57",
+      "Mẫu gửi ví dụ và tiêu chí nghiệm thu"
+    ],
+    "last": [
+      "phiên bản và dữ liệu thật phải đúng.",
+      "• Xuất/xóa và phục hồi được thử; dữ liệu test tách khỏi pilot; báo cáo không bịa người dùng hoặc hiệu",
+      "quả."
+    ]
+  },
+  {
+    "page": 58,
+    "chars": 2661,
+    "first": [
+      "Bản để điền • Trang 58",
+      "Các lựa chọn đã có để không phải trả lời lại"
+    ],
+    "last": [
+      "C10 Chọn ván",
+      "Có chọn màu quân, preset thời gian cộng giây như 10p+5s, 5p+3s, 3p+2s; chỉ một ván đang chạy. Ván",
+      "hết giờ tính thua dù người chơi rời trang."
+    ]
+  },
+  {
+    "page": 59,
+    "chars": 2963,
+    "first": [
+      "Bản để điền • Trang 59",
+      "C11 Tương tác bàn cờ"
+    ],
+    "last": [
+      "C21 Lời giải có căn cứ",
+      "Lời giải cụ thể theo thế, ngắn, có Chi tiết hơn. Bấm một câu làm bàn phát biến tương ứng, bấm lại trở",
+      "về; nêu chiến lược rồi các nước phục vụ cùng mục tiêu. Engine/độ sâu/điểm để trong chi tiết."
+    ]
+  },
+  {
+    "page": 60,
+    "chars": 2887,
+    "first": [
+      "Bản để điền • Trang 60",
+      "C22 Sai một phần và bất đồng"
+    ],
+    "last": [
+      "Tùy chọn chữ quân, tiếng, theme, chữ lớn dự kiến theo tài khoản; có mục Tài khoản trong Của tôi. Xuất",
+      "theo loại/khoảng ngày, biên bản không lộ đáp án chưa mở; xóa ván/lịch sử/toàn bộ dùng nút riêng và",
+      "nêu phạm vi."
+    ]
+  },
+  {
+    "page": 61,
+    "chars": 2744,
+    "first": [
+      "Bản để điền • Trang 61",
+      "C32 Mobile"
+    ],
+    "last": [
+      "Muốn cờ tướng tiêu chuẩn/thi đấu, tất cả bảy quân, chiếu hết/hết nước là thua bên hết nước. Nguồn",
+      "Ziga/Wikipedia do chủ sở hữu nêu là tham khảo, chưa thay bộ luật tổ chức có phiên bản. Tình huống",
+      "chưa chắc ghi Cần kiểm chứng thêm; chủ sở hữu chốt và giữ bằng chứng."
+    ]
+  },
+  {
+    "page": 62,
+    "chars": 2046,
+    "first": [
+      "Bản để điền • Trang 62",
+      "Nguồn đối chiếu và cách gửi lại"
+    ],
+    "last": [
+      "xuất chưa được đồng ý không được biến thành quyết định của bạn.",
+      "Xác nhận cuối: tôi đã điền các phần cần làm trong đợt tới và ghi rõ phần chưa chốt.",
+      "Người trả lời: ____________________ Ngày: ____________________"
+    ]
+  }
+]
