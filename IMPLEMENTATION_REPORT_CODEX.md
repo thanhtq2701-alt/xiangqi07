@@ -1,5 +1,31 @@
 # Báo cáo triển khai V6 — 26/10/2026
 
+## Chỉnh giao diện bàn chơi và phản ánh — 27/10/2026
+
+- Thêm style V6 có phạm vi cho trang chọn chế độ, khung bàn cờ/đồng hồ/biên
+  bản ván và form ba câu suy nghĩ trong `online-preview/v6.css`. Giữ nguyên
+  luồng chơi, luật, nội dung, reflection gate, account persistence và API.
+- Kiểm tra giao diện trong browser qua server local dùng SQLite thử riêng:
+  chơi với máy và màn phản ánh. Đã xem ở 1280x900 và 390x844; màn phản ánh
+  không tràn ngang (document width 375px ở viewport 390px). Không dùng dữ liệu
+  tài khoản thật. Đây là kiểm tra giao diện thủ công, không phải E2E toàn bộ.
+- Hệ thống tài khoản đã có trong source: SQLite `users`/`sessions`/`states`,
+  hash scrypt, session một user/phiên với thời hạn 7 ngày, state sync theo
+  revision và cache account tách theo user ID ở browser. Không thay đổi
+  backend vì chính sách multi-session, email recovery, backup/retention và
+  hành vi xóa dữ liệu cần chủ sản phẩm chốt.
+- Kiểm tra mới: 104 test Python đạt trong phần Python của runner; checker
+  fixture đạt. Full runner không hoàn tất do môi trường chỉ có Node.js 6.14.0
+  (không hỗ trợ cú pháp hiện dùng trong dự án); xem TEST_REPORT_CODEX.md.
+
+## Bổ sung sau khi đối chiếu C/E — 26/10/2026
+
+- Tại C, giữ kết nối SQLite `db=db` để xóa dữ liệu phòng và tài khoản trong cùng transaction; thêm helper `delete_identity_in_db` cho tác vụ dọn tài khoản cũ, kiểm tra kiểu dữ liệu preset/lời nhắn/đối tượng mời rời và không cho người chơi rời ghế khi ván đang tạm dừng.
+- Thêm regression tests cho payload dạng array/object, rời phòng paused, lỗi HTTP không thành TypeError và rollback nếu xóa tài khoản lỗi sau khi đã dọn dữ liệu phòng.
+- Giữ bộ 12 fixture của C vì checker hiện tại xác nhận 12 thế synthetic và toàn bộ nước hợp lệ; không nhập 12 fixture chỉ có ở E khi chưa có nguồn và kiểm chứng tương ứng.
+- `python tools/run_checks.py` trên C: 104 bài Python, fixture/parity, cú pháp toàn bộ JavaScript và các bộ test JavaScript đều đạt. Môi trường kiểm tra: Python 3.14.2, Node.js 22.23.4. Lần chạy đầu gặp một lỗi timeout nhạy thời gian trong test Pikafish; test đó đạt khi chạy riêng và toàn bộ lượt chạy lại đạt.
+- Không cập nhật mã ở E. Trạng thái Git ban đầu tại C được ghi lại trước khi tạo nhánh; các thay đổi đang dở vẫn còn nguyên và chưa được commit. Xem [TEST_REPORT_CODEX.md](TEST_REPORT_CODEX.md).
+
 ## Kết quả thực tế
 
 Gói source tiếp tục từ repository V5 và ZIP chủ sản phẩm gửi ngày24/10.
@@ -56,7 +82,9 @@ Một worker nhiều thread cho pilot; không tự mở rộng đa process.
 
 Manifest trong ZIP là danh sách chính xác từng file/byte/hash. Không có DB,
 log,secret,.git,node_modules,tài liệu trả lời cá nhân hoặc ZIP cũ lồng bên trong.
-Repository gốc vẫn giữ tài liệu lịch sử và prototype legacy, không xóa chúng.
+Tài liệu V3–V5 đã được tinh gọn trong `V6_PREVIOUS.md`; Final Pack gốc trong
+`docs/spec/` và `docs/materials/` được giữ nguyên. Dữ liệu local trong `var/`
+không bị đụng tới. Runtime legacy vẫn tách riêng và không phải entry point V6.
 
 ## Kiểm thử và lệnh
 

@@ -1,0 +1,585 @@
+CỜ CHILL — BÀN GIAO HIỆN TRẠNG, ĐỀ XUẤT VÀ PHIẾU CÂU HỎI
+Ngày lập: 27/10/2026 (UTC+7)
+
+MAIN_C — nơi phát triển:
+C:\Users\thanh\OneDrive\Documents\GitHub\xiangqi07
+
+REFERENCE_E — thư mục tham khảo, chỉ đọc:
+E:\ThanhTQ\App cờ tướng\xiangqi-ai
+
+Trạng thái tài liệu: Bản tổng hợp để tiếp tục phát triển; không phải chứng
+nhận sản phẩm hoàn tất hoặc sẵn sàng production.
+
+======================================================================
+1. MỤC ĐÍCH VÀ CÁCH DÙNG
+======================================================================
+
+Tài liệu này gom bối cảnh dự án, cấu trúc hiện tại theo báo cáo, các giới
+hạn đã biết, đề xuất các bước tiếp theo và những câu hỏi cần chủ sản phẩm
+trả lời về:
+- Tài khoản và cách lưu/truy cập dữ liệu người dùng.
+- Nguồn bài khai cuộc, trung cuộc, tàn cuộc và phân loại theo level.
+- Giao diện chơi hiện tại và giao diện câu hỏi/bài học.
+
+Hãy điền các mục 7-9 rồi gửi lại để chốt yêu cầu. Có thể ghi “chưa quyết
+định”; không cần đoán để điền đủ. Trả lời phiếu không tự động cho phép sửa
+chính sách dữ liệu, gửi email, dùng dịch vụ trả phí, commit/push, deploy,
+đổi DNS hoặc chuyển dữ liệu thật.
+
+An toàn: không ghi mật khẩu, OTP/TOTP, cookie, token, API key, SSH key,
+database, backup có dữ liệu người học hoặc thông tin thanh toán vào tài liệu
+này hay gửi trong chat.
+
+======================================================================
+2. BẢN CHÍNH VÀ TRẠNG THÁI LÀM VIỆC
+======================================================================
+
+MAIN_C là nơi phát triển tiếp. REFERENCE_E chỉ dùng để tra cứu; không sửa,
+xóa, giải quyết Git hoặc ghi kết quả vào E trong phạm vi tài liệu này.
+
+Branch MAIN_C được kiểm tra khi lập file:
+merge/e-reference-reconcile-2026-10-26
+
+Git status trong MAIN_C có nhiều thay đổi chưa commit, gồm sửa/xóa file và
+các file chưa track. Đây là công việc đã có trước khi tạo tài liệu này;
+không được hoàn tác hoặc ghi đè. Trước khi sửa source, hãy kiểm tra lại
+`git status` và diff, xác định chính xác thay đổi nào là của ai.
+
+Trong lượt này chỉ tạo tài liệu bàn giao tại `deliverables/`. Không sửa mã
+nguồn, không chạy lại test, không tạo commit, không push, không deploy và
+không thay DNS hay dữ liệu người dùng.
+
+======================================================================
+3. TRẠNG THÁI SẢN PHẨM ĐƯỢC GHI NHẬN
+======================================================================
+
+Mục tiêu học tập:
+Chơi/nạp ván → chọn điểm đáng học → tự suy nghĩ → giải thích có căn cứ →
+thử lại → bài liên quan → ôn có lịch → theo dõi tiến độ.
+
+Kiến trúc theo README hiện tại:
+- Frontend HTML/CSS/JavaScript thuần trong `online-preview/`; không có
+  bundler hoặc npm build riêng.
+- `co_chill_server.py` là entry point hiện hành; Python WSGI + SQLite phục
+  vụ API và giao diện. `server.py` là legacy.
+- Luật phía server ở `app/rules.py`, phía trình duyệt ở
+  `online-preview/xiangqi.js`; có công cụ kiểm tra parity.
+- Adapter Pikafish dùng UCI khi người vận hành cấu hình engine. Pack không
+  chứa binary/NNUE; mock UCI test không chứng minh engine thật chạy trên GCP.
+- Dữ liệu SQLite được tạo trong `var/`; copy source không chuyển tài khoản.
+  Node.js cần cho JavaScript tests, không cần để chạy ứng dụng thông thường.
+
+Các khu vực code chính:
+- `co_chill_server.py`: entry point HTTP/API và phục vụ frontend.
+- `app/cloud_store.py`, `online-preview/cloud-client.js`: tài khoản, session,
+  đồng bộ và xử lý revision/conflict.
+- `app/online_rooms.py`, `online-preview/online-play.js`: phòng PvP và giao
+  diện chơi online.
+- `app/engine.py`, `app/pikafish.py`, `online-preview/engine-client.js`:
+  engine, adapter và ranh giới fallback.
+- `app/content_store.py`, `app/puzzles.py`, `online-preview/fixtures.js`:
+  nội dung/bài theo implementation.
+- `online-preview/index.html`: cấu trúc trang và thứ tự nạp script.
+- `online-preview/style.css`, `v5.css`, `v6.css`: các lớp giao diện; cần
+  kiểm tra cascade trước khi thêm hoặc ghi đè CSS.
+- `online-preview/app.js`: luồng giao diện/ứng dụng chính.
+- `online-preview/learning.js`, `experience.js`, `curriculum.js`,
+  `line-practice.js`, `v6-learning-ui.js`: học, tiến độ, chương và bài nhiều
+  lượt.
+- `online-preview/v5-ui.js`, `v6-ui.js`: tài khoản/quản trị và presentation.
+- `tests/`, `tools/test_*.cjs`, `tools/run_checks.py`: test Python,
+  JavaScript, fixture và parity.
+
+Những tính năng được README/báo cáo mô tả là đã có (cần kiểm lại code trước
+khi mở rộng):
+- Giao diện tiếng Việt, chọn tài khoản/khách, ba theme; một phần chuỗi giao
+  diện tiếng Anh.
+- Máy cơ bản, hai người cùng máy, nhập/phát lại ký phổ.
+- Luồng học có suy nghĩ trước lời giải, thử lại, lưu nháp, bài liên quan,
+  ôn tập và ghi nhận tiến độ.
+- Hành trình được mô tả gồm 3 khóa/7 chương, 12 bài cơ bản, 8 bài hướng dẫn
+  và 2 bài nhiều lượt. Hai bài nhiều lượt cùng họ chiến thuật; chưa đại diện
+  cho một kho trung cấp/nâng cao đã bao phủ đầy đủ.
+- Tài khoản username/password, scrypt, cookie, CSRF, quyền, TOTP owner và
+  đồng bộ có phát hiện xung đột được ghi trong báo cáo.
+- Rà code hiện tại cho thấy SQLite có bảng `users`, `sessions`, `states`;
+  session tài khoản có hạn 7 ngày và mỗi user tối đa một session server đang
+  hoạt động. Tiến độ account được lưu ở server theo revision, đồng thời có
+  cache/nháp riêng trong localStorage theo ID tài khoản. Khách học vẫn lưu
+  trong trình duyệt; khách PvP là danh tính phiên phòng riêng. Chưa có email
+  xác minh hoặc tự khôi phục mật khẩu. Đây là mô tả code đọc được, không phải
+  kiểm toán bảo mật hoặc kiểm chứng backup production.
+- PvP có phòng và trạng thái server, ready, hòa, xin thua/đi lại, tái đấu và
+  một số luồng khách/khán giả; chưa phải ranked.
+- `requireStrong` được mô tả là từ chối fallback trong chế độ cần engine mạnh.
+- Có công cụ đóng gói source theo allowlist, manifest/hash và hướng dẫn chạy.
+
+Các nguyên tắc không được làm mất:
+- Luật quyết định nước hợp lệ; engine tạo bằng chứng phân tích; lớp giải
+  thích chỉ diễn đạt bằng chứng, không tự bịa nước/PV/FEN/điểm.
+- Không mở lời giải trước reflection. Không hiện coaching/engine trong ván live.
+- Ghi nhãn trung thực cho heuristic, fixture synthetic, template và fallback.
+  Không tự nhận đã có LLM/ML, Elo chuẩn, engine thật hoặc hiệu quả giáo dục
+  nếu chưa có bằng chứng tương ứng.
+- Không scrape sách/website. Xác minh nguồn, quyền sử dụng và quyền phân phối.
+- Không gửi dữ liệu người học cho provider AI hoặc training mặc định.
+- Không dùng branch mới như một bản sao lưu của thay đổi chưa commit.
+
+======================================================================
+4. KIỂM THỬ VÀ GIỚI HẠN — PHÂN BIỆT BÁO CÁO CŨ VỚI KIỂM TRA MỚI
+======================================================================
+
+README.md và TEST_REPORT_CODEX.md trong MAIN_C ghi nhận một lượt xác minh
+local ngày 26/10/2026. Báo cáo nêu Python 3.14.2, Node.js 22.23.4,
+`python tools/run_checks.py`, 104 test Python cùng các bước JavaScript,
+fixture và parity đạt. TEST_REPORT_CODEX.md cũng mô tả một số kiểm thử
+browser headless cho học/PvP.
+
+Đây là thông tin đọc từ tài liệu dự án, không phải kết quả chạy lại trong
+ngày 27/10/2026. Không cộng số liệu từ nhiều lượt thành một lượt duy nhất
+nếu báo cáo không nói như vậy. Trước milestone phát hành, chạy checks trên
+đúng source/commit và ghi lệnh, môi trường, kết quả, phạm vi và giới hạn.
+
+Chưa được xác nhận bởi các báo cáo hiện có:
+- Pikafish/NNUE thật trên máy chủ Google Cloud của chủ sản phẩm.
+- Production HTTPS/DNS, backup/restore thực tế, tải thật hoặc khả năng
+  vận hành liên tục.
+- Thử nghiệm người học, hai thiết bị qua hai mạng Internet thật, audit bảo
+  mật, chứng nhận luật giải đấu hoặc hiệu quả giáo dục.
+- Toàn bộ hành trình trên các thiết bị/trình duyệt và khả năng tiếp cận.
+
+Không bỏ test, giảm assertion hoặc nuốt lỗi để làm runner xanh. Nếu test
+chưa chạy, ghi rõ “chưa chạy” và lý do. Unit/browser/manual/production test
+là các loại bằng chứng khác nhau.
+
+======================================================================
+5. ĐỀ XUẤT THAY ĐỔI THEO GIAI ĐOẠN
+======================================================================
+
+Đây là đề xuất để chủ sản phẩm lựa chọn, không phải quyết định sản phẩm đã
+được chốt.
+
+GIAI ĐOẠN 0 — GIỮ BẢN HIỆN TẠI VÀ CHỐT PHẠM VI
+- Kiểm tra branch/status/diff và bảo toàn thay đổi chưa commit.
+- Chủ sản phẩm trả lời các mục 7-9.
+- Chốt một milestone nhỏ, file/luồng bị ảnh hưởng, tiêu chí nghiệm thu và
+  cách quay lại trước khi sửa.
+
+GIAI ĐOẠN 1 — TÀI KHOẢN VÀ LƯU TRỮ USER
+- Rà luồng đăng ký/đăng nhập/khách/logout/session, quyền server, schema,
+  localStorage, guest-to-account, export/delete và transaction.
+- Vẽ rõ dữ liệu nào nằm ở browser, dữ liệu nào nằm trong SQLite/server và
+  dữ liệu nào được đồng bộ giữa thiết bị.
+- Đề xuất trước khi đổi schema/database, chính sách một hay nhiều session,
+  xóa dữ liệu, retention hoặc backup.
+- Nếu chưa có lựa chọn khác, có thể giữ SQLite cho pilot trên persistent
+  storage riêng; đây là phương án đề xuất, không phải quyết định triển khai.
+- Chưa cần OAuth/email/dịch vụ trả phí để hoàn thiện prototype. Không triển
+  khai recovery qua email trước khi duyệt nhà cung cấp, chi phí và chính sách.
+
+GIAI ĐOẠN 2 — NGUỒN VÀ KHO BÀI THEO LEVEL
+- Chốt taxonomy: khai cuộc/trung cuộc/tàn cuộc, kỹ năng, level người học và
+  độ khó bài. Không gộp “level người học” với “độ khó bài”.
+- Mục tiêu độ khó đã ghi trong handoff V6 là cơ bản 1-2, trung cấp 3-4,
+  nâng cao 6-7 quyết định của người học; cần thống nhất cách đếm trước khi
+  gán nhãn. Một nước mỗi bên là hai ply, không phải hai quyết định của người học.
+- Mỗi bài cần ID/version, mục tiêu, FEN hợp lệ, bên đi, cây đáp án/phòng thủ,
+  tiêu chí chấm, bằng chứng engine nếu có, nguồn/quyền và người duyệt.
+- Chỉ đưa nội dung vào sản phẩm khi quyền sử dụng đã rõ. Có thể bắt đầu bằng
+  bài tự tạo và đánh dấu synthetic.
+- Không nhân bản, đổi tên hoặc xoay thế cờ để tạo số lượng/coverage giả.
+
+GIAI ĐOẠN 3 — GIAO DIỆN CHƠI VÀ CÂU HỎI
+- Xác định màn ưu tiên: chơi với máy, hai người cùng máy, PvP, nhập/replay,
+  hay UI bài học/câu hỏi.
+- Làm rõ hierarchy, spacing, typography có dấu tiếng Việt, bàn cờ, lịch sử
+  nước, đồng hồ/trạng thái và thao tác trên mobile.
+- Với câu hỏi học: câu chữ ngắn, mục tiêu rõ, từng bước dễ hiểu; giữ reflection
+  gate, không lộ đáp án qua toast/tooltip/preview.
+- Giữ live-game guards, không hiện coaching/engine trong ván. Không đổi luật
+  hoặc API nếu chỉ cần polish giao diện.
+- Kiểm tra bàn phím, focus, contrast, zoom, kích thước chạm và trạng thái lỗi/
+  đang chờ. Không chỉ dùng màu để thể hiện đúng/sai hoặc bên đi.
+
+GIAI ĐOẠN 4 — KIỂM CHỨNG VÀ BÀN GIAO
+- Chạy checks liên quan và runner hiện hành trên đúng source vừa sửa.
+- Thử luồng người dùng bị ảnh hưởng trên desktop/mobile; dùng dữ liệu thử riêng.
+- Cập nhật README.md, IMPLEMENTATION_REPORT_CODEX.md, TEST_REPORT_CODEX.md,
+  KNOWN_LIMITATIONS.md và AI_USAGE.md khi milestone thay đổi implementation.
+- Chỉ tạo pack mới khi được yêu cầu; kiểm tra sau khi giải nén.
+- Commit, push, deploy, DNS, chi phí và DB thật luôn là các bước riêng cần
+  phê duyệt cụ thể.
+
+======================================================================
+6. CÂU TRẢ LỜI / GHI CHÚ CHUNG CỦA CHỦ SẢN PHẨM
+======================================================================
+
+Điều quan trọng nhất muốn ưu tiên trong lần tiếp theo:
+________________________________________________________________________
+________________________________________________________________________
+
+Điều cần giữ nguyên:
+________________________________________________________________________
+________________________________________________________________________
+
+Điều chưa quyết định hoặc muốn được đề xuất thêm:
+________________________________________________________________________
+________________________________________________________________________
+
+======================================================================
+7. PHIẾU CÂU HỎI — TÀI KHOẢN VÀ LƯU TRỮ USER
+======================================================================
+
+7.1 Người dùng và quy mô
+
+Đối tượng cho giai đoạn kế tiếp:
+[ ] Chỉ mình tôi   [ ] Nhóm thử nghiệm nhỏ   [ ] Mở đăng ký công khai
+[ ] Khác: ______________________________________________________________
+
+Số tài khoản dự kiến trong 3 tháng đầu: _________________________________
+Người dùng có thể là trẻ em/chưa thành niên không?
+[ ] Có   [ ] Không   [ ] Chưa rõ
+Có yêu cầu riêng về đồng ý của phụ huynh hoặc dữ liệu cần tránh thu thập?
+________________________________________________________________________
+
+7.2 Đăng ký và đăng nhập
+
+Đăng ký username/password, hash scrypt, đồng bộ SQLite, guest cục bộ và
+chính sách một session đã tồn tại trong source hiện tại. Phần cần quyết định
+là các thay đổi bổ sung bên dưới; không cần yêu cầu tạo lại hệ thống từ đầu.
+
+Thông tin cần khi đăng ký (chỉ chọn thông tin thật sự cần):
+[ ] Tên đăng nhập   [ ] Email   [ ] Tên hiển thị   [ ] Khác: ____________
+
+Email dùng cho mục đích nào?
+[ ] Đăng nhập   [ ] Khôi phục mật khẩu   [ ] Thông báo tự chọn (opt-in)
+[ ] Không thu thập email   [ ] Chưa quyết định
+
+Khách có cần học và lưu tiến độ trên cùng trình duyệt không?
+[ ] Có, chỉ lưu cục bộ trên browser
+[ ] Có, cần chuyển tiến độ khách thành tài khoản
+[ ] Không, khách chỉ chơi thử
+[ ] Chưa quyết định
+
+OAuth/mạng xã hội:
+[ ] Chưa cần trong pilot   [ ] Để sau pilot
+[ ] Cần trong đợt này — nhà cung cấp/lý do: ____________________________
+
+Chính sách một phiên tài khoản đang được mô tả trong V6 có phù hợp không?
+[ ] Giữ một phiên; đăng nhập mới thu hồi phiên cũ
+[ ] Cho phép nhiều phiên/thiết bị
+[ ] Khác: ______________________________________________________________
+Lưu ý hiện tại: thời hạn session server 7 ngày; thay đổi chính sách này cần
+đánh giá bảo mật, UX và test riêng.
+
+7.3 Dữ liệu user và quyền riêng tư
+
+Nhóm dữ liệu cần đồng bộ giữa thiết bị:
+[ ] Hồ sơ/cài đặt   [ ] Tiến độ bài học   [ ] Bản nháp đang học
+[ ] Lịch ôn   [ ] Ván/PGN   [ ] Thống kê
+[ ] Lịch sử PvP   [ ] Khác: ____________________________________________
+
+Dữ liệu nào chỉ cần lưu trong browser? _________________________________
+________________________________________________________________________
+
+Có cần cho phép user xuất dữ liệu không?
+[ ] JSON   [ ] CSV   [ ] PGN/ký phổ   [ ] Chưa cần
+Ghi chú về dữ liệu cần xuất: ___________________________________________
+
+Khi xóa tài khoản, mong muốn:
+[ ] Xóa dữ liệu riêng của tài khoản
+[ ] Ẩn danh tên/định danh nhưng giữ biên bản ván chung
+[ ] Xóa cả biên bản ván chung nếu có thể
+[ ] Hỏi xác nhận và giải thích ảnh hưởng trước khi xóa
+[ ] Khác/chưa biết: ____________________________________________________
+
+Thời hạn lưu mong muốn cho phòng, biên bản ván, chat mẫu, log và backup:
+________________________________________________________________________
+
+Có dữ liệu nào tuyệt đối không thu thập/lưu không? _____________________
+________________________________________________________________________
+
+7.4 Lưu trữ, backup và khôi phục
+
+Môi trường dự kiến cho pilot:
+[ ] Local trên máy tôi   [ ] Server riêng   [ ] Google Cloud
+[ ] Chưa quyết định   [ ] Khác: ________________________________________
+
+Ai sở hữu/quản lý database và ổ lưu trữ persistent? ____________________
+
+Có chấp nhận SQLite trên persistent storage riêng cho pilot không?
+[ ] Có   [ ] Không   [ ] Cần so sánh lựa chọn trước
+
+Tần suất backup mong muốn: _____________________________________________
+Thời gian giữ backup: __________________________________________________
+Ai được quyền truy cập/khôi phục backup? _______________________________
+Có cần diễn tập restore trước pilot không? [ ] Có [ ] Không [ ] Chưa rõ
+
+Email tự khôi phục mật khẩu:
+[ ] Chưa cần trong pilot
+[ ] Đề xuất trước, chưa triển khai
+[ ] Cần sau khi duyệt provider, chi phí và chính sách
+
+======================================================================
+8. PHIẾU CÂU HỎI — TÀI LIỆU VÀ KHO BÀI THEO LEVEL
+======================================================================
+
+8.1 Cách tổ chức
+
+Bạn muốn khai cuộc/trung cuộc/tàn cuộc được trình bày như:
+[ ] Ba khóa riêng   [ ] Một thư viện có bộ lọc
+[ ] Cả hai cách xem   [ ] Khác: ________________________________________
+
+“Level” nên chỉ điều gì?
+[ ] Trình độ người học
+[ ] Độ khó của bài
+[ ] Cả hai, nhưng hiển thị riêng
+[ ] Chương/tiến trình đã hoàn thành
+[ ] Khác: ______________________________________________________________
+
+Tên level mong muốn (ví dụ: Mới bắt đầu / Cơ bản / Trung cấp / Nâng cao):
+________________________________________________________________________
+
+Người học được tự chọn bài hay phải mở khóa tuần tự?
+[ ] Tự chọn, có gợi ý
+[ ] Tuần tự theo điều kiện rõ ràng
+[ ] Có thể bỏ qua chương
+[ ] Khác: ______________________________________________________________
+
+Nếu có điều kiện mở khóa, quy tắc mong muốn là gì? _____________________
+________________________________________________________________________
+
+Cách xác định độ khó:
+[ ] Số quyết định người học cần đưa ra
+[ ] Số nhánh/phòng thủ cần tính
+[ ] Chủ đề và mức độ tinh tế của tình huống
+[ ] Đề xuất khác: ______________________________________________________
+
+Đồng ý rằng một nước người học chọn là một quyết định; một nước mỗi bên là
+hai ply? [ ] Có  [ ] Không  Ghi chú: _________________________________
+
+8.2 Phiếu cho từng nguồn tài liệu
+
+Hãy sao chép phần này cho mỗi quyển sách, bài viết, cơ sở dữ liệu hoặc bộ ván.
+
+Tên tài liệu/nguồn: ____________________________________________________
+Tác giả/nhóm/chủ sở hữu: _______________________________________________
+Năm/phiên bản/ấn bản (nếu biết): ______________________________________
+URL/ISBN/mã thư viện/vị trí tham khảo (không cần gửi file): ______________
+________________________________________________________________________
+Ngôn ngữ và phạm vi nội dung: __________________________________________
+Nội dung chính:
+[ ] Khai cuộc   [ ] Trung cuộc   [ ] Tàn cuộc   [ ] Luật/kỹ thuật
+[ ] Khác: ______________________________________________________________
+
+Quyền sử dụng đã được xác minh?
+[ ] Tài liệu do tôi tạo
+[ ] Public domain đã xác minh
+[ ] Có giấy phép/văn bản đồng ý
+[ ] Chỉ dùng để tham khảo, không sao chép/phát hành
+[ ] Chưa rõ — chưa đưa nội dung vào sản phẩm
+
+Được phép trích dẫn, chuyển thành bài, dùng FEN/hình ảnh hoặc phân phối ở
+phạm vi nào? ___________________________________________________________
+________________________________________________________________________
+
+Người/nguồn cần ghi công: ______________________________________________
+Có giới hạn nào với việc đưa tài liệu vào công cụ AI không? Mặc định không
+gửi tài liệu/dữ liệu nếu chưa có quyền và chấp thuận cụ thể.
+________________________________________________________________________
+
+8.3 Phiếu cho từng bài học muốn bổ sung
+
+Tên/ID tạm: ____________________________________________________________
+Giai đoạn: [ ] Khai cuộc [ ] Trung cuộc [ ] Tàn cuộc [ ] Khác: _________
+Chủ đề/kỹ năng: ________________________________________________________
+Level người học: ___________________ Độ khó bài: ______________________
+Mục tiêu học (một câu): ________________________________________________
+Nguồn và vị trí cụ thể (trang/chương/ván): _____________________________
+Quyền sử dụng tình huống/hình ảnh đã rõ? [ ] Có [ ] Không [ ] Cần xác minh
+
+FEN/ký phổ do ai cung cấp và có quyền sử dụng không? ____________________
+Ai sẽ kiểm tra tính đúng chuyên môn? ___________________________________
+Có cần cây đáp án/phòng thủ và nhánh “chưa kiểm chứng” không?
+[ ] Có   [ ] Cần đề xuất
+Ghi chú: _______________________________________________________________
+
+Số bài mong muốn cho đợt đầu:
+Khai cuộc: ______  Trung cuộc: ______  Tàn cuộc: ______
+Đây là mục tiêu:
+[ ] Thử nghiệm giao diện và quy trình nhập bài
+[ ] Pilot nội dung
+[ ] Mục tiêu dài hạn, chưa cần đạt ngay
+
+======================================================================
+9. PHIẾU CÂU HỎI — GIAO DIỆN CHƠI VÀ CÂU HỎI HỌC
+======================================================================
+
+9.1 Màn hình ưu tiên
+
+Chọn tối đa hai ưu tiên:
+[ ] Chơi với máy
+[ ] Hai người cùng máy
+[ ] Phòng PvP online
+[ ] Nhập/phát lại ván
+[ ] Bài học/câu hỏi
+[ ] Hành trình/thư viện bài
+[ ] Khác: ______________________________________________________________
+
+Khi nói “giao diện chơi hiện tại”, bạn muốn sửa màn hình nào cụ thể?
+________________________________________________________________________
+
+Người chơi cần làm việc gì dễ hơn trên màn đó? _________________________
+________________________________________________________________________
+
+Thiết bị ưu tiên:
+[ ] Điện thoại   [ ] Máy tính   [ ] Cả hai
+Kích thước/độ rộng màn hình thường dùng (nếu biết): _____________________
+
+9.2 Bố cục và phong cách
+
+Có ảnh tham khảo/mockup/link được phép chia sẻ không? __________________
+________________________________________________________________________
+
+Mức thay đổi mong muốn:
+[ ] Chỉnh đẹp/spacing nhẹ, giữ bố cục hiện tại
+[ ] Sắp xếp lại nhưng giữ nhận diện thương hiệu
+[ ] Đưa 2 phương án để tôi chọn trước khi làm
+
+Yếu tố cần giữ nguyên (logo, cover, màu, font, thanh điều hướng):
+________________________________________________________________________
+
+Màu/theme muốn ưu tiên: ________________________________________________
+Có cần giữ ba theme hiện tại không? [ ] Có [ ] Không [ ] Chưa rõ
+
+Khi chơi hai người cùng máy, có muốn bàn cờ tự lật theo bên đi không?
+[ ] Có   [ ] Không, giữ nút lật thủ công   [ ] Muốn xem minh họa trước
+
+9.3 Thông tin và thao tác trên bàn chơi
+
+Thông tin cần luôn nhìn thấy:
+[ ] Bên đang đi   [ ] Đồng hồ   [ ] Tên/loại đối thủ
+[ ] Lịch sử nước   [ ] Hòa/đầu hàng   [ ] Xin đi lại
+[ ] Ký phổ   [ ] Khác: __________________________________________________
+
+Trên màn hình nhỏ, ưu tiên:
+[ ] Bàn cờ lớn nhất
+[ ] Nút điều khiển dễ chạm
+[ ] Lịch sử nước luôn hiện
+[ ] Có thể mở/đóng panel
+[ ] Khác: ______________________________________________________________
+
+Thông tin/hành động nào không nên hiện trong ván live? _________________
+Xác nhận: không hiện coaching, lời giải hoặc phân tích engine trong ván live.
+[ ] Đồng ý
+
+9.4 Câu hỏi và bài học
+
+Cách trình bày câu hỏi:
+[ ] Một câu mỗi bước, nút thao tác rõ
+[ ] Hiện mục tiêu và ba câu suy nghĩ ban đầu
+[ ] Khác: ______________________________________________________________
+
+Người học trả lời bằng:
+[ ] Ý tưởng bằng chữ
+[ ] Chọn nước trên bàn cờ
+[ ] Cả hai
+[ ] Khác: ______________________________________________________________
+
+Cần lời nhắc/phản hồi nào? _____________________________________________
+________________________________________________________________________
+
+Có cần vẽ mũi tên/đánh dấu trên bàn cờ không?
+[ ] Có   [ ] Chưa cần   [ ] Để sau khi luồng cơ bản ổn định
+
+Xác nhận: không lộ lời giải trước khi người học ghi nhận suy nghĩ/nước ứng
+viên theo reflection gate hiện tại. [ ] Đồng ý
+
+9.5 Trợ năng và ngôn ngữ
+
+Cần hỗ trợ bàn phím đầy đủ? [ ] Có [ ] Không [ ] Cần đề xuất
+Cần cỡ chữ/zoom/contrast đặc biệt? _____________________________________
+Ngôn ngữ UI:
+[ ] Tiếng Việt trước, hoàn thiện EN sau
+[ ] Cần thêm EN trong đợt này
+[ ] Khác: ______________________________________________________________
+
+======================================================================
+10. TIÊU CHÍ NGHIỆM THU ĐỀ XUẤT
+======================================================================
+
+Tài khoản/lưu trữ:
+- Đăng ký, đăng nhập, logout và session theo chính sách đã chốt.
+- Tài khoản A không đọc/ghi dữ liệu B; khách không bị coi nhầm là tài khoản
+  server.
+- Reload và thiết bị khác giữ dữ liệu theo phạm vi đã chốt.
+- Lỗi sync/conflict hiển thị rõ, không báo lưu thành công giả.
+- Export/delete và backup/restore thử bằng dữ liệu thử, không dùng DB thật.
+- Không đưa credential/dữ liệu riêng vào log, báo cáo, pack hoặc Git.
+
+Kho bài:
+- Lọc theo giai đoạn, level và kỹ năng theo taxonomy đã duyệt.
+- Bài có ID/version, mục tiêu, FEN, tiêu chí chấm, provenance và quyền sử dụng.
+- Nhánh ngoài cây chưa kiểm chứng không bị kết luận sai tự động.
+- Giữ reflection gate; xem bài không tự thành completion/mastery.
+
+Giao diện:
+- Thử màn ưu tiên trên desktop và điện thoại, zoom và focus bàn phím.
+- Bên đi/đồng hồ/trạng thái/lỗi/đang chờ dễ nhận ra; không phụ thuộc màu sắc.
+- Câu hỏi và thao tác dễ hiểu; đáp án không lộ trước gate.
+- Không có coaching/engine trong ván live, kể cả phản hồi trả muộn.
+- Không có lỗi JavaScript hoặc regression trong các test liên quan.
+
+======================================================================
+11. PHẠM VI CHO LƯỢT PHÁT TRIỂN TIẾP THEO
+======================================================================
+
+Sau khi điền phiếu, đánh dấu phạm vi:
+[ ] Chỉ tổng hợp yêu cầu và đề xuất, chưa sửa mã
+[ ] Rà luồng hiện tại, báo file/điểm cần đổi trước khi sửa
+[ ] Cho xem mockup/bố cục trước thay đổi giao diện lớn
+[ ] Được polish UI theo câu trả lời ở mục 9
+[ ] Được triển khai tài khoản/lưu trữ theo chính sách mục 7
+[ ] Được thêm taxonomy/nội dung; không dùng nguồn chưa rõ quyền
+[ ] Khác: ______________________________________________________________
+
+Các việc luôn cần phê duyệt riêng: thay đổi chính sách xóa/chuyển dữ liệu;
+tạo dịch vụ trả phí; gửi email; commit/push; deploy; thay DNS; truy cập hoặc
+chuyển DB thật; công khai nội dung/tài liệu có bản quyền.
+
+Quyết định cần chủ sản phẩm chốt trước khi bắt đầu:
+________________________________________________________________________
+________________________________________________________________________
+
+======================================================================
+12. LỜI NHẮN CHO COPILOT/CLAUDE Ở LƯỢT TIẾP THEO
+======================================================================
+
+Đọc tài liệu này cùng README.md, docs/V6_DECISIONS.md,
+docs/CLAUDE_HANDOFF_V6.md, KNOWN_LIMITATIONS.md, TEST_REPORT_CODEX.md và
+IMPLEMENTATION_REPORT_CODEX.md tại MAIN_C. Kiểm tra git status/diff trước khi
+sửa; bảo toàn mọi thay đổi đang dở và không sửa REFERENCE_E.
+
+Xác nhận phạm vi ở mục 11. Hỏi lại chỉ khi còn quyết định ảnh hưởng hành vi,
+dữ liệu, quyền, chi phí hoặc nội dung bản quyền chưa được trả lời. Không coi
+báo cáo ngày 26/10 là kết quả kiểm thử mới. Đọc code và caller/test liên quan
+trước khi sửa. Làm từng milestone nhỏ, giữ luật/engine truth, reflection gate,
+account isolation và live-game guard. Kiểm thử đúng bản vừa sửa, ghi kết quả
+thật và cập nhật tài liệu liên quan.
+
+Không commit, push, deploy, đổi DNS, gửi email hoặc phát sinh chi phí nếu
+chưa được chủ sản phẩm phê duyệt riêng.
+
+BÁO CÁO KẾT THÚC MỖI MILESTONE
+------------------------------
+Mục tiêu và phạm vi:
+Branch/commit, thay đổi chưa commit:
+Đã đổi gì, file nào, ảnh hưởng người chơi:
+Lệnh/checks chạy trên bản nào và kết quả:
+Thử trình duyệt/thủ công và kết quả:
+Phần chưa làm/chưa kiểm chứng/giới hạn:
+Quyết định cần chủ sản phẩm duyệt (nếu có):
+Trạng thái local / commit / push / deploy:
+Phương án quay lại:
+
+HẾT TÀI LIỆU

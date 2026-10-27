@@ -1,0 +1,162 @@
+PHIẾU THÔNG TIN CHUẨN BỊ TRIỂN KHAI COCHILL.VN — V6
+Ngày lập: 26/10/2026
+
+MỤC ĐÍCH
+--------
+Điền các thông tin không bí mật để đánh giá và chuẩn bị đưa source V6 lên
+Google Cloud. Gửi lại file này sau khi điền. Việc điền phiếu không đồng nghĩa
+với việc đã truy cập máy, thay DNS, deploy hoặc mở website công khai.
+
+AN TOÀN — ĐỌC TRƯỚC KHI ĐIỀN
+----------------------------
+KHÔNG ghi hoặc gửi trong file này:
+- Mật khẩu, mã OTP/TOTP, cookie, token, API key, private SSH key.
+- File service-account JSON, recovery codes, mã backup tài khoản.
+- Nội dung database, backup có dữ liệu người học, hoặc thông tin thanh toán.
+
+Chỉ ghi tên/danh tính tài nguyên và trạng thái. Nếu cần truy cập, bạn sẽ tự
+đăng nhập và thao tác trong Google Cloud/nhân viên sẽ hướng dẫn qua kênh an
+toàn được phê duyệt; không dán credential vào chat. Ảnh chụp màn hình cần che
+email cá nhân, mã tài khoản, token, thông tin thanh toán và dữ liệu người dùng.
+
+1. MỤC TIÊU VÀ QUYỀN PHÊ DUYỆT
+-----------------------------
+Tên miền cần phục vụ: cochill.vn / www.cochill.vn / khác: _______________
+Mục tiêu đợt này:
+[ ] Chỉ kiểm tra hạ tầng, chưa thay đổi gì
+[ ] Chuẩn bị và thử trên bản staging/URL tạm
+[ ] Chuẩn bị phát hành public sau khi tôi duyệt
+
+Tôi xác nhận có quyền quản lý Google Cloud và DNS của tên miền:
+[ ] Có  [ ] Không  [ ] Cần kiểm tra
+Người sẽ trực tiếp đăng nhập/thao tác tài khoản:
+________________________________________________________________________
+
+Việc tôi cho phép trong đợt tiếp theo (có thể chọn nhiều):
+[ ] Chỉ đọc/kiểm tra thông tin
+[ ] Hướng dẫn tôi tự chạy lệnh và tự cấu hình
+[ ] Chuẩn bị source/config local, không deploy
+[ ] Deploy staging, không sửa DNS
+[ ] Deploy production sau khi tôi duyệt cụ thể
+[ ] Thay DNS chỉ sau khi tôi duyệt cụ thể
+[ ] Khác: ______________________________________________________________
+
+2. GOOGLE CLOUD VÀ MÁY CHỦ
+--------------------------
+Google Cloud project (Project ID, nếu biết; không phải mật khẩu):
+________________________________________________________________________
+VM/instance đã có?
+[ ] Có  [ ] Chưa  [ ] Không chắc
+
+Nếu có:
+Tên instance: _____________________  Region/zone: ______________________
+Hệ điều hành và phiên bản: _____________________________________________
+CPU/vCPU: _________________________  RAM: _____________________________
+Disk (loại/dung lượng): ________________________________________________
+Địa chỉ IP public đã gán?
+[ ] Có  [ ] Không  [ ] Không biết
+Có thể ghi IP public nếu cần; không gửi địa chỉ private/nội bộ nếu không cần:
+________________________________________________________________________
+
+Máy này đang chạy dịch vụ/website nào khác? Có thể gây gián đoạn nếu cần
+khởi động lại hay sửa reverse proxy?
+________________________________________________________________________
+Ứng dụng nào đang dùng các cổng 80, 443, 22, 8769?
+________________________________________________________________________
+VM có được bật liên tục không, hay đang tạm dừng/bị giới hạn ngân sách?
+________________________________________________________________________
+
+3. TÊN MIỀN, DNS VÀ HTTPS
+-------------------------
+Nơi đang quản lý DNS (ví dụ nhà đăng ký/dịch vụ DNS):
+________________________________________________________________________
+Bạn có thể đăng nhập và sửa DNS không?
+[ ] Có  [ ] Không  [ ] Cần người khác hỗ trợ
+Domain hiện đang trỏ tới website/dịch vụ nào? Có email theo domain không?
+________________________________________________________________________
+Có được phép thay A/AAAA/CNAME của cochill.vn và www.cochill.vn không?
+[ ] Có, sau khi tôi duyệt
+[ ] Không
+[ ] Chưa biết
+
+Nếu gửi ảnh/chụp record DNS, hãy che giá trị MX/TXT/email và thông tin không
+liên quan. KHÔNG xóa record email hoặc dịch vụ hiện có để thử.
+HTTPS/SSL hiện trạng thái:
+[ ] Đã có  [ ] Chưa có  [ ] Không biết
+Có reverse proxy web (Nginx/Caddy/Apache) đang cài?
+[ ] Có: ___________________________  [ ] Chưa  [ ] Không biết
+
+4. PIKAFISH VÀ NNUE
+-------------------
+Pikafish đã được cài trên VM này chưa?
+[ ] Có, đã chạy thành công trên VM
+[ ] Có file nhưng chưa kiểm tra
+[ ] Chưa  [ ] Không chắc
+
+Nếu biết, ghi thông tin không bí mật (không gửi binary/NNUE qua chat):
+Hệ điều hành/CPU tương thích: _________________________________________
+Phiên bản/nguồn tải: __________________________________________________
+Đường dẫn executable trên VM: _________________________________________
+Đường dẫn NNUE trên VM: _______________________________________________
+Bạn đã duyệt quyền sử dụng binary/NNUE này?
+[ ] Có  [ ] Chưa  [ ] Cần xác nhận
+Tôi có thể tự chạy lệnh kiểm tra UCI trên VM khi được hướng dẫn:
+[ ] Có  [ ] Không  [ ] Cần người có quyền hỗ trợ
+
+Không gửi file engine, trọng số NNUE, SSH key hoặc tài khoản Google Cloud.
+
+5. DATABASE, TÀI KHOẢN VÀ BACKUP
+--------------------------------
+V6 cần một nơi lưu database bền vững, riêng tư, không nằm trong thư mục web
+public. Ổ/dịch vụ lưu trữ dự kiến và dung lượng:
+________________________________________________________________________
+
+Database V6 hiện đã có người dùng thật chưa?
+[ ] Chưa  [ ] Có  [ ] Không chắc
+Nếu có, có cần giữ/chuyển dữ liệu hiện tại không? KHÔNG gửi database.
+________________________________________________________________________
+
+Ai sẽ quản lý tài khoản owner và mã TOTP?
+________________________________________________________________________
+Bạn có thể tự tạo/giữ mã TOTP và mật khẩu owner trên VM, không gửi cho tôi?
+[ ] Có  [ ] Cần hướng dẫn  [ ] Không
+
+Backup dự kiến lưu ở đâu (khác VM nếu có thể): _________________________
+Tần suất mong muốn: __________________  Thời gian giữ: _________________
+Người chịu trách nhiệm thử phục hồi backup: ____________________________
+
+6. VẬN HÀNH VÀ GIỚI HẠN CHI PHÍ
+--------------------------------
+Người liên hệ nếu website dừng/lỗi: ____________________________________
+Số người dự kiến cho pilot: __________  Mốc thời gian: _________________
+Khung giờ có thể bảo trì/restart: ______________________________________
+
+Hạn mức dịch vụ ngoài Google Cloud (tài liệu V6 ghi 200.000 VND/tháng):
+[ ] Vẫn giữ 200.000 VND/tháng
+[ ] Thay đổi thành: ______________________ VND/tháng
+[ ] Chưa quyết định; không phát sinh chi phí
+Chi phí Google Cloud hiện tại được thanh toán riêng, nhưng mọi thay đổi cấu
+hình/chi phí vẫn phải được thông báo và duyệt trước:
+[ ] Xác nhận  [ ] Cần trao đổi thêm
+
+7. KIỂM TRA TRƯỚC KHI MỞ PUBLIC
+--------------------------------
+Người sẽ thử đăng ký/đăng nhập trên hai thiết bị: _______________________
+Có thể thử trên hai mạng Internet khác nhau không?
+[ ] Có  [ ] Không  [ ] Chưa biết
+Người xác nhận DNS/HTTPS và thời điểm mở public: ________________________
+
+Ghi chú, điều kiện bắt buộc hoặc thông tin còn thiếu:
+________________________________________________________________________
+________________________________________________________________________
+________________________________________________________________________
+
+SAU KHI ĐIỀN
+------------
+Gửi lại phiếu đã điền, không kèm password/key/token/database. Nếu chưa biết
+mục nào, ghi "CHƯA BIẾT"; tôi sẽ đưa hướng dẫn để tự kiểm tra. Trước khi sửa
+DNS, khởi động dịch vụ, chuyển database, phát sinh chi phí hoặc mở public,
+cần có sự đồng ý cụ thể của chủ dự án.
+
+Tình trạng hiện tại theo source V6: chưa xác minh VM Google Cloud, Pikafish/
+NNUE, DNS, HTTPS, backup/restore hoặc tải thực trên hạ tầng thật.

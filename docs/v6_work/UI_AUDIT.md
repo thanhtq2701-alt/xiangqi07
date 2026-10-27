@@ -6,7 +6,7 @@ Ngày kiểm tra 25/10/2026. Phạm vi là đọc mã và đối chiếu hai ả
 
 Nguồn chính mới nhất: `C:/Users/thanh/Downloads/xiangqi-ai-20261024T180855Z-1-001.zip` (117.516.268 byte, 1.217 entry). Đã đọc danh mục và so sánh từng byte, không giải nén hoặc chạy mã bất kỳ trong ZIP. Cả 16 file dưới đúng prefix `xiangqi-ai/online-preview/` (15 file runtime và README) giống hoàn toàn thư mục `online-preview/` hiện tại.
 
-ZIP còn có các bản cũ dưới `xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/` và `xiangqi-ai/var/co-chill-web-source-gon/online-preview/`. Các bản đó có `app.js`, `index.html`, `learning.js`, `experience.js` cũ hơn. Claude phải chọn đúng thư mục nguồn chính, không lấy file đầu tiên tìm thấy khi tìm đệ quy.
+ZIP còn có các bản cũ dưới `xiangqi-ai/deliverables/Co_Chill_VSCode_2026_10_17/online-preview/` và `xiangqi-ai/var/co-chill-web-source-gon/online-preview/`. Các bản đó có `app.js`, `index.html`, `learning.js`, `experience.js` cũ hơn. Bản deliverables được nhắc là nội dung snapshot đã kiểm tra, không còn là thư mục trong repository sau khi gộp tài liệu lịch sử vào `V6_PREVIOUS.md`. Claude phải chọn đúng thư mục nguồn chính, không lấy file đầu tiên tìm thấy khi tìm đệ quy.
 
 Gói `deliverables/Co_Chill_GIONG_CHATGPTSITE_2026_10_24.zip` cũng có đủ 15 file runtime và tất cả giống từng byte với nguồn chính. Đây là cơ sở kiểm tra mã bản đã bàn giao. Chưa lấy lại file trực tiếp từ máy chủ công khai trong đợt đánh giá này; ảnh người dùng là bằng chứng về lỗi hiển thị thực tế.
 

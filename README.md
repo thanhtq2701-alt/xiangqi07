@@ -55,15 +55,17 @@ Giữ toàn bộ thư mục `online-preview/`, không copy riêng app.js. Các l
 
 ## Kiểm tra và đóng gói
 
-Cần Node.js để test JavaScript, không cần khi chạy app:
+Cần Node.js LTS để test JavaScript, không cần khi chạy app. Bộ checks đã được xác nhận với Node.js 22.23.4; Node.js 6.14.0 quá cũ. Nếu máy có nhiều bản Node hoặc bản đang dùng không nằm trong PATH, chỉ rõ đường dẫn:
 
 ```powershell
-python tools/run_checks.py
+python tools/run_checks.py --node "C:\path\to\node.exe"
 python tools/build_v6_pack.py --output deliverables/xiangqi-ai-v6-new.zip
 python tools/verify_source_pack.py deliverables/xiangqi-ai-v6-new.zip
 ```
 
 Không có bundler/build hay TypeScript typecheck. Checks gồm syntax, nghiệp vụ, bộ bài và parity luật. Builder chỉ lấy danh sách file cho phép, không ghi đè ZIP cũ, kèm `MANIFEST_SHA256.json`.
+
+Lần kiểm tra tại workspace C ngày 26/10/2026 dùng Python 3.14.2 và Node.js 22.23.4: 104 bài kiểm thử Python, kiểm tra fixture/parity và toàn bộ kiểm tra JavaScript đều đạt. Đây là kiểm tra local; không xác nhận Pikafish/NNUE, GCP hoặc cochill.vn. Xem [báo cáo tests](TEST_REPORT_CODEX.md) để biết phạm vi và giới hạn.
 
 ## Đọc tiếp
 
@@ -72,5 +74,6 @@ Không có bundler/build hay TypeScript typecheck. Checks gồm syntax, nghiệp
 3. [Quyết định V6](docs/V6_DECISIONS.md).
 4. [Chuẩn bị Google Cloud/cochill.vn](docs/DEPLOY_GCP_V6.md).
 5. [Triển khai](IMPLEMENTATION_REPORT_CODEX.md), [kiểm thử](TEST_REPORT_CODEX.md), [giới hạn](KNOWN_LIMITATIONS.md), [AI](AI_USAGE.md), [riêng tư](PRIVACY.md).
+6. [Tóm lược lịch sử trước V6](V6_PREVIOUS.md).
 
 `.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.

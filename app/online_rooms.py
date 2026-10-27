@@ -179,11 +179,13 @@ class OnlineRooms:
                 'ranked': False, 'rulesNotice': 'Giao hữu thử nghiệm; luật chiếu đuổi và lặp giải đấu chưa được kiểm chứng đầy đủ.'}
 
     def create(self, user, data=None):
-        person, data = self.identity(user), data or {}
+        person = self.identity(user)
+        if data is None:
+            data = {}
         if not isinstance(data, dict):
             raise APIError(400, 'Thiết lập phòng không hợp lệ.')
         preset = data.get('preset', 'rapid')
-        if preset not in PRESETS:
+        if not isinstance(preset, str) or preset not in PRESETS:
             raise APIError(400, 'Chọn chế độ thời gian hợp lệ.')
         seconds, increment = PRESETS[preset]
         if 'seconds' in data or 'increment' in data:
@@ -194,7 +196,7 @@ class OnlineRooms:
                 increment = 0
             preset = 'custom'
         visibility = data.get('visibility', 'private')
-        if visibility not in ('private', 'public'):
+        if not isinstance(visibility, str) or visibility not in ('private', 'public'):
             raise APIError(400, 'Loại phòng không hợp lệ.')
         now, code = self.clock(), secrets.token_hex(5).upper()
         side = secrets.choice(('w', 'b'))
@@ -237,9 +239,13 @@ class OnlineRooms:
         No inferred Elo: the current learner levels are not calibrated ratings.
         A concurrent seat claim is retried by checking the next available room.
         """
-        person, data = self.identity(user), data or {}
+        person = self.identity(user)
+        if data is None:
+            data = {}
+        if not isinstance(data, dict):
+            raise APIError(400, 'Thiết lập ghép phòng không hợp lệ.')
         preset = data.get('preset', 'rapid')
-        if preset not in PRESETS:
+        if not isinstance(preset, str) or preset not in PRESETS:
             raise APIError(400, 'Chọn chế độ thời gian hợp lệ.')
         listing = self.list_public(user)
         if listing['mine']:
@@ -291,7 +297,9 @@ class OnlineRooms:
             return self._snapshot(room, person['id'])
 
     def action(self, user, code, action, data=None):
-        person, data = self.identity(user), data or {}
+        person = self.identity(user)
+        if data is None:
+            data = {}
         if not isinstance(data, dict):
             raise APIError(400, 'Dữ liệu thao tác không hợp lệ.')
         with self.connect() as db:
@@ -403,7 +411,7 @@ class OnlineRooms:
                     room['takebackOffer'] = None
             elif action == 'chat':
                 message = data.get('message')
-                if message not in MESSAGES:
+                if not isinstance(message, str) or message not in MESSAGES:
                     raise APIError(400, 'Chọn lời nhắn nhanh; bản thử chưa nhận chat tự do.', 'canned_chat_only')
                 recent = [m for m in room['messages'] if m['userId'] == person['id'] and now - m['at'] < 10]
                 if len(recent) >= 3:
@@ -415,16 +423,16 @@ class OnlineRooms:
                 if person['id'] != room['ownerId']:
                     raise APIError(403, 'Chỉ chủ phòng được mời người xem rời phòng.')
                 target = data.get('userId')
-                if target not in room['spectators']:
+                if not isinstance(target, str) or target not in room['spectators']:
                     raise APIError(400, 'Chỉ được mời người xem rời phòng.')
                 room['spectators'].pop(target)
                 room['seen'].pop(target, None)
                 room['banned'].append(target)
             elif action == 'leave':
-                if side and room['status'] == 'playing':
+                if side and room['status'] in ('playing', 'paused'):
                     raise APIError(409, 'Hãy đầu hàng hoặc hoàn tất ván trước khi rời ghế.', 'game_live')
                 if side:
-                    if person['id'] == room['ownerId'] and room['status'] in ('waiting', 'paused'):
+                    if person['id'] == room['ownerId'] and room['status'] == 'waiting':
                         self._finish(db, room, None, 'room_closed')
                     elif room['status'] == 'waiting':
                         room['players'][side] = None
@@ -495,20 +503,30 @@ class OnlineRooms:
 
     def delete_identity(self, user_id, db=None):
         """Explicit account deletion helper; do not silently retain identifiers."""
-        connection = nullcontext(db) if db is not None else self.connect()
-        with connection as connection_db:
-            # Retain no personal game record on account deletion in this pilot.
-            connection_db.execute('DELETE FROM online_results WHERE red_id=? OR black_id=?', (user_id, user_id))
-            for row in connection_db.execute('SELECT code,data FROM online_rooms').fetchall():
-                room = json.loads(row['data'])
-                if self._side(room, user_id):
-                    connection_db.execute('DELETE FROM online_rooms WHERE code=?', (row['code'],))
-                elif user_id in room['spectators'] or user_id in room['banned'] or any(m['userId'] == user_id for m in room['messages']):
-                    room['spectators'].pop(user_id, None)
-                    room['seen'].pop(user_id, None)
-                    room['banned'] = [x for x in room['banned'] if x != user_id]
-                    room['messages'] = [m for m in room['messages'] if m['userId'] != user_id]
-                    room['nonces'] = {key: value for key, value in room['nonces'].items()
-                                      if not key.startswith(user_id + ':')}
-                    room['revision'] += 1
-                    self._save(connection_db, room)
+        if db is None:
+            with self.connect() as connection_db:
+                self.delete_identity(user_id, db=connection_db)
+            return
+        self.delete_identity_in_db(db, user_id, now=self.clock())
+
+    @staticmethod
+    def delete_identity_in_db(db, user_id, now=None):
+        """Delete room identity data inside the caller's transaction."""
+        if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='online_rooms'").fetchone():
+            return
+        now = time.time() if now is None else now
+        db.execute('DELETE FROM online_results WHERE red_id=? OR black_id=?', (user_id, user_id))
+        for row in db.execute('SELECT code,data FROM online_rooms').fetchall():
+            room = json.loads(row['data'])
+            if OnlineRooms._side(room, user_id):
+                db.execute('DELETE FROM online_rooms WHERE code=?', (row['code'],))
+            elif user_id in room['spectators'] or user_id in room['banned'] or any(m['userId'] == user_id for m in room['messages']):
+                room['spectators'].pop(user_id, None)
+                room['seen'].pop(user_id, None)
+                room['banned'] = [x for x in room['banned'] if x != user_id]
+                room['messages'] = [m for m in room['messages'] if m['userId'] != user_id]
+                room['nonces'] = {key: value for key, value in room['nonces'].items()
+                                  if not key.startswith(user_id + ':')}
+                room['revision'] += 1
+                db.execute('UPDATE online_rooms SET updated_at=?,data=? WHERE code=?',
+                           (now, json.dumps(room, ensure_ascii=False), room['code']))

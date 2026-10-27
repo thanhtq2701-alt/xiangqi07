@@ -18,7 +18,7 @@ Năm file dưới thư mục gốc `xiangqi-ai/` trong ZIP đều giống từng
 
 Vì vậy số lượng và các kết luận học tập bên dưới không đổi: 12 bài một nước mẫu, 4 minh họa khai cuộc và hành trình 4 liên kết. Đây không phải suy đoán từ tên ZIP; đã phân tích nội dung `fixtures.js` trong đúng gói mới.
 
-Trong cùng ZIP còn có các bản sao cũ ở `deliverables/Co_Chill_VSCode_2026_10_17/`, `var/site-preview/dist/` và `var/co-chill-web-source-gon/`. `learning.js`, `experience.js` và `app.js` tại các bản sao này có kích thước khác bản gốc hiện tại; không lấy nhầm chúng làm baseline V6 và không đếm các bản sao fixture thành bài mới. Việc năm file trên giống nhau không phải khẳng định toàn bộ 1217 entry giống repo hiện tại.
+Trong cùng ZIP còn có các bản sao cũ ở `deliverables/Co_Chill_VSCode_2026_10_17/`, `var/site-preview/dist/` và `var/co-chill-web-source-gon/`. `learning.js`, `experience.js` và `app.js` tại các bản sao này có kích thước khác bản gốc hiện tại; không lấy nhầm chúng làm baseline V6 và không đếm các bản sao fixture thành bài mới. Đường dẫn deliverables mô tả nội dung ZIP được kiểm tra, không còn là thư mục trong repository sau khi gộp tài liệu lịch sử vào `V6_PREVIOUS.md`. Việc năm file trên giống nhau không phải khẳng định toàn bộ 1217 entry giống repo hiện tại.
 
 ## Kết luận hiện trạng đã kiểm chứng
 

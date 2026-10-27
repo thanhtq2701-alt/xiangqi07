@@ -1,5 +1,36 @@
 # Kiểm thử V6 — 26/10/2026
 
+## Kiểm tra giao diện sau chỉnh sửa — 27/10/2026
+
+- `python tools/check_online_preview.py`: PASS; 12 fixture synthetic, provenance
+  và danh sách nước hợp lệ khớp luật.
+- Phần Python của `python tools/run_checks.py --node E:\ThanhTQ\Code\node.exe`:
+  104/104 test đạt với Python 3.14.0.
+- Không thể xác nhận JavaScript suite bằng Node trong PATH: phiên bản thực tế
+  là 6.14.0, không hỗ trợ optional chaining/nullish coalescing dùng trong source;
+  syntax checks và một số test dừng với `SyntaxError`. Runner kết thúc lỗi, sau
+  đó còn gặp lỗi encoding Windows khi in lỗi ra console. Đây là giới hạn runtime
+  kiểm thử, không ghi nhận là JavaScript suite đạt; cần chạy lại bằng Node.js
+  phù hợp với README trước khi phát hành.
+- Browser thủ công trên `http://127.0.0.1:8769/` với SQLite thử riêng: trang
+  chơi với máy và form reflection hiển thị; đã xem desktop 1280x900 và mobile
+  390x844. Trên mobile, document width 375px, không tràn ngang viewport 390px.
+  API `/api/session` trả 200 cho khách. Không kiểm tra PvP, engine thật, luồng
+  đăng ký user hoặc production trong lần này.
+- Server dùng cho kiểm tra đã tách khỏi database mặc định/production. Kết quả
+  browser là kiểm tra giao diện thủ công; không thay E2E, usability test hay
+  kiểm thử account đầy đủ.
+
+## Lượt xác minh sau đối chiếu — 26/10/2026
+
+- Đã chạy `python tools/run_checks.py` tại workspace C với Python 3.14.2 và Node.js 22.23.4.
+- Đạt: 104 bài Python; kiểm tra 12 fixture synthetic với luật và nước hợp lệ; parity/kiểm tra luật trên trình duyệt; cú pháp toàn bộ JavaScript; toàn bộ 10 bộ test JavaScript của runner.
+- Chạy riêng `tests.test_online_rooms` và `tests.test_online_http`: 36/36 đạt; `tests.test_cloud`: 21/21 đạt.
+- Bổ sung regression coverage cho preset/visibility/message/userId sai kiểu, payload không phải object, rời phòng paused và rollback giao dịch xóa tài khoản. Kiểm tra diff whitespace đạt.
+- Lần chạy toàn bộ đầu tiên có một timeout trong test `test_untrusted_or_incomplete_engine_output_falls_back` của Pikafish; không đổi test hay logic để né lỗi. Test đạt khi chạy riêng và cả lượt đầy đủ chạy lại đạt.
+- Gói nguồn mới gồm 91 file; manifest, SHA-256 và CRC được xác minh. Chạy lại runner trên bản đã giải nén ở thư mục tạm độc lập: cả 27 bước kiểm tra đạt, gồm 104 bài Python, fixture/parity, syntax và các bộ test JavaScript.
+- Đây là kiểm tra local của source hiện tại; không phải browser E2E đầy đủ cho toàn bộ hành trình học/tài khoản/PvP và không xác nhận Internet, GCP, Pikafish/NNUE thật, cochill.vn, tải hoặc kiểm toán bảo mật.
+
 ## Phạm vi
 
 Tests chạy trên source hiện tại; không xác nhận binary Pikafish thật, VM

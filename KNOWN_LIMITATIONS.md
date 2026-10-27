@@ -2,6 +2,11 @@
 
 Đây là source pilot có kiểm thử, chưa là xác nhận sẵn sàng production.
 
+Lượt kiểm tra local ngày 26/10/2026 đạt toàn bộ runner nguồn (104 bài Python,
+fixture/parity, cú pháp JavaScript và các bộ test JavaScript). Chưa chạy trong
+lượt này browser E2E đầy đủ cho toàn hành trình học, hai thiết bị/tài khoản
+hoặc kết nối Internet; các giới hạn hạ tầng bên dưới vẫn còn hiệu lực.
+
 ## Chưa hoàn tất theo V6
 
 - Chưa truy cập/kiểm tra VM Google Cloud, Pikafish/NNUE thật, HTTPS, DNS,

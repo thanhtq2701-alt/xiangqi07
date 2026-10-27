@@ -5,6 +5,7 @@ from pathlib import Path
 import tempfile
 import time
 import unittest
+from unittest.mock import patch
 from urllib.parse import urlsplit
 
 from app.cloud_store import sha
@@ -210,6 +211,23 @@ class OnlineHttpTests(unittest.TestCase):
         with self.app.store.connect() as db:
             self.assertFalse(db.execute('SELECT 1 FROM users WHERE id=?', (uid,)).fetchone())
             self.assertFalse(db.execute('SELECT 1 FROM online_results WHERE red_id=? OR black_id=?', (uid, uid)).fetchone())
+
+    def test_account_delete_rolls_back_room_cleanup_if_user_delete_fails(self):
+        self.started()
+        uid = self.a.uid
+        with patch.object(self.app.store, 'delete_user', side_effect=RuntimeError('simulated failure')):
+            status, payload, _ = self.a.request('/api/account', 'DELETE', {'password': PASSWORD})
+        self.assertEqual(status, 500, payload)
+        self.assertEqual(payload['code'], 'server_error')
+        self.assertEqual(self.b.request(f'/api/rooms/{self.code}')[0], 200)
+        self.assertEqual(self.a.request('/api/session')[0], 200)
+        with self.app.store.connect() as db:
+            self.assertTrue(db.execute('SELECT 1 FROM users WHERE id=?', (uid,)).fetchone())
+
+    def test_room_rejects_collection_preset_over_http(self):
+        self.a.register('alice')
+        status, payload, _ = self.a.request('/api/rooms', 'POST', {'preset': []})
+        self.assertEqual(status, 400, payload)
 
     def test_account_session_precedence_and_no_silent_guest_downgrade(self):
         self.a.guest()

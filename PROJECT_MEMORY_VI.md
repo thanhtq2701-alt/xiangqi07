@@ -20,9 +20,9 @@ quyết định của chủ dự án hoặc báo cáo kiểm thử.
   [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md): AI, dữ liệu và thông báo
   quyền sử dụng.
 
-Inventory cũ và tài liệu V4/V5 là snapshot lịch sử, không phải bản kiểm kê
-hoặc hướng dẫn chạy V6 hiện hành. Dùng README và các tài liệu V6 ở trên để
-thực hiện công việc mới.
+Tóm lược các ý tưởng trước V6 nằm trong [V6_PREVIOUS.md](V6_PREVIOUS.md).
+Đó là ghi chú lịch sử, không phải bản kiểm kê hoặc hướng dẫn chạy hiện hành.
+Dùng README và các tài liệu V6 ở trên để thực hiện công việc mới.
 
 ## 2. Chạy và kiểm tra
 
