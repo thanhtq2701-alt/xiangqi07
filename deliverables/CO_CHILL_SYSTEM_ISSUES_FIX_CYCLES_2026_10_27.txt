@@ -1,0 +1,421 @@
+CO CHILL — DANH SACH VAN DE HE THONG VA CHU TRINH KHAC PHUC
+Ngay lap: 27/10/2026 (UTC+7)
+Pham vi: source MAIN_C va cac bao cao hien co; khong truy cap production.
+Thu muc lam viec: C:\Users\thanh\OneDrive\Documents\GitHub\xiangqi07
+
+MUC DICH
+
+Tai lieu nay giup chu san pham xu ly tung van de mot, theo thu tu co the
+kiem chung. Moi chu trinh co dau hieu, cac buoc khac phuc va tieu chi dong.
+Khong can lam tat ca cung luc.
+
+Day la danh sach cac van de/lo hong kiem chung duoc trong moi truong va tai
+lieu hien co, khong phai ket qua kiem toan toan bo. Khong the ket luan moi
+loi tiem an khi chua co dau hieu hoac bang chung. Cac muc "chua nghiem thu"
+va "chua co tinh nang" duoi day khong dong nghia code dang loi.
+
+TOM TAT: BAT DAU TU CHU TRINH 1
+
+1. Node.js dang qua cu: may dang chay Node v6.14.0 tai E:\ThanhTQ\Code\node.exe.
+   Phien ban nay khong doc duoc cu phap JavaScript cua source, nen khong the
+   chay day du JavaScript checks. Node chi can cho kiem thu, khong can de mo
+   app Cờ Chill.
+2. Kiem tra tren Windows co the bi loi hien thi Unicode khi runner in ket qua
+   loi vao console cp1252. Co the thu chay Python UTF-8 truoc; chi sua runner
+   neu van tai hien.
+3. Bao cao cu ghi nhan mot lan Windows chan test mo localhost (WinError 10013).
+   Day la loi quyen moi truong co dieu kien, khong phai loi da xac nhan trong
+   moi lan chay.
+4. Giao dien file:// chi xem duoc phan frontend; API tai khoan/PvP can server
+   Python dang chay. Server dung cho lan test giao dien truoc da duoc tat.
+5. GCP/Pikafish that, backup/restore tren may chu that va PvP qua hai mang
+   chua duoc nghiem thu. Day la khoang trong bang chung, khong phai loi da
+   chung minh tren production.
+6. Email khoi phuc mat khau, nhap day du file tien do va retention phong chua
+   co/hoan thien. Day la tinh nang hoac chinh sach can chu san pham duyet,
+   khong phai loi runtime co the tu y sua.
+
+NGUYEN TAC AN TOAN
+
+- Khong sua REFERENCE_E, khong dung database/tai khoan production de thu.
+- Khong tat Windows Firewall, khong chay VS Code/Python bang Administrator
+  chi de "thu cho qua".
+- Khong gui password, cookie, secret, database nguoi choi hay private key
+  vao chat, bao cao, GitHub.
+- Khong push, deploy, sua DNS, mua dich vu hoac chuyen du lieu that neu chua
+  duoc chu san pham duyet.
+- Moi chu trinh chi dong khi dat tieu chi xac nhan cua chinh chu trinh do.
+  Mot test xanh khong chung minh production da san sang.
+
+======================================================================
+CHU TRINH 1 — CAI NODE.JS TUONG THICH DE CHAY JAVASCRIPT TESTS
+======================================================================
+
+Tinh trang da xac nhan:
+- Lenh node --version tra ve v6.14.0.
+- Node dang duoc tim thay tai E:\ThanhTQ\Code\node.exe.
+- README ghi bo checks da duoc xac nhan voi Node.js 22.23.4.
+- Node khong phai dieu kien de chay app; chi can de chay JavaScript checks.
+
+Cach lam:
+1. Tai Node.js 22 LTS Windows Installer (.msi) tu trang chinh thuc:
+   https://nodejs.org/
+   Khong tai tu trang chia se phan mem khong ro nguon.
+2. Cai dat theo lua chon mac dinh, giu tuy chon them Node vao PATH.
+   Khong can go Node cu va khong can cai npm package cho repo nay.
+3. Dong Terminal cu va khoi dong lai VS Code de nap PATH moi.
+4. Trong Terminal PowerShell tai thu muc MAIN_C, chay:
+   where.exe node
+   node --version
+   Ket qua phai la v22.x (hoac ban LTS moi hon da duoc xac nhan tuong thich).
+5. Neu where.exe node van uu tien ban cu, khong sua/xoa hang loat PATH.
+   Chay checks bang duong dan Node moi, vi du:
+   python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+   Thay duong dan neu bo cai dat nam o cho khac.
+6. Cho runner chay xong. Khong dong Terminal giua chung. Neu loi, luu nguyen
+   thong bao va dong dau tien bao ten check that bai; khong sua test de lam
+   runner xanh.
+
+Tieu chi dong:
+- `node --version` hien Node 22.x hoac phien ban LTS tuong thich.
+- `python -X utf8 tools/run_checks.py --node "<duong-dan-node-moi>"` ket thuc
+  voi ALL CHECKS PASSED; Python tests, fixture/parity, JavaScript syntax va
+  cac JS tests deu dat.
+- Cap nhat TEST_REPORT_CODEX.md bang phien ban Python/Node, lenh va ket qua
+  cua chinh luot chay moi. Khong lay ket qua cu gan cho luot chay moi.
+
+Neu chi Python dat ma Node checks that bai, chu trinh chua dong. Bao lai dung
+loi dau tien va phien ban Node; khong can gui file database hay credentials.
+
+======================================================================
+CHU TRINH 2 — HIEN THI LOI UNICODE TREN WINDOWS
+======================================================================
+
+Dau hieu:
+- Runner bao loi JavaScript, sau do PowerShell/console hien UnicodeEncodeError
+  hoac khong in duoc mot so ky tu.
+- tools/run_checks.py da doc output subprocess theo UTF-8, nhung console
+  Windows van co the dung encoding cu khi Python in ket qua.
+
+Cach xu ly tung buoc:
+1. Thu chay runner bang UTF-8 (lenh nay cung dung cho Chu trinh 1):
+   python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+2. Neu van co UnicodeEncodeError, giu nguyen traceback va ghi ro terminal
+   dang dung. Khong bo ky tu Unicode trong ket qua va khong bo qua exception.
+3. Chi khi loi van tai hien, tao mot thay doi nho trong tools/run_checks.py
+   de stdout/stderr dung UTF-8 voi errors='replace' khi in output.
+4. Kiem lai tren Windows console hien tai bang mot check loi co output
+   Unicode va bang full runner. Dam bao thong tin loi van doc duoc, exit code
+   that bai van duoc giu, va runner khong bao PASS gia.
+5. Cap nhat TEST_REPORT_CODEX.md neu thay doi runner hoac cach chay.
+
+Tieu chi dong:
+- Loi kiem thu duoc hien thi doc duoc, khong co UnicodeEncodeError.
+- Loi cua test van lam runner tra exit code khac 0.
+- ALL CHECKS PASSED chi xuat hien neu tat ca buoc that su dat.
+
+Khong can sua runner neu lenh `python -X utf8 ...` da xu ly duoc hien tuong.
+
+======================================================================
+CHU TRINH 3 — XU LY WINERROR 10013 KHI TEST CAN LOCALHOST
+======================================================================
+
+Tinh trang:
+- TEST_REPORT_CODEX.md ghi nhan mot lan test HTTP gap WinError 10013 khi mo
+  localhost; sau do test dat khi moi truong cho phep local socket.
+- Bao cao khong chung minh loi nay dang xay ra hien tai.
+
+Neu loi tai hien:
+1. Chay rieng bo test duoc ghi trong traceback, trong Terminal thuong:
+   python -m unittest tests.test_online_http
+   Khong bat dau bang viec chay Administrator.
+2. Kiem tra traceback de biet cong/host nao bi chan va no co xay ra lai khong.
+   Dong ung dung local khac dang dung cung cong neu traceback chi ro xung dot.
+3. Neu may co phan mem bao mat/quan ly cua cong ty, nho nguoi quan tri cho
+   phep test localhost theo chinh sach. Chi mo ngoai le toi thieu va chi cho
+   loopback/private network neu chinh sach cho phep.
+4. Tuyet doi khong tat Firewall toan may, khong mo cong ra Internet va khong
+   doi firewall production de chay unit test.
+5. Chay lai cung lenh va ghi ket qua. Neu van bi chan, dung tai day va bao
+   thong diep; khong sua test de bo phan can socket.
+
+Tieu chi dong:
+- Test HTTP dat trong moi truong duoc phep hoac loi moi truong duoc ghi ro,
+  co traceback va khong bi nham thanh loi san pham.
+
+======================================================================
+CHU TRINH 4 — MO DUOC API KHI XEM BAN LOCAL
+======================================================================
+
+Dau hieu:
+- Trang file:///C:/.../online-preview/index.html co the hien giao dien,
+  nhung API tai khoan/PvP khong hoat dong.
+- Hoac tab http://127.0.0.1:8769 khong ket noi vi server da dung.
+- Day la cach chay: app can Python server cho API; file:// khong phai loi
+  CSS hay loi production.
+
+Cach xem local an toan bang database thu rieng:
+1. Mo PowerShell tai thu muc goc MAIN_C.
+2. Tao ten database thu moi va chay server:
+   $db = Join-Path $env:TEMP ("co-chill-test-" + (Get-Date -Format "yyyyMMdd-HHmmss") + ".sqlite3")
+   python co_chill_server.py serve --port 8769 --db $db
+3. De nguyen cua so Terminal dang chay. Mo:
+   http://127.0.0.1:8769/
+4. Khi xem xong, quay lai Terminal va nhan Ctrl+C.
+5. Database test nam trong TEMP. Chi xoa dung file co ten `co-chill-test-...`
+   vua tao neu chac chan khong can giu; khong xoa ca thu muc TEMP.
+
+Tieu chi dong:
+- Trang local tai duoc qua HTTP va API khach tra loi.
+- Browser test khong su dung database mac dinh, tai khoan that hoac production.
+- Server duoc dung sau khi xem neu chu san pham khong yeu cau de lai.
+
+======================================================================
+CHU TRINH 5 — KIEM CHUNG LAI FULL SUITE SAU KHI SUA NODE
+======================================================================
+
+Day la viec kiem chung thay doi; khong phai sua loi code neu cac test deu dat.
+
+Cach lam:
+1. Hoan tat Chu trinh 1 truoc.
+2. Chay:
+   python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+3. Neu runner that bai, chi xu ly check dau tien that bai; giu nguyen test va
+   assertion. Sau khi sua mot van de, chay lai full runner.
+4. Chay `python tools/check_online_preview.py` neu thay doi fixtures/noi dung.
+5. Neu chi sua giao dien, xem trang qua server local o desktop va mobile; xem
+   console/page errors va do rong document. Khong tuyen bo E2E toan hanh trinh
+   neu chi moi xem mot man.
+6. Ghi moi truong, lenh, tung nhom ket qua va gioi han vao TEST_REPORT_CODEX.md.
+
+Tieu chi dong:
+- Full runner dat tren source hien tai.
+- Cac test/browser scope duoc ghi dung; khong gom ket qua tu nhieu ngay thanh
+  mot luot chay duy nhat.
+
+======================================================================
+CHU TRINH 6 — KIEM TRA PIKAFISH/NNUE TREN GCP
+======================================================================
+
+Tinh trang:
+- Adapter UCI co unit tests voi tien trinh engine gia.
+- Chua co bang chung Pikafish/NNUE that dang chay tren VM Google Cloud cua
+  chu san pham. Day la khoang trong nghiem thu, chua the goi la loi engine
+  production.
+
+Can chu san pham chuan bi truoc:
+- Duyet thoi diem va pham vi truy cap may chu; cung cap quyen qua kenh an
+  toan, khong gui password/private key trong chat.
+- Xac nhan OS, CPU, RAM, disk, binary Pikafish va NNUE co quyen su dung.
+- Xac nhan instance test/staging va database rieng. Khong thu tren ván hoac
+  tai khoan nguoi choi that.
+
+Mot chu trinh nghiem thu:
+1. Xac minh binary chay, version, kien truc CPU va NNUE tuong thich.
+2. Kiem tra UCI handshake/isready, nap vi tri va search cho ca hai ben.
+3. Kiem tra PV tung nuoc hop le, timeout/stop, process crash, request huy va
+   ket qua muon sau khi doi vi tri.
+4. Kiem tra requireStrong=true: engine thieu/chet thi bao khong kha dung,
+   khong doi sang heuristic duoi nhan engine manh.
+5. Do CPU/RAM/thoi gian; kiem tra log khong co secret/dulieu khong can thiet.
+6. Luu ket qua va cau hinh khong nhay cam. Khong dua binary/NNUE vao source
+   pack neu chua ro license.
+
+Tieu chi dong:
+- Co bang chung ghi OS/CPU, version, engine/NNUE, cac ca kiem thu va ket qua.
+- Test that bai khong lam UI bao ket qua thanh cong gia.
+- Khong tu deploy cong khai hoac sua DNS trong chu trinh nay.
+
+======================================================================
+CHU TRINH 7 — BACKUP VA RESTORE DU LIEU
+======================================================================
+
+Tinh trang:
+- App co lenh backup thu cong.
+- Backup dinh ky/retention va restore tren ha tang cua chu san pham chua duoc
+  xac nhan. Backup chua thu khong dong nghia backup an toan.
+
+Cach nghiem thu tren database thu:
+1. Chon noi luu backup rieng, quyen truy cap va thoi gian luu; duoc chu san
+   pham duyet. Khong de trong repo, source pack, thu muc public hay chat AI.
+2. Tao backup ra mot duong dan file moi (lenh khong ghi de file cu):
+   python co_chill_server.py backup --output "DUONG_DAN_RIENG\co-chill-test-backup.sqlite3"
+   Thay DUONG_DAN_RIENG bang noi luu thu duoc bao ve.
+3. Copy backup sang mot ten database test moi, khong ghi de database dang dung.
+4. Khoi dong app thu bang `--db` tro vao ban copy; kiem tra SQLite mo duoc va
+   du lieu test can thiet co mat. Khong in thong tin tai khoan/bi mat ra log.
+5. Ghi thoi gian backup/restore va ket qua; xoa ban test chi khi da xac nhan
+   dung file va khong can giu.
+6. Chi sau khi quy trinh thu dat va chu san pham duyet moi thiet ke lich tu
+   dong, retention va canh bao backup that.
+
+Tieu chi dong:
+- Restore thanh cong vao DB test rieng, khong cham DB that.
+- Co nguoi chiu trach nhiem, noi luu, han luu va cach xu ly yeu cau xoa trong
+  backup duoc ghi ro.
+
+======================================================================
+CHU TRINH 8 — PVP QUA HAI THIET BI/HAI MANG
+======================================================================
+
+Tinh trang:
+- Co test browser/local cho mot so luong PvP.
+- Chua xac nhan mang Internet that, mobile/background tab, reconnect va tai
+  tren GCP. Khong duoc suy ra tu hai tab localhost.
+
+Cach lam:
+1. Chi thuc hien tren staging/test deployment da duoc duyet, khong restart
+   server co nguoi choi that.
+2. Dung hai thiet bi va hai ket noi Internet khac nhau, hai tai khoan/test
+   guest tach biet.
+3. Kiem tra tao/join/ready, mau quan, dong ho, nuoc hop le, reload, tab nen,
+   mat ket noi/reconnect, hoa/thoat/xin di lai/tai dau.
+4. Kiem tra server giu revision/FEN/dong ho; client khong the tu khai ket qua.
+5. Kiem tra engine/coaching cua app bi khoa trong van live, ke ca spectator.
+6. Thu lai sau khi co log da loai bo thong tin ca nhan. Khong kiem thu bang
+   engine ngoai tren van cua nguoi khac.
+
+Tieu chi dong:
+- Co bien ban tung tinh huong, thiet bi/trinh duyet/mang va ket qua.
+- Neu loi do polling/tab nen/timeout, tao mot chu trinh sua loi rieng co test
+  tai hien; khong am tham doi luat thoi gian PvP.
+
+======================================================================
+CHU TRINH 9 — EMAIL KHOI PHUC MAT KHAU (TINH NANG CHUA CO)
+======================================================================
+
+Day khong phai loi dang ky/dang nhap da duoc xac nhan. Email recovery chua
+duoc trien khai. Chi bat dau khi chu san pham duyet quy trinh va chi phi.
+
+Can chot: nha cung cap email, ngan sach, xac minh email, han token, rate limit,
+chinh sach thu hoi session, du lieu toi thieu va cach xu ly tai khoan khong
+ton tai de tranh lo account.
+
+Chu trinh rieng:
+1. Chot yeu cau va provider; khong tu tao tai khoan dich vu/mua goi.
+2. Thiet ke token mot lan, ngau nhien, co han; khong gui password hoac token
+   vao log.
+3. Them tests cho het han, dung mot lan, rate limit, email sai va thu hoi
+   session theo chinh sach.
+4. Thu tren staging/email test, khong gui email cho nguoi dung that khi chua
+   duoc duyet.
+
+Tieu chi dong: flow duoc test tren staging, co giam sat/rate limit va chu san
+pham duyet truoc khi bat cho pilot.
+
+======================================================================
+CHU TRINH 10 — NHAP PHUC HOI DAY DU TIEN DO (TINH NANG CHUA CO)
+======================================================================
+
+Day la tinh nang chua hoan thien, khong phai loi cua import ky pho. Khong
+nham import ky pho voi khoi phuc toan bo tien do/tai khoan.
+
+Truoc khi code can chot:
+- Dinh dang va version file; du lieu nao duoc phep import.
+- Chinh sach merge khi trung ID/revision va khi tien do moi hon.
+- Gioi han kich thuoc, preview/dry-run, cach backup truoc import.
+- Cam import role/admin, answer keys, token, cookie hoac secret.
+
+Chu trinh rieng:
+1. Chu san pham duyet schema va quy tac merge.
+2. Implement validation/versioning/preview; khong ghi DB khi preview.
+3. Them tests file loi, file lon, ID sai, FEN sai, trung revision, du lieu
+   khong hop le va rollback.
+4. Thu tren profile/DB test rieng, xuat backup truoc khi thu merge.
+
+Tieu chi dong: import/rollback duoc chung minh tren DB test, khong co quyen
+admin/answer key/token di vao qua file.
+
+======================================================================
+CHU TRINH 11 — RETENTION PHONG VA XOA/AN DANH LICH SU
+======================================================================
+
+Tinh trang:
+- Guest room cookie co han nhung het cookie khong tu dong xoa room.
+- Xoa danh tinh co the anh huong bien ban chung cua doi thu.
+- Chua chot retention va chinh sach an danh/xoa trong backup.
+
+Khong code xoa tu dong truoc khi chu san pham chon:
+- Luu room/history trong bao lau?
+- Khi mot nguoi yeu cau xoa, an danh nguoi do hay xoa ca ban ghi chung?
+- Backup het han/xoa theo lich nao?
+- Ai duoc xem lich su, va co luu report/log gi?
+
+Chu trinh rieng:
+1. Chu san pham duyet chinh sach du lieu va thong bao nguoi dung.
+2. Ve cac quan he du lieu bi anh huong; them tests doi thu, guest, spectator,
+   paused/ended room va rollback transaction.
+3. Implement retention/an danh theo chinh sach; dry-run truoc khi xoa.
+4. Thu tren DB copy, doi chieu so ban ghi va audit log khong lo du lieu.
+
+Tieu chi dong: khong xoa du lieu that bat ngo; han retention va tac dong doi
+thu duoc cong khai/ghi ro; tests transaction dat.
+
+======================================================================
+CHU TRINH 12 — GIOI HAN MOT PROCESS / MOT INSTANCE
+======================================================================
+
+Day la gioi han kien truc da ghi, khong phai loi cho pilot mot instance.
+Khong tang Gunicorn worker/replica theo huong dan chung: semaphore engine va
+state phong hien khong duoc thiet ke de dong bo giua nhieu process.
+
+Chi mo chu trinh mo rong neu nhu cau pilot/tai tang va chu san pham duyet:
+1. Do tai, CPU, RAM, latency va loi tren staging mot process.
+2. Neu mot process khong dap ung, thiet ke co che dung chung cho engine,
+   transaction/lifecycle room va recovery khi restart truoc.
+3. Them test dong thoi/nhieu worker va chay benchmark truoc khi doi cau hinh.
+4. Neu khong co du lieu do tai va nhu cau, giu mot worker; khong can "sua".
+
+Tieu chi dong (neu duoc phe duyet): kien truc va test chung minh concurrency,
+restart va engine queue dung truoc khi tang worker/instance.
+
+======================================================================
+CAC MUC KHONG DUOC GOI NHAM LA LOI HE THONG
+======================================================================
+
+- Python 3.14.0 dang duoc chon va phan Python tests da dat; README yeu cau
+  Python 3.12 tro len. Chua co dau hieu can ha/nang Python de chay app.
+- Khong co npm build/ESLint/TypeScript trong kien truc hien tai; khong can
+  cai framework hoac them npm chi de co them mot lenh build.
+- Pikafish/GCP/HTTPS/DNS chua kiem tra la thieu bang chung; khong phai chung
+  minh may chu dang hong.
+- 12 fixture synthetic, hai bai nhieu luot, chua du bai nang cao va EN chua
+  dich het la gioi han noi dung/pham vi, khong phai test fail. Muon mo rong
+  can nguon/quyen va nguoi duyet noi dung.
+- Accessibility, UX voi nguoi hoc, luat giai dau va hieu qua giao duc chua
+  co ket qua nghiem thu. Can ke hoach/nguoi tham gia rieng; khong tuyen bo
+  dat chi vi unit tests xanh.
+- Database khong duoc ma hoa o muc ung dung; day la quyet dinh threat model/
+  ha tang, khong tu them ma hoa hoac thay doi du lieu that trong chu trinh
+  Node.js.
+- Chinh sach nhieu session, xoa lich su doi thu, retention, recovery email
+  va import tien do can owner chot truoc khi implement.
+
+THU TU KHUYEN NGHI
+
+1. Lam Chu trinh 1 (Node LTS), sau do Chu trinh 5 de lay bang chung tests moi.
+2. Neu UnicodeEncodeError tai hien, lam Chu trinh 2.
+3. Chi lam Chu trinh 3 neu WinError 10013 xuat hien lai.
+4. Dung Chu trinh 4 neu can xem API local; khong can bat server neu chi doc
+   CSS.
+5. Cac chu trinh 6–12 chi bat dau khi co dieu kien, thong tin va phe duyet
+   ghi trong tung muc. Lam tung chu trinh, khong gop thanh mot dot thay doi
+   lon.
+
+TAI LIEU DOI CHIEU TRONG MAIN_C
+
+- README.md: cach chay, Node requirement va lenh checks.
+- TEST_REPORT_CODEX.md: ket qua cu, ket qua 27/10 va gioi han tung lan.
+- IMPLEMENTATION_REPORT_CODEX.md: source, kien truc va pham vi da lam.
+- KNOWN_LIMITATIONS.md: gioi han pilot va du lieu.
+- docs/DEPLOY_GCP_V6.md: dieu kien GCP/Pikafish/backup va nghiem thu.
+- docs/V6_DECISIONS.md: cac quyet dinh san pham V6 va muc chua dap ung.
+- tools/run_checks.py: runner tests, co tham so `--node`.
+
+KET LUAN
+
+Van de ro rang nhat co the chu san pham tu khac phuc ngay la Node.js 6.14.0
+qua cu cho JavaScript checks. Cai Node 22 LTS tu nodejs.org, xac nhan dung
+duong dan va chay lai runner la chu trinh dau tien. Cac muc con lai la cach
+xu ly loi Windows co dieu kien, nghiem thu ha tang chua co bang chung, hoac
+tinh nang/chinh sach can duyet; khong nen sua chung mot luc.
