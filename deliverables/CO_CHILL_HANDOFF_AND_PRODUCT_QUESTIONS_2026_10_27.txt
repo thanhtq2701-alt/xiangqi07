@@ -1,0 +1,375 @@
+CO CHILL — BÀN GIAO HIỆN TRẠNG VÀ PHIẾU CÂU HỎI SẢN PHẨM
+Ngày: 27/10/2026 (UTC+7)
+Chủ sản phẩm: Trần Quốc Thành
+Thư mục phát triển MAIN_C:
+C:\Users\thanh\OneDrive\Documents\GitHub\xiangqi07
+Thư mục tham khảo REFERENCE_E:
+E:\ThanhTQ\App cờ tướng\xiangqi-ai
+
+MỤC ĐÍCH
+
+Tài liệu này tóm tắt tình trạng được ghi nhận, cấu trúc source, đề xuất các
+bước tiếp theo và các câu hỏi cần chủ sản phẩm quyết định. Đây là tài liệu
+bàn giao, không phải chứng nhận sản phẩm hoàn tất hay sẵn sàng production.
+
+MAIN_C là nơi phát triển. REFERENCE_E chỉ đọc; không sửa, xóa hoặc xử lý Git
+tại E. Không push, deploy, đổi DNS, dùng DB thật hoặc phát sinh chi phí nếu
+chưa được chủ sản phẩm duyệt.
+
+1. TÓM TẮT NHỮNG VIỆC ĐÃ LÀM
+
+- Đọc handoff và tài liệu V6 hiện có để tổng hợp cấu trúc, trạng thái, giới
+  hạn và các quyết định sản phẩm.
+- Tạo phiếu câu hỏi về chính sách tài khoản/lưu trữ, nguồn và quyền sử dụng
+  tài liệu, phân loại bài theo giai đoạn/level, và giao diện chơi/học.
+- Thêm CSS polish cho trang chơi và màn phản ánh trong
+  online-preview/v6.css. Thay đổi này chỉ ảnh hưởng presentation; không thay
+  luật, API, luồng học, reflection gate hoặc lưu trữ.
+- Cập nhật IMPLEMENTATION_REPORT_CODEX.md và TEST_REPORT_CODEX.md để ghi
+  rõ phạm vi sửa UI và kết quả kiểm thử thực tế.
+- Chạy server local với SQLite thử riêng; xem trang chơi và form reflection
+  ở desktop 1280x900 và mobile 390x844. Lần kiểm tra ghi nhận document width
+  375px ở viewport 390px, không tràn ngang; API session khách trả HTTP 200.
+  Server thử đã được dừng và DB thử đã xóa.
+- Không sửa REFERENCE_E, không dùng dữ liệu tài khoản thật, không commit,
+  push hoặc deploy.
+
+2. KIỂM THỬ VÀ VIỆC CÒN CẦN XÁC NHẬN
+
+Đã xác nhận trong lượt kiểm tra giao diện:
+- `python tools/check_online_preview.py`: đạt.
+- 104 test Python trong runner: đạt.
+- `git diff --check` trên các file source/report liên quan: đạt.
+- Kiểm tra browser local thủ công ở desktop/mobile: đạt trong phạm vi trên.
+
+Chưa xác nhận JavaScript suite trong môi trường lần kiểm tra gần đây:
+- Node trong PATH là v6.14.0 tại E:\ThanhTQ\Code\node.exe.
+- Phiên bản này quá cũ cho cú pháp JavaScript được source sử dụng; runner
+  không hoàn tất phần JavaScript. Không được ghi nhận JavaScript suite đạt
+  trong lần đó.
+- Báo cáo kiểm thử ngày 26/10 ghi nhận một lượt trước đó đã đạt với Python
+  3.14.2 và Node.js 22.23.4. Đây là kết quả cũ, không thay thế lượt chạy mới.
+
+Các giới hạn lớn hơn chưa được kiểm chứng:
+- Chưa có bằng chứng Pikafish/NNUE thật chạy trên VM Google Cloud của chủ
+  sản phẩm; unit test UCI dùng engine giả không chứng minh điều đó.
+- Chưa nghiệm thu production HTTPS/DNS, backup/restore thực tế, tải, vận hành
+  liên tục hoặc PvP qua hai mạng Internet thật.
+- Chưa có thử nghiệm người học, kiểm toán bảo mật, chứng nhận luật giải đấu
+  hoặc bằng chứng hiệu quả giáo dục.
+- Chưa chạy đầy đủ mọi luồng trên các trình duyệt/thiết bị thực.
+
+3. CẤU TRÚC SOURCE HIỆN TẠI
+
+- `co_chill_server.py`: entry point Python cho web/API, phục vụ frontend và
+  kết nối các module backend.
+- `app/rules.py`: luật Xiangqi phía server.
+- `app/cloud_store.py`: tài khoản, session, state/sync SQLite và revision.
+- `app/online_rooms.py`: phòng PvP, quyền, trạng thái, đồng hồ và kết quả.
+- `app/engine.py`, `app/pikafish.py`: máy cơ bản/heuristic và adapter UCI.
+- `app/content_store.py`, `app/puzzles.py`: nội dung và bài theo code hiện có.
+- `online-preview/index.html`: trang gốc và thứ tự script frontend.
+- `online-preview/app.js`: luồng giao diện/ván chính.
+- `online-preview/xiangqi.js`, `game-tools.js`: luật trình duyệt, ký phổ,
+  công cụ ván và replay.
+- `online-preview/learning.js`, `experience.js`, `curriculum.js`,
+  `line-practice.js`, `v6-learning-ui.js`: học, tiến độ, chương và bài nhiều
+  lượt.
+- `online-preview/cloud-client.js`, `engine-client.js`, `online-play.js`:
+  client API/sync, ranh giới engine và giao diện PvP.
+- `online-preview/style.css`, `v5.css`, `v6.css`: các lớp style; đọc cascade
+  trước khi chỉnh thêm.
+- `tests/`, `tools/test_*.cjs`, `tools/run_checks.py`: test Python/JS,
+  fixture, parity và runner.
+- `tools/build_v6_pack.py`, `tools/verify_source_pack.py`: đóng gói allowlist
+  và xác minh manifest/hash.
+- `var/`, database, log, cache, `.venv`: runtime/local data, không đưa vào
+  source pack hoặc Git.
+
+Ứng dụng frontend là HTML/CSS/JavaScript thuần, không có npm build riêng.
+Python server cần để dùng API tài khoản/PvP; chỉ mở file HTML bằng `file://`
+không thay thế server. Node cần cho test JavaScript, không cần để chạy app.
+
+4. NHỮNG GÌ SOURCE ĐANG MÔ TẢ LÀ CÓ
+
+Theo README và báo cáo trong repo (cần kiểm tra code khi sửa):
+- Giao diện tiếng Việt, một phần tiếng Anh, ba theme.
+- Chơi với máy, hai người cùng máy, nhập/phát lại ký phổ.
+- Luồng học có suy nghĩ trước lời giải, retry, bài liên quan, ôn và lưu nháp.
+- Tài khoản username/password, scrypt, cookie, quyền, TOTP owner, đồng bộ
+  revision/conflict và lưu SQLite.
+- PvP có phòng riêng/công khai và server giữ luật/trạng thái ván.
+- Hành trình mô tả 3 khóa/7 chương, 12 bài cơ bản, 8 bài hướng dẫn và 2 bài
+  nhiều lượt; hai bài nhiều lượt hiện cùng họ chiến thuật.
+- Adapter Pikafish UCI và `requireStrong` để không âm thầm coi fallback là
+  engine mạnh.
+
+Đây là những gì code/báo cáo mô tả, không phải xác nhận tất cả đã chạy trên
+production. EXP/cấp/khuyến nghị là heuristic; không gọi là Elo/ML hay hiệu
+quả học đã được chứng minh.
+
+5. NGUYÊN TẮC KHÔNG ĐƯỢC LÀM MẤT
+
+- Luật quyết định nước hợp lệ; engine tạo bằng chứng; lớp giải thích không
+  được tự bịa nước, FEN, điểm hoặc PV.
+- Giữ reflection gate: không lộ lời giải trước khi người học ghi nhận suy
+  nghĩ/nước ứng viên theo luồng hiện tại.
+- Không hiển thị coaching/engine của ứng dụng trong ván live.
+- Ghi nhãn trung thực cho heuristic, fixture synthetic, template và fallback.
+- Không scrape sách/website hoặc phát hành nội dung khi chưa rõ quyền.
+- Không gửi dữ liệu người học cho provider AI/training theo mặc định.
+- Không làm yếu/xóa test để đạt PASS; ghi rõ test nào chưa chạy.
+- Không dùng branch mới như một bản sao lưu của thay đổi chưa commit.
+
+6. ĐỀ XUẤT THỨ TỰ CÔNG VIỆC
+
+Giai đoạn 1 — khắc phục môi trường kiểm thử:
+1. Cài Node.js 22 LTS hoặc bản LTS tương thích.
+2. Xác nhận `node --version` và đường dẫn thực tế.
+3. Chạy full runner bằng Node mới; chỉ sau đó cập nhật báo cáo bằng kết quả
+   thật của lượt mới.
+
+Giai đoạn 2 — chủ sản phẩm chọn hướng:
+1. Chốt tài khoản, session, guest merge, dữ liệu sync, export/delete,
+   backup/retention và recovery.
+2. Chốt nguồn tài liệu/quyền và taxonomy bài học.
+3. Chốt màn hình/thiết bị ưu tiên cho vòng UI kế tiếp.
+
+Giai đoạn 3 — nghiệm thu staging khi được duyệt:
+1. Kiểm Pikafish/NNUE trên máy thật, `requireStrong`, timeout và phục hồi.
+2. Kiểm backup/restore trên database thử riêng.
+3. Kiểm PvP qua hai thiết bị/hai mạng.
+4. Chỉ xem xét production sau khi có bằng chứng và chủ sản phẩm duyệt.
+
+Không bắt đầu các thay đổi chính sách lớn trước khi có câu trả lời ở mục 7–9.
+
+======================================================================
+7. PHIẾU CÂU HỎI — TÀI KHOẢN VÀ LƯU TRỮ
+======================================================================
+
+7.1 Dữ liệu nào cần đồng bộ giữa thiết bị?
+
+[ ] Tài khoản/cấu hình
+[ ] Tiến độ bài cơ bản
+[ ] Tiến độ bài nhiều lượt và bản nháp
+[ ] Lịch ôn
+[ ] Lịch sử ván
+[ ] Chỉ dữ liệu chọn lọc: ______________________________________________
+
+Khách chưa đăng nhập có cần chuyển dữ liệu sang tài khoản sau này không?
+[ ] Có, gộp dữ liệu sau khi xem trước
+[ ] Có, nhưng chỉ một số loại dữ liệu
+[ ] Không
+[ ] Cần đề xuất trước
+
+Nếu dữ liệu guest trùng tài khoản, ưu tiên:
+[ ] Giữ dữ liệu trên tài khoản
+[ ] Cho xem khác biệt rồi chọn
+[ ] Gộp theo quy tắc cần đề xuất
+
+7.2 Session tài khoản
+
+Mã hiện ghi nhận: session server có thời hạn 7 ngày; chính sách V6 mô tả
+một session/user và đăng nhập mới có thể thu hồi session cũ. Hãy xác nhận:
+
+[ ] Giữ một phiên; đăng nhập mới thu hồi phiên cũ
+[ ] Cho phép nhiều thiết bị/phiên cùng lúc
+[ ] Khác: ______________________________________________________________
+
+7.3 Khôi phục tài khoản
+
+[ ] Chưa cần recovery email trong pilot
+[ ] Cần email xác minh và tự đặt lại mật khẩu
+[ ] Cần phương án khác: ________________________________________________
+
+Nếu chọn email: provider/chi phí do chủ sản phẩm duyệt trước; không gửi
+password, token khôi phục hoặc dữ liệu riêng qua chat.
+
+7.4 Backup, retention và xóa dữ liệu
+
+Ai chịu trách nhiệm tạo backup? ________________________________________
+Nơi lưu backup riêng: __________________________________________________
+Thời hạn giữ backup: ___________________________________________________
+Khi người dùng xóa tài khoản, dữ liệu ván chung với đối thủ nên:
+[ ] Ẩn danh danh tính người yêu cầu, giữ biên bản chung
+[ ] Xóa cả biên bản chung
+[ ] Khác/cần phân tích: ________________________________________________
+
+Có chấp nhận thử backup/restore bằng DB thử riêng trước không? [ ] Có
+
+Không dùng database production cho thử nghiệm và không hứa xóa mọi bản backup
+khi chỉ xóa một bản ghi trong DB đang chạy.
+
+======================================================================
+8. PHIẾU CÂU HỎI — NGUỒN BÀI, LEVEL VÀ QUYỀN
+======================================================================
+
+8.1 Phân loại mong muốn
+
+Giai đoạn cần ưu tiên:
+[ ] Khai cuộc   [ ] Trung cuộc   [ ] Tàn cuộc   [ ] Luật/kỹ thuật
+
+Level:
+[ ] Cơ bản: khoảng 1–2 quyết định
+[ ] Trung cấp: khoảng 3–4 quyết định
+[ ] Nâng cao: khoảng 6–7 quyết định
+[ ] Cần định nghĩa khác: ______________________________________________
+
+Số lượng cho pilot (không phải cam kết tự động tạo nội dung):
+Khai cuộc: ______  Trung cuộc: ______  Tàn cuộc: ______
+
+Kỹ năng ưu tiên:
+[ ] Xe [ ] Pháo [ ] Mã [ ] An toàn Tướng [ ] Phối hợp [ ] Khác: ________
+
+8.2 Phiếu cho từng nguồn
+
+Tên tài liệu/nguồn: ____________________________________________________
+Tác giả/chủ sở hữu: ____________________________________________________
+Ấn bản/năm/URL/ISBN (nếu biết): ________________________________________
+Giai đoạn/chủ đề: ______________________________________________________
+
+Quyền sử dụng:
+[ ] Do tôi tạo
+[ ] Public domain đã xác minh
+[ ] Có giấy phép/văn bản đồng ý
+[ ] Chỉ tham khảo, không sao chép/phát hành
+[ ] Chưa rõ — chưa đưa nội dung vào sản phẩm
+
+Được phép trích dẫn/chuyển thành bài/dùng hình ảnh ở phạm vi nào?
+________________________________________________________________________
+Nguồn hoặc người cần ghi công: _________________________________________
+Có giới hạn sử dụng với công cụ AI không? ______________________________
+
+Không mặc định sách mua được hoặc trang đọc miễn phí cho phép tái phát hành.
+
+8.3 Phiếu cho bài muốn bổ sung
+
+Tên/ID tạm: ____________________________________________________________
+Giai đoạn/chủ đề: ______________________________________________________
+Level và độ khó: _______________________________________________________
+Mục tiêu học, viết trong một câu: _____________________________________
+Nguồn và vị trí cụ thể: ________________________________________________
+FEN/ký phổ do ai cung cấp, quyền sử dụng: ______________________________
+Ai kiểm tra chuyên môn/cây đáp án: ____________________________________
+Có cần nhánh “chưa kiểm chứng” không? _________________________________
+
+Đổi tên, xoay hoặc mirror một thế cờ không tự tạo thành bài độc lập. Không
+nhân bản bài để đạt chỉ tiêu level/chương.
+
+======================================================================
+9. PHIẾU CÂU HỎI — GIAO DIỆN CHƠI VÀ HỌC
+======================================================================
+
+9.1 Màn hình ưu tiên (chọn tối đa hai)
+
+[ ] Chơi với máy
+[ ] Hai người cùng máy
+[ ] Phòng PvP online
+[ ] Nhập/phát lại ván
+[ ] Bài học/câu hỏi
+[ ] Hành trình/thư viện bài
+[ ] Khác: ______________________________________________________________
+
+Màn cụ thể cần chỉnh và việc người dùng cần làm dễ hơn:
+________________________________________________________________________
+Thiết bị ưu tiên: [ ] Điện thoại [ ] Máy tính [ ] Cả hai
+Kích thước màn hình thường dùng (nếu biết): _____________________________
+
+9.2 Mức thay đổi
+
+[ ] Chỉnh spacing/độ rõ, giữ bố cục
+[ ] Sắp xếp lại nhưng giữ nhận diện thương hiệu
+[ ] Đưa phương án/mockup để tôi chọn trước
+
+Yếu tố phải giữ (logo, cover, màu, font, điều hướng):
+________________________________________________________________________
+Theme muốn ưu tiên: ____________________________________________________
+Giữ ba theme hiện tại? [ ] Có [ ] Không [ ] Chưa rõ
+
+Hai người cùng máy:
+[ ] Tự lật bàn theo lượt
+[ ] Giữ nút lật thủ công
+[ ] Muốn xem minh họa trước
+
+9.3 Bàn chơi và luồng học
+
+Thông tin cần luôn thấy:
+[ ] Bên đang đi [ ] Đồng hồ [ ] Đối thủ [ ] Lịch sử nước [ ] Ký phổ
+[ ] Hòa/đầu hàng [ ] Xin đi lại [ ] Khác: ______________________________
+
+Trên điện thoại ưu tiên:
+[ ] Bàn cờ lớn nhất [ ] Nút dễ chạm [ ] Lịch sử nước
+[ ] Có thể mở/đóng panel [ ] Khác: _____________________________________
+
+Thông tin/hành động không nên hiện trong ván live: _____________________
+Xác nhận không hiện coaching/lời giải/phân tích engine trong ván live:
+[ ] Đồng ý
+
+Câu hỏi bài học:
+[ ] Một câu mỗi bước, nút thao tác rõ
+[ ] Mục tiêu và ba câu suy nghĩ ban đầu
+[ ] Khác: ______________________________________________________________
+
+Người học trả lời bằng:
+[ ] Chữ [ ] Chọn nước trên bàn [ ] Cả hai [ ] Khác: ___________________
+Cần vẽ mũi tên/đánh dấu trên bàn? [ ] Có [ ] Chưa cần [ ] Để sau
+Xác nhận giữ reflection gate trước lời giải: [ ] Đồng ý
+
+9.4 Trợ năng/ngôn ngữ
+
+Cần bàn phím đầy đủ? [ ] Có [ ] Không [ ] Cần đề xuất
+Cỡ chữ/zoom/contrast cần lưu ý: ________________________________________
+Ngôn ngữ:
+[ ] Tiếng Việt trước, EN sau
+[ ] Hoàn thiện EN trong đợt này
+[ ] Khác: ______________________________________________________________
+
+======================================================================
+10. TIÊU CHÍ NGHIỆM THU ĐỀ XUẤT
+======================================================================
+
+Tài khoản/lưu trữ:
+- A không đọc/ghi dữ liệu B; guest không bị coi nhầm là account.
+- Reload/thiết bị khác giữ dữ liệu theo chính sách đã chốt.
+- Lỗi sync/conflict hiển thị rõ, không báo lưu thành công giả.
+- Export/delete và backup/restore thử bằng dữ liệu thử.
+
+Kho bài:
+- Bài có ID/version, mục tiêu, FEN, tiêu chí chấm, provenance và quyền sử dụng.
+- Nhánh ngoài cây chưa kiểm chứng không bị kết luận sai tự động.
+- Xem bài không tự tính là completion/mastery.
+
+Giao diện:
+- Thử màn ưu tiên ở desktop/mobile, zoom và focus bàn phím.
+- Không tràn ngang; controls đủ rõ/dễ chạm.
+- Reflection gate và live-game guard vẫn đúng.
+
+Kiểm thử:
+- Ghi lệnh, môi trường, kết quả, phạm vi và giới hạn.
+- Không cộng kết quả từ nhiều lượt thành một lượt duy nhất.
+- Không gọi test local là kiểm chứng production.
+
+======================================================================
+11. CÁCH TIẾP TỤC
+======================================================================
+
+1. Chủ sản phẩm điền phiếu 7–9 và lưu file.
+2. Gửi lại file hoặc trả lời theo số mục.
+3. Bắt đầu Node.js trước nếu muốn chạy full JavaScript checks; hướng dẫn từng
+   bước nằm trong CO_CHILL_SYSTEM_ISSUES_FIX_CYCLES_2026_10_27.txt.
+4. Sau khi có lựa chọn, thực hiện từng phạm vi đã duyệt, bảo toàn thay đổi
+   có sẵn; hỏi trước khi vượt sang chính sách/production.
+
+Kết thúc tài liệu. Các mục chưa trả lời không được hiểu là đã được duyệt.
+
+======================================================================
+CẬP NHẬT MÔI TRƯỜNG KIỂM THỬ — 28/10/2026
+======================================================================
+
+Node.js 24.22.1 đã cài và được xác nhận trong PATH. Source hiện ghim bản kiểm
+thử này trong `.nvmrc`, và builder đưa `.nvmrc` vào source pack. Lượt
+`python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"`
+đạt `ALL CHECKS PASSED`: 100 Python tests, fixtures/parity, 14 file JavaScript
+syntax checks và 10 JS test scripts. Node chỉ cần cho checks; app không cần
+Node/npm khi chạy. Lượt đầu có lỗi Pikafish không tái hiện; xem
+`TEST_REPORT_CODEX.md` để biết chi tiết.

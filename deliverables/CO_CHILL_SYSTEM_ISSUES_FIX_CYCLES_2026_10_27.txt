@@ -1,0 +1,472 @@
+CO CHILL — CÁC VẤN ĐỀ HỆ THỐNG VÀ CHU TRÌNH KHẮC PHỤC
+Ngày lập: 27/10/2026 (UTC+7)
+Phạm vi: source MAIN_C và báo cáo hiện có; không truy cập production.
+Thư mục MAIN_C:
+C:\Users\thanh\OneDrive\Documents\GitHub\xiangqi07
+
+MỤC ĐÍCH
+
+Tài liệu này chia các vấn đề đã xác nhận, lỗi môi trường từng gặp, khoảng
+trống cần nghiệm thu và tính năng chưa có thành từng chu trình độc lập.
+Mỗi chu trình có dấu hiệu, cách xử lý và tiêu chí kết thúc. Không cần làm
+tất cả cùng lúc.
+
+Đây không phải kiểm toán toàn diện. “Chưa nghiệm thu” hoặc “chưa có tính
+năng” không đồng nghĩa hệ thống đang lỗi.
+
+TÓM TẮT — GHI NHẬN BAN ĐẦU NGÀY 27/10/2026
+
+Trạng thái hiện tại được cập nhật ở cuối tài liệu ngày 28/10/2026; phần
+ghi nhận ban đầu dưới đây được giữ lại làm lịch sử.
+
+1. Đã xác nhận Node.js v6.14.0 trong PATH, quá cũ để chạy JavaScript checks.
+   Cài Node.js 22 LTS từ nguồn chính thức rồi chạy full runner.
+2. Runner có thể gặp lỗi hiển thị Unicode trên Windows nếu console dùng
+   encoding cũ; thử Python UTF-8 trước, chỉ sửa runner nếu tái hiện.
+3. Báo cáo cũ ghi một lần Windows chặn test localhost (WinError 10013).
+   Chỉ xử lý nếu gặp lại; không tắt firewall.
+4. Mở giao diện bằng file:// không thay thế Python server cho API tài khoản/PvP.
+5. GCP/Pikafish thật, backup/restore production và PvP qua hai mạng chưa
+   được nghiệm thu; đây là thiếu bằng chứng, không phải lỗi đã chứng minh.
+6. Recovery email, nhập đầy đủ tiến độ và retention phòng chưa hoàn thiện;
+   đây là tính năng/chính sách cần duyệt riêng.
+
+NGUYÊN TẮC AN TOÀN
+
+- Không sửa REFERENCE_E; không dùng DB/tài khoản production để thử.
+- Không tắt Windows Firewall hoặc mở cổng Internet để làm test xanh.
+- Không đưa password, cookie, secret, private key hay DB người chơi vào chat,
+  báo cáo hoặc GitHub.
+- Không push, deploy, đổi DNS, mua dịch vụ hay chuyển dữ liệu thật khi chưa
+  được chủ sản phẩm duyệt.
+- Không xóa/giảm assertion hay nuốt lỗi để làm runner xanh.
+
+======================================================================
+CHU TRÌNH 1 — CÀI NODE.JS TƯƠNG THÍCH ĐỂ CHẠY JAVASCRIPT TESTS
+======================================================================
+
+Đã xác nhận:
+- `node --version` trả về v6.14.0.
+- Node hiện tại nằm tại E:\ThanhTQ\Code\node.exe.
+- README ghi bộ checks đã được xác nhận với Node.js 22.23.4.
+- Node chỉ cần cho kiểm thử, không cần để chạy ứng dụng.
+
+Cách làm:
+1. Tải Node.js 22 LTS Windows Installer (.msi) từ trang chính thức:
+   https://nodejs.org/
+   Không tải từ trang chia sẻ phần mềm không rõ nguồn.
+2. Cài theo lựa chọn mặc định, giữ tùy chọn thêm Node vào PATH. Không cần gỡ
+   Node cũ và không cần cài npm packages cho repo này.
+3. Đóng Terminal cũ, mở Terminal mới (hoặc khởi động lại VS Code).
+4. Tại thư mục MAIN_C, chạy:
+   where.exe node
+   node --version
+   Kết quả mong muốn là Node v22.x LTS.
+5. Nếu PATH vẫn ưu tiên Node cũ, không xóa/sửa hàng loạt PATH. Chạy trực tiếp
+   bằng đường dẫn cài mới, ví dụ:
+   python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+   Sửa đường dẫn nếu Node được cài ở vị trí khác.
+6. Đợi runner chạy hết. Nếu lỗi, giữ nguyên thông báo và tên check đầu tiên
+   thất bại; không sửa test để né lỗi.
+
+Tiêu chí kết thúc:
+- `node --version` hiện Node 22 LTS tương thích.
+- Full runner kết thúc `ALL CHECKS PASSED`.
+- Python tests, fixture/parity, JavaScript syntax và các JS tests đều thực sự
+  chạy và đạt trong cùng lượt.
+- Ghi phiên bản Python/Node, lệnh và kết quả lượt mới vào TEST_REPORT_CODEX.md.
+
+Nếu chỉ phần Python đạt, chu trình chưa kết thúc. Không cần gửi DB hoặc
+credentials khi báo lỗi.
+
+======================================================================
+CHU TRÌNH 2 — XỬ LÝ LỖI HIỂN THỊ UNICODE TRÊN WINDOWS
+======================================================================
+
+Dấu hiệu:
+- Runner gặp lỗi, sau đó console báo UnicodeEncodeError hoặc không in được
+  một số ký tự.
+- `tools/run_checks.py` đã đọc output subprocess theo UTF-8; lỗi có thể phát
+  sinh khi Python in kết quả ra Windows console.
+
+Cách làm:
+1. Thử chạy runner ở chế độ UTF-8:
+   python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+2. Nếu vẫn có UnicodeEncodeError, giữ nguyên traceback và ghi rõ terminal/
+   phiên bản Python đang dùng. Không bỏ ký tự Unicode khỏi lỗi nguồn.
+3. Chỉ khi lỗi tái hiện, sửa runner một cách hẹp để stdout/stderr khi in
+   subprocess dùng UTF-8 với thay thế ký tự không mã hóa được.
+4. Kiểm tra lại rằng lỗi test vẫn trả exit code khác 0, output đọc được, và
+   runner chỉ báo PASS khi mọi bước đạt.
+5. Cập nhật TEST_REPORT_CODEX.md nếu thay đổi runner.
+
+Tiêu chí kết thúc:
+- Không còn UnicodeEncodeError làm mất kết quả kiểm thử.
+- Lỗi test vẫn được thể hiện rõ và không bị biến thành thành công.
+- Nếu `python -X utf8` đã giải quyết được, không cần sửa runner.
+
+======================================================================
+CHU TRÌNH 3 — WINERROR 10013 KHI TEST CẦN LOCALHOST
+======================================================================
+
+Tình trạng:
+- Báo cáo test cũ ghi một lượt HTTP test gặp WinError 10013 khi mở localhost.
+- Sau đó test đạt khi môi trường cho phép socket local. Chưa có bằng chứng
+  lỗi đang xảy ra ở mọi lần chạy.
+
+Nếu gặp lại:
+1. Chạy riêng test được nêu trong traceback, ví dụ:
+   python -m unittest tests.test_online_http
+2. Xác định host/cổng theo traceback; chỉ dừng ứng dụng local khác nếu đúng
+   là nó đang chiếm cổng test.
+3. Nếu phần mềm bảo mật/chính sách công ty chặn loopback, nhờ quản trị viên
+   cho phép test localhost theo chính sách. Chỉ mở ngoại lệ tối thiểu.
+4. Không chạy Administrator chỉ để thử; không tắt Firewall toàn máy; không
+   mở cổng ra Internet.
+5. Chạy lại đúng test và ghi traceback/kết quả.
+
+Tiêu chí kết thúc:
+- Test HTTP đạt trong môi trường được phép; hoặc lỗi môi trường được ghi rõ,
+  không bị nhầm là lỗi ứng dụng.
+- Không thay assertion để bỏ phần test cần socket.
+
+======================================================================
+CHU TRÌNH 4 — DÙNG LOCAL SERVER ĐỂ XEM API
+======================================================================
+
+Dấu hiệu:
+- Trang mở bằng `file://` thấy giao diện nhưng API tài khoản/PvP không hoạt
+  động; hoặc tab localhost không kết nối vì server đã dừng.
+- Đây là yêu cầu chạy app qua Python server, không nhất thiết là lỗi CSS.
+
+Cách làm với DB thử riêng:
+1. Mở PowerShell tại thư mục gốc MAIN_C.
+2. Chạy:
+   $db = Join-Path $env:TEMP ("co-chill-test-" + (Get-Date -Format "yyyyMMdd-HHmmss") + ".sqlite3")
+   python co_chill_server.py serve --port 8769 --db $db
+3. Để cửa sổ terminal đó chạy; mở http://127.0.0.1:8769/
+4. Khi xem xong, quay lại terminal nhấn Ctrl+C.
+5. Nếu cần dọn DB thử, chỉ xóa đúng file `co-chill-test-...sqlite3` vừa tạo
+   sau khi đã xác nhận đường dẫn. Không xóa cả thư mục TEMP.
+
+Tiêu chí kết thúc:
+- Trang tải qua HTTP và API khách phản hồi.
+- DB thử tách khỏi DB mặc định/production.
+- Server được dừng sau khi xem nếu không cần tiếp tục.
+
+======================================================================
+CHU TRÌNH 5 — CHẠY FULL SUITE SAU KHI SỬA NODE
+======================================================================
+
+Đây là xác minh lại source, không phải kết luận code có lỗi.
+
+Cách làm:
+1. Hoàn tất Chu trình 1.
+2. Chạy:
+   python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+3. Nếu lỗi, xử lý check đầu tiên thất bại; giữ nguyên test/assertion và chạy
+   lại full runner sau mỗi sửa đổi.
+4. Chạy fixture checker khi thay đổi fixtures/nội dung.
+5. Nếu sửa UI, mở local server với DB thử riêng và xem desktop/mobile; xem
+   lỗi console. Không gọi một trang đơn lẻ là E2E toàn bộ sản phẩm.
+6. Ghi chính xác môi trường, lệnh, kết quả và giới hạn trong TEST_REPORT.
+
+Tiêu chí kết thúc:
+- Full runner đạt trên source hiện tại.
+- Báo cáo phản ánh đúng một lượt chạy, không cộng kết quả nhiều ngày.
+
+======================================================================
+CHU TRÌNH 6 — KIỂM CHỨNG PIKAFISH/NNUE TRÊN GCP
+======================================================================
+
+Tình trạng:
+- Adapter UCI có unit tests với engine giả.
+- Chưa có bằng chứng Pikafish/NNUE thật trên VM Google Cloud của chủ sản phẩm.
+  Đây là khoảng trống nghiệm thu, không phải lỗi production đã chứng minh.
+
+Điều kiện trước:
+- Chủ sản phẩm duyệt phạm vi truy cập máy.
+- Có VM test/staging và database thử riêng.
+- Xác nhận OS/CPU/RAM/disk, binary và NNUE có quyền sử dụng.
+- Không gửi password/private key qua chat.
+
+Chu trình kiểm thử:
+1. Xác minh binary chạy, version, kiến trúc CPU và NNUE tương thích.
+2. Kiểm UCI handshake/isready, nạp vị trí, search cho cả hai bên.
+3. Kiểm PV hợp lệ; timeout/stop, process crash, request bị hủy và kết quả
+   muộn sau khi đổi vị trí.
+4. Kiểm `requireStrong=true`: thiếu engine thì báo không khả dụng, không
+   đổi ngầm sang heuristic dưới nhãn engine mạnh.
+5. Đo CPU/RAM/thời gian; rà log không có secret/dữ liệu không cần thiết.
+6. Lưu bằng chứng cấu hình không nhạy cảm; không đưa binary/NNUE vào pack
+   nếu chưa xác minh license.
+
+Tiêu chí kết thúc:
+- Biên bản có OS/CPU, version, engine/NNUE, test cases và kết quả.
+- UI không báo thành công giả khi engine lỗi.
+- Không tự deploy public hoặc đổi DNS.
+
+======================================================================
+CHU TRÌNH 7 — BACKUP VÀ RESTORE TRÊN DATABASE THỬ
+======================================================================
+
+Tình trạng:
+- Có lệnh backup thủ công.
+- Backup định kỳ/retention và restore trên hạ tầng chủ sản phẩm chưa được
+  xác nhận.
+
+Cách làm:
+1. Chốt nơi lưu riêng, quyền truy cập, hạn lưu và người chịu trách nhiệm.
+2. Tạo backup vào file mới ở vị trí riêng:
+   python co_chill_server.py backup --output "DUONG_DAN_RIENG\co-chill-test-backup.sqlite3"
+3. Copy backup sang tên DB test mới; tuyệt đối không ghi đè DB đang chạy.
+4. Khởi chạy app test với `--db` trỏ tới bản copy; xác nhận SQLite mở được
+   và dữ liệu test cần thiết tồn tại.
+5. Ghi thời gian backup/restore và kết quả; dọn đúng bản test nếu không cần.
+6. Chỉ thiết kế lịch tự động/retention sau khi quy trình thử đạt và được duyệt.
+
+Tiêu chí kết thúc:
+- Restore thành công vào DB test riêng.
+- Nơi lưu, hạn retention, quyền truy cập và xử lý yêu cầu xóa trong backup
+  được ghi rõ.
+- Không có DB/backup người chơi trong repo, source pack hoặc chat.
+
+======================================================================
+CHU TRÌNH 8 — PVP QUA HAI THIẾT BỊ VÀ HAI MẠNG
+======================================================================
+
+Tình trạng:
+- Có một số test PvP local/browser.
+- Chưa xác nhận mobile/tab nền, reconnect và hai mạng Internet thật.
+
+Cách làm:
+1. Chỉ thử trên staging được duyệt; không restart server có người chơi thật.
+2. Dùng hai thiết bị, hai mạng Internet và hai hồ sơ test tách biệt.
+3. Thử tạo/join/ready, màu, đồng hồ, nước hợp lệ, reload, tab nền, mất mạng/
+   reconnect, hòa, thoát, xin đi lại và tái đấu.
+4. Xác nhận server giữ revision/FEN/đồng hồ/kết quả; client không tự khai
+   trạng thái ván.
+5. Xác nhận engine/coaching của app bị khóa trong ván live, gồm spectator.
+6. Ghi môi trường và kết quả; loại thông tin cá nhân khỏi log/báo cáo.
+
+Tiêu chí kết thúc:
+- Có biên bản từng tình huống, thiết bị/trình duyệt/mạng và kết quả.
+- Nếu lỗi polling/tab nền/timeout, tạo chu trình sửa riêng; không tự đổi luật
+  PvP hoặc thời hạn mất kết nối.
+
+======================================================================
+CHU TRÌNH 9 — EMAIL KHÔI PHỤC MẬT KHẨU (TÍNH NĂNG CHƯA CÓ)
+======================================================================
+
+Đây không phải lỗi đăng nhập đã xác nhận. Email recovery chưa triển khai.
+Chỉ bắt đầu sau khi chủ sản phẩm duyệt provider, chi phí và chính sách.
+
+Cần chốt:
+- Provider và ngân sách.
+- Xác minh email, hạn token, token dùng một lần, rate limit.
+- Không tiết lộ account có tồn tại hay không.
+- Thu hồi session sau recovery theo chính sách.
+
+Chu trình:
+1. Chốt yêu cầu/provider; không tự mua dịch vụ.
+2. Thiết kế token ngẫu nhiên một lần, có hạn; không ghi token/password vào log.
+3. Thêm test cho hết hạn, dùng lại, rate limit, account không tồn tại và
+   thu hồi session.
+4. Thử trên staging/email test; không gửi email người dùng thật nếu chưa duyệt.
+
+Tiêu chí kết thúc:
+- Flow được test trên staging, có rate limit/giám sát và được chủ sản phẩm
+  duyệt trước khi bật cho pilot.
+
+======================================================================
+CHU TRÌNH 10 — NHẬP KHÔI PHỤC ĐẦY ĐỦ TIẾN ĐỘ (TÍNH NĂNG CHƯA CÓ)
+======================================================================
+
+Không nhầm import ký phổ với phục hồi toàn bộ tài khoản/tiến độ.
+
+Trước khi code cần chốt:
+- Schema/version và loại dữ liệu được phép nhập.
+- Merge khi trùng ID/revision; dữ liệu nào ưu tiên.
+- Giới hạn kích thước, preview/dry-run, backup trước khi import.
+- Không nhập role/admin, answer keys, token, cookie hoặc secret.
+
+Chu trình:
+1. Chủ sản phẩm duyệt schema và quy tắc merge.
+2. Implement validation/versioning/preview; preview không được ghi DB.
+3. Thêm test file lỗi/lớn, ID/FEN sai, revision trùng, rollback.
+4. Thử trên profile/DB test, tạo backup trước khi thử merge.
+
+Tiêu chí kết thúc:
+- Import/rollback được chứng minh trên DB test.
+- File import không thể cấp quyền admin hoặc nạp bí mật/answer key.
+
+======================================================================
+CHU TRÌNH 11 — RETENTION PHÒNG VÀ XÓA/ẨN DANH LỊCH SỬ
+======================================================================
+
+Tình trạng:
+- Guest room cookie có hạn nhưng hết cookie không tự xóa room.
+- Xóa danh tính có thể ảnh hưởng biên bản chung của đối thủ.
+- Chưa chốt retention và xử lý bản backup.
+
+Không code xóa tự động trước khi chốt:
+- Lưu room/history trong bao lâu?
+- Khi xóa tài khoản, ẩn danh một người hay xóa cả ván chung?
+- Backup hết hạn/xóa theo lịch nào?
+- Ai được xem lịch sử và báo cáo?
+
+Chu trình:
+1. Chủ sản phẩm duyệt chính sách dữ liệu/thông báo người dùng.
+2. Lập bản đồ quan hệ dữ liệu; thêm test đối thủ, guest, spectator,
+   paused/ended và transaction rollback.
+3. Implement dry-run trước khi xóa thật; thử trên DB copy.
+4. Đối chiếu số bản ghi và log không chứa dữ liệu nhạy cảm.
+
+Tiêu chí kết thúc:
+- Không xóa dữ liệu thật bất ngờ.
+- Retention/tác động với đối thủ và backup được ghi rõ.
+- Regression/transaction tests đạt.
+
+======================================================================
+CHU TRÌNH 12 — GIỚI HẠN MỘT PROCESS / MỘT INSTANCE
+======================================================================
+
+Đây là giới hạn kiến trúc đã ghi, không phải lỗi cho pilot một instance.
+Không tăng Gunicorn workers/replicas tùy tiện: điều phối engine và trạng
+thái phòng hiện thiết kế cho một process.
+
+Chỉ mở rộng khi có dữ liệu tải và được duyệt:
+1. Đo tải, CPU/RAM, latency và lỗi trên staging một process.
+2. Nếu không đủ, thiết kế đồng bộ chung cho engine queue, transaction/lifecycle
+   room và phục hồi sau restart.
+3. Thêm test concurrency/nhiều worker và benchmark trước khi đổi cấu hình.
+4. Nếu chưa có nhu cầu/số liệu, giữ một worker; không cần sửa.
+
+Tiêu chí kết thúc nếu được duyệt:
+- Thiết kế và test chứng minh concurrency, restart và engine queue trước khi
+  tăng worker/instance.
+
+======================================================================
+CÁC MỤC KHÔNG NÊN GỌI NHẦM LÀ LỖI
+======================================================================
+
+- Python 3.14.0 hiện dùng và Python tests đã đạt trong lượt gần đây; README
+  yêu cầu Python 3.12 trở lên. Chưa có bằng chứng cần thay Python.
+- Không có npm build/ESLint/TypeScript là lựa chọn kiến trúc hiện tại; không
+  cần thêm framework/tool chỉ để có thêm lệnh build.
+- GCP/Pikafish/HTTPS/DNS chưa kiểm tra là thiếu bằng chứng, không chứng minh
+  production hỏng.
+- Kho bài nhỏ, EN chưa dịch hết, chưa đủ bài nâng cao là giới hạn phạm vi/
+  nội dung, không phải test fail. Nội dung cần quyền sử dụng và người duyệt.
+- Accessibility, UX người học, luật giải đấu và hiệu quả giáo dục chưa có
+  nghiệm thu; không thể kết luận đạt từ unit tests.
+- Mã hóa DB, multi-session, retention, recovery và import cần quyết định
+  chính sách trước khi thay đổi dữ liệu/hành vi.
+
+THỨ TỰ KHUYẾN NGHỊ BAN ĐẦU
+
+Các bước dưới đây phản ánh thời điểm lập tài liệu. Trạng thái mới và bước
+tiếp theo được ghi ở cuối tài liệu.
+
+1. Làm Chu trình 1 (Node LTS), rồi Chu trình 5 để có bằng chứng test mới.
+2. Chỉ làm Chu trình 2 nếu UnicodeEncodeError tái hiện.
+3. Chỉ làm Chu trình 3 nếu WinError 10013 gặp lại.
+4. Dùng Chu trình 4 khi cần xem API local.
+5. Chu trình 6–12 cần điều kiện và phê duyệt ghi trong từng mục; làm riêng
+   từng chu trình, không gộp thành một đợt thay đổi lớn.
+
+TÀI LIỆU ĐỐI CHIẾU
+
+- README.md: cách chạy, Node requirement và lệnh checks.
+- TEST_REPORT_CODEX.md: kết quả từng lượt và giới hạn.
+- IMPLEMENTATION_REPORT_CODEX.md: source, kiến trúc và phần đã làm.
+- KNOWN_LIMITATIONS.md: giới hạn pilot.
+- docs/DEPLOY_GCP_V6.md: GCP/Pikafish/backup và nghiệm thu.
+- docs/V6_DECISIONS.md: quyết định sản phẩm V6.
+- tools/run_checks.py: runner, hỗ trợ `--node`.
+
+KẾT LUẬN BAN ĐẦU NGÀY 27/10/2026
+
+Việc rõ ràng nhất có thể xử lý trước là Node.js 6.14.0 quá cũ cho JavaScript
+checks. Cài Node.js 22 LTS từ nodejs.org, xác nhận đường dẫn/phiên bản rồi
+chạy runner. Những mục còn lại là lỗi môi trường có điều kiện, hạ tầng chưa
+được kiểm chứng hoặc tính năng/chính sách cần chủ sản phẩm duyệt.
+
+======================================================================
+CẬP NHẬT TRẠNG THÁI — 28/10/2026
+======================================================================
+
+ĐÃ HOÀN TẤT: Chu trình 1–5 và 7, trong phạm vi source/môi trường thử.
+CHƯA HOÀN TẤT HOẶC CHƯA ĐƯỢC NGHIỆM THU: Chu trình 6, 8–12. Trạng thái
+này không xác nhận production sẵn sàng.
+
+Chu trình 1 — Hoàn tất:
+- `node --version` trả về v24.22.1; Windows đang chọn
+  `C:\Program Files\nodejs\node.exe`. Node 6 cũ còn là một đường dẫn thứ hai
+  trong PATH nhưng không được runner dùng khi chỉ rõ `--node`.
+- `.nvmrc` ghim Node 24.22.1; source-pack builder giữ file này trong ZIP.
+- Node chỉ phục vụ JavaScript checks; ứng dụng vẫn chạy bằng Python và không
+  cần npm packages.
+- Bằng chứng full runner: `python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"`
+  đạt `ALL CHECKS PASSED`: 100 Python tests, 12 fixtures, parity luật,
+  syntax 14 file JavaScript và 10 script JavaScript tests.
+
+Chu trình 2 — Hoàn tất, không cần sửa runner:
+- Full runner chạy bằng `python -X utf8`; kết quả và lỗi được ghi nhận trong
+  terminal/báo cáo, không có UnicodeEncodeError được báo trong lượt đạt.
+- Chưa có bằng chứng cần thay đổi cách runner in output; không có lỗi nào bị
+  bỏ qua hoặc chuyển thành PASS.
+
+Chu trình 3 — Hoàn tất trong môi trường được cho phép:
+- Báo cáo kiểm thử ghi 8 HTTP tests ban đầu gặp WinError 10013, sau đó chạy
+  lại khi localhost được cho phép và đạt 8/8.
+- Không tắt Firewall, không mở cổng Internet và không bỏ assertion. Đây là
+  xác minh có điều kiện trên máy thử, không đảm bảo mọi chính sách mạng.
+
+Chu trình 4 — Hoàn tất trên server/database thử:
+- Server local được chạy bằng `co_chill_server.py`; kiểm thử trình duyệt dùng
+  database thử riêng, tải ứng dụng và gọi API. Báo cáo bàn giao 27/10 ghi
+  nhận API session khách HTTP 200; báo cáo kiểm thử 28/10 ghi nhận các luồng
+  trình duyệt trên database thử riêng.
+- Không dùng DB production; localhost không phải triển khai Internet.
+
+Chu trình 5 — Hoàn tất trên source hiện tại:
+- Lệnh full runner ở Chu trình 1 đạt đầy đủ Python, fixture/parity, JavaScript
+  syntax và JS tests trong cùng lượt. Chi tiết số lượng và giới hạn nằm trong
+  `TEST_REPORT_CODEX.md`.
+- Lượt đầy đủ đầu tiên có 13 assertion fail ở Pikafish; test module chạy
+  riêng 17/17 đạt và lượt đầy đủ kế tiếp đạt. Không thay code/test giữa các
+  lượt; chưa xác định nguyên nhân lần fail đầu.
+
+Chu trình 7 — Hoàn tất cho backup/restore SQLite thử:
+- `python -m unittest tests.test_cloud.CloudTests.test_backup_can_restore_state_and_https_cookie -v`
+  chạy ngày 28/10/2026 và đạt 1/1. Test tạo backup từ database tạm, mở
+  database backup và xác nhận state đã lưu được khôi phục.
+- Đây là kiểm thử tự động trên dữ liệu thử, không phải diễn tập backup/
+  restore GCP, không xác nhận backup định kỳ, retention, quyền lưu trữ hoặc
+  xử lý xóa dữ liệu trong các backup.
+
+Các chu trình còn lại:
+- Chu trình 6: chưa xác minh binary Pikafish/NNUE thật trên VM GCP của chủ
+  sản phẩm; cần quyền truy cập và staging được duyệt.
+- Chu trình 8: chưa nghiệm thu PvP qua hai thiết bị và hai mạng Internet.
+- Chu trình 9: email khôi phục mật khẩu chưa triển khai; cần duyệt provider,
+  chi phí và chính sách trước.
+- Chu trình 10: nhập khôi phục đầy đủ tiến độ chưa triển khai; cần duyệt
+  schema và quy tắc merge.
+- Chu trình 11: retention/xóa/ẩn danh lịch sử chưa có chính sách được duyệt;
+  chưa bật xóa tự động.
+- Chu trình 12: chưa mở rộng nhiều process/instance; giữ giới hạn hiện tại
+  một worker/process cho tới khi có nhu cầu, số liệu và thiết kế được duyệt.
+
+Chi tiết full suite nằm trong `TEST_REPORT_CODEX.md`. Nội dung Chu trình 1
+phía trên là hướng dẫn lịch sử; trạng thái này thay yêu cầu cài Node 22.
+
+THỨ TỰ TIẾP THEO
+
+1. Không cần lặp lại Chu trình 1–5 và 7 trừ khi source hoặc môi trường thay đổi.
+2. Chỉ xử lý Chu trình 2 hoặc 3 nếu lỗi tương ứng tái hiện.
+3. Làm Chu trình 6 hoặc 8 khi có staging/thiết bị phù hợp và chủ sản phẩm
+   duyệt việc kiểm tra.
+4. Chỉ triển khai Chu trình 9–11 sau khi có quyết định sản phẩm/chính sách.
+5. Chỉ làm Chu trình 12 khi có nhu cầu mở rộng và số liệu tải hỗ trợ.
