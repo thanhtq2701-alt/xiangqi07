@@ -19,10 +19,12 @@ Mở `http://127.0.0.1:8769`. Giữ terminal chạy; Ctrl+C để dừng. Máy k
 localhost sẽ mở máy của họ, không phải máy bạn. Nếu báo cổng đã dùng, đổi thành
 `--port 8770`. Không tắt tiến trình lạ để giành cổng.
 
-Để test cần thêm Node.js (ứng dụng chạy bình thường không cần Node):
+Để test cần Node.js 24.22.1 (phiên bản chuẩn trong `.nvmrc`; ứng dụng chạy
+bình thường không cần Node/npm). Kiểm tra trong Terminal:
 
 ```powershell
-python tools/run_checks.py
+node --version
+python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
 ```
 
 ## 3. Cập nhật repository đã có, giữ lịch sử
@@ -47,7 +49,7 @@ Với Terminal, trong bản clone đã có remote:
 ```powershell
 git status --short
 git diff --stat
-git add README.md AGENTS.md CLAUDE.md .gitignore .gitattributes .env.example requirements.txt co_chill_server.py Mo_Co_Chill_V5.cmd app online-preview tests tools docs AI_USAGE.md IMPLEMENTATION_REPORT_CODEX.md TEST_REPORT_CODEX.md KNOWN_LIMITATIONS.md PRIVACY.md THIRD_PARTY_NOTICES.md
+git add README.md AGENTS.md CLAUDE.md .gitignore .gitattributes .env.example .nvmrc requirements.txt co_chill_server.py Mo_Co_Chill_V5.cmd app online-preview tests tools docs AI_USAGE.md IMPLEMENTATION_REPORT_CODEX.md TEST_REPORT_CODEX.md KNOWN_LIMITATIONS.md PRIVACY.md THIRD_PARTY_NOTICES.md
 git diff --cached --stat
 git diff --cached --check
 git commit -m "Add V6 learning and online room pilot"
@@ -67,6 +69,7 @@ secret đó; xóa khỏi commit mới không xóa nó khỏi lịch sử.
 | Toàn bộ `online-preview/` | Thiếu màn hình, ảnh, luật hoặc thao tác học/chơi |
 | `requirements.txt` | Thiếu hướng dẫn cài server production Linux |
 | `.env.example` | Mất mẫu cấu hình; đây không phải secret thật |
+| `.nvmrc` | Mất phiên bản Node.js chuẩn cho JavaScript checks |
 | `.gitignore` | Dễ đưa dữ liệu riêng phát sinh sau khi chạy vào Git |
 | `tests/`, `tools/` | App có thể chạy nhưng mất khả năng kiểm tra và đóng gói đáng tin cậy |
 | README, báo cáo, `docs/`, AGENTS, CLAUDE | Mất bối cảnh quyết định và hướng dẫn phát triển tiếp |

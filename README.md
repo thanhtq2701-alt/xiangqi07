@@ -55,10 +55,13 @@ Giữ toàn bộ thư mục `online-preview/`, không copy riêng app.js. Các l
 
 ## Kiểm tra và đóng gói
 
-Cần Node.js để test JavaScript, không cần khi chạy app:
+Cần Node.js 24.22.1 để chạy JavaScript checks; phiên bản chuẩn được ghi trong
+`.nvmrc`. Node chỉ cần khi kiểm thử, không cần khi chạy app và không cần cài
+npm packages. Kiểm tra Terminal đang dùng đúng phiên bản bằng `node --version`.
+Nếu Windows vẫn ưu tiên Node cũ trong PATH, chỉ rõ executable:
 
 ```powershell
-python tools/run_checks.py
+python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
 python tools/build_v6_pack.py --output deliverables/xiangqi-ai-v6-new.zip
 python tools/verify_source_pack.py deliverables/xiangqi-ai-v6-new.zip
 ```

@@ -19,9 +19,10 @@ trở lên. Node.js không cần để chạy ứng dụng.
 python tools/run_checks.py
 ```
 
-Cần Node.js để chạy toàn bộ bộ kiểm tra. Runner kiểm tra cú pháp JavaScript,
-test client, fixture và parity luật; kết quả/bằng chứng cụ thể ở
-`TEST_REPORT_CODEX.md`.
+Cần Node.js 24.22.1 để chạy toàn bộ bộ kiểm tra; phiên bản chuẩn nằm trong
+`.nvmrc` ở thư mục gốc. Runner kiểm tra cú pháp JavaScript, test client,
+fixture và parity luật; kết quả/bằng chứng cụ thể ở `TEST_REPORT_CODEX.md`.
+Không cần cài npm packages.
 
 Các script được nạp theo thứ tự trong `index.html`; adapter UI dùng state và
 guard của ứng dụng, vì vậy cần kiểm tra tích hợp khi thay đổi thứ tự hoặc tách

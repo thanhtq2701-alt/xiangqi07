@@ -66,7 +66,8 @@ Lệnh chuẩn để chạy toàn bộ kiểm tra source hiện hành từ thư 
 python tools/run_checks.py
 ```
 
-Cần Node.js để chạy toàn bộ runner. Bộ kiểm thử Pikafish bao gồm: no
+Cần Node.js 24.22.1 để chạy toàn bộ runner; phiên bản chuẩn nằm trong
+`.nvmrc` ở thư mục gốc. Bộ kiểm thử Pikafish bao gồm: no
 binary/đường dẫn sai, handshake/readiness/search timeout, giới hạn output,
 tiến trình thoát, thiếu phân tích, bestmove/PV bất hợp lệ, cp/mate/dấu bên
 Đen, lịch sử, selected move từ cùng root, không trộn độ sâu, giới hạn tài

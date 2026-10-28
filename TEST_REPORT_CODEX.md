@@ -6,6 +6,23 @@ Tests chạy trên source hiện tại; không xác nhận binary Pikafish thậ
 Google Cloud, production HTTPS/DNS, hai mạng Internet, tải lớn hoặc kiểm toán
 bảo mật. Không bỏ/giảm test để qua. Bộ legacy vẫn giữ trong repo gốc.
 
+## Xác minh Node.js 24.22.1 — 28/10/2026
+
+- Môi trường: Windows, Python 3.14.0, Node.js v24.22.1. `node` trong PATH
+  phân giải tới `C:\Program Files\nodejs\node.exe`; một bản Node cũ vẫn còn
+  trong PATH sau đó nhưng không được dùng cho lượt này.
+- Đã ghim phiên bản kiểm thử trong `.nvmrc`; source-pack builder đưa file này
+  vào ZIP. Node chỉ cần cho checks, không phải runtime của ứng dụng Python;
+  không cần npm packages.
+- Lệnh: `python -X utf8 tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"`.
+- Lượt đầy đủ đạt `ALL CHECKS PASSED`: 100 Python tests, checker 12 fixture,
+  parity luật, syntax của 14 file JavaScript và cả 10 script JavaScript tests.
+- Con số 100 là số unittest được phát hiện trong lượt này; số 103 ở phần báo
+  cáo ngày 26/10 mô tả lượt trước và không được cộng/gộp vào kết quả mới.
+- Lượt đầy đủ đầu tiên báo 13 assertion fail trong nhóm Pikafish. Chạy riêng
+  `tests.test_pikafish` đạt 17/17; lượt đầy đủ kế tiếp đạt. Không sửa code,
+  tests hay assertion giữa các lượt; nguyên nhân của lần fail đầu chưa xác định.
+
 ## Python
 
 Core pack gồm 103 test: 30 rules, 22 cloud, 17 Pikafish adapter, 21 online rooms,

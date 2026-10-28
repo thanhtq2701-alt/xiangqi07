@@ -42,7 +42,8 @@ pip install -r requirements.txt
 python tools/run_checks.py
 ```
 
-Lệnh tests cần Node.js. Chương trình chạy không cần Node. Biến môi trường:
+Lệnh tests cần Node.js 24.22.1 (phiên bản chuẩn trong `.nvmrc`).
+Chương trình chạy không cần Node. Biến môi trường:
 
 ```sh
 export CO_CHILL_DB_PATH=/var/lib/co-chill/accounts.sqlite3

@@ -18,11 +18,13 @@ server, đây không phải triển khai Internet.
 
 ## Kiểm tra
 
-Cần cài Node.js để chạy toàn bộ bộ kiểm tra; app không cần Node lúc sử dụng.
-Từ thư mục gốc repository:
+Cần Node.js 24.22.1 để chạy toàn bộ bộ kiểm tra; phiên bản chuẩn nằm trong
+`.nvmrc`. App không cần Node lúc sử dụng và repo không cần npm packages.
+Trên Windows, nếu `node --version` chưa ra `v24.22.1`, truyền đúng Node bằng
+`--node`. Chạy từ thư mục gốc repository:
 
 ```powershell
-python tools/run_checks.py
+python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
 ```
 
 Runner biên dịch cú pháp Python không tạo `.pyc`, chạy kiểm tra Python,

@@ -19,10 +19,10 @@ báo cáo triển khai và kiểm thử mô tả bằng chứng hiện có.
    git diff --check
    ```
 
-   Cần Python 3.12 trở lên và Node.js cho bộ kiểm tra; app chạy bình thường
-   không cần Node/npm. Runner kiểm tra syntax Python/JavaScript, nghiệp vụ,
-   fixture và parity luật. Nếu chỉ sửa tài liệu, kiểm tra nội dung, liên kết
-   và diff là đủ.
+   Cần Python 3.12 trở lên và Node.js 24.22.1 cho bộ kiểm tra (phiên bản
+   chuẩn nằm trong `.nvmrc`); app chạy bình thường không cần Node/npm. Runner
+   kiểm tra syntax Python/JavaScript, nghiệp vụ, fixture và parity luật. Nếu
+   chỉ sửa tài liệu, kiểm tra nội dung, liên kết và diff là đủ.
 5. Ghi đúng lệnh và kết quả thực tế; cập nhật README, báo cáo hoặc giới hạn
    khi thay đổi ảnh hưởng người dùng.
 6. Chỉ commit/push khi chủ repo cho phép; không sửa hoặc viết lại lịch sử Git.
