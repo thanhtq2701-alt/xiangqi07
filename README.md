@@ -1,8 +1,11 @@
-# Cờ Chill V6 — source để đưa lên GitHub, 26/10/2026
+# Cờ Chill V6 — source và vận hành Production
 
 Web học cờ tướng: **chơi/nhập ván → chọn điểm đáng học → tự suy nghĩ → giải thích có căn cứ → thử lại → bài liên quan → lịch ôn → tiến độ**.
 
-Bản này là source bàn giao. **Chưa deploy V6 lên Internet**; ChatGPT Site cũ không tự cập nhật. Tài khoản/PvP cần Python phục vụ cả giao diện và API.
+Website Production hiện chạy tại **https://cochill.vn** theo cấu hình VM do chủ dự án cung cấp. VM Ubuntu 24.04 chạy source tại `/var/www/html`, Python 3.12 trong `.venv`, service `cochill.service` và SQLite bền tại `/var/www/html/var/`. Production đang chạy `co_chill_server.py serve` sau Nginx HTTPS. Các commit đang làm trên nhánh `review/production-sync` chưa được deploy; source Production được báo cáo ở `3365734` (28/10/2026). Đây là thông tin vận hành do chủ dự án cung cấp, không phải kết quả kiểm tra trực tiếp VM.
+
+Không dùng `legacy/server.py`/`legacy/web/` cho Production; không đẩy code,
+thay DNS hoặc sửa máy chủ khi chưa được chủ dự án duyệt.
 
 ## Chạy ngay
 
@@ -12,7 +15,7 @@ Python 3.12 trở lên. Giải nén, mở cả thư mục bằng VS Code, mở T
 python co_chill_server.py serve --port 8769
 ```
 
-Mở **http://127.0.0.1:8769/**. Giữ terminal chạy; Ctrl+C để dừng. Windows có thể dùng `py -3.12` hoặc launcher `Mo_Co_Chill_V5.cmd` (tên cũ, gọi đúng server). Linux/macOS dùng `python3`. Không cần Node/npm/API key để chạy.
+Mở **http://127.0.0.1:8769/**. Giữ terminal chạy; Ctrl+C để dừng. Windows có thể dùng `py -3.12` hoặc launcher `Mo_Co_Chill_V6.cmd`. Linux/macOS dùng `python3`. Không cần Node/npm/API key để chạy.
 
 SQLite tự tạo ở `var/co_chill_accounts.sqlite3`. Copy source không chuyển tài khoản sang máy khác. Các thiết bị phải đăng nhập vào cùng một server đã deploy để đồng bộ. Không commit database.
 
@@ -73,7 +76,7 @@ Không có bundler/build hay TypeScript typecheck. Checks gồm syntax, nghiệp
 1. [Đưa lên GitHub cho người mới](docs/GITHUB_V6_CHO_NGUOI_MOI.md).
 2. [Bàn giao Claude](docs/CLAUDE_HANDOFF_V6.md).
 3. [Quyết định V6](docs/V6_DECISIONS.md).
-4. [Chuẩn bị Google Cloud/cochill.vn](docs/DEPLOY_GCP_V6.md).
+4. [Deploy GCP Production](deploy/DEPLOY_GCP_VI.md).
 5. [Triển khai](IMPLEMENTATION_REPORT_CODEX.md), [kiểm thử](TEST_REPORT_CODEX.md), [giới hạn](KNOWN_LIMITATIONS.md), [AI](AI_USAGE.md), [riêng tư](PRIVACY.md).
 
-`.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.
+`.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Production đọc cấu hình riêng từ `/etc/cochill.env`; xem [hướng dẫn GCP/Production](deploy/DEPLOY_GCP_VI.md) và [mẫu deploy](deploy/). Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.

@@ -8,6 +8,7 @@ import argparse
 import base64
 import getpass
 import hmac
+import ipaddress
 import json
 import mimetypes
 import os
@@ -35,10 +36,18 @@ MAX_BODY = MAX_STATE_BYTES + 65536
 
 
 class CloudApplication:
-    def __init__(self, db_path=None, public_origin=None, admin_totp_secret=None, static_root=None, engine=None):
+    def __init__(self, db_path=None, public_origin=None, admin_totp_secret=None, static_root=None, engine=None,
+                 trusted_proxies=None):
         self.store = CloudStore(db_path or os.environ.get('CO_CHILL_DB_PATH', str(ROOT / 'var/co_chill_accounts.sqlite3')),
                                 os.environ.get('CO_CHILL_ADMIN_TOTP_SECRET', '') if admin_totp_secret is None else admin_totp_secret)
         self.public_origin = (os.environ.get('CO_CHILL_PUBLIC_ORIGIN', '') if public_origin is None else public_origin).rstrip('/')
+        if trusted_proxies is None:
+            trusted_proxies = os.environ.get('CO_CHILL_TRUSTED_PROXIES', '')
+        self.trusted_proxies = frozenset(
+            ipaddress.ip_address(value.strip())
+            for value in trusted_proxies.split(',')
+            if value.strip()
+        )
         if self.public_origin:
             parsed = urlsplit(self.public_origin)
             if parsed.scheme not in ('http', 'https') or not parsed.netloc or parsed.path or parsed.query or parsed.fragment or parsed.username:
@@ -69,6 +78,19 @@ class CloudApplication:
 
     def expected_origin(self, environ):
         return self.public_origin or environ.get('wsgi.url_scheme', 'http') + '://' + environ.get('HTTP_HOST', '')
+
+    def client_ip(self, environ):
+        remote_addr = environ.get('REMOTE_ADDR', 'unknown')
+        try:
+            proxy_ip = ipaddress.ip_address(remote_addr)
+        except ValueError:
+            return remote_addr
+        if proxy_ip not in self.trusted_proxies:
+            return remote_addr
+        try:
+            return str(ipaddress.ip_address(environ.get('HTTP_X_REAL_IP', '')))
+        except ValueError:
+            return remote_addr
 
     def cookie(self, token='', clear=False, name=COOKIE, seconds=SESSION_SECONDS):
         value = f'{name}={token}; Path=/; HttpOnly; SameSite=Strict; Max-Age={0 if clear else seconds}'
@@ -142,7 +164,7 @@ class CloudApplication:
             if write and (environ.get('HTTP_ORIGIN', '') != self.expected_origin(environ) or environ.get('HTTP_SEC_FETCH_SITE', '') == 'cross-site'):
                 raise APIError(403, 'Yêu cầu phải đến từ trang Cờ Chill đang mở.', 'origin_rejected')
             data = self.body(environ) if write else {}
-            ip = environ.get('REMOTE_ADDR', 'unknown')
+            ip = self.client_ip(environ)
             if path.startswith('/api/auth/') and write:
                 self.store.throttle('auth-ip', ip, 40, 900)
                 if path == '/api/auth/login':
@@ -225,7 +247,7 @@ class CloudApplication:
         Guest tokens are separate capabilities, never account or admin sessions.
         No user/seat/role field supplied by a browser is trusted as identity.
         """
-        ip = environ.get('REMOTE_ADDR', 'unknown')
+        ip = self.client_ip(environ)
         headers = []
         with self.store.connect() as db:
             user = self.store.session(db, token)

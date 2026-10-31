@@ -108,6 +108,21 @@ class OnlineHttpTests(unittest.TestCase):
         self.assertEqual(self.a.request('/api/rooms/guest', 'POST', origin='https://evil.example')[0], 403)
         self.assertEqual(self.a.request('/api/rooms/session', host='evil.example')[0], 403)
 
+    def test_client_ip_uses_x_real_ip_only_from_trusted_proxies(self):
+        environ = {'REMOTE_ADDR': '127.0.0.1', 'HTTP_X_REAL_IP': '198.51.100.23',
+                   'HTTP_X_FORWARDED_FOR': '203.0.113.99'}
+        unconfigured = CloudApplication(self.path, public_origin='', admin_totp_secret='', engine=self.engine,
+                                        trusted_proxies='')
+        self.assertEqual(unconfigured.client_ip(environ), '127.0.0.1')
+
+        trusted = CloudApplication(self.path, public_origin='', admin_totp_secret='', engine=self.engine,
+                                   trusted_proxies='127.0.0.1, ::1')
+        self.assertEqual(trusted.client_ip(environ), '198.51.100.23')
+        self.assertEqual(trusted.client_ip({**environ, 'HTTP_X_REAL_IP': 'not-an-ip'}), '127.0.0.1')
+
+        untrusted_request = {**environ, 'REMOTE_ADDR': '127.0.0.2'}
+        self.assertEqual(trusted.client_ip(untrusted_request), '127.0.0.2')
+
     def test_guest_token_hashed_httponly_and_no_account_privileges(self):
         status, result, headers = self.a.guest(id='attacker', role='admin', csrf='chosen')
         self.assertEqual(status, 201)

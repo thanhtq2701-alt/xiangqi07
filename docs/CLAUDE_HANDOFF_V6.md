@@ -7,7 +7,8 @@ TEST_REPORT_CODEX.md. Pack không có dữ liệu cá nhân, khóa, binary Pikaf
 NNUE hay lịch sử Git. Giữ repository cũ để đối chiếu; không force push.
 
 Entry point: `python co_chill_server.py serve --port 8769`. Không dùng
-`server.py` legacy, không chỉ chạy `http.server` nếu cần tài khoản/PvP.
+`legacy/server.py` (local-only), không chỉ chạy `http.server` nếu cần
+tài khoản/PvP.
 Frontend không có npm build; toàn bộ script nạp theo thứ tự trong index.
 Backend standard library, WSGI + SQLite; Gunicorn chỉ dùng khi deploy Linux.
 

@@ -2,6 +2,9 @@
 
 Ngày 24/10/2026. Phạm vi: **giống giao diện và chức năng của Cờ Chill đang chạy trên ChatGPT Site**, phiên bản sản phẩm V5 / phiên bản Sites 4. Không cần Python cho yêu cầu này.
 
+> Tài liệu lịch sử về bản static ngày 24/10/2026. Production hiện dùng GCP,
+> Python backend và Nginx; không làm theo các bước hosting/DNS/Vercel bên dưới.
+
 ## Gói dùng cho lần chuyển này
 
 `deliverables/Co_Chill_GIONG_CHATGPTSITE_2026_10_24.zip`
@@ -41,7 +44,8 @@ Có thể giữ tên miền ở Mắt Bão và để Vercel phục vụ website.
 4. Vào Project → **Settings → Domains**, thêm `cochill.vn` và `www.cochill.vn`; chọn domain chính và redirect domain còn lại.
 5. Vercel hiển thị các bản ghi DNS cần thêm. Chép **đúng giá trị hiện trong dự án của bạn** vào bảng DNS nơi quản lý cochill.vn. Không lấy IP hoặc CNAME của dự án người khác. Chờ domain được xác minh và HTTPS sẵn sàng. [Hướng dẫn custom domain của Vercel](https://vercel.com/docs/domains/working-with-domains/add-a-domain).
 
-Nếu import repository gốc **xiangqi07 đầy đủ**, dùng cấu hình có sẵn `vercel.json` xuất `online-preview`. Không trộn hai cách: ZIP mới có file ở root, repo gốc có chúng trong `online-preview/`.
+Ghi chú lịch sử: cấu hình static Vercel cũ được chuyển khỏi root repository.
+Production dùng GCP/Nginx và Python backend; xem `deploy/DEPLOY_GCP_VI.md`.
 
 Xem gói dịch vụ/điều khoản trên dashboard trước khi chấp thuận thanh toán. Bản tĩnh này không đòi hỏi bạn tự quản trị VPS hoặc thuê server Python.
 

@@ -49,7 +49,7 @@ def role(path):
     if '/app/' in rel: return 'Logic backend; xem vai trò chi tiết trong sổ tay'
     if '/web/' in rel: return 'Giao diện trình duyệt'
     if '/tools/' in rel: return 'Công cụ tạo tài liệu/kiểm kê'
-    if name == 'server.py': return 'Điểm khởi động HTTP server local'
+    if name == 'server.py': return 'Legacy HTTP server local-only; không dùng cho Production'
     if name == 'sources.csv': return 'Sổ nguồn dữ liệu và quyền sử dụng'
     return 'Tài liệu/quy tắc dự án' if path.suffix == '.md' else 'File cấu hình hoặc tài nguyên; xem đường dẫn'
 

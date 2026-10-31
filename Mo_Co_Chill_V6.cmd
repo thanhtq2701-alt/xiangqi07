@@ -25,6 +25,6 @@ echo Python 3.12 or newer was not found. Install Python and reopen this file.
 :finished
 echo.
 echo If port 8769 is busy, use the existing Co Chill server or select another port.
-echo Instructions: README.md and docs\DEPLOY_GCP_V6.md
+echo Instructions: README.md and deploy\DEPLOY_GCP_VI.md
 pause
 endlocal

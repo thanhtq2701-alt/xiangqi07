@@ -1,7 +1,21 @@
 # Sổ tay hiện trạng Cờ Chill V6
 
-Cập nhật 26/10/2026. Đây là ghi chú hiện trạng, không thay thế đặc tả gốc,
+Cập nhật 31/10/2026. Đây là ghi chú hiện trạng, không thay thế đặc tả gốc,
 quyết định của chủ dự án hoặc báo cáo kiểm thử.
+
+## Trạng thái Production theo chủ dự án
+
+`cochill.vn` đang chạy HTTPS trên GCP VM Ubuntu 24.04 (2 vCPU, 3.8 GB RAM).
+Source deploy ở `/var/www/html`, venv Python 3.12 ở `.venv`; systemd unit
+`cochill.service` chạy `co_chill_server.py serve --host 127.0.0.1 --port
+8000`, đọc `/etc/cochill.env`. SQLite ở
+`/var/www/html/var/co_chill_accounts.sqlite3`; backup cron hằng ngày giữ 14
+ngày. Nginx proxy HTTPS đến loopback; cấu hình chi tiết và thao tác vận hành
+nằm trong [deploy/DEPLOY_GCP_VI.md](deploy/DEPLOY_GCP_VI.md).
+
+Đây là thông tin Production do chủ dự án cung cấp, chưa được xác minh trực tiếp
+từ VM. Source Production được báo cáo tại `3365734` ngày 28/10/2026; thay đổi
+nhánh làm việc hiện tại chưa được deploy.
 
 ## 1. Nguồn thông tin
 
@@ -93,9 +107,9 @@ có căn cứ → retry → bài liên quan → spaced review → tiến độ.
   minh engine trên Google Cloud hoạt động.
 - Thiết kế hiện tại giả định một instance/process cho các tài nguyên có scope
   process. Không tăng workers/replicas nếu chưa thiết kế lại điều phối.
-- Chưa public/deploy, đổi DNS, mua dịch vụ hoặc push mà không có chủ dự án
-  duyệt. Tham khảo `docs/DEPLOY_GCP_V6.md` để chuẩn bị, không coi đó là bằng
-  chứng đã triển khai.
+- Production đã được triển khai theo thông tin chủ dự án; không tự thay máy,
+  DNS, dịch vụ hoặc đẩy code. Cần duyệt riêng trước khi deploy source mới.
+  Tham khảo `deploy/DEPLOY_GCP_VI.md` cho quy trình đã khớp cấu hình hiện tại.
 
 ## 6. Quy trình cập nhật ghi chú
 
