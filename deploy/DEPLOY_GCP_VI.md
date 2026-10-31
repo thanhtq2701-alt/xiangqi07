@@ -123,13 +123,18 @@ Khôi phục **ghi đè dữ liệu hiện tại**. Trước khi làm, xác nh�
 và lịch bảo trì:
 
 1. Dừng service: `sudo systemctl stop cochill.service`.
-2. Giữ bản database hiện tại làm bản dự phòng riêng, không xóa file cũ.
-3. Chép backup đã chọn vào
+2. Giữ database hiện tại trong thư mục dự phòng riêng. Nếu có file
+   `co_chill_accounts.sqlite3-wal` hoặc `co_chill_accounts.sqlite3-shm`, cũng
+   giữ chúng cùng bản database hiện tại.
+3. Đưa các file `-wal`/`-shm` cũ ra khỏi thư mục database đang hoạt động (giữ
+   bản sao ở thư mục dự phòng); không để WAL cũ nằm cạnh database restore.
+4. Chép backup đã chọn vào
    `/var/www/html/var/co_chill_accounts.sqlite3`, đặt owner phù hợp với
    `thanhtq2701`, và kiểm tra quyền truy cập.
-4. Khởi động service, kiểm tra `systemctl status`,
+5. Khởi động service, kiểm tra `systemctl status`,
    `journalctl -u cochill.service` và `/api/health`.
-5. Nếu xác minh thất bại, dừng service rồi phục hồi bản database vừa giữ.
+6. Nếu xác minh thất bại, dừng service rồi phục hồi bản database và sidecar
+   vừa giữ.
 
 Không khôi phục database trong khi service đang ghi; không đưa backup vào repo.
 
@@ -161,7 +166,17 @@ không tự tạo một tài khoản admin mới và không thay schema/database
    mới và xác nhận trang quản trị hoạt động.
 4. Nếu cần tạo tài khoản owner mới do database/mất tài khoản, trước tiên
    backup database và xác nhận chưa có admin hiện hữu; sau đó dùng
-   `create-admin --username TEN_DANG_NHAP` với environment đã cấu hình.
+   lệnh tương tác với EnvironmentFile riêng của systemd:
+
+   ```sh
+   sudo systemd-run --wait --pty \
+     --property=EnvironmentFile=/etc/cochill.env \
+     --property=WorkingDirectory=/var/www/html \
+     --property=User=thanhtq2701 \
+     /var/www/html/.venv/bin/python /var/www/html/co_chill_server.py \
+     create-admin --username TEN_DANG_NHAP
+   ```
+
    Lệnh từ chối tạo admin thứ hai. Không xóa database để vượt kiểm tra này.
 
 ## 8. Chuyển tùy chọn sang Gunicorn
