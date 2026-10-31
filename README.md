@@ -1,8 +1,10 @@
-# Cờ Chill V6 — source để đưa lên GitHub, 26/10/2026
+# Cờ Chill V6 — source và vận hành Production
 
 Web học cờ tướng: **chơi/nhập ván → chọn điểm đáng học → tự suy nghĩ → giải thích có căn cứ → thử lại → bài liên quan → lịch ôn → tiến độ**.
 
-Bản này là source bàn giao. **Chưa deploy V6 lên Internet**; ChatGPT Site cũ không tự cập nhật. Tài khoản/PvP cần Python phục vụ cả giao diện và API.
+Website Production hiện chạy tại **https://cochill.vn** theo cấu hình VM do chủ dự án cung cấp. VM Ubuntu 24.04 chạy source tại `/var/www/html`, Python 3.12 trong `.venv`, service `cochill.service` và SQLite bền tại `/var/www/html/var/`. Production đang chạy `co_chill_server.py serve` sau Nginx HTTPS. Các commit đang làm trên nhánh `review/production-sync` chưa được deploy; source Production được báo cáo ở `3365734` (28/10/2026). Đây là thông tin vận hành do chủ dự án cung cấp, không phải kết quả kiểm tra trực tiếp VM.
+
+Không dùng `server.py`/`web/` cho Production; không đẩy code, thay DNS hoặc sửa máy chủ khi chưa được chủ dự án duyệt.
 
 ## Chạy ngay
 
@@ -76,4 +78,4 @@ Không có bundler/build hay TypeScript typecheck. Checks gồm syntax, nghiệp
 4. [Chuẩn bị Google Cloud/cochill.vn](docs/DEPLOY_GCP_V6.md).
 5. [Triển khai](IMPLEMENTATION_REPORT_CODEX.md), [kiểm thử](TEST_REPORT_CODEX.md), [giới hạn](KNOWN_LIMITATIONS.md), [AI](AI_USAGE.md), [riêng tư](PRIVACY.md).
 
-`.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.
+`.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Production đọc cấu hình riêng từ `/etc/cochill.env`; xem [hướng dẫn GCP/Production](deploy/DEPLOY_GCP_VI.md) và [mẫu deploy](deploy/). Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.

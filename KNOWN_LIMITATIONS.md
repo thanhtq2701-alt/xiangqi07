@@ -1,11 +1,14 @@
 # Giới hạn V6 — 26/10/2026
 
-Đây là source pilot có kiểm thử, chưa là xác nhận sẵn sàng production.
+Website Production hiện được chủ dự án xác nhận đang chạy tại cochill.vn.
+Tài liệu và source trong repo không phải xác minh trực tiếp VM, triển khai,
+khả năng chịu tải hay mức sẵn sàng vận hành.
 
 ## Chưa hoàn tất theo V6
 
-- Chưa truy cập/kiểm tra VM Google Cloud, Pikafish/NNUE thật, HTTPS, DNS,
-  tải thực, backup/restore trên hạ tầng của chủ sản phẩm.
+- Chưa xác minh độc lập VM Google Cloud, binary/NNUE Pikafish thật, cấu hình
+  HTTPS/DNS, tải thực hoặc backup/restore. Thông số VM, HTTPS, service và
+  lịch backup hiện tại là thông tin do chủ dự án cung cấp.
 - Chưa có email/Gmail tự khôi phục mật khẩu, OAuth, nhập phục hồi JSON tiến độ
   đầy đủ, public profile/lịch sử cộng đồng, chat tự do có quản trị.
 - Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
@@ -25,6 +28,11 @@
   semaphore engine, transaction/lifecycle phòng và xử lý restart.
 - PvP polling2 giây; tab nền/mạng yếu có thể quá hạn30 giây và bị coi mất kết
   nối. Cả hai mất/restart thì tạm dừng. Cần nghiệm thu hai mạng và thiết bị thật.
+- Polling phòng khoảng mỗi 2 giây lấy snapshot và cập nhật trạng thái/presence
+  trong SQLite. `/api/rooms/session` không bị gọi ở mỗi poll (identity được
+  làm mới theo chu kỳ dài hơn), nhưng snapshot tạo ghi và tranh chấp SQLite
+  theo số người/phòng. Tải/độ trễ trên VM 2 vCPU chưa được benchmark; đo trước
+  khi tăng lượng người hoặc thay tần suất polling.
 - Ghép cộng đồng theo thời gian, chưa theo trình độ. Không chống được dùng
   engine bên ngoài hoặc thiết bị khác; chỉ khóa coaching/engine của app.
 - Chat chỉ mẫu trung tính. Guest room cookie24 giờ; hết cookie chưa tự xóa
@@ -45,4 +53,4 @@
   nhận sức cờ/hiệu quả giáo dục. Đọc TEST_REPORT_CODEX.md đúng phạm vi từng test.
 
 Không chứa secret/database người chơi, không tự cập nhật ChatGPT Site hoặc
-cochill.vn. Đưa source lên GitHub không tự chạy máy chủ.
+Production. Việc đưa source lên GitHub không tự chạy hoặc cập nhật máy chủ.
