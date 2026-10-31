@@ -5,7 +5,7 @@ from pathlib import Path
 import tempfile
 import threading
 import unittest
-from server import make_server
+from legacy.server import make_server
 
 
 class HTTPTests(unittest.TestCase):
@@ -41,7 +41,7 @@ class HTTPTests(unittest.TestCase):
             self.assertEqual(headers['X-Content-Type-Options'],'nosniff')
 
     def test_private_files_never_served(self):
-        for path in ('/server.py','/var/chill.sqlite3','/../Answer%20V3.docx','/.env'):
+        for path in ('/legacy/server.py','/legacy/web/index.html','/var/chill.sqlite3','/../Answer%20V3.docx','/.env'):
             self.assertEqual(self.request(path)[0],404)
 
     def test_reject_cross_origin_and_host(self):

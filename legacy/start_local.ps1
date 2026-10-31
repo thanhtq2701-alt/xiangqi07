@@ -34,8 +34,7 @@ try {
         if (-not $pythonExe) { throw 'Python 3.10+ is required. Install Python, then double-click Mo_Co_Chill.cmd again.' }
         $logDir = Join-Path $projectRoot 'var'
         New-Item -ItemType Directory -Force -Path $logDir | Out-Null
-        $serverPath = Join-Path $projectRoot 'server.py'
-        $process = Start-Process -FilePath $pythonExe -ArgumentList @('-u', ('"' + $serverPath + '"'), '--port', '8765') -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $logDir 'server-output.log') -RedirectStandardError (Join-Path $logDir 'server-error.log') -PassThru
+        $process = Start-Process -FilePath $pythonExe -ArgumentList @('-u', '-m', 'legacy.server', '--port', '8765') -WorkingDirectory $projectRoot -WindowStyle Hidden -RedirectStandardOutput (Join-Path $logDir 'server-output.log') -RedirectStandardError (Join-Path $logDir 'server-error.log') -PassThru
         $ready = $false
         for ($attempt = 0; $attempt -lt 15; $attempt++) {
             if (Test-Chill) { $ready = $true; break }

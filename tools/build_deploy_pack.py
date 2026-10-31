@@ -13,7 +13,9 @@ import zipfile
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
     'co_chill_server.py', 'requirements.txt', '.env.example', '.gitignore',
-    'Mo_Co_Chill_V5.cmd', 'vercel.json',
+    'Mo_Co_Chill_V6.cmd',
+    'deploy/cochill.service', 'deploy/cochill-gunicorn.service.example',
+    'deploy/nginx-cochill.conf', 'deploy/cochill.env.example', 'deploy/DEPLOY_GCP_VI.md',
     *('app/' + name + '.py' for name in (
         '__init__', 'cloud_store', 'content_store', 'pikafish', 'rules', 'engine', 'puzzles')),
     *('online-preview/' + name for name in (
@@ -27,19 +29,20 @@ FILES = [
         'test_preview_game_tools.cjs', 'check_online_preview.py',
         'check_browser_rules.py', 'export_preview_fixtures.py')),
     *('docs/' + name + '.md' for name in (
-        'COCHILL_VN_CHO_NGUOI_MOI', 'DEPLOY_V5', 'PIKAFISH_SETUP_V5',
+        'COCHILL_VN_CHO_NGUOI_MOI', 'DEPLOY_V5', 'DEPLOY_GCP_V6', 'PIKAFISH_SETUP_V5',
         'V5_DECISIONS_2026_10_24', 'SITES_V5_RELEASE_2026_10_24')),
     'AI_USAGE.md', 'KNOWN_LIMITATIONS.md', 'PRIVACY.md', 'THIRD_PARTY_NOTICES.md',
     'TEST_REPORT_CODEX.md', 'IMPLEMENTATION_REPORT_CODEX.md',
 ]
 
-README = '''# Cờ Chill V5 — gói source để bàn giao/deploy
+README = '''# Cờ Chill V5 — gói source lịch sử
 
 Đọc trước: [Hướng dẫn cochill.vn cho người mới](docs/COCHILL_VN_CHO_NGUOI_MOI.md).
 
 Đây là bản sao các file V5 cần để chạy và tiếp tục phát triển. Giải nén vào thư
 mục mới. Không có database, người chơi, mật khẩu thật, khóa TOTP, Word riêng,
-Git history hoặc engine binary. Không xóa thư mục dự án gốc.
+Git history hoặc engine binary. Không xóa thư mục dự án gốc. Đây không phải
+gói deploy Production hiện tại.
 
 ## Chạy local
 
@@ -51,23 +54,14 @@ python co_chill_server.py serve --port 8770
 
 Mở http://127.0.0.1:8770/#home và giữ terminal chạy. Dùng `py -3.12` thay
 `python` nếu có Python Launcher. SQLite mới ở `var/co_chill_accounts.sqlite3`.
-Không cần Node hay API key để chạy. File `Mo_Co_Chill_V5.cmd` dùng cổng 8769.
+Không cần Node hay API key để chạy. File `Mo_Co_Chill_V6.cmd` dùng cổng 8769.
 
-## Deploy
+## Deploy Production
 
-Hosting phải hỗ trợ Python WSGI, HTTPS và SQLite trên vùng lưu bền. Không chỉ
-upload toàn bộ gói vào public_html: source/API không phải toàn bộ là file public.
+Production hiện chạy trên GCP VM với systemd, Nginx và SQLite bền. Dùng
+[hướng dẫn Production](deploy/DEPLOY_GCP_VI.md) và các mẫu trong `deploy/`;
+không dùng lệnh hosting V5 cũ hoặc cấu hình Vercel tĩnh.
 `co_chill_server.py` chỉ phục vụ tài nguyên từ `online-preview/`.
-
-Lệnh Linux production (Gunicorn):
-
-```sh
-pip install -r requirements.txt
-gunicorn co_chill_server:application --bind 0.0.0.0:$PORT --workers 1 --threads 4 --timeout 45 --graceful-timeout 15
-```
-
-Xem [DEPLOY_V5.md](docs/DEPLOY_V5.md) về origin, disk, tạo owner và backup.
-`vercel.json` chỉ deploy giao diện khách; không tạo backend tài khoản.
 `.env.example` là mẫu; ứng dụng không tự nạp `.env`.
 
 ## Cấu trúc

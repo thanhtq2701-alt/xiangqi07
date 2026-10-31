@@ -49,7 +49,7 @@ Với Terminal, trong bản clone đã có remote:
 ```powershell
 git status --short
 git diff --stat
-git add README.md AGENTS.md CLAUDE.md .gitignore .gitattributes .env.example .nvmrc requirements.txt co_chill_server.py Mo_Co_Chill_V5.cmd app online-preview tests tools docs AI_USAGE.md IMPLEMENTATION_REPORT_CODEX.md TEST_REPORT_CODEX.md KNOWN_LIMITATIONS.md PRIVACY.md THIRD_PARTY_NOTICES.md
+git add README.md AGENTS.md CLAUDE.md .gitignore .gitattributes .env.example .nvmrc requirements.txt co_chill_server.py Mo_Co_Chill_V6.cmd app online-preview tests tools docs deploy legacy AI_USAGE.md IMPLEMENTATION_REPORT_CODEX.md TEST_REPORT_CODEX.md KNOWN_LIMITATIONS.md PRIVACY.md THIRD_PARTY_NOTICES.md
 git diff --cached --stat
 git diff --cached --check
 git commit -m "Add V6 learning and online room pilot"

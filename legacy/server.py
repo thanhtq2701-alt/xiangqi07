@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parent
 
 
 def make_server(port=8000, db_path=None):
-    service = Service(Repository(db_path or ROOT / 'var/chill.sqlite3'))
+    service = Service(Repository(db_path or ROOT.parent / 'var/chill.sqlite3'))
 
     class Handler(BaseHTTPRequestHandler):
         def log_message(self, fmt, *args):

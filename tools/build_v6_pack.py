@@ -10,9 +10,11 @@ from verify_source_pack import verify
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
     'README.md', 'AGENTS.md', 'CLAUDE.md', '.gitignore', '.gitattributes', '.env.example', '.nvmrc',
-    'co_chill_server.py', 'requirements.txt', 'Mo_Co_Chill_V5.cmd',
+    'co_chill_server.py', 'requirements.txt', 'Mo_Co_Chill_V6.cmd',
     'AI_USAGE.md', 'IMPLEMENTATION_REPORT_CODEX.md', 'TEST_REPORT_CODEX.md',
     'KNOWN_LIMITATIONS.md', 'PRIVACY.md', 'THIRD_PARTY_NOTICES.md',
+    'deploy/cochill.service', 'deploy/cochill-gunicorn.service.example',
+    'deploy/nginx-cochill.conf', 'deploy/cochill.env.example', 'deploy/DEPLOY_GCP_VI.md',
     *('app/'+name+'.py' for name in ['__init__','cloud_store','content_store','online_rooms','pikafish','rules','engine','puzzles']),
     *('online-preview/'+name for name in ['index.html','style.css','v5.css','v6.css','app.js',
         'xiangqi.js','game-tools.js','fixtures.js','learning.js','experience.js','cloud-client.js',

@@ -102,7 +102,8 @@ class CloudTests(unittest.TestCase):
             status, _, headers = self.client.request(path)
             self.assertEqual(status, 200, path)
             self.assertIn('Content-Security-Policy', headers)
-        for path in ('/co_chill_server.py', '/README.md', '/var/co_chill_accounts.sqlite3', '/.env', '/%2e%2e/server.py'):
+        for path in ('/co_chill_server.py', '/README.md', '/var/co_chill_accounts.sqlite3', '/.env',
+                     '/%2e%2e/server.py', '/legacy/server.py'):
             self.assertEqual(self.client.request(path)[0], 404, path)
         for path in ('/api/state', '/api/export', '/api/admin/users'):
             self.assertEqual(self.client.request(path)[0], 401, path)
