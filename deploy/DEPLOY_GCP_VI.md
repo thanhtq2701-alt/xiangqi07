@@ -68,6 +68,32 @@ client gửi. Ứng dụng không dùng `X-Forwarded-For`.
 
 ## 3. Cập nhật code
 
+### Cập nhật bằng một lệnh
+
+Từ tài khoản `thanhtq2701`, chạy tại `/var/www/html` trên nhánh
+`codex-full`:
+
+```sh
+cd /var/www/html
+./deploy/update.sh
+```
+
+Script kiểm tra nhánh và các thay đổi ở file được Git theo dõi (file
+untracked được phép), tạo backup bằng lệnh `backup` của ứng dụng trước khi
+fetch, rồi hiển thị commit/diffstat và chờ xác nhận. Dùng
+`./deploy/update.sh --yes` chỉ khi đã xem xét trước thay đổi sắp kéo về.
+Script chỉ đọc dòng `CO_CHILL_DB_PATH` cần thiết từ `/etc/cochill.env`;
+không in hay sửa file môi trường. Nó chỉ cài lại requirements khi file đó
+thay đổi, kiểm tra cú pháp Python trước restart và chờ health check tối đa
+30 giây.
+
+Nếu triển khai lỗi sau khi kéo code, script in lệnh quay lại commit trước,
+restart service và đường dẫn backup. Lệnh đó không khôi phục database tự
+động; việc restore database là thao tác riêng cần được cân nhắc/duyệt.
+Script không thay đổi `/etc/cochill.env`, Nginx, Certbot hay cron.
+
+### Hướng dẫn thủ công dự phòng
+
 Trước khi cập nhật, xác nhận đây là branch/revision đã duyệt để chạy Production,
 worktree sạch và backup gần nhất dùng được. Không kéo branch thử nghiệm hoặc
 chép đè database.
@@ -76,7 +102,7 @@ chép đè database.
 cd /var/www/html
 git status --short
 git branch --show-current
-git pull --ff-only
+git pull --ff-only origin codex-full
 .venv/bin/pip install -r requirements.txt
 .venv/bin/python tools/run_checks.py
 sudo systemctl restart cochill.service
