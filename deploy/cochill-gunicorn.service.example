@@ -1,0 +1,17 @@
+# Optional alternative to cochill.service.
+# Install Gunicorn into /var/www/html/.venv before switching:
+# /var/www/html/.venv/bin/pip install gunicorn
+[Unit]
+Description=Co Chill web application (Gunicorn)
+After=network.target
+
+[Service]
+Type=simple
+User=thanhtq2701
+WorkingDirectory=/var/www/html
+EnvironmentFile=/etc/cochill.env
+ExecStart=/var/www/html/.venv/bin/gunicorn co_chill_server:application --bind 127.0.0.1:8000 --workers 1 --worker-class gthread --threads 4 --timeout 45 --graceful-timeout 15
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,14 @@
+[Unit]
+Description=Co Chill web application
+After=network.target
+
+[Service]
+Type=simple
+User=thanhtq2701
+WorkingDirectory=/var/www/html
+EnvironmentFile=/etc/cochill.env
+ExecStart=/var/www/html/.venv/bin/python /var/www/html/co_chill_server.py serve --host 127.0.0.1 --port 8000
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
