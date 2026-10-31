@@ -12,7 +12,9 @@
   xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
 - Kho bài nhỏ: 12 cơ bản +8 hướng dẫn +2 bài nhiều lượt. Hai bài mới cùng họ
   chiếu hết; chưa có kho nâng cao 6–7 quyết định hoặc coverage từng chương.
-  Chưa đủ 10 hình khác nhau/chương để đánh giá cấp.
+  Đã thêm hình minh họa luật và nối một số chương với bài cơ bản cùng kỹ năng,
+  nhưng chưa đủ 10 hình khác nhau/chương để đánh giá cấp; các hình mới không
+  thay cho nội dung chiến thuật đã được chuyên gia thẩm định.
 - Ngôn ngữ EN chưa phủ hết các chuỗi động, màn mới, quản trị/PvP. Bài học vẫn
   tiếng Việt theo yêu cầu. Auto-flip hai người cùng máy, câu trả lời bằng mũi
   tên, dashboard/calendar đúng thiết kế cuối chưa đầy đủ.

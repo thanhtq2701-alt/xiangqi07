@@ -1,0 +1,648 @@
+CO CHILL V6 — HUONG DAN DEPLOY PVP CHO NGUOI MOI
+Ngay soan: 30/10/2026
+
+MUC TIEU
+
+Lam cho nguoi o nhieu noi co the mo Cung mot website de dang nhap, dong bo
+tien do tai khoan va choi Co tuong PvP voi nhau. Huong dan nay dua tren source
+hien tai cua repo xiangqi07; day la ke hoach thao tac, khong phai bang chung
+website da duoc dua len Internet.
+
+CAN DOC TRUOC
+
+- README.md
+- docs/DEPLOY_GCP_V6.md
+- KNOWN_LIMITATIONS.md
+- PRIVACY.md
+
+Huong dan nay chon mo hinh pilot da ghi trong repo:
+
+  Dien thoai/may tinh nguoi choi
+       -> HTTPS (Caddy)
+       -> Python/Gunicorn (mot worker, nhieu thread)
+       -> SQLite tren dia luu ben vung
+
+Toan bo trang web va API cung mot origin, vi du https://cochill.vn. Python
+server can chay lien tuc. Khong mo phong (port forwarding) tren may tinh nha.
+Khong dung hosting chi phuc vu file HTML tinh.
+
+GIOI HAN VA CAC DIEU KHONG DUOC TU Y LAM
+
+1. Huong dan khong tu dang nhap Google Cloud, khong tao VM, khong tao dich vu,
+   khong thay DNS va khong phat sinh chi phi. Chu san pham can duyet truoc.
+2. Khong gui mat khau, ma TOTP, khoa SSH, cookie, database, backup hoac file
+   .env that vao chat/GitHub. Khong dat secret trong lenh Git URL.
+3. Khong mo port 8769 ra Internet. Chi Caddy duoc lang nghe public 80/443;
+   Gunicorn chi nghe 127.0.0.1:8769 tren VM.
+4. Khong tang Gunicorn workers, khong chay nhieu VM/replica va khong dat SQLite
+   tren thu muc tam, Google Cloud Storage, NFS hoac filesystem chia se. Room,
+   engine semaphore va lifecycle PvP hien duoc thiet ke cho mot process.
+5. Khong chay server bang root. Khong chay Pikafish/NNUE tren VM neu chua co
+   binary, weight, quyen su dung va cau hinh Linux phu hop. PvP co the chay
+   khong can Pikafish.
+6. Neu da co VM/website/dich vu dang chay, dung lai va xin nguoi quan tri kiem
+   tra truoc. Khong cai dat/chinh sua de ghi de dich vu dang co.
+
+======================================================================
+PHAN A — HIEU CAC THANH PHAN
+======================================================================
+
+1. GitHub la noi giu ma nguon, khong phai may chu website. Push code len
+   GitHub khong lam PvP hoat dong tren Internet.
+2. VM (may ao) la may Linux chay Python va Caddy 24/7.
+3. Dia chi IP tinh giu nguyen IP cua VM de ban ghi DNS khong bi sai khi VM
+   khoi dong lai. Google Cloud co the tinh phi cho tai nguyen; phai xem gia
+   hien tai truoc khi tao.
+4. DNS noi ten mien (vi du cochill.vn) den IP tinh cua VM. Khong sua MX, SPF,
+   DKIM hoac ban ghi email.
+5. Caddy la reverse proxy. No nhan HTTPS tu Internet, tu dong xin/gia han
+   chung chi TLS khi dieu kien DNS va firewall dung, roi chuyen request ve
+   Gunicorn trong localhost.
+6. Gunicorn chay ung dung Python `co_chill_server:application`.
+7. SQLite luu tai khoan, session, tien do va phong. Phai nam tren dia ben
+   vung; neu xoa VM/dia sai cach co the mat du lieu.
+8. Cookie/phien dang nhap tai khoan: moi tai khoan chi co mot phien. Dang nhap
+   tren may moi se ket thuc phien cu; tien do da dong bo van o server. Ban
+   nhap chua dong bo van chi o trinh duyet cu.
+9. Khach co the vao phong PvP, nhung tien do hoc khach khong dong bo qua may.
+   Muon dong bo tien do, dang nhap cung mot tai khoan va dung cung website.
+10. Phong PvP la giao huu, khong xep hang. App khong the ngan nguoi choi tu
+    dung engine tren thiet bi khac.
+
+======================================================================
+PHAN B — TRUOC KHI BAT DAU: CHECKLIST VA QUYET DINH
+======================================================================
+
+Hay dien va xac nhan voi chu san pham/nguoi quan tri. Khong can gui thong tin
+mat cho nguoi viet huong dan.
+
+[ ] Ai la chu tai khoan Google Cloud va ai duoc phep tao VM? Tai khoan cua me toi hien dang la nguoi chu tai khoan Google Cloud va toi duoc phep tao VM roi 
+[ ] Da duyet ngan sach thang va chi phi IP tinh, dia, backup, băng thong?
+[ ] Domain da dang ky? Ai quan ly DNS cochill.vn?
+[ ] Da co VM/dich vu nao tren project chua? Co ai dang su dung?
+[ ] Chon region va loai VM sau khi xem gia/CPU/RAM/disk, khong chon theo doan.
+[ ] Nguoi van hanh co SSH/OS Login/IAP dung quyen, khong dung tai khoan chung?
+[ ] Noi backup ngoai VM nao se duoc phep va ai duoc doc?
+[ ] Chinh sach giu/xoa tai khoan va backup da ro?
+[ ] Da xac dinh domain chinh chinh xac, vi du cochill.vn hay mot subdomain?
+[ ] Da test source va doc cac gioi han trong KNOWN_LIMITATIONS.md?
+
+Google Cloud Budget/alert la canh bao chi phi, khong phai han muc tu dong chan
+chi tieu. Hay tinh gia trong Cloud Pricing Calculator va xem bang gia hien
+hanh truoc khi tao VM/dia/IP/backup. Khong nhap thong tin thanh toan vao chat.
+
+Chuan bi source tren may Windows (khong phai tren VM):
+
+1. Mo VS Code, File > Open Folder, chon thu muc repo co README.md.
+2. Kiem tra Git changes. Khong deploy khi co thay doi chua hieu.
+3. Chay test day du voi Node.js 24.22.1 va Python da ho tro:
+
+   python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+
+   Neu Node nam o duong dan khac, thay duong dan executable. Neu test loi,
+   dung lai, doc loi va sua truoc; khong bo/ha test de tiep tuc.
+4. Luu commit/release ma nguon nao se deploy. Khong dua var/, database,
+   .env that, backup hoac secret vao Git.
+5. Neu repository private, chuan bi cach clone an toan: SSH deploy key chi-doc
+   duoc phep/SSH agent theo quy trinh cong ty. Khong dat Personal Access Token
+   vao URL, terminal history, script hoac file source.
+
+======================================================================
+PHAN C — TAO MAY CHU GOOGLE CLOUD (CHI SAU KHI DUOC DUYET)
+======================================================================
+
+Ten menu Google Cloud Console co the thay doi. Neu chua quen, nhờ chu project
+hoac nguoi quan tri lam cung; khong cap quyen Owner/Editor rong cho nguoi khac.
+
+Buoc 1. Mo dung project
+
+1. Dang nhap Google Cloud bang tai khoan duoc chu project cap quyen.
+2. Chon dung Project ID. Khong tao project moi neu chua duoc phep.
+3. Kiem tra Billing account, budget/alert va bang gia.
+4. Ghi lai region/zone, ten VM, disk, IP tinh va nguoi quan tri trong tai lieu
+   van hanh rieng; khong ghi secret.
+
+Buoc 2. Tao VM Linux
+
+1. Vao Compute Engine > VM instances > Create instance (hoac muc tuong duong).
+2. Chon ten nhan biet, region va zone da duoc duyet.
+3. Chon Ubuntu LTS duoc Google Cloud ho tro va co Python 3.12 tro len trong
+   repository OS. Neu chua chac, kiem tra sau khi tao bang `python3 --version`;
+   neu nho hon 3.12 thi dung, khong tiep tuc voi runtime khong duoc ho tro.
+4. Chon machine type/disk theo tai lieu va ngan sach da duyet. Khong dua ra
+   cam ket suc chiu tai; pilot 5-10 nguoi chua phai benchmark.
+5. Chon boot disk co tinh ben vung va kiem tra hanh vi khi xoa VM. Neu dung
+   persistent disk tach rieng cho database, gan/mount dung truoc khi chay app.
+   SQLite phai o local filesystem cua disk ben vung, khong o /tmp.
+6. Gan external static IP sau khi duoc duyet. Khong tao nhieu IP "de thu".
+7. Khong bat quy tac firewall SSH mo cho toan Internet. Dung OS Login/IAP hoac
+   chi cho phep SSH tu IP quan tri tin cay theo chinh sach project.
+8. Gan service account toi thieu quyen can thiet; app khong can role Owner.
+9. Neu VM da ton tai, khong tao VM moi de tranh chi phi truoc khi xac nhan.
+
+Buoc 3. Firewall
+
+Tao/quy dinh firewall theo tag/service account dung VM, chi khi duoc phep:
+
+- Ingress TCP 80: cho Internet neu dung HTTP->HTTPS/chung chi Caddy.
+- Ingress TCP 443: cho Internet de truy cap website HTTPS.
+- Ingress TCP 22: chi cho quan tri/IAP; khong mo 0.0.0.0/0 neu khong can.
+- TCP 8769: KHONG mo tu Internet.
+
+Neu dung IPv6, chi them quy tac IPv6 da duoc duyet. Caddy phai nhan duoc 80/443
+de thu va gia han TLS. Khong xoa firewall rules hien co; tao rule rieng co ten
+ro rang va target dung VM. Sau khi deploy, xac nhan tu ngoai VM rang 8769
+khong truy cap duoc.
+
+Tai lieu Google Cloud:
+https://cloud.google.com/compute/docs/create-linux-vm-instance
+https://cloud.google.com/compute/docs/ip-addresses/configure-static-external-ip-address
+https://docs.cloud.google.com/firewall/docs/using-firewalls
+
+======================================================================
+PHAN D — SSH VA CAI UNG DUNG TREN VM
+======================================================================
+
+Tat ca lenh trong phan nay chay trong Terminal Linux cua VM (SSH), khong chay
+trong PowerShell Windows. Lenh bat dau bang `sudo` can quyen quan tri. Doc tung
+lenh truoc khi bam Enter.
+
+Buoc 1. Dang nhap va xac nhan may
+
+1. Trong Cloud Console, mo VM instances, chon VM va bam SSH/Connect theo cach
+   quan tri da phe duyet.
+2. Kiem tra:
+
+   whoami
+   hostname
+   lsb_release -a
+   python3 --version
+   df -h
+   free -h
+
+3. Khong gui output co IP noi bo, hostname nhay cam hoac thong tin project
+   len chat cong khai. Neu khong dung OS/VM, dung lai.
+4. Cap nhat goi OS theo quy trinh quan tri:
+
+   sudo apt update
+   sudo apt upgrade
+
+   Neu co loi yeu cau reboot, doc danh sach dich vu dang chay va thong bao
+   nguoi quan tri truoc khi reboot VM dang dung.
+
+Buoc 2. Cai goi can thiet
+
+   sudo apt install -y git python3 python3-venv python3-pip
+
+Kiem tra `python3 --version` >= 3.12. Source can Python 3.12 tro len. Gunicorn
+se duoc cai tu requirements.txt tren Linux. Node.js chi can cho JavaScript
+checks; khong can de app chay production.
+
+Buoc 3. Tao tai khoan dich vu va thu muc du lieu
+
+Tai khoan `co-chill` la tai khoan he thong chay app, khong phai tai khoan dang
+nhap tren website. Neu lenh bao user da ton tai, dung va kiem tra, khong tao
+user trung:
+
+   sudo useradd --system --no-create-home --home-dir /nonexistent --shell /usr/sbin/nologin co-chill
+   sudo install -d -o co-chill -g co-chill -m 0750 /var/lib/co-chill
+   sudo install -d -o root -g root -m 0755 /opt/co-chill
+
+/var/lib/co-chill la noi database va cac file SQLite tam WAL/SHM duoc ghi.
+Neu gan disk rieng, mount disk ben vung vao vi tri nay truoc khi tiep tuc va
+kiem tra `findmnt /var/lib/co-chill`. Khong mount nham vao thu muc dang chua DB.
+
+Buoc 4. Lay source
+
+Chon mot cach:
+
+A. Repo public: clone dung repository va nhanh/commit da kiem tra.
+
+   sudo git clone <URL_REPOSITORY_DA_XAC_MINH> /opt/co-chill/app
+
+B. Repo private: dung SSH deploy key chi-doc duoc phep, duoc bao ve va khong
+   in private key ra terminal. Neu chua biet tao/quan ly deploy key, nho nguoi
+   quan tri. Tuyet doi khong dung URL dang
+   `https://TOKEN@github.com/...`.
+
+C. Chuyen source bang SCP/SSH tu may quan tri theo quy trinh noi bo.
+
+Sau khi clone/chuyen:
+
+   sudo chown -R root:co-chill /opt/co-chill/app
+   cd /opt/co-chill/app
+   git status --short
+   git rev-parse --short HEAD
+
+Kiem tra README.md, co_chill_server.py, app/ va online-preview/ deu o trong
+/opt/co-chill/app. Khong cho database/backup/.env that nam trong thu muc nay.
+Khong clone de ghi de source/database cu neu chua backup va xem diff.
+
+Buoc 5. Tao virtual environment va cai dependency
+
+   cd /opt/co-chill/app
+   sudo python3 -m venv .venv
+   sudo .venv/bin/python -m pip install --upgrade pip
+   sudo .venv/bin/python -m pip install -r requirements.txt
+   sudo chown -R root:co-chill /opt/co-chill/app
+
+Requirements tren Linux co Gunicorn. Khong can npm install; khong co Node build
+frontend. Neu pip loi, luu thong bao loi khong co secret va dung lai de xu ly.
+
+Buoc 6. Chay kiem tra truoc khi public
+
+Neu da cai Node.js 24.22.1 va du thoi gian, co the chay full runner theo README.
+Neu khong cai Node tren server, chay test backend lien quan:
+
+   cd /opt/co-chill/app
+   sudo -u co-chill /bin/bash -c 'cd /opt/co-chill/app && .venv/bin/python -m unittest tests.test_cloud tests.test_online_http tests.test_online_rooms'
+
+Tai thoi diem viet huong dan, 54 test account/PvP tren may phat trien da dat.
+Ket qua tren VM la bang chung rieng; neu fail thi dung va dieu tra, khong bo test.
+
+======================================================================
+PHAN E — CAU HINH DB, DOMAIN VA TOTP
+======================================================================
+
+Buoc 1. Tao file cau hinh rieng tren VM
+
+Ung dung KHONG tu doc file `.env`. systemd se doc file cau hinh duoc chon.
+Khong dat file nay trong Git/source.
+
+   sudo install -d -o root -g co-chill -m 0750 /etc/co-chill
+   sudoedit /etc/co-chill/co-chill.env
+
+Noi dung mau; thay `cochill.vn` bang domain/subdomain da duyet. Khong de dau
+nhay, khong viet `export`, khong them duong dan vao origin:
+
+   CO_CHILL_DB_PATH=/var/lib/co-chill/accounts.sqlite3
+   CO_CHILL_PUBLIC_ORIGIN=https://cochill.vn
+   CO_CHILL_ADMIN_TOTP_SECRET=THAY_BANG_SECRET_TOTP_VUA_TAO_RIENG
+
+Khong can dong PIKAFISH_PATH / PIKAFISH_NNUE_PATH cho rieng PvP. Chi them
+engine sau khi duoc xac minh rieng.
+
+Bao ve file:
+
+   sudo chown root:co-chill /etc/co-chill/co-chill.env
+   sudo chmod 0640 /etc/co-chill/co-chill.env
+
+Giai thich:
+- `CO_CHILL_DB_PATH`: SQLite tren disk ben vung.
+- `CO_CHILL_PUBLIC_ORIGIN`: dung chinh xac scheme + domain, vi du https://cochill.vn;
+  khong co slash cuoi, path, query. Bien nay bat Secure cookie va host check.
+- `CO_CHILL_ADMIN_TOTP_SECRET`: khoa TOTP owner; giu kin. File chi doc duoc boi
+  root va nhom dich vu app. Khong cho nguoi choi truy cap.
+
+Buoc 2. Tao ma TOTP cho owner
+
+TOTP la ma 6 chu so doi moi theo thoi gian, dung cho tai khoan quan tri.
+Khong tao lai ma moi lan dang nhap. Thuc hien tren may phat trien tin cay co
+source va Python:
+
+   python co_chill_server.py generate-admin-totp
+
+Lenh in mot secret Base32. Tu nhap secret do vao authenticator (app TOTP),
+roi dan secret vao file `/etc/co-chill/co-chill.env` qua `sudoedit`. Chi copy
+giua terminal rieng va authenticator rieng; khong chup anh/gui qua chat. Neu
+nghi secret da lo, dung tiep tuc va tao/duyet quy trinh rotate rieng.
+
+Buoc 3. Tao tai khoan owner
+
+Sau khi env file da dung, chay terminal shell duoi user dich vu de DB khong bi
+tao boi root:
+
+   sudo -u co-chill /bin/bash
+   cd /opt/co-chill/app
+   set -a
+   . /etc/co-chill/co-chill.env
+   set +a
+   .venv/bin/python co_chill_server.py create-admin --username TEN_OWNER
+
+Lenh se hoi mat khau hai lan; khi go se khong hien ky tu. Dung mat khau rieng
+dai, khong tai su dung mat khau email/GitHub. Thoat shell bang `exit`.
+Neu CLI bao da co owner admin, KHONG tao account backdoor; hoi chu project.
+
+Buoc 4. Xac nhan DNS va IP
+
+1. Vao Google Cloud xem external IP cua VM co la IP static da reserve khong.
+2. Chu domain/nguoi quan tri DNS them A record cho dung domain da chot:
+   - Host `@` neu dung domain goc `cochill.vn`.
+   - Value la IPv4 tinh cua VM.
+   - TTL theo chinh sach nha cung cap DNS.
+3. Chi tao `www`/subdomain neu da quyet dinh ro redirect hay cung phuc vu.
+4. KHONG sua/xoa record MX, TXT mail, SPF/DKIM/DMARC hoac record khong hieu.
+5. Cho DNS cap nhat; kiem tra bang `nslookup cochill.vn` tren Windows hoac
+   `dig +short cochill.vn` tren Linux. Ket qua can tro dung IP VM.
+
+Neu chua duoc duyet DNS cong khai, dung subdomain staging rieng da duyet hoac
+dung noi bo; khong tu y sua cochill.vn. HTTPS cong khai voi Caddy can ten mien
+tro den VM va port 80/443 den duoc.
+
+======================================================================
+PHAN F — CAI CADDY VA TAO HTTPS
+======================================================================
+
+Caddy se tu xin va gia han TLS neu DNS, firewall va port 80/443 dung. Lenh cai
+duoi day la theo tai lieu chinh thuc Debian/Ubuntu cua Caddy; neu tai lieu thay
+doi, uu tien huong dan chinh thuc hien hanh:
+
+   sudo apt install --yes debian-keyring debian-archive-keyring apt-transport-https curl
+   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+   curl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list
+   sudo chmod o+r /usr/share/keyrings/caddy-stable-archive-keyring.gpg
+   sudo chmod o+r /etc/apt/sources.list.d/caddy-stable.list
+   sudo apt update
+   sudo apt install caddy
+
+Tai lieu chinh thuc: https://caddyserver.com/docs/install
+
+Chua start Caddy voi config public truoc khi app localhost da san sang.
+Khi domain da tro dung va app chay, sua file:
+
+   sudoedit /etc/caddy/Caddyfile
+
+Noi dung don gian cho domain goc:
+
+   cochill.vn {
+       reverse_proxy 127.0.0.1:8769
+   }
+
+Khong them `file_server` va khong tro root web vao thu muc app; Python tu phuc
+vu online-preview/ va API. Khong them header Forwarded do nguoi dung gui tuy
+y. Kiem tra config va reload:
+
+   sudo caddy validate --config /etc/caddy/Caddyfile --adapter caddyfile
+   sudo systemctl enable --now caddy
+   sudo systemctl reload caddy
+   sudo systemctl status caddy --no-pager
+
+Neu Caddy chua xin duoc certificate, xem log:
+
+   sudo journalctl -u caddy -n 100 --no-pager
+
+Thuong gap: DNS tro nham IP, port 80/443 bi chan, domain sai, VM khong co
+quyen ra Internet hoac mot proxy khac da dung port. Khong tat TLS/HTTPS de
+"cho chay"; xu ly nguyen nhan.
+
+======================================================================
+PHAN G — CAU HINH GUNICORN CHAY LIEN TUC BANG SYSTEMD
+======================================================================
+
+Tao unit file:
+
+   sudoedit /etc/systemd/system/co-chill.service
+
+Dan noi dung:
+
+   [Unit]
+   Description=Co Chill V6 account and PvP server
+   After=network.target
+
+   [Service]
+   Type=simple
+   User=co-chill
+   Group=co-chill
+   WorkingDirectory=/opt/co-chill/app
+   EnvironmentFile=/etc/co-chill/co-chill.env
+   Environment=PYTHONDONTWRITEBYTECODE=1
+   UMask=0077
+   NoNewPrivileges=true
+   PrivateTmp=true
+   ProtectSystem=full
+   ProtectHome=true
+   ReadWritePaths=/var/lib/co-chill
+   ExecStart=/opt/co-chill/app/.venv/bin/gunicorn co_chill_server:application --bind 127.0.0.1:8769 --workers 1 --threads 4 --timeout 45 --graceful-timeout 15
+   Restart=on-failure
+   RestartSec=5
+
+   [Install]
+   WantedBy=multi-user.target
+
+Luu va dong editor. Kiem tra duong dan trong ExecStart/WorkingDirectory dung
+source da clone. Bat dau va xem log:
+
+   sudo systemctl daemon-reload
+   sudo systemctl enable --now co-chill
+   sudo systemctl status co-chill --no-pager
+   sudo journalctl -u co-chill -n 100 --no-pager
+
+Kiem tra endpoint tu chinh VM:
+
+   curl -i -H 'Host: cochill.vn' http://127.0.0.1:8769/api/health
+
+Thay Host theo domain trong `CO_CHILL_PUBLIC_ORIGIN`. Mong doi HTTP 200 va JSON.
+Neu 403, kiem tra host co trung tuyet doi origin khong. Neu connection refused,
+xem status/log systemd va duong dan database. Khong bat port firewall 8769.
+
+Kiem tra Caddy va HTTPS sau khi DNS da cap nhat:
+
+   curl -I https://cochill.vn/
+   curl -i https://cochill.vn/api/health
+   curl -i https://cochill.vn/api/session
+
+Tren dien thoai/may tinh, mo `https://cochill.vn` va kiem tra trinh duyet hien
+bieu tuong khoa. Khong chap nhan canh bao certificate. Dung HTTPS tren cung
+origin cho ca frontend va API.
+
+Luu y rate limit: app hien lay dia chi IP tu ket noi WSGI. Khi Caddy dung lam
+proxy, request co the duoc nhin thay la den tu localhost; nhieu nguoi co the
+dung chung mot gioi han rate-limit theo IP. Khong sua app de tin bat ky
+X-Forwarded-For nao tu Internet. Truoc khi mo rong pilot, can danh gia/cau hinh
+proxy-aware IP chi tin proxy da xac thuc va kiem tra lai gioi han dang ky/dang
+nhap. Neu chua co thay doi duoc review, chi moi nhom nho va theo doi loi 429.
+
+======================================================================
+PHAN H — KIEM THU TOAN BO LUONG
+======================================================================
+
+Can hai thiet bi that, tot nhat khac mang (vi du may tinh dung Wi-Fi nha va
+dien thoai dung 4G/5G). Khong dung cung mot browser profile cho ca hai.
+
+1. Tren ca hai thiet bi, mo cung `https://cochill.vn`. Xac nhan HTTPS khong
+   canh bao. Khong mo URL localhost tren dien thoai; localhost la chinh thiet
+   bi do.
+2. Tao tai khoan nguoi A tren thiet bi 1 va tai khoan nguoi B tren thiet bi 2.
+   Dung mat khau rieng; khong dung tai khoan owner admin de choi.
+3. Tren A, dong bo mot thay doi nho va doi den khi giao dien bao da dong bo.
+4. Dang xuat A, dang nhap cung tai khoan A tren browser khac/thiet bi khac.
+   Kiem tra tien do da dong bo xuat hien. Quay lai thiet bi cu: no phai bao
+   phien ket thuc va yeu cau dang nhap lai. Day la chinh sach mot phien.
+5. Khong tao thay doi tren thiet bi cu khi chua dong bo; ban nhap chua dong bo
+   khong tu chuyen sang thiet bi moi. Xuat ban nhap neu can giu.
+6. Dang nhap A o thiet bi A va B o thiet bi B; mo man Choi truc tuyen.
+7. Tao phong rieng va gui ma phong cho nguoi con lai qua kenh rieng. Hoac tao/
+   tham gia phong cong khai. Khong gui token/cookie, chi gui ma phong neu can.
+8. Ca hai vao phong, ready. Kiem tra mau quan, ten doi thu, dong ho va polling.
+9. Di nuoc hop le; xac nhan nuoc va dong ho cap nhat o ca hai thiet bi.
+10. Thu reload mot browser (khong lam giua luc can bao ve ván neu khong can),
+    kiem tra room co the tai lai; thu hoa/chap nhan, xin di lai/chap nhan,
+    dau hang, ket thuc, tai dau va lich su theo dung luat UI.
+11. Thu nguoi xem neu can; dam bao nguoi xem khong di nuoc. Khong chay engine
+    coaching trong tran truc tuyen.
+12. Xac nhan user thuong khong vao duoc trang admin. Xac nhan 2 tai khoan
+    khong thay tien do/lich su rieng cua nhau.
+13. Sau khi hai ben ket thuc het van, restart app:
+
+    sudo systemctl restart co-chill
+
+    Dang nhap lai, kiem tra tai khoan va tien do van con. Khong restart khi
+    dang co van live; khi server restart, van dang choi co the bi pause.
+14. Thu truy cap `http://cochill.vn` se chuyen HTTPS neu Caddy cau hinh theo
+    mac dinh. Cookie phien tai khoan tren HTTPS phai co Secure/HttpOnly.
+    Khong chup/publish gia tri cookie.
+15. Thu tu mang ben ngoai VM rang `http(s)://IP:8769` khong mo duoc. Chi domain
+    Caddy public 80/443.
+
+Neu mot buoc fail: ghi thiet bi, thoi diem, buoc va thong diep loi da che
+thong tin nhay cam; kiem tra `journalctl -u co-chill` va `journalctl -u caddy`.
+Khong gui cookie, password, TOTP, toan bo database hoac cau tra loi hoc cho
+nguoi ho tro.
+
+======================================================================
+PHAN I — BACKUP VA PHUC HOI
+======================================================================
+
+SQLite tren disk ben vung khong thay the backup. Backup phai co noi luu rieng
+ngoai VM va quyen truy cap han che. Xac dinh truoc thoi han giu, nguoi duoc
+doc/xoa, va cach xu ly yeu cau xoa tai khoan trong cac ban backup.
+
+Buoc backup thu cong dau tien:
+
+   sudo install -d -o co-chill -g co-chill -m 0700 /var/backups/co-chill
+   BACKUP="/var/backups/co-chill/accounts-$(date +%Y%m%d-%H%M%S).sqlite3"
+   sudo -u co-chill /opt/co-chill/app/.venv/bin/python /opt/co-chill/app/co_chill_server.py backup --output "$BACKUP"
+   sudo ls -lh "$BACKUP"
+
+Lenh backup can duong dan output moi, khong ghi de file cu. File chua du lieu
+rieng tu. Chuyen ban backup sang kho rieng duoc phe duyet, co IAM/quyen rieng
+va bao ve phu hop. Khong commit, khong email va khong dat trong thu muc web.
+Khong xoa ban backup cu cho den khi retention/xoa du lieu duoc chot.
+
+Test restore:
+
+1. Tao database thu nghiem va thu muc rieng, KHONG dung path
+   `/var/lib/co-chill/accounts.sqlite3`.
+2. Restore ban backup vao ban thu nghiem theo quy trinh backup/restore da
+   duoc chu he thong duyet.
+3. Chay mot instance thu tren localhost/port khac, khong mo firewall/domain.
+4. Kiem tra tai khoan thu nghiem/dong bo, sau do dung instance va xoa du lieu
+   thu nghiem theo chinh sach. Khong test bang cach ghi de DB that.
+5. Ghi thoi gian backup/restore va ket qua, khong ghi thong tin tai khoan.
+
+Source hien chua tu cai backup dinh ky/retention. Khong tu tao cron job upload
+database neu chua chot bao mat, chi phi, quyen va quy trinh xoa. Sao chep SQLite
+dang chay bang lenh `cp` thong thuong co the bo sot WAL; dung lenh `backup` cua
+ung dung hoac SQLite backup API.
+
+======================================================================
+PHAN J — CAP NHAT SOURCE VA QUAY LUI
+======================================================================
+
+1. Khong `git pull` truc tiep vao production khi chua xem commit/diff va test.
+2. Bao tri: thong bao nguoi dung, ket thuc van dang choi, tao backup moi.
+3. Luu lai commit dang chay: `git -C /opt/co-chill/app rev-parse HEAD`.
+4. Lay source ban moi theo release da duyet; chay test truoc khi start.
+5. Khong de lenh update xoa/ghi de `/var/lib/co-chill`.
+6. Restart service va doc log:
+
+   sudo systemctl restart co-chill
+   sudo systemctl status co-chill --no-pager
+   sudo journalctl -u co-chill -n 100 --no-pager
+
+7. Thu HTTPS, login, dong bo va PvP truoc khi thong bao cap nhat xong.
+8. Neu loi, dung lai va bao nguoi quan tri. Quay lai source cu khong dong
+   nghia database schema moi tuong thich voi code cu. Chi restore backup vao
+   instance/DB rieng khi test; khong ghi de DB san pham de thu.
+
+======================================================================
+PHAN K — SU CO THUONG GAP
+======================================================================
+
+Website timeout/khong mo:
+- Kiem tra VM co dang chay va IP tinh dung khong.
+- Kiem tra DNS, firewall 80/443 va Caddy.
+- Lenh: `sudo systemctl status caddy --no-pager`
+- Lenh: `sudo journalctl -u caddy -n 100 --no-pager`
+
+HTTPS/certificate loi:
+- DNS A co tro den IP VM hien tai khong?
+- Port 80 va 443 co den duoc VM khong?
+- Domain trong Caddyfile co khop `CO_CHILL_PUBLIC_ORIGIN` khong?
+- Khong tat HTTPS hoac bo `Secure` cookie de tranh loi.
+
+502 Bad Gateway:
+- Caddy chay nhung Gunicorn co the dung/loi.
+- Lenh: `sudo systemctl status co-chill --no-pager`
+- Lenh: `sudo journalctl -u co-chill -n 100 --no-pager`
+- Kiem tra Gunicorn bind `127.0.0.1:8769`, khong bind port khac.
+
+403 / host invalid:
+- `CO_CHILL_PUBLIC_ORIGIN` phai la origin chinh xac, vi du
+  `https://cochill.vn` (khong path, query, slash cuoi).
+- Host Caddyfile va trinh duyet phai dung domain do.
+- Restart co-chill sau khi thay EnvironmentFile.
+
+Database permission denied:
+- Kiem tra `CO_CHILL_DB_PATH`.
+- `/var/lib/co-chill` phai duoc mount va ghi duoc boi user `co-chill`.
+- Khong sua permission toan bo `/var` hoac cap quyen 777.
+
+Dang nhap tren may khac lam may cu bi dang xuat:
+- Day la hanh vi da chot: mot session/tai khoan. Dang nhap lai tren may can
+  dung. Tien do chi co tren server neu da dong bo.
+
+Nguoi choi bi 429:
+- Doi mot chut va thu lai; khong lap request lien tuc.
+- Trong pilot sau reverse proxy co gioi han IP dung chung. Ghi nhan loi va
+  danh gia proxy-aware rate limiting an toan truoc khi tang so nguoi.
+
+Room PvP bi pause sau restart/mat mang:
+- Day la hanh vi duoc ghi nhan trong gioi han pilot. Hai ben co the can ready
+  lai; neu khong hoi phuc, ket thuc thu nghiem va kiem tra log.
+- Polling tab nen/mang yeu co the bi xem nhu mat ket noi.
+
+======================================================================
+PHAN L — DIEU KIEN MOI NGUOI CHOI
+======================================================================
+
+Chi moi pilot nho sau khi:
+
+[ ] Chu san pham duyet domain, VM, billing, IP va firewall.
+[ ] HTTPS hoat dong khong canh bao.
+[ ] Database nam tren persistent disk, app chay mot worker.
+[ ] Owner TOTP duoc giu rieng, tai khoan owner khong dung lam tai khoan choi.
+[ ] Hai thiet bi/hai mang tao phong, ready, di nuoc, ket thuc PvP thanh cong.
+[ ] Dang nhap A->B thu hoi session cu va tien do da dong bo van con.
+[ ] Restart app khong mat tai khoan/tien do; da biet van live se pause.
+[ ] Da tao backup va thu restore rieng, khong dung database that.
+[ ] Da doc KNOWN_LIMITATIONS.md va PRIVACY.md.
+[ ] Nguoi choi biet PvP la giao huu, chua ranked, khong chong engine ngoai.
+[ ] Co kenh bao su co va nguoi chiu trach nhiem server.
+
+Neu chua dat, khong quang ba website la production san sang. Khong tuyen bo
+engine Pikafish/NNUE chay tren GCP neu chua kiem tra binary/weight that.
+
+======================================================================
+TAI LIEU THAM KHAO TRONG REPO
+======================================================================
+
+- `README.md`: chay local va tinh nang.
+- `docs/DEPLOY_GCP_V6.md`: cau hinh pilot ky thuat va cac buoc chuan bi.
+- `KNOWN_LIMITATIONS.md`: cac gioi han da biet.
+- `TEST_REPORT_CODEX.md`: pham vi test, khong phai chung nhan production.
+- `PRIVACY.md`: du lieu, xuat va xoa.
+- `co_chill_server.py`: entry point, API, CLI backup/admin.
+- `.env.example`: chi la mau; app khong tu nap file nay.
+
+Tai lieu chinh thuc Google Cloud:
+- https://cloud.google.com/compute/docs/create-linux-vm-instance
+- https://cloud.google.com/compute/docs/ip-addresses/configure-static-external-ip-address
+- https://docs.cloud.google.com/firewall/docs/using-firewalls
+
+Tai lieu Caddy:
+- https://caddyserver.com/docs/install
+
+Day la huong dan thao tac duoc viet tu source hien co, khong phai dich vu
+deploy da thuc hien. Khong co thao tac Cloud, DNS, Git push, mua dich vu hoac
+di chuyen database nao da duoc thuc hien khi tao file nay.

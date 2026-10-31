@@ -224,6 +224,33 @@ class OnlineHttpTests(unittest.TestCase):
             db.execute('DELETE FROM sessions')
         self.assertEqual(self.a.request('/api/rooms/session')[0], 401)
 
+    def test_cross_device_login_preserves_progress_and_supports_pvp(self):
+        self.assertEqual(self.a.register('alice')[0], 201)
+        state = {'prefs': {'theme': 'dark'}, 'games': [{'id': 'saved-game'}]}
+        self.assertEqual(self.a.request('/api/state', 'PUT', {'revision': 0, 'state': state})[0], 200)
+
+        status, _, _ = self.b.request('/api/auth/login', 'POST',
+                                      {'username': 'alice', 'password': PASSWORD})
+        self.assertEqual(status, 200)
+        self.assertFalse(self.a.request('/api/session')[1]['authenticated'])
+        self.assertEqual(self.b.request('/api/state')[1]['state'], state)
+
+        self.assertEqual(self.c.register('bobby')[0], 201)
+        status, room, _ = self.b.request('/api/rooms', 'POST', {'preset': 'rapid'})
+        self.assertEqual(status, 201, room)
+        code = room['code']
+        self.assertEqual(self.c.request(f'/api/rooms/{code}/join', 'POST')[0], 200)
+        self.assertEqual(self.b.request(f'/api/rooms/{code}/ready', 'POST')[0], 200)
+        status, room, _ = self.c.request(f'/api/rooms/{code}/ready', 'POST')
+        self.assertEqual(status, 200, room)
+
+        white = self.b if room['players']['w']['id'] == self.b.uid else self.c
+        status, result, _ = white.request(
+            f'/api/rooms/{code}/move', 'POST',
+            {'move': 'a3a4', 'expectedRevision': room['revision'], 'nonce': 'device_pvp_move_001'})
+        self.assertEqual(status, 200, result)
+        self.assertEqual(result['moves'], ['a3a4'])
+
     def test_cannot_switch_guest_identity_during_live_game(self):
         self.started(guests=True)
         status, result, _ = self.a.register('alice')

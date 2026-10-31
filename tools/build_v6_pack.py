@@ -10,6 +10,7 @@ from verify_source_pack import verify
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
     'README.md', 'AGENTS.md', 'CLAUDE.md', '.gitignore', '.gitattributes', '.env.example', '.nvmrc',
+    'deliverables/CO_CHILL_PVP_DEPLOYMENT_GUIDE_NEWBIE_2026_10_30.txt',
     'co_chill_server.py', 'requirements.txt', 'Mo_Co_Chill_V5.cmd',
     'AI_USAGE.md', 'IMPLEMENTATION_REPORT_CODEX.md', 'TEST_REPORT_CODEX.md',
     'KNOWN_LIMITATIONS.md', 'PRIVACY.md', 'THIRD_PARTY_NOTICES.md',

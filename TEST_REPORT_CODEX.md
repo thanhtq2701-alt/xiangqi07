@@ -6,6 +6,30 @@ Tests chạy trên source hiện tại; không xác nhận binary Pikafish thậ
 Google Cloud, production HTTPS/DNS, hai mạng Internet, tải lớn hoặc kiểm toán
 bảo mật. Không bỏ/giảm test để qua. Bộ legacy vẫn giữ trong repo gốc.
 
+## Hoàn thiện bài học local — 30/10/2026
+
+- Thêm ví dụ luật Xe bị quân chắn, ngòi Pháo bị rời, chân Mã bị chắn và chắn
+  đường chiếu. Test kiểm tra các nước tương ứng hợp lệ/không hợp lệ bằng luật
+  local; mọi biến minh họa trong bài vẫn replay hợp lệ.
+- Nối chương theo kỹ năng với các puzzle cơ bản đã có; sau bài nhiều lượt,
+  đề xuất puzzle cơ bản cùng kỹ năng trước. Test UI xác nhận đường điều hướng,
+  cùng với việc giữ reflection gate và chặn bài học trong ván đang diễn ra.
+- `node tools/test_v6_learning.cjs`: 20/20; `node tools/test_v6_learning_ui.cjs`:
+  10/10; `python tools/check_online_preview.py`: PASS (12 puzzle); `git diff
+  --check`: PASS.
+- Đây chỉ là kiểm tra luật và nối UI. Không thẩm định chuyên gia, không khẳng
+  định nước tối ưu hay hiệu quả học tập; số puzzle cơ bản vẫn là 12.
+
+## Kiểm tra tích hợp tài khoản đa thiết bị và PvP — 30/10/2026
+
+- Thêm kiểm thử WSGI tích hợp: lưu tiến độ bằng tài khoản trên thiết bị A,
+  đăng nhập cùng tài khoản ở thiết bị B (phiên A bị thu hồi, tiến độ vẫn tải
+  được), rồi dùng tài khoản thứ hai để mở phòng PvP và đi nước hợp lệ.
+- Lệnh `python -m unittest tests.test_cloud tests.test_online_http tests.test_online_rooms`:
+  54 tests đạt.
+- Đây là kiểm thử trên cùng server/SQLite cục bộ; không chứng minh đã deploy
+  công khai, HTTPS/DNS, hoặc chơi được qua hai mạng Internet thật.
+
 ## Xác minh Node.js 24.22.1 — 28/10/2026
 
 - Môi trường: Windows, Python 3.14.0, Node.js v24.22.1. `node` trong PATH

@@ -14,6 +14,10 @@ docs/V6_DECISIONS.md; hoàn thiện pack không có nghĩa hoàn tất toàn b�
   hỗ trợ English một phần giao diện. Giữ ảnh do chủ sản phẩm cung cấp.
 - Nội dung: 3 khóa/7 chương,8 bài hướng dẫn và2 bài nhiều lượt bổ sung cho12 bài cơ
   bản. Bài có bàn cờ ví dụ/phát lại, provenance và giới hạn rõ.
+- Hoàn thiện local nội dung: thêm ví dụ luật Xe bị quân chắn, ngòi Pháo đổi,
+  chân Mã bị chắn và cách chắn đường chiếu; nối chương theo kỹ năng với puzzle
+  cơ bản đã có. Sau bài nhiều lượt, đề xuất puzzle cơ bản cùng kỹ năng trước
+  khi quay lại một bài nhiều lượt có cùng họ; reflection gate vẫn giữ nguyên.
 - Nhiều lượt:3suy nghĩ ban đầu, nước ứng viên, phản ứng đối thủ từ cây kiểm
   tra luật, retry,3 lần sai hẹn lại, nhánh ngoài cây chưa chấm sai, explanation,
   hoàn thành một lần, bài liên quan, lịch ôn và self-report. Lưu/khôi phục nháp
@@ -45,8 +49,8 @@ Một worker nhiều thread cho pilot; không tự mở rộng đa process.
 - online-preview/index.html,app.js,v5-ui.js,learning.js,experience.js,
   engine-client.js: nối modules, guard, lưu dữ liệu, export và engine.
 - online-preview/v6-ui.js,v6.css: presentation/theme/language.
-- online-preview/curriculum.js,line-practice.js,v6-learning-ui.js: chương,
-  state machine bài nhiều lượt và màn học.
+- online-preview/curriculum.js,line-practice.js,v6-learning-ui.js,app.js:
+  chương, ví dụ luật, liên kết puzzle cơ bản và màn học.
 - online-preview/online-play.js: lobby/phòng/chơi/xem/history.
 - co_chill_server.py,app/online_rooms.py,app/cloud_store.py: API/PvP/metrics.
 - tests/test_online_rooms.py,test_online_http.py,test_cloud.py: regression.

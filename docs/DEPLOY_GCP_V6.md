@@ -5,6 +5,11 @@ dịch vụ trả phí hoặc deploy trong lượt này. Chủ sản phẩm ph�
 Không cần mua tên miền lần nữa. Tên miền là địa chỉ; Python cần máy chủ chạy
 liên tục, ảnh/code cần được lưu và database cần ổ bền.
 
+Nếu bạn mới deploy lần đầu, hãy đọc thêm
+[hướng dẫn từng bước cho người mới](../deliverables/CO_CHILL_PVP_DEPLOYMENT_GUIDE_NEWBIE_2026_10_30.txt).
+Hướng dẫn đó giải thích thuật ngữ, kiểm tra PvP qua hai mạng, backup/restore và
+cảnh báo bảo mật; nó không thay thế phê duyệt chi phí, máy chủ hoặc DNS.
+
 ## Kiến trúc pilot đã chọn
 
 Một VM Linux chạy HTTPS reverse proxy → Gunicorn một worker nhiều thread →

@@ -14,6 +14,9 @@ Gói này không gửi dữ liệu người học đến dịch vụ AI, không 
 - 12 bài cơ bản, 8 bài hướng dẫn và 2 bài nhiều lượt là nội dung tự dựng của
   dự án. Hai bài mới cùng họ chiến thuật; không phải dataset chuyên gia,
   dữ liệu ván người thật hay bằng chứng hiệu quả học tập.
+- Bổ sung minh họa luật và nối chương với puzzle cùng kỹ năng từ kho local.
+  Luật xác minh tính hợp lệ; không có AI chấm lời giải, không khẳng định nước
+  mới là tối ưu hoặc đã được chuyên gia thẩm định.
 - Thống kê/cấp/lịch ôn là quy tắc thử nghiệm. Không công bố Elo, người dùng,
   impact hoặc độ chính xác chưa đo.
 - Logo/cover do chủ sản phẩm cung cấp. Không scrape nội dung sách/website.

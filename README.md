@@ -16,13 +16,29 @@ Mở **http://127.0.0.1:8769/**. Giữ terminal chạy; Ctrl+C để dừng. Win
 
 SQLite tự tạo ở `var/co_chill_accounts.sqlite3`. Copy source không chuyển tài khoản sang máy khác. Các thiết bị phải đăng nhập vào cùng một server đã deploy để đồng bộ. Không commit database.
 
+### Dùng tài khoản ở thiết bị khác và chơi PvP
+
+Tài khoản chỉ có **một phiên đăng nhập đang hoạt động**. Đăng nhập trên thiết bị
+mới sẽ kết thúc phiên trước; tiến độ đã đồng bộ vẫn nằm trên server để thiết bị
+mới tải về. Bản nháp chưa đồng bộ vẫn chỉ có trên thiết bị cũ, vì vậy hãy đợi
+trạng thái đồng bộ hoàn tất hoặc xuất dữ liệu trước khi chuyển máy.
+
+Để nhiều người chơi PvP qua Internet, chủ website cần triển khai ứng dụng này
+cùng API trên một server có HTTPS và SQLite ở ổ lưu bền. Mọi người mở cùng địa
+chỉ website đó, đăng nhập tài khoản riêng (hoặc chọn khách cho phòng), rồi vào
+chơi trực tuyến để tạo hoặc tham gia phòng. Chạy `127.0.0.1` chỉ cho phép thử
+trên máy chủ local; chưa có nghĩa website đã được triển khai công khai. Xem
+[hướng dẫn triển khai](docs/DEPLOY_GCP_V6.md); không deploy hoặc đổi DNS nếu
+chưa được chủ sản phẩm duyệt.
+
 ## Những gì có trong source
 
 - Giao diện Việt, EN cho các chuỗi giao diện đã dịch; nội dung học vẫn Việt. Cover, font không chân, ba theme xem trước, màn chọn tài khoản/khách.
 - Máy cơ bản, hai người cùng máy, nhập/phát lại ký phổ; suy nghĩ trước lời giải, retry, bài liên quan, ôn và lưu nháp.
 - Tài khoản scrypt/cookie, đồng bộ phát hiện xung đột, owner TOTP, quyền báo cáo, quản trị nội dung/phản hồi.
 - PvP riêng/công khai, ghép theo thể thức thời gian, khách/tài khoản; server giữ luật/đồng hồ; hòa, đi lại có đồng ý, đầu hàng, đổi bên ván sau, khán giả và tin nhắn định sẵn. Pilot không xếp hạng.
-- Hành trình 3 khóa/7 chương, 8 bài hướng dẫn và 2 bài nhiều lượt có cây đáp án kiểm tra luật, bên cạnh 12 bài cơ bản.
+- Hành trình 3 khóa/7 chương, 8 bài hướng dẫn và 2 bài nhiều lượt có cây đáp án kiểm tra luật, bên cạnh 12 bài cơ bản. Ví dụ mới minh họa đường Xe bị chặn, ngòi Pháo thay đổi, chân Mã bị chắn và nước chắn chiếu; các chương Pháo/Mã/An toàn Tướng nối tới puzzle cơ bản cùng kỹ năng.
+- Sau khi hoàn thành bài nhiều lượt, người học được gợi ý puzzle cơ bản cùng kỹ năng trước khi gợi ý một bài nhiều lượt khác; việc xem hướng dẫn không tự tính là mastery và lời giải vẫn khóa sau reflection.
 - Adapter UCI Pikafish; chế độ yêu cầu engine mạnh báo chưa sẵn sàng khi thiếu engine, không giả Pikafish bằng máy nông.
 
 Chưa kiểm tra Pikafish/NNUE trên Google Cloud. Chưa có email tự khôi phục mật khẩu, LLM cá nhân hóa, 7 cấp bot hiệu chỉnh hoặc đầy đủ luật giải đấu. Xem [giới hạn](KNOWN_LIMITATIONS.md).
@@ -75,5 +91,6 @@ Không có bundler/build hay TypeScript typecheck. Checks gồm syntax, nghiệp
 3. [Quyết định V6](docs/V6_DECISIONS.md).
 4. [Chuẩn bị Google Cloud/cochill.vn](docs/DEPLOY_GCP_V6.md).
 5. [Triển khai](IMPLEMENTATION_REPORT_CODEX.md), [kiểm thử](TEST_REPORT_CODEX.md), [giới hạn](KNOWN_LIMITATIONS.md), [AI](AI_USAGE.md), [riêng tư](PRIVACY.md).
+6. [Hướng dẫn deploy PvP cho người mới](deliverables/CO_CHILL_PVP_DEPLOYMENT_GUIDE_NEWBIE_2026_10_30.txt).
 
 `.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.
