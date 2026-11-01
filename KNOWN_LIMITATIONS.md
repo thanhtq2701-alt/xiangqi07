@@ -36,7 +36,8 @@ khả năng chịu tải hay mức sẵn sàng vận hành.
 - Ghép cộng đồng theo thời gian, chưa theo trình độ. Không chống được dùng
   engine bên ngoài hoặc thiết bị khác; chỉ khóa coaching/engine của app.
 - Chat chỉ mẫu trung tính. Guest room cookie24 giờ; hết cookie chưa tự xóa
-  dữ liệu room. Chưa có retention tự động toàn bộ phòng và backup.
+  dữ liệu phòng/guest room và chưa có retention tự động cho các dữ liệu này.
+  Backup database có cron hằng ngày giữ 14 ngày theo thông tin chủ dự án.
 - Xóa danh tính có ghế trong phòng hiện xóa cả biên bản chung liên quan của
   đối thủ. Cần chính sách ẩn danh/lưu giữ rõ trước mở pilot rộng.
 - Thống kê học do client đồng bộ, không phải hệ thống chứng nhận chống gian

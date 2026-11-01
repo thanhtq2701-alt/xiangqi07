@@ -1,5 +1,8 @@
 # Đưa gói V6 lên GitHub — 26/10/2026
 
+> Tài liệu lịch sử: phần hướng dẫn commit/push trực tiếp không còn áp dụng.
+> Xem quy trình hiện hành trong [CONTRIBUTING.md](../CONTRIBUTING.md).
+
 ## 1. Bạn đang nhận gì?
 
 ZIP là bản source sạch. Giải nén sẽ thấy `README.md`, `co_chill_server.py`,
