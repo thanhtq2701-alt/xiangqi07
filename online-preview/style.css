@@ -116,7 +116,7 @@ footer a:hover { text-decoration:underline; }
 .mode-card span:last-child { font-size:14px; color:var(--muted); }
 .field { display:block; margin:18px 0; }
 .field > span,.field > label { display:block; font-size:15px; font-weight:600; margin-bottom:8px; }
-select,input[type=text],input[type=number],input[type=url],textarea { width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:11px; background:var(--input); color:var(--ink); line-height:1.6; }
+select,input[type=text],input[type=number],input[type=url],input[type=password],input:not([type]),textarea { width:100%; padding:11px 13px; border:1px solid var(--line); border-radius:11px; background:var(--input); color:var(--ink); line-height:1.6; }
 input[type=file] { width:100%; font-size:14px; }
 input[type=file]::file-selector-button { border:1px solid var(--line); background:var(--soft); color:var(--green); padding:9px 12px; border-radius:8px; margin-right:10px; }
 textarea { resize:vertical; min-height:92px; font-size:16px; }
