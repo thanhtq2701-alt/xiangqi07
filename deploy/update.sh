@@ -82,7 +82,7 @@ fi
 
 umask 077
 BACKUP_DIR="$HOME/backups"
-BACKUP_FILE="$BACKUP_DIR/co-chill-$(date +%Y%m%d-%H%M%S).sqlite3"
+BACKUP_FILE="$BACKUP_DIR/cochill-preupdate-$(date +%Y%m%d-%H%M%S).sqlite3"
 mkdir -p "$BACKUP_DIR"
 if [[ -e "$BACKUP_FILE" ]]; then
     printf 'Backup đích đã tồn tại; không ghi đè: %s\n' "$BACKUP_FILE" >&2
