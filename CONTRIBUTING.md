@@ -1,5 +1,10 @@
 # Contributing
 
+Before making changes, read [README.md](README.md),
+[`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md), [`AGENTS.md`](AGENTS.md),
+[`docs/CLAUDE_HANDOFF_V6.md`](docs/CLAUDE_HANDOFF_V6.md), and
+[`docs/V6_DECISIONS.md`](docs/V6_DECISIONS.md).
+
 ## Pull request workflow
 
 1. Create a feature branch from `codex-full`.
@@ -20,6 +25,8 @@
 
 Do not push directly to `codex-full`. Only the project owner deploys
 Production, using [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md).
+Do not rewrite Git history or decide questions that are still waiting for the
+project owner's answer.
 
 ## Project requirements
 
@@ -38,10 +45,11 @@ Production, using [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md).
 
 ## Reporting issues
 
-Include the operating system, tested Python version, reproduction steps,
-expected behavior, and actual behavior. For rules issues, include a synthetic
-position, side to move, move coordinates, and a rules source when available.
-Remove personal or sensitive information from logs and screenshots.
+Include the operating system, tested Python version, commit being run,
+reproduction steps, expected behavior, and actual behavior. For rules issues,
+include a synthetic position, side to move, move coordinates, and a rules
+source when available. Remove personal or sensitive information from logs and
+screenshots.
 
 The repository does not contain a `LICENSE` file, and the project owner has
 not chosen a project license. See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md)

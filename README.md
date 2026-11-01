@@ -1,15 +1,14 @@
 # Cờ Chill
 
-> **English:** Cờ Chill is a Vietnamese-first web app for learning Xiangqi through play, reflection, reviewed explanations, retry, and spaced practice.
+> **English:** Cờ Chill is a Vietnamese-first web app for learning Xiangqi through play, reflection before solutions, game review, retry, and spaced practice.
 
 [Visit cochill.vn](https://cochill.vn)
 
 ![Cờ Chill brand cover](online-preview/cover-co-chill.png)
 
-The image above is a brand cover, not a product screenshot. Cờ Chill combines
-Xiangqi games and learning activities in a web app. Learners can think through
-a position before seeing an explanation, retry a line, revisit related
-practice, and track their own learning history.
+Cờ Chill combines Xiangqi games and learning activities in a web app. Learners
+can think through a position before seeing an explanation, retry a line,
+revisit related practice, and track their own learning history.
 
 ## What the project includes
 
@@ -31,9 +30,8 @@ practice, and track their own learning history.
   polling. See [`online_rooms.py`](app/online_rooms.py) and
   [`online-play.js`](online-preview/online-play.js).
 - **Rules and engine integration:** Python and JavaScript rules validate play.
-  An optional server-side UCI adapter can use a configured Pikafish binary and
-  network; this repository does not establish that a deployed engine is
-  available. See [`rules.py`](app/rules.py),
+  Server-side analysis can use Pikafish through a UCI adapter when an engine
+  is configured. See [`rules.py`](app/rules.py),
   [`xiangqi.js`](online-preview/xiangqi.js),
   [`pikafish.py`](app/pikafish.py), and
   [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
@@ -102,7 +100,7 @@ See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for third-party notices,
 including Pikafish. This repository does not contain a `LICENSE` file, and
 the project owner has not chosen a license. Copyright therefore remains with
 the authors by default; do not assume permission to reuse or redistribute the
-project. Contact the project owner to request permission.
+project. To request permission, open a GitHub issue.
 
 ## Tiếng Việt
 
