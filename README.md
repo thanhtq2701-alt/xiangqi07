@@ -1,82 +1,115 @@
-# Cờ Chill V6 — source và vận hành Production
+# Cờ Chill
 
-Web học cờ tướng: **chơi/nhập ván → chọn điểm đáng học → tự suy nghĩ → giải thích có căn cứ → thử lại → bài liên quan → lịch ôn → tiến độ**.
+> **English:** Cờ Chill is a Vietnamese-first web app for learning Xiangqi through play, reflection, reviewed explanations, retry, and spaced practice.
 
-Website Production hiện chạy tại **https://cochill.vn** theo cấu hình VM do chủ dự án cung cấp. VM Ubuntu 24.04 chạy source tại `/var/www/html`, Python 3.12 trong `.venv`, service `cochill.service` và SQLite bền tại `/var/www/html/var/`. Production đang chạy `co_chill_server.py serve` sau Nginx HTTPS. Các commit đang làm trên nhánh `review/production-sync` chưa được deploy; source Production được báo cáo ở `3365734` (28/10/2026). Đây là thông tin vận hành do chủ dự án cung cấp, không phải kết quả kiểm tra trực tiếp VM.
+[Visit cochill.vn](https://cochill.vn)
 
-Không dùng `legacy/server.py`/`legacy/web/` cho Production; không đẩy code,
-thay DNS hoặc sửa máy chủ khi chưa được chủ dự án duyệt.
+![Cờ Chill brand cover](online-preview/cover-co-chill.png)
 
-## Chạy ngay
+The image above is a brand cover, not a product screenshot. Cờ Chill combines
+Xiangqi games and learning activities in a web app. Learners can think through
+a position before seeing an explanation, retry a line, revisit related
+practice, and track their own learning history.
 
-Python 3.12 trở lên. Giải nén, mở cả thư mục bằng VS Code, mở Terminal tại nơi có README:
+## What the project includes
+
+- **Reflection-first practice:** learners record their thinking before a
+  solution is revealed; multi-step exercises validate moves against Xiangqi
+  rules. See [`line-practice.js`](online-preview/line-practice.js) and
+  [`V6_DECISIONS.md`](docs/V6_DECISIONS.md).
+- **Retry, related practice, and review scheduling:** practice attempts,
+  drafts, and review dates are managed by the learning modules. These are
+  product features, not evidence of measured learning outcomes. See
+  [`experience.js`](online-preview/experience.js) and
+  [`learning.js`](online-preview/learning.js).
+- **Accounts and synchronization:** the app provides account sessions and
+  synchronized learner state through its server API. See
+  [`cloud_store.py`](app/cloud_store.py) and
+  [`cloud-client.js`](online-preview/cloud-client.js).
+- **Online friendly play:** private and public rooms use server-managed game
+  state, legal moves, clocks, and results; the browser updates room state by
+  polling. See [`online_rooms.py`](app/online_rooms.py) and
+  [`online-play.js`](online-preview/online-play.js).
+- **Rules and engine integration:** Python and JavaScript rules validate play.
+  An optional server-side UCI adapter can use a configured Pikafish binary and
+  network; this repository does not establish that a deployed engine is
+  available. See [`rules.py`](app/rules.py),
+  [`xiangqi.js`](online-preview/xiangqi.js),
+  [`pikafish.py`](app/pikafish.py), and
+  [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md).
+
+The basic bot uses heuristic search and explanations use templates. The
+project does not claim trained machine learning or validated learning impact.
+For current limitations, see [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md)
+and [`AI_USAGE.md`](AI_USAGE.md).
+
+## Run locally
+
+Python 3.12 is the tested Python version. From the repository root, run:
 
 ```powershell
 python co_chill_server.py serve --port 8769
 ```
 
-Mở **http://127.0.0.1:8769/**. Giữ terminal chạy; Ctrl+C để dừng. Windows có thể dùng `py -3.12` hoặc launcher `Mo_Co_Chill_V6.cmd`. Linux/macOS dùng `python3`. Không cần Node/npm/API key để chạy.
+Open <http://127.0.0.1:8769/>. On Windows, you can also start the app with
+[`Mo_Co_Chill_V6.cmd`](Mo_Co_Chill_V6.cmd). Keep the terminal open while using
+the app; press Ctrl+C to stop the server.
 
-SQLite tự tạo ở `var/co_chill_accounts.sqlite3`. Copy source không chuyển tài khoản sang máy khác. Các thiết bị phải đăng nhập vào cùng một server đã deploy để đồng bộ. Không commit database.
+Node.js is needed for the JavaScript checks, not to run the app. Use the
+version in [`.nvmrc`](.nvmrc).
 
-## Những gì có trong source
+## Checks
 
-- Giao diện Việt, EN cho các chuỗi giao diện đã dịch; nội dung học vẫn Việt. Cover, font không chân, ba theme xem trước, màn chọn tài khoản/khách.
-- Máy cơ bản, hai người cùng máy, nhập/phát lại ký phổ; suy nghĩ trước lời giải, retry, bài liên quan, ôn và lưu nháp.
-- Tài khoản scrypt/cookie, đồng bộ phát hiện xung đột, owner TOTP, quyền báo cáo, quản trị nội dung/phản hồi.
-- PvP riêng/công khai, ghép theo thể thức thời gian, khách/tài khoản; server giữ luật/đồng hồ; hòa, đi lại có đồng ý, đầu hàng, đổi bên ván sau, khán giả và tin nhắn định sẵn. Pilot không xếp hạng.
-- Hành trình 3 khóa/7 chương, 8 bài hướng dẫn và 2 bài nhiều lượt có cây đáp án kiểm tra luật, bên cạnh 12 bài cơ bản.
-- Adapter UCI Pikafish; chế độ yêu cầu engine mạnh báo chưa sẵn sàng khi thiếu engine, không giả Pikafish bằng máy nông.
-
-Chưa kiểm tra Pikafish/NNUE trên Google Cloud. Chưa có email tự khôi phục mật khẩu, LLM cá nhân hóa, 7 cấp bot hiệu chỉnh hoặc đầy đủ luật giải đấu. Xem [giới hạn](KNOWN_LIMITATIONS.md).
-
-## Kiến trúc
-
-```text
-online-preview/ (HTML/CSS/JavaScript)
-        │ HTTP cùng origin, cookie + CSRF
-        ▼
-co_chill_server.py
-        ├── app/cloud_store.py → SQLite tài khoản/tiến độ
-        ├── app/online_rooms.py → luật, phòng, đồng hồ PvP
-        ├── app/content_store.py → nội dung có phiên bản
-        └── app/pikafish.py → tiến trình UCI khi cấu hình
-```
-
-| File/nhóm trong online-preview | Vai trò |
-|---|---|
-| index.html, style.css, v5.css, v6.css | Khung, thứ tự script, bố cục, màu |
-| app.js | Bàn cờ và vòng chơi/học cốt lõi |
-| xiangqi.js, game-tools.js | Luật, máy cơ bản, ký phổ/phát lại |
-| learning.js, experience.js, fixtures.js | Phiên học, bản nháp, lịch ôn, bài cơ bản |
-| curriculum.js, line-practice.js, v6-learning-ui.js | Chương học, bài nhiều lượt và màn học |
-| cloud-client.js, engine-client.js, v5-ui.js | API, đồng bộ, bằng chứng engine, tài khoản/quản trị |
-| online-play.js, v6-ui.js | Phòng PvP; màn vào, ngôn ngữ, cover, theme |
-| logo-co-chill.png, cover-co-chill.png, favicon.svg | Hình thương hiệu |
-
-Giữ toàn bộ thư mục `online-preview/`, không copy riêng app.js. Các lớp bổ sung bọc app cũ để tái dùng code; thứ tự script quan trọng. Prototype từ thế hệ trước không phải entrypoint V6 và không nằm trong source pack.
-
-## Kiểm tra và đóng gói
-
-Cần Node.js 24.22.1 để chạy JavaScript checks; phiên bản chuẩn được ghi trong
-`.nvmrc`. Node chỉ cần khi kiểm thử, không cần khi chạy app và không cần cài
-npm packages. Kiểm tra Terminal đang dùng đúng phiên bản bằng `node --version`.
-Nếu Windows vẫn ưu tiên Node cũ trong PATH, chỉ rõ executable:
+From the repository root, run:
 
 ```powershell
-python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
-python tools/build_v6_pack.py --output deliverables/xiangqi-ai-v6-new.zip
-python tools/verify_source_pack.py deliverables/xiangqi-ai-v6-new.zip
+python tools/run_checks.py
 ```
 
-Không có bundler/build hay TypeScript typecheck. Checks gồm syntax, nghiệp vụ, bộ bài và parity luật. Builder chỉ lấy danh sách file cho phép, không ghi đè ZIP cũ, kèm `MANIFEST_SHA256.json`.
+The runner covers Python and JavaScript checks, exercise fixtures, and
+cross-language rules parity. See [`TEST_REPORT_CODEX.md`](TEST_REPORT_CODEX.md)
+for the recorded test scope and results.
 
-## Đọc tiếp
+## Repository layout
 
-1. [Đưa lên GitHub cho người mới](docs/GITHUB_V6_CHO_NGUOI_MOI.md).
-2. [Bàn giao Claude](docs/CLAUDE_HANDOFF_V6.md).
-3. [Quyết định V6](docs/V6_DECISIONS.md).
-4. [Deploy GCP Production](deploy/DEPLOY_GCP_VI.md).
-5. [Triển khai](IMPLEMENTATION_REPORT_CODEX.md), [kiểm thử](TEST_REPORT_CODEX.md), [giới hạn](KNOWN_LIMITATIONS.md), [AI](AI_USAGE.md), [riêng tư](PRIVACY.md).
+| Path | Purpose |
+|---|---|
+| `co_chill_server.py` | Application entry point, HTTP API, and static frontend serving |
+| `app/` | Server-side rules, accounts, persistence, online rooms, and engine adapters |
+| `online-preview/` | Web interface, browser-side rules, and learning flows |
+| `tests/`, `tools/` | Test suites, validation tools, and check runner |
+| `docs/` | Product decisions, handoff, and supporting documentation |
+| `deploy/` | Production deployment and operations guide |
+| `legacy/` | Older local-only application; not the current entry point |
 
-`.env.example` chỉ là mẫu; chương trình không tự nạp `.env`. Production đọc cấu hình riêng từ `/etc/cochill.env`; xem [hướng dẫn GCP/Production](deploy/DEPLOY_GCP_VI.md) và [mẫu deploy](deploy/). Không gửi khóa, cookie, backup hoặc database cho AI/GitHub. Chưa có giấy phép mã nguồn chung do chủ dự án chọn; xem `THIRD_PARTY_NOTICES.md` trước khi công bố open source.
+## Contributing
+
+Create a feature branch from `codex-full`, make and test your changes, then
+open a Pull Request. GitHub Actions runs the checks defined in
+[`checks.yml`](.github/workflows/checks.yml); they must pass before the PR is
+merged. Do not push directly to `codex-full`. Only the project owner deploys
+Production, following [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md).
+See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full contribution workflow.
+
+## Deployment
+
+See [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md) for the deployment
+and operations guide.
+
+## Third-party software and license
+
+See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for third-party notices,
+including Pikafish. This repository does not contain a `LICENSE` file, and
+the project owner has not chosen a license. Copyright therefore remains with
+the authors by default; do not assume permission to reuse or redistribute the
+project. Contact the project owner to request permission.
+
+## Tiếng Việt
+
+Cờ Chill là ứng dụng web học cờ tướng, ưu tiên tiếng Việt. Chạy local bằng
+Python 3.12 với `python co_chill_server.py serve --port 8769` hoặc mở
+`Mo_Co_Chill_V6.cmd` trên Windows. Đóng góp theo quy trình nhánh → Pull Request
+→ CI → merge; chỉ chủ dự án triển khai. Xem
+[`CONTRIBUTING.md`](CONTRIBUTING.md), [giới hạn](KNOWN_LIMITATIONS.md),
+[kiểm thử](TEST_REPORT_CODEX.md), [quyết định V6](docs/V6_DECISIONS.md) và
+[hướng dẫn triển khai](deploy/DEPLOY_GCP_VI.md).

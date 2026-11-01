@@ -14,8 +14,8 @@ ngày. Nginx proxy HTTPS đến loopback; cấu hình chi tiết và thao tác v
 nằm trong [deploy/DEPLOY_GCP_VI.md](deploy/DEPLOY_GCP_VI.md).
 
 Đây là thông tin Production do chủ dự án cung cấp, chưa được xác minh trực tiếp
-từ VM. Source Production được báo cáo tại `3365734` ngày 28/10/2026; thay đổi
-nhánh làm việc hiện tại chưa được deploy.
+từ VM. `codex-full` là nhánh Production; thay đổi được đưa vào nhánh này qua
+Pull Request đã đạt CI, sau đó chủ dự án cập nhật bằng `deploy/update.sh`.
 
 ## 1. Nguồn thông tin
 
