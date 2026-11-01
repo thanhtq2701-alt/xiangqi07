@@ -14,7 +14,7 @@
     'Ván của tôi':'My games', 'Ôn tập':'Review', 'Hành trình học':'Learning journey',
     'Tiến độ':'Progress', 'Cách học & luật':'How to learn & rules', 'Cài đặt':'Settings',
     'Về Cờ Chill':'About Cờ Chill', 'Của tôi':'My space', 'Góc của bạn':'Your space',
-    'Tiến độ & hồ sơ':'Progress & profile', 'CHƠI · HIỂU · TIẾN BỘ':'PLAY · UNDERSTAND · IMPROVE',
+    'Tiến độ & hồ sơ':'Progress & profile', 'CHƠI · SUY NGHĨ · TIẾN BỘ':'PLAY · REFLECT · IMPROVE',
     'Mỗi lần hiểu thêm một chút.':'Learn a little more each time.',
     'Đăng nhập / đăng ký':'Sign in / register', 'Quản trị':'Administration', 'Trợ giúp':'Help',
     'Cài đặt & dữ liệu':'Settings & data', 'Về bản thử':'About this preview',
