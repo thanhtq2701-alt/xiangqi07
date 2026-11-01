@@ -44,9 +44,11 @@
    if(page==='path')content=pathHTML();if(page==='course'){const c=C.courses.find(c=>c.id===id);content=c?heading(c.title,c.description,'path')+mapHTML(c):empty('Không có khóa này','Chọn lại từ hành trình.','path','Hành trình');}
    if(page==='chapter')content=chapterHTML(id);if(page==='chapter-lesson')content=lessonHTML(id);if(page==='line')content=lineHTML(id);
    if(content!==null){$('main').innerHTML=content;document.title=(document.querySelector('#main h1')?.textContent||'Bài học')+' · Cờ Chill';}
-   else if(page==='lessons')$('main').innerHTML=libraryHTML()+$('main').innerHTML;
-   else if(page==='review')$('main').innerHTML=queueHTML()+$('main').innerHTML;
-   else if(page==='profile')$('main').innerHTML=`<section class="panel"><h2>Thực hành nhiều lượt</h2><p>${(state.lineAttempts||[]).length} lượt đã hoàn thành · ${dueAttempts(state.lineAttempts).length} hình đến hẹn ôn</p><a href="#review">Xem lịch ôn →</a></section>`+$('main').innerHTML;
+   let addition=null;
+   if(page==='lessons')addition=libraryHTML();
+   else if(page==='review')addition=queueHTML();
+   else if(page==='profile')addition=`<section class="panel"><h2>Thực hành nhiều lượt</h2><p>${(state.lineAttempts||[]).length} lượt đã hoàn thành · ${dueAttempts(state.lineAttempts).length} hình đến hẹn ôn</p><a href="#review">Xem lịch ôn →</a></section>`;
+   if(addition!==null){const main=$('main'),top=main.querySelector?.('.page-top');if(top)top.insertAdjacentHTML('afterend',addition);else main.innerHTML=addition+main.innerHTML;}
   };
   const style=document.createElement('style');style.textContent='.v6-journey{padding:0;list-style:none}.v6-journey li{display:flex;gap:1rem;align-items:center;padding:1.2rem 0;border-bottom:1px solid var(--border,#bbb)}.v6-journey li>div{flex:1}.v6-chapter-marker{font-size:2rem;min-width:3rem;text-align:center}.v6-journey h3{margin:.2rem 0}.v6-journey p{margin:.3rem 0}@media(max-width:560px){.v6-journey li{flex-wrap:wrap}.v6-journey li>a{margin-left:4rem}}';document.head.appendChild(style);
   document.addEventListener('click',event=>{const b=event.target.closest?.('[data-line-action]'),sq=event.target.closest?.('[data-square]');if(!b&&!(sq&&route()[0]==='line'))return;event.preventDefault();event.stopImmediatePropagation();if(forbidden(route()[0]))return;try{
