@@ -84,7 +84,7 @@
     board=board.replace(/data-action="flip-board"/g,'data-online-action="flip"');
     const player=s=>`<span><b>${s==='w'?'Đỏ':'Đen'} · ${esc(room.players[s]?.displayName||'Chờ người chơi')}</b>${room.players[s]?.id===session.user.id?' · Bạn':''}</span><strong class="clock${room.status==='playing'&&p.turn===s?' active':''}">${room.options.seconds?clockLabel(room.clock[s]):'∞'}</strong>`;
     const result=room.result?.winner?(room.result.winner==='w'?'Đỏ':'Đen')+' thắng':'Ván đã kết thúc';
-    const turnLine=room.status==='playing'?`<p class="subtle" role="status">Đến lượt ${mine===p.turn?'bạn':'đối thủ'}</p>`:'';
+    const turnLine=room.status==='playing'?`<p class="subtle" role="status">${mine?`Đến lượt ${mine===p.turn?'bạn':'đối thủ'}`:`${p.turn==='w'?'Đỏ':'Đen'} đến lượt`}</p>`:'';
     const missingOpponent=room.status==='waiting'&&(!room.players.w||!room.players.b);
     const readyButton=mine&&['waiting','paused'].includes(room.status)?`${button(room.ready.includes(session.user.id)?'Đã sẵn sàng · chờ đối thủ':'Sẵn sàng','ready','','primary',room.ready.includes(session.user.id)||!room.players.w||!room.players.b)}${missingOpponent?'<small class="subtle">Chờ đối thủ vào phòng</small>':''}`:'';
     const playActions=mine&&room.status==='playing'?`<div class="button-row">${button('Đề nghị hòa','draw')}${button('Xin đi lại','takeback','','quiet',!room.moves.length)}</div>`:'';
