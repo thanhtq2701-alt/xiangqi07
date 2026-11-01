@@ -58,7 +58,7 @@
     'Xóa toàn bộ dữ liệu':'Delete all data', 'Quay về hồ sơ →':'Back to profile →',
     'Giao diện và dữ liệu →':'Appearance & data →', 'Tài khoản & đồng bộ →':'Account & sync →',
     'Góc cá nhân':'Personal space', 'Lưu tên':'Save name', 'Tiến độ của bạn':'Your progress',
-    'Ngôn ngữ giao diện':'Interface language', 'Nội dung bài học hiện bằng tiếng Việt.':'Lesson content is currently in Vietnamese.',
+    'Ngôn ngữ giao diện':'Interface language',
     'Màu ấm, nền kem và nét xanh lá.':'Cream tones with a fresh green accent.',
     'Sắc xanh trầm trên nền xám lạnh.':'Muted blue on a cool slate background.',
     'Nền tối dịu, quân cờ dễ phân biệt.':'A calm dark surface with distinct pieces.',
@@ -132,12 +132,12 @@
   };
   let installed = false, language = 'vi', scope = 'guest', guestSelected = false;
   const memoryLanguages = new Map(), originalText = new WeakMap(), originalAttributes = new WeakMap();
+  let originalTitle = null, decorating = false;
   const escape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const languageKey = user => LANGUAGE_PREFIX + (user?.id ? 'account:'+encodeURIComponent(String(user.id)) : 'guest');
   const shouldShowEntry = ({booting=false,user=null,guest=false,page='home'}={}) => !booting && !user && !guest && !['account','privacy','help'].includes(page);
   function icon(name) { return `<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">${icons[name] || icons.question}</svg>`; }
-  function translate(text, lang = language) {
-    if (lang !== 'en') return text;
+  function legacyTranslate(text) {
     const raw = String(text), trimmed = raw.trim();
     let result = dictionary[trimmed];
     if (!result) {
@@ -145,9 +145,14 @@
       if ((m=trimmed.match(/^(\d+) hình cờ đã đến lúc ôn$/))) result=`${m[1]} positions are ready for review`;
       else if ((m=trimmed.match(/^(\d+) hình đến hạn$/))) result=`${m[1]} positions due`;
       else if ((m=trimmed.match(/^(\d+) hình cờ · (\d+) kỹ năng$/))) result=`${m[1]} positions · ${m[2]} skills`;
-      else if (trimmed.startsWith('Tài khoản · ')) result='Account · '+translate(trimmed.slice(12),lang);
+      else if (trimmed.startsWith('Tài khoản · ')) result='Account · '+legacyTranslate(trimmed.slice(12));
     }
     return result ? raw.replace(trimmed,result) : raw;
+  }
+  function translate(text, lang = language) {
+    if (lang !== 'en') return text;
+    const english = root.CCI18nEN;
+    return english ? english.translate(text, legacyTranslate) : legacyTranslate(text);
   }
   function storageRead(key) { try { return root.localStorage?.getItem(key); } catch { return null; } }
   function storageWrite(key,value) { try { root.localStorage?.setItem(key,value); return true; } catch { return false; } }
@@ -165,7 +170,8 @@
     refresh(false); return true;
   }
   function textNodes(node) {
-    if (!node || node.nodeType===1 && /^(INPUT|TEXTAREA|SCRIPT|STYLE|CODE|PRE)$/.test(node.tagName)) return;
+    if (!node) return;
+    if (node.nodeType===1 && (node.hasAttribute('data-no-translate') || /^(SCRIPT|STYLE)$/.test(node.tagName))) return;
     if (node.nodeType===3) {
       const previous=originalText.get(node), raw=node.nodeValue;
       const source=previous && raw===previous.displayed ? previous.source : raw;
@@ -173,19 +179,63 @@
       if (displayed!==raw) node.nodeValue=displayed;
       originalText.set(node,{source,displayed}); return;
     }
+    if (node.nodeType===1) {
+      translateAttributes(node);
+      if(/^(INPUT|TEXTAREA)$/.test(node.tagName))return;
+    }
     for (const child of Array.from(node.childNodes || [])) textNodes(child);
   }
-  function translateElement(node) {
-    textNodes(node);
-    if (!node?.getAttribute) return;
+  function translateAttributes(node) {
     const memory=originalAttributes.get(node)||{};
-    for (const attribute of ['aria-label','title','placeholder']) {
+    for (const attribute of ['aria-label','title','placeholder','alt']) {
       const raw=node.getAttribute(attribute); if (!raw) continue;
       const previous=memory[attribute], source=previous && raw===previous.displayed?previous.source:raw, displayed=translate(source);
       if(raw!==displayed)node.setAttribute(attribute,displayed);
       memory[attribute]={source,displayed};
     }
     originalAttributes.set(node,memory);
+  }
+  function translateElement(node) {
+    if (!node?.getAttribute || node.closest?.('[data-no-translate]')) return;
+    textNodes(node);
+  }
+  function markUserText(node, value, prefix='') {
+    if(!node||!value||!document.createElement||!node.replaceChildren)return;
+    if(typeof node.querySelectorAll==='function'&&[...node.querySelectorAll('[data-no-translate]')].some(item=>item.textContent===value))return;
+    const raw=node.textContent, start=prefix+value;
+    if(!raw.startsWith(start))return;
+    const marker=document.createElement('span');
+    marker.setAttribute('data-no-translate','');
+    marker.textContent=value;
+    const suffix=raw.slice(start.length);
+    node.replaceChildren();
+    if(prefix)node.append(document.createTextNode(prefix));
+    node.append(marker,document.createTextNode(suffix));
+  }
+  function markUserContent(main) {
+    const page=typeof route==='function'?route()[0]:'';
+    const user=currentUser();
+    if(user?.username)markUserText(document.getElementById('account-link'),user.username,'Tài khoản · ');
+    if (page==='account') {
+      markUserText(main.querySelector?.('.next-up > div > strong'),user?.displayName||user?.username||'');
+      markUserText(main.querySelector?.('.next-up > div > p'),user?.username||'','@');
+    }
+    if (page==='admin') {
+      main.querySelectorAll?.('.table-scroll tbody td:first-child b, .table-scroll tbody td:first-child small')
+        .forEach(node => node.setAttribute('data-no-translate',''));
+      const feedback=[...(main.querySelectorAll?.('section.panel')||[])].find(section => section.querySelector('h2')?.textContent.trim()==='Phản hồi');
+      feedback?.querySelectorAll('article.explanation-section > p:nth-of-type(2), article.explanation-section > small')
+        .forEach(node => node.setAttribute('data-no-translate',''));
+    }
+  }
+  function translateTitle() {
+    const raw=document.title, source=originalTitle&&raw===originalTitle.displayed?originalTitle.source:raw, displayed=translate(source);
+    if(raw!==displayed)document.title=displayed;
+    originalTitle={source,displayed};
+  }
+  function decorationRoots() {
+    return ['#main','header','#sidebar','.mobile-nav','footer','.account-strip','#storage-warning','#toast','.skip-link']
+      .map(selector=>document.querySelector(selector)).filter(Boolean);
   }
   function languageControls() {
     return `<span class="v6-language-control" role="group" aria-label="Ngôn ngữ giao diện">${icon('language')}<button type="button" data-v6-action="language" data-value="vi" lang="vi" aria-pressed="${language==='vi'}" aria-label="Tiếng Việt">VI</button><button type="button" data-v6-action="language" data-value="en" lang="en" aria-pressed="${language==='en'}" aria-label="English">EN</button></span>`;
@@ -194,7 +244,7 @@
     return '<div class="v6-cover"><img src="cover-co-chill.png" width="1536" height="1024" alt="Cờ Chill · câu lạc bộ cờ tướng" fetchpriority="high"></div>';
   }
   function entryHTML(available) {
-    return `<section class="v6-entry">${cover()}<div class="v6-entry-body"><div class="v6-entry-title"><p class="eyebrow">CỜ CHILL</p><h1>Chọn cách bắt đầu</h1><p>Một không gian để chơi, suy nghĩ và tiến bộ.</p></div><div class="v6-entry-options"><section class="v6-entry-option"><span class="v6-illustration">${icon('user')}</span><h2>Tiếp tục với tài khoản</h2><p>Lưu tiến độ và tiếp tục trên thiết bị khác.</p>${available?'<a href="#account" class="primary">Đăng nhập hoặc tạo tài khoản</a>':'<button class="primary" type="button" disabled>Đăng nhập hoặc tạo tài khoản</button>'}</section><section class="v6-entry-option"><span class="v6-illustration">${icon('guest')}</span><h2>Tiếp tục với tư cách khách</h2><p>Bắt đầu ngay trên thiết bị này.</p><button type="button" class="${available?'secondary':'primary'}" data-v6-action="guest">Tiếp tục với tư cách khách</button><small>Tiến độ khách được lưu trong trình duyệt này.</small></section></div>${!available?'<p class="v6-entry-notice" role="status">Bản xem trước chưa có dịch vụ tài khoản. Bạn có thể chơi và học với chế độ khách.</p>':''}<div class="v6-entry-footer"><a href="#privacy">Cách lưu dữ liệu</a><a href="#help">Trợ giúp</a><span class="v6-language-note" ${language==='en'?'':'hidden'}>Nội dung bài học hiện bằng tiếng Việt.</span></div></div></section>`;
+    return `<section class="v6-entry">${cover()}<div class="v6-entry-body"><div class="v6-entry-title"><p class="eyebrow">CỜ CHILL</p><h1>Chọn cách bắt đầu</h1><p>Một không gian để chơi, suy nghĩ và tiến bộ.</p></div><div class="v6-entry-options"><section class="v6-entry-option"><span class="v6-illustration">${icon('user')}</span><h2>Tiếp tục với tài khoản</h2><p>Lưu tiến độ và tiếp tục trên thiết bị khác.</p>${available?'<a href="#account" class="primary">Đăng nhập hoặc tạo tài khoản</a>':'<button class="primary" type="button" disabled>Đăng nhập hoặc tạo tài khoản</button>'}</section><section class="v6-entry-option"><span class="v6-illustration">${icon('guest')}</span><h2>Tiếp tục với tư cách khách</h2><p>Bắt đầu ngay trên thiết bị này.</p><button type="button" class="${available?'secondary':'primary'}" data-v6-action="guest">Tiếp tục với tư cách khách</button><small>Tiến độ khách được lưu trong trình duyệt này.</small></section></div>${!available?'<p class="v6-entry-notice" role="status">Bản xem trước chưa có dịch vụ tài khoản. Bạn có thể chơi và học với chế độ khách.</p>':''}<div class="v6-entry-footer"><a href="#privacy">Cách lưu dữ liệu</a><a href="#help">Trợ giúp</a></div></div></section>`;
   }
   function themePicker(selected) {
     const descriptions={warm:'Màu ấm, nền kem và nét xanh lá.',cool:'Sắc xanh trầm trên nền xám lạnh.',dark:'Nền tối dịu, quân cờ dễ phân biệt.'};
@@ -202,32 +252,25 @@
     return `<fieldset class="v6-theme-fieldset"><legend>Chủ đề</legend><div class="v6-theme-picker">${['warm','cool','dark'].map(theme=>`<label class="v6-theme-option"><input type="radio" name="theme" value="${theme}" ${selected===theme?'checked':''}><span class="v6-theme-preview ${theme}" aria-hidden="true"><span class="v6-preview-sidebar"></span><span class="v6-preview-card"></span><span class="v6-preview-button"></span></span><strong>${labels[theme]}</strong><small>${descriptions[theme]}</small></label>`).join('')}</div><p class="subtle">Chọn màu để xem ngay. Tùy chọn được lưu cùng hồ sơ hiện tại.</p></fieldset>`;
   }
   function decorateMain() {
+    if(decorating)return;
+    decorating=true;
+    try {
     const main=document.getElementById('main');
     if (!main) return;
     const page=typeof route==='function'?route()[0]:'home';
     const gated=shouldShowEntry({booting:typeof booting!=='undefined'&&booting,user:currentUser(),guest:guestSelected,page});
     document.body?.classList?.toggle('v6-entry-active',gated);
-    if (gated) {
+    if (gated && !main.querySelector?.('.v6-entry')) {
       const available=!!root.CCCloudUI?.snapshot?.().client?.available;
       main.innerHTML=entryHTML(available);
-      document.title=translate('Chọn cách bắt đầu')+' · Cờ Chill';
+      document.title='Chọn cách bắt đầu · Cờ Chill';
     }
-    const selectors=[
-      '.site-header','.sidebar','.mobile-nav','.account-strip','footer','.skip-link',
-      '.v6-entry','.v6-home-copy','.home-card','.next-up','.home-bottom','.v6-language-panel','.v6-theme-fieldset',
-      '#main .crumb','#main .page-top','#main button','#main .field > span','#main option',
-      '#main .filters','#main a.primary','#main a.secondary','#main a.quiet','#main .panel > h2','#main .panel > h3',
-      '#main .settings-grid .panel > p','#main .settings-grid .check-line',
-      '#main [data-cloud-form="login"]','#main [data-cloud-form="register"]','#main details > summary',
-      '#main .v6-section-heading','#main .v6-interface-label'
-    ];
-    for(const element of document.querySelectorAll(selectors.join(',')))translateElement(element);
-    if(page==='account')for(const element of document.querySelectorAll('#main .panel > p,#main details > p'))translateElement(element);
+    markUserContent(main);
+    for(const element of decorationRoots())translateElement(element);
     for(const element of document.querySelectorAll('[data-v6-action="language"]'))element.setAttribute('aria-pressed',String(element.dataset.value===language));
-    for(const note of document.querySelectorAll('.v6-language-note'))note.hidden=language!=='en';
-    if (!gated) {
-      const heading=document.querySelector('#main h1');
-      if(heading)document.title=heading.textContent+' · Cờ Chill';
+    translateTitle();
+    } finally {
+      decorating=false;
     }
   }
   function refresh(reload=true) {
@@ -250,9 +293,17 @@
       const old=baseSettings();
       const theme=typeof prefs!=='undefined'?prefs.theme:'warm';
       const updated=old.replace(/<label class="field"><span>Chủ đề<\/span><select name="theme"[\s\S]*?<\/select><\/label>/,themePicker(theme));
-      return updated.replace('<div class="settings-grid grid-2">',`<section class="v6-language-panel panel"><div><h2>Ngôn ngữ giao diện</h2><p class="subtle">Nội dung bài học hiện bằng tiếng Việt.</p></div>${languageControls()}</section><div class="settings-grid grid-2">`);
+      return updated.replace('<div class="settings-grid grid-2">',`<section class="v6-language-panel panel"><div><h2>Ngôn ngữ giao diện</h2><p class="subtle">Chọn ngôn ngữ cho toàn bộ giao diện và bài học.</p></div>${languageControls()}</section><div class="settings-grid grid-2">`);
     };
     render=function v6Render(){baseRender();refresh();};
+    if(root.confirm){
+      const confirmDialog=root.confirm.bind(root);
+      root.confirm=message=>confirmDialog(translate(message));
+    }
+    if(root.alert){
+      const alertDialog=root.alert.bind(root);
+      root.alert=message=>alertDialog(translate(message));
+    }
     const header=document.querySelector('.header-actions');
     if(header&&!document.getElementById('v6-header-language')){
       const control=document.createElement('div');control.id='v6-header-language';control.innerHTML=languageControls();header.prepend(control);
@@ -276,17 +327,24 @@
       if(event.key===languageKey(currentUser()))refresh();
       if(event.key===ENTRY_KEY){guestSelected=event.newValue==='guest';render();}
     });
-    // Sync messages can change outside render. Observe only chrome, never inputs or lesson content.
     if(typeof MutationObserver!=='undefined'){
       const observer=new MutationObserver(()=>{
-        for(const id of ['sync-status','storage-location','account-link']){
-          const node=document.getElementById(id);if(node)translateElement(node);
+        if(decorating)return;
+        decorating=true;
+        try {
+          const main=document.getElementById('main');
+          if(main)markUserContent(main);
+          for(const node of decorationRoots())translateElement(node);
+          translateTitle();
+        } finally {
+          decorating=false;
         }
       });
-      for(const id of ['sync-status','storage-location','account-link']){
-        const node=document.getElementById(id);if(node)observer.observe(node,{childList:true,characterData:true,subtree:true});
-      }
+      for(const node of decorationRoots())observer.observe(node,{childList:true,characterData:true,attributes:true,subtree:true});
+      const title=document.querySelector('head title');
+      if(title)observer.observe(title,{childList:true,characterData:true,subtree:true});
     }
+    if(root.CCI18nEN&&root.CCContentEN)root.CCI18nEN.addEntries(Object.values(root.CCContentEN).map(entry=>[entry.vi,entry.en]));
     render();
   }
   return {install,refresh,setLanguage,language:()=>language,t:translate,icon,languageKey,shouldShowEntry,entryHTML,themePicker,ENTRY_KEY};

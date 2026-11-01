@@ -11,7 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 PYTHON_TESTS = ['test_rules', 'test_cloud', 'test_pikafish', 'test_online_rooms', 'test_online_http']
 JS_TESTS = ['test_preview_learning', 'test_preview_experience', 'test_preview_game_tools',
             'test_cloud_client', 'test_engine_client', 'test_v5_ui', 'test_v6_ui',
-            'test_v6_learning', 'test_v6_online_ui', 'test_v6_learning_ui']
+            'test_v6_learning', 'test_v6_online_ui', 'test_v6_learning_ui', 'test_i18n_en']
 
 
 def main():
