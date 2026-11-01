@@ -140,6 +140,8 @@ textarea::placeholder,input::placeholder { color:var(--muted); opacity:.8; }
 .board-lines text { fill:var(--board-line); }
 .board-square { position:absolute; transform:translate(-50%,-50%); width:10.4%; height:9.4%; padding:0; display:flex; align-items:center; justify-content:center; background:transparent; border:0; border-radius:50%; opacity:1!important; color:#242820; }
 .board-square:focus-visible { outline-offset:0; z-index:5; }
+.board-square.focus::after { content:''; position:absolute; inset:6%; border:3px solid #19766d; border-radius:50%; box-shadow:0 0 0 2px #fff; pointer-events:none; }
+.board-file-labels { display:grid; grid-template-columns:repeat(9,minmax(0,1fr)); width:100%; min-width:0; color:var(--board-line); font-size:11px; line-height:16px; text-align:center; opacity:.72; }
 .piece { width:88%; height:88%; border-radius:50%; display:grid; place-items:center; font-family:'SimSun','Noto Serif CJK SC','Times New Roman',serif; font-size:clamp(18px,6.1cqw,38px); font-weight:600; line-height:1; color:#292d24; background:radial-gradient(circle at 35% 25%,#ffedc2,#e1ba78); border:1px solid #a77a40; box-shadow:0 3px 1px #9b783f,0 4px 6px #5a3b2729,inset 0 0 0 2px #f4dfac,inset 0 0 0 3px #ac8249; }
 .piece.red { color:#9e3227; }
 .piece.vietnamese { font-family:'Segoe UI',sans-serif; font-size:clamp(11px,3.1cqw,19px); font-weight:700; }

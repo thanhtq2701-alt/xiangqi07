@@ -39,9 +39,10 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Xe Đỏ đi a2 → a7, ăn Xe Đen.",
+    "what": "Xe 9 tiến 5 (X9.5), ăn Xe Đen.",
     "why": "Xe đi thẳng theo hàng hoặc cột. Các ô giữa điểm xuất phát và điểm đến đều trống; ở đích là quân đối phương. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Kiểm tra Tướng có đang bị chiếu không. Sau đó nhìn dọc cả hàng và cột của Xe, kiểm tra vật cản và quân ở đích trước khi chọn nước.",
+    "focus": [],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -87,9 +88,10 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Xe Đỏ đi h2 → h7, ăn Pháo Đen.",
+    "what": "Xe 2 tiến 5 (X2.5), ăn Pháo Đen.",
     "why": "Xe đi thẳng theo hàng hoặc cột. Các ô giữa điểm xuất phát và điểm đến đều trống; ở đích là quân đối phương. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Kiểm tra Tướng có đang bị chiếu không. Sau đó nhìn dọc cả hàng và cột của Xe, kiểm tra vật cản và quân ở đích trước khi chọn nước.",
+    "focus": [],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -135,9 +137,10 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Xe Đỏ đi b3 → g3, ăn Xe Đen.",
+    "what": "Xe 8 đi ngang sang lộ 3 (X8-3), ăn Xe Đen.",
     "why": "Xe đi thẳng theo hàng hoặc cột. Các ô giữa điểm xuất phát và điểm đến đều trống; ở đích là quân đối phương. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Kiểm tra Tướng có đang bị chiếu không. Sau đó nhìn dọc cả hàng và cột của Xe, kiểm tra vật cản và quân ở đích trước khi chọn nước.",
+    "focus": [],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -187,9 +190,12 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Pháo Đỏ đi b2 → b7, ăn Xe Đen.",
-    "why": "Giữa Pháo và quân bị ăn có đúng một quân làm ngòi: Mã Đỏ ở b4. Pháo được ăn quân bằng cách nhảy qua đúng một ngòi; ngòi có thể thuộc một trong hai bên. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
+    "what": "Pháo 8 tiến 5 (P8.5), ăn Xe Đen.",
+    "why": "Giữa Pháo và quân bị ăn có đúng một quân làm ngòi: Mã 8 của Đỏ. Pháo được ăn quân bằng cách nhảy qua đúng một ngòi; ngòi có thể thuộc một trong hai bên. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Với mỗi đường Pháo, đếm chính xác số quân nằm giữa Pháo và mục tiêu. Phân biệt nước đi không ăn quân với nước ăn quân, rồi kiểm tra an toàn của Tướng.",
+    "focus": [
+      "b4"
+    ],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -235,9 +241,12 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Pháo Đỏ đi a3 → h3, ăn Xe Đen.",
-    "why": "Giữa Pháo và quân bị ăn có đúng một quân làm ngòi: Mã Đỏ ở c3. Pháo được ăn quân bằng cách nhảy qua đúng một ngòi; ngòi có thể thuộc một trong hai bên. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
+    "what": "Pháo 9 đi ngang sang lộ 2 (P9-2), ăn Xe Đen.",
+    "why": "Giữa Pháo và quân bị ăn có đúng một quân làm ngòi: Mã 7 của Đỏ. Pháo được ăn quân bằng cách nhảy qua đúng một ngòi; ngòi có thể thuộc một trong hai bên. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Với mỗi đường Pháo, đếm chính xác số quân nằm giữa Pháo và mục tiêu. Phân biệt nước đi không ăn quân với nước ăn quân, rồi kiểm tra an toàn của Tướng.",
+    "focus": [
+      "c3"
+    ],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -281,9 +290,12 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Pháo Đỏ đi g2 → g7, ăn Xe Đen.",
-    "why": "Giữa Pháo và quân bị ăn có đúng một quân làm ngòi: Tốt Đen ở g4. Pháo được ăn quân bằng cách nhảy qua đúng một ngòi; ngòi có thể thuộc một trong hai bên. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
+    "what": "Pháo 3 tiến 5 (P3.5), ăn Xe Đen.",
+    "why": "Giữa Pháo và quân bị ăn có đúng một quân làm ngòi: Tốt 7 của Đen. Pháo được ăn quân bằng cách nhảy qua đúng một ngòi; ngòi có thể thuộc một trong hai bên. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Với mỗi đường Pháo, đếm chính xác số quân nằm giữa Pháo và mục tiêu. Phân biệt nước đi không ăn quân với nước ăn quân, rồi kiểm tra an toàn của Tướng.",
+    "focus": [
+      "g4"
+    ],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -320,9 +332,12 @@ const FIXTURES = [
       "e0f0",
       "e0e1"
     ],
-    "what": "Mã Đỏ đi c3 → d5, ăn Xe Đen.",
-    "why": "Mã đi một bước thẳng rồi một bước chéo, tạo độ lệch 2–1. Ô chân Mã c4 đang trống nên đường đi tới d5 không bị cản. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
+    "what": "Mã 7 tiến sang lộ 6 (M7.6), ăn Xe Đen.",
+    "why": "Mã đi một bước thẳng rồi một bước chéo, tạo độ lệch 2–1. Chân Mã ở đây là ô sát phía trên Mã; ô này đang trống nên đường đi không bị cản. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Xem đủ các hướng Mã có thể đi, kể cả nước lùi. Với mỗi ô đích, kiểm tra chân Mã trước, rồi quân ở đích và an toàn của Tướng.",
+    "focus": [
+      "c4"
+    ],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -361,9 +376,12 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Mã Đỏ đi f3 → h4, ăn Pháo Đen.",
-    "why": "Mã đi một bước thẳng rồi một bước chéo, tạo độ lệch 2–1. Ô chân Mã g3 đang trống nên đường đi tới h4 không bị cản. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
+    "what": "Mã 4 tiến sang lộ 2 (M4.2), ăn Pháo Đen.",
+    "why": "Mã đi một bước thẳng rồi một bước chéo, tạo độ lệch 2–1. Chân Mã ở đây là ô sát bên phải Mã; ô này đang trống nên đường đi không bị cản. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Xem đủ các hướng Mã có thể đi, kể cả nước lùi. Với mỗi ô đích, kiểm tra chân Mã trước, rồi quân ở đích và an toàn của Tướng.",
+    "focus": [
+      "g3"
+    ],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -401,9 +419,12 @@ const FIXTURES = [
       "e0d0",
       "e0e1"
     ],
-    "what": "Mã Đỏ đi g5 → e6, ăn Xe Đen.",
-    "why": "Mã đi một bước thẳng rồi một bước chéo, tạo độ lệch 2–1. Ô chân Mã f5 đang trống nên đường đi tới e6 không bị cản. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
+    "what": "Mã 3 tiến sang lộ 5 (M3.5), ăn Xe Đen.",
+    "why": "Mã đi một bước thẳng rồi một bước chéo, tạo độ lệch 2–1. Chân Mã ở đây là ô sát bên trái Mã; ô này đang trống nên đường đi không bị cản. Bộ luật xác nhận nước mẫu không để Tướng Đỏ bị chiếu.",
     "how": "Xem đủ các hướng Mã có thể đi, kể cả nước lùi. Với mỗi ô đích, kiểm tra chân Mã trước, rồi quân ở đích và an toàn của Tướng.",
+    "focus": [
+      "f5"
+    ],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -432,9 +453,10 @@ const FIXTURES = [
       "a2a0",
       "e0e1"
     ],
-    "what": "Xe Đỏ đi a2 → a0, ăn Xe Đen. Nước này đồng thời giúp Tướng Đỏ thoát chiếu.",
+    "what": "Xe 9 lui 2 (X9/2), ăn Xe Đen. Nước này đồng thời giúp Tướng Đỏ thoát chiếu.",
     "why": "Xe đi thẳng theo hàng hoặc cột. Các ô giữa điểm xuất phát và điểm đến đều trống; ở đích là quân đối phương. Bắt quân đang chiếu ở thế này loại bỏ đe dọa trực tiếp; bộ luật xác nhận Tướng Đỏ an toàn sau nước đi.",
     "how": "Khi bị chiếu, ưu tiên tìm nước hợp lệ để thoát chiếu: bắt quân chiếu, che đường chiếu khi có thể, hoặc di chuyển Tướng. Sau đó so sánh kết quả của từng phương án.",
+    "focus": [],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -463,9 +485,10 @@ const FIXTURES = [
       "i2i0",
       "e0e1"
     ],
-    "what": "Xe Đỏ đi i2 → i0, ăn Xe Đen. Nước này đồng thời giúp Tướng Đỏ thoát chiếu.",
+    "what": "Xe 1 lui 2 (X1/2), ăn Xe Đen. Nước này đồng thời giúp Tướng Đỏ thoát chiếu.",
     "why": "Xe đi thẳng theo hàng hoặc cột. Các ô giữa điểm xuất phát và điểm đến đều trống; ở đích là quân đối phương. Bắt quân đang chiếu ở thế này loại bỏ đe dọa trực tiếp; bộ luật xác nhận Tướng Đỏ an toàn sau nước đi.",
     "how": "Khi bị chiếu, ưu tiên tìm nước hợp lệ để thoát chiếu: bắt quân chiếu, che đường chiếu khi có thể, hoặc di chuyển Tướng. Sau đó so sánh kết quả của từng phương án.",
+    "focus": [],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",
@@ -495,9 +518,10 @@ const FIXTURES = [
       "e0f0",
       "e0d0"
     ],
-    "what": "Xe Đỏ đi a2 → e2, ăn Xe Đen. Nước này đồng thời giúp Tướng Đỏ thoát chiếu.",
+    "what": "Xe 9 đi ngang sang lộ 5 (X9-5), ăn Xe Đen. Nước này đồng thời giúp Tướng Đỏ thoát chiếu.",
     "why": "Xe đi thẳng theo hàng hoặc cột. Các ô giữa điểm xuất phát và điểm đến đều trống; ở đích là quân đối phương. Bắt quân đang chiếu ở thế này loại bỏ đe dọa trực tiếp; bộ luật xác nhận Tướng Đỏ an toàn sau nước đi.",
     "how": "Khi bị chiếu, ưu tiên tìm nước hợp lệ để thoát chiếu: bắt quân chiếu, che đường chiếu khi có thể, hoặc di chuyển Tướng. Sau đó so sánh kết quả của từng phương án.",
+    "focus": [],
     "source": "synthetic-codex-v1",
     "phase": "end",
     "phaseNote": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.",

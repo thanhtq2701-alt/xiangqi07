@@ -1,5 +1,6 @@
 """Check exported public demo fixtures against the real local rules (no network)."""
 import json
+import re
 from pathlib import Path
 import sys
 
@@ -34,6 +35,8 @@ def main():
         assert fixture['phase'] in ('middle', 'end')
         for field in ('title', 'description', 'goal', 'what', 'why', 'how', 'phaseNote', 'verification'):
             assert isinstance(fixture[field], str) and fixture[field].strip()
+        for field in ('what', 'why'):
+            assert not re.search(r'(?<![A-Za-z0-9])[a-i][0-9](?![0-9A-Za-z])', fixture[field]), f'Machine coordinate in {field}: {fixture["id"]}'
         assert fixture['solution'] not in fixture['title']
     assert {f['skill'] for f in fixtures} == set(SKILL_NAMES)
     print('PASS: all 12 synthetic fixtures, grounded text, provenance and complete legal-move sets match project rules.')
