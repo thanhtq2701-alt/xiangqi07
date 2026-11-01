@@ -138,12 +138,28 @@ sudo -u thanhtq2701 mkdir -p /home/thanhtq2701/backups
 sudo -u thanhtq2701 /var/www/html/.venv/bin/python \
   /var/www/html/co_chill_server.py backup \
   --db /var/www/html/var/co_chill_accounts.sqlite3 \
-  --output /home/thanhtq2701/backups/co-chill-YYYYMMDD-HHMMSS.sqlite3
+  --output /home/thanhtq2701/backups/manual-YYYYMMDD-HHMMSS.sqlite3
 ```
 
-Backup chứa dữ liệu tài khoản/người học. Cron Production hiện giữ 14 ngày;
-kiểm tra quyền thư mục, dung lượng, kết quả chạy và thử khôi phục định kỳ trên
-bản sao/thư mục thử riêng.
+Backup chứa dữ liệu tài khoản/người học. Cron Production chạy lúc 20:15 UTC;
+`&&` chỉ chạy lệnh xoá bản cũ khi backup mới thành công. Thông báo và lỗi được
+ghi vào `backups/cron.log`. Sửa lịch bằng `crontab -e`:
+
+```cron
+15 20 * * * cd /var/www/html && .venv/bin/python co_chill_server.py backup --db /var/www/html/var/co_chill_accounts.sqlite3 --output /home/thanhtq2701/backups/cochill-$(date +\%F).sqlite3 >> /home/thanhtq2701/backups/cron.log 2>&1 && find /home/thanhtq2701/backups -name "cochill-*.sqlite3" -mtime +14 -delete
+```
+
+Quy ước tên file trong `~/backups`:
+
+| Tên file | Nguồn | Dọn dẹp |
+|---|---|---|
+| `cochill-YYYY-MM-DD.sqlite3` | Cron hằng ngày | Tự xoá sau 14 ngày |
+| `cochill-preupdate-YYYYMMDD-HHMMSS.sqlite3` | `update.sh` | Tự xoá sau 14 ngày |
+| `manual-*` và tên khác | Backup thủ công hoặc nguồn khác | Không tự xoá; chủ dự án tự quản lý |
+
+Mọi file khớp `cochill-*.sqlite3` đều bị dọn sau 14 ngày. Kiểm tra quyền thư
+mục, dung lượng, kết quả chạy và thử khôi phục định kỳ trên bản sao/thư mục thử
+riêng.
 
 Khôi phục **ghi đè dữ liệu hiện tại**. Trước khi làm, xác nhận đúng file backup
 và lịch bảo trì:
