@@ -222,10 +222,10 @@
     }
     if (page==='admin') {
       main.querySelectorAll?.('.table-scroll tbody td:first-child b, .table-scroll tbody td:first-child small')
-        .forEach(node => node.setAttribute('data-no-translate',''));
+        .forEach(node => { if(!node.hasAttribute('data-no-translate'))node.setAttribute('data-no-translate',''); });
       const feedback=[...(main.querySelectorAll?.('section.panel')||[])].find(section => section.querySelector('h2')?.textContent.trim()==='Phản hồi');
       feedback?.querySelectorAll('article.explanation-section > p:nth-of-type(2), article.explanation-section > small')
-        .forEach(node => node.setAttribute('data-no-translate',''));
+        .forEach(node => { if(!node.hasAttribute('data-no-translate'))node.setAttribute('data-no-translate',''); });
     }
   }
   function translateTitle() {
@@ -340,7 +340,7 @@
           decorating=false;
         }
       });
-      for(const node of decorationRoots())observer.observe(node,{childList:true,characterData:true,attributes:true,subtree:true});
+      for(const node of decorationRoots())observer.observe(node,{childList:true,characterData:true,attributes:true,attributeFilter:['aria-label','title','placeholder','alt'],subtree:true});
       const title=document.querySelector('head title');
       if(title)observer.observe(title,{childList:true,characterData:true,subtree:true});
     }
