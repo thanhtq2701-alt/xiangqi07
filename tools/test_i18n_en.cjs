@@ -114,7 +114,8 @@ const RUNTIME = ['3 hình đến hạn', 'Nước bạn chọn: P2-5', 'Phòng 0
   'Máy gặp sự cố. Đồng hồ tạm dừng; ván chưa bị tính thua. Đang dùng máy cơ bản; gợi ý cần được đối chiếu.',
   'Pikafish · đã kiểm tra 40 vị trí · lượt phân tích nhanh.', 'máy cơ bản · đã kiểm tra 1 vị trí · lượt phân tích kỹ hơn. Đang dùng máy cơ bản; gợi ý cần được đối chiếu.',
   'nước đầu phù hợp mẫu, không hỗ trợ · 3/6 bài', '(3 mục)', 'Đã lưu tự đánh giá. (1 mục)', 'Đến lượt bạn', 'Đến lượt đối thủ', 'Đỏ đến lượt',
-  '3 ván · 5 lượt học', 'draft · phiên bản 2', 'Chương 1', '7 chương', '3 hình minh họa · Cơ bản', 'Biến mẫu đã kiểm chứng: 2/5 nửa nước'];
+  '3 ván · 5 lượt học', 'draft · phiên bản 2',
+  'Số đếm từ dữ liệu đã đồng bộ; chưa xác minh kỹ năng, Elo hoặc hiệu quả học. Không dùng tài khoản thử để tuyên bố tác động sản phẩm.', 'Chương 1', '7 chương', '3 hình minh họa · Cơ bản', 'Biến mẫu đã kiểm chứng: 2/5 nửa nước'];
 
 test('every interface and server message fragment translates', () => {
   const sources = [];

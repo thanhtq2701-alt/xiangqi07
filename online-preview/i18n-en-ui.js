@@ -1221,6 +1221,8 @@
     [/^Biến mẫu đã kiểm chứng: (\d+)\/(\d+) nửa nước$/, m => `Verified sample line: half-move ${m[1]} of ${m[2]}`],
     [/^(.+?) · đã kiểm tra (\d+) vị trí · (lượt phân tích kỹ hơn|lượt phân tích nhanh)\.(?: (.+))?$/,
       (m, t) => `${t(m[1])} · checked ${plural(m[2], 'position', 'positions')} · ${m[3] === 'lượt phân tích kỹ hơn' ? 'deeper analysis' : 'quick analysis'}.${m[4] ? ' ' + t(m[4]) : ''}`],
+    // Admin notice: a server-provided sentence followed by a fixed reminder in the same text node.
+    [/^(.+?\.) Không dùng tài khoản thử để tuyên bố tác động sản phẩm\.$/, (m, t) => `${t(m[1])} Do not use test accounts to claim product impact.`],
     [/^Hẹn (\d.*)$/, m => `Due ${m[1]}`],
     [/^Lịch ôn tính từ (.+)\. Hẹn ôn (.+)\.$/, (m, t) => `Review schedule starts ${t(m[1])}. Next review: ${t(m[2])}.`],
     [/^Vị trí ở nửa nước (\d+)$/, m => `Position at half-move ${m[1]}`],
