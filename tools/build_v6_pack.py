@@ -19,7 +19,7 @@ FILES = [
     *('online-preview/'+name for name in ['index.html','style.css','v5.css','v6.css','app.js',
         'xiangqi.js','game-tools.js','fixtures.js','learning.js','experience.js','cloud-client.js',
         'engine-client.js','v5-ui.js','v6-ui.js','curriculum.js','line-practice.js',
-        'online-play.js','v6-learning-ui.js','favicon.svg','logo-co-chill.png','cover-co-chill.png']),
+        'online-play.js','v6-learning-ui.js','favicon.svg','logo-co-chill.webp','cover-co-chill.webp']),
     *('tests/'+name+'.py' for name in ['__init__','test_rules','test_cloud','test_pikafish','test_online_rooms','test_online_http']),
     *('tools/'+name for name in ['build_v6_pack.py','verify_source_pack.py','run_checks.py',
         'check_online_preview.py','check_browser_rules.py','export_preview_fixtures.py',

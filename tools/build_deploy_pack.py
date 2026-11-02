@@ -21,7 +21,7 @@ FILES = [
     *('online-preview/' + name for name in (
         'index.html', 'style.css', 'v5.css', 'app.js', 'xiangqi.js', 'game-tools.js',
         'fixtures.js', 'learning.js', 'experience.js', 'cloud-client.js',
-        'engine-client.js', 'v5-ui.js', 'favicon.svg', 'logo-co-chill.png', 'cover-co-chill.png')),
+        'engine-client.js', 'v5-ui.js', 'favicon.svg', 'logo-co-chill.webp', 'cover-co-chill.webp')),
     *('tests/' + name + '.py' for name in ('__init__', 'test_rules', 'test_cloud', 'test_pikafish')),
     *('tools/' + name for name in (
         'build_deploy_pack.py', 'test_cloud_client.cjs', 'test_engine_client.cjs',

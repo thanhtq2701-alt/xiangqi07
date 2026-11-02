@@ -4,7 +4,7 @@
 
 [Visit cochill.vn](https://cochill.vn)
 
-![Cờ Chill brand cover](online-preview/cover-co-chill.png)
+![Cờ Chill brand cover](online-preview/cover-co-chill.webp)
 
 Cờ Chill combines Xiangqi games and learning activities in a web app. Learners
 can think through a position before seeing an explanation, retry a line,

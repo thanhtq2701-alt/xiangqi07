@@ -264,7 +264,7 @@
     "Cờ Chill cần JavaScript để hiển thị bàn cờ và lưu phiên học.": "Cờ Chill needs JavaScript to show the board and save your study sessions.",
     "Cờ Chill · Chơi một ván, hiểu thêm một chút": "Cờ Chill · Play a game, understand a little more",
     "Cờ Chill · Trang chủ": "Cờ Chill · Home",
-    "Cờ Chill · câu lạc bộ cờ tướng": "Cờ Chill · Xiangqi club",
+    "Cờ Chill · bàn cờ tướng và quân cờ": "Cờ Chill · a xiangqi board and pieces",
     "Danh sách nước chưa đạt không hợp lệ.": "Invalid list of unsuccessful moves.",
     "Danh sách quá dài.": "The list is too long.",
     "Duyệt & xuất bản": "Approve & publish",
