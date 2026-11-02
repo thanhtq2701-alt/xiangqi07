@@ -3,8 +3,11 @@
 - Đặc tả: tài liệu chủ sản phẩm V3/V4/V5/V6, Final Pack. `docs/spec/` giữ bản
   đặc tả gốc; câu trả lời cá nhân/Word gốc không đóng trong source public.
 - Logo và cover do chủ sản phẩm cung cấp, dùng tại
-  `online-preview/logo-co-chill.png` và `cover-co-chill.png`. Chưa có kiểm
+  `online-preview/logo-co-chill.webp` và `cover-co-chill.webp`. Chưa có kiểm
   toán giấy phép độc lập cho mọi thành phần hình.
+- Bản WebP (02/11/2026) bỏ chữ "CLB CỜ TƯỚNG"; chữ 兵 và 士 trên quân ở ảnh
+  bìa vẽ bằng font Ma Shan Zheng (SIL Open Font License 1.1), chỉ có trong
+  ảnh, không kèm file font.
 - 12 bài cơ bản, 8 hướng dẫn và 2 bài nhiều lượt tự dựng; không scrape kho
   ván, sao chép chú giải hoặc trích sách chỉ vì tài liệu đã cũ. Các hình nguồn
   sách/video chưa rõ quyền không được đưa vào bộ bài.
