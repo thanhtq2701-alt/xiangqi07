@@ -178,7 +178,10 @@ class CloudTests(unittest.TestCase):
         admin, _ = self.admin()
         other = Client(self.app, '127.0.0.3')
         self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD})[0], 401)
-        self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': totp(TEST_TOTP, int(time.time() / 30))})[0], 401)
+        # Replay the exact code admin() just used; recomputing from the clock flakes when a 30-second step boundary passes mid-test.
+        with self.app.store.connect() as db:
+            used_step = db.execute("SELECT totp_step FROM users WHERE username='owner'").fetchone()[0]
+        self.assertEqual(other.request('/api/auth/login', 'POST', {'username': 'owner', 'password': PASSWORD, 'totpCode': totp(TEST_TOTP, used_step)})[0], 401)
         self.assertEqual(admin.request('/api/admin/stats')[0], 200)
         self.assertNotIn(TEST_TOTP, json.dumps(admin.request('/api/export')[1]))
 
