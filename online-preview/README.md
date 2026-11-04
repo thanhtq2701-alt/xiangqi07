@@ -21,13 +21,12 @@ python tools/run_checks.py
 
 Cần Node.js 24.22.1 để chạy toàn bộ bộ kiểm tra; phiên bản chuẩn nằm trong
 `.nvmrc` ở thư mục gốc. Runner kiểm tra cú pháp JavaScript, test client,
-fixture và parity luật; kết quả/bằng chứng cụ thể ở `TEST_REPORT_CODEX.md`.
-Không cần cài npm packages.
+fixture và parity luật. Không cần cài npm packages.
 
 Các script được nạp theo thứ tự trong `index.html`; adapter UI dùng state và
 guard của ứng dụng, vì vậy cần kiểm tra tích hợp khi thay đổi thứ tự hoặc tách
 file. Luật/engine là nguồn sự thật cho nước đi và phân tích. Giữ reflection
 trước lời giải và không hiển thị coaching trong ván live.
 
-Xem [README gốc](../README.md), [hướng dẫn chạy/demo](../RUN_AND_DEMO_CODEX.md)
-và [giới hạn](../KNOWN_LIMITATIONS.md) để biết cách dùng hiện hành.
+Xem [README gốc](../README.md) và [giới hạn](../KNOWN_LIMITATIONS.md) để biết
+cách dùng hiện hành.

@@ -9,9 +9,9 @@ from verify_source_pack import verify
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
-    'README.md', 'AGENTS.md', 'CLAUDE.md', '.gitignore', '.gitattributes', '.env.example', '.nvmrc',
+    'README.md', 'AGENTS.md', 'CLAUDE.md', 'CONTRIBUTING.md', '.gitignore', '.gitattributes', '.env.example', '.nvmrc',
+    '.github/workflows/checks.yml',
     'co_chill_server.py', 'requirements.txt', 'Mo_Co_Chill_V6.cmd',
-    'AI_USAGE.md', 'IMPLEMENTATION_REPORT_CODEX.md', 'TEST_REPORT_CODEX.md',
     'KNOWN_LIMITATIONS.md', 'PRIVACY.md', 'THIRD_PARTY_NOTICES.md',
     'deploy/cochill.service', 'deploy/cochill-gunicorn.service.example',
     'deploy/nginx-cochill.conf', 'deploy/cochill.env.example', 'deploy/DEPLOY_GCP_VI.md',
@@ -19,15 +19,15 @@ FILES = [
     *('online-preview/'+name for name in ['index.html','style.css','v5.css','v6.css','app.js',
         'xiangqi.js','game-tools.js','fixtures.js','learning.js','experience.js','cloud-client.js',
         'engine-client.js','v5-ui.js','v6-ui.js','curriculum.js','line-practice.js',
-        'online-play.js','v6-learning-ui.js','favicon.svg','logo-co-chill.webp','cover-co-chill.webp']),
+        'online-play.js','v6-learning-ui.js','content-en.js','i18n-en-ui.js',
+        'favicon.svg','logo-co-chill.webp','cover-co-chill.webp']),
     *('tests/'+name+'.py' for name in ['__init__','test_rules','test_cloud','test_pikafish','test_online_rooms','test_online_http']),
     *('tools/'+name for name in ['build_v6_pack.py','verify_source_pack.py','run_checks.py',
         'check_online_preview.py','check_browser_rules.py','export_preview_fixtures.py',
         'test_preview_learning.cjs','test_preview_experience.cjs','test_preview_game_tools.cjs',
         'test_cloud_client.cjs','test_engine_client.cjs','test_v5_ui.cjs','test_v6_ui.cjs',
-        'test_v6_learning.cjs','test_v6_online_ui.cjs','test_v6_learning_ui.cjs']),
-    *('docs/'+name+'.md' for name in ['V6_DECISIONS','CLAUDE_HANDOFF_V6','GITHUB_V6_CHO_NGUOI_MOI',
-        'DEPLOY_GCP_V6','PIKAFISH_SETUP_V5']),
+        'test_v6_learning.cjs','test_v6_online_ui.cjs','test_v6_learning_ui.cjs','test_i18n_en.cjs']),
+    *('docs/'+name+'.md' for name in ['V6_DECISIONS','CLAUDE_HANDOFF_V6','DEPLOY_GCP_V6','I18N_GLOSSARY']),
 ]
 # Immutable supplied specifications; current owner decisions take precedence.
 FILES += ['docs/spec/'+name for name in [

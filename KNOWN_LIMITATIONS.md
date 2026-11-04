@@ -50,8 +50,37 @@ khả năng chịu tải hay mức sẵn sàng vận hành.
   có quyền hệ điều hành có thể đọc dữ liệu. Cần cấu hình lưu bền và HTTPS.
 - Quên mật khẩu chưa có quy trình tự phục hồi đã triển khai. Không dùng
   tài khoản pilot như kho lưu duy nhất cho dữ liệu quan trọng.
-- Báo cáo kiểm thử không phải kiểm toán bảo mật, khả năng truy cập hay xác
-  nhận sức cờ/hiệu quả giáo dục. Đọc TEST_REPORT_CODEX.md đúng phạm vi từng test.
+- Bộ kiểm thử chạy trên source, không xác nhận binary Pikafish thật, VM Google
+  Cloud, production HTTPS/DNS, hai mạng Internet hay tải lớn. Đây không phải
+  kiểm toán bảo mật, khả năng truy cập hay xác nhận sức cờ/hiệu quả giáo dục.
+  Browser automation chưa thay được người chơi thử tính dễ dùng.
+- Lượt chạy đầy đủ ngày 28/10/2026 từng báo 13 assertion fail trong nhóm
+  Pikafish; chạy lại thì đạt, không sửa gì giữa các lượt, nguyên nhân chưa xác
+  định. Nếu gặp lại, lưu log trước khi chạy lại.
+
+## Sử dụng AI và nguồn gốc nội dung
+
+Codex, Claude và GitHub Copilot hỗ trợ code, kiểm thử và tài liệu; chủ dự án
+duyệt thay đổi. Ứng dụng không gửi dữ liệu người học đến dịch vụ AI và không
+huấn luyện mô hình.
+
+- Luật Python/JavaScript quyết định nước hợp lệ. Máy cơ bản là tìm kiếm
+  heuristic nông, không phải Pikafish hoặc ML.
+- Adapter UCI gọi Pikafish khi người vận hành cấu hình binary/NNUE; repo không
+  kèm engine/trọng số. Kiểm thử bằng tiến trình UCI giả kiểm tra hợp đồng,
+  không chứng minh sức cờ thật.
+- UI yêu cầu engine mạnh từ chối fallback cho bot máy chủ và review tài khoản.
+- Giải thích dùng template với bằng chứng luật/biến có kiểm tra; chưa có LLM
+  đọc/chấm câu trả lời tự do hoặc cá nhân hóa bằng mô hình.
+- Bài học là nội dung tự dựng của dự án; không phải dataset chuyên gia, dữ liệu
+  ván người thật hay bằng chứng hiệu quả học tập.
+- Thống kê/cấp/lịch ôn là quy tắc thử nghiệm. Không công bố Elo, người dùng,
+  impact hoặc độ chính xác chưa đo.
+- Logo/cover do chủ sản phẩm cung cấp. Không scrape nội dung sách/website.
+
+Trước tích hợp LLM: xác định provider, sự đồng ý dữ liệu, schema bằng chứng,
+rubric chấm, bộ kiểm thử chống bịa và phương án template khi lỗi. Mọi nhận định
+nước/điểm/biến phải đối chiếu engine; sách không tự làm mô hình được huấn luyện.
 
 Không chứa secret/database người chơi, không tự cập nhật ChatGPT Site hoặc
 Production. Việc đưa source lên GitHub không tự chạy hoặc cập nhật máy chủ.

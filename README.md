@@ -38,8 +38,8 @@ revisit related practice, and track their own learning history.
 
 The basic bot uses heuristic search and explanations use templates. The
 project does not claim trained machine learning or validated learning impact.
-For current limitations, see [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md)
-and [`AI_USAGE.md`](AI_USAGE.md).
+For current limitations and how AI is used, see
+[`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md).
 
 ## Run locally
 
@@ -53,6 +53,10 @@ Open <http://127.0.0.1:8769/>. On Windows, you can also start the app with
 [`Mo_Co_Chill_V6.cmd`](Mo_Co_Chill_V6.cmd). Keep the terminal open while using
 the app; press Ctrl+C to stop the server.
 
+The SQLite data is created in `var/` by default. Do not commit databases,
+backups, logs, or account details. A local server can only be reached from
+the machine running it; this is not an Internet deployment.
+
 Node.js is needed for the JavaScript checks, not to run the app. Use the
 version in [`.nvmrc`](.nvmrc).
 
@@ -64,9 +68,23 @@ From the repository root, run:
 python tools/run_checks.py
 ```
 
+On Windows, if `node --version` does not match `.nvmrc`, pass the right Node:
+
+```powershell
+python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
+```
+
 The runner covers Python and JavaScript checks, exercise fixtures, and
-cross-language rules parity. See [`TEST_REPORT_CODEX.md`](TEST_REPORT_CODEX.md)
-for the recorded test scope and results.
+cross-language rules parity. See [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md)
+for what the checks do not prove.
+
+## Demo
+
+Open guest mode, go to the learning path, and pick a multi-step exercise.
+Answer the reflection questions, try moves, finish the line, read the grounded
+explanation, then retry and open related practice and the review schedule. To
+try online play, open a second browser window on the same local server. See
+the demo notes in [`docs/CLAUDE_HANDOFF_V6.md`](docs/CLAUDE_HANDOFF_V6.md).
 
 ## Repository layout
 
@@ -109,5 +127,5 @@ Python 3.12 với `python co_chill_server.py serve --port 8769` hoặc mở
 `Mo_Co_Chill_V6.cmd` trên Windows. Đóng góp theo quy trình nhánh → Pull Request
 → CI → merge; chỉ chủ dự án triển khai. Xem
 [`CONTRIBUTING.md`](CONTRIBUTING.md), [giới hạn](KNOWN_LIMITATIONS.md),
-[kiểm thử](TEST_REPORT_CODEX.md), [quyết định V6](docs/V6_DECISIONS.md) và
+[quyết định V6](docs/V6_DECISIONS.md) và
 [hướng dẫn triển khai](deploy/DEPLOY_GCP_VI.md).
