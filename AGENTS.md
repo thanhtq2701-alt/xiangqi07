@@ -9,5 +9,5 @@
 - Vietnamese-first UI with a full English mode: every user-visible Vietnamese string needs English in `online-preview/i18n-en-ui.js` or `online-preview/content-en.js` (terms: `docs/I18N_GLOSSARY.md`); `tools/test_i18n_en.cjs` must pass. Never reveal a solution before reflection. Never show coaching during a live game.
 - Test rules for all pieces, game integrity, reflection gating, review, scheduling, recommendation and persistence. Do not weaken failing tests.
 - Do not scrape data, commit secrets, store passwords, or share learner data for training. Keep local export/deletion available.
-- Keep runnable instructions, implementation report, test report, limitations and AI usage up to date.
+- Keep runnable instructions and `KNOWN_LIMITATIONS.md` (limitations and AI usage) up to date.
 - Do not run git add, commit or push, and do not rewrite history; the owner commits after review. Never use the production site (cochill.vn) for development or testing.

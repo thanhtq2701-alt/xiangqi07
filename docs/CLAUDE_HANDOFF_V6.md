@@ -2,8 +2,8 @@
 
 ## Bắt đầu từ bản này
 
-Đọc AGENTS.md → README.md → docs/V6_DECISIONS.md → KNOWN_LIMITATIONS.md →
-TEST_REPORT_CODEX.md. Pack không có dữ liệu cá nhân, khóa, binary Pikafish,
+Đọc AGENTS.md → README.md → docs/V6_DECISIONS.md → KNOWN_LIMITATIONS.md.
+Pack không có dữ liệu cá nhân, khóa, binary Pikafish,
 NNUE hay lịch sử Git. Giữ repository cũ để đối chiếu; không force push.
 
 Entry point: `python co_chill_server.py serve --port 8769`. Không dùng
@@ -53,7 +53,7 @@ Backend standard library, WSGI + SQLite; Gunicorn chỉ dùng khi deploy Linux.
 
 ## Hợp đồng phát hành
 
-Chạy `python tools/run_checks.py`, browser E2E, đọc diff, cập nhật report,
+Chạy `python tools/run_checks.py`, browser E2E, đọc diff,
 rồi tạo pack mới bằng `tools/build_v6_pack.py`. Không bỏ hoặc làm yếu test
 đang fail. Kiểm tra pack sau giải nén ở thư mục mới; hash khớp không thay thế
 test chạy. Không tự deploy/push/DNS/chi tiền/chuyển DB thật khi chưa được chủ
