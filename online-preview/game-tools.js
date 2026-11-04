@@ -10,11 +10,9 @@
   root.CC = Object.assign(root.CC || {}, api);
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (XQ) {
   'use strict';
-  const CODES = Object.freeze({ k: 'Tg', a: 'S', e: 'T', r: 'X', h: 'M', c: 'P', p: 'B' });
+  const CODES = Object.freeze({ k: 'Tg', a: 'S', e: 'V', r: 'X', h: 'M', c: 'P', p: 'B' });
   const position = value => typeof value === 'string' ? XQ.Position.fromFen(value) : value;
   const file = (index, side) => side === 'w' ? 9 - index % 9 : index % 9 + 1;
-  const plain = text => String(text).normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').toLowerCase();
-  const normalize = text => plain(text).replace(/tien/g, '.').replace(/thoai|lui/g, '/').replace(/binh|ngang/g, '-').replace(/\s+/g, '');
 
   function parts(pos, move) {
     const [src, dst] = XQ.parseMove(move), piece = pos.board[src], kind = piece.toLowerCase(), side = XQ.side(piece);
@@ -32,10 +30,17 @@
       pos.board.forEach((p, i) => {
         if (p === piece && pos.board.some((q, j) => j !== i && q === p && j % 9 === i % 9)) duplicateFiles.add(i % 9);
       });
-      const label = ordinal === 0 ? 'trước' : ordinal === peers.length - 1 ? 'sau' : peers.length === 3 ? 'giữa' : '[' + (ordinal + 1) + ']';
-      // A file prefix or [ordinal] makes rare multi-pawn stacks unambiguous;
-      // these explicit extensions are documented, not advertised as official notation.
-      head = code + (duplicateFiles.size > 1 ? from : '') + ' ' + label;
+      // Owner's convention (2026-11-04): counted from the moving side. Two on a file are t/s,
+      // three are t/g/s, four or five are numbered from the front. A file number goes first
+      // when two files both have stacks.
+      if (peers.length >= 4) {
+        // A lone pawn on file 2 would also read B2.1, so a colliding stack keeps its file: B92.1.
+        const collides = pos.board.some((p, i) => p === piece && i % 9 !== src % 9 && file(i, side) <= peers.length);
+        head = code + (collides ? from : '') + (ordinal + 1);
+      } else {
+        const label = peers.length === 2 ? 'ts'[ordinal] : 'tgs'[ordinal];
+        head = code + (duplicateFiles.size > 1 ? from : '') + label;
+      }
     }
     return { src, dst, code, from, direction, end, head, peers, ordinal };
   }
@@ -48,34 +53,43 @@
   }
 
   function parseNotation(value, text) {
-    const pos = position(value), input = String(text || '').trim(), legal = pos.legalMoves();
-    if (/^[a-i][0-9][a-i][0-9]$/i.test(input)) {
-      const move = input.toLowerCase();
-      if (legal.includes(move)) return move;
-      throw new Error(illegalMoveReason(pos, move));
+    const pos = position(value), input = String(text || '').trim().toLowerCase();
+    let unclear = false;
+    for (const move of pos.legalMoves()) {
+      const p = parts(pos, move);
+      if ((p.head + p.direction + p.end).toLowerCase() === input) return move;
+      if (p.peers.length > 1 && (p.code + p.from + p.direction + p.end).toLowerCase() === input) unclear = true;
     }
-    const normalized = normalize(input), matches = [];
-    for (const move of legal) {
-      const p = parts(pos, move), canonical = p.head + p.direction + p.end;
-      const aliases = [canonical, p.code + p.from + p.direction + p.end,
-        canonical.replace('trước', 't').replace('sau', 's').replace('giữa', 'g')];
-      if (aliases.some(alias => normalize(alias) === normalized)) matches.push(move);
-    }
-    if (matches.length === 1) return matches[0];
-    if (matches.length > 1) throw new Error('Ký phổ chưa rõ quân nào: hãy ghi trước/sau hoặc dùng tọa độ ô xuất phát và ô đích.');
-    throw new Error('Không có nước hợp lệ khớp ký phổ này. Ví dụ P2-5, M2.3, X trước.1 hoặc a3a4.');
+    if (unclear) throw new Error('Ký pháp chưa rõ quân nào: hai quân cùng cột phải ghi t (trước) hoặc s (sau), ví dụ Xt.1.');
+    throw new Error('Không có nước hợp lệ khớp ký pháp này. Ví dụ P2-5, M8.7, Xt.1. Tượng ghi là V.');
+  }
+
+  // Reviews saved before 2026-11-04 store moves as "Xe a2 → a7 ăn Pháo". Replay them from the
+  // saved position so stored text never shows machine coordinates.
+  const SAVED_MOVE = /(Tướng|Sĩ|Tượng|Xe|Pháo|Mã|Tốt) ([a-i]\d) → ([a-i]\d)(?: ăn (?:Tướng|Sĩ|Tượng|Xe|Pháo|Mã|Tốt))?/g;
+  function notateSavedText(fen, text) {
+    if (typeof text !== 'string' || !text.includes('→')) return text;
+    let pos = null;
+    try { pos = position(fen); } catch { pos = null; }
+    return text.replace(SAVED_MOVE, (whole, name, from, to) => {
+      try {
+        const notation = notateMove(pos, from + to);
+        pos = pos.play(from + to);
+        return notation;
+      } catch { pos = null; return name; }
+    });
   }
 
   function parseGameNotation(initialFen, text, maxPlies = 200) {
     if (typeof text !== 'string' || text.length > 20000) throw new Error('Biên bản quá dài hoặc không hợp lệ.');
     const bound = Math.max(1, Math.min(2000, Number.isInteger(maxPlies) ? maxPlies : 200));
     // Strip only numbered-list prefixes. A dot inside a move is an advance.
-    let remaining = plain(text).replace(/(^|[\s,;|])\d+\s*[.)](?:\.\.)?/g, '$1').trim();
+    let remaining = text.toLowerCase().replace(/(^|[\s,;|])\d+\s*[.)](?:\.\.)?/g, '$1').trim();
     let pos = position(initialFen), moves = [], positions = [pos.fen()];
-    const token = /^(?:[a-i][0-9][a-i][0-9]|(?:tg|[stxmpb])\s*(?:[1-9]\s*)?(?:truoc|sau|giua|\[[2-4]\]|[tsg])?\s*(?:\.|\/|-|tien|thoai|lui|binh|ngang)\s*[1-9])(?=$|[\s,;|])/;
+    const token = /^(?:tg|[svxmpb])[1-9]{0,2}[tsg]?[.\/-][1-9](?=$|[\s,;|])/;
     while (remaining) {
       const match = remaining.match(token);
-      if (!match) throw new Error('Không đọc được biên bản ở nửa nước ' + (moves.length + 1) + '. Dùng ký phổ Việt hoặc tọa độ; chưa hỗ trợ chú thích xen trong ván.');
+      if (!match) throw new Error('Không đọc được biên bản ở nửa nước ' + (moves.length + 1) + '. Chỉ nhận ký pháp chuẩn, ví dụ P2-5, M8.7, Xt.1; Tượng ghi là V. Chưa hỗ trợ chú thích xen trong ván.');
       if (moves.length >= bound) throw new Error('Bản thử giới hạn ' + bound + ' nửa nước khi nhập.');
       let move;
       try { move = parseNotation(pos, match[0]); } catch (error) { throw new Error('Nửa nước ' + (moves.length + 1) + ': ' + error.message); }
@@ -110,7 +124,7 @@
   function illegalMoveReason(value, move) {
     const pos = position(value);
     let src, dst;
-    try { [src, dst] = XQ.parseMove(move); } catch { return 'Tọa độ không hợp lệ: dùng ô a0 đến i9.'; }
+    try { [src, dst] = XQ.parseMove(move); } catch { return 'Nước đi không hợp lệ.'; }
     const piece = pos.board[src], target = pos.board[dst];
     if (piece === '.') return 'Ô xuất phát không có quân.';
     if (XQ.side(piece) !== pos.turn) return 'Chưa đến lượt bên có quân này.';
@@ -196,5 +210,5 @@
     return base;
   }
 
-  return Object.freeze({ notateMove, parseNotation, parseGameNotation, pairMoveHistory, illegalMoveReason, repetitionStatus });
+  return Object.freeze({ notateMove, parseNotation, notateSavedText, parseGameNotation, pairMoveHistory, illegalMoveReason, repetitionStatus });
 });

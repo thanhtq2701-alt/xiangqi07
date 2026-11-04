@@ -19,7 +19,7 @@ test('Vietnamese notation uses moving-side files and movement directions for all
   const samples = [
     [pos({ d0: 'K', f9: 'k' }), 'd0d1', 'Tg6.1'],
     [pos({ e0: 'K', f9: 'k', d0: 'A' }), 'd0e1', 'S6.5'],
-    [pos({ d0: 'K', f9: 'k', c0: 'E' }), 'c0e2', 'T7.5'],
+    [pos({ d0: 'K', f9: 'k', c0: 'E' }), 'c0e2', 'V7.5'],
     [pos({ d0: 'K', f9: 'k', a2: 'R' }), 'a2a7', 'X9.5'],
     [pos({ d0: 'K', f9: 'k', b0: 'H' }), 'b0c2', 'M8.7'],
     [start, 'h2e2', 'P2-5'],
@@ -57,42 +57,92 @@ test('every legal move round-trips across deterministic real game positions, bot
   console.log('  round-trip validated ' + count + ' legal moves, all 14 side/piece combinations');
 });
 
-test('two pieces on one file use front/back, parsing rejects ambiguous source file', () => {
+test('two pieces on one file use t/s from the moving side, parsing rejects ambiguous source file', () => {
   const p = pos({ d0: 'K', f9: 'k', a2: 'R', a5: 'R' });
-  assert.equal(CC.notateMove(p, 'a5b5'), 'X trước-8');
-  assert.equal(CC.notateMove(p, 'a2b2'), 'X sau-8');
+  assert.equal(CC.notateMove(p, 'a5b5'), 'Xt-8');
+  assert.equal(CC.notateMove(p, 'a2b2'), 'Xs-8');
+  assert.equal(CC.notateMove(p, 'a5a6'), 'Xt.1');
+  assert.equal(CC.notateMove(p, 'a2a1'), 'Xs/1');
   assert.equal(CC.parseNotation(p, 'Xt-8'), 'a5b5');
-  assert.equal(CC.parseNotation(p, 'X truoc - 8'), 'a5b5');
+  assert.equal(CC.parseNotation(p, 'xs-8'), 'a2b2');
   assert.throws(() => CC.parseNotation(p, 'X9-8'), /chưa rõ/);
-  assert.equal(CC.notateMove(rotate(p), mirroredMove('a5b5')), 'X trước-8');
+  // X9/1 could only be the rear Chariot here, but standard notation still requires t/s.
+  assert.throws(() => CC.parseNotation(p, 'X9/1'), /chưa rõ/);
+  assert.equal(CC.notateMove(rotate(p), mirroredMove('a5b5')), 'Xt-8');
 });
 
-test('pawn stacks on multiple files and middle pawns remain unambiguous', () => {
-  const p = pos({ d0: 'K', f9: 'k', a5: 'P', a6: 'P', c5: 'P', c6: 'P', c7: 'P' });
-  assert.equal(CC.notateMove(p, 'a6b6'), 'B9 trước-8');
-  assert.equal(CC.notateMove(p, 'c6b6'), 'B7 giữa-8');
-  assert.equal(CC.parseNotation(p, 'B7 giữa-8'), 'c6b6');
-  for (const move of p.legalMoves()) assert.equal(CC.parseNotation(p, CC.notateMove(p, move)), move);
+function roundTrips(p) {
+  const moves = p.legalMoves(), texts = moves.map(move => CC.notateMove(p, move));
+  assert.equal(new Set(texts).size, texts.length, texts.join(' '));
+  moves.forEach((move, i) => assert.equal(CC.parseNotation(p, texts[i]), move));
+}
+
+test('three pawns on one file are t/g/s; stacks on two files add the file number', () => {
+  const three = pos({ d0: 'K', f9: 'k', c5: 'P', c6: 'P', c7: 'P' });
+  assert.equal(CC.notateMove(three, 'c7c8'), 'Bt.1');
+  assert.equal(CC.notateMove(three, 'c6b6'), 'Bg-8');
+  assert.equal(CC.notateMove(three, 'c5b5'), 'Bs-8');
+  assert.equal(CC.notateMove(rotate(three), mirroredMove('c7c8')), 'Bt.1');
+  const twoFiles = pos({ d0: 'K', f9: 'k', a5: 'P', a6: 'P', c5: 'P', c6: 'P', c7: 'P' });
+  assert.equal(CC.notateMove(twoFiles, 'a6b6'), 'B9t-8');
+  assert.equal(CC.notateMove(twoFiles, 'a5b5'), 'B9s-8');
+  assert.equal(CC.notateMove(twoFiles, 'c6b6'), 'B7g-8');
+  assert.equal(CC.parseNotation(twoFiles, 'b7g-8'), 'c6b6');
+  for (const p of [three, twoFiles, rotate(three), rotate(twoFiles)]) roundTrips(p);
 });
 
-test('notation parser accepts full direction words, exact coordinate moves, and case', () => {
-  assert.equal(CC.parseNotation(start, 'P2 bình 5'), 'h2e2');
-  assert.equal(CC.parseNotation(start, 'b9 tiến 1'), 'a3a4');
-  assert.equal(CC.parseNotation(start, 'A3A4'), 'a3a4');
-  assert.throws(() => CC.parseNotation(start, 'P2+5'), /Không có nước/);
-  assert.throws(() => CC.parseNotation(start, 'a3a5'), /đúng một ô/);
+test('four or five pawns on one file are numbered from the front and never collide with a lone pawn', () => {
+  const four = pos({ d0: 'K', f9: 'k', c5: 'P', c6: 'P', c7: 'P', c8: 'P', a5: 'P' });
+  assert.equal(CC.notateMove(four, 'c8b8'), 'B1-8');
+  assert.equal(CC.notateMove(four, 'c6b6'), 'B3-8');
+  assert.equal(CC.notateMove(four, 'a5a6'), 'B9.1');
+  const five = pos({ d0: 'K', f9: 'k', c5: 'P', c6: 'P', c7: 'P', c8: 'P', c9: 'P' });
+  assert.equal(CC.notateMove(five, 'c9b9'), 'B1-8');
+  assert.equal(CC.notateMove(five, 'c5b5'), 'B5-8');
+  // A lone pawn on file 2 reads B2-3, so the stack keeps its file number instead of B2-8.
+  const collision = pos({ d0: 'K', f9: 'k', c5: 'P', c6: 'P', c7: 'P', c8: 'P', h5: 'P' });
+  assert.equal(CC.notateMove(collision, 'c7b7'), 'B72-8');
+  assert.equal(CC.notateMove(collision, 'h5g5'), 'B2-3');
+  assert.deepEqual(CC.parseGameNotation(collision, 'B72-8').moves, ['c7b7']);
+  for (const p of [four, five, collision, rotate(four), rotate(collision)]) roundTrips(p);
+});
+
+test('only standard notation is accepted: no machine coordinates, words or T for the Elephant', () => {
+  const elephant = pos({ d0: 'K', f9: 'k', c0: 'E' });
+  assert.equal(CC.parseNotation(elephant, 'v7.5'), 'c0e2');
+  assert.equal(CC.parseNotation(start, 'x9.1'), 'a0a1');
+  assert.equal(CC.parseNotation(start, 'TG5.1'), 'e0e1');
+  for (const text of ['T7.5', 't7.5']) assert.throws(() => CC.parseNotation(elephant, text), /Tượng ghi là V/);
+  for (const text of ['a3a4', 'A3A4', 'P2 bình 5', 'b9 tiến 1', 'P2+5', 'X trước.1', '']) {
+    assert.throws(() => CC.parseNotation(start, text), /Không có nước/, text);
+  }
   assert.throws(() => CC.notateMove(start, 'a3a5'), /đúng một ô/);
 });
 
-test('game import parses numbered Vietnamese notation and coordinates atomically', () => {
-  const result = CC.parseGameNotation(XQ.START_FEN, '1. P2-5 M2.3\n2) M2.3 a6a5');
-  assert.deepEqual(result.moves, ['h2e2', 'b9c7', 'h0g2', 'a6a5']);
+test('game import parses numbered standard notation atomically', () => {
+  const result = CC.parseGameNotation(XQ.START_FEN, '1. P2-5 M2.3\n2) M8.7 b3.1');
+  assert.deepEqual(result.moves, ['h2e2', 'b9c7', 'b0c2', 'c6c5']);
   assert.equal(result.positions.length, 5);
   assert.deepEqual(CC.parseGameNotation(XQ.START_FEN, '').moves, []);
-  assert.throws(() => CC.parseGameNotation(XQ.START_FEN, 'P2-5 M2.3 a3a5'), /Nửa nước 3/);
+  assert.throws(() => CC.parseGameNotation(XQ.START_FEN, 'P2-5 M2.3 B9.5'), /Nửa nước 3/);
   assert.throws(() => CC.parseGameNotation(XQ.START_FEN, 'P2-5 M2.3', 1), /giới hạn 1/);
   assert.throws(() => CC.parseGameNotation(XQ.START_FEN, 'P2-5 garbage'), /Không đọc được/);
+  assert.throws(() => CC.parseGameNotation(XQ.START_FEN, 'P2-5 h9g7'), /Không đọc được biên bản ở nửa nước 2/);
+  assert.throws(() => CC.parseGameNotation(XQ.START_FEN, 'P2-5 M2 tiến 3'), /Không đọc được/);
+  // The owner's sample record used V for the Elephant and lower-case letters.
+  assert.deepEqual(CC.parseGameNotation(XQ.START_FEN, 'v3.5').moves, ['g0e2']);
   assert.equal(start.fen(), XQ.START_FEN);
+});
+
+test('review text saved with machine coordinates is shown in standard notation', () => {
+  const saved = text => CC.notateSavedText(XQ.START_FEN, text);
+  assert.equal(saved('Trong ván bạn đi Pháo h2 → e2. Xem lại.'), 'Trong ván bạn đi P2-5. Xem lại.');
+  assert.equal(saved('Pháo h2 → e2; sau đó Mã b9 → c7'), 'P2-5; sau đó M2.3');
+  assert.equal(saved('Pháo b2 → b9 ăn Mã'), 'P8.7');
+  assert.equal(saved('Xe a0 → a9'), 'Xe');
+  assert.equal(saved('Không có nước nào'), 'Không có nước nào');
+  assert.equal(CC.notateSavedText('hỏng', 'Xe a0 → a1'), 'Xe');
+  assert.equal(CC.notateSavedText(XQ.START_FEN, undefined), undefined);
 });
 
 test('paired move history keeps red left, black right even for black-to-move imports', () => {
@@ -116,7 +166,7 @@ test('illegal reasons describe only rule violations, including blockers and move
   assert.match(CC.illegalMoveReason(start, 'b2b8'), /không được nhảy/);
   assert.match(CC.illegalMoveReason(start, 'a3a2'), /đi lùi/);
   assert.match(CC.illegalMoveReason(start, 'a3b3'), /chưa qua sông/);
-  assert.match(CC.illegalMoveReason(start, 'z0z1'), /Tọa độ/);
+  assert.match(CC.illegalMoveReason(start, 'z0z1'), /không hợp lệ/);
   assert.equal(CC.illegalMoveReason(start, 'b2b9'), '');
   const eye = pos({ d0: 'K', f9: 'k', c0: 'E', d1: 'R' });
   assert.match(CC.illegalMoveReason(eye, 'c0e2'), /cản mắt/);

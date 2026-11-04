@@ -19,11 +19,11 @@
   function other(turn) { return turn === 'w' ? 'b' : 'w'; }
   function square(i) { return String.fromCharCode(97 + i % 9) + (9 - Math.floor(i / 9)); }
   function index(sq) {
-    if (typeof sq !== 'string' || !/^[a-i][0-9]$/.test(sq)) throw new Error('Ô cờ phải có dạng a0 đến i9.');
+    if (typeof sq !== 'string' || !/^[a-i][0-9]$/.test(sq)) throw new Error('Ô cờ không hợp lệ.');
     return (9 - Number(sq[1])) * 9 + sq.charCodeAt(0) - 97;
   }
   function parseMove(move) {
-    if (typeof move !== 'string' || move.length !== 4) throw new Error('Nước đi phải có dạng a0a1.');
+    if (typeof move !== 'string' || move.length !== 4) throw new Error('Nước đi không hợp lệ.');
     return [index(move.slice(0, 2)), index(move.slice(2))];
   }
 
@@ -183,12 +183,6 @@
     }
   }
 
-  function describe(pos, move) {
-    const [src, dst] = parseMove(move), piece = pos.board[src], captured = pos.board[dst];
-    if (piece === '.') throw new Error('Ô xuất phát không có quân.');
-    return NAMES[piece.toLowerCase()] + ' ' + square(src) + ' → ' + square(dst) + (captured !== '.' ? ' ăn ' + NAMES[captured.toLowerCase()] : '');
-  }
-
   function evaluate(pos) {
     let total = 0;
     pos.board.forEach((piece, i) => {
@@ -245,7 +239,7 @@
     return { engine: ENGINE_VERSION, bestMove: completed[0].move, score: completed[0].score, ranked: completed, depth: reached, requestedDepth, complete: reached === requestedDepth, truncated: reached < requestedDepth, fallback: true, nodes };
   }
 
-  const api = Object.freeze({ START_FEN, NAMES, VALUES, ENGINE_VERSION, Position, side, other, square, index, parseMove, describe, evaluate, analyze });
+  const api = Object.freeze({ START_FEN, NAMES, VALUES, ENGINE_VERSION, Position, side, other, square, index, parseMove, evaluate, analyze });
   root.XQ = api;
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
 })(typeof globalThis !== 'undefined' ? globalThis : window);
