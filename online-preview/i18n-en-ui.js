@@ -13,7 +13,7 @@
   const dictionary = Object.freeze({
     ". Chênh lệch": ". Difference:",
     ". Có thể có nhiều phương án hợp lý.": ". There may be several reasonable options.",
-    ". Dùng ký phổ Việt hoặc tọa độ; chưa hỗ trợ chú thích xen trong ván.": ". Use Vietnamese notation or coordinates; comments inside the record are not supported yet.",
+    ". Chỉ nhận ký pháp chuẩn, ví dụ P2-5, M8.7, Xt.1; Tượng ghi là V. Chưa hỗ trợ chú thích xen trong ván.": ". Only standard Vietnamese notation is accepted, e.g. P2-5, M8.7, Xt.1; the Elephant is written as V. Comments inside the record are not supported yet.",
     ". Hẹn ôn": ". Review due",
     ". Trong tìm kiếm cục bộ sâu": ". In a local search",
     ". Điểm dựa trên giá trị quân và Tốt qua sông. Đây là một dòng tìm kiếm nông, không khẳng định đối thủ buộc phải đi như vậy hoặc đây là nước tốt nhất toàn cục.": ". The score is based on piece values and Soldiers that have crossed the river. This is a shallow search line; it does not claim your opponent must play this way or that this is the best move overall.",
@@ -268,7 +268,7 @@
     "Danh sách nước chưa đạt không hợp lệ.": "Invalid list of unsuccessful moves.",
     "Danh sách quá dài.": "The list is too long.",
     "Duyệt & xuất bản": "Approve & publish",
-    "Dán ký phổ Việt hoặc nước tọa độ. Hệ thống dừng tại nước lỗi và không lưu ván dở do nhập lỗi. Chưa nhận dạng ảnh.": "Paste Vietnamese notation or coordinate moves. The import stops at the first invalid move and does not save a partly imported game. Images are not supported yet.",
+    "Dán biên bản theo ký pháp chuẩn, ví dụ P2-5, M8.7, V3.5, Xt.1. Hệ thống dừng tại nước lỗi và không lưu ván dở do nhập lỗi. Chưa nhận dạng ảnh.": "Paste a game record in standard Vietnamese notation, e.g. P2-5, M8.7, V3.5, Xt.1. The import stops at the first invalid move and does not save a partly imported game. Images are not supported yet.",
     "Dòng cụ thể để so sánh:": "A concrete line to compare:",
     "Dùng bản máy chủ": "Use the server copy",
     "Dừng lặp thế 3 lần — quy ước demo, chưa xử lý luật đuổi/chiếu dai giải đấu": "Stopped at threefold repetition — a demo convention; tournament rules for perpetual chase/check are not handled",
@@ -384,7 +384,7 @@
     "Không có hình này": "This position does not exist",
     "Không có khóa này": "This course does not exist",
     "Không có lời mời hòa còn hạn từ đối thủ.": "There is no active draw offer from your opponent.",
-    "Không có nước hợp lệ khớp ký phổ này. Ví dụ P2-5, M2.3, X trước.1 hoặc a3a4.": "No legal move matches this notation. Examples (Vietnamese notation or coordinates): P2-5, M2.3, X trước.1, or a3a4.",
+    "Không có nước hợp lệ khớp ký pháp này. Ví dụ P2-5, M8.7, Xt.1. Tượng ghi là V.": "No legal move matches this notation. Examples in Vietnamese notation: P2-5, M8.7, Xt.1. The Elephant is written as V.",
     "Không có tài khoản này.": "This account does not exist.",
     "Không có yêu cầu đi lại từ đối thủ.": "There is no takeback request from your opponent.",
     "Không cần nhập tuổi hoặc thông tin liên hệ để thử. Bản này lưu trên cùng trình duyệt.": "No age or contact details are needed to try it. This version saves in the same browser.",
@@ -423,7 +423,7 @@
     "Kiểm tra mọi cách thoát chiếu": "Check every way out of check",
     "Kiểm tra tối đa 20 lượt gần nhất của bên bạn chọn. Số vị trí được đề xuất phụ thuộc bằng chứng; không ép mỗi ván phải có ba lỗi.": "Checks up to the last 20 moves of the side you choose. The number of suggested positions depends on the evidence; a game is never forced to have three mistakes.",
     "Ký hiệu FEN không hợp lệ.": "Invalid FEN symbol.",
-    "Ký phổ chưa rõ quân nào: hãy ghi trước/sau hoặc dùng tọa độ ô xuất phát và ô đích.": "The notation is ambiguous: add front/rear, or use the coordinates of the starting and destination points.",
+    "Ký pháp chưa rõ quân nào: hai quân cùng cột phải ghi t (trước) hoặc s (sau), ví dụ Xt.1.": "The notation is ambiguous: two pieces on one file need t (front) or s (rear), e.g. Xt.1.",
     "Kết quả nước đi không chứng minh chất lượng lý giải hoặc mức thành thạo.": "Move results do not prove the quality of your reasoning or your level of mastery.",
     "Kết thúc do kỹ thuật": "End due to a technical issue",
     "Kết thúc do sự cố kỹ thuật": "Ended due to a technical issue",
@@ -585,7 +585,7 @@
     "Nước hợp lệ nhưng chưa khớp mục tiêu mẫu. Kiểm tra phản ứng của đối phương.": "The move is legal but does not match the sample goal. Check your opponent's reply.",
     "Nước minh họa được kiểm tra bằng bộ luật. Chưa có câu hỏi và chấm hiểu biết cho phần khai cuộc này.": "The sample move is checked by the rules engine. This opening section has no questions or understanding checks yet.",
     "Nước minh họa:": "Sample move:",
-    "Nước mẫu (tọa độ a0a1)": "Sample move (coordinates, e.g. a0a1)",
+    "Nước mẫu (ký pháp, ví dụ P2-5)": "Sample move (Vietnamese notation, e.g. P2-5)",
     "Nước mẫu không hợp lệ trong thế cờ này.": "The sample move is illegal in this position.",
     "Nước mẫu tiếp →": "Next sample move →",
     "Nước này hợp lệ nhưng chưa khớp mục tiêu mẫu. Bạn thử kiểm tra Tướng, đường quân và phản ứng đối thủ một lần nữa. Câu tự luận chưa được tự động chấm.": "This move is legal but does not match the sample goal. Check the General, the pieces' lines, and your opponent's reply once more. Written answers are not graded automatically.",
@@ -598,7 +598,6 @@
     "Nước đi không hợp lệ.": "Illegal move.",
     "Nước đi không hợp lệ. Hãy kiểm tra luật và an toàn của Tướng.": "Illegal move. Check the rules and your General's safety.",
     "Nước đi không đúng quy tắc di chuyển của quân này.": "This move does not follow how this piece moves.",
-    "Nước đi phải có dạng a0a1.": "Moves must be written like a0a1.",
     "Nước đáp hoặc nhánh tiếp theo không hợp lệ.": "Invalid reply or following branch.",
     "Nước đề xuất không khớp bằng chứng phân tích.": "The suggested move does not match the analysis evidence.",
     "Nước đề xuất phù hợp mục tiêu mẫu. Hãy đối chiếu cả lý do; hệ thống chưa tự xác nhận câu trả lời tự do đúng hoàn toàn.": "Your proposed move matches the sample goal. Compare your reasoning as well; the app cannot yet confirm that a free-text answer is fully correct.",
@@ -607,7 +606,6 @@
     "Nội dung đang quản lý": "Managed content",
     "Nội dung đã có bản mới. Hãy tải lại trước khi sửa.": "There is a newer version of this content. Reload before editing.",
     "Nửa nước": "Half-move",
-    "P2-5 M8.7 hoặc h2e2 h9g7": "P2-5 M8.7 or h2e2 h9g7",
     "Phi tượng": "Elephant Opening",
     "Phiên khách 24 giờ": "24-hour guest session",
     "Phiên tài khoản đã hết hạn. Hãy đăng nhập lại.": "Your account session has expired. Please sign in again.",
@@ -789,7 +787,7 @@
     "Tượng bị cản mắt ở giữa đường chéo.": "The Elephant's eye is blocked.",
     "Tượng không được qua sông.": "The Elephant cannot cross the river.",
     "Tượng không ở điểm hợp lệ bên mình.": "An Elephant is not on a valid point on its own side.",
-    "Tượng 3 lên lộ giữa (T3.5); mắt Tượng, tức ô ở giữa đường chéo, phải trống. Tượng hoạt động ở bên mình và không qua sông. Một nước phát triển Tượng chưa đủ để khẳng định bên nào hơn.": "The Elephant on file 3 moves up to the central file (E3+5); the Elephant's eye, the point in the middle of the diagonal, must be empty. The Elephant works on its own side and does not cross the river. One Elephant development move is not enough to say which side is better.",
+    "Tượng 3 lên lộ giữa (V3.5); mắt Tượng, tức ô ở giữa đường chéo, phải trống. Tượng hoạt động ở bên mình và không qua sông. Một nước phát triển Tượng chưa đủ để khẳng định bên nào hơn.": "The Elephant on file 3 moves up to the central file (E3+5); the Elephant's eye, the point in the middle of the diagonal, must be empty. The Elephant works on its own side and does not cross the river. One Elephant development move is not enough to say which side is better.",
     "Tượng đi chéo hai ô.": "The Elephant moves exactly two points diagonally.",
     "Tạm gỡ bài này khỏi danh sách luyện?": "Remove this exercise from the practice list for now?",
     "Tạm gỡ để kiểm tra": "Unpublish for review",
@@ -797,8 +795,7 @@
     "Tải lại nội dung trước khi thay đổi.": "Reload the content before making changes.",
     "Tải ván đã hoàn tất của tôi": "Load my finished games",
     "Tập trung vào ván cờ. Phần học mở sau khi kết thúc.": "Focus on the game. Learning tools open after it ends.",
-    "Tọa độ không hợp lệ: dùng ô a0 đến i9.": "Invalid coordinates: use points a0 to i9.",
-    "Tọa độ trên bàn không thay đổi khi lật góc nhìn.": "Board coordinates stay the same when you flip the board.",
+    "Số lộ trên bàn không đổi khi lật bàn.": "File numbers stay the same when you flip the board.",
     "Tốt": "Soldier",
     "Tốt chưa qua sông chưa được đi ngang.": "A Soldier cannot move sideways before crossing the river.",
     "Tốt chưa qua sông phải nằm trên lộ xuất phát.": "A Soldier that has not crossed the river must be on its starting file.",
@@ -942,7 +939,7 @@
     "· bị chiếu": "· in check",
     "· tối đa": "· up to",
     "· điểm động viên theo lượt luyện, không phải Elo hoặc trình độ. Trình độ tự chọn:": "· encouragement points earned per practice attempt, not Elo or a skill level. Self-selected level:",
-    "Ô cờ phải có dạng a0 đến i9.": "Points must be written a0 to i9.",
+    "Ô cờ không hợp lệ.": "Invalid point.",
     "Ô trống": "Empty point",
     "Ô xuất phát không có quân cờ.": "There is no piece on the starting point.",
     "Ô xuất phát không có quân.": "There is no piece on the starting point.",
@@ -1155,10 +1152,11 @@
 
   const PIECE = { 'Tướng': 'General', 'Sĩ': 'Advisor', 'Tượng': 'Elephant', 'Xe': 'Chariot', 'Pháo': 'Cannon', 'Mã': 'Horse', 'Tốt': 'Soldier' };
   const SIDE = { 'Đỏ': 'Red', 'Đen': 'Black' };
-  const LETTER = { Tg: 'K', S: 'A', T: 'E', X: 'R', M: 'H', P: 'C', B: 'P' };
+  const LETTER = { Tg: 'K', S: 'A', V: 'E', X: 'R', M: 'H', P: 'C', B: 'P' };
   const DIRECTION = { '.': '+', '-': '=', '/': '-' };
-  const TANDEM = { 'trước': '+', 'sau': '-' };
-  const VN_MOVE = /^(Tg|S|T|X|M|P|B)\s?(\d|trước|sau)([.\-\/])(\d)$/;
+  const TANDEM = { t: '+', s: '-' };
+  // Bg, B7t and numbered stacks stay in Vietnamese notation: their WXF form is undecided (glossary §4).
+  const VN_MOVE = /^(Tg|S|V|X|M|P|B)(\d|t|s)([.\-\/])(\d)$/;
   const plural = (n, one, many) => `${n} ${Number(n) === 1 ? one : many}`;
 
   // Vietnamese notation -> WXF. Returns the input unchanged when it is not a single Vietnamese move.
@@ -1169,12 +1167,6 @@
     return TANDEM[m[2]] ? `${TANDEM[m[2]]}${letter}${direction}${m[4]}` : `${letter}${m[2]}${direction}${m[4]}`;
   }
   const moves = text => String(text).split(/(\s+|,\s*)/).map(part => notation(part)).join('');
-  // XQ.describe() text: "Xe a2 → a7" or "Xe a2 → a7 ăn Pháo". Coordinates stay as they are (glossary §4).
-  const DESCRIBE = /^(Tướng|Sĩ|Tượng|Xe|Pháo|Mã|Tốt) ([a-i]\d) → ([a-i]\d)(?: ăn (Tướng|Sĩ|Tượng|Xe|Pháo|Mã|Tốt))?$/;
-  function describe(text) {
-    const m = String(text).trim().match(DESCRIBE);
-    return m ? `${PIECE[m[1]]} ${m[2]} → ${m[3]}${m[4] ? `, capturing the ${PIECE[m[4]]}` : ''}` : text;
-  }
 
   const patterns = Object.freeze([
     [/^(.+) · Cờ Chill$/, (m, t) => `${t(m[1])} · Cờ Chill`],
@@ -1230,10 +1222,10 @@
     [/^Lời giải theo mẫu hoặc nội dung đã duyệt, dựa trên nước hợp lệ\.\s+(?:(.+?) · độ sâu ghi nhận (\S+) nửa nước\.\s+)?Chưa có AI chấm lập luận\. Không dùng điểm này làm xếp hạng\.$/,
       (m, t) => `Sample explanation or reviewed content, based on legal moves. ${m[1] ? `${t(m[1])} · recorded depth: ${m[2]} half-moves. ` : ''}No AI grades your reasoning yet. Do not use this score as a rating.`],
     [/^Trong ván bạn đi (.+)\. (Tìm kiếm cơ bản gợi ý|Kết quả tìm kiếm đề xuất) một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy\.$/,
-      m => `In the game you played ${describe(m[1])}. ${m[2] === 'Tìm kiếm cơ bản gợi ý' ? 'A basic search suggests' : 'The search suggests'} an option to compare with; this is not a firm judgment about your thinking.`],
+      m => `In the game you played ${notation(m[1])}. ${m[2] === 'Tìm kiếm cơ bản gợi ý' ? 'A basic search suggests' : 'The search suggests'} an option to compare with; this is not a firm judgment about your thinking.`],
     [/^Biến hợp lệ được tính: (.+)\. Chênh lệch (-?\d+) điểm (quy ước tìm kiếm nông|centipawn của engine) từ cùng thế và cùng bên đi\.$/,
-      m => `Legal line calculated: ${m[1].split('; sau đó ').map(describe).join('; then ')}. Difference: ${m[2]} ${m[3] === 'quy ước tìm kiếm nông' ? 'shallow-search points' : 'engine centipawns'} from the same position with the same side to move.`],
-    [DESCRIBE, m => describe(m[0])],
+      m => `Legal line calculated: ${m[1].split('; sau đó ').map(notation).join('; then ')}. Difference: ${m[2]} ${m[3] === 'quy ước tìm kiếm nông' ? 'shallow-search points' : 'engine centipawns'} from the same position with the same side to move.`],
+    [/^Không đọc được biên bản ở nửa nước (\d+)(\. .+)$/, (m, t) => `Could not read the move record at half-move ${m[1]}${t(m[2])}`],
     [VN_MOVE, m => notation(m[0])],
   ]);
 

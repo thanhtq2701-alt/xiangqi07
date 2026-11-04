@@ -89,7 +89,7 @@ function literals(src) {
 const CODE = /\$\{|=>|\?'|':|btn\(|^:|^'|\.map\(|\+'/;
 // Intentionally Vietnamese: notation keywords and examples that the importer only accepts in Vietnamese.
 // Fragments of template strings whose full runtime text is covered by a dictionary entry or pattern.
-const KEEP = new Set(['trước', 'sau', 'giữa', 'bạn', 'đối thủ', '. Chọn Vào chơi để tham gia hoặc Xem ván để theo dõi.', 'Không có nước hợp lệ khớp ký phổ này. Ví dụ P2-5, M2.3, X trước.1 hoặc a3a4.',
+const KEEP = new Set(['bạn', 'đối thủ', '. Chọn Vào chơi để tham gia hoặc Xem ván để theo dõi.',
   // Pieces joined with numbers, names or moves at runtime; the full text is checked in RUNTIME below.
   'hình đến hạn', 'Nước bạn chọn:', '· độ sâu ghi nhận', 'nửa nước.', 'Tìm kiếm cơ bản gợi ý', 'Kết quả tìm kiếm đề xuất',
   'quy ước tìm kiếm nông', 'centipawn của engine', 'Đối thủ', '· hiệu lực 15 giây', 'Phòng', 'Bạn cầm', 'Tạm khóa 24 giờ',
@@ -104,10 +104,11 @@ const RUNTIME = ['3 hình đến hạn', 'Nước bạn chọn: P2-5', 'Phòng 0
   'Lượt có hỗ trợ hoặc đã xem lời giải. Chưa chấm chất lượng lập luận.', 'Lượt tự thực hiện chuỗi nước. Chưa chấm chất lượng lập luận.',
   'Lời giải theo mẫu hoặc nội dung đã duyệt, dựa trên nước hợp lệ. Pikafish · độ sâu ghi nhận 12 nửa nước. Chưa có AI chấm lập luận. Không dùng điểm này làm xếp hạng.',
   'Lời giải theo mẫu hoặc nội dung đã duyệt, dựa trên nước hợp lệ.  Chưa có AI chấm lập luận. Không dùng điểm này làm xếp hạng.',
-  'Trong ván bạn đi Xe a2 → a7 ăn Pháo. Tìm kiếm cơ bản gợi ý một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy.',
-  'Trong ván bạn đi Mã b0 → c2. Kết quả tìm kiếm đề xuất một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy.',
-  'Biến hợp lệ được tính: Pháo h2 → e2; sau đó Mã h9 → g7. Chênh lệch 35 điểm centipawn của engine từ cùng thế và cùng bên đi.',
-  'Biến hợp lệ được tính: Xe a0 → a9 ăn Xe. Chênh lệch -4 điểm quy ước tìm kiếm nông từ cùng thế và cùng bên đi.',
+  'Trong ván bạn đi X9.5. Tìm kiếm cơ bản gợi ý một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy.',
+  'Trong ván bạn đi M8.7. Kết quả tìm kiếm đề xuất một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy.',
+  'Biến hợp lệ được tính: P2-5; sau đó M2.3. Chênh lệch 35 điểm centipawn của engine từ cùng thế và cùng bên đi.',
+  'Biến hợp lệ được tính: X9.9. Chênh lệch -4 điểm quy ước tìm kiếm nông từ cùng thế và cùng bên đi.',
+  'Không đọc được biên bản ở nửa nước 3. Chỉ nhận ký pháp chuẩn, ví dụ P2-5, M8.7, Xt.1; Tượng ghi là V. Chưa hỗ trợ chú thích xen trong ván.',
   'Vị trí ở nửa nước 12', 'Số liệu do thiết bị đồng bộ, chưa được xác minh độc lập. Không dùng tài khoản thử để tuyên bố tác động sản phẩm.',
   'Thống kê ghi nhận từ tài khoản đã đồng bộ · UTC+7', '3 hình cờ đã đến lúc ôn', 'TỰ QUAN SÁT · LƯỢT 2/3', 'TỰ QUAN SÁT · TRƯỚC LỜI GIẢI',
   'Suy nghĩ ban đầu 1:', 'Đỏ đề nghị hòa. Bên còn lại xác nhận trong 15 giây; đồng hồ vẫn chạy.', 'Đen đề nghị hòa. Bên còn lại xác nhận trong 15 giây; đồng hồ vẫn chạy.',
@@ -142,9 +143,42 @@ test('every interface and server message fragment translates', () => {
 });
 
 test('Vietnamese notation converts to WXF', () => {
-  const cases = { 'P2-5': 'C2=5', 'M8.7': 'H8+7', 'X1/2': 'R1-2', 'Tg5.1': 'K5+1', 'S4.5': 'A4+5', 'T3.5': 'E3+5', 'B7.1': 'P7+1', 'Xtrước.1': '+R+1', 'M sau/3': '-H-3' };
+  const cases = { 'P2-5': 'C2=5', 'M8.7': 'H8+7', 'X1/2': 'R1-2', 'Tg5.1': 'K5+1', 'S4.5': 'A4+5', 'V3.5': 'E3+5', 'B7.1': 'P7+1', 'Xt.1': '+R+1', 'Ms/3': '-H-3' };
   for (const [vi, wxf] of Object.entries(cases)) assert.strictEqual(english.notation(vi), wxf, vi);
   assert.strictEqual(english.notation('Chiếu hết'), 'Chiếu hết');
+  assert.strictEqual(translate('Trong ván bạn đi X9.5. Tìm kiếm cơ bản gợi ý một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy.').startsWith('In the game you played R9+5. A basic search'), true);
+  assert.strictEqual(translate('Biến hợp lệ được tính: P2-5; sau đó M2.3. Chênh lệch 35 điểm centipawn của engine từ cùng thế và cùng bên đi.').startsWith('Legal line calculated: C2=5; then H2+3.'), true);
+  assert.strictEqual(translate('Không đọc được biên bản ở nửa nước 3. Chỉ nhận ký pháp chuẩn, ví dụ P2-5, M8.7, Xt.1; Tượng ghi là V. Chưa hỗ trợ chú thích xen trong ván.').startsWith('Could not read the move record at half-move 3. Only standard'), true);
+});
+
+test('no machine coordinates appear in any text a user can read', () => {
+  // Moves are stored as a0a1 inside the engine, database and lesson data, so a literal that is only
+  // a move or a square is data. Anything with other words around it is text.
+  const MACHINE = /(?<![A-Za-z0-9])[a-i][0-9](?:[a-i][0-9])?(?![A-Za-z0-9])/;
+  const WORD = /tọa độ|toạ độ|\bcoordinates\b/i;
+  const STYLE = /^\s*[#.]|\{/; // CSS selectors and rules mention h1, h2 as tags.
+  const unsafe = text => !STYLE.test(text) && /\s/.test(text.trim()) && MACHINE.test(text) || WORD.test(text);
+  for (const text of ['Xe a2 → a7', 'Nước a3a4 chưa hợp lệ', 'Dùng tọa độ', 'Use coordinates']) assert.strictEqual(unsafe(text), true, text);
+  for (const text of ['a3a4', 'P2-5 M8.7', 'Xt.1 hoặc B7t.1', '#main h1', 'Chariots coordinate']) assert.strictEqual(unsafe(text), false, text);
+  const found = [];
+  const check = (where, text) => { if (unsafe(text)) found.push(where + ': ' + text); };
+  for (const f of fs.readdirSync(path.join(ROOT, 'online-preview'))) {
+    if (!f.endsWith('.js') || ['i18n-en-ui.js', 'content-en.js'].includes(f)) continue;
+    for (const lit of literals(fs.readFileSync(WEB(f), 'utf8'))) {
+      for (const part of lit.split(/<[^>]*>|\u0000/)) check(f, part);
+      for (const m of lit.matchAll(/(?:placeholder|title|alt)="([^"$]*)"/g)) if (MACHINE.test(m[1])) found.push(f + ': ' + m[1]);
+    }
+  }
+  for (const [vi, en] of Object.entries(english.dictionary)) { check('dictionary key', vi); check('dictionary value', en); }
+  for (const [key, entry] of Object.entries(content)) { check(key, entry.vi); check(key, entry.en); }
+  for (const file of ['co_chill_server.py', 'app/online_rooms.py', 'app/content_store.py', 'app/cloud_store.py', 'app/rules.py']) {
+    for (const m of fs.readFileSync(path.join(ROOT, file), 'utf8').matchAll(/'((?:[^'\\\n]|\\.)*)'|"((?:[^"\\\n]|\\.)*)"/g)) {
+      const text = m[1] ?? m[2];
+      if (text && VI.test(text)) check(file, text);
+    }
+  }
+  assert.deepStrictEqual(found, [], 'Machine coordinates in user text:\n' + found.join('\n'));
+  assert.strictEqual(require(WEB('xiangqi.js')).describe, undefined, 'XQ.describe wrote machine coordinates');
 });
 
 test('English follows the glossary', () => {
@@ -154,4 +188,4 @@ test('English follows the glossary', () => {
   assert.deepStrictEqual(bad, [], 'Glossary violations: ' + bad.join(' | '));
 });
 
-console.log(`${passed}/4 i18n English tests passed`);
+console.log(`${passed}/5 i18n English tests passed`);

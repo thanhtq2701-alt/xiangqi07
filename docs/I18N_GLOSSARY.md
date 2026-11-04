@@ -14,7 +14,7 @@ Tên tiếng Anh và chữ viết tắt trong bảng này theo hệ ký hiệu W
 |---|---|---|---|---|---|
 | Tướng | 帥 / 將 | General | Tg | K | Không dịch là "King" trong câu. Chữ K chỉ dùng trong ký hiệu. |
 | Sĩ | 仕 / 士 | Advisor | S | A | Không dùng "Guard" hay "Mandarin". |
-| Tượng | 相 / 象 | Elephant | T | E | Không dùng "Minister" hay "Bishop". |
+| Tượng | 相 / 象 | Elephant | V | E | Không dùng "Minister" hay "Bishop". |
 | Xe | 俥 / 車 | Chariot | X | R | Không dùng "Rook" trong câu. Chữ R chỉ dùng trong ký hiệu. |
 | Pháo | 炮 / 砲 | Cannon | P | C | |
 | Mã | 傌 / 馬 | Horse | M | H | Không dùng "Knight". |
@@ -80,11 +80,20 @@ Bản tiếng Việt dùng ký hiệu Việt. Bản tiếng Anh dùng ký hiệu
 | tiến | `.` | `+` | M8.7 | H8+7 |
 | bình (đi ngang) | `-` | `=` | P2-5 | C2=5 |
 | thoái (lui) | `/` | `-` | X1/2 | R1-2 |
-| quân trước / quân sau cùng cột | trước / sau | `+` / `-` đặt trước chữ quân | Xtrước.1 | +R+1 |
+| quân trước / quân sau cùng cột | `t` / `s` viết liền | `+` / `-` đặt trước chữ quân | Xt.1, Xs/1 | +R+1, -R-1 |
 
-**Chưa chốt:** Cần xác nhận cách ghi ký hiệu WXF khi có ba quân cùng loại trên cùng một cột, chẳng hạn ba Tốt.
+Ký pháp Việt cho nhiều Tốt cùng cột (chủ dự án chốt ngày 2026-11-04), tính theo hướng nhìn của bên đi nước đó:
 
-Tọa độ kiểu `a2 → a7` trong lời giải là tọa độ máy, giữ nguyên ở cả hai ngôn ngữ.
+| Trường hợp | Cách ghi | Ví dụ |
+|---|---|---|
+| 3 Tốt cùng cột | `t`, `g`, `s` | Bg.1 |
+| 4–5 Tốt cùng cột | Đánh số từ trước ra sau | B1.1, B2-4 |
+| 4 Tốt cùng cột và 1 Tốt lẻ ở lộ trùng số thứ tự | Thêm số lộ của cột 4 Tốt để không nhầm với Tốt lẻ | B72-8 |
+| Hai cột cùng có từ 2 Tốt trở lên | Thêm số lộ | B7t.1, B3s-4 |
+
+**Chưa chốt:** Cần xác nhận cách ghi ký hiệu WXF cho `g`, cho nhiều Tốt được đánh số và cho `t`/`s` có thêm số lộ. Hiện các nước này giữ nguyên ký pháp Việt ở chế độ tiếng Anh.
+
+Mọi chỗ người dùng nhìn thấy không hiện tọa độ máy kiểu `a2`, `a3a4`, ở cả hai ngôn ngữ. Engine, database và FEN vẫn lưu tọa độ máy. `tools/test_i18n_en.cjs` chặn việc này.
 
 ## 5. Thuật ngữ riêng của Cờ Chill
 

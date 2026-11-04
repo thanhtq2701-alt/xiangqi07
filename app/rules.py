@@ -23,13 +23,13 @@ def square(index):
 
 def index(sq):
     if not isinstance(sq, str) or len(sq) != 2 or sq[0] not in 'abcdefghi' or sq[1] not in '0123456789':
-        raise ValueError('Ô cờ phải có dạng a0 đến i9.')
+        raise ValueError('Ô cờ không hợp lệ.')
     return (9 - int(sq[1])) * 9 + ord(sq[0]) - 97
 
 
 def parse_move(move):
     if not isinstance(move, str) or len(move) != 4:
-        raise ValueError('Nước đi phải có dạng a0a1.')
+        raise ValueError('Nước đi không hợp lệ.')
     return index(move[:2]), index(move[2:])
 
 
