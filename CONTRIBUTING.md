@@ -9,6 +9,8 @@ Before making changes, read [README.md](README.md),
 
 1. Create a feature branch from `codex-full`.
 2. Make a focused change and add or update tests when changing behavior.
+   After editing anything in `online-preview/`, run
+   `python tools/stamp_static_versions.py` so browsers receive the new files.
 3. Run the repository checks from the repository root:
 
    ```powershell

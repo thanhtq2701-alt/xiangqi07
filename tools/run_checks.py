@@ -26,7 +26,8 @@ def main():
                *(ROOT / 'tests').glob('*.py'), *(ROOT / 'tools').glob('*.py')]
     for source in sources:
         compile(source.read_bytes(), str(source), 'exec')
-    commands = [[sys.executable, '-m', 'unittest', '-v', *('tests.' + x for x in PYTHON_TESTS)],
+    commands = [[sys.executable, 'tools/stamp_static_versions.py', '--check'],
+                [sys.executable, '-m', 'unittest', '-v', *('tests.' + x for x in PYTHON_TESTS)],
                 [sys.executable, 'tools/check_online_preview.py'],
                 [sys.executable, 'tools/check_browser_rules.py', '--node', args.node]]
     commands += [[args.node, '--check', str(p.relative_to(ROOT))] for p in sorted((ROOT / 'online-preview').glob('*.js'))]

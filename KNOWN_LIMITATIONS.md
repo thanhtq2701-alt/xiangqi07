@@ -57,6 +57,10 @@ khả năng chịu tải hay mức sẵn sàng vận hành.
 - Lượt chạy đầy đủ ngày 28/10/2026 từng báo 13 assertion fail trong nhóm
   Pikafish; chạy lại thì đạt, không sửa gì giữa các lượt, nguyên nhân chưa xác
   định. Nếu gặp lại, lưu log trước khi chạy lại.
+- `test_nnue_option_and_limit_clamps` có thể fail khi máy bận vì engine giả không
+  kịp trả lời trong hạn, nên báo `fallback`. Ngày 04/11/2026 đã tái hiện trên cả
+  code chưa sửa khi chạy 24 tiến trình cùng lúc; chạy riêng lúc máy rảnh thì đạt.
+  Chưa xác định lần fail 28/10 có cùng nguyên nhân hay không.
 
 ## Sử dụng AI và nguồn gốc nội dung
 

@@ -28,3 +28,4 @@ Production is https://cochill.vn. The owner reviews every change; another review
 
 ## Tests
 - Do not weaken, skip or delete failing tests. Fix the code, or report the failure.
+- After editing anything in `online-preview/`, run `python tools/stamp_static_versions.py`. It rewrites the `?v=` stamps in `index.html`, `app.js` and `v6-ui.js`, and `run_checks.py` fails if they are out of date. Do not edit stamps by hand.
