@@ -54,8 +54,9 @@ chiếu/cài lại, không phải lệnh tự động sửa VM. Đọc kỹ trư
    cấu hình HTTP tạm thời để Certbot cấp chứng chỉ trước khi cài mẫu HTTPS.
 7. Cài `deploy/cochill.service` thành
    `/etc/systemd/system/cochill.service`. Cài ba server block trong
-   `deploy/nginx-cochill.conf` vào sites-available, bật site, rồi kiểm tra
-   `sudo nginx -t` trước khi reload.
+   `deploy/nginx-cochill.conf` vào sites-available, bật site, chép
+   `deploy/nginx-cochill-gzip.conf` thành `/etc/nginx/conf.d/cochill-gzip.conf`,
+   rồi kiểm tra `sudo nginx -t` trước khi reload.
 8. Chạy `sudo systemctl daemon-reload`,
    `sudo systemctl enable --now cochill.service`; sau đó
    `sudo systemctl restart nginx`. Kiểm tra

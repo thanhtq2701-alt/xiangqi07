@@ -27,6 +27,7 @@ from app.cloud_store import APIError, CloudStore, MAX_STATE_BYTES, SESSION_SECON
 from app import content_store
 from app.rules import Position
 from app.online_rooms import OnlineRooms
+from app.static_version import content_version
 
 ROOT = Path(__file__).resolve().parent
 COOKIE = 'co_chill_session'
@@ -128,9 +129,9 @@ class CloudApplication:
             raise APIError(400, 'JSON phải là object.')
         return data
 
-    def response(self, start_response, status, payload, mime='application/json; charset=utf-8', headers=None):
+    def response(self, start_response, status, payload, mime='application/json; charset=utf-8', headers=None, cache_control='no-store'):
         raw = json.dumps(payload, ensure_ascii=False, allow_nan=False).encode('utf-8') if mime.startswith('application/json') else payload
-        response_headers = [('Content-Type', mime), ('Content-Length', str(len(raw))), ('Cache-Control', 'no-store'),
+        response_headers = [('Content-Type', mime), ('Content-Length', str(len(raw))), ('Cache-Control', cache_control),
                             ('X-Content-Type-Options', 'nosniff'), ('Referrer-Policy', 'no-referrer'), ('X-Frame-Options', 'DENY'),
                             ('Permissions-Policy', 'camera=(), microphone=(), geolocation=()'),
                             ('Content-Security-Policy', "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; connect-src 'self'; font-src 'self'; object-src 'none'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'")]
@@ -157,7 +158,12 @@ class CloudApplication:
                 mime = {'.js': 'text/javascript', '.css': 'text/css'}.get(file.suffix, mimetypes.guess_type(file.name)[0] or 'application/octet-stream')
                 if mime.startswith('text/'):
                     mime += '; charset=utf-8'
-                return self.response(start_response, 200, b'' if method == 'HEAD' else file.read_bytes(), mime)
+                raw = file.read_bytes()
+                # A year of browser caching only when ?v= matches this exact content (tools/stamp_static_versions.py).
+                # index.html is never cached, so a new deploy always points browsers at the new files.
+                versioned = file.suffix.lower() != '.html' and parse_qs(environ.get('QUERY_STRING', '')).get('v') == [content_version(raw)]
+                return self.response(start_response, 200, b'' if method == 'HEAD' else raw, mime,
+                                     cache_control='public, max-age=31536000, immutable' if versioned else 'no-store')
             write = method in ('POST', 'PUT', 'PATCH', 'DELETE')
             if method not in ('GET', 'POST', 'PUT', 'PATCH', 'DELETE'):
                 raise APIError(405, 'Phương thức không được hỗ trợ.')

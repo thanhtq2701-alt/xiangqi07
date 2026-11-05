@@ -11,6 +11,7 @@ from urllib.parse import urlsplit
 from app.cloud_store import CloudStore, totp, verify_password, metrics, SCRYPT_PREFIX
 from co_chill_server import CloudApplication
 from app.rules import START_FEN
+from app.static_version import content_version
 
 # Test-only RFC-style secret. No production credentials are embedded here.
 TEST_TOTP = 'GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ'
@@ -107,6 +108,21 @@ class CloudTests(unittest.TestCase):
             self.assertEqual(self.client.request(path)[0], 404, path)
         for path in ('/api/state', '/api/export', '/api/admin/users'):
             self.assertEqual(self.client.request(path)[0], 401, path)
+
+    def test_static_files_are_cached_only_for_their_current_version(self):
+        web = Path(__file__).resolve().parents[1] / 'online-preview'
+        forever = 'public, max-age=31536000, immutable'
+        version = {name: content_version((web / name).read_bytes()) for name in ('app.js', 'style.css', 'cover-co-chill.webp', 'index.html')}
+        for name in ('app.js', 'style.css', 'cover-co-chill.webp'):
+            status, body, headers = self.client.request(f'/{name}?v={version[name]}')
+            self.assertEqual((status, headers['Cache-Control']), (200, forever), name)
+            self.assertEqual(body, (web / name).read_bytes())
+            self.assertIn('Content-Security-Policy', headers)
+        for path in ('/app.js', '/app.js?v=00000000', f'/app.js?v={version["app.js"]}&v=00000000', '/',
+                     f'/?v={version["index.html"]}', f'/index.html?v={version["index.html"]}', f'/api/session?v={version["app.js"]}'):
+            self.assertEqual(self.client.request(path)[2]['Cache-Control'], 'no-store', path)
+        self.assertEqual(content_version(b'a\r\nb\r\n'), content_version(b'a\nb\n'))
+        self.assertNotEqual(content_version(b'a'), content_version(b'b'))
 
     def test_origin_csrf_host_json_size_and_unsafe_json(self):
         self.assertEqual(self.client.request('/api/auth/register', 'POST', {'username': 'bad', 'password': PASSWORD}, origin='https://evil.example')[0], 403)
