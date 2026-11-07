@@ -97,9 +97,11 @@ class PikafishAdapterTests(unittest.TestCase):
         self.temp.cleanup()
 
     def engine(self, mode='normal', **options):
+        handshake_seconds = options.pop('handshake_seconds', 2.0)
+        request_seconds = options.pop('request_seconds', 10.0)
         config = EngineConfig(command=(sys.executable, str(self.script), mode, str(self.log)),
-                              quick_ms=50, deep_ms=100, handshake_seconds=.4,
-                              request_seconds=2.0, **options)
+                              quick_ms=50, deep_ms=100, handshake_seconds=handshake_seconds,
+                              request_seconds=request_seconds, **options)
         return AnalysisEngine(config, LocalEngine(max_depth=1, seconds=.1))
 
     def commands(self):
@@ -220,7 +222,7 @@ class PikafishAdapterTests(unittest.TestCase):
         for mode in ('handshake_timeout', 'ready_timeout', 'search_timeout'):
             started = time.monotonic()
             with patch('app.pikafish.subprocess.Popen', side_effect=track):
-                result = self.engine(mode).analyze(START_FEN)
+                result = self.engine(mode, handshake_seconds=.4, request_seconds=2.0).analyze(START_FEN)
             self.assertEqual(result['fallback_reason'], 'timeout')
             self.assertLess(time.monotonic() - started, 3.5)
             self.assertIsNotNone(children[-1].poll())
