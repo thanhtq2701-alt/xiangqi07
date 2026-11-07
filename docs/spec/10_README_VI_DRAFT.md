@@ -48,8 +48,6 @@ commit history
 KNOWN_LIMITATIONS.md
 
 ## Author
-Tran Quoc Thanh
-Student developer & competitive Xiangqi player
-Hanoi, Vietnam
+Project owner
 
 Do not put private phone number in public README.
