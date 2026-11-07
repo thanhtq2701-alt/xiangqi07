@@ -1,7 +1,7 @@
 # XIANGQI AI — START HERE
 
 **Working name:** Cờ Chill AI / XiangqiAI  
-**Owner:** Tran Quoc Thanh  
+**Owner:** Project owner
 **Status:** Product specification freeze candidate — V0.1
 
 ## Product thesis

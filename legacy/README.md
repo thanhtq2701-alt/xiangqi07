@@ -1,21 +1,27 @@
-# Legacy — local-only, không dùng cho Production
+# Legacy app — local-only, not for production
 
-Thư mục này giữ ứng dụng Python/SQLite và giao diện web thế hệ cũ để tham
-khảo/chạy local. **Local-only; không dùng cho Production.** Production hiện
-dùng `co_chill_server.py` cùng `online-preview/`, systemd và Nginx.
+This folder preserves an older Python/SQLite application and web interface for reference and local use. It is not the current Cờ Chill application. The current entry point is `co_chill_server.py` serving `online-preview/`.
 
-- `server.py` phục vụ giao diện trong `web/`, bind loopback và dùng database
-  riêng `var/chill.sqlite3`.
-- `Mo_Co_Chill.cmd` và `start_local.ps1` là launcher Windows cho server cũ.
-- `vercel.json` là cấu hình static hosting cũ; không cung cấp backend tài
-  khoản/PvP và không phải cấu hình deploy Production.
+## What is here
 
-Để chạy thủ công, mở terminal tại gốc repository:
+- `server.py` serves the interface in `web/`, binds to loopback, and uses a separate database at `var/chill.sqlite3`.
+- `Mo_Co_Chill.cmd` and `start_local.ps1` start the legacy server on Windows.
+- `vercel.json` is an older static-hosting configuration. It does not provide the account or online-play backend and is not the production deployment configuration.
+
+## Run locally
+
+From the repository root:
 
 ```powershell
 python -m legacy.server --port 8765
 ```
 
-Mở `http://127.0.0.1:8765/`. Không dùng service này sau reverse proxy công
-cộng; các kiểm tra Host/Origin và cookie của nó chỉ phù hợp với local.
-Không chuyển database legacy sang database V6 hoặc ngược lại.
+Open <http://127.0.0.1:8765/>. Do not expose this service through a public reverse proxy: its Host/Origin checks and cookies are intended for local use. Do not transfer its database to or from the V6 database.
+
+For the current application, use the [root README](../README.md).
+
+## Tiếng Việt
+
+Thư mục này lưu ứng dụng Python/SQLite và giao diện web thế hệ cũ để tham khảo, chạy local; không dùng cho Production. Ứng dụng hiện hành chạy bằng `co_chill_server.py` và `online-preview/`.
+
+Chạy từ gốc repository bằng `python -m legacy.server --port 8765`, rồi mở <http://127.0.0.1:8765/>. Không đưa server cũ ra Internet và không chuyển database qua lại giữa bản cũ với V6. Xem [README gốc](../README.md) để chạy ứng dụng hiện hành.

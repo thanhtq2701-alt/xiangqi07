@@ -1,32 +1,29 @@
-# Giao diện Cờ Chill V6
+# Cờ Chill V6 — Current web app
 
-Đây là frontend đang được phục vụ bởi `co_chill_server.py` cùng API cùng
-origin. Không mở `index.html` bằng `file://` để kiểm tra đăng nhập, đồng bộ
-hoặc PvP.
+This folder contains the browser interface served by `co_chill_server.py` alongside the application's API. The frontend is not a standalone site: do not open `index.html` with `file://` when testing accounts, synchronization, or online play.
 
-Từ thư mục gốc repository, khởi động server:
+## Run from the repository root
 
 ```powershell
 python co_chill_server.py serve --port 8769
 ```
 
-Mở `http://127.0.0.1:8769/`. Giữ terminal chạy; Ctrl+C để dừng. Python 3.12
-trở lên. Node.js không cần để chạy ứng dụng.
+Open <http://127.0.0.1:8769/>. Keep the terminal open; press Ctrl+C to stop the server. Python 3.12 is the tested version. Node.js is not needed to run the application.
 
-Để kiểm tra frontend cùng backend, chạy từ thư mục gốc:
+## Check the app
 
 ```powershell
 python tools/run_checks.py
 ```
 
-Cần Node.js 24.22.1 để chạy toàn bộ bộ kiểm tra; phiên bản chuẩn nằm trong
-`.nvmrc` ở thư mục gốc. Runner kiểm tra cú pháp JavaScript, test client,
-fixture và parity luật. Không cần cài npm packages.
+Use Node.js 24.22.1, the version listed in the repository's `.nvmrc`, for the full check suite. No npm packages are required. The runner checks JavaScript syntax, client tests, fixtures, and cross-language rules parity.
 
-Các script được nạp theo thứ tự trong `index.html`; adapter UI dùng state và
-guard của ứng dụng, vì vậy cần kiểm tra tích hợp khi thay đổi thứ tự hoặc tách
-file. Luật/engine là nguồn sự thật cho nước đi và phân tích. Giữ reflection
-trước lời giải và không hiển thị coaching trong ván live.
+Scripts are loaded in the order listed by `index.html`; UI adapters depend on application state and guards. Check integration when changing script order or splitting files. Xiangqi rules and configured engine evidence own move and analysis truth. Preserve reflection before solutions and do not show coaching during live games.
 
-Xem [README gốc](../README.md) và [giới hạn](../KNOWN_LIMITATIONS.md) để biết
-cách dùng hiện hành.
+For the project overview, see the [root README](../README.md). For current caveats, see [known limitations](../KNOWN_LIMITATIONS.md).
+
+## Tiếng Việt
+
+Đây là frontend hiện hành của Cờ Chill V6, được phục vụ cùng API bởi `co_chill_server.py`. Không mở `index.html` bằng `file://` để kiểm tra tài khoản, đồng bộ hoặc PvP.
+
+Chạy từ thư mục gốc bằng `python co_chill_server.py serve --port 8769`, rồi mở <http://127.0.0.1:8769/>. Python 3.12 là phiên bản đã kiểm thử; Node.js chỉ cần cho bộ kiểm tra. Xem [README gốc](../README.md) và [giới hạn](../KNOWN_LIMITATIONS.md).
