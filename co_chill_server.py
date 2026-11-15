@@ -2,7 +2,7 @@
 
 Local: python co_chill_server.py serve --port 8769
 Production (single instance, persistent volume): gunicorn co_chill_server:application
-The legacy server.py and its learning API remain separate and unchanged.
+The retired local-only app is kept for reference in old/legacy/.
 """
 import argparse
 import base64
@@ -55,7 +55,7 @@ class CloudApplication:
                 raise ValueError('CO_CHILL_PUBLIC_ORIGIN must be one exact origin, for example https://co-chill.example.com.')
             if parsed.scheme != 'https' and parsed.hostname not in ('localhost', '127.0.0.1', '::1'):
                 raise ValueError('Public origin requires HTTPS.')
-        self.static_root = (Path(static_root) if static_root else ROOT / 'online-preview').resolve()
+        self.static_root = (Path(static_root) if static_root else ROOT / 'web').resolve()
         if engine is None:
             from app.pikafish import AnalysisEngine
             engine = AnalysisEngine()

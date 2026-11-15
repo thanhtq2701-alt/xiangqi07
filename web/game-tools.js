@@ -1,6 +1,6 @@
 /* Vietnamese notation and conservative game adjudication for Cờ Chill.
  * Legal moves always come from XQ; notation cannot invent a legal move.
- * This is not a complete tournament arbiter. See docs/RULES_UIUX_2026_10_15.md.
+ * This is not a complete tournament arbiter. See docs/PROJECT.md (Luật và ký phổ).
  */
 (function (root, factory) {
   'use strict';

@@ -1,7 +1,7 @@
 /* Pure transport/state tests. No browser, server, network, passwords or real accounts. */
 'use strict';
 const assert = require('node:assert/strict');
-const {Client} = require('../online-preview/cloud-client.js');
+const {Client} = require('../web/cloud-client.js');
 
 const tests = [];
 function test(name, run) { tests.push({name, run}); }

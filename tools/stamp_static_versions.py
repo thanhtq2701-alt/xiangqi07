@@ -3,7 +3,7 @@
 The server lets browsers cache a file for a year only when ?v= matches its current
 content, so a changed file always reaches users once its reference is stamped again.
 
-Run after editing anything in online-preview/:  python tools/stamp_static_versions.py
+Run after editing anything in web/:  python tools/stamp_static_versions.py
 tools/run_checks.py runs this with --check and fails if a stamp is out of date.
 """
 from pathlib import Path
@@ -15,7 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from app.static_version import content_version  # noqa: E402
 
-WEB = ROOT / 'online-preview'
+WEB = ROOT / 'web'
 STAMP = rb'(?:\?v=[0-9a-f]{8})?'
 # Images referenced from scripts and stylesheets. They reference nothing, so they are versioned first.
 IMAGE_REF = re.compile(rb'(?<![\w./-])([\w-]+\.(?:webp|svg|png|jpg|jpeg|ico))' + STAMP + rb'(?![\w.-])')

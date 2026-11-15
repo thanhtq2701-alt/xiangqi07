@@ -30,7 +30,7 @@ def main():
                 [sys.executable, '-m', 'unittest', '-v', *('tests.' + x for x in PYTHON_TESTS)],
                 [sys.executable, 'tools/check_online_preview.py'],
                 [sys.executable, 'tools/check_browser_rules.py', '--node', args.node]]
-    commands += [[args.node, '--check', str(p.relative_to(ROOT))] for p in sorted((ROOT / 'online-preview').glob('*.js'))]
+    commands += [[args.node, '--check', str(p.relative_to(ROOT))] for p in sorted((ROOT / 'web').glob('*.js'))]
     commands += [[args.node, 'tools/' + name + '.cjs'] for name in JS_TESTS]
     results = []
     for command in commands:

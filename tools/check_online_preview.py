@@ -12,7 +12,7 @@ from export_preview_fixtures import make_fixtures, SKILL_NAMES
 
 
 def main():
-    source = (ROOT / 'online-preview/fixtures.js').read_text(encoding='utf-8')
+    source = (ROOT / 'web/fixtures.js').read_text(encoding='utf-8')
     fixtures = json.loads(source.removeprefix('const FIXTURES = ').strip().removesuffix(';'))
     assert len(fixtures) == len(PUZZLES) == 12
     assert len({f['id'] for f in fixtures}) == len(fixtures)

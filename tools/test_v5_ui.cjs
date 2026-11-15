@@ -5,9 +5,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const Cloud = require('../online-preview/cloud-client.js');
-const XQ = require('../online-preview/xiangqi.js');
-const CC = {...require('../online-preview/learning.js'), ...require('../online-preview/experience.js'), ...require('../online-preview/game-tools.js')};
+const Cloud = require('../web/cloud-client.js');
+const XQ = require('../web/xiangqi.js');
+const CC = {...require('../web/learning.js'), ...require('../web/experience.js'), ...require('../web/game-tools.js')};
 const tests=[]; const test=(name,fn)=>tests.push({name,fn});
 const response=data=>({ok:true,status:200,headers:{get:()=> 'application/json'},json:async()=>data});
 const deferred=()=>{let resolve,reject;const promise=new Promise((a,b)=>{resolve=a;reject=b;});return {promise,resolve,reject};};
@@ -34,7 +34,7 @@ function harness({guest=CC.fresh(),session={authenticated:false},remote=CC.fresh
     FormData:class extends Map{constructor(form){super(form.data||[]);}getAll(key){const value=this.get(key);return value===undefined?[]:[value];}},
     addEventListener(){},scrollTo(){}};
   sandbox.window=sandbox;vm.createContext(sandbox);
-  for(const file of ['app.js','v5-ui.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../online-preview',file),'utf8'),sandbox,{filename:file});
+  for(const file of ['app.js','v5-ui.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',file),'utf8'),sandbox,{filename:file});
   return {run:source=>vm.runInContext(source,sandbox),storage,writes,element,client:()=>sandbox.CCCloudUI.snapshot().client,tick:()=>intervals.filter(i=>i.delay===300).forEach(i=>i.callback()),
     async dispatch(kind,event){for(const listener of listeners[kind]||[])await listener(event);}};
 }
@@ -125,7 +125,7 @@ test('an account without saved preferences starts with defaults rather than anot
 function publishedPuzzle(version=1){return {id:'custom-test',version,status:'published',title:'Owner-reviewed test',skill:'cannon',fen:XQ.START_FEN,solution:'h2e2',alternatives:[],what:'VERSIONED_ANSWER_SECRET',why:'SOURCE_REASON_SECRET',how:'NEXT_STEP_SECRET',source:'Original synthetic test'};}
 
 test('guest transfer recognizes V6-only drafts and refuses overwriting V6 account progress',async()=>{
-  const C=require('../online-preview/curriculum.js'),L=require('../online-preview/line-practice.js');
+  const C=require('../web/curriculum.js'),L=require('../web/line-practice.js');
   const guest=CC.fresh();guest.lineSession=L.create(C.exercises[0]);
   const session={authenticated:true,user:{id:'A',username:'account_a',displayName:'Account A',role:'user'},csrf:'test-csrf'};
   const target={dataset:{action:'cloud-import-guest'},disabled:false};

@@ -132,9 +132,9 @@ def make_fixtures():
 
 
 def main():
-    target = ROOT / 'online-preview/fixtures.js'
+    target = ROOT / 'web/fixtures.js'
     target.write_text('const FIXTURES = ' + json.dumps(make_fixtures(), ensure_ascii=False, indent=2) + ';\n', encoding='utf-8')
-    print(f'Exported {len(PUZZLES)} original synthetic exercises to online-preview/fixtures.js')
+    print(f'Exported {len(PUZZLES)} original synthetic exercises to web/fixtures.js')
 
 
 if __name__ == '__main__':
