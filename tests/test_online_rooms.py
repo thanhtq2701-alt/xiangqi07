@@ -57,6 +57,19 @@ class OnlineRoomTests(unittest.TestCase):
         self.assertNotEqual(joined['side'], r['side'])
         self.assert_api(409, 'room_full', lambda: self.rooms.join(self.c, r['code']))
 
+    def test_untrusted_collection_fields_are_bad_requests_not_type_errors(self):
+        self.assert_api(400, None, lambda: self.rooms.create(self.a, {'preset': []}))
+        self.assert_api(400, None, lambda: self.rooms.create(self.a, {'visibility': []}))
+        self.assert_api(400, None, lambda: self.rooms.match(self.a, {'preset': {}}))
+        self.assert_api(400, None, lambda: self.rooms.create(self.a, []))
+        self.assert_api(400, None, lambda: self.rooms.match(self.a, []))
+        self.assert_api(400, None, lambda: self.rooms.action(self.a, '0000000000', 'chat', []))
+        self.started()
+        self.assert_api(400, 'canned_chat_only', lambda: self.rooms.action(
+            self.a, self.code, 'chat', {'message': []}))
+        self.assert_api(400, None, lambda: self.rooms.action(
+            self.a, self.code, 'kick', {'userId': {}}))
+
     def test_both_ready_starts_game_without_client_fen(self):
         r = self.rooms.create(self.a, {'visibility': 'public', 'fen': 'fake'})
         self.code = r['code']
@@ -143,6 +156,18 @@ class OnlineRoomTests(unittest.TestCase):
         r = self.rooms.action(self.black, self.code, 'ready')
         self.assertEqual(r['status'], 'playing')
 
+    def test_paused_players_must_finish_before_leaving_seat(self):
+        self.started()
+        self.now += 40
+        self.assertEqual(self.rooms.snapshot(self.a, self.code)['status'], 'paused')
+        for player in (self.a, self.b):
+            self.assert_api(409, 'game_live', lambda player=player: self.rooms.action(
+                player, self.code, 'leave'))
+        result = self.rooms.action(self.b, self.code, 'resign', {'confirm': True})
+        self.assertEqual(result['status'], 'finished')
+        self.rooms.action(self.b, self.code, 'leave')
+        self.assertFalse(self.rooms.has_live_context(self.b))
+
     def test_restart_persists_moves_and_freezes_clock(self):
         self.started()
         self.move(self.red, 'a3a4')
@@ -223,6 +248,19 @@ class OnlineRoomTests(unittest.TestCase):
         self.rooms.delete_identity(self.red['id'])
         self.assertEqual(self.rooms.history(self.black)['games'], [])
         self.assert_api(404, 'room_not_found', lambda: self.rooms.snapshot(self.black, self.code))
+
+    def test_static_identity_cleanup_uses_caller_transaction(self):
+        self.started()
+        self.rooms.join(self.c, self.code, spectator=True)
+        self.rooms.action(self.c, self.code, 'chat', {'message': 'hello'})
+        self.now += 1
+        with self.rooms.connect() as db:
+            OnlineRooms.delete_identity_in_db(db, self.c['id'], now=self.now)
+            row = db.execute('SELECT updated_at,data FROM online_rooms WHERE code=?', (self.code,)).fetchone()
+            room = json.loads(row['data'])
+        self.assertEqual(row['updated_at'], self.now)
+        self.assertEqual(room['spectators'], {})
+        self.assertEqual(room['messages'], [])
 
     def test_concurrent_duplicate_move_is_applied_once(self):
         r = self.started()
