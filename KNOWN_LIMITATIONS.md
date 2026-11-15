@@ -15,7 +15,11 @@ khả năng chịu tải hay mức sẵn sàng vận hành.
   xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
 - Kho bài nhỏ: 12 cơ bản +8 hướng dẫn +2 bài nhiều lượt. Hai bài mới cùng họ
   chiếu hết; chưa có kho nâng cao 6–7 quyết định hoặc coverage từng chương.
-  Chưa đủ 10 hình khác nhau/chương để đánh giá cấp.
+  Chưa đủ 10 hình khác nhau/chương để đánh giá cấp. Các chương Xe, Pháo, Mã,
+  An toàn Tướng và Đường thoát của Tướng gợi ý lại 12 bài cơ bản theo kỹ năng;
+  đó là dùng lại kho cũ, không phải thêm bài. Hình minh họa luật mới chỉ được
+  bộ luật kiểm tra tính hợp lệ, không phải nội dung chiến thuật đã được chuyên
+  gia thẩm định hay đánh giá nước tối ưu.
 - Ngôn ngữ EN chưa phủ hết các chuỗi động, màn mới, quản trị/PvP. Bài học vẫn
   tiếng Việt theo yêu cầu. Auto-flip hai người cùng máy, câu trả lời bằng mũi
   tên, dashboard/calendar đúng thiết kế cuối chưa đầy đủ.

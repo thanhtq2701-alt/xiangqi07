@@ -7,7 +7,10 @@
  const rook='4k4/9/r8/8p/9/4P4/9/R8/9/4K4 w';
  const cannon='4k4/9/1r7/8p/9/1H2P4/9/1C7/9/4K4 w';
  const horse='4k4/9/9/p8/3r5/4P4/2H6/9/9/4K4 w';
+ const horseBlocked='3k5/9/9/9/3r5/2P6/2H6/9/9/4K4 w';
  const safety='4k4/9/9/8p/9/4P4/9/R8/9/r3K4 w';
+ const safetyBlock='3k5/4r4/9/9/9/9/9/R8/9/4K4 w';
+ const rookBlocked='3k5/9/9/9/9/9/R1P3r2/9/9/4K4 w';
  const palace='3aka3/9/9/6R2/9/3R5/9/9/9/3K5 w';
  const courses=[
   {id:'opening',title:'Khai cuộc',description:'Phát triển quân và đọc phản ứng đầu ván.',chapterIds:['opening-foundation']},
@@ -15,13 +18,13 @@
   {id:'end',title:'Tàn cuộc',description:'Bắt đầu bằng việc kiểm tra đường thoát và kết thúc ván.',chapterIds:['end-basic']}
  ];
  const chapters=[
-  {id:'opening-foundation',courseId:'opening',title:'Bắt đầu có kế hoạch',icon:'開',summary:'Một nước mở đầu chưa quyết định cả ván.',lessonIds:['opening-development'],exerciseIds:[]},
-  {id:'rook',courseId:'middle',title:'Xe',icon:'俥',summary:'Đường mở, bảo vệ và phối hợp hai Xe.',lessonIds:['rook-open-file','rook-support'],exerciseIds:['v6-rooks-palace-a']},
-  {id:'cannon',courseId:'middle',title:'Pháo',icon:'炮',summary:'Quan sát ngòi trước và sau mỗi trao đổi.',lessonIds:['cannon-screen'],exerciseIds:[]},
-  {id:'horse',courseId:'middle',title:'Mã',icon:'傌',summary:'Nhìn chân Mã và cả những đường đi lùi.',lessonIds:['horse-path'],exerciseIds:[]},
-  {id:'kingSafety',courseId:'middle',title:'An toàn Tướng',icon:'帥',summary:'Giải chiếu trước khi tiếp tục kế hoạch.',lessonIds:['king-first'],exerciseIds:[]},
-  {id:'coordination',courseId:'middle',title:'Phối hợp quân',icon:'合',summary:'Một quân khống chế, quân còn lại kết thúc.',lessonIds:['rooks-palace'],exerciseIds:['v6-rooks-palace-a','v6-rooks-palace-b']},
-  {id:'end-basic',courseId:'end',title:'Đường thoát của Tướng',icon:'終',summary:'Phân biệt hết nước hợp lệ và chiếu hết.',lessonIds:['end-escape'],exerciseIds:[]}
+  {id:'opening-foundation',courseId:'opening',title:'Bắt đầu có kế hoạch',icon:'開',summary:'Một nước mở đầu chưa quyết định cả ván.',lessonIds:['opening-development'],exerciseIds:[],fixtureSkills:[]},
+  {id:'rook',courseId:'middle',title:'Xe',icon:'俥',summary:'Đường mở, vật cản và phối hợp hai Xe.',lessonIds:['rook-open-file','rook-support'],exerciseIds:['v6-rooks-palace-a'],fixtureSkills:['material']},
+  {id:'cannon',courseId:'middle',title:'Pháo',icon:'炮',summary:'Quan sát ngòi trước và sau mỗi trao đổi.',lessonIds:['cannon-screen'],exerciseIds:[],fixtureSkills:['cannon']},
+  {id:'horse',courseId:'middle',title:'Mã',icon:'傌',summary:'Nhìn chân Mã và cả những đường đi lùi.',lessonIds:['horse-path'],exerciseIds:[],fixtureSkills:['horse']},
+  {id:'kingSafety',courseId:'middle',title:'An toàn Tướng',icon:'帥',summary:'Giải chiếu trước khi tiếp tục kế hoạch.',lessonIds:['king-first'],exerciseIds:[],fixtureSkills:['safety']},
+  {id:'coordination',courseId:'middle',title:'Phối hợp quân',icon:'合',summary:'Một quân khống chế, quân còn lại kết thúc.',lessonIds:['rooks-palace'],exerciseIds:['v6-rooks-palace-a','v6-rooks-palace-b'],fixtureSkills:[]},
+  {id:'end-basic',courseId:'end',title:'Đường thoát của Tướng',icon:'終',summary:'Phân biệt hết nước hợp lệ và chiếu hết.',lessonIds:['end-escape'],exerciseIds:[],fixtureSkills:['safety']}
  ];
  const section=(title,text,fen,moves=[],caption='Minh họa hợp lệ; không phải đánh giá nước tối ưu.',focus)=>({title,text,fen,moves,caption,...(focus?{focus}:{})});
  const lessons=[
@@ -30,19 +33,23 @@
    section('Nhìn một hướng triển khai khác','Tiến Tốt có thể mở không gian nhưng cũng thay đổi các ô được bảo vệ. Đây là một diễn biến minh họa, không phải khai cuộc được khẳng định ưu thế.',start,['c3c4','g6g5','b0c2'])],exerciseIds:[]},
   {id:'rook-open-file',chapterId:'rook',phase:'middle',title:'Theo dõi cả đường Xe',summary:'Đường trống, vật cản và quân bảo vệ phải được đọc cùng nhau.',difficulty:'beginner',sections:[
    section('Đọc từ điểm đi đến điểm đến','Ở hình này, các ô giữa hai Xe đều trống. Nước ăn quân được bộ luật cho phép; khi áp dụng vào ván đầy đủ vẫn phải kiểm tra nước đáp của đối thủ.',rook,['a2a7']),
-   section('Từ một đường đến hai đường','Hai Xe có thể chia nhau khống chế hàng và cột. Ở hình tiếp theo, hãy quan sát đường dọc của Tướng Đỏ trước khi mở bài nhiều lượt.',palace,[])],exerciseIds:['v6-rooks-palace-a']},
+   section('Từ một đường đến hai đường','Hai Xe có thể chia nhau khống chế hàng và cột. Ở hình tiếp theo, hãy quan sát đường dọc của Tướng Đỏ trước khi mở bài nhiều lượt.',palace,[]),
+   section('Xe không nhảy qua quân','Tốt 7 của Đỏ đứng trên đường ngang của Xe 9. Xe không đi xuyên qua quân mình, nên không thể bắt Xe 7 của Đen ở cuối hàng; theo hàng ngang, bộ luật chỉ cho Xe 9 đi một ô (X9-8).',rookBlocked,[],undefined,['a3','c3','g3'])],exerciseIds:['v6-rooks-palace-a']},
   {id:'rook-support',chapterId:'rook',phase:'middle',title:'Quân nào giữ đường thoát',summary:'Đừng chỉ nhìn quân đang chiếu; kiểm tra quân nào đang bảo vệ nó.',difficulty:'intermediate',sections:[
    section('Quan sát nhiệm vụ của từng Xe','Hình này dùng hai Xe và đường khống chế của Tướng. Khi một Xe đổi hàng, đường thoát và quân Sĩ có thể thay đổi; phải tính lại sau mỗi phản ứng.',palace,['d4d9','e9e8','d9d8']),
    section('Đổi hướng để tiếp tục ép','Đây là đoạn tiếp theo của một chuỗi được kiểm tra bằng luật. Bài luyện riêng sẽ yêu cầu bạn tự thực hiện từng quyết định thay vì chỉ xem nước chạy.',palace,['d4d9','e9e8','d9d8','e8e9','g6e6','f9e8','d8d9'],'Chuỗi tự dựng đã kiểm tra chiếu hết; chưa qua chuyên gia hoặc Pikafish.')],exerciseIds:['v6-rooks-palace-a']},
   {id:'cannon-screen',chapterId:'cannon',phase:'middle',title:'Ngòi Pháo có thể thay đổi',summary:'Đếm ngòi ở thế hiện tại, rồi đếm lại sau phản ứng đối thủ.',difficulty:'beginner',sections:[
    section('Đúng một quân ở giữa','Mã 8 đứng giữa Pháo 8 và Xe 2 của Đen, nên làm ngòi cho Pháo. Khi ăn quân, Pháo cần đúng một ngòi; khi đi không ăn, Pháo cần đường trống.',cannon,['b2b7'],undefined,['b2','b4','b7']),
-   section('Đừng ghi nhớ chỉ một hình','Quân ngòi có thể thuộc bên nào. Điều phải giữ lại là cách đếm vật cản và kiểm tra an toàn Tướng; bài Pháo nhiều lượt sẽ được bổ sung sau khi có cây đáp án được xác minh.',cannon,[])],exerciseIds:[]},
+   section('Đừng ghi nhớ chỉ một hình','Quân ngòi có thể thuộc bên nào. Điều phải giữ lại là cách đếm vật cản và kiểm tra an toàn Tướng; bài Pháo nhiều lượt sẽ được bổ sung sau khi có cây đáp án được xác minh.',cannon,[]),
+   section('Đếm lại sau khi ngòi rời đường','Mã 8 đi M8.7. Giữa Pháo 8 và Xe 2 của Đen không còn quân nào, nên Pháo không còn ăn được Xe; ngược lại, đường trống cho Xe Đen ăn Pháo (X2.5). Một nước hợp lệ có thể thay đổi hoàn toàn đường Pháo.',cannon,['b4c6'],undefined,['b2','b4','b7'])],exerciseIds:[]},
   {id:'horse-path',chapterId:'horse',phase:'middle',title:'Mã đi được khi chân còn trống',summary:'Kiểm tra chân Mã trước, sau đó mới nhìn mục tiêu.',difficulty:'beginner',sections:[
    section('Tách chân Mã khỏi ô đến','Mã 7 muốn tới ô có Xe Đen (M7.6) phải đi qua chân Mã, là ô sát phía trên nó. Ô chân phải trống; một mục tiêu có vẻ gần không đồng nghĩa có đường đi hợp lệ.',horse,['c3d5'],undefined,['c3','c4','d5']),
-   section('Nhìn lại sau mỗi nước đáp','Một quân vừa di chuyển có thể mở hoặc chặn chân Mã. Đừng suy ra đòn đôi chỉ từ hình dạng quân; phải xác minh cả hai mục tiêu và phản ứng đối thủ.',horse,[])],exerciseIds:[]},
+   section('Nhìn lại sau mỗi nước đáp','Một quân vừa di chuyển có thể mở hoặc chặn chân Mã. Đừng suy ra đòn đôi chỉ từ hình dạng quân; phải xác minh cả hai mục tiêu và phản ứng đối thủ.',horse,[]),
+   section('Chân Mã bị chặn','Tốt 7 của Đỏ đứng ngay trên Mã 7, đúng ô chân Mã. Vì vậy M7.6 không hợp lệ dù Xe Đen đang ở ô đến; hãy kiểm tra chân Mã trước khi tính quân bị ăn.',horseBlocked,[],undefined,['c3','c4','d5'])],exerciseIds:[]},
   {id:'king-first',chapterId:'kingSafety',phase:'middle',title:'Giải chiếu trước khi làm việc khác',summary:'Nước hợp lệ phải giữ Tướng an toàn.',difficulty:'beginner',sections:[
    section('Nhìn đường chiếu','Xe 1 của Đen đang chiếu Tướng Đỏ theo hàng ngang. Xe 9 có thể bắt quân đang chiếu (X9/2). Trước khi chọn, hãy kiểm tra cả đường giữa hai quân.',safety,['a2a0'],undefined,['a0','e0','a2']),
-   section('Kiểm tra lại toàn bàn','Bắt quân chiếu, che đường hoặc di chuyển Tướng chỉ là các loại ý tưởng. Mỗi nước cụ thể vẫn phải qua luật; không có nút chữa chiếu dùng được cho mọi hình.',safety,[])],exerciseIds:[]},
+   section('Kiểm tra lại toàn bàn','Bắt quân chiếu, che đường hoặc di chuyển Tướng chỉ là các loại ý tưởng. Mỗi nước cụ thể vẫn phải qua luật; không có nút chữa chiếu dùng được cho mọi hình.',safety,[]),
+   section('Một cách giải chiếu là chắn đường','Xe 5 của Đen đang chiếu Tướng Đỏ theo cột giữa. Ở hình này bộ luật chỉ còn hai nước hợp lệ: Xe 9 chắn đường chiếu (X9-5) hoặc Tướng sang ngang (Tg5-4). Sau X9-5, Tướng Đỏ không còn bị chiếu.',safetyBlock,['a2e2'],undefined,['e8','e0','a2'])],exerciseIds:[]},
   {id:'rooks-palace',chapterId:'coordination',phase:'middle',title:'Hai Xe cùng ép trong cung',summary:'Theo dõi cả đường thoát và khả năng Sĩ che chiếu.',difficulty:'intermediate',sections:[
    section('Một quân tiến và một quân giữ','Bài luyện gắn với hình này có nhiều quyết định. Mục tiêu cụ thể là chiếu liên tục tới chiếu hết trong giới hạn bài, không phải khẳng định đây là kế hoạch duy nhất trong mọi thế tương tự.',palace,[]),
    section('Một phản ứng cần tính','Sau khi Xe bắt Sĩ, Tướng có thể đổi hàng. Người học phải tự đi tiếp; nước đầu đúng chưa hoàn thành cả bài.',palace,['d4d9','e9e8'])],exerciseIds:['v6-rooks-palace-a','v6-rooks-palace-b']},
@@ -630,7 +637,7 @@
  function findExercise(id){return exercises.find(x=>x.id===id)||null;}
  function findChapter(id){return chapters.find(x=>x.id===id)||null;}
  function chapterProgress(chapterId,records){const chapter=findChapter(chapterId);if(!chapter)return null;const attempts=Array.isArray(records)?records:Object.values(records||{}).flatMap(r=>Array.isArray(r?.attempts)?r.attempts:r?[r]:[]);const completed=new Set(attempts.filter(a=>a&&a.success===true&&a.completedAt&&chapter.exerciseIds.includes(a.puzzleId||a.exerciseId)).map(a=>a.puzzleId||a.exerciseId));return {completed:completed.size,total:chapter.exerciseIds.length,required:10,level:completed.size>=10?2:1,thresholdMet:completed.size>=10,needsMoreContent:chapter.exerciseIds.length<10};}
- function validate(){for(const lesson of lessons){if(!findChapter(lesson.chapterId))throw new Error('Unknown lesson chapter');for(const diagram of lesson.sections){if(diagram.focus!==undefined&&(!Array.isArray(diagram.focus)||diagram.focus.some(square=>typeof square!=='string'||!/^[a-i][0-9]$/.test(square))))throw new Error('Invalid lesson focus square');let pos=XQ.Position.fromFen(diagram.fen);for(const move of diagram.moves)pos=pos.play(move);}for(const id of lesson.exerciseIds)if(!findExercise(id))throw new Error('Unknown practice');}return true;}
+ function validate(){for(const chapter of chapters)if(!Array.isArray(chapter.fixtureSkills)||chapter.fixtureSkills.some(skill=>!['material','cannon','horse','safety'].includes(skill)))throw new Error('Unknown chapter practice skill');for(const lesson of lessons){if(!findChapter(lesson.chapterId))throw new Error('Unknown lesson chapter');for(const diagram of lesson.sections){if(diagram.focus!==undefined&&(!Array.isArray(diagram.focus)||diagram.focus.some(square=>typeof square!=='string'||!/^[a-i][0-9]$/.test(square))))throw new Error('Invalid lesson focus square');let pos=XQ.Position.fromFen(diagram.fen);for(const move of diagram.moves)pos=pos.play(move);}for(const id of lesson.exerciseIds)if(!findExercise(id))throw new Error('Unknown practice');}return true;}
  function freeze(value){if(value&&typeof value==='object'&&!Object.isFrozen(value)){Object.freeze(value);for(const child of Object.values(value))freeze(child);}return value;}
  validate();
  return freeze({courses,chapters,lessons,exercises,findLesson,findExercise,findChapter,chapterProgress,validate});
