@@ -9,7 +9,7 @@ from verify_source_pack import verify
 
 ROOT = Path(__file__).resolve().parents[1]
 FILES = [
-    'README.md', 'AGENTS.md', 'CLAUDE.md', 'CONTRIBUTING.md', '.gitignore', '.gitattributes', '.env.example', '.nvmrc',
+    'README.md', 'V6_PREVIOUS.md', 'AGENTS.md', 'CLAUDE.md', 'CONTRIBUTING.md', '.gitignore', '.gitattributes', '.env.example', '.nvmrc',
     '.github/workflows/checks.yml',
     'co_chill_server.py', 'requirements.txt', 'Mo_Co_Chill_V6.cmd',
     'KNOWN_LIMITATIONS.md', 'PRIVACY.md', 'THIRD_PARTY_NOTICES.md',
