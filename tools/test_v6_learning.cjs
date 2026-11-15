@@ -1,10 +1,10 @@
 'use strict';
 const assert=require('node:assert/strict');
-const XQ=require('../online-preview/xiangqi.js');
-const C=require('../online-preview/curriculum.js');
-const L=require('../online-preview/line-practice.js');
-const CC=require('../online-preview/learning.js');
-const E=require('../online-preview/experience.js');
+const XQ=require('../web/xiangqi.js');
+const C=require('../web/curriculum.js');
+const L=require('../web/line-practice.js');
+const CC=require('../web/learning.js');
+const E=require('../web/experience.js');
 const T=Date.parse('2026-10-25T08:00:00.000Z'), responses=['Tôi quan sát đường thoát.','Hai Xe và Tướng phối hợp.','Chiếu liên tục và kiểm tra phản ứng.'];
 const tests=[],test=(name,run)=>tests.push({name,run}),clone=v=>JSON.parse(JSON.stringify(v));
 function start(exercise=C.exercises[0]){return L.create(exercise,{now:T,firstExposure:true});}

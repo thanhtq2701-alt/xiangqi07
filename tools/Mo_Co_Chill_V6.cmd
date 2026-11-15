@@ -1,6 +1,6 @@
 @echo off
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 title Co Chill V6 - local server
 echo Co Chill V6: http://127.0.0.1:8769/#home
 echo Keep this window open. Press Ctrl+C to stop.

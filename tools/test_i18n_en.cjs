@@ -5,7 +5,7 @@
 'use strict';
 const fs = require('fs'), path = require('path'), assert = require('assert');
 const ROOT = path.resolve(__dirname, '..');
-const WEB = f => path.join(ROOT, 'online-preview', f);
+const WEB = f => path.join(ROOT, 'web', f);
 const VI = /[ăâđêôơưàáạảãằắặẳẵầấậẩẫèéẹẻẽềếệểễìíịỉĩòóọỏõồốộổỗờớợởỡùúụủũừứựửữỳýỵỷỹ]/i;
 const BRAND = /Cờ Chill|CỜ CHILL/g;
 const curriculum = require(WEB('curriculum.js'));
@@ -120,7 +120,7 @@ const RUNTIME = ['3 hình đến hạn', 'Nước bạn chọn: P2-5', 'Phòng 0
 
 test('every interface and server message fragment translates', () => {
   const sources = [];
-  for (const f of fs.readdirSync(path.join(ROOT, 'online-preview'))) {
+  for (const f of fs.readdirSync(path.join(ROOT, 'web'))) {
     if (!f.endsWith('.js') || ['curriculum.js', 'fixtures.js', 'content-en.js', 'i18n-en-ui.js'].includes(f)) continue;
     const src = fs.readFileSync(WEB(f), 'utf8');
     for (const lit of literals(src)) {
@@ -162,7 +162,7 @@ test('no machine coordinates appear in any text a user can read', () => {
   for (const text of ['a3a4', 'P2-5 M8.7', 'Xt.1 hoặc B7t.1', '#main h1', 'Chariots coordinate']) assert.strictEqual(unsafe(text), false, text);
   const found = [];
   const check = (where, text) => { if (unsafe(text)) found.push(where + ': ' + text); };
-  for (const f of fs.readdirSync(path.join(ROOT, 'online-preview'))) {
+  for (const f of fs.readdirSync(path.join(ROOT, 'web'))) {
     if (!f.endsWith('.js') || ['i18n-en-ui.js', 'content-en.js'].includes(f)) continue;
     for (const lit of literals(fs.readFileSync(WEB(f), 'utf8'))) {
       for (const part of lit.split(/<[^>]*>|\u0000/)) check(f, part);

@@ -198,7 +198,7 @@ def main():
         assert result['depth'] == 2, 'Python reference search did not finish.'
         engines.append(dict(id=puzzle['id'], fen=puzzle['fen'], score=result['score'], ranked=result['lines']))
     data = dict(positions=fixtures(), fens=fen_cases(), engines=engines)
-    result = subprocess.run([node, '-e', NODE_CHECK, str(ROOT / 'online-preview/xiangqi.js')],
+    result = subprocess.run([node, '-e', NODE_CHECK, str(ROOT / 'web/xiangqi.js')],
                             input=json.dumps(data, ensure_ascii=False), encoding='utf-8',
                             capture_output=True, timeout=180)
     if result.returncode:

@@ -1,8 +1,8 @@
 /* Evidence normalization against real browser Xiangqi rules; no engine download. */
 'use strict';
 const assert = require('node:assert/strict');
-const XQ = require('../online-preview/xiangqi.js');
-const Engine = require('../online-preview/engine-client.js');
+const XQ = require('../web/xiangqi.js');
+const Engine = require('../web/engine-client.js');
 const tests = [];
 function test(name, run) { tests.push({name, run}); }
 const position = XQ.Position.fromFen(XQ.START_FEN);

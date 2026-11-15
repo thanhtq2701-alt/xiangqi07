@@ -4,10 +4,10 @@ const assert=require('node:assert/strict');
 const fs=require('node:fs');
 const path=require('node:path');
 const vm=require('node:vm');
-const UI=require('../online-preview/v6-ui.js');
-const Cloud=require('../online-preview/cloud-client.js');
-const XQ=require('../online-preview/xiangqi.js');
-const CC={...require('../online-preview/learning.js'),...require('../online-preview/experience.js'),...require('../online-preview/game-tools.js')};
+const UI=require('../web/v6-ui.js');
+const Cloud=require('../web/cloud-client.js');
+const XQ=require('../web/xiangqi.js');
+const CC={...require('../web/learning.js'),...require('../web/experience.js'),...require('../web/game-tools.js')};
 const tests=[];const test=(name,fn)=>tests.push({name,fn});
 const response=data=>({ok:true,status:200,headers:{get:()=> 'application/json'},json:async()=>data});
 const account=id=>({authenticated:true,user:{id,username:'user_'+id,displayName:'Player '+id,role:'user'},csrf:'test-csrf'});
@@ -30,7 +30,7 @@ function harness({session={authenticated:false},available=true,initialHash='#hom
     FormData:class extends Map{constructor(form){super(form.data||[]);}getAll(key){const v=this.get(key);return v===undefined?[]:[v];}},
     addEventListener(){},scrollTo(){}};
   sandbox.window=sandbox;vm.createContext(sandbox);
-  for(const name of ['app.js','v5-ui.js','v6-ui.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../online-preview',name),'utf8'),sandbox,{filename:name});
+  for(const name of ['app.js','v5-ui.js','v6-ui.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',name),'utf8'),sandbox,{filename:name});
   return {run:s=>vm.runInContext(s,sandbox),api:sandbox.CCV6UI,storage,writes,element,document,client:()=>sandbox.CCCloudUI.snapshot().client,
     async dispatch(kind,event){for(const listener of listeners[kind]||[])await listener(event);}};
 }

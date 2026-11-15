@@ -1,7 +1,7 @@
 'use strict';
 const assert = require('node:assert/strict');
-const XQ = require('../online-preview/xiangqi.js');
-const CC = require('../online-preview/game-tools.js');
+const XQ = require('../web/xiangqi.js');
+const CC = require('../web/game-tools.js');
 const tests = [];
 const test = (name, fn) => tests.push({ name, fn });
 function pos(pieces, turn = 'w') {

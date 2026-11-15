@@ -1,6 +1,6 @@
 'use strict';
 const assert=require('node:assert/strict'),fs=require('node:fs'),vm=require('node:vm');
-const Online=require('../online-preview/online-play.js'),XQ=require('../online-preview/xiangqi.js');
+const Online=require('../web/online-play.js'),XQ=require('../web/xiangqi.js');
 const tests=[],test=(name,fn)=>tests.push({name,fn});
 const code='012345ABCD';
 const initialRoom=(extra={})=>({code,gameId:'game1',ownerId:'guest_a',players:{w:{id:'guest_a',displayName:'A'},b:{id:'guest_b',displayName:'B'}},spectators:[],side:'w',status:'waiting',revision:0,options:{preset:'rapid',seconds:600,increment:5},ready:[],fen:XQ.START_FEN,initialFen:XQ.START_FEN,moves:[],clock:{w:600000,b:600000},serverNow:100,result:{over:false},messages:[],chatOptions:{hello:'Chào bạn!'},rematch:[],...extra});
@@ -30,7 +30,7 @@ function harness({hash='#online',memberRoom=null,responder=null,booting=false}={
       if(url.endsWith('/move')){const data=JSON.parse(options.body);room={...room,fen:XQ.Position.fromFen(room.fen).play(data.move).fen(),moves:[...room.moves,data.move],revision:room.revision+1};return response(room);}
       throw new Error('Unexpected request '+url);
     }};
-  sandbox.window=sandbox;vm.createContext(sandbox);vm.runInContext(fs.readFileSync(require.resolve('../online-preview/online-play.js'),'utf8'),sandbox);
+  sandbox.window=sandbox;vm.createContext(sandbox);vm.runInContext(fs.readFileSync(require.resolve('../web/online-play.js'),'utf8'),sandbox);
   return {sandbox,api:sandbox.CCOnline,requests,element,timers,storage,
     switchAccount:()=>{cloudEpoch++;user={id:'other'};sandbox.render();},
     async submit(type,values,submitter='join'){const form={dataset:{onlineForm:type},values};await events.submit[0]({target:{closest:()=>form},submitter:{value:submitter},preventDefault(){},stopImmediatePropagation(){}});await settle();},

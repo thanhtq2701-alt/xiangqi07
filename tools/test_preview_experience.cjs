@@ -3,10 +3,10 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const vm = require('node:vm');
-const XQ = require('../online-preview/xiangqi.js');
-const learning = require('../online-preview/learning.js');
-const experience = require('../online-preview/experience.js');
-const gameTools = require('../online-preview/game-tools.js');
+const XQ = require('../web/xiangqi.js');
+const learning = require('../web/learning.js');
+const experience = require('../web/experience.js');
+const gameTools = require('../web/game-tools.js');
 const CC = { ...learning, ...experience, ...gameTools };
 const T0 = Date.parse('2026-10-16T08:00:00Z');
 const puzzle = { id: 'sample', skill: 'cannon', fen: XQ.START_FEN, solution: 'h2e2', alternatives: ['b2e2'], what: 'ANSWER_SPOILER_what', why: 'ANSWER_SPOILER_why', how: 'ANSWER_SPOILER_how' };
@@ -202,7 +202,7 @@ function appHarness(initialState, initialHash = '#learn') {
     localStorage: { getItem: k => storage.get(k) || null, setItem: (k, v) => storage.set(k, v), removeItem: k => storage.delete(k) },
     setInterval() {}, setTimeout() {}, clearTimeout() {}, confirm: () => true, FormData: class { constructor() {} } };
   sandbox.window = { addEventListener() {}, scrollTo() {} };
-  vm.createContext(sandbox); vm.runInContext(fs.readFileSync(path.join(__dirname, '../online-preview/app.js'), 'utf8'), sandbox);
+  vm.createContext(sandbox); vm.runInContext(fs.readFileSync(path.join(__dirname, '../web/app.js'), 'utf8'), sandbox);
   return { run: text => vm.runInContext(text, sandbox), advance: delta => { now += delta; }, html: () => element('main').innerHTML,
     click(action) { const target = { dataset: { action, value: '' } }; listeners.click({ target: { closest: selector => selector === '[data-action]' ? target : null } }); },
     submit() { listeners.submit({ target: { id: 'reflection-form' }, preventDefault() {} }); }, stored: () => JSON.parse(storage.get('co-chill-v4-browser')) };

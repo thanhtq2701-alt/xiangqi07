@@ -12,7 +12,7 @@
 
 <br>
 
-<img src="online-preview/cover-co-chill.webp" alt="Cờ Chill — a Vietnamese-first Xiangqi learning app" width="720">
+<img src="web/cover-co-chill.webp" alt="Cờ Chill — a Vietnamese-first Xiangqi learning app" width="720">
 
 </div>
 
@@ -50,7 +50,7 @@ The exercise catalog is intentionally described accurately: it currently include
 - **Rules own chess truth.** Rules and configured engine evidence—not an explanation provider—determine legal moves and analysis.
 - **Reflection comes first.** Keep solutions behind the learner's reflection and exercise flow.
 - **Be precise about AI.** The basic bot uses heuristic search; explanations use templates. The project does not claim trained machine learning, human-level play, or measured learning impact.
-- **Respect learner data.** The application does not send learner data to an AI service or use it to train a model. Local export and deletion features are available; see the [privacy notes](PRIVACY.md) for details and caveats.
+- **Respect learner data.** The application does not send learner data to an AI service or use it to train a model. Local export and deletion features are available; see the [privacy notes](docs/PROJECT.md#5-dữ-liệu-và-quyền-riêng-tư) for details and caveats.
 - **Keep limitations visible.** Passing source checks does not certify a production deployment, a real Pikafish installation, security, or educational effectiveness.
 
 ## Try a learning session
@@ -60,7 +60,7 @@ The exercise catalog is intentionally described accurately: it currently include
 3. Complete the reflection prompts, try moves, and finish the line.
 4. Read the explanation, retry, then look at related practice and the review schedule.
 
-For a local friendly game, open a second browser window on the same machine. This demonstrates local behavior; it does not verify Internet multiplayer or a production engine. More demo context is in the [V6 handoff](docs/CLAUDE_HANDOFF_V6.md).
+For a local friendly game, open a second browser window on the same machine. This demonstrates local behavior; it does not verify Internet multiplayer or a production engine.
 
 ## Run locally
 
@@ -70,7 +70,7 @@ Python 3.12 is the tested version. From the repository root:
 python co_chill_server.py serve --port 8769
 ```
 
-Open <http://127.0.0.1:8769/>. On Windows, you can also run [`Mo_Co_Chill_V6.cmd`](Mo_Co_Chill_V6.cmd). Keep the terminal open while using the app; press Ctrl+C to stop the server.
+Open <http://127.0.0.1:8769/>. On Windows, you can also run [`tools/Mo_Co_Chill_V6.cmd`](tools/Mo_Co_Chill_V6.cmd). Keep the terminal open while using the app; press Ctrl+C to stop the server.
 
 The server creates its SQLite data under `var/` by default. Keep databases, backups, logs, and account details out of Git. This command starts a local server; it does not deploy the application to the Internet. Node.js is needed for the JavaScript checks, not to run the app; use the version in [`.nvmrc`](.nvmrc).
 
@@ -88,7 +88,7 @@ The check runner covers Python and JavaScript checks, exercise fixtures, and cro
 python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
 ```
 
-GitHub Actions runs the repository check runner for pull requests and pushes to `codex-full`. Tests exercise the source; they do not prove that the configured production engine or infrastructure works. See [known limitations](KNOWN_LIMITATIONS.md).
+GitHub Actions runs the repository check runner for pull requests and pushes to `codex-full`. Tests exercise the source; they do not prove that the configured production engine or infrastructure works. See [known limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
 
 ## Repository map
 
@@ -96,33 +96,31 @@ GitHub Actions runs the repository check runner for pull requests and pushes to 
 |---|---|
 | [`co_chill_server.py`](co_chill_server.py) | Application entry point, HTTP API, and static frontend serving |
 | [`app/`](app/) | Server-side rules, accounts, persistence, online rooms, and engine adapters |
-| [`online-preview/`](online-preview/) | Browser interface, rules, and learning flows |
+| [`web/`](web/) | Browser interface, rules, and learning flows |
 | [`tests/`](tests/) and [`tools/`](tools/) | Tests, validation tools, and the check runner |
-| [`docs/`](docs/) | Product decisions, handoff notes, and supporting documentation |
-| [`deploy/`](deploy/) | Deployment and operations guidance |
-| [`legacy/`](legacy/) | Older local-only application; not the current entry point |
-
-The original V0.1 planning materials in [`docs/spec/`](docs/spec/) are preserved as historical source documents; [`docs/V6_DECISIONS.md`](docs/V6_DECISIONS.md) and [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md) describe the current implementation and its caveats.
+| [`docs/`](docs/) | [`PROJECT.md`](docs/PROJECT.md) (architecture, decisions, rules notes, limitations, privacy, contributing) and the translation glossary |
+| [`deploy/`](deploy/) | Production runbook, service and Nginx templates, environment template, update script |
+| [`old/`](old/README.md) | History only: the retired local app, original V0.1 planning, past reports and audits |
 
 ## Current limitations
 
 - The learning catalog is small, and the two multi-step exercises cover the same tactical family.
 - The basic bot is heuristic, not Pikafish; Pikafish and its network files are not included in this repository.
-- English coverage is incomplete, and several planned learning and community features are not finished.
-- The source pack does not independently verify the production VM, engine, load capacity, backups, or deployment configuration.
+- Several planned learning and community features are not finished.
+- The repository does not independently verify the production VM, engine, load capacity, backups, or deployment configuration.
 - The tests are not a security audit, a tournament-rules certification, or evidence that the product improves learning outcomes.
 
-For the full, maintained list—including data and operations caveats—see [`KNOWN_LIMITATIONS.md`](KNOWN_LIMITATIONS.md). For privacy behavior, see [`PRIVACY.md`](PRIVACY.md).
+For the full, maintained list—including data, privacy, and operations caveats—see [`docs/PROJECT.md`](docs/PROJECT.md).
 
 ## Contributing and deployment
 
 Create a feature branch from `codex-full`, make a focused change, run the checks, and open a pull request. GitHub Actions runs the repository checks; do not push directly to `codex-full`. The project owner reviews changes and handles production deployment.
 
-Read [`CONTRIBUTING.md`](CONTRIBUTING.md) for the contribution workflow and [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md) for deployment guidance. A deployment guide is not evidence that the current source pack has independently verified the live infrastructure.
+See the [contribution workflow](docs/PROJECT.md#8-quy-trình-đóng-góp) and [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md) for deployment guidance. A deployment guide is not evidence that the repository has independently verified the live infrastructure.
 
 ## Third-party software and project license
 
-See [`THIRD_PARTY_NOTICES.md`](THIRD_PARTY_NOTICES.md) for third-party notices and engine-related information. This repository does not contain a `LICENSE` file, and the project owner has not selected a project license. Do not assume that the code, content, or artwork is available for reuse or redistribution.
+See [AI, content sources, and third parties](docs/PROJECT.md#6-ai-nguồn-nội-dung-và-bên-thứ-ba) for third-party notices and engine-related information. This repository does not contain a `LICENSE` file, and the project owner has not selected a project license. Do not assume that the code, content, or artwork is available for reuse or redistribution.
 
 ## Tiếng Việt
 
@@ -134,4 +132,4 @@ Chạy ứng dụng local bằng Python 3.12:
 python co_chill_server.py serve --port 8769
 ```
 
-Xem [giới hạn hiện tại](KNOWN_LIMITATIONS.md), [quyền riêng tư](PRIVACY.md), [quyết định V6](docs/V6_DECISIONS.md) và [quy trình đóng góp](CONTRIBUTING.md). Việc chạy local hoặc bộ kiểm tra đạt không xác nhận hạ tầng production hay hiệu quả học tập.
+Xem [tài liệu dự án](docs/PROJECT.md): kiến trúc, quyết định V6, giới hạn hiện tại, quyền riêng tư và quy trình đóng góp. Việc chạy local hoặc bộ kiểm tra đạt không xác nhận hạ tầng production hay hiệu quả học tập.

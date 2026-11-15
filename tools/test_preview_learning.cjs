@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require('node:assert/strict');
-const CC = require('../online-preview/learning.js');
+const CC = require('../web/learning.js');
 const T0 = Date.parse('2026-10-15T10:00:00.000Z');
 const puzzle = { id: 'rook-a', skill: 'material', title: 'Observe', fen: 'demo', solution: 'a2a7' };
 const tests = [];

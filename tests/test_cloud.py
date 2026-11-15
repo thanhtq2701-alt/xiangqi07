@@ -110,7 +110,7 @@ class CloudTests(unittest.TestCase):
             self.assertEqual(self.client.request(path)[0], 401, path)
 
     def test_static_files_are_cached_only_for_their_current_version(self):
-        web = Path(__file__).resolve().parents[1] / 'online-preview'
+        web = Path(__file__).resolve().parents[1] / 'web'
         forever = 'public, max-age=31536000, immutable'
         version = {name: content_version((web / name).read_bytes()) for name in ('app.js', 'style.css', 'cover-co-chill.webp', 'index.html')}
         for name in ('app.js', 'style.css', 'cover-co-chill.webp'):
