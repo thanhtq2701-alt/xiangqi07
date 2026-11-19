@@ -1,141 +1,78 @@
 <div align="center">
 
-# Cờ Chill | Xiangqi Learning
+# Cờ Chill
 
-### Learn Xiangqi by thinking through the position—not by skipping to the answer.
+**Learn Xiangqi by thinking through the position, not by skipping to the answer.**
 
-**A Vietnamese-first Xiangqi learning app built around reflection, rule-grounded play, and deliberate practice.**
+[![Checks](https://github.com/thanhtq2701-alt/xiangqi07/actions/workflows/checks.yml/badge.svg?branch=codex-full)](https://github.com/thanhtq2701-alt/xiangqi07/actions/workflows/checks.yml)
 
-[Project website](https://cochill.vn) · [Run locally](#run-locally) · [Try a learning session](#try-a-learning-session)
+<img src="web/cover-co-chill.webp" alt="Cờ Chill cover" width="640">
 
-[![Repository checks](https://github.com/thanhtq2701-alt/xiangqi07/actions/workflows/checks.yml/badge.svg?branch=codex-full)](https://github.com/thanhtq2701-alt/xiangqi07/actions/workflows/checks.yml)
-
-<br>
-
-<img src="web/cover-co-chill.webp" alt="Cờ Chill — a Vietnamese-first Xiangqi learning app" width="720">
+[cochill.vn](https://cochill.vn) · [Tiếng Việt](#tiếng-việt) · [Project doc](docs/PROJECT.md)
 
 </div>
 
-## What is Cờ Chill?
+Cờ Chill is a Vietnamese-first web app for learning and playing Xiangqi (Chinese chess), with a full English mode. Learners reflect on a position before an explanation is shown, then retry, try related practice and come back for review.
 
-Cờ Chill is a web application for learning and playing Xiangqi (Chinese chess). Its central design choice is simple: invite learners to reflect on a position before revealing an explanation, then give them a chance to retry and revisit related practice.
+## Features
 
-This repository contains the current V6 application source. It brings together a browser interface, a Python server, Xiangqi rules, learning flows, account-backed progress, and friendly online rooms. It is an evolving software project—not a claim of proven educational outcomes or a trained AI coach.
+- **Reflection-first exercises:** basic and multi-move exercises, retry, related practice and a review schedule.
+- **Play:** against a basic heuristic bot, two players on one device, or friendly online rooms where the server owns moves, clocks and results.
+- **Accounts:** synced progress, export, import with preview, and deletion of your own data. Guests can play without an account.
+- **Rules-first:** Python and JavaScript rules are cross-checked; explanations are templates grounded in checked lines. An optional Pikafish adapter works only when the operator supplies the engine.
 
-## The learning loop
-
-1. **Study a position** and write down what you are considering.
-2. **Choose and play a move**, with legal play checked against Xiangqi rules.
-3. **Finish the exercise** before seeing its explanation.
-4. **Review the explanation**, retry the line, and explore related practice.
-5. **Return later** using the practice and review features.
-
-The sequence is intentional: explanations should support a learner's own reasoning, not replace it. The app does not provide coaching during a live game.
-
-## Product and engineering highlights
-
-| Area | What is in the source |
-|---|---|
-| Learning experience | Reflection-first, multi-step exercises; retry; related practice; saved drafts and review scheduling |
-| Rules and game integrity | Python and JavaScript Xiangqi rules; server-managed moves, clocks, and results for online friendly rooms |
-| Accounts and persistence | Account sessions and synchronized learner state, with local guest play |
-| Engine boundary | A basic heuristic bot and an optional Pikafish UCI adapter when an operator supplies a compatible engine |
-| Explanations | Templates grounded in checked rules and exercise lines—not free-form engine claims |
-| Frontend and server | Vanilla JavaScript and a Python WSGI server using SQLite |
-
-The exercise catalog is intentionally described accurately: it currently includes 12 basic exercises, 8 tutorials, and 2 multi-step exercises. The two multi-step exercises share a tactical theme; they are not evidence of broad curriculum coverage.
-
-## Engineering principles
-
-- **Rules own chess truth.** Rules and configured engine evidence—not an explanation provider—determine legal moves and analysis.
-- **Reflection comes first.** Keep solutions behind the learner's reflection and exercise flow.
-- **Be precise about AI.** The basic bot uses heuristic search; explanations use templates. The project does not claim trained machine learning, human-level play, or measured learning impact.
-- **Respect learner data.** The application does not send learner data to an AI service or use it to train a model. Local export and deletion features are available; see the [privacy notes](docs/PROJECT.md#5-dữ-liệu-và-quyền-riêng-tư) for details and caveats.
-- **Keep limitations visible.** Passing source checks does not certify a production deployment, a real Pikafish installation, security, or educational effectiveness.
-
-## Try a learning session
-
-1. Start the app using the instructions below and open it in your browser.
-2. Choose guest mode, open the learning path, and select a multi-step exercise.
-3. Complete the reflection prompts, try moves, and finish the line.
-4. Read the explanation, retry, then look at related practice and the review schedule.
-
-For a local friendly game, open a second browser window on the same machine. This demonstrates local behavior; it does not verify Internet multiplayer or a production engine.
+The library is still small (12 basic exercises, 8 lessons, 2 multi-move exercises). There is no trained AI coach and no claim of measured learning impact. See [limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
 
 ## Run locally
 
-Python 3.12 is the tested version. From the repository root:
+Requires Python 3.12. From the repository root:
 
 ```powershell
 python co_chill_server.py serve --port 8769
 ```
 
-Open <http://127.0.0.1:8769/>. On Windows, you can also run [`tools/Mo_Co_Chill_V6.cmd`](tools/Mo_Co_Chill_V6.cmd). Keep the terminal open while using the app; press Ctrl+C to stop the server.
-
-The server creates its SQLite data under `var/` by default. Keep databases, backups, logs, and account details out of Git. This command starts a local server; it does not deploy the application to the Internet. Node.js is needed for the JavaScript checks, not to run the app; use the version in [`.nvmrc`](.nvmrc).
+Open <http://127.0.0.1:8769/>. Data is stored in SQLite under `var/`; keep it out of Git.
 
 ## Run checks
 
-From the repository root:
+Requires Node.js (version in [`.nvmrc`](.nvmrc)):
 
 ```powershell
 python tools/run_checks.py
 ```
 
-The check runner covers Python and JavaScript checks, exercise fixtures, and cross-language rules parity. On Windows, if your default Node.js does not match [`.nvmrc`](.nvmrc), pass the correct executable:
-
-```powershell
-python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
-```
-
-To check a file of positions before it becomes exercises (rules only, nothing is written to `web/`), see [`docs/POSITION_IMPORT.md`](docs/POSITION_IMPORT.md):
+To check a file of new positions (rules only, nothing is written to `web/`), see [`docs/POSITION_IMPORT.md`](docs/POSITION_IMPORT.md):
 
 ```powershell
 python tools/import_positions.py path\to\positions.json
 ```
 
-GitHub Actions runs the repository check runner for pull requests and pushes to `codex-full`. Tests exercise the source; they do not prove that the configured production engine or infrastructure works. See [known limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
+## Repository
 
-## Repository map
-
-| Path | Purpose |
+| Path | Contents |
 |---|---|
-| [`co_chill_server.py`](co_chill_server.py) | Application entry point, HTTP API, and static frontend serving |
-| [`app/`](app/) | Server-side rules, accounts, persistence, online rooms, and engine adapters |
-| [`web/`](web/) | Browser interface, rules, and learning flows |
-| [`tests/`](tests/) and [`tools/`](tools/) | Tests, validation tools, and the check runner |
-| [`docs/`](docs/) | [`PROJECT.md`](docs/PROJECT.md) (architecture, decisions, rules notes, limitations, privacy, contributing), the translation glossary and the [position import format](docs/POSITION_IMPORT.md) |
-| [`deploy/`](deploy/) | Production runbook, service and Nginx templates, environment template, update script |
-| [`old/`](old/README.md) | History only: the retired local app, original V0.1 planning, past reports and audits |
+| [`co_chill_server.py`](co_chill_server.py) | Entry point: HTTP API and static files |
+| [`app/`](app/) | Rules, accounts, persistence, online rooms, engine adapter |
+| [`web/`](web/) | Browser app, no build step |
+| [`tests/`](tests/), [`tools/`](tools/) | Tests and the check runner |
+| [`docs/`](docs/) | [Project doc](docs/PROJECT.md), [glossary](docs/I18N_GLOSSARY.md), [position import](docs/POSITION_IMPORT.md) |
+| [`deploy/`](deploy/) | Production runbook and templates |
+| [`old/`](old/README.md) | History only |
 
-## Current limitations
+## Contributing
 
-- The learning catalog is small, and the two multi-step exercises cover the same tactical family.
-- The basic bot is heuristic, not Pikafish; Pikafish and its network files are not included in this repository.
-- Several planned learning and community features are not finished.
-- The repository does not independently verify the production VM, engine, load capacity, backups, or deployment configuration.
-- The tests are not a security audit, a tournament-rules certification, or evidence that the product improves learning outcomes.
+Branch from `codex-full`, run the checks and open a pull request; GitHub Actions must pass. The project owner reviews, merges and deploys. Details: [contribution workflow](docs/PROJECT.md#8-quy-trình-đóng-góp).
 
-For the full, maintained list—including data, privacy, and operations caveats—see [`docs/PROJECT.md`](docs/PROJECT.md).
-
-## Contributing and deployment
-
-Create a feature branch from `codex-full`, make a focused change, run the checks, and open a pull request. GitHub Actions runs the repository checks; do not push directly to `codex-full`. The project owner reviews changes and handles production deployment.
-
-See the [contribution workflow](docs/PROJECT.md#8-quy-trình-đóng-góp) and [`deploy/DEPLOY_GCP_VI.md`](deploy/DEPLOY_GCP_VI.md) for deployment guidance. A deployment guide is not evidence that the repository has independently verified the live infrastructure.
-
-## Third-party software and project license
-
-See [AI, content sources, and third parties](docs/PROJECT.md#6-ai-nguồn-nội-dung-và-bên-thứ-ba) for third-party notices and engine-related information. This repository does not contain a `LICENSE` file, and the project owner has not selected a project license. Do not assume that the code, content, or artwork is available for reuse or redistribution.
+No license has been chosen yet, so the code, content and artwork are not licensed for reuse. Third-party notes are in [the project doc](docs/PROJECT.md#6-ai-nguồn-nội-dung-và-bên-thứ-ba).
 
 ## Tiếng Việt
 
-Cờ Chill là ứng dụng web học và chơi cờ tướng, ưu tiên tiếng Việt. Điểm cốt lõi là người học tự suy nghĩ trước khi xem giải thích, sau đó có thể thử lại, học bài liên quan và quay lại ôn tập. Luật cờ quyết định nước đi hợp lệ; bot cơ bản dùng tìm kiếm heuristic và phần giải thích dùng mẫu, không phải AI đã được huấn luyện. Kho bài và nhiều chức năng vẫn còn giới hạn.
+Cờ Chill là ứng dụng web học và chơi cờ tướng, tiếng Việt trước, có chế độ tiếng Anh. Người học tự suy nghĩ trước khi xem giải thích, sau đó thử lại, làm bài liên quan và ôn tập. Luật cờ quyết định nước đi hợp lệ; máy cơ bản dùng tìm kiếm heuristic và lời giải dùng mẫu, không phải AI được huấn luyện. Kho bài còn nhỏ.
 
-Chạy ứng dụng local bằng Python 3.12:
+Chạy trên máy (Python 3.12):
 
 ```powershell
 python co_chill_server.py serve --port 8769
 ```
 
-Xem [tài liệu dự án](docs/PROJECT.md): kiến trúc, quyết định V6, giới hạn hiện tại, quyền riêng tư và quy trình đóng góp. Việc chạy local hoặc bộ kiểm tra đạt không xác nhận hạ tầng production hay hiệu quả học tập.
+Mở <http://127.0.0.1:8769/>. Kiến trúc, quyết định, giới hạn, quyền riêng tư và quy trình đóng góp: [docs/PROJECT.md](docs/PROJECT.md).
