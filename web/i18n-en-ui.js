@@ -1199,6 +1199,12 @@
     "Tự lật bàn theo lượt đi": "Flip the board for each turn",
     "Tự lật bàn theo lượt khi hai người chơi cùng máy": "Flip the board for each turn when two players share one device",
     "Người chơi đã xóa": "Deleted player",
+    "Đỏ tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đen chỉ đi nước chờ: có thể Đỏ đuổi dai. Cần kiểm chứng quân được bảo vệ và các ngoại lệ; chưa tính thắng thua.": "Red threatens a capture on every move of the fourfold repetition cycle while Black only makes waiting moves: Red may be making a perpetual chase. Protected pieces and the exceptions still need to be checked; no win or loss is recorded.",
+    "Đen tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đỏ chỉ đi nước chờ: có thể Đen đuổi dai. Cần kiểm chứng quân được bảo vệ và các ngoại lệ; chưa tính thắng thua.": "Black threatens a capture on every move of the fourfold repetition cycle while Red only makes waiting moves: Black may be making a perpetual chase. Protected pieces and the exceptions still need to be checked; no win or loss is recorded.",
+    "Đỏ xen kẽ chiếu và đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đen chỉ đi nước chờ. Cần kiểm chứng phán quyết; chưa tính thắng thua.": "Red alternates checks and capture threats on every move of the fourfold repetition cycle while Black only makes waiting moves. The ruling needs to be checked; no win or loss is recorded.",
+    "Đen xen kẽ chiếu và đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đỏ chỉ đi nước chờ. Cần kiểm chứng phán quyết; chưa tính thắng thua.": "Black alternates checks and capture threats on every move of the fourfold repetition cycle while Red only makes waiting moves. The ruling needs to be checked; no win or loss is recorded.",
+    "Cả hai bên đều tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần. Cần kiểm chứng phán quyết; chưa tính thắng, thua hay hòa.": "Both sides threaten a capture on every move of the fourfold repetition cycle. The ruling needs to be checked; no win, loss or draw is recorded.",
+    "Lặp bốn lần, không bên nào chiếu hay tạo đe dọa bắt quân mới, nhưng trên bàn vẫn có quân bị nhắm. Nhiều khả năng là hòa; cần kiểm chứng trước khi tính.": "The position occurred four times and neither side gave check or made a new capture threat, but some pieces can still be captured. This is probably a draw; it needs to be checked before it is counted.",
     "máy cơ bản": "basic engine"
   });
 

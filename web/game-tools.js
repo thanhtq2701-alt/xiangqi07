@@ -177,6 +177,53 @@
     return { positions, moves, quietPlies };
   }
 
+  // Capture pairs "attacker>target" the side could make if it moved again now.
+  function capturePairs(pos, side) {
+    const turn = new XQ.Position(pos.board, side), pairs = new Set();
+    for (const m of turn.legalMoves()) if (pos.board[XQ.index(m.slice(2))] !== '.') pairs.add(m.slice(0, 2) + '>' + m.slice(2));
+    return pairs;
+  }
+
+  // Each move in a repeating cycle is 'check', 'threat' (after it the moved piece
+  // can capture something, or another piece gains a capture it did not have) or
+  // 'idle'. Deliberately broad: protection, pins and the King/Pawn exemptions of
+  // tournament chase rules are NOT evaluated, so no result is assigned from it.
+  function classifyCycle(positions, cycle) {
+    const pattern = { w: [], b: [] }, targets = { w: [], b: [] };
+    cycle.forEach((m, i) => {
+      const before = positions[i], after = positions[i + 1], from = m.move.slice(0, 2), to = m.move.slice(2);
+      if (m.check) { pattern[m.side].push('check'); return; }
+      const old = new Set([...capturePairs(before, m.side)].map(pair => pair.startsWith(from + '>') ? to + pair.slice(2) : pair));
+      const fresh = [...capturePairs(after, m.side)].filter(pair => pair.startsWith(to + '>') || !old.has(pair));
+      pattern[m.side].push(fresh.length ? 'threat' : 'idle');
+      for (const pair of fresh) targets[m.side].push(after.board[XQ.index(pair.slice(3))]);
+    });
+    const active = side => pattern[side].length > 0 && pattern[side].every(x => x !== 'idle');
+    const idle = side => pattern[side].every(x => x === 'idle');
+    const detail = { pattern, targets: { w: [...new Set(targets.w)], b: [...new Set(targets.b)] }, needsVerification: true, over: false, winner: null };
+    for (const side of ['w', 'b']) {
+      const other = side === 'w' ? 'b' : 'w';
+      if (active(side) && idle(other)) {
+        const mixed = pattern[side].includes('check');
+        return { ...detail, chaser: side, code: mixed ? 'check-chase-review' : 'perpetual-chase-review',
+          reason: CHASE_REASONS[mixed ? 'mixed' : 'chase'][side] };
+      }
+    }
+    if (active('w') && active('b')) return { ...detail, chaser: null, code: 'mutual-chase-review', reason: 'Cả hai bên đều tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần. Cần kiểm chứng phán quyết; chưa tính thắng, thua hay hòa.' };
+    if (idle('w') && idle('b')) return { ...detail, chaser: null, code: 'idle-repetition-review', reason: 'Lặp bốn lần, không bên nào chiếu hay tạo đe dọa bắt quân mới, nhưng trên bàn vẫn có quân bị nhắm. Nhiều khả năng là hòa; cần kiểm chứng trước khi tính.' };
+    return { ...detail, chaser: null, code: 'repetition-review', reason: 'Thế cờ lặp bốn lần có tình huống chiếu hoặc bắt quân cần kiểm chứng; chưa tự xử hòa hoặc xử thua.' };
+  }
+  const CHASE_REASONS = {
+    chase: {
+      w: 'Đỏ tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đen chỉ đi nước chờ: có thể Đỏ đuổi dai. Cần kiểm chứng quân được bảo vệ và các ngoại lệ; chưa tính thắng thua.',
+      b: 'Đen tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đỏ chỉ đi nước chờ: có thể Đen đuổi dai. Cần kiểm chứng quân được bảo vệ và các ngoại lệ; chưa tính thắng thua.'
+    },
+    mixed: {
+      w: 'Đỏ xen kẽ chiếu và đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đen chỉ đi nước chờ. Cần kiểm chứng phán quyết; chưa tính thắng thua.',
+      b: 'Đen xen kẽ chiếu và đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đỏ chỉ đi nước chờ. Cần kiểm chứng phán quyết; chưa tính thắng thua.'
+    }
+  };
+
   function repetitionStatus(initialFen, history) {
     const timeline = gameTimeline(initialFen, history), { positions, moves, quietPlies } = timeline;
     const current = positions[positions.length - 1], key = current.fen();
@@ -192,8 +239,8 @@
       const red = allCheck('w'), black = allCheck('b');
       if (red !== black) return { ...base, over: true, winner: red ? 'b' : 'w', code: 'perpetual-check', reason: (red ? 'Đỏ' : 'Đen') + ' thua do chiếu liên tục một bên trong chu kỳ lặp bốn lần.' };
       if (red && black) return { ...base, needsVerification: true, code: 'mutual-check-review', reason: 'Hai bên cùng chiếu trong chu kỳ lặp bốn lần: cần kiểm chứng phán quyết, chưa tính thắng/thua.' };
-      // Treat any possible capture threat by either player as uncertain chase.
-      // This intentionally has false positives instead of wrongly declaring a draw.
+      // Treat any possible capture by either player as uncertain: this keeps false
+      // positives instead of wrongly declaring a draw. Only the label gets finer.
       let possibleChase = false;
       for (const p of positions.slice(start)) {
         for (const side of ['w', 'b']) {
@@ -202,8 +249,8 @@
         }
         if (possibleChase) break;
       }
-      if (cycle.some(m => m.check) || possibleChase) return { ...base, needsVerification: true, code: 'repetition-review', reason: 'Thế cờ lặp bốn lần có tình huống chiếu hoặc bắt quân cần kiểm chứng; chưa tự xử hòa hoặc xử thua.' };
-      return { ...base, over: true, code: 'quiet-repetition', reason: 'Hòa: thế cờ và lượt đi lặp bốn lần, không có chiếu hoặc nước bắt quân hợp lệ trong chu kỳ kiểm tra.' };
+      if (!cycle.some(m => m.check) && !possibleChase) return { ...base, over: true, code: 'quiet-repetition', reason: 'Hòa: thế cờ và lượt đi lặp bốn lần, không có chiếu hoặc nước bắt quân hợp lệ trong chu kỳ kiểm tra.' };
+      return { ...base, ...classifyCycle(positions.slice(start), cycle) };
     }
     if (quietPlies >= 100) return { ...base, needsVerification: true, code: 'natural-movecount-review', reason: 'Đã có ít nhất 50 nước mỗi bên không bắt quân. Cần kiểm chứng cách đếm và điều kiện hòa; chưa tự tính kết quả.' };
     if (matching.length === 3) return { ...base, code: 'repetition-warning', reason: 'Thế cờ và lượt đi đã xuất hiện ba lần. Chưa tính kết quả; chu kỳ được kiểm tra lại nếu lặp lần thứ tư.' };
