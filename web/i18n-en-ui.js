@@ -1198,6 +1198,7 @@
     "Ván đã nhập": "Imported game",
     "Tự lật bàn theo lượt đi": "Flip the board for each turn",
     "Tự lật bàn theo lượt khi hai người chơi cùng máy": "Flip the board for each turn when two players share one device",
+    "Người chơi đã xóa": "Deleted player",
     "máy cơ bản": "basic engine"
   });
 

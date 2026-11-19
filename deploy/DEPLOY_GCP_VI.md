@@ -158,6 +158,28 @@ Quy ước tên file trong `~/backups`:
 | `cochill-preupdate-YYYYMMDD-HHMMSS.sqlite3` | `update.sh` | Tự xoá sau 14 ngày |
 | `manual-*` và tên khác | Backup thủ công hoặc nguồn khác | Không tự xoá; chủ dự án tự quản lý |
 
+## Dọn phòng và dữ liệu khách (30 ngày)
+
+Chỉ chạy sau khi bản code có lệnh `prune-rooms` đã được deploy. Lệnh không
+dừng service và không tạm dừng ván đang chơi. Lần đầu luôn xem trước:
+
+```bash
+cd /var/www/html
+.venv/bin/python co_chill_server.py prune-rooms --db /var/www/html/var/co_chill_accounts.sqlite3
+```
+
+Lệnh in số phòng không hoạt động quá 30 ngày, số ván có khách quá 30 ngày (ẩn
+danh khách nếu đối thủ là tài khoản, xóa nếu không còn tài khoản nào) và số
+phiên khách đã hết hạn. Đồng ý với con số thì chạy lại với `--confirm`.
+Backup cũ vẫn giữ bản trước khi dọn cho tới khi tự xoá sau 14 ngày.
+
+Nếu muốn chạy tự động mỗi ngày, chủ dự án tự thêm bằng `crontab -e` (sau dòng
+backup, để backup chạy trước):
+
+```cron
+45 20 * * * cd /var/www/html && .venv/bin/python co_chill_server.py prune-rooms --db /var/www/html/var/co_chill_accounts.sqlite3 --confirm >> /home/thanhtq2701/backups/cron.log 2>&1
+```
+
 Mọi file khớp `cochill-*.sqlite3` đều bị dọn sau 14 ngày. Kiểm tra quyền thư
 mục, dung lượng, kết quả chạy và thử khôi phục định kỳ trên bản sao/thư mục thử
 riêng.

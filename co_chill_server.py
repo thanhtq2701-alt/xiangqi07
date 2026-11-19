@@ -26,7 +26,7 @@ from wsgiref.simple_server import make_server, WSGIRequestHandler, WSGIServer
 from app.cloud_store import APIError, CloudStore, MAX_STATE_BYTES, SESSION_SECONDS, display_name, metrics, personal_export, sha, utc, verify_password
 from app import content_store
 from app.rules import Position
-from app.online_rooms import OnlineRooms
+from app.online_rooms import GUEST_PREFIX, GUEST_RETENTION_DAYS, OnlineRooms
 from app.static_version import content_version
 
 ROOT = Path(__file__).resolve().parent
@@ -274,7 +274,7 @@ class CloudApplication:
             self.store.throttle('room-guest-ip', ip, 20, 3600)
             name = display_name(data.get('displayName', 'Khách Cờ Chill'))
             now, new_token, csrf = time.time(), secrets.token_hex(32), secrets.token_hex(32)
-            actor = {'id': 'guest_' + secrets.token_hex(16), 'displayName': name, 'csrf': csrf,
+            actor = {'id': GUEST_PREFIX + secrets.token_hex(16), 'displayName': name, 'csrf': csrf,
                      'expiresAt': now + GUEST_ROOM_SECONDS, 'guest': True}
             with self.store.connect(True) as db:
                 db.execute('DELETE FROM room_guest_sessions WHERE expires_at<=?', (now,))
@@ -623,13 +623,14 @@ class LocalThreadedServer(ThreadingMixIn, WSGIServer):
 
 def main():
     parser = argparse.ArgumentParser(description='Cờ Chill accounts, sync and website (single-instance SQLite pilot)')
-    parser.add_argument('command', nargs='?', choices=('serve', 'create-admin', 'create-report', 'backup', 'prune-inactive', 'generate-admin-totp'), default='serve')
+    parser.add_argument('command', nargs='?', choices=('serve', 'create-admin', 'create-report', 'backup', 'prune-inactive', 'prune-rooms', 'generate-admin-totp'), default='serve')
     parser.add_argument('--host', default='127.0.0.1')
     parser.add_argument('--port', type=int, default=int(os.environ.get('PORT', '8769')))
     parser.add_argument('--db', default=os.environ.get('CO_CHILL_DB_PATH', str(ROOT / 'var/co_chill_accounts.sqlite3')))
     parser.add_argument('--username')
     parser.add_argument('--output')
     parser.add_argument('--confirm', action='store_true')
+    parser.add_argument('--days', type=int, default=GUEST_RETENTION_DAYS, help='prune-rooms: keep this many days (default %(default)s)')
     args = parser.parse_args()
     if args.command == 'generate-admin-totp':
         print('Keep this setup secret private. Add it to your authenticator and CO_CHILL_ADMIN_TOTP_SECRET environment variable; never commit it:')
@@ -668,6 +669,16 @@ def main():
                     OnlineRooms.delete_identity_in_db(db, uid)
                     store.delete_user(db, uid)
             print(f'{len(ids)} inactive accounts ' + ('deleted.' if args.confirm else 'eligible. Run with --confirm to delete. Admin owner is excluded.'))
+    elif args.command == 'prune-rooms':
+        if args.days < 1:
+            parser.error('--days must be at least 1')
+        with store.connect(True) as db:
+            counts = OnlineRooms.prune_in_db(db, days=args.days, confirm=args.confirm)
+        print(f"Rooms idle over {args.days} days: {counts['rooms']}")
+        print(f"Finished games with a guest older than {args.days} days: {counts['guestGamesAnonymized']} keep the account player's copy "
+              f"(guest anonymized), {counts['guestGamesDeleted']} have no account and are deleted")
+        print(f"Expired guest room sessions: {counts['expiredGuestSessions']}")
+        print('Done. Backups still hold old copies until they rotate.' if args.confirm else 'Preview only; nothing changed. Run again with --confirm to apply.')
 
 
 if __name__ == '__main__':

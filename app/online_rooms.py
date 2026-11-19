@@ -23,6 +23,18 @@ MESSAGES = {'hello': 'Chào bạn!', 'good_luck': 'Chúc bạn chơi vui!',
             'please_wait': 'Bạn chờ một chút nhé.', 'bye': 'Hẹn gặp lại!'}
 DISCONNECT_SECONDS = 30
 DRAW_SECONDS = 15
+GUEST_PREFIX = 'guest_'
+DELETED_PREFIX = 'deleted_'
+DELETED_NAME = 'Người chơi đã xóa'
+GUEST_RETENTION_DAYS = 30  # owner decision 19/11/2026
+
+
+def _replace_id(value, old, new):
+    if isinstance(value, dict):
+        return {key: _replace_id(item, old, new) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_replace_id(item, old, new) for item in value]
+    return new if value == old else value
 
 
 class OnlineRooms:
@@ -510,12 +522,54 @@ class OnlineRooms:
         self.delete_identity_in_db(db, user_id, now=self.clock())
 
     @staticmethod
+    def _is_person(user_id):
+        """An account still able to read the record (not a guest, not already removed)."""
+        return not user_id.startswith((GUEST_PREFIX, DELETED_PREFIX))
+
+    @staticmethod
+    def _anonymize_results(db, user_id):
+        """Owner decision 19/11/2026: the other player keeps a shared finished game.
+
+        The removed side becomes a fresh random id per record (records cannot be
+        linked back together) with the name "Người chơi đã xóa"; every copy of the
+        old id inside the record is replaced. A record nobody can read any more is
+        deleted. Returns (anonymized, deleted).
+        """
+        rows = db.execute('SELECT game_id,red_id,black_id,data FROM online_results WHERE red_id=? OR black_id=?',
+                          (user_id, user_id)).fetchall()
+        return OnlineRooms._anonymize_rows(db, rows, user_id)
+
+    @staticmethod
+    def _anonymize_rows(db, rows, user_id):
+        anonymized = deleted = 0
+        for row in rows:
+            anon = DELETED_PREFIX + secrets.token_hex(8)
+            red = anon if row['red_id'] == user_id else row['red_id']
+            black = anon if row['black_id'] == user_id else row['black_id']
+            if not (OnlineRooms._is_person(red) or OnlineRooms._is_person(black)):
+                db.execute('DELETE FROM online_results WHERE game_id=?', (row['game_id'],))
+                deleted += 1
+                continue
+            record = _replace_id(json.loads(row['data']), user_id, anon)
+            for person in record['players'].values():
+                if person['id'] == anon:
+                    person['displayName'] = DELETED_NAME
+            db.execute('UPDATE online_results SET red_id=?,black_id=?,data=? WHERE game_id=?',
+                       (red, black, json.dumps(record, ensure_ascii=False), row['game_id']))
+            anonymized += 1
+        return anonymized, deleted
+
+    @staticmethod
     def delete_identity_in_db(db, user_id, now=None):
-        """Delete room identity data inside the caller's transaction."""
+        """Remove room identity data inside the caller's transaction.
+
+        Finished shared games are anonymized for the other player; live rooms the
+        person sits in are closed; chat, spectator and ban traces are removed.
+        """
         if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='online_rooms'").fetchone():
             return
         now = time.time() if now is None else now
-        db.execute('DELETE FROM online_results WHERE red_id=? OR black_id=?', (user_id, user_id))
+        OnlineRooms._anonymize_results(db, user_id)
         for row in db.execute('SELECT code,data FROM online_rooms').fetchall():
             room = json.loads(row['data'])
             if OnlineRooms._side(room, user_id):
@@ -530,3 +584,40 @@ class OnlineRooms:
                 room['revision'] += 1
                 db.execute('UPDATE online_rooms SET updated_at=?,data=? WHERE code=?',
                            (now, json.dumps(room, ensure_ascii=False), room['code']))
+
+    @staticmethod
+    def prune_in_db(db, now=None, days=GUEST_RETENTION_DAYS, confirm=False):
+        """Retention for rooms and guests (preview unless confirm=True).
+
+        - rooms with no activity for `days` (results of finished games live in
+          online_results, so a room row is only live state);
+        - finished games older than `days` that include a guest: the guest side is
+          anonymized, or the record is deleted when no account remains in it;
+        - guest room sessions whose 24-hour cookie has expired.
+        Does not construct OnlineRooms: that would pause live games of a running server.
+        """
+        now = time.time() if now is None else now
+        cutoff = now - days * 86400
+        tables = {row['name'] for row in db.execute("SELECT name FROM sqlite_master WHERE type='table'")}
+        counts = {'rooms': 0, 'guestGamesAnonymized': 0, 'guestGamesDeleted': 0, 'expiredGuestSessions': 0}
+        if 'online_rooms' in tables:
+            counts['rooms'] = db.execute('SELECT COUNT(*) FROM online_rooms WHERE updated_at<?', (cutoff,)).fetchone()[0]
+            guests = set()
+            # Exact prefix test: in LIKE, '_' would be a wildcard.
+            for row in db.execute('SELECT red_id,black_id FROM online_results WHERE ended_at<? AND (substr(red_id,1,?)=? OR substr(black_id,1,?)=?)',
+                                  (cutoff, len(GUEST_PREFIX), GUEST_PREFIX, len(GUEST_PREFIX), GUEST_PREFIX)):
+                guests.update(x for x in (row['red_id'], row['black_id']) if x.startswith(GUEST_PREFIX))
+                people = [x for x in (row['red_id'], row['black_id']) if OnlineRooms._is_person(x)]
+                counts['guestGamesAnonymized' if people else 'guestGamesDeleted'] += 1
+            if confirm:
+                db.execute('DELETE FROM online_rooms WHERE updated_at<?', (cutoff,))
+                for guest in sorted(guests):
+                    # Only records older than the cutoff; newer games of the same guest stay.
+                    rows = db.execute('SELECT game_id,red_id,black_id,data FROM online_results WHERE ended_at<? AND (red_id=? OR black_id=?)',
+                                      (cutoff, guest, guest)).fetchall()
+                    OnlineRooms._anonymize_rows(db, rows, guest)
+        if 'room_guest_sessions' in tables:
+            counts['expiredGuestSessions'] = db.execute('SELECT COUNT(*) FROM room_guest_sessions WHERE expires_at<=?', (now,)).fetchone()[0]
+            if confirm:
+                db.execute('DELETE FROM room_guest_sessions WHERE expires_at<=?', (now,))
+        return counts
