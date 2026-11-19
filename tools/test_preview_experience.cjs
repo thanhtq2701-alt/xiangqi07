@@ -22,7 +22,11 @@ test('preferences accept only supported options and exact booleans', () => {
   assert.deepEqual(CC.preferences(null), CC.DEFAULT_PREFS);
   assert.deepEqual(CC.preferences({ theme: 'purple', pieces: 'secret', font: 44, level: 'master', sound: 'true', sidebar: 1, injected: true }), CC.DEFAULT_PREFS);
   const result = CC.preferences({ theme: 'dark', pieces: 'vi', font: 'large', sound: true, sidebar: true, level: 'beginner', tone: 'friendly' });
-  assert.deepEqual(result, { theme: 'dark', pieces: 'vi', font: 'large', sound: true, sidebar: true, level: 'beginner', tone: 'friendly' });
+  assert.deepEqual(result, { theme: 'dark', pieces: 'vi', font: 'large', sound: true, sidebar: true, autoFlip: true, level: 'beginner', tone: 'friendly' });
+  // Auto-flip defaults on for old saved preferences; only an exact false turns it off.
+  assert.equal(CC.DEFAULT_PREFS.autoFlip, true);
+  assert.equal(CC.preferences({ autoFlip: false }).autoFlip, false);
+  for (const value of [undefined, 'false', 0, null, true]) assert.equal(CC.preferences({ autoFlip: value }).autoFlip, true);
   result.theme = 'cool'; assert.equal(CC.preferences().theme, 'warm');
 });
 

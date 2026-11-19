@@ -67,7 +67,7 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 | Tiếng Việt trước, có chế độ tiếng Anh | Giao diện, bài học và thông báo server có tiếng Anh, được `tools/test_i18n_en.cjs` kiểm tra |
 | Thêm bàn cờ/hình thay văn bản dài | Bàn cờ ví dụ, thẻ chương, icon; chưa có minh họa riêng cho mọi bài |
 | Chơi giữ đối thủ, đồng hồ, ký phổ, hòa/thua | Có; PvP từ trạng thái server |
-| Tự lật bàn mỗi lượt khi hai người cùng máy | Chưa; vẫn có nút lật thủ công |
+| Tự lật bàn mỗi lượt khi hai người cùng máy | Có; mặc định bật (chủ dự án chốt 19/11/2026), tắt bằng công tắc ngay dưới bàn hoặc trong Cài đặt; khi bật thì ẩn nút lật thủ công |
 | Dashboard học gọn, calendar tuần; admin đầy đủ | Có dashboard; chưa đúng mọi bố cục đã chốt |
 
 ### Học, bài tập và engine
@@ -191,8 +191,7 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   trung cuộc kết thúc bằng lợi thế mới là bản nháp `line-v1-draft`, cần mở rộng
   định dạng và bằng chứng engine. Mỗi nước đúng chỉ có một nước đáp; chưa có
   chú thích từng nước hay danh sách nước sai do người soạn chỉ định.
-- Auto-flip hai người cùng máy, câu trả lời bằng mũi tên, dashboard/calendar
-  đúng thiết kế cuối chưa đầy đủ.
+- Câu trả lời bằng mũi tên, dashboard/calendar đúng thiết kế cuối chưa đầy đủ.
 - Chưa xác minh mọi phán quyết lặp/chiếu dai/đuổi dai theo luật giải đấu Việt
   Nam; không đưa ranked lên khi chưa làm phần này.
 
@@ -303,7 +302,7 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    không chiếu hết, tiêu chí chấm, bằng chứng engine và người duyệt.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
-8. Auto-flip local, câu trả lời bằng mũi tên, public profile, calendar, luật
+8. Câu trả lời bằng mũi tên, public profile, calendar, luật
    lặp/đuổi, chat có quản trị, retention phòng; thử tải nhỏ và chốt luật trước
    bất kỳ ranked nào.
 

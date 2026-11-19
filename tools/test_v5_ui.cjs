@@ -39,6 +39,35 @@ function harness({guest=CC.fresh(),session={authenticated:false},remote=CC.fresh
     async dispatch(kind,event){for(const listener of listeners[kind]||[])await listener(event);}};
 }
 
+test('two players on one device: the board follows the side to move unless auto-flip is off',async()=>{
+  const app=harness({initialHash:'#home'});await settle();
+  app.run(`state.games.push({id:'local1',title:'Ván hai người một máy',createdAt:Date.now(),mode:'local',player:'w',initialFen:XQ.START_FEN,fen:XQ.START_FEN,moves:[],status:{over:false,winner:null,reason:''},clock:{enabled:false}});location.hash='#game/local1';render();`);
+  const main=()=>app.element('main').innerHTML;
+  assert.equal(app.run('boardFlipped'),false);
+  assert.match(main(),/id="auto-flip-toggle" checked/);
+  assert.doesNotMatch(main(),/data-action="flip-board"/,'manual flip is hidden while the board turns by itself');
+  app.run(`moveGame(state.games[0],'h2e2')`);
+  assert.equal(app.run('boardFlipped'),true,'Black to move: Black at the bottom');
+  assert.match(main(),/Đen ở dưới/);
+  app.run(`moveGame(state.games[0],'h9g7')`);
+  assert.equal(app.run('boardFlipped'),false);
+  await app.dispatch('change',{target:{id:'auto-flip-toggle',checked:false}});
+  assert.equal(app.run('prefs.autoFlip'),false);
+  assert.equal(JSON.parse(app.storage.get('co-chill-v4-browser')).preferences.autoFlip,false,'the choice is saved');
+  assert.match(main(),/data-action="flip-board"/,'manual flip is back');
+  app.run(`moveGame(state.games[0],'h0g2')`);
+  assert.equal(app.run('boardFlipped'),false,'no automatic flip when turned off');
+});
+test('auto-flip leaves bot games and the settings form choice alone',async()=>{
+  const app=harness({initialHash:'#home'});await settle();
+  app.run(`state.games.push({id:'bot1',title:'Ván với máy',createdAt:Date.now(),mode:'bot',player:'w',depth:1,initialFen:XQ.START_FEN,fen:'rheakaehr/9/1c5c1/p1p1p1p1p/9/9/P1P1P1P1P/1C2C4/9/RHEAKAEHR b',moves:[],status:{over:false,winner:null,reason:''},clock:{enabled:false}});boardFlipped=false;location.hash='#game/bot1';busy=true;render();`);
+  assert.equal(app.run('boardFlipped'),false);
+  assert.doesNotMatch(app.element('main').innerHTML,/auto-flip-toggle/);
+  await app.dispatch('submit',{target:{id:'settings-form',dataset:{},data:[['theme','warm'],['pieces','han'],['font','normal'],['level','beginner'],['tone','neutral']]},preventDefault(){}});
+  assert.equal(app.run('prefs.autoFlip'),false,'unchecked box in Settings turns it off');
+  await app.dispatch('submit',{target:{id:'settings-form',dataset:{},data:[['theme','warm'],['autoFlip','on']]},preventDefault(){}});
+  assert.equal(app.run('prefs.autoFlip'),true);
+});
 test('session expiry renders the account page without recursive expiry transitions',async()=>{
   const app=harness();await settle();
   assert.doesNotThrow(()=>app.client().expire());

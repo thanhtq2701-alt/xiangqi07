@@ -567,3 +567,6 @@ main:has(.learning-panel) .learning-panel > .feedback:not(:empty) {padding:12px 
 #import-preview fieldset { border:1px solid var(--line); border-radius:12px; padding:4px 16px 2px; margin-top:18px; }
 #import-preview legend { padding:0 6px; font-weight:600; color:var(--ink); }
 #import-preview ul { margin:8px 0 0; padding-left:20px; }
+/* Local two-player auto-flip switch in the board tool row. */
+.board-tools .auto-flip-toggle { margin:0 auto 0 0; font-size:14px; align-items:center; gap:8px; }
+.board-tools .auto-flip-toggle input { margin-top:0; }
