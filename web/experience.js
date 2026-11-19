@@ -5,7 +5,7 @@
   root.CC = Object.assign(root.CC || {}, api);
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
-  const DEFAULT_PREFS = {theme:'warm',pieces:'han',font:'normal',sound:false,sidebar:false,level:'intermediate',tone:'neutral'};
+  const DEFAULT_PREFS = {theme:'warm',pieces:'han',font:'normal',sound:false,sidebar:false,autoFlip:true,level:'intermediate',tone:'neutral'};
   function preferences(raw) {
     raw = raw && typeof raw === 'object' ? raw : {};
     const result = {...DEFAULT_PREFS};
@@ -13,6 +13,8 @@
       if (choices.includes(raw[key])) result[key]=raw[key];
     }
     result.sound=raw.sound===true;result.sidebar=raw.sidebar===true;
+    // On unless the learner switched it off: older saved preferences have no key.
+    result.autoFlip=raw.autoFlip!==false;
     return result;
   }
   const PROMPTS = [

@@ -1196,6 +1196,8 @@
     "Chọn cách nhập: gộp hoặc thay thế.": "Choose how to import: merge or replace.",
     "Đã kết thúc theo file nhập": "Ended (as stated in the imported file)",
     "Ván đã nhập": "Imported game",
+    "Tự lật bàn theo lượt đi": "Flip the board for each turn",
+    "Tự lật bàn theo lượt khi hai người chơi cùng máy": "Flip the board for each turn when two players share one device",
     "máy cơ bản": "basic engine"
   });
 
