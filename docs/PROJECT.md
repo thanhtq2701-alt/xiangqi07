@@ -215,8 +215,10 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   nhân không có mã lượt làm bài nên mã được dựng lại; lượt trùng thời điểm bắt
   đầu và kết thúc được coi là một. Ván được bộ luật chơi lại; kết quả luật không
   tự xác định (xin thua, hết giờ, hòa thỏa thuận) lấy theo file.
-- Lịch ôn bài nhiều lượt là 1 ngày (tự làm) hoặc 2 ngày (có trợ giúp); chưa
-  thống nhất với lịch ôn tiến triển của bài cơ bản hay kiểm chứng hiệu quả.
+- Bài cơ bản và bài nhiều lượt dùng chung một quy tắc lịch ôn: tự làm liên
+  tiếp thì giãn 1/2/7/14/30 ngày, có trợ giúp thì 2 ngày và đặt lại chuỗi, bài
+  cơ bản làm sai thì 1 ngày. Ngày ôn bài nhiều lượt được tính lại từ lịch sử khi
+  đồng bộ. Đây là quy tắc thử nghiệm, chưa kiểm chứng hiệu quả ghi nhớ.
 - Nhánh hợp lệ ngoài cây duyệt dừng chờ kiểm chứng; chưa tự chuyển engine/LLM
   chấm.
 - Database, localStorage và backup chưa mã hóa ở mức ứng dụng.

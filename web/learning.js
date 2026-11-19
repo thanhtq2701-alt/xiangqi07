@@ -465,9 +465,13 @@
       const exercise = raw.lineSession && curriculum.findExercise(raw.lineSession.exerciseId);
       if (exercise) result.lineSession = lineApi.restore(exercise, raw.lineSession, { now: timestamp });
       const seenAttempts = new Set();
-      for (const attempt of (Array.isArray(raw.lineAttempts) ? raw.lineAttempts : []).slice(-2000)) {
+      // Oldest first, so each review date is replayed from the attempts before it.
+      const lineRaw = (Array.isArray(raw.lineAttempts) ? raw.lineAttempts : []).slice(-2000)
+        .map((attempt, index) => ({ attempt, index, at: plain(attempt) ? time(attempt.completedAt) || 0 : 0 }))
+        .sort((a, b) => a.at - b.at || a.index - b.index).map(entry => entry.attempt);
+      for (const attempt of lineRaw) {
         const item = attempt && curriculum.findExercise(attempt.puzzleId);
-        const clean = item && lineApi.sanitizeAttempt(item, attempt, { now: timestamp });
+        const clean = item && lineApi.sanitizeAttempt(item, attempt, { now: timestamp, previous: result.lineAttempts });
         if (clean && !seenAttempts.has(clean.id)) { seenAttempts.add(clean.id); result.lineAttempts.push(clean); }
       }
       const seenLessons = new Set();
