@@ -4,7 +4,8 @@ Tài liệu duy nhất về trạng thái hiện hành: kiến trúc, quyết đ
 và ký phổ, giới hạn, dữ liệu, nguồn và quy trình đóng góp. Cách chạy và giới
 thiệu chung ở [README](../README.md); vận hành máy chủ ở
 [deploy/DEPLOY_GCP_VI.md](../deploy/DEPLOY_GCP_VI.md); thuật ngữ dịch ở
-[I18N_GLOSSARY.md](I18N_GLOSSARY.md). Tài liệu lịch sử nằm trong
+[I18N_GLOSSARY.md](I18N_GLOSSARY.md); định dạng nhập thế cờ ở
+[POSITION_IMPORT.md](POSITION_IMPORT.md). Tài liệu lịch sử nằm trong
 [`old/`](../old/README.md) và không mô tả trạng thái hiện tại.
 
 Website Production được chủ dự án xác nhận đang chạy tại cochill.vn. Source và
@@ -26,7 +27,8 @@ hay mức sẵn sàng vận hành.
 - Học: phiên bài cơ bản ở `learning.js` + `experience.js`; bài nhiều lượt ở
   `line-practice.js`; `curriculum.js` chứa nội dung và cây đáp án.
   `web/fixtures.js` sinh bằng `python tools/export_preview_fixtures.py`, không
-  sửa tay. Frontend vẫn đọc được đáp án; reflection gate là thiết kế học, không
+  sửa tay. Thế cờ mới đi qua `tools/import_positions.py` (chỉ kiểm luật, sinh
+  bản nháp `line-v1` ngoài `web/`; xem POSITION_IMPORT.md). Frontend vẫn đọc được đáp án; reflection gate là thiết kế học, không
   phải cơ chế chống xem source.
 - Persistence: luôn đi qua `save()` và cloud client; không tạo key localStorage
   chung cho mọi tài khoản. Xem bài không phải là hoàn thành hay đạt trình độ.
@@ -183,6 +185,11 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   ý lại 12 bài cơ bản theo kỹ năng: dùng lại kho cũ, không phải thêm bài. Hình
   minh họa luật chỉ được bộ luật kiểm tra tính hợp lệ, không phải nội dung
   chiến thuật được chuyên gia thẩm định.
+- `tools/import_positions.py` chỉ kiểm luật, trùng thế và trường bắt buộc; không
+  đánh giá nước tốt nhất. Bài nhiều lượt chỉ nhận kết thúc chiếu hết, nên thế
+  trung cuộc kết thúc bằng lợi thế mới là bản nháp `line-v1-draft`, cần mở rộng
+  định dạng và bằng chứng engine. Mỗi nước đúng chỉ có một nước đáp; chưa có
+  chú thích từng nước hay danh sách nước sai do người soạn chỉ định.
 - Auto-flip hai người cùng máy, câu trả lời bằng mũi tên, dashboard/calendar
   đúng thiết kế cuối chưa đầy đủ.
 - Chưa xác minh mọi phán quyết lặp/chiếu dai/đuổi dai theo luật giải đấu Việt
@@ -282,8 +289,9 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    tài khoản, rate limit, thu hồi phiên; cần chủ dự án duyệt dịch vụ gửi thư.
 4. Nhập tiến độ có xem trước, schema/version và validation; không nhập khóa đáp
    án hay quyền admin.
-5. Bài trung/nâng cao thật: FEN, cây biến, tiêu chí chấm, nguồn/quyền, bằng
-   chứng engine và người duyệt.
+5. Bài trung/nâng cao thật: đã có công cụ kiểm luật và định dạng nhập
+   `cochill-positions-v1`; còn chờ file thế cờ của chủ dự án, mở rộng kết thúc
+   không chiếu hết, tiêu chí chấm, bằng chứng engine và người duyệt.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
 8. Auto-flip local, câu trả lời bằng mũi tên, public profile, calendar, luật
