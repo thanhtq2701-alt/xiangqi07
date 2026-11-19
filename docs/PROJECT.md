@@ -68,7 +68,7 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 | Thêm bàn cờ/hình thay văn bản dài | Bàn cờ ví dụ, thẻ chương, icon; chưa có minh họa riêng cho mọi bài |
 | Chơi giữ đối thủ, đồng hồ, ký phổ, hòa/thua | Có; PvP từ trạng thái server |
 | Tự lật bàn mỗi lượt khi hai người cùng máy | Có; mặc định bật (chủ dự án chốt 19/11/2026), tắt bằng công tắc ngay dưới bàn hoặc trong Cài đặt; khi bật thì ẩn nút lật thủ công |
-| Dashboard học gọn, calendar tuần; admin đầy đủ | Có dashboard; chưa đúng mọi bố cục đã chốt |
+| Dashboard học gọn, calendar tuần; admin đầy đủ | Có dashboard và lịch tuần (thứ Hai–Chủ nhật, giờ Việt Nam: lượt đã luyện mỗi ngày, hình cần ôn từ hôm nay) trên trang Tiến độ; chưa đúng mọi bố cục đã chốt |
 
 ### Học, bài tập và engine
 
@@ -197,7 +197,8 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   trung cuộc kết thúc bằng lợi thế mới là bản nháp `line-v1-draft`, cần mở rộng
   định dạng và bằng chứng engine. Mỗi nước đúng chỉ có một nước đáp; chưa có
   chú thích từng nước hay danh sách nước sai do người soạn chỉ định.
-- Câu trả lời bằng mũi tên, dashboard/calendar đúng thiết kế cuối chưa đầy đủ.
+- Câu trả lời bằng mũi tên và dashboard đúng thiết kế cuối chưa đầy đủ. Lịch tuần chỉ đếm
+  dữ liệu trên thiết bị hoặc tài khoản đang dùng, chưa có xem tuần trước/sau.
 - Chưa xác minh mọi phán quyết lặp/chiếu dai/đuổi dai theo luật giải đấu Việt
   Nam; không đưa ranked lên khi chưa làm phần này.
 
@@ -313,7 +314,7 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    không chiếu hết, tiêu chí chấm, bằng chứng engine và người duyệt.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
-8. Câu trả lời bằng mũi tên, public profile, calendar, luật
+8. Câu trả lời bằng mũi tên, public profile, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
 

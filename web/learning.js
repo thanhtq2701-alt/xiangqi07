@@ -195,6 +195,43 @@
     return dates.length ? iso(Math.min(...dates)) : null;
   }
 
+  // Monday-to-Sunday week in Vietnam time (fixed UTC+7). Past days and today count
+  // completed practice (basic attempts + multi-move completions); today and later
+  // count reviews falling due that day, with anything overdue rolled into today.
+  // Only for display: it reads the same data as the review queue.
+  const VN_OFFSET = 7 * 3600000;
+  function vnDay(value) { return Math.floor((value + VN_OFFSET) / DAY); }
+  function weekCalendar(state, options) {
+    const now = nowValue(options && options.now), today = vnDay(now);
+    const monday = today - ((today + 3) % 7); // day 0 (1970-01-01) was a Thursday
+    const days = Array.from({ length: 7 }, (_, index) => {
+      const key = monday + index, date = new Date(key * DAY).toISOString().slice(0, 10);
+      return { date, weekday: index, isToday: key === today, isPast: key < today, done: 0, due: 0 };
+    });
+    const place = (value, field) => {
+      const at = time(value);
+      if (at === null) return;
+      let key = vnDay(at);
+      if (field === 'due') { if (key < today) key = today; } else if (key > today) return;
+      if (key >= monday && key < monday + 7) days[key - monday][field] += 1;
+    };
+    const records = plain(state && state.records) ? Object.values(state.records) : [];
+    for (const record of records) {
+      if (!plain(record)) continue;
+      (Array.isArray(record.attempts) ? record.attempts : []).forEach(attempt => plain(attempt) && place(attempt.completedAt, 'done'));
+      place(reviewDueAt(record), 'due');
+    }
+    const latest = new Map();
+    for (const attempt of Array.isArray(state && state.lineAttempts) ? state.lineAttempts : []) {
+      if (!plain(attempt) || attempt.success !== true) continue;
+      place(attempt.completedAt, 'done');
+      const previous = latest.get(attempt.puzzleId);
+      if (!previous || (time(attempt.completedAt) || 0) > (time(previous.completedAt) || 0)) latest.set(attempt.puzzleId, attempt);
+    }
+    latest.forEach(attempt => place(attempt.dueAt, 'due'));
+    return { days, done: days.reduce((sum, day) => sum + day.done, 0), due: days.reduce((sum, day) => sum + day.due, 0) };
+  }
+
   function parkPuzzle(state, session, puzzle, options) {
     options = options || {};
     if (!plain(puzzle) || !validId(puzzle.id) || !plain(session) || session.puzzleId !== puzzle.id || !validId(session.id)) {
@@ -496,5 +533,5 @@
     return result;
   }
 
-  return { DAY, INTERVALS: INTERVALS.slice(), fresh, sanitize, createSession, canReveal, reveal, markSeen, finishPuzzle, recommend, summarizeSession, nextVietnamDay, reviewDueAt, parkPuzzle, resumeParked };
+  return { DAY, INTERVALS: INTERVALS.slice(), fresh, sanitize, createSession, canReveal, reveal, markSeen, finishPuzzle, recommend, summarizeSession, nextVietnamDay, reviewDueAt, weekCalendar, parkPuzzle, resumeParked };
 });
