@@ -207,8 +207,48 @@ test('ordinary quiet repetition is bounded, with board AND turn included', () =>
 test('possible chase is never silently adjudicated as an ordinary repetition draw', () => {
   const cycle = ['b0a2', 'b9a7', 'a2b0', 'a7b9'];
   const result = CC.repetitionStatus(start, cycle.concat(cycle, cycle));
-  assert.equal(result.code, 'repetition-review');
-  assert.equal(result.over, false); assert.equal(result.needsVerification, true);
+  // Finer label than before, same safety: no side made a new threat, yet pieces
+  // are attackable, so it stays a review and is not scored as a draw.
+  assert.equal(result.code, 'idle-repetition-review');
+  assert.equal(result.over, false); assert.equal(result.needsVerification, true); assert.equal(result.winner, null);
+  assert.deepEqual(result.pattern, { w: Array(6).fill('idle'), b: Array(6).fill('idle') });
+});
+
+test('one side threatening a capture on every move is flagged as a possible perpetual chase, for either color', () => {
+  // Black Cannon steps between two files; the Red Chariot follows and attacks it each time.
+  const p = pos({ d0: 'K', f9: 'k', a1: 'R', a5: 'c' }, 'b'), cycle = ['a5b5', 'a1b1', 'b5a5', 'b1a1'];
+  const result = CC.repetitionStatus(p, cycle.concat(cycle, cycle));
+  assert.equal(result.code, 'perpetual-chase-review');
+  assert.equal(result.chaser, 'w');
+  assert.equal(result.over, false); assert.equal(result.needsVerification, true); assert.equal(result.winner, null);
+  assert.deepEqual(result.pattern, { w: Array(6).fill('threat'), b: Array(6).fill('idle') });
+  assert.deepEqual(result.targets, { w: ['c'], b: [] });
+  assert.match(result.reason, /^Đỏ .*đuổi dai.*chưa tính thắng thua/);
+  const mirrored = CC.repetitionStatus(rotate(p), cycle.concat(cycle, cycle).map(mirroredMove));
+  assert.equal(mirrored.code, 'perpetual-chase-review'); assert.equal(mirrored.chaser, 'b');
+  assert.deepEqual(mirrored.targets, { w: [], b: ['C'] });
+  assert.match(mirrored.reason, /^Đen /);
+});
+
+test('a chase is only suspected once the position has occurred four times', () => {
+  const p = pos({ d0: 'K', f9: 'k', a1: 'R', a5: 'c' }, 'b'), cycle = ['a5b5', 'a1b1', 'b5a5', 'b1a1'];
+  const third = CC.repetitionStatus(p, cycle.concat(cycle));
+  assert.equal(third.code, 'repetition-warning'); assert.equal(third.needsVerification, false); assert.equal(third.pattern, undefined);
+});
+
+test('chase classification never assigns a result; perpetual check keeps its rule-based verdict', () => {
+  const cases = [
+    [pos({ d0: 'K', f9: 'k', a1: 'R', a5: 'c' }, 'b'), ['a5b5', 'a1b1', 'b5a5', 'b1a1']],
+    [start, ['b0a2', 'b9a7', 'a2b0', 'a7b9']],
+    [start, ['h0g2', 'b9c7', 'g2h0', 'c7b9']]
+  ];
+  for (const [p, cycle] of cases) {
+    const result = CC.repetitionStatus(p, cycle.concat(cycle, cycle));
+    assert.ok(/-review$/.test(result.code), result.code);
+    assert.equal(result.over, false); assert.equal(result.winner, null); assert.equal(result.needsVerification, true);
+  }
+  const check = CC.repetitionStatus(pos({ f0: 'K', e9: 'k', d8: 'R' }), Array(3).fill(['d8e8', 'e9d9', 'e8d8', 'd9e9']).flat());
+  assert.equal(check.code, 'perpetual-check'); assert.equal(check.over, true); assert.equal(check.pattern, undefined);
 });
 
 test('capture resets the natural move count; a pawn advance does not', () => {

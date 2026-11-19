@@ -156,8 +156,14 @@ thế tự tạo. Đây không phải chứng nhận chuẩn trọng tài giải
    lệ nào của cả hai bên trong chu kỳ.
 9. Hai bên cùng chiếu, chiếu xen bắt hoặc khả năng đuổi: trả
    `needsVerification: true`, không tự gán kết quả và không cộng vào thống kê.
-   Chưa phân loại căn thật/giả, đuổi theo danh tính quân, ghim hay ngoại lệ
-   Mã/Pháo đuổi Xe.
+   Mỗi nước trong chu kỳ được gắn `check`, `threat` (sau nước đó quân vừa đi
+   ăn được quân, hoặc quân khác có thêm nước ăn mới) hoặc `idle`; nhãn
+   `perpetual-chase-review` (một bên đe dọa mọi nước, bên kia chỉ chờ, kèm
+   `chaser`), `check-chase-review`, `mutual-chase-review`,
+   `idle-repetition-review` hoặc `repetition-review` chỉ giúp người duyệt, không
+   phải phán quyết. Chưa xét quân được bảo vệ, căn thật/giả, ghim, ngoại lệ
+   Tướng/Tốt hay Mã/Pháo đuổi Xe; phòng online trên máy chủ chưa dùng bộ phân
+   loại này.
 10. Không bắt quân: đếm từ các nước đã có, ăn quân thì về 0; từ 100 nửa nước chỉ
     yêu cầu kiểm chứng.
 11. Chiếu hết và hết nước hợp lệ ưu tiên trước lặp thế: bên không còn nước thua.
