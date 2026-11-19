@@ -11,6 +11,11 @@
 })(typeof globalThis !== 'undefined' ? globalThis : this, function (XQ) {
   'use strict';
   const DAY = 86400000;
+  // Same review rule as basic exercises (learning.js schedule): each independent
+  // completion in a row moves the next review to 1, 2, 7, 14, then 30 days; an
+  // assisted completion resets the streak and comes back after 2 days.
+  // A transparent trial rule, not a validated memory model.
+  const INTERVALS = [1, 2, 7, 14, 30];
   const copy = value => JSON.parse(JSON.stringify(value));
   const plain = value => !!value && typeof value === 'object' && !Array.isArray(value);
   const id = value => typeof value === 'string' && /^[a-zA-Z0-9][a-zA-Z0-9_.:-]{0,159}$/.test(value) && !['constructor', 'prototype', '__proto__'].includes(value);
@@ -193,17 +198,30 @@
     next.firstCandidate = session.firstCandidate; next.assisted = true;
     return next;
   }
+  // previous: earlier completed attempts (any exercise); only this exercise's,
+  // finished before now, count toward the streak.
+  function schedule(exercise, previous, assisted, now) {
+    let streak = 0;
+    (Array.isArray(previous) ? previous : [])
+      .filter(a => plain(a) && a.puzzleId === exercise.id && a.version === exercise.version && a.success === true && Date.parse(a.completedAt) < now)
+      .sort((a, b) => Date.parse(a.completedAt) - Date.parse(b.completedAt))
+      .forEach(a => { streak = a.assisted ? 0 : Math.min(INTERVALS.length, streak + 1); });
+    const successStreak = assisted ? 0 : Math.min(INTERVALS.length, streak + 1);
+    return { successStreak, intervalDays: assisted ? 2 : INTERVALS[successStreak - 1] };
+  }
   function finish(exercise, session, options = {}) {
     checkSession(exercise, session);
     if (session.stage === 'finished') return { session, attempt: null };
     assert(session.stage === 'explain' && session.solved && reflected(session.firstAnswers), 'Cần hoàn thành chuỗi nước và xem giải thích trước.');
     const now = time(options.now); assert(now >= time(session.updatedAt), 'Thời điểm hoàn thành quá sớm.');
     const next = copy(session); next.stage = 'finished'; next.completedAt = iso(now); next.updatedAt = iso(now);
-    next.dueAt = iso(now + (next.assisted ? 2 : 1) * DAY);
+    const plan = schedule(exercise, options.previous, next.assisted, now);
+    next.dueAt = iso(now + plan.intervalDays * DAY);
     return { session: next, attempt: { id: next.id, puzzleId: exercise.id, version: exercise.version, skill: exercise.skill,
       familyId: exercise.familyId, startedAt: next.startedAt, completedAt: next.completedAt, dueAt: next.dueAt,
       answers: answers(next.firstAnswers), candidate: next.firstCandidate, success: true, assisted: next.assisted,
       firstExposure: next.firstExposure && !next.assisted, learnerDecisions: next.history.length, source: next.source,
+      intervalDays: plan.intervalDays, successStreak: plan.successStreak,
       finalNodeId: next.nodeId, history: copy(next.history),
       verification: exercise.proof?.method || 'authored-line', reasoningGraded: false } };
   }
@@ -214,7 +232,7 @@
       startedAt:raw.startedAt,updatedAt:raw.completedAt,completedAt:raw.completedAt,seenExplanation:true,failureCount:raw.assisted?1:0,attempts:[]},options);
     if (!restored) return null;
     const pending = {...restored,stage:'explain',completedAt:null,dueAt:null};
-    return finish(exercise,pending,{now:restored.completedAt}).attempt;
+    return finish(exercise,pending,{now:restored.completedAt,previous:options.previous}).attempt;
   }
-  return Object.freeze({ DAY, validate, create, currentPosition, submit, restore, reveal, retry, resumeParked, finish, sanitizeAttempt });
+  return Object.freeze({ DAY, INTERVALS: INTERVALS.slice(), validate, create, currentPosition, submit, restore, reveal, retry, resumeParked, finish, sanitizeAttempt });
 });

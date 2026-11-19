@@ -474,7 +474,7 @@
     "Lịch sử phải là danh sách tối đa 600 nước đi.": "The history must be a list of at most 600 moves.",
     "Lịch sử ván chưa hợp lệ.": "Invalid game history.",
     "Lịch sử ván quá dài hoặc chưa hợp lệ.": "The game history is too long or invalid.",
-    "Lịch thử nghiệm: một ngày sau lượt độc lập, hai ngày sau lượt có hỗ trợ. Chưa phải mô hình trí nhớ được kiểm chứng.": "Trial schedule for multi-move exercises: one day after an independent attempt, two days after an assisted attempt. This is not a validated memory model.",
+    "Lịch thử nghiệm giống bài cơ bản: tự làm liên tiếp thì giãn 1 / 2 / 7 / 14 / 30 ngày; có hỗ trợ thì ôn lại sau 2 ngày. Chưa phải mô hình trí nhớ được kiểm chứng.": "Trial schedule, the same as for basic exercises: consecutive independent completions space reviews 1 / 2 / 7 / 14 / 30 days apart; an assisted completion comes back after 2 days. This is not a validated memory model.",
     "Lịch ôn tính từ": "Review schedule counted from",
     "Lịch ôn tính từ lúc bạn kết thúc hình này. Hoàn thành lượt luyện chưa phải chứng nhận đã hiểu.": "The review schedule starts when you finish this position. Completing a practice attempt does not certify understanding.",
     "Lộ trình gợi ý, chưa phải giáo trình phân cấp hoặc bài đánh giá đầu vào đã được kiểm chứng. Không khóa bài theo điểm kinh nghiệm giả.": "A suggested path, not a graded curriculum or a validated placement test. Exercises are never locked behind artificial experience points.",
