@@ -202,11 +202,15 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   tăng theo số người/phòng; chưa benchmark trên VM 2 vCPU. Đo trước khi tăng
   người hoặc đổi tần suất.
 - Ghép cộng đồng theo thời gian, chưa theo trình độ.
-- Cookie phòng khách 24 giờ; hết cookie chưa tự xóa dữ liệu phòng và chưa có
-  retention tự động. Backup database chạy hằng ngày, giữ 14 ngày (theo chủ dự
-  án).
-- Xóa danh tính có ghế trong phòng hiện xóa cả biên bản chung liên quan của đối
-  thủ; cần chính sách ẩn danh/lưu giữ trước khi mở pilot rộng.
+- Cookie phòng khách 24 giờ. Giữ phòng và biên bản có khách 30 ngày (chủ dự án
+  chốt 19/11/2026) bằng lệnh `prune-rooms`: xem trước, chỉ xóa khi có
+  `--confirm`; chưa tự chạy cho đến khi người vận hành cài cron. Backup database
+  chạy hằng ngày, giữ 14 ngày (theo chủ dự án), nên bản cũ còn trong backup tới
+  khi xoay vòng.
+- Xóa tài khoản hoặc khách: ván đã kết thúc chung với người khác được ẩn danh
+  ("Người chơi đã xóa", mã ngẫu nhiên riêng từng ván) cho đối thủ giữ lại; ván
+  không còn tài khoản nào đọc được thì xóa. Phòng đang chờ/đang chơi có người đó
+  vẫn bị đóng, ván dở không được ghi kết quả.
 - Thống kê học do client đồng bộ, không chống gian lận.
 - Nhập tiến độ chỉ nhận file xuất của Cờ Chill (`co-chill-personal-export` v1,
   `co-chill-account-export-v1`), tối đa 5 MB. Không nhập bài đang làm dở, ván
@@ -237,7 +241,7 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 | Cách dùng | Dữ liệu |
 |---|---|
 | Học/chơi local với khách | localStorage: ván, nháp, lượt học, lịch ôn, sở thích |
-| Khách tham gia phòng online | Server: danh tính khách, tên hiển thị, phòng, biên bản, lời nhắn mẫu; cookie phòng 24 giờ |
+| Khách tham gia phòng online | Server: danh tính khách, tên hiển thị, phòng, biên bản, lời nhắn mẫu; cookie phòng 24 giờ; sau 30 ngày `prune-rooms` ẩn danh hoặc xóa |
 | Đăng nhập | SQLite: username, tên hiển thị, hash mật khẩu, phiên, tiến độ đồng bộ, phản hồi, nhật ký vận hành |
 | Bản nháp tài khoản trên thiết bị | Cache riêng theo tài khoản; không mã hóa |
 
@@ -253,8 +257,9 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
   quyền hệ điều hành vẫn đọc được database và backup.
 - Có xuất JSON cá nhân, xóa dữ liệu học trên thiết bị, xóa tài khoản (xác nhận
   mật khẩu), xóa khách phòng. File xuất không chứa khóa đáp án; có thể nhập lại
-  vào tài khoản hoặc trình duyệt đang dùng sau khi xem trước và xác nhận. Có lệnh xem trước/xóa tài khoản không hoạt động 365
-  ngày khi người vận hành xác nhận.
+  vào tài khoản hoặc trình duyệt đang dùng sau khi xem trước và xác nhận. Có
+  lệnh xem trước/xóa tài khoản không hoạt động 365 ngày và lệnh dọn phòng/khách
+  sau 30 ngày (`prune-rooms`), đều chỉ xóa khi người vận hành xác nhận.
 - Database và backup là hai nơi khác nhau: yêu cầu xóa phải được áp dụng lại khi
   phục hồi backup; file đã tải xuống không tự bị thu hồi.
 - Dùng ván người chơi làm bộ bài chung cần đồng ý riêng.
@@ -303,8 +308,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
 8. Câu trả lời bằng mũi tên, public profile, calendar, luật
-   lặp/đuổi, chat có quản trị, retention phòng; thử tải nhỏ và chốt luật trước
-   bất kỳ ranked nào.
+   lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
+   và chốt luật trước bất kỳ ranked nào.
 
 ## 8. Quy trình đóng góp
 

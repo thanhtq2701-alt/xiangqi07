@@ -2,11 +2,13 @@
 import json
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 
 from app.cloud_store import APIError
-from app.online_rooms import OnlineRooms, MESSAGES
+from app.online_rooms import DELETED_NAME, GUEST_PREFIX, OnlineRooms, MESSAGES
 from app.rules import Position, START_FEN
 
 
@@ -246,8 +248,119 @@ class OnlineRoomTests(unittest.TestCase):
         self.assertEqual(r['spectators'], [])
         self.rooms.action(self.red, self.code, 'resign', {'confirm': True})
         self.rooms.delete_identity(self.red['id'])
-        self.assertEqual(self.rooms.history(self.black)['games'], [])
+        # Owner decision 19/11/2026: the opponent keeps the finished game, anonymized.
+        games = self.rooms.history(self.black)['games']
+        self.assertEqual(len(games), 1)
+        self.assertEqual(games[0]['opponent'], DELETED_NAME)
+        self.assertEqual(self.rooms.history(self.red)['games'], [])
         self.assert_api(404, 'room_not_found', lambda: self.rooms.snapshot(self.black, self.code))
+
+    def finished(self, first, second):
+        code = self.rooms.create(first)['code']
+        self.rooms.join(second, code)
+        self.rooms.action(first, code, 'ready')
+        r = self.rooms.action(second, code, 'ready')
+        red = first if r['players']['w']['id'] == first['id'] else second
+        self.rooms.action(red, code, 'move', {'move': 'a3a4', 'nonce': 'n_' + code, 'expectedRevision': r['revision']})
+        self.rooms.action(red, code, 'resign', {'confirm': True})
+        return code
+
+    def result_rows(self):
+        with self.rooms.connect() as db:
+            return [dict(row) for row in db.execute('SELECT game_id,red_id,black_id,ended_at,data FROM online_results ORDER BY ended_at')]
+
+    def test_deleted_player_is_anonymized_everywhere_in_the_shared_record(self):
+        self.started()
+        self.move(self.red, 'a3a4')
+        self.rooms.action(self.red, self.code, 'takeback')
+        self.rooms.action(self.black, self.code, 'takeback-accept')
+        self.rooms.action(self.red, self.code, 'resign', {'confirm': True})
+        self.rooms.delete_identity(self.red['id'])
+        [row] = self.result_rows()
+        self.assertNotIn(self.red['id'], row['data'])
+        self.assertNotIn(self.red['displayName'], row['data'])
+        anon = row['red_id']
+        self.assertTrue(anon.startswith('deleted_'))
+        self.assertEqual(row['black_id'], self.black['id'])
+        record = json.loads(row['data'])
+        self.assertEqual(record['players']['w'], {'id': anon, 'displayName': DELETED_NAME})
+        self.assertEqual(record['events'][0]['requestedBy'], anon, 'events point at the anonymous id')
+        self.assertEqual(record['events'][0]['acceptedBy'], self.black['id'])
+        review = self.rooms.history(self.black)['games'][0]
+        self.assertEqual((review['player'], review['status']['winner'], review['opponent']), ('b', 'b', DELETED_NAME))
+
+    def test_anonymous_ids_differ_per_game_and_a_record_nobody_can_read_is_deleted(self):
+        self.finished(self.a, self.b)
+        self.finished(self.a, self.b)
+        self.rooms.delete_identity(self.a['id'])
+        anon = {row['red_id'] if row['black_id'] == self.b['id'] else row['black_id'] for row in self.result_rows()}
+        self.assertEqual(len(anon), 2, 'records cannot be linked back to one person')
+        self.assertEqual(len(self.rooms.history(self.b)['games']), 2)
+        self.rooms.delete_identity(self.b['id'])
+        self.assertEqual(self.result_rows(), [])
+
+    def test_prune_previews_then_removes_old_guest_data_and_idle_rooms(self):
+        guest = {'id': GUEST_PREFIX + 'a1b2c3', 'displayName': 'Khách Lan'}
+        guest2 = {'id': GUEST_PREFIX + 'd4e5f6', 'displayName': 'Khách Minh'}
+        look_alike = {'id': 'guestX_not_a_guest', 'displayName': 'Tài khoản'}
+        self.finished(guest, self.a)           # guest vs account: the account keeps it
+        self.finished(guest, guest2)           # two guests: nobody keeps it
+        self.finished(self.a, self.b)          # accounts only: untouched
+        self.finished(look_alike, self.b)      # an id that only looks like a guest
+        idle = self.rooms.create(self.c)['code']
+        self.now += 31 * 86400
+        recent = self.finished(guest, self.b)  # newer than 30 days: untouched
+        before = self.result_rows()
+        with self.rooms.connect() as db:
+            preview = OnlineRooms.prune_in_db(db, now=self.now)
+        self.assertEqual(preview, {'rooms': 5, 'guestGamesAnonymized': 1, 'guestGamesDeleted': 1, 'expiredGuestSessions': 0})
+        self.assertEqual(self.result_rows(), before, 'preview changes nothing')
+        with self.rooms.connect() as db:
+            OnlineRooms.prune_in_db(db, now=self.now, confirm=True)
+        rows = self.result_rows()
+        self.assertEqual(len(rows), 4)
+        self.assertFalse(any(guest2['id'] in r['data'] for r in rows))
+        old = [r for r in rows if r['ended_at'] < self.now - 86400 and self.a['id'] in (r['red_id'], r['black_id']) and self.b['id'] not in (r['red_id'], r['black_id'])]
+        self.assertEqual(len(old), 1)
+        self.assertNotIn(guest['id'], old[0]['data'])
+        self.assertNotIn('Khách Lan', old[0]['data'])
+        self.assertIn(DELETED_NAME, [g['opponent'] for g in self.rooms.history(self.a)['games']])
+        self.assertTrue(any(look_alike['id'] in r['data'] for r in rows))
+        self.assertTrue(any(guest['id'] in r['data'] for r in rows), 'the recent guest game stays')
+        self.assert_api(404, 'room_not_found', lambda: self.rooms.snapshot(self.c, idle))
+        self.assertEqual(self.rooms.snapshot(self.b, recent)['status'], 'finished')
+        with self.rooms.connect() as db:
+            again = OnlineRooms.prune_in_db(db, now=self.now)
+        self.assertEqual(again, {'rooms': 0, 'guestGamesAnonymized': 0, 'guestGamesDeleted': 0, 'expiredGuestSessions': 0})
+
+    def test_prune_removes_expired_guest_sessions(self):
+        with self.rooms.connect() as db:
+            db.execute('CREATE TABLE room_guest_sessions (token_hash TEXT PRIMARY KEY, user_id TEXT UNIQUE NOT NULL, '
+                       'display_name TEXT NOT NULL, csrf TEXT NOT NULL, created_at REAL NOT NULL, expires_at REAL NOT NULL)')
+            db.execute("INSERT INTO room_guest_sessions VALUES ('t1','guest_old','Khách','c',?,?)", (self.now - 90000, self.now - 3600))
+            db.execute("INSERT INTO room_guest_sessions VALUES ('t2','guest_new','Khách','c',?,?)", (self.now - 60, self.now + 86000))
+            self.assertEqual(OnlineRooms.prune_in_db(db, now=self.now)['expiredGuestSessions'], 1)
+            OnlineRooms.prune_in_db(db, now=self.now, confirm=True)
+            self.assertEqual([r[0] for r in db.execute('SELECT user_id FROM room_guest_sessions')], ['guest_new'])
+
+    def test_prune_rooms_command_previews_by_default_and_applies_with_confirm(self):
+        guest = {'id': GUEST_PREFIX + 'a1b2c3', 'displayName': 'Khách Lan'}
+        self.finished(guest, self.a)
+        with self.rooms.connect() as db:
+            db.execute('UPDATE online_results SET ended_at=ended_at-?', (40 * 86400,))
+            db.execute('UPDATE online_rooms SET updated_at=updated_at-?', (40 * 86400,))
+        root = Path(__file__).resolve().parents[1]
+        command = [sys.executable, str(root / 'co_chill_server.py'), 'prune-rooms', '--db', str(self.path)]
+        run = lambda extra=(): subprocess.run(command + list(extra), capture_output=True, text=True, encoding='utf-8', cwd=root)
+        out = run().stdout
+        self.assertIn('Rooms idle over 30 days: 1', out)
+        self.assertIn('1 keep the account player', out)
+        self.assertIn('Preview only', out)
+        self.assertIn(guest['id'], self.result_rows()[0]['data'])
+        out = run(['--confirm']).stdout
+        self.assertIn('Done.', out)
+        self.assertNotIn(guest['id'], self.result_rows()[0]['data'])
+        self.assertNotEqual(run(['--days', '0']).returncode, 0)
 
     def test_static_identity_cleanup_uses_caller_transaction(self):
         self.started()
