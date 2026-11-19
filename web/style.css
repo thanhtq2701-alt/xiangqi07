@@ -570,3 +570,19 @@ main:has(.learning-panel) .learning-panel > .feedback:not(:empty) {padding:12px 
 /* Local two-player auto-flip switch in the board tool row. */
 .board-tools .auto-flip-toggle { margin:0 auto 0 0; font-size:14px; align-items:center; gap:8px; }
 .board-tools .auto-flip-toggle input { margin-top:0; }
+/* Week calendar on the progress page (Monday first, Vietnam time). */
+.week-panel { margin-bottom:26px; }
+.week-head { display:flex; align-items:baseline; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.week-head h3 { margin:0; }
+.week-strip { list-style:none; margin:14px 0; padding:0; display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:8px; }
+.week-day { display:flex; flex-direction:column; align-items:center; gap:4px; padding:10px 4px; border:1px solid var(--line); border-radius:14px; background:var(--paper); text-align:center; min-width:0; }
+.week-day.past { opacity:.75; }
+.week-day.today { border-color:var(--green); box-shadow:inset 0 0 0 1px var(--green); }
+.week-name { font-weight:600; font-size:14px; }
+.week-date { color:var(--muted); font-size:12px; }
+.week-done,.week-due { display:flex; flex-direction:column; align-items:center; line-height:1.2; }
+.week-done b,.week-due b { font-size:18px; font-weight:600; color:var(--muted); }
+.week-done.has b { color:var(--green); }
+.week-due.has b { color:var(--ink); }
+.week-done small,.week-due small { color:var(--muted); font-size:11px; }
+@media(max-width:540px){ .week-strip { gap:4px; } .week-day { padding:8px 2px; border-radius:10px; } .week-done small,.week-due small { font-size:10px; } }

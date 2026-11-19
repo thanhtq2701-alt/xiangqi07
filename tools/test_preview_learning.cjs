@@ -293,6 +293,40 @@ test('tomorrow reminder is fixed UTC+7 elapsed day, not host-local midnight or c
   assert.equal(CC.summarizeSession(completed(), {}, { now: T0 + 30000 }).records[puzzle.id].completionCount, 1);
 });
 
+test('week calendar: Monday-first Vietnam week, practice done by day, reviews due from today', () => {
+  const vn = text => Date.parse(text + '+07:00');
+  const now = vn('2026-11-19T10:00:00'); // Thursday
+  const state = {
+    records: {
+      a: { attempts: [{ completedAt: new Date(vn('2026-11-16T23:30:00')).toISOString() },   // Monday, late evening in Vietnam
+                      { completedAt: new Date(vn('2026-11-19T00:00:00')).toISOString() }],  // Thursday 00:00 in Vietnam
+           dueAt: new Date(vn('2026-11-18T09:00:00')).toISOString() },                     // overdue: rolls into today
+      b: { attempts: [{ completedAt: new Date(vn('2026-11-15T20:00:00')).toISOString() }],  // last week
+           dueAt: new Date(vn('2026-11-21T08:00:00')).toISOString() },                     // Saturday
+      c: { attempts: [], dueAt: new Date(vn('2026-11-24T08:00:00')).toISOString() },       // next week
+      d: { attempts: [{ completedAt: 'garbage' }], pendingReview: { dueAt: new Date(vn('2026-11-22T07:00:00')).toISOString() } }
+    },
+    lineAttempts: [
+      { puzzleId: 'x', success: true, completedAt: new Date(vn('2026-11-17T10:00:00')).toISOString(), dueAt: new Date(vn('2026-11-20T10:00:00')).toISOString() },
+      { puzzleId: 'x', success: true, completedAt: new Date(vn('2026-11-18T10:00:00')).toISOString(), dueAt: new Date(vn('2026-11-22T10:00:00')).toISOString() },
+      { puzzleId: 'y', success: false, completedAt: new Date(vn('2026-11-18T11:00:00')).toISOString(), dueAt: new Date(vn('2026-11-19T11:00:00')).toISOString() }
+    ]
+  };
+  const week = CC.weekCalendar(state, { now });
+  assert.deepEqual(week.days.map(d => d.date), ['2026-11-16', '2026-11-17', '2026-11-18', '2026-11-19', '2026-11-20', '2026-11-21', '2026-11-22']);
+  assert.deepEqual(week.days.map(d => d.done), [1, 1, 1, 1, 0, 0, 0]);
+  assert.deepEqual(week.days.map(d => d.due), [0, 0, 0, 1, 0, 1, 2], 'only the latest multi-move completion schedules a review');
+  assert.deepEqual(week.days.map(d => d.isToday), [false, false, false, true, false, false, false]);
+  assert.deepEqual(week.days.map(d => d.isPast), [true, true, true, false, false, false, false]);
+  assert.deepEqual([week.done, week.due], [4, 4]);
+  const sunday = CC.weekCalendar(state, { now: vn('2026-11-22T23:59:00') });
+  assert.equal(sunday.days[0].date, '2026-11-16'); assert.equal(sunday.days[6].isToday, true);
+  const nextMonday = CC.weekCalendar(state, { now: vn('2026-11-23T00:01:00') });
+  assert.equal(nextMonday.days[0].date, '2026-11-23'); assert.equal(nextMonday.days[0].isToday, true);
+  assert.deepEqual(CC.weekCalendar(CC.fresh(), { now }).days.map(d => d.done + d.due), [0, 0, 0, 0, 0, 0, 0]);
+  assert.deepEqual(CC.weekCalendar(null, { now }).due, 0);
+});
+
 let failures = 0;
 tests.forEach(({ name, action }) => {
   try { action(); console.log('PASS ' + name); }

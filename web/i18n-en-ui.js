@@ -1205,6 +1205,20 @@
     "Đen xen kẽ chiếu và đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần, Đỏ chỉ đi nước chờ. Cần kiểm chứng phán quyết; chưa tính thắng thua.": "Black alternates checks and capture threats on every move of the fourfold repetition cycle while Red only makes waiting moves. The ruling needs to be checked; no win or loss is recorded.",
     "Cả hai bên đều tạo đe dọa bắt quân ở mọi nước trong chu kỳ lặp bốn lần. Cần kiểm chứng phán quyết; chưa tính thắng, thua hay hòa.": "Both sides threaten a capture on every move of the fourfold repetition cycle. The ruling needs to be checked; no win, loss or draw is recorded.",
     "Lặp bốn lần, không bên nào chiếu hay tạo đe dọa bắt quân mới, nhưng trên bàn vẫn có quân bị nhắm. Nhiều khả năng là hòa; cần kiểm chứng trước khi tính.": "The position occurred four times and neither side gave check or made a new capture threat, but some pieces can still be captured. This is probably a draw; it needs to be checked before it is counted.",
+    "Tuần này": "This week",
+    "T2": "Mon",
+    "T3": "Tue",
+    "T4": "Wed",
+    "T5": "Thu",
+    "T6": "Fri",
+    "T7": "Sat",
+    "CN": "Sun",
+    "luyện": "done",
+    "Giờ Việt Nam · UTC+7": "Vietnam time · UTC+7",
+    "cần ôn": "due",
+    "Tuần này:": "This week:",
+    "lượt luyện ·": "practice attempts ·",
+    "hình đến hẹn ôn từ hôm nay. Lịch chỉ đếm hoạt động trên thiết bị hoặc tài khoản này.": "positions due for review from today. The calendar only counts activity on this device or account.",
     "máy cơ bản": "basic engine"
   });
 
