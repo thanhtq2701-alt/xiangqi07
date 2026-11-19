@@ -88,6 +88,12 @@ The check runner covers Python and JavaScript checks, exercise fixtures, and cro
 python tools/run_checks.py --node "C:\Program Files\nodejs\node.exe"
 ```
 
+To check a file of positions before it becomes exercises (rules only, nothing is written to `web/`), see [`docs/POSITION_IMPORT.md`](docs/POSITION_IMPORT.md):
+
+```powershell
+python tools/import_positions.py path\to\positions.json
+```
+
 GitHub Actions runs the repository check runner for pull requests and pushes to `codex-full`. Tests exercise the source; they do not prove that the configured production engine or infrastructure works. See [known limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
 
 ## Repository map
@@ -98,7 +104,7 @@ GitHub Actions runs the repository check runner for pull requests and pushes to 
 | [`app/`](app/) | Server-side rules, accounts, persistence, online rooms, and engine adapters |
 | [`web/`](web/) | Browser interface, rules, and learning flows |
 | [`tests/`](tests/) and [`tools/`](tools/) | Tests, validation tools, and the check runner |
-| [`docs/`](docs/) | [`PROJECT.md`](docs/PROJECT.md) (architecture, decisions, rules notes, limitations, privacy, contributing) and the translation glossary |
+| [`docs/`](docs/) | [`PROJECT.md`](docs/PROJECT.md) (architecture, decisions, rules notes, limitations, privacy, contributing), the translation glossary and the [position import format](docs/POSITION_IMPORT.md) |
 | [`deploy/`](deploy/) | Production runbook, service and Nginx templates, environment template, update script |
 | [`old/`](old/README.md) | History only: the retired local app, original V0.1 planning, past reports and audits |
 
