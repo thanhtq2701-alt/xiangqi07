@@ -32,6 +32,8 @@ hay mức sẵn sàng vận hành.
   phải cơ chế chống xem source.
 - Persistence: luôn đi qua `save()` và cloud client; không tạo key localStorage
   chung cho mọi tài khoản. Xem bài không phải là hoàn thành hay đạt trình độ.
+  Nhập tiến độ (`progress-import.js`) chỉ trả state mới qua cùng bộ sanitize
+  với đồng bộ; Cài đặt hiện xem trước rồi mới `save()`.
 - Lớp UI bổ sung theo thứ tự: `v5-ui.js` (tài khoản/quản trị), `online-play.js`
   (PvP), `v6-learning-ui.js`, `v6-ui.js` (trình bày). Khi đổi render, giữ các
   lớp bảo vệ; phần học phải tôn trọng `activeGame` và guard `CCOnline`.
@@ -104,7 +106,7 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 | Email tự khôi phục mật khẩu | Chưa có |
 | Đồng bộ chơi/học, không lẫn danh tính | Có revision/conflict và phạm vi local từng người |
 | Xuất/xóa dữ liệu của mình | Có; backup phải xử lý xóa riêng |
-| Nhập file tiến độ cũ tự động | Chưa có phục hồi JSON đầy đủ; có chuyển guest trong cùng origin và nhập ký phổ |
+| Nhập file tiến độ cũ tự động | Có nhập file xuất của Cờ Chill trong Cài đặt: xem trước, chọn gộp hoặc thay thế, xác nhận dữ liệu của mình; vẫn có chuyển guest trong cùng origin và nhập ký phổ |
 | Công khai display name/avatar; lịch sử public/private | Có tên trong phòng; chưa có public profile/lịch sử cộng đồng |
 | Phản hồi/report lưu và xuất riêng | Có quản trị phản hồi |
 | Gom ván người chơi làm dữ liệu học | Không tự bật; cần đồng ý rõ ràng; không gửi dữ liệu huấn luyện |
@@ -174,8 +176,7 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
 - Chưa xác minh độc lập VM Google Cloud, binary/NNUE Pikafish thật, HTTPS/DNS,
   tải thực hoặc backup/restore. Thông số VM, service và lịch backup là thông tin
   do chủ dự án cung cấp.
-- Chưa có email tự khôi phục mật khẩu, OAuth, nhập phục hồi JSON tiến độ đầy đủ,
-  public profile/lịch sử cộng đồng, chat tự do có quản trị. Không dùng tài
+- Chưa có email tự khôi phục mật khẩu, OAuth, public profile/lịch sử cộng đồng, chat tự do có quản trị. Không dùng tài
   khoản pilot làm kho lưu duy nhất cho dữ liệu quan trọng.
 - Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
   xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
@@ -208,6 +209,12 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
 - Xóa danh tính có ghế trong phòng hiện xóa cả biên bản chung liên quan của đối
   thủ; cần chính sách ẩn danh/lưu giữ trước khi mở pilot rộng.
 - Thống kê học do client đồng bộ, không chống gian lận.
+- Nhập tiến độ chỉ nhận file xuất của Cờ Chill (`co-chill-personal-export` v1,
+  `co-chill-account-export-v1`), tối đa 5 MB. Không nhập bài đang làm dở, ván
+  chưa kết thúc, ván online, phản hồi, tên hồ sơ, đáp án hay quyền. File xuất cá
+  nhân không có mã lượt làm bài nên mã được dựng lại; lượt trùng thời điểm bắt
+  đầu và kết thúc được coi là một. Ván được bộ luật chơi lại; kết quả luật không
+  tự xác định (xin thua, hết giờ, hòa thỏa thuận) lấy theo file.
 - Lịch ôn bài nhiều lượt là 1 ngày (tự làm) hoặc 2 ngày (có trợ giúp); chưa
   thống nhất với lịch ôn tiến triển của bài cơ bản hay kiểm chứng hiệu quả.
 - Nhánh hợp lệ ngoài cây duyệt dừng chờ kiểm chứng; chưa tự chuyển engine/LLM
@@ -244,8 +251,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
   token hay câu trả lời phản ánh riêng; report không có quyền quản trị. Người có
   quyền hệ điều hành vẫn đọc được database và backup.
 - Có xuất JSON cá nhân, xóa dữ liệu học trên thiết bị, xóa tài khoản (xác nhận
-  mật khẩu), xóa khách phòng. File xuất không phải chức năng nhập khôi phục và
-  không chứa khóa đáp án. Có lệnh xem trước/xóa tài khoản không hoạt động 365
+  mật khẩu), xóa khách phòng. File xuất không chứa khóa đáp án; có thể nhập lại
+  vào tài khoản hoặc trình duyệt đang dùng sau khi xem trước và xác nhận. Có lệnh xem trước/xóa tài khoản không hoạt động 365
   ngày khi người vận hành xác nhận.
 - Database và backup là hai nơi khác nhau: yêu cầu xóa phải được áp dụng lại khi
   phục hồi backup; file đã tải xuống không tự bị thu hồi.
@@ -287,8 +294,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 2. Xác minh GCP/Pikafish: version, path, NNUE, UCI handshake, timeout, tải.
 3. Email khôi phục mật khẩu: email đã xác minh, token một lần có hạn, chống dò
    tài khoản, rate limit, thu hồi phiên; cần chủ dự án duyệt dịch vụ gửi thư.
-4. Nhập tiến độ có xem trước, schema/version và validation; không nhập khóa đáp
-   án hay quyền admin.
+4. Nhập tiến độ: đã có xem trước, gộp/thay thế và kiểm tra theo bộ sanitize;
+   còn thiếu nhập bài đang dở/ván chưa kết thúc và chưa thử với file lớn thật.
 5. Bài trung/nâng cao thật: đã có công cụ kiểm luật và định dạng nhập
    `cochill-positions-v1`; còn chờ file thế cờ của chủ dự án, mở rộng kết thúc
    không chiếu hết, tiêu chí chấm, bằng chứng engine và người duyệt.

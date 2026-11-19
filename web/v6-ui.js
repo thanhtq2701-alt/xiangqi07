@@ -51,7 +51,7 @@
     'Lưu tùy chọn':'Save preferences', 'Dữ liệu và quyền riêng tư':'Data & privacy',
     'Khách lưu trên trình duyệt. Khi đăng nhập, tiến độ được đồng bộ vào tài khoản; xem trạng thái lưu ở đầu trang.':'Guest progress stays in this browser. When signed in, progress syncs to your account; check the save status at the top.',
     'Không gửi ván hoặc câu trả lời để huấn luyện. Bản xuất không chứa đáp án ẩn của bài tập.':'Games and answers are not sent for training. Exports do not include hidden puzzle solutions.',
-    'File xuất là bản sao để đọc; chưa có nhập phục hồi tự động. Xóa dữ liệu không thể hoàn tác.':'The export is a readable copy; automatic restore is not available yet. Deleting data cannot be undone.',
+    'File xuất đọc được và nhập lại được vào Cờ Chill; không kèm đáp án ẩn. Xóa dữ liệu không thể hoàn tác.':'The export can be read and imported back into Cờ Chill; it contains no hidden answers. Deleting data cannot be undone.',
     'Âm thanh được tổng hợp trên thiết bị. Không sử dụng âm thanh từ ứng dụng khác.':'Sounds are generated on your device. No audio from other apps is used.',
     'Tài khoản, xuất và xóa dữ liệu':'Account, export & delete data',
     'Xóa lịch sử học và lịch ôn':'Delete learning history & review schedule',
