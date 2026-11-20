@@ -586,3 +586,19 @@ main:has(.learning-panel) .learning-panel > .feedback:not(:empty) {padding:12px 
 .week-due.has b { color:var(--ink); }
 .week-done small,.week-due small { color:var(--muted); font-size:11px; }
 @media(max-width:540px){ .week-strip { gap:4px; } .week-day { padding:8px 2px; border-radius:10px; } .week-done small,.week-due small { font-size:10px; } }
+/* Public profile page and account controls. */
+.public-profile h1 { margin:4px 0 6px; }
+.public-stats { grid-template-columns:repeat(4,minmax(0,1fr)); margin-top:18px; }
+.public-games { list-style:none; margin:0; padding:0; }
+.public-game { border-bottom:1px solid var(--line); padding:12px 0; }
+.public-game:last-child { border-bottom:0; }
+.public-game-row { display:flex; align-items:center; gap:14px; }
+.public-game-row > div { flex:1; min-width:0; }
+.public-game-row p { margin:0; }
+.public-outcome { flex:none; min-width:58px; text-align:center; padding:6px 10px; border-radius:999px; font-weight:600; font-size:14px; background:var(--soft); }
+.outcome-win .public-outcome { color:var(--green); }
+.outcome-loss .public-outcome { color:var(--muted); }
+.public-game .notation-table { margin-top:10px; }
+.public-link code { display:block; overflow-wrap:anywhere; padding:10px 12px; border:1px solid var(--line); border-radius:10px; background:var(--soft); font-size:14px; }
+.public-prompt { margin-bottom:22px; border-color:var(--green); }
+@media(max-width:540px){ .public-stats { grid-template-columns:repeat(2,minmax(0,1fr)); } .public-game-row { flex-wrap:wrap; gap:8px 12px; } }

@@ -26,7 +26,7 @@ from wsgiref.simple_server import make_server, WSGIRequestHandler, WSGIServer
 from app.cloud_store import APIError, CloudStore, MAX_STATE_BYTES, SESSION_SECONDS, display_name, metrics, personal_export, sha, utc, verify_password
 from app import content_store
 from app.rules import Position
-from app.online_rooms import GUEST_PREFIX, GUEST_RETENTION_DAYS, OnlineRooms
+from app.online_rooms import DELETED_PREFIX, GUEST_PREFIX, GUEST_RETENTION_DAYS, OnlineRooms
 from app.static_version import content_version
 
 ROOT = Path(__file__).resolve().parent
@@ -199,8 +199,10 @@ class CloudApplication:
                 guest = self.room_guest(environ)
                 if guest and self.rooms.has_live_context(guest):
                     raise APIError(409, 'Hãy hoàn tất ván khách hoặc rời phần xem trước khi đổi tài khoản.', 'guest_game_live')
+            if path.startswith('/api/public/'):
+                self.store.throttle('public-read', ip, 120, 60)
             # Rate-limit before transaction: failure counters survive rollback.
-            if path in ('/api/account', '/api/engine/analyze', '/api/feedback') and write:
+            if path in ('/api/account', '/api/account/visibility', '/api/engine/analyze', '/api/feedback') and write:
                 self.store.throttle('action-' + path, sha(token) if token else ip, 30 if path == '/api/engine/analyze' else 20, 60)
             with self.store.connect(transaction=write and path != '/api/engine/analyze') as db:
                 user = self.store.session(db, token)
@@ -318,6 +320,46 @@ class CloudApplication:
                 return 200, self.rooms.action(actor, code, action, data), headers
         raise APIError(404, 'Không tìm thấy thao tác phòng.', 'room_route_not_found')
 
+    def public_profile(self, db, public_id):
+        """Owner decisions 19/11/2026: only online games; opponents follow their own setting.
+
+        Private, unset, locked, operator and unknown profiles all answer the same 404.
+        """
+        row = self.store.public_user(db, public_id)
+        if not row:
+            raise APIError(404, 'Không tìm thấy hồ sơ công khai.', 'profile_not_found')
+        uid, people = row['id'], {}
+
+        def opponent(person):
+            pid = person.get('id', '')
+            if pid.startswith(GUEST_PREFIX):
+                return {'name': 'Khách', 'kind': 'guest', 'publicId': None}
+            if pid.startswith(DELETED_PREFIX):
+                return {'name': 'Người chơi đã xóa', 'kind': 'deleted', 'publicId': None}
+            if pid not in people:
+                people[pid] = db.execute('SELECT display_name,public_id,profile_visibility,role,locked_until FROM users WHERE id=?', (pid,)).fetchone()
+            other = people[pid]
+            if not other:
+                return {'name': 'Người chơi đã xóa', 'kind': 'deleted', 'publicId': None}
+            if other['profile_visibility'] == 'public' and other['role'] == 'user' and not (other['locked_until'] and other['locked_until'] > time.time()):
+                return {'name': other['display_name'], 'kind': 'public', 'publicId': other['public_id']}
+            return {'name': 'Người chơi ẩn', 'kind': 'private', 'publicId': None}
+
+        records = OnlineRooms.results_in_db(db, uid, limit=1000)
+        totals = {'games': len(records), 'wins': 0, 'losses': 0, 'draws': 0}
+        games = []
+        for index, record in enumerate(records):
+            side = 'w' if record['players']['w']['id'] == uid else 'b'
+            winner = record.get('result', {}).get('winner')
+            outcome = 'draw' if winner is None else 'win' if winner == side else 'loss'
+            totals[{'draw': 'draws', 'win': 'wins', 'loss': 'losses'}[outcome]] += 1
+            if index < 20:
+                games.append({'gameId': record['gameId'], 'endedAt': utc(record['endedAt']), 'side': side, 'outcome': outcome,
+                              'reason': record.get('result', {}).get('reason', ''), 'opponent': opponent(record['players']['b' if side == 'w' else 'w']),
+                              'initialFen': record['initialFen'], 'moves': [m['move'] for m in record['moves']]})
+        return {'publicId': row['public_id'], 'displayName': row['display_name'], 'joined': utc(row['created_at'])[:7],
+                'totals': totals, 'games': games, 'source': 'server-recorded online games', 'ranked': False}
+
     def dispatch(self, db, user, token, path, method, data, environ):
         headers = []
         if path == '/api/health' and method == 'GET':
@@ -327,6 +369,8 @@ class CloudApplication:
             return 200, self.session_result(user), headers
         if path == '/api/content' and method == 'GET':
             return 200, {'puzzles': content_store.list_content(db, published=True), 'updatedAt': utc()}, headers
+        if path.startswith('/api/public/') and method == 'GET':
+            return 200, self.public_profile(db, path[len('/api/public/'):]), headers
         if path in ('/api/auth/register', '/api/auth/login') and method == 'POST':
             if user:
                 raise APIError(409, 'Hãy đăng xuất trước khi đổi tài khoản.', 'already_authenticated')
@@ -344,6 +388,8 @@ class CloudApplication:
             db.execute('DELETE FROM sessions WHERE token_hash=?', (sha(token),))
             headers.append(('Set-Cookie', self.cookie(clear=True)))
             return 200, {'ok': True}, headers
+        if path == '/api/account/visibility' and method == 'POST':
+            return 200, {'user': self.store.user_view(self.store.set_profile_visibility(db, user, data))}, headers
         if path == '/api/account' and method == 'PATCH':
             updated = self.store.update_account(db, user, data)
             if 'newPassword' in data:

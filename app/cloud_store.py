@@ -178,6 +178,10 @@ def personal_export(value):
     return value
 
 
+def new_public_id():
+    return secrets.token_hex(6)
+
+
 class CloudStore:
     def __init__(self, path, admin_totp_secret=''):
         self.path = Path(path)
@@ -216,6 +220,16 @@ class CloudStore:
                 CREATE TABLE IF NOT EXISTS rate_limits (
                     bucket TEXT PRIMARY KEY, starts_at REAL NOT NULL, count INTEGER NOT NULL);
             ''')
+            # Public profile (owner decisions 19/11/2026). Existing accounts start 'unset' and are
+            # shown as private until the person chooses; the public id is random, never the username.
+            columns = {row[1] for row in db.execute('PRAGMA table_info(users)')}
+            if 'public_id' not in columns:
+                db.execute('ALTER TABLE users ADD COLUMN public_id TEXT')
+            if 'profile_visibility' not in columns:
+                db.execute("ALTER TABLE users ADD COLUMN profile_visibility TEXT NOT NULL DEFAULT 'unset'")
+            db.execute('CREATE UNIQUE INDEX IF NOT EXISTS users_public_id ON users(public_id)')
+            for (uid,) in db.execute('SELECT id FROM users WHERE public_id IS NULL').fetchall():
+                db.execute('UPDATE users SET public_id=? WHERE id=?', (new_public_id(), uid))
             db.execute('INSERT OR IGNORE INTO settings VALUES (?,?)', ('rate_key', secrets.token_hex(32)))
             self.rate_key = db.execute("SELECT value FROM settings WHERE key='rate_key'").fetchone()[0]
             from app.content_store import install
@@ -254,7 +268,8 @@ class CloudStore:
 
     @staticmethod
     def user_view(row):
-        return {'id': row['id'], 'username': row['username'], 'displayName': row['display_name'], 'role': row['role'], 'createdAt': utc(row['created_at']), 'emailVerified': False, 'authMethod': 'password', 'mfaRequired': row['role'] == 'admin', 'testAccount': bool(row['test_account'])}
+        return {'id': row['id'], 'username': row['username'], 'displayName': row['display_name'], 'role': row['role'], 'createdAt': utc(row['created_at']), 'emailVerified': False, 'authMethod': 'password', 'mfaRequired': row['role'] == 'admin', 'testAccount': bool(row['test_account']),
+                'publicId': row['public_id'], 'profileVisibility': row['profile_visibility']}
 
     def create_user(self, db, data, role='user'):
         name = username(data.get('username'))
@@ -262,7 +277,8 @@ class CloudStore:
         hashed = password_hash(data.get('password'))
         uid, now = secrets.token_hex(16), time.time()
         try:
-            db.execute('INSERT INTO users(id,username,display_name,password_hash,role,created_at,last_activity) VALUES (?,?,?,?,?,?,?)', (uid, name, display, hashed, role, now, now))
+            db.execute('INSERT INTO users(id,username,display_name,password_hash,role,created_at,last_activity,public_id,profile_visibility) VALUES (?,?,?,?,?,?,?,?,?)',
+                       (uid, name, display, hashed, role, now, now, new_public_id(), 'public' if role == 'user' else 'private'))
         except sqlite3.IntegrityError:
             raise APIError(409, 'Tên đăng nhập đã được dùng. Hãy chọn tên khác.', 'username_taken')
         db.execute('INSERT INTO states(user_id) VALUES (?)', (uid,))
@@ -348,6 +364,24 @@ class CloudStore:
         if 'newPassword' in data:
             db.execute('UPDATE users SET password_hash=? WHERE id=?', (password_hash(data['newPassword']), user['id']))
         return db.execute('SELECT * FROM users WHERE id=?', (user['id'],)).fetchone()
+
+    def set_profile_visibility(self, db, user, data):
+        if not isinstance(data, dict) or set(data) != {'visibility'} or data['visibility'] not in ('public', 'private'):
+            raise APIError(400, 'Chọn công khai hoặc riêng tư.', 'invalid_visibility')
+        if user['role'] != 'user' and data['visibility'] == 'public':
+            raise APIError(409, 'Tài khoản quản trị không có hồ sơ công khai.', 'operator_profile_private')
+        db.execute('UPDATE users SET profile_visibility=? WHERE id=?', (data['visibility'], user['id']))
+        return db.execute('SELECT * FROM users WHERE id=?', (user['id'],)).fetchone()
+
+    @staticmethod
+    def public_user(db, public_id):
+        """A member who chose public and is not locked; None otherwise (same answer for all)."""
+        if not isinstance(public_id, str) or not re.fullmatch(r'[0-9a-f]{12}', public_id):
+            return None
+        row = db.execute("SELECT * FROM users WHERE public_id=? AND role='user' AND profile_visibility='public'", (public_id,)).fetchone()
+        if not row or (row['locked_until'] and row['locked_until'] > time.time()):
+            return None
+        return row
 
     def admin_users(self, db, query, limit=50, offset=0):
         # Search uses bound literals; no reflected free-text learner content.
