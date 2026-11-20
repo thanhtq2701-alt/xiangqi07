@@ -3,7 +3,7 @@
  * so a test can detect when the source text changes and the translation is stale.
  * Terminology: docs/I18N_GLOSSARY.md. Translated 2026-11-01, reviewed by the project owner.
  * Exercises from the owner's workbook (curriculum-pack.js) carry their own English by field path;
- * their entries are added below in the same '<collection>#<id>.<path>' form (draft, 2026-11-20). */
+ * their entries are added below in the same '<collection>#<id>.<path>' form (translated 2026-11-20, reviewed by the project owner). */
 (function (root, factory) {
   'use strict';
   const node = typeof module !== 'undefined' && module.exports;

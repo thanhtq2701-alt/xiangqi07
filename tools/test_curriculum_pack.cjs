@@ -47,7 +47,7 @@ test('the pack holds the 70 reviewed exercises in the owner\'s 8 topics', () => 
   assert.deepEqual(count('chapterId'), { 'opening-foundation': 10, rook: 9, cannon: 9, horse: 9, pawn: 5, kingSafety: 10, coordination: 9, 'end-basic': 9 });
   assert.deepEqual(count('objective'), { material: 35, mate: 35 });
   assert.deepEqual(count('difficulty'), { intermediate: 50, advanced: 20 });
-  // The owner expected 7 Black-to-move exercises; the workbook has 8 (mid-opening-03 is Black to move too).
+  // 8 Black-to-move exercises; mid-opening-03 got its "Đen đi trước." in the workbook fix of 2026-11-20.
   assert.deepEqual(count('learner'), { w: 62, b: 8 });
   const ids = C.exercises.map(e => e.id);
   assert.equal(new Set(ids).size, ids.length, 'no duplicate exercise id');
