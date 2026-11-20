@@ -245,9 +245,19 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
 ### Kỹ thuật và dữ liệu
 
 - PvP polling khoảng 2 giây; tab nền/mạng yếu có thể quá hạn 30 giây và bị coi
-  mất kết nối. Mỗi snapshot ghi trạng thái/presence vào SQLite, nên tranh chấp
-  tăng theo số người/phòng; chưa benchmark trên VM 2 vCPU. Đo trước khi tăng
-  người hoặc đổi tần suất.
+  mất kết nối. Mỗi lần polling là 4 lần mở/đóng kết nối SQLite và 2 giao dịch
+  ghi (bộ giới hạn tần suất và lưu lại cả JSON phòng chỉ để cập nhật presence),
+  nên các lần polling xếp hàng qua một khóa ghi. Đo ngày 20/11/2026 bằng
+  `python tools/load_rooms.py` (server local riêng, database tạm, laptop
+  Windows; không phải VM 2 vCPU, số trên VM cần đo riêng, không đo production):
+  20 người chơi p50 ~70–100 ms, p95 0,2–3 s (dao động giữa các lần chạy); 50
+  người p50 ~120–240 ms, p95 ~0,6 s; trần khoảng 35–40 yêu cầu/giây; 100 người
+  p95 ~8,6 s và lỗi 500 "database is locked" (chờ khóa quá 10 giây); 200 người
+  có 22/100 ván bị xử thua "mất kết nối" oan. Pilot 5–10 người nằm trong vùng
+  an toàn; không mở rộng quá ~25 ván cùng lúc (50 người) trước khi sửa: polling
+  chỉ đọc (presence giữ trong bộ nhớ của tiến trình duy nhất, chỉ ghi phòng khi
+  trạng thái đổi), giới hạn tần suất polling trong bộ nhớ, dùng lại kết nối
+  SQLite, giãn polling cho người xem/phòng chờ. Đây là đề xuất, chưa làm.
 - Ghép cộng đồng theo thời gian, chưa theo trình độ.
 - Cookie phòng khách 24 giờ. Giữ phòng và biên bản có khách 30 ngày (chủ dự án
   chốt 19/11/2026) bằng lệnh `prune-rooms`: xem trước, chỉ xóa khi có
@@ -363,6 +373,10 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 8. Câu trả lời bằng mũi tên, avatar, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
+9. Giảm tải PvP polling theo kết quả đo ngày 20/11/2026 (§4): polling chỉ đọc,
+   giới hạn tần suất trong bộ nhớ, dùng lại kết nối SQLite, giãn nhịp polling
+   cho người xem; đo lại bằng `tools/load_rooms.py` và đo trên một VM thử
+   (không phải production) trước khi mở cho hơn khoảng 50 người cùng lúc.
 
 ## 8. Quy trình đóng góp
 
