@@ -12,6 +12,10 @@
  const safetyBlock='3k5/4r4/9/9/9/9/9/R8/9/4K4 w';
  const rookBlocked='3k5/9/9/9/9/9/R1P3r2/9/9/4K4 w';
  const palace='3aka3/9/9/6R2/9/3R5/9/9/9/3K5 w';
+ const pawnRiver='3k5/9/9/9/6P2/9/2P6/9/9/4K4 w';
+ const pawnCapture='5k3/9/9/4c4/3hP4/4r4/9/9/9/3K5 w';
+ const pawnLastRank='P4k3/9/9/9/9/9/9/9/9/3K5 w';
+ const pawnNet='3k5/2P6/3P5/9/9/9/9/9/9/4K4 w';
  const courses=[
   {id:'opening',title:'Khai cuộc',description:'Phát triển quân và đọc phản ứng đầu ván.',chapterIds:['opening-foundation']},
   {id:'middle',title:'Trung cuộc',description:'Khám phá Xe, Pháo, Mã, Tốt, an toàn Tướng và phối hợp.',chapterIds:['rook','cannon','horse','pawn','kingSafety','coordination']},
@@ -22,7 +26,7 @@
   {id:'rook',courseId:'middle',title:'Xe',icon:'俥',summary:'Đường mở, vật cản và phối hợp hai Xe.',lessonIds:['rook-open-file','rook-support'],exerciseIds:['v6-rooks-palace-a'],fixtureSkills:['material']},
   {id:'cannon',courseId:'middle',title:'Pháo',icon:'炮',summary:'Quan sát ngòi trước và sau mỗi trao đổi.',lessonIds:['cannon-screen'],exerciseIds:[],fixtureSkills:['cannon']},
   {id:'horse',courseId:'middle',title:'Mã',icon:'傌',summary:'Nhìn chân Mã và cả những đường đi lùi.',lessonIds:['horse-path'],exerciseIds:[],fixtureSkills:['horse']},
-  {id:'pawn',courseId:'middle',title:'Tốt',icon:'兵',summary:'Tốt qua sông, nước Tốt êm và lưới chiếu bằng Tốt.',lessonIds:[],exerciseIds:[],fixtureSkills:[]},
+  {id:'pawn',courseId:'middle',title:'Tốt',icon:'兵',summary:'Tốt qua sông, nước Tốt êm và lưới chiếu bằng Tốt.',lessonIds:['pawn-basics'],exerciseIds:[],fixtureSkills:[]},
   {id:'kingSafety',courseId:'middle',title:'An toàn Tướng',icon:'帥',summary:'Giải chiếu trước khi tiếp tục kế hoạch.',lessonIds:['king-first'],exerciseIds:[],fixtureSkills:['safety']},
   {id:'coordination',courseId:'middle',title:'Phối hợp quân',icon:'合',summary:'Một quân khống chế, quân còn lại kết thúc.',lessonIds:['rooks-palace'],exerciseIds:['v6-rooks-palace-a','v6-rooks-palace-b'],fixtureSkills:[]},
   {id:'end-basic',courseId:'end',title:'Đường thoát của Tướng',icon:'終',summary:'Phân biệt hết nước hợp lệ và chiếu hết.',lessonIds:['end-escape'],exerciseIds:[],fixtureSkills:['safety']}
@@ -55,7 +59,12 @@
    section('Một quân tiến và một quân giữ','Bài luyện gắn với hình này có nhiều quyết định. Mục tiêu cụ thể là chiếu liên tục tới chiếu hết trong giới hạn bài, không phải khẳng định đây là kế hoạch duy nhất trong mọi thế tương tự.',palace,[]),
    section('Một phản ứng cần tính','Sau khi Xe bắt Sĩ, Tướng có thể đổi hàng. Người học phải tự đi tiếp; nước đầu đúng chưa hoàn thành cả bài.',palace,['d4d9','e9e8'])],exerciseIds:['v6-rooks-palace-a','v6-rooks-palace-b']},
   {id:'end-escape',chapterId:'end-basic',phase:'end',title:'Đếm đường thoát trước kết luận',summary:'Ít quân không tự chứng minh thắng hoặc hòa.',difficulty:'beginner',sections:[
-   section('Kiểm tra ba điều','Tướng có đang bị chiếu không, có nước giải chiếu hợp lệ không, và bên đi còn nước hợp lệ nào khác không? Bộ luật mới quyết định trạng thái ván.',palace,['d4d9','e9e8','d9d8','e8e9','g6e6','f9e8','d8d9'],'Ví dụ chiếu hết cụ thể; không thay cho giáo trình tàn cuộc đầy đủ.')],exerciseIds:[]}
+   section('Kiểm tra ba điều','Tướng có đang bị chiếu không, có nước giải chiếu hợp lệ không, và bên đi còn nước hợp lệ nào khác không? Bộ luật mới quyết định trạng thái ván.',palace,['d4d9','e9e8','d9d8','e8e9','g6e6','f9e8','d8d9'],'Ví dụ chiếu hết cụ thể; không thay cho giáo trình tàn cuộc đầy đủ.')],exerciseIds:[]},
+  {id:'pawn-basics',chapterId:'pawn',phase:'middle',title:'Tốt: tiến trước, qua sông mới đi ngang',summary:'Đếm hướng đi của Tốt trước và sau khi qua sông, rồi xem Tốt phối hợp với Tướng.',difficulty:'beginner',source:'Cờ Chill tự biên soạn 2026-11-20',sections:[
+   section('Trước sông chỉ có một hướng','Tốt 7 của Đỏ chưa qua sông nên chỉ có một nước: tiến một bước (B7.1). Tốt 3 đã qua sông nên đi được ba hướng: tiến (B3.1) hoặc sang ngang (B3-4, B3-2). Tốt không bao giờ lùi.',pawnRiver,['g5f5'],undefined,['c3','g5']),
+   section('Ăn quân theo đúng hướng đi','Tốt 5 của Đỏ đã qua sông. Nó ăn được Pháo ở phía trước (B5.1) hoặc Mã bên cạnh (B5-6), vì Tốt ăn quân theo đúng hướng nó đi. Xe Đen đứng ngay sau lưng thì Tốt không ăn được: Tốt không lùi.',pawnCapture,['e5d5'],undefined,['e6','d5','e4']),
+   section('Đến hàng cuối chỉ còn đi ngang','Tốt 9 của Đỏ đã xuống hàng cuối bên Đen. Từ đây nó không tiến được nữa, chỉ còn đi ngang (B9-8).',pawnLastRank,['a9b9'],undefined,['a9']),
+   section('Hai Tốt và mặt Tướng cùng làm lưới','Tướng Đen ở lộ 4 không được bước sang lộ 5 vì sẽ đối mặt Tướng Đỏ. Tốt 7 của Đỏ giữ ô ngay trước Tướng Đen. Sau B6.1, Tướng Đen bị chiếu, không ăn được Tốt (Tốt 7 bảo vệ) và không còn nước hợp lệ: chiếu hết.',pawnNet,['d7d8'],'Ví dụ chiếu hết cụ thể, đã kiểm tra bằng bộ luật; không phải giáo trình tàn cuộc đầy đủ.',['c8','d7','e0'])],exerciseIds:['mid-pawn-01','mid-pawn-02']}
  ];
  const exercises=[
   {
@@ -636,7 +645,7 @@
  // Exercises generated from the owner's workbook (web/curriculum-pack.js, built by
  // tools/import_curriculum_xlsx.py). The authored exercises above stay first and unchanged.
  for(const exercise of Array.isArray(PACK?.exercises)?PACK.exercises:[]){const chapter=chapters.find(c=>c.id===exercise.chapterId);if(!chapter)throw new Error('Unknown exercise chapter '+exercise.chapterId);if(exercises.some(x=>x.id===exercise.id))throw new Error('Duplicate exercise id '+exercise.id);exercises.push(exercise);chapter.exerciseIds.push(exercise.id);}
- for(const lesson of lessons){lesson.source='Cờ Chill tự biên soạn 2026-10-25';lesson.verification='Minh họa được phát lại qua bộ luật; không có đánh giá tối ưu hoặc chứng nhận chuyên gia.';}
+ for(const lesson of lessons){lesson.source=lesson.source||'Cờ Chill tự biên soạn 2026-10-25';lesson.verification='Minh họa được phát lại qua bộ luật; không có đánh giá tối ưu hoặc chứng nhận chuyên gia.';}
  function findLesson(id){return lessons.find(x=>x.id===id)||null;}
  function findExercise(id){return exercises.find(x=>x.id===id)||null;}
  function findChapter(id){return chapters.find(x=>x.id===id)||null;}

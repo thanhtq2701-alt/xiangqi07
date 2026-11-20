@@ -81,7 +81,9 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 
 - 3 khóa khai/trung/tàn, 8 chương; trung cuộc có Xe, Pháo, Mã, Tốt (thêm
   20/11/2026, đứng sau Mã), an toàn Tướng và phối hợp. Người học chọn chương tự
-  do. Có bản đồ chương và 8 bài hướng dẫn; chương Tốt chưa có bài hướng dẫn.
+  do. Có bản đồ chương và 9 bài hướng dẫn; bài của chương Tốt (thêm 20/11/2026)
+  gồm 4 hình: hướng đi trước/sau sông, ăn quân, hàng cuối, lưới hai Tốt và mặt
+  Tướng, mỗi câu đều được test đối chiếu với bộ luật.
 - 12 bài cũ là bài cơ bản. Hai bài nhiều lượt thí điểm có cây quyết định hợp
   lệ, mục tiêu chiếu hết bằng chuỗi chiếu liên tục, 3–4 lượt quyết định trên
   các nhánh được duyệt; cả hai cùng một họ chiến thuật.
@@ -209,7 +211,7 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   khai; người vận hành chưa có công cụ ẩn một hồ sơ ngoài khóa tài khoản.
 - Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
   xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
-- Kho bài: 12 cơ bản, 8 hướng dẫn, 72 bài nhiều lượt (2 thí điểm + 70 bài của
+- Kho bài: 12 cơ bản, 9 hướng dẫn, 72 bài nhiều lượt (2 thí điểm + 70 bài của
   chủ dự án). Chương Khai cuộc, Xe, An toàn Tướng và Phối hợp quân đã có ít
   nhất 10 bài; Pháo, Mã, Đường thoát của Tướng có 9, Tốt có 5, nên các chương
   này chưa đủ 10 hình để đánh giá cấp. Các chương Xe, Pháo, Mã, An toàn Tướng và
@@ -366,8 +368,7 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 4. Nhập tiến độ: đã có xem trước, gộp/thay thế và kiểm tra theo bộ sanitize;
    còn thiếu nhập bài đang dở/ván chưa kết thúc và chưa thử với file lớn thật.
 5. Bài trung/nâng cao thật: đã nhập 70 bài của chủ dự án (20/11/2026) với kết
-   thúc chiếu hết hoặc hơn quân, bản tiếng Anh đã duyệt. Còn lại: bài hướng dẫn
-   cho chương Tốt; quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
+   thúc chiếu hết hoặc hơn quân, bản tiếng Anh đã duyệt. Còn lại: quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
    trong ứng dụng; thêm bài cho các chương chưa đủ 10.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Bot 7 cấp, hàng đợi và hạn 10 giây: đã có bản thiết kế chờ duyệt

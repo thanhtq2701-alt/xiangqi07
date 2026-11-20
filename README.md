@@ -21,7 +21,7 @@ Cờ Chill is a Vietnamese-first web app for learning and playing Xiangqi (Chine
 - **Accounts:** synced progress, export, import with preview, and deletion of your own data. Guests can play without an account.
 - **Rules-first:** Python and JavaScript rules are cross-checked; explanations are templates grounded in checked lines. An optional Pikafish adapter works only when the operator supplies the engine.
 
-The library: 12 basic exercises, 8 lessons and 72 multi-move exercises (70 written and reviewed by the project owner, imported from a workbook; the app checks their rules, checkmates and material, not their quality). There is no trained AI coach and no claim of measured learning impact. See [limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
+The library: 12 basic exercises, 9 lessons and 72 multi-move exercises (70 written and reviewed by the project owner, imported from a workbook; the app checks their rules, checkmates and material, not their quality). There is no trained AI coach and no claim of measured learning impact. See [limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
 
 ## Run locally
 
@@ -81,7 +81,7 @@ No license has been chosen yet, so the code, content and artwork are not license
 
 ## Tiếng Việt
 
-Cờ Chill là ứng dụng web học và chơi cờ tướng, tiếng Việt trước, có chế độ tiếng Anh. Người học tự suy nghĩ trước khi xem giải thích, sau đó thử lại, làm bài liên quan và ôn tập. Luật cờ quyết định nước đi hợp lệ; máy cơ bản dùng tìm kiếm heuristic và lời giải là mẫu hoặc do chủ dự án viết, không phải AI được huấn luyện. Kho bài: 12 bài cơ bản, 8 bài hướng dẫn, 72 bài nhiều lượt (70 bài nhập từ file Excel của chủ dự án bằng `python tools/import_curriculum_xlsx.py`; xem [docs/POSITION_IMPORT.md](docs/POSITION_IMPORT.md)).
+Cờ Chill là ứng dụng web học và chơi cờ tướng, tiếng Việt trước, có chế độ tiếng Anh. Người học tự suy nghĩ trước khi xem giải thích, sau đó thử lại, làm bài liên quan và ôn tập. Luật cờ quyết định nước đi hợp lệ; máy cơ bản dùng tìm kiếm heuristic và lời giải là mẫu hoặc do chủ dự án viết, không phải AI được huấn luyện. Kho bài: 12 bài cơ bản, 9 bài hướng dẫn, 72 bài nhiều lượt (70 bài nhập từ file Excel của chủ dự án bằng `python tools/import_curriculum_xlsx.py`; xem [docs/POSITION_IMPORT.md](docs/POSITION_IMPORT.md)).
 
 Chạy trên máy (Python 3.12):
 
