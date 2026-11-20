@@ -116,3 +116,74 @@ Mỗi bản nháp có `importReview.pending`:
   (lưu ý); không phát hiện thế "gần giống" khác vài quân.
 - Đưa bản nháp vào `web/curriculum.js` và `web/content-en.js` là bước thủ công
   có người duyệt.
+
+# Nhập bài từ file Excel của chủ dự án (`tools/import_curriculum_xlsx.py`)
+
+Dùng cho file `var/import/CoChill_70_bai_final.xlsx` (70 bài, nhập ngày
+20/11/2026). Thư mục `var/` được Git bỏ qua: file Excel được đọc tại chỗ, không
+sao chép, không sửa, không commit. Công cụ chỉ dùng thư viện chuẩn của Python
+(file .xlsx là file zip chứa XML) và kiểm luật bằng `app/rules.py`.
+
+```powershell
+python tools/import_curriculum_xlsx.py                  # chạy thử: chỉ báo cáo
+python tools/import_curriculum_xlsx.py --write          # ghi web/curriculum-pack.js
+python tools/import_curriculum_xlsx.py --translation-template var\import\can-dich.json
+python tools/stamp_static_versions.py                   # sau khi ghi
+```
+
+- Mã thoát: 0 không lỗi, 1 có lỗi (không ghi gì), 2 không đọc được file.
+- Chạy lại trên cùng file cho ra đúng từng byte cũ ("đã khớp, không cần ghi
+  lại"), nên không bao giờ nhân đôi bài. `version` của một bài chỉ tăng khi
+  cây nước đi đổi (nháp đang làm của bài đó sẽ không khôi phục); đổi chữ thì
+  giữ nguyên.
+
+## Sheet và cột được đọc
+
+| Sheet | Cột | Vào trường |
+|---|---|---|
+| `Du_lieu_ky_thuat` (chuẩn cho logic) | `id`, `loai_bai`, `chu_de`, `muc_do`, `so_quyet_dinh`, `ben_di`, `fen`, `loi_giai_uci`, `nguon` | `id`, `objective` (`mate`/`material`), `chapterId` + `phase`, `difficulty`, `decisions`, `learner`, `fen`, `exampleLine`, `source` |
+| `Bai_hoc` | `danh_gia_hinh_co`, `muc_tieu`, `ghi_chu_kiem_chung` | `assessment` (nhận định thế cờ), `idea` (ý tưởng chính), `urgency` (vì sao phải hành động ngay); các cột còn lại chỉ để đối chiếu |
+| `Cay_nuoc_di` | `node_id`, `next_node_id`, `uci_nguoi_hoc`, `uci_doi_thu`, `uci_nuoc_khac_chap_nhan`, `ly_do_nuoc_di`, `phan_ung_can_luu_y`, `nuoc_khac_chap_nhan` | `nodes`, `choices[].move/.reply/.next`, nước khác được nhận, `choices[].reason`, `nodes[].watchOut`, `choices[].note`; ký pháp Việt chỉ để đối chiếu |
+
+Không nhập: cột `hinh_co` (ảnh; bàn cờ vẽ từ FEN) và sheet `Engine_doi_chieu`
+(tham khảo, không phải đáp án). Tiêu đề, mục tiêu trước khi giải, nhãn độ khó và
+nhãn kiểm chứng sinh từ mẫu, có sẵn tiếng Anh. Chương: Khai cuộc →
+`opening-foundation`, Xe → `rook`, Pháo → `cannon`, Mã → `horse`, Tốt → `pawn`,
+An toàn Tướng → `kingSafety`, Phối hợp quân → `coordination`, Tàn cuộc →
+`end-basic`.
+
+## Công cụ dừng khi (LỖI)
+
+- Thiếu sheet hoặc cột; file không phải .xlsx; phần XML quá lớn hoặc có
+  `DOCTYPE`/`ENTITY`.
+- `id` sai mẫu, trùng trong file, hoặc đã có trong ứng dụng; thế cờ trùng.
+- FEN không đọc được; `ben_di` khác bên đi trong FEN; thế đầu đã hết ván.
+- Nước UCI không hợp lệ; `so_quyet_dinh` khác số lượt trong `loi_giai_uci`.
+- `Cay_nuoc_di` lệch `loi_giai_uci` (nước người học, nước đáp, `node_id`,
+  `next_node_id`, số dòng); thiếu `ly_do_nuoc_di`.
+- Bài Chiếu hết mà nước cuối chưa chiếu bí; bài Ăn quân mà cuối biến đã hết ván
+  hoặc quân lực không hơn lúc đầu (thang điểm quân thô, giống
+  `web/line-practice.js`).
+- Nước khác được nhận không hợp lệ, không đạt mục tiêu, hoặc (ở lượt giữa) không
+  dẫn tới cùng thế sau nước đáp.
+- `Bai_hoc` lệch `Du_lieu_ky_thuat`; thiếu nhận định, mục tiêu hoặc ghi chú.
+- Thiếu bản dịch tiếng Anh trong `tools/curriculum_pack_en.json`, hoặc bản dịch
+  còn chữ Việt, có từ bị bảng thuật ngữ cấm, có tọa độ máy.
+
+## Lưu ý (không dừng)
+
+- Ở nước cuối bài chiếu hết, mọi nước chiếu bí ngay mà cây không ghi đều được
+  thêm vào đáp án (`auto: "mate"`), vì bộ luật chứng minh được.
+- Có nước chiếu bí ngay ở lượt giữa: chỉ báo, trong ứng dụng vẫn chờ kiểm chứng.
+- Ký pháp Việt của tác giả khác cách ghi của ứng dụng (cần Node.js); giao diện
+  luôn dùng cách ghi của ứng dụng.
+- Bài Đen đi trước mà `muc_tieu` không mở đầu bằng "Đen đi trước.".
+- Số quyết định nằm ngoài khoảng của mức độ (trung cấp 3–4, khó 5–7).
+
+## Bản dịch tiếng Anh
+
+`tools/curriculum_pack_en.json` ghi `{"tiếng Việt": "English"}` cho mọi đoạn chữ
+của tác giả. Đổi chữ trong Excel thì bản dịch cũ không còn khớp và công cụ báo
+thiếu: chạy `--translation-template` để có danh sách cần dịch (đã điền sẵn bản
+dịch còn dùng được), dịch theo `docs/I18N_GLOSSARY.md`, rồi chạy lại. Ký pháp
+trong bản tiếng Anh dùng WXF (X5.5 → R5+5).

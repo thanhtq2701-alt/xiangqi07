@@ -28,7 +28,12 @@ hay mức sẵn sàng vận hành.
   `line-practice.js`; `curriculum.js` chứa nội dung và cây đáp án.
   `web/fixtures.js` sinh bằng `python tools/export_preview_fixtures.py`, không
   sửa tay. Thế cờ mới đi qua `tools/import_positions.py` (chỉ kiểm luật, sinh
-  bản nháp `line-v1` ngoài `web/`; xem POSITION_IMPORT.md). Frontend vẫn đọc được đáp án; reflection gate là thiết kế học, không
+  bản nháp `line-v1` ngoài `web/`; xem POSITION_IMPORT.md). 70 bài của chủ dự
+  án nằm trong `web/curriculum-pack.js`, sinh bằng
+  `python tools/import_curriculum_xlsx.py --write` từ file Excel trong
+  `var/import/` và bản dịch `tools/curriculum_pack_en.json`, không sửa tay;
+  `curriculum.js` nối các bài này sau bài cũ, `content-en.js` dựng mục tiếng
+  Anh từ đó. Frontend vẫn đọc được đáp án; reflection gate là thiết kế học, không
   phải cơ chế chống xem source.
 - Persistence: luôn đi qua `save()` và cloud client; không tạo key localStorage
   chung cho mọi tài khoản. Xem bài không phải là hoàn thành hay đạt trình độ.
@@ -73,13 +78,24 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 
 ### Học, bài tập và engine
 
-- 3 khóa khai/trung/tàn; trung cuộc có Xe, Pháo, Mã, an toàn Tướng và phối hợp.
-  Người học chọn chương tự do. Có bản đồ chương và 8 bài hướng dẫn.
-- 12 bài cũ là bài cơ bản. Hai bài nhiều lượt có cây quyết định hợp lệ, mục
-  tiêu chiếu hết bằng chuỗi chiếu liên tục, 3–4 lượt quyết định trên các nhánh
-  được duyệt; cả hai cùng một họ chiến thuật.
-- Độ khó mục tiêu: cơ bản 1–2 quyết định, trung cấp 3–4, nâng cao 6–7. Không
-  kéo dài giả bằng nước vô nghĩa.
+- 3 khóa khai/trung/tàn, 8 chương; trung cuộc có Xe, Pháo, Mã, Tốt (thêm
+  20/11/2026, đứng sau Mã), an toàn Tướng và phối hợp. Người học chọn chương tự
+  do. Có bản đồ chương và 8 bài hướng dẫn; chương Tốt chưa có bài hướng dẫn.
+- 12 bài cũ là bài cơ bản. Hai bài nhiều lượt thí điểm có cây quyết định hợp
+  lệ, mục tiêu chiếu hết bằng chuỗi chiếu liên tục, 3–4 lượt quyết định trên
+  các nhánh được duyệt; cả hai cùng một họ chiến thuật.
+- 70 bài nhiều lượt do chủ dự án soạn và duyệt (nhập 20/11/2026): 35 chiếu hết,
+  35 ăn quân/giành ưu thế; 50 trung cấp, 20 khó; 62 bài Đỏ đi trước, 8 bài Đen
+  đi trước (bàn cờ đặt bên người học ở dưới). Quyết định của chủ dự án
+  20/11/2026: trước khi giải chỉ hiện mục tiêu chuẩn sinh từ dữ liệu ("Đen đi
+  trước. Chiếu hết trong 5 lượt đi của bạn."); nhận định, ý tưởng chính, vì sao
+  phải hành động ngay, lý do từng nước và phản ứng cần lưu ý chỉ hiện ở phần lời
+  giải, theo từng nước mẫu; tiêu đề tự sinh ("Pháo · Chiếu hết 3"); nước hợp lệ
+  ngoài cây chờ kiểm chứng, không chấm sai; ở nước cuối bài chiếu hết, mọi nước
+  chiếu bí ngay đều được nhận (bộ luật kiểm tra); kỹ năng: Pháo → cannon, Mã →
+  horse, chiếu hết khác → safety, ăn quân khác → material; quyền `own-work`.
+- Độ khó mục tiêu: cơ bản 1–2 quyết định, trung cấp 3–4, khó/nâng cao 5–7 (chủ
+  dự án chốt 5–7 ngày 20/11/2026). Không kéo dài giả bằng nước vô nghĩa.
 - Chỉ ba câu suy nghĩ ban đầu, sau đó chọn nước và xem phản ứng đối thủ. Sai
   giữ checkpoint; sau ba lần sai đặt lại gốc và hẹn ngày sau. Nhánh hợp lệ
   ngoài cây duyệt được giữ để kiểm chứng, không bị kết luận sai bằng máy nông.
@@ -96,7 +112,8 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 - 7 cấp bot và đổi cấp theo 10 ván (thua ≥6 hạ, thắng ≥7 tăng) chưa hiệu chỉnh
   hay triển khai. Không dùng độ sâu 1/2 để giả bảy cấp.
 - LLM cá nhân hóa/nhận xét lập luận chưa có provider, key hay rubric. Lời giải
-  hiện là mẫu dựa trên luật/cây bài.
+  hiện là mẫu dựa trên luật/cây bài, hoặc lời giải thích chủ dự án tự viết cho
+  70 bài nhập từ file Excel (quyết định 19/11/2026).
 
 ### Tài khoản và dữ liệu
 
@@ -191,17 +208,33 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   khai; người vận hành chưa có công cụ ẩn một hồ sơ ngoài khóa tài khoản.
 - Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
   xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
-- Kho bài nhỏ: 12 cơ bản, 8 hướng dẫn, 2 bài nhiều lượt cùng họ chiếu hết; chưa
-  có kho nâng cao 6–7 quyết định, chưa đủ 10 hình khác nhau mỗi chương để đánh
-  giá cấp. Các chương Xe, Pháo, Mã, An toàn Tướng và Đường thoát của Tướng gợi
-  ý lại 12 bài cơ bản theo kỹ năng: dùng lại kho cũ, không phải thêm bài. Hình
-  minh họa luật chỉ được bộ luật kiểm tra tính hợp lệ, không phải nội dung
-  chiến thuật được chuyên gia thẩm định.
-- `tools/import_positions.py` chỉ kiểm luật, trùng thế và trường bắt buộc; không
-  đánh giá nước tốt nhất. Bài nhiều lượt chỉ nhận kết thúc chiếu hết, nên thế
-  trung cuộc kết thúc bằng lợi thế mới là bản nháp `line-v1-draft`, cần mở rộng
-  định dạng và bằng chứng engine. Mỗi nước đúng chỉ có một nước đáp; chưa có
-  chú thích từng nước hay danh sách nước sai do người soạn chỉ định.
+- Kho bài: 12 cơ bản, 8 hướng dẫn, 72 bài nhiều lượt (2 thí điểm + 70 bài của
+  chủ dự án). Chương Khai cuộc, Xe, An toàn Tướng và Phối hợp quân đã có ít
+  nhất 10 bài; Pháo, Mã, Đường thoát của Tướng có 9, Tốt có 5, nên các chương
+  này chưa đủ 10 hình để đánh giá cấp. Các chương Xe, Pháo, Mã, An toàn Tướng và
+  Đường thoát của Tướng gợi ý lại 12 bài cơ bản theo kỹ năng; chương Tốt và
+  Khai cuộc chưa có bài cơ bản cùng kỹ năng. Hình minh họa luật chỉ được bộ luật
+  kiểm tra tính hợp lệ, không phải nội dung chiến thuật được chuyên gia thẩm
+  định.
+- 70 bài của chủ dự án: nước đúng và nước đáp theo cây tác giả đã duyệt, có đối
+  chiếu Pikafish ngoài ứng dụng (sheet `Engine_doi_chieu` không được nhập; ở 5
+  bài cây chọn nước đáp khác engine và cây là chuẩn). Ứng dụng chỉ chứng minh
+  luật từng nước, chiếu bí ở cuối bài chiếu hết và quân lực cuối biến hơn lúc
+  đầu (thang điểm quân thô: Xe 9, Pháo 4,5, Mã 4, Sĩ/Tượng 2, Tốt 1) ở bài ăn
+  quân; không chứng minh đó là nước tốt nhất hay nước đáp mạnh nhất, và không
+  đo mức ưu thế (ví dụ `mid-opening-04` chỉ hơn khoảng 1,8 tốt theo engine).
+  Mỗi nước đúng chỉ có một nước đáp; nước hợp lệ ngoài cây (kể cả nước dẫn tới
+  chiếu bí chậm hơn) chờ kiểm chứng, nên bài mới chưa có ba lần sai/hẹn học
+  tiếp. Ký pháp hiển thị do ứng dụng sinh từ UCI; trong lời giải của tác giả,
+  ký pháp viết thường được đổi sang chữ hoa (x5.5 → X5.5).
+- Bản tiếng Anh của 70 bài (nhận định, ý tưởng, lý do từng nước, phản ứng cần
+  lưu ý) là bản dịch nháp của Claude ngày 20/11/2026 theo bảng thuật ngữ, chờ
+  chủ dự án duyệt; tiêu đề và mục tiêu tiếng Anh sinh từ mẫu.
+- `tools/import_positions.py` (file JSON) chỉ kiểm luật, trùng thế và trường bắt
+  buộc; không đánh giá nước tốt nhất, mục tiêu "advantage" vẫn chỉ thành bản
+  nháp `line-v1-draft`. `tools/import_curriculum_xlsx.py` (file Excel của chủ dự
+  án) nhận một file một lần: chạy lại thay toàn bộ `web/curriculum-pack.js`;
+  đợt bài sau cần gộp vào cùng file Excel hoặc mở rộng công cụ.
 - Câu trả lời bằng mũi tên và dashboard đúng thiết kế cuối chưa đầy đủ. Lịch tuần chỉ đếm
   dữ liệu trên thiết bị hoặc tài khoản đang dùng, chưa có xem tuần trước/sau.
 - Chưa xác minh mọi phán quyết lặp/chiếu dai/đuổi dai theo luật giải đấu Việt
@@ -287,7 +320,10 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
   dự án, không chứa binary, NNUE hay mã Pikafish; test dùng tiến trình UCI giả,
   không chứng minh sức cờ. Kiểm tra giấy phép binary, source và weights trước
   khi tải hoặc phân phối.
-- Giải thích dùng template với bằng chứng luật/biến đã kiểm tra. Trước khi tích
+- Giải thích dùng template với bằng chứng luật/biến đã kiểm tra, hoặc lời của
+  chủ dự án (70 bài nhập từ file Excel, nguồn ghi trong bài: ván tự đấu
+  Pikafish hoặc tự dựng). Bản tiếng Anh của phần này là bản dịch nháp của
+  Claude, chờ chủ dự án duyệt. Trước khi tích
   hợp LLM cần provider, sự đồng ý dữ liệu, schema bằng chứng, rubric, bộ kiểm
   thử chống bịa và phương án template khi lỗi; mọi nhận định nước/điểm/biến
   phải đối chiếu engine.
@@ -316,9 +352,11 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    tài khoản, rate limit, thu hồi phiên; cần chủ dự án duyệt dịch vụ gửi thư.
 4. Nhập tiến độ: đã có xem trước, gộp/thay thế và kiểm tra theo bộ sanitize;
    còn thiếu nhập bài đang dở/ván chưa kết thúc và chưa thử với file lớn thật.
-5. Bài trung/nâng cao thật: đã có công cụ kiểm luật và định dạng nhập
-   `cochill-positions-v1`; còn chờ file thế cờ của chủ dự án, mở rộng kết thúc
-   không chiếu hết, tiêu chí chấm, bằng chứng engine và người duyệt.
+5. Bài trung/nâng cao thật: đã nhập 70 bài của chủ dự án (20/11/2026) với kết
+   thúc chiếu hết hoặc hơn quân. Còn lại: chủ dự án duyệt bản dịch tiếng Anh;
+   sửa vài chỗ trong file Excel (xem báo cáo nhập); bài hướng dẫn cho chương
+   Tốt; quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
+   trong ứng dụng; thêm bài cho các chương chưa đủ 10.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
 8. Câu trả lời bằng mũi tên, avatar, luật

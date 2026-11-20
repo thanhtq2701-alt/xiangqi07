@@ -1,7 +1,7 @@
 /* Authored pilot curriculum. Diagrams show legal moves; only the explicitly
  * proof-checked mating exercises are scored. No expert or Pikafish claim.
  * Browser: CCCurriculum. Node: require('./curriculum.js'). */
-(function(root,factory){'use strict';const api=factory(typeof module!=='undefined'&&module.exports?require('./xiangqi.js'):root.XQ);if(typeof module!=='undefined'&&module.exports)module.exports=api;root.CCCurriculum=api;})(typeof globalThis!=='undefined'?globalThis:this,function(XQ){
+(function(root,factory){'use strict';const node=typeof module!=='undefined'&&module.exports;const api=factory(node?require('./xiangqi.js'):root.XQ,node?require('./curriculum-pack.js'):root.CCCurriculumPack);if(typeof module!=='undefined'&&module.exports)module.exports=api;root.CCCurriculum=api;})(typeof globalThis!=='undefined'?globalThis:this,function(XQ,PACK){
  'use strict';
  const start=XQ.START_FEN;
  const rook='4k4/9/r8/8p/9/4P4/9/R8/9/4K4 w';
@@ -14,7 +14,7 @@
  const palace='3aka3/9/9/6R2/9/3R5/9/9/9/3K5 w';
  const courses=[
   {id:'opening',title:'Khai cuộc',description:'Phát triển quân và đọc phản ứng đầu ván.',chapterIds:['opening-foundation']},
-  {id:'middle',title:'Trung cuộc',description:'Khám phá Xe, Pháo, Mã, an toàn Tướng và phối hợp.',chapterIds:['rook','cannon','horse','kingSafety','coordination']},
+  {id:'middle',title:'Trung cuộc',description:'Khám phá Xe, Pháo, Mã, Tốt, an toàn Tướng và phối hợp.',chapterIds:['rook','cannon','horse','pawn','kingSafety','coordination']},
   {id:'end',title:'Tàn cuộc',description:'Bắt đầu bằng việc kiểm tra đường thoát và kết thúc ván.',chapterIds:['end-basic']}
  ];
  const chapters=[
@@ -22,6 +22,7 @@
   {id:'rook',courseId:'middle',title:'Xe',icon:'俥',summary:'Đường mở, vật cản và phối hợp hai Xe.',lessonIds:['rook-open-file','rook-support'],exerciseIds:['v6-rooks-palace-a'],fixtureSkills:['material']},
   {id:'cannon',courseId:'middle',title:'Pháo',icon:'炮',summary:'Quan sát ngòi trước và sau mỗi trao đổi.',lessonIds:['cannon-screen'],exerciseIds:[],fixtureSkills:['cannon']},
   {id:'horse',courseId:'middle',title:'Mã',icon:'傌',summary:'Nhìn chân Mã và cả những đường đi lùi.',lessonIds:['horse-path'],exerciseIds:[],fixtureSkills:['horse']},
+  {id:'pawn',courseId:'middle',title:'Tốt',icon:'兵',summary:'Tốt qua sông, nước Tốt êm và lưới chiếu bằng Tốt.',lessonIds:[],exerciseIds:[],fixtureSkills:[]},
   {id:'kingSafety',courseId:'middle',title:'An toàn Tướng',icon:'帥',summary:'Giải chiếu trước khi tiếp tục kế hoạch.',lessonIds:['king-first'],exerciseIds:[],fixtureSkills:['safety']},
   {id:'coordination',courseId:'middle',title:'Phối hợp quân',icon:'合',summary:'Một quân khống chế, quân còn lại kết thúc.',lessonIds:['rooks-palace'],exerciseIds:['v6-rooks-palace-a','v6-rooks-palace-b'],fixtureSkills:[]},
   {id:'end-basic',courseId:'end',title:'Đường thoát của Tướng',icon:'終',summary:'Phân biệt hết nước hợp lệ và chiếu hết.',lessonIds:['end-escape'],exerciseIds:[],fixtureSkills:['safety']}
@@ -632,6 +633,9 @@
     "how": "Đếm đường thoát của Tướng, kiểm tra khả năng bắt quân đang chiếu và nhìn cả quân phòng thủ trước khi đổi Xe hoặc chuyển hướng tấn công."
   }
 ];
+ // Exercises generated from the owner's workbook (web/curriculum-pack.js, built by
+ // tools/import_curriculum_xlsx.py). The authored exercises above stay first and unchanged.
+ for(const exercise of Array.isArray(PACK?.exercises)?PACK.exercises:[]){const chapter=chapters.find(c=>c.id===exercise.chapterId);if(!chapter)throw new Error('Unknown exercise chapter '+exercise.chapterId);if(exercises.some(x=>x.id===exercise.id))throw new Error('Duplicate exercise id '+exercise.id);exercises.push(exercise);chapter.exerciseIds.push(exercise.id);}
  for(const lesson of lessons){lesson.source='Cờ Chill tự biên soạn 2026-10-25';lesson.verification='Minh họa được phát lại qua bộ luật; không có đánh giá tối ưu hoặc chứng nhận chuyên gia.';}
  function findLesson(id){return lessons.find(x=>x.id===id)||null;}
  function findExercise(id){return exercises.find(x=>x.id===id)||null;}
