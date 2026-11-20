@@ -5,7 +5,8 @@ và ký phổ, giới hạn, dữ liệu, nguồn và quy trình đóng góp. C�
 thiệu chung ở [README](../README.md); vận hành máy chủ ở
 [deploy/DEPLOY_GCP_VI.md](../deploy/DEPLOY_GCP_VI.md); thuật ngữ dịch ở
 [I18N_GLOSSARY.md](I18N_GLOSSARY.md); định dạng nhập thế cờ ở
-[POSITION_IMPORT.md](POSITION_IMPORT.md). Tài liệu lịch sử nằm trong
+[POSITION_IMPORT.md](POSITION_IMPORT.md); thiết kế bot nhiều cấp (chưa làm) ở
+[BOT_LEVELS.md](BOT_LEVELS.md). Tài liệu lịch sử nằm trong
 [`old/`](../old/README.md) và không mô tả trạng thái hiện tại.
 
 Website Production được chủ dự án xác nhận đang chạy tại cochill.vn. Source và
@@ -369,7 +370,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    cho chương Tốt; quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
    trong ứng dụng; thêm bài cho các chương chưa đủ 10.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
-7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
+7. Bot 7 cấp, hàng đợi và hạn 10 giây: đã có bản thiết kế chờ duyệt
+   ([BOT_LEVELS.md](BOT_LEVELS.md)); chưa code, chưa hiệu chỉnh; không gán Elo.
 8. Câu trả lời bằng mũi tên, avatar, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
