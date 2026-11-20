@@ -55,6 +55,12 @@ python tools/import_curriculum_xlsx.py --write
 python tools/stamp_static_versions.py
 ```
 
+To measure online-room polling on this machine (it starts its own server with a throwaway database and refuses any non-local address):
+
+```powershell
+python tools/load_rooms.py
+```
+
 ## Repository
 
 | Path | Contents |
