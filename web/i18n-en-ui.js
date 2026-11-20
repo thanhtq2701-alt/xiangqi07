@@ -1284,7 +1284,9 @@
     "Ý tưởng chính": "Main idea",
     "Vì sao phải hành động ngay": "Why you must act now",
     "Giữ mục tiêu, kiểm tra lại quân nào đang bị bắt sau nước của đối thủ.": "Keep the objective in mind, and check again which pieces are under attack after your opponent's move.",
-    "Chưa đạt mục tiêu của bài trong giới hạn lượt. Thử lại tại vị trí này.": "This does not reach the exercise's objective within the move limit. Try again from this position."
+    "Chưa đạt mục tiêu của bài trong giới hạn lượt. Thử lại tại vị trí này.": "This does not reach the exercise's objective within the move limit. Try again from this position.",
+    // Multi-move exercises imported from the owner's workbook (2026-11-20).
+    "Tự luyện nhiều lượt": "Multi-move practice"
   });
 
   const PIECE = { 'Tướng': 'General', 'Sĩ': 'Advisor', 'Tượng': 'Elephant', 'Xe': 'Chariot', 'Pháo': 'Cannon', 'Mã': 'Horse', 'Tốt': 'Soldier' };
