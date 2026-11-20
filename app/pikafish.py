@@ -8,6 +8,7 @@ No executable, network, or model weights are downloaded by this module.
 from __future__ import annotations
 
 from dataclasses import dataclass
+import atexit
 import os
 from pathlib import Path
 import queue
@@ -27,7 +28,69 @@ MAX_ENGINE_PV = 128
 MAX_OUTPUT_BYTES = 1024 * 1024
 MAX_LINE_BYTES = 16384
 MOVE_RE = re.compile(r'^[a-i][0-9][a-i][0-9]$')
-_ENGINE_SLOT = threading.BoundedSemaphore(1)
+# Who waits first for the single engine: a learner waiting for the bot's move,
+# then someone reading an analysis, then a whole-game scan (docs/BOT_LEVELS.md §4).
+PRIORITY = {'bot': 0, 'review': 1, 'practice': 1, 'review-scan': 2}
+
+
+class _Ticket:
+    def __init__(self, priority, seq, owner, estimate):
+        self.priority, self.seq, self.owner, self.estimate, self.started = priority, seq, owner, estimate, None
+
+
+class _EngineQueue:
+    """One search at a time on the VM's spare CPU, in priority order.
+
+    A request that cannot finish before its deadline (queue wait + own search) is
+    refused at once with 'busy' instead of waiting in vain; each owner may have one
+    request queued or running; at most `limit` wait.
+    """
+
+    def __init__(self, limit=8):
+        self.cond, self.waiting, self.running, self.limit, self.seq = threading.Condition(), [], None, limit, 0
+
+    def snapshot(self):
+        with self.cond:
+            return {'waiting': len(self.waiting), 'running': self.running is not None, 'limit': self.limit}
+
+    def enter(self, priority, owner, estimate, deadline):
+        with self.cond:
+            if owner is not None and (any(t.owner == owner for t in self.waiting)
+                                      or (self.running is not None and self.running.owner == owner)):
+                raise EngineUnavailable('busy')
+            if len(self.waiting) >= self.limit:
+                raise EngineUnavailable('busy')
+            now = monotonic()
+            running_left = max(0.0, self.running.started + self.running.estimate - now) if self.running else 0.0
+            ahead = sum(t.estimate for t in self.waiting if t.priority <= priority)
+            if now + running_left + ahead + estimate > deadline:
+                raise EngineUnavailable('busy')
+            self.seq += 1
+            ticket = _Ticket(priority, self.seq, owner, estimate)
+            self.waiting.append(ticket)
+            while True:
+                head = min(self.waiting, key=lambda t: (t.priority, t.seq))
+                if self.running is None and head is ticket:
+                    break
+                latest_start = deadline - estimate - monotonic()
+                if latest_start <= 0:
+                    self.waiting.remove(ticket)
+                    self.cond.notify_all()
+                    raise EngineUnavailable('busy')
+                self.cond.wait(timeout=latest_start)
+            self.waiting.remove(ticket)
+            ticket.started = monotonic()
+            self.running = ticket
+            return ticket
+
+    def leave(self, ticket):
+        with self.cond:
+            if self.running is ticket:
+                self.running = None
+            self.cond.notify_all()
+
+
+_QUEUE = _EngineQueue()
 
 
 class EngineUnavailable(RuntimeError):
@@ -54,6 +117,8 @@ class EngineConfig:
     multipv: int = 3
     threads: int = 1
     hash_mb: int = 32
+    # Restart the long-lived process after this many searches (no swap on the VM).
+    max_searches: int = 500
 
     @classmethod
     def from_env(cls, env: Mapping[str, str] | None = None):
@@ -151,10 +216,14 @@ def _candidate(state, line):
 
 
 class _UciProcess:
-    """One process per request, with bounded output and guaranteed cleanup."""
+    """A UCI process with bounded output per request and guaranteed cleanup.
+
+    AnalysisEngine keeps one alive between requests and replaces it after a failure.
+    """
 
     def __init__(self, config, deadline):
         self.config, self.deadline = config, deadline
+        self.output_bytes = 0  # per request: reset each time a long-lived process is reused
         self.output = queue.Queue(maxsize=512)
         self.failure = None
         self.process = None
@@ -200,14 +269,13 @@ class _UciProcess:
             raise EngineUnavailable('start_failed') from error
 
     def _read(self):
-        count = 0
         try:
             while True:
                 data = self.process.stdout.readline(MAX_LINE_BYTES + 1)
                 if not data:
                     return
-                count += len(data)
-                if len(data) > MAX_LINE_BYTES or count > MAX_OUTPUT_BYTES:
+                self.output_bytes += len(data)
+                if len(data) > MAX_LINE_BYTES or self.output_bytes > MAX_OUTPUT_BYTES:
                     self.failure = 'output_limit'
                     self.process.kill()
                     return
@@ -323,19 +391,48 @@ class AnalysisEngine:
     fallback scores, and must enforce reflection / live-game gates itself.
     """
 
-    def __init__(self, config=None, local_engine=None):
+    def __init__(self, config=None, local_engine=None, queue=None):
         self.config = config or EngineConfig.from_env()
         self.local = local_engine or LocalEngine(max_depth=2, seconds=.35)
         self.last_status = None
+        self.queue = queue or _QUEUE
+        # One long-lived UCI process (docs/BOT_LEVELS.md §4): no NNUE reload per move.
+        # Only the queue's running request touches it.
+        self._process, self._searches = None, 0
+        self._seconds = {}  # moving average of how long each kind of request takes
+        atexit.register(self.close)
+
+    def close(self):
+        process, self._process = self._process, None
+        if process is not None:
+            process.close()
+
+    def _uci(self, deadline):
+        if self._process is not None and (self._process.process.poll() is not None
+                                          or self._searches >= max(1, self.config.max_searches)):
+            self.close()
+        if self._process is None:
+            process = _UciProcess(self.config, deadline)
+            process.__enter__()
+            self._process, self._searches = process, 0
+        self._process.deadline = deadline
+        self._process.output_bytes = 0
+        return self._process
+
+    def _estimate(self, kind, movetime):
+        return self._seconds.get(kind, movetime / 1000 * (2 if kind[1] else 1) + 0.5)
+
+    def _measured(self, kind, seconds):
+        self._seconds[kind] = seconds if kind not in self._seconds else .7 * self._seconds[kind] + .3 * seconds
 
     def status(self):
         reason = self.config.availability()
         return dict(configured=reason == 'configured_unverified', status=reason,
                     verified=False, last_result=self.last_status, adapter=ADAPTER_VERSION,
-                    fallback=ENGINE_VERSION, max_pv_plies=MAX_PV,
+                    fallback=ENGINE_VERSION, max_pv_plies=MAX_PV, queue=self.queue.snapshot(),
                     note='Có cấu hình chưa có nghĩa đã chạy hoặc kiểm chứng sức mạnh engine.')
 
-    def analyze(self, fen, *, moves=None, selected_move=None, mode='quick'):
+    def analyze(self, fen, *, moves=None, selected_move=None, mode='quick', purpose='review-scan', owner=None):
         started = monotonic()
         if mode not in ('quick', 'deep'):
             raise ValueError('Chế độ phân tích phải là quick hoặc deep.')
@@ -348,42 +445,50 @@ class AnalysisEngine:
         reason = self.config.availability()
         if reason != 'configured_unverified':
             return self._fallback(state, selected_move, mode, reason, started, history_count)
-        if not _ENGINE_SLOT.acquire(blocking=False):
-            # A second analysis is not another unbounded worker or local search.
-            raise EngineUnavailable('busy')
+        movetime = max(50, min(5000, self.config.deep_ms if mode == 'deep' else self.config.quick_ms))
+        multipv = max(1, min(3, self.config.multipv))
+        deadline = started + max(.1, min(15.0, self.config.request_seconds))
+        kind = (mode, bool(selected_move))
+        # Raises EngineUnavailable('busy') when the queue cannot meet the deadline;
+        # the server turns that into 429 engine_busy, never a silent local answer.
+        ticket = self.queue.enter(PRIORITY.get(purpose, PRIORITY['review-scan']), owner,
+                                  self._estimate(kind, movetime), deadline)
         try:
-            movetime = max(50, min(5000, self.config.deep_ms if mode == 'deep' else self.config.quick_ms))
-            multipv = max(1, min(3, self.config.multipv))
-            deadline = started + max(.1, min(15.0, self.config.request_seconds))
-            with _UciProcess(self.config, deadline) as engine:
-                lines, depth, nodes = engine.search(state, command, movetime, multipv)
-                selected = None
-                if selected_move:
-                    # Same root/side; do not negate a child score or assume that
-                    # absence from MultiPV means the chosen move is a mistake.
-                    chosen, chosen_depth, chosen_nodes = engine.search(state, command, movetime, 1, selected_move)
-                    selected = chosen[0]
-                    selected['search'] = {'restricted_root': True, 'movetime_ms': movetime,
-                                          'depth': chosen_depth, 'nodes': chosen_nodes}
-                    nodes += chosen_nodes
-                result = dict(engine=ADAPTER_VERSION, engine_name=engine.name,
-                              fallback=False, status='ready', confidence='engine_search',
-                              fen=state.fen(), turn=state.turn, score=lines[0]['score'],
-                              score_type=lines[0]['score_type'], best_move=lines[0]['move'],
-                              candidates=lines, lines=lines, selected=selected,
-                              search=dict(mode=mode, movetime_ms=movetime, depth=depth,
-                                          nodes=nodes, elapsed_ms=round((monotonic() - started) * 1000),
-                                          exhaustive_root=False, max_pv_plies=MAX_PV,
-                                          history_plies=history_count),
-                              warnings=['Điểm và biến là kết quả tìm kiếm hữu hạn; chưa thay thế duyệt bài học.'],
-                              provenance=dict(version=engine.name, adapter=ADAPTER_VERSION,
-                                              source='configured_uci_binary', repetition_history=bool(history_count)))
-                self.last_status = 'ready'
-                return result
+            began = monotonic()
+            engine = self._uci(deadline)
+            engine.send('ucinewgame')  # each request starts from an empty hash table
+            lines, depth, nodes = engine.search(state, command, movetime, multipv)
+            selected = None
+            if selected_move:
+                # Same root/side; do not negate a child score or assume that
+                # absence from MultiPV means the chosen move is a mistake.
+                chosen, chosen_depth, chosen_nodes = engine.search(state, command, movetime, 1, selected_move)
+                selected = chosen[0]
+                selected['search'] = {'restricted_root': True, 'movetime_ms': movetime,
+                                      'depth': chosen_depth, 'nodes': chosen_nodes}
+                nodes += chosen_nodes
+            result = dict(engine=ADAPTER_VERSION, engine_name=engine.name,
+                          fallback=False, status='ready', confidence='engine_search',
+                          fen=state.fen(), turn=state.turn, score=lines[0]['score'],
+                          score_type=lines[0]['score_type'], best_move=lines[0]['move'],
+                          candidates=lines, lines=lines, selected=selected,
+                          search=dict(mode=mode, movetime_ms=movetime, depth=depth,
+                                      nodes=nodes, elapsed_ms=round((monotonic() - started) * 1000),
+                                      exhaustive_root=False, max_pv_plies=MAX_PV,
+                                      history_plies=history_count),
+                          warnings=['Điểm và biến là kết quả tìm kiếm hữu hạn; chưa thay thế duyệt bài học.'],
+                          provenance=dict(version=engine.name, adapter=ADAPTER_VERSION,
+                                          source='configured_uci_binary', repetition_history=bool(history_count)))
+            self.last_status = 'ready'
+            return result
         except EngineUnavailable as error:
+            # A failed or slow process is not reused: the next request starts a fresh one.
+            self.close()
             return self._fallback(state, selected_move, mode, str(error), started, history_count)
         finally:
-            _ENGINE_SLOT.release()
+            self._searches += 1
+            self._measured(kind, monotonic() - began)
+            self.queue.leave(ticket)
 
     def _fallback(self, state, selected_move, mode, reason, started, history_count):
         raw = self.local.analyze(state.fen())

@@ -9,7 +9,9 @@ import unittest
 from unittest.mock import patch
 
 from app.engine import LocalEngine
-from app.pikafish import AnalysisEngine, EngineConfig, EngineUnavailable, _ENGINE_SLOT
+import threading
+
+from app.pikafish import AnalysisEngine, EngineConfig, EngineUnavailable, _EngineQueue
 from app.rules import Position, START_FEN
 
 
@@ -44,6 +46,8 @@ for raw in sys.stdin:
     elif line.startswith('go '):
         if mode == 'search_timeout':
             time.sleep(30)
+        if mode == 'slow':
+            time.sleep(0.4)
         if mode == 'exit':
             sys.exit(0)
         if mode == 'output_limit':
@@ -96,13 +100,15 @@ class PikafishAdapterTests(unittest.TestCase):
     def tearDown(self):
         self.temp.cleanup()
 
-    def engine(self, mode='normal', **options):
+    def engine(self, mode='normal', queue=None, **options):
         handshake_seconds = options.pop('handshake_seconds', 2.0)
         request_seconds = options.pop('request_seconds', 10.0)
         config = EngineConfig(command=(sys.executable, str(self.script), mode, str(self.log)),
                               quick_ms=50, deep_ms=100, handshake_seconds=handshake_seconds,
                               request_seconds=request_seconds, **options)
-        return AnalysisEngine(config, LocalEngine(max_depth=1, seconds=.1))
+        engine = AnalysisEngine(config, LocalEngine(max_depth=1, seconds=.1), queue=queue or _EngineQueue())
+        self.addCleanup(engine.close)
+        return engine
 
     def commands(self):
         return [json.loads(line) for line in self.log.read_text(encoding='utf-8').splitlines()]
@@ -133,7 +139,8 @@ class PikafishAdapterTests(unittest.TestCase):
         self.assertFalse(self.log.exists())
 
     def test_handshake_fen_conversion_and_legal_candidates(self):
-        result = self.engine().analyze(START_FEN)
+        engine = self.engine()
+        result = engine.analyze(START_FEN)
         self.assertFalse(result['fallback'])
         self.assertEqual(result['engine_name'], 'Test UCI only 1.0')
         self.assertEqual(result['best_move'], 'b0c2')
@@ -155,7 +162,10 @@ class PikafishAdapterTests(unittest.TestCase):
         fen_command = next(c for c in commands if c.startswith('position '))
         self.assertIn('rnbakabnr', fen_command)
         self.assertIn('RNBAKABNR w - - 0 1', fen_command)
-        self.assertEqual(commands[-1], 'quit')
+        self.assertNotEqual(commands[-1], 'quit', 'the process stays alive for the next request')
+        engine.close()
+        self.assertEqual(self.commands()[-1], 'quit')
+        self.assertIsNone(engine._process)
 
     def test_selected_move_is_separately_searched_from_same_root(self):
         result = self.engine().analyze(START_FEN, selected_move='a0a1')
@@ -263,14 +273,65 @@ class PikafishAdapterTests(unittest.TestCase):
         self.assertEqual(config.quick_ms, 600)
         self.assertEqual(config.deep_ms, 5000)
 
-    def test_second_concurrent_uci_request_is_busy(self):
-        _ENGINE_SLOT.acquire()
-        try:
-            with self.assertRaisesRegex(EngineUnavailable, 'busy'):
-                self.engine().analyze(START_FEN)
-        finally:
-            _ENGINE_SLOT.release()
-        self.assertFalse(self.log.exists())
+    def test_queue_refuses_full_duplicate_owner_and_too_late_requests_at_once(self):
+        queue = _EngineQueue(limit=1)
+        running = queue.enter(2, 'scan-owner', 8.0, time.monotonic() + 9)   # a long search is running
+        engine = self.engine(queue=queue, request_seconds=10.0)
+        started = time.monotonic()
+        with self.assertRaisesRegex(EngineUnavailable, 'busy'):
+            engine.analyze(START_FEN, purpose='review-scan', owner='scan-owner')   # same owner
+        short = self.engine(queue=queue, request_seconds=2.0)
+        with self.assertRaisesRegex(EngineUnavailable, 'busy'):
+            short.analyze(START_FEN, purpose='bot', owner='someone')   # cannot finish within 2 s
+        self.assertLess(time.monotonic() - started, 1.0, 'refused at once, not after waiting')
+        waiter = threading.Thread(target=lambda: engine.analyze(START_FEN, purpose='bot', owner='a'), daemon=True)
+        waiter.start()
+        time.sleep(.2)
+        self.assertEqual(queue.snapshot(), {'waiting': 1, 'running': True, 'limit': 1})
+        with self.assertRaisesRegex(EngineUnavailable, 'busy'):
+            engine.analyze(START_FEN, purpose='bot', owner='b')   # queue full
+        queue.leave(running)
+        waiter.join(5)
+        self.assertEqual(queue.snapshot(), {'waiting': 0, 'running': False, 'limit': 1})
+        self.assertIn('go movetime 50', self.commands(), 'the queued bot request ran after the long search')
+
+    def test_one_long_lived_process_is_reused_then_replaced(self):
+        engine = self.engine()
+        for _ in range(3):
+            self.assertFalse(engine.analyze(START_FEN)['fallback'])
+        commands = self.commands()
+        self.assertEqual(commands.count('uci'), 1, 'the engine and its network load once')
+        self.assertEqual(commands.count('ucinewgame'), 1 + 3, 'one at start-up, then one per request (empty hash)')
+        engine.config = EngineConfig(**{**engine.config.__dict__, 'max_searches': 3})
+        self.assertFalse(engine.analyze(START_FEN)['fallback'])
+        self.assertEqual(self.commands().count('uci'), 2, 'replaced after max_searches')
+
+    def test_a_failed_process_is_not_reused(self):
+        engine = self.engine('exit')
+        for expected_starts in (1, 2):
+            result = engine.analyze(START_FEN)
+            self.assertEqual(result['fallback_reason'], 'process_exited')
+            self.assertEqual(self.commands().count('uci'), expected_starts)
+        self.assertIsNone(engine._process)
+
+    def test_bot_moves_go_before_waiting_scans(self):
+        queue = _EngineQueue()
+        engine = self.engine('slow', queue=queue)
+        finished = []
+        def run(purpose, owner):
+            engine.analyze(START_FEN, purpose=purpose, owner=owner)
+            finished.append(purpose)
+        first = threading.Thread(target=run, args=('review-scan', 'a'))
+        first.start()
+        time.sleep(.2)                      # the first scan is running
+        scan = threading.Thread(target=run, args=('review-scan', 'b'))
+        scan.start()
+        time.sleep(.1)
+        bot = threading.Thread(target=run, args=('bot', 'c'))
+        bot.start()
+        for t in (first, scan, bot):
+            t.join(10)
+        self.assertEqual(finished, ['review-scan', 'bot', 'review-scan'])
 
     def test_terminal_position_uses_rules_not_invented_score(self):
         fen = '4k4/9/9/9/9/9/9/3rpr3/9/4K4 w'

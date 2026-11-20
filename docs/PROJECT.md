@@ -47,7 +47,9 @@ hay mức sẵn sàng vận hành.
 - PvP: server giữ phòng, ván, revision/nonce và đồng hồ; không lấy JSON của
   client làm ván chính thức. Review phải khớp `online-<gameId>` đã kết thúc trên
   server.
-- Một instance, một worker: semaphore engine và vòng đời phòng gắn với process.
+- Một instance, một worker: tiến trình Pikafish sống lâu và hàng đợi engine
+  (ưu tiên bot > phân tích > quét ván, hạn 10 giây, từ chối sớm khi không kịp),
+  trạng thái online của phòng và vòng đời phòng đều gắn với process.
   Không tăng worker/replica khi chưa thiết kế lại điều phối.
 
 ## 2. Quyết định sản phẩm (V6, 25–26/10/2026)

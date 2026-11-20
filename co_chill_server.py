@@ -489,7 +489,8 @@ class CloudApplication:
             if data.get('mode', 'quick') not in ('quick', 'deep'):
                 raise APIError(400, 'Chế độ phân tích không hợp lệ.')
             try:
-                result = self.engine.analyze(data.get('fen'), moves=data.get('moves'), selected_move=data.get('selected_move', data.get('selectedMove')), mode=data.get('mode', 'quick'))
+                result = self.engine.analyze(data.get('fen'), moves=data.get('moves'), selected_move=data.get('selected_move', data.get('selectedMove')),
+                                             mode=data.get('mode', 'quick'), purpose=purpose, owner=uid)
             except ValueError as exc:
                 raise APIError(400, str(exc), 'invalid_position')
             except Exception as exc:
