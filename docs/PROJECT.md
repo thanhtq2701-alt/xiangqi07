@@ -35,7 +35,8 @@ hay mức sẵn sàng vận hành.
   Nhập tiến độ (`progress-import.js`) chỉ trả state mới qua cùng bộ sanitize
   với đồng bộ; Cài đặt hiện xem trước rồi mới `save()`.
 - Lớp UI bổ sung theo thứ tự: `v5-ui.js` (tài khoản/quản trị), `online-play.js`
-  (PvP), `v6-learning-ui.js`, `v6-ui.js` (trình bày). Khi đổi render, giữ các
+  (PvP), `v6-learning-ui.js`, `v6-ui.js` (trình bày), `public-profile.js` (hồ sơ
+  công khai, nạp cuối để thêm vào trang đã dựng). Khi đổi render, giữ các
   lớp bảo vệ; phần học phải tôn trọng `activeGame` và guard `CCOnline`.
 - PvP: server giữ phòng, ván, revision/nonce và đồng hồ; không lấy JSON của
   client làm ván chính thức. Review phải khớp `online-<gameId>` đã kết thúc trên
@@ -107,7 +108,7 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 | Đồng bộ chơi/học, không lẫn danh tính | Có revision/conflict và phạm vi local từng người |
 | Xuất/xóa dữ liệu của mình | Có; backup phải xử lý xóa riêng |
 | Nhập file tiến độ cũ tự động | Có nhập file xuất của Cờ Chill trong Cài đặt: xem trước, chọn gộp hoặc thay thế, xác nhận dữ liệu của mình; vẫn có chuyển guest trong cùng origin và nhập ký phổ |
-| Công khai display name/avatar; lịch sử public/private | Có tên trong phòng; chưa có public profile/lịch sử cộng đồng |
+| Công khai display name/avatar; lịch sử public/private | Có hồ sơ công khai `#u/<mã ngẫu nhiên>`: tên hiển thị, tháng tham gia, thắng/thua/hòa và 20 ván online đã kết thúc (xem biên bản). Tài khoản mới công khai mặc định; tài khoản cũ riêng tư tới khi tự chọn; tên đối thủ theo cài đặt của đối thủ (chủ dự án chốt 19/11/2026). Chưa có avatar |
 | Phản hồi/report lưu và xuất riêng | Có quản trị phản hồi |
 | Gom ván người chơi làm dữ liệu học | Không tự bật; cần đồng ý rõ ràng; không gửi dữ liệu huấn luyện |
 
@@ -182,8 +183,12 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
 - Chưa xác minh độc lập VM Google Cloud, binary/NNUE Pikafish thật, HTTPS/DNS,
   tải thực hoặc backup/restore. Thông số VM, service và lịch backup là thông tin
   do chủ dự án cung cấp.
-- Chưa có email tự khôi phục mật khẩu, OAuth, public profile/lịch sử cộng đồng, chat tự do có quản trị. Không dùng tài
-  khoản pilot làm kho lưu duy nhất cho dữ liệu quan trọng.
+- Chưa có email tự khôi phục mật khẩu, OAuth, avatar, chat tự do có quản trị.
+  Không dùng tài khoản pilot làm kho lưu duy nhất cho dữ liệu quan trọng.
+- Hồ sơ công khai chỉ có ván online do máy chủ ghi; không có tìm kiếm người
+  chơi, theo dõi hay bình luận. Hồ sơ riêng tư, chưa chọn, bị khóa, quản trị hoặc
+  không tồn tại đều trả cùng một lỗi 404. Ai có link đều xem được hồ sơ công
+  khai; người vận hành chưa có công cụ ẩn một hồ sơ ngoài khóa tài khoản.
 - Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
   xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
 - Kho bài nhỏ: 12 cơ bản, 8 hướng dẫn, 2 bài nhiều lượt cùng họ chiếu hết; chưa
@@ -249,7 +254,7 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 |---|---|
 | Học/chơi local với khách | localStorage: ván, nháp, lượt học, lịch ôn, sở thích |
 | Khách tham gia phòng online | Server: danh tính khách, tên hiển thị, phòng, biên bản, lời nhắn mẫu; cookie phòng 24 giờ; sau 30 ngày `prune-rooms` ẩn danh hoặc xóa |
-| Đăng nhập | SQLite: username, tên hiển thị, hash mật khẩu, phiên, tiến độ đồng bộ, phản hồi, nhật ký vận hành |
+| Đăng nhập | SQLite: username, tên hiển thị, hash mật khẩu, phiên, tiến độ đồng bộ, phản hồi, nhật ký vận hành, mã hồ sơ công khai và lựa chọn công khai/riêng tư |
 | Bản nháp tài khoản trên thiết bị | Cache riêng theo tài khoản; không mã hóa |
 
 - Đăng ký không hỏi email, ngày sinh hay số điện thoại. Không tracker, không
@@ -258,7 +263,9 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 - Mật khẩu băm scrypt có salt; token ngẫu nhiên lưu bản băm. Cookie HttpOnly,
   SameSite, Secure khi có HTTPS; một phiên mỗi tài khoản; server kiểm tra
   Origin, CSRF và vai trò. Tên, nước đi, lời nhắn trong phòng được người tham
-  gia và người xem thấy; suy nghĩ sau ván không công khai.
+  gia và người xem thấy; suy nghĩ sau ván không công khai. Hồ sơ công khai (nếu
+  bật) cho mọi người có link thấy tên hiển thị, tháng tham gia và ván online đã
+  kết thúc; không có tên đăng nhập, mã tài khoản, tiến độ học hay câu trả lời.
 - Owner/report thấy thống kê và danh sách/biên bản đã lọc, không thấy mật khẩu,
   token hay câu trả lời phản ánh riêng; report không có quyền quản trị. Người có
   quyền hệ điều hành vẫn đọc được database và backup.
@@ -314,7 +321,7 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    không chiếu hết, tiêu chí chấm, bằng chứng engine và người duyệt.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
-8. Câu trả lời bằng mũi tên, public profile, luật
+8. Câu trả lời bằng mũi tên, avatar, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
 

@@ -513,6 +513,18 @@ class OnlineRooms:
                 'status': record['result'], 'startedAt': record['startedAt'], 'endedAt': record['endedAt'],
                 'opponent': record['players'][other(side)]['displayName'], 'serverVerified': True}
 
+    @staticmethod
+    def results_in_db(db, user_id, limit=None):
+        """Finished server-recorded games of one identity, newest first."""
+        if not db.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='online_results'").fetchone():
+            return []
+        sql = 'SELECT data FROM online_results WHERE red_id=? OR black_id=? ORDER BY ended_at DESC'
+        args = (user_id, user_id)
+        if limit:
+            sql += ' LIMIT ?'
+            args += (limit,)
+        return [json.loads(row['data']) for row in db.execute(sql, args)]
+
     def delete_identity(self, user_id, db=None):
         """Explicit account deletion helper; do not silently retain identifiers."""
         if db is None:
