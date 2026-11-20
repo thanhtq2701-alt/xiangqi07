@@ -1,8 +1,9 @@
 # Thiết kế bot nhiều cấp (việc J, chỉ thiết kế)
 
-Trạng thái: **bản thiết kế chờ chủ dự án duyệt, chưa có code.** Viết ngày
-20/11/2026 theo quyết định số 6 của chủ dự án (19/11/2026): giới hạn số nút +
-chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7, chưa hiệu chỉnh", không gán Elo.
+Trạng thái: viết ngày 20/11/2026 theo quyết định số 6 của chủ dự án
+(19/11/2026): giới hạn số nút + chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7,
+chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi ngày 21/11/2026
+(mục 10). **J1 (mục 4) đã làm ngày 21/11/2026**; J2–J4 đang làm.
 
 ## 1. Hiện trạng và ràng buộc
 
@@ -14,10 +15,10 @@ chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7, chưa hiệu chỉnh
   `Move Overhead`, `nodestime`, `UCI_ShowWDL`, `EvalFile`… Vì vậy không thể đặt
   sức cờ bằng tùy chọn của engine; phải giới hạn tìm kiếm và chọn nước.
 - VM: 2 vCPU, 3,8 GiB RAM, **không có swap**. Một CPU cần dành cho web/SQLite.
-- `app/pikafish.py` hiện **mở một tiến trình Pikafish mới cho mỗi yêu cầu**
-  (khởi động, bắt tay UCI, nạp NNUE) và chỉ có **một suất** engine
-  (`BoundedSemaphore(1)`); yêu cầu thứ hai bị từ chối ngay (`engine_busy`),
-  không có hàng đợi.
+- Trước J1, `app/pikafish.py` mở một tiến trình Pikafish mới cho mỗi yêu cầu
+  (khởi động, bắt tay UCI, nạp NNUE) và chỉ có một suất engine; yêu cầu thứ hai
+  bị từ chối ngay (`engine_busy`), không có hàng đợi. Từ J1: một tiến trình sống
+  lâu và hàng đợi ưu tiên (mục 4).
 - `PROJECT.md`: không dùng độ sâu 1/2 của máy cơ bản để giả bảy cấp; chờ engine
   tối đa mong muốn 10 giây/nước; một instance, một worker.
 - Đo tải ngày 20/11/2026 (`tools/load_rooms.py`): SQLite đã là nút thắt ở
@@ -55,9 +56,8 @@ Luật chọn nước:
    nhất nước tốt nhất.
 2. Softmax: xác suất của nước *i* tỉ lệ `exp((điểm_i − điểm_tốt_nhất) / T)`.
    Điểm mate được đổi thành ±(30.000 − số nửa nước) trước khi tính.
-3. Có nước chiếu bí ngay (mate in 1) thì cấp ≥ 3 luôn đi; cấp 1–2 đi với xác
-   suất 50% (người mới vẫn thấy bot "bỏ lỡ"), để cấp thấp không chiếu bí nhanh hơn
-   cấp cao.
+3. Có nước chiếu bí ngay (mate in 1) thì cấp ≥ 2 luôn đi; cấp 1 đi với xác suất
+   50% (người mới vẫn thấy bot "bỏ lỡ") — quyết định 21/11/2026.
 4. Chỉ một nước hợp lệ: đi luôn, không gọi engine.
 5. Nước được chọn phải nằm trong `pos.legal_moves()` của `app/rules.py`; nếu
    không, trả lỗi, không đoán.
@@ -89,13 +89,14 @@ làm yếu, không phải lỗi. Không hiển thị điểm này cho người h
 ## 5. Đổi cấp
 
 Theo quyết định đã ghi trong PROJECT.md (chưa triển khai): xét **10 ván bot đã
-kết thúc gần nhất ở cùng một cấp**; thua ≥ 6 thì **gợi ý** xuống một cấp, thắng
-≥ 7 thì **gợi ý** lên một cấp.
+kết thúc gần nhất ở cùng một cấp**; thua ≥ 6 thì xuống một cấp, thắng ≥ 7 thì
+lên một cấp (mặc định tự đổi, xem quyết định 1).
 
 - Tính: thắng, thua (kể cả xin thua, hết giờ). Hòa tính là không thắng không
   thua. Không tính: ván bỏ dở, ván `needsVerification`, ván có xin đi lại.
 - Cấp 1 không xuống, cấp 7 không lên. Đổi cấp xong thì đếm lại từ đầu.
-- Người học luôn chọn cấp tự do; gợi ý không tự áp dụng (xem câu hỏi 1).
+- Mặc định cấp tự đổi khi đủ điều kiện và báo cho người học; người học luôn
+  chọn cấp tự do và tắt được việc tự đổi (quyết định 1, mục 10).
 - Dữ liệu đếm nằm trong tiến độ học của người dùng như các ván hiện có, không
   cần bảng mới.
 
@@ -127,7 +128,7 @@ Làm trên **VM thử** (không phải production), bằng một công cụ tự
 |---|---|---|
 | J1 | Tiến trình Pikafish sống lâu + hàng đợi ưu tiên + hạn 10 giây | UCI giả: xếp hàng, ưu tiên, quá hạn, tiến trình chết, từ chối khi đầy |
 | J2 | `level` 1–7 cho `purpose: "bot"`, luật chọn nước, `provenance` | UCI giả trả MultiPV cố định: ngưỡng, softmax, mate, một nước hợp lệ, nước sai luật |
-| J3 | Chọn cấp trong giao diện, nhãn, gợi ý đổi cấp theo 10 ván, tiếng Anh | luật đếm ván, nhãn không có Elo, không coaching trong ván |
+| J3 | Chọn cấp trong giao diện, nhãn, tự đổi cấp theo 10 ván (tắt được), tiếng Anh | luật đếm ván, nhãn không có Elo, không coaching trong ván |
 | J4 | Công cụ tự đấu và hiệu chỉnh (chạy trên VM thử) | chạy ngắn trong test với UCI giả |
 
 API: `POST /api/engine/analyze` thêm `level` (số nguyên 1–7, chỉ với
@@ -145,12 +146,13 @@ client**. Giới hạn tần suất: tối đa 1 yêu cầu bot đang chờ cho 
 - Một binary Pikafish khác (có `UCI_Elo`) sẽ làm thiết kế này không còn cần
   thiết; khi đó vẫn không gán Elo khi chưa hiệu chỉnh.
 
-## 10. Câu hỏi cần chủ dự án quyết định
+## 10. Quyết định của chủ dự án (21/11/2026)
 
-1. Đổi cấp: chỉ **gợi ý** (người học bấm đồng ý) hay **tự đổi**? Đề xuất: gợi ý.
-2. Cấp 1–2 có nên bỏ lỡ chiếu bí trong một nước (xác suất 50%) không? Đề xuất: có.
-3. Người chơi khách (không đăng nhập) có được chơi bot nhiều cấp không? Hiện bot
-   máy chủ cần đăng nhập. Đề xuất: giữ cần đăng nhập để giới hạn tải.
-4. Cấp mặc định cho người mới: cấp 2 hay cấp 3? Đề xuất: cấp 2.
-5. Thứ tự làm: J1 (hàng đợi) có thể làm trước và độc lập, vì giúp cả phân tích
-   sau ván. Có làm J1 ngay sau chương Tốt không?
+1. Đổi cấp: **mặc định tự đổi** theo luật 10 ván (mục 5); người học luôn tự chọn
+   được cấp bất kỳ, và tắt được việc tự đổi.
+2. **Chỉ cấp 1** có thể bỏ lỡ chiếu bí trong một nước (xác suất 50%); từ cấp 2
+   luôn đi nước chiếu bí ngay khi tìm thấy.
+3. Bot nhiều cấp vẫn cần đăng nhập (giới hạn tải).
+4. Người mới bắt đầu ở **cấp 2**; có thể đổi trong bản cập nhật sau nếu khoảng
+   cách giữa các cấp quá lớn.
+5. Làm J1 trước, rồi giảm tải PvP, rồi J2–J4; làm hết rồi mới deploy.

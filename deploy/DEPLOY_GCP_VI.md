@@ -258,7 +258,7 @@ cd /var/www/html
 cài unit thay thế với tên service đã thống nhất, `daemon-reload`, rồi chỉ bật
 một trong hai service. Cấu hình mẫu dùng một worker/bốn threads, bind
 `127.0.0.1:8000`, timeout 45 giây. Không chạy đồng thời cả hai trên cùng port.
-Không tăng worker/replica: room state và semaphore Pikafish có scope process,
+Không tăng worker/replica: room state, trạng thái online và hàng đợi/tiến trình Pikafish có scope process,
 còn SQLite là một instance. Kiểm tra room pause/restart, log, health và tải
 thực trước khi coi chuyển đổi hoàn tất. Không thêm Gunicorn vào
 `requirements.txt` khi chưa duyệt.
