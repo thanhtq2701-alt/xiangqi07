@@ -228,8 +228,10 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   tiếp. Ký pháp hiển thị do ứng dụng sinh từ UCI; trong lời giải của tác giả,
   ký pháp viết thường được đổi sang chữ hoa (x5.5 → X5.5).
 - Bản tiếng Anh của 70 bài (nhận định, ý tưởng, lý do từng nước, phản ứng cần
-  lưu ý) là bản dịch nháp của Claude ngày 20/11/2026 theo bảng thuật ngữ, chờ
-  chủ dự án duyệt; tiêu đề và mục tiêu tiếng Anh sinh từ mẫu.
+  lưu ý) do Claude dịch ngày 20/11/2026 theo bảng thuật ngữ, chủ dự án đã duyệt
+  cùng ngày; tiêu đề và mục tiêu tiếng Anh sinh từ mẫu. Cùng ngày, theo yêu cầu
+  của chủ dự án, file Excel được sửa 8 ô (thiếu "Đen đi trước.", ký pháp
+  "ss.5"/"b4t.1", lỗi gõ, hai câu thiếu chữ; bản gốc sao lưu trong `var/import/`).
 - `tools/import_positions.py` (file JSON) chỉ kiểm luật, trùng thế và trường bắt
   buộc; không đánh giá nước tốt nhất, mục tiêu "advantage" vẫn chỉ thành bản
   nháp `line-v1-draft`. `tools/import_curriculum_xlsx.py` (file Excel của chủ dự
@@ -322,8 +324,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
   khi tải hoặc phân phối.
 - Giải thích dùng template với bằng chứng luật/biến đã kiểm tra, hoặc lời của
   chủ dự án (70 bài nhập từ file Excel, nguồn ghi trong bài: ván tự đấu
-  Pikafish hoặc tự dựng). Bản tiếng Anh của phần này là bản dịch nháp của
-  Claude, chờ chủ dự án duyệt. Trước khi tích
+  Pikafish hoặc tự dựng). Bản tiếng Anh của phần này do Claude dịch, chủ dự án
+  đã duyệt (20/11/2026). Trước khi tích
   hợp LLM cần provider, sự đồng ý dữ liệu, schema bằng chứng, rubric, bộ kiểm
   thử chống bịa và phương án template khi lỗi; mọi nhận định nước/điểm/biến
   phải đối chiếu engine.
@@ -353,9 +355,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 4. Nhập tiến độ: đã có xem trước, gộp/thay thế và kiểm tra theo bộ sanitize;
    còn thiếu nhập bài đang dở/ván chưa kết thúc và chưa thử với file lớn thật.
 5. Bài trung/nâng cao thật: đã nhập 70 bài của chủ dự án (20/11/2026) với kết
-   thúc chiếu hết hoặc hơn quân. Còn lại: chủ dự án duyệt bản dịch tiếng Anh;
-   sửa vài chỗ trong file Excel (xem báo cáo nhập); bài hướng dẫn cho chương
-   Tốt; quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
+   thúc chiếu hết hoặc hơn quân, bản tiếng Anh đã duyệt. Còn lại: bài hướng dẫn
+   cho chương Tốt; quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
    trong ứng dụng; thêm bài cho các chương chưa đủ 10.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Hiệu chỉnh 7 cấp bot, hàng đợi và deadline 10 giây; không gán Elo.
