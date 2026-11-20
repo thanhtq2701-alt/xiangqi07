@@ -733,8 +733,6 @@
     "Trang trước": "Previous page",
     "Trong ván bạn đi": "In the game you played",
     "Trung cấp dự kiến": "Estimated intermediate",
-    "Trung cấp · mức dự kiến · tối đa 4 lượt của bạn": "Intermediate · estimated level · up to 4 of your moves",
-    "Trung cấp · mức dự kiến · tối đa 4 quyết định": "Intermediate · estimated level · up to 4 decisions",
     "Trình duyệt không lưu được dữ liệu. Phiên này chỉ giữ khi trang còn mở; hãy xuất dữ liệu trước khi đóng.": "Your browser cannot save data. This session lasts only while the page is open; export your data before closing it.",
     "Trước khi lập kế hoạch, đếm quân đang bị tấn công của cả hai bên. Với mỗi nước ăn quân, kiểm tra đối phương có ăn lại được không.": "Before making a plan, count the attacked pieces on both sides. For every capture, check whether your opponent can recapture.",
     "Trường tài khoản không được hỗ trợ.": "Unsupported account field.",
@@ -1270,7 +1268,23 @@
     "Khách": "Guest",
     "Chọn công khai hoặc riêng tư.": "Choose public or private.",
     "Tài khoản mới có hồ sơ công khai bật sẵn: tên hiển thị, tháng tham gia và các ván online đã kết thúc, xem được qua một link mã ngẫu nhiên. Tài khoản tạo trước tính năng này vẫn riêng tư cho tới khi bạn chọn. Hồ sơ không hiện tên đăng nhập, tiến độ học hay câu trả lời. Khi bạn để riêng tư, trong lịch sử của người khác bạn hiện là \"Người chơi ẩn\". Đổi bất cứ lúc nào trong Tài khoản.": "New accounts have a public profile turned on by default: display name, month joined and finished online games, visible through a link with a random code. Accounts created before this feature stay private until you choose. The profile never shows your username, learning progress or answers. While yours is private, you appear as \"Hidden player\" in other players' history. Change it at any time in Account.",
-    "máy cơ bản": "basic engine"
+    "máy cơ bản": "basic engine",
+    // Multi-move exercises imported from the owner's workbook (2026-11-20).
+    "Mục tiêu bài nhiều lượt chưa hợp lệ.": "The objective of this multi-move exercise is not valid.",
+    "Ghi chú của vị trí không hợp lệ.": "A note for this position is not valid.",
+    "Điểm kết thúc chưa hơn quân so với thế đầu.": "The final position is not ahead in material compared with the starting position.",
+    "Ăn quân": "Win material",
+    "Bài nhiều lượt:": "Multi-move exercises:",
+    "Xem bài hướng dẫn không tự tính là thành thạo.": "Viewing a lesson does not count as mastery.",
+    "Nước chiếu hết khác cũng được chấp nhận (bộ luật kiểm tra):": "Other checkmating moves are also accepted (checked by the rules engine):",
+    "Đối thủ đáp:": "Opponent's reply:",
+    "Cần lưu ý:": "Watch out:",
+    "Nước của bạn:": "Your move:",
+    "Từng lượt trong lời giải": "The solution, decision by decision",
+    "Ý tưởng chính": "Main idea",
+    "Vì sao phải hành động ngay": "Why you must act now",
+    "Giữ mục tiêu, kiểm tra lại quân nào đang bị bắt sau nước của đối thủ.": "Keep the objective in mind, and check again which pieces are under attack after your opponent's move.",
+    "Chưa đạt mục tiêu của bài trong giới hạn lượt. Thử lại tại vị trí này.": "This does not reach the exercise's objective within the move limit. Try again from this position."
   });
 
   const PIECE = { 'Tướng': 'General', 'Sĩ': 'Advisor', 'Tượng': 'Elephant', 'Xe': 'Chariot', 'Pháo': 'Cannon', 'Mã': 'Horse', 'Tốt': 'Soldier' };
@@ -1349,6 +1363,9 @@
     [/^Biến hợp lệ được tính: (.+)\. Chênh lệch (-?\d+) điểm (quy ước tìm kiếm nông|centipawn của engine) từ cùng thế và cùng bên đi\.$/,
       m => `Legal line calculated: ${m[1].split('; sau đó ').map(notation).join('; then ')}. Difference: ${m[2]} ${m[3] === 'quy ước tìm kiếm nông' ? 'shallow-search points' : 'engine centipawns'} from the same position with the same side to move.`],
     [/^Không đọc được biên bản ở nửa nước (\d+)(\. .+)$/, (m, t) => `Could not read the move record at half-move ${m[1]}${t(m[2])}`],
+    // Difficulty label of a multi-move exercise followed by its number of decisions (any label, any number).
+    [/^(.+) · tối đa (\d+) quyết định$/, (m, t) => `${t(m[1])} · up to ${plural(m[2], 'decision', 'decisions')}`],
+    [/^(.+) · tối đa (\d+) lượt của bạn$/, (m, t) => `${t(m[1])} · up to ${m[2]} of your moves`],
     [VN_MOVE, m => notation(m[0])],
   ]);
 

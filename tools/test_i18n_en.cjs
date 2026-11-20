@@ -116,7 +116,8 @@ const RUNTIME = ['3 hình đến hạn', 'Nước bạn chọn: P2-5', 'Phòng 0
   'Pikafish · đã kiểm tra 40 vị trí · lượt phân tích nhanh.', 'máy cơ bản · đã kiểm tra 1 vị trí · lượt phân tích kỹ hơn. Đang dùng máy cơ bản; gợi ý cần được đối chiếu.',
   'nước đầu phù hợp mẫu, không hỗ trợ · 3/6 bài', '(3 mục)', 'Đã lưu tự đánh giá. (1 mục)', 'Đến lượt bạn', 'Đến lượt đối thủ', 'Đỏ đến lượt',
   '3 ván · 5 lượt học', 'draft · phiên bản 2',
-  'Số đếm từ dữ liệu đã đồng bộ; chưa xác minh kỹ năng, Elo hoặc hiệu quả học. Không dùng tài khoản thử để tuyên bố tác động sản phẩm.', 'Chương 1', '7 chương', '3 hình minh họa · Cơ bản', 'Biến mẫu đã kiểm chứng: 2/5 nửa nước'];
+  'Số đếm từ dữ liệu đã đồng bộ; chưa xác minh kỹ năng, Elo hoặc hiệu quả học. Không dùng tài khoản thử để tuyên bố tác động sản phẩm.', 'Chương 1', '7 chương', '3 hình minh họa · Cơ bản', 'Biến mẫu đã kiểm chứng: 2/5 nửa nước',
+  'Trung cấp · mức dự kiến · tối đa 3 quyết định', 'Khó · mức dự kiến · tối đa 6 quyết định', 'Khó · mức dự kiến · tối đa 5 lượt của bạn', 'Trung cấp · mức dự kiến · tối đa 4 lượt của bạn'];
 
 test('every interface and server message fragment translates', () => {
   const sources = [];
@@ -146,6 +147,8 @@ test('Vietnamese notation converts to WXF', () => {
   const cases = { 'P2-5': 'C2=5', 'M8.7': 'H8+7', 'X1/2': 'R1-2', 'Tg5.1': 'K5+1', 'S4.5': 'A4+5', 'V3.5': 'E3+5', 'B7.1': 'P7+1', 'Xt.1': '+R+1', 'Ms/3': '-H-3' };
   for (const [vi, wxf] of Object.entries(cases)) assert.strictEqual(english.notation(vi), wxf, vi);
   assert.strictEqual(english.notation('Chiếu hết'), 'Chiếu hết');
+  assert.strictEqual(translate('Khó · mức dự kiến · tối đa 6 quyết định'), 'Hard · estimated difficulty · up to 6 decisions');
+  assert.strictEqual(translate('Trung cấp · mức dự kiến · tối đa 3 lượt của bạn'), 'Intermediate · estimated difficulty · up to 3 of your moves');
   assert.strictEqual(translate('Trong ván bạn đi X9.5. Tìm kiếm cơ bản gợi ý một phương án để đối chiếu; chưa phải phán quyết chắc chắn về tư duy.').startsWith('In the game you played R9+5. A basic search'), true);
   assert.strictEqual(translate('Biến hợp lệ được tính: P2-5; sau đó M2.3. Chênh lệch 35 điểm centipawn của engine từ cùng thế và cùng bên đi.').startsWith('Legal line calculated: C2=5; then H2+3.'), true);
   assert.strictEqual(translate('Không đọc được biên bản ở nửa nước 3. Chỉ nhận ký pháp chuẩn, ví dụ P2-5, M8.7, Xt.1; Tượng ghi là V. Chưa hỗ trợ chú thích xen trong ván.').startsWith('Could not read the move record at half-move 3. Only standard'), true);
@@ -157,9 +160,12 @@ test('no machine coordinates appear in any text a user can read', () => {
   const MACHINE = /(?<![A-Za-z0-9])[a-i][0-9](?:[a-i][0-9])?(?![A-Za-z0-9])/;
   const WORD = /tọa độ|toạ độ|\bcoordinates\b/i;
   const STYLE = /^\s*[#.]|\{/; // CSS selectors and rules mention h1, h2 as tags.
-  const unsafe = text => !STYLE.test(text) && /\s/.test(text.trim()) && MACHINE.test(text) || WORD.test(text);
+  // A whole FEN (exercise positions in curriculum-pack.js) is data like a move, not text.
+  const FEN = /^[1-9kaehrcpbnKAEHRCPBN]{1,9}(?:\/[1-9kaehrcpbnKAEHRCPBN]{1,9}){9} [wb](?: - - \d+ \d+)?$/;
+  const unsafe = text => !STYLE.test(text) && !FEN.test(text.trim()) && /\s/.test(text.trim()) && MACHINE.test(text) || WORD.test(text);
   for (const text of ['Xe a2 → a7', 'Nước a3a4 chưa hợp lệ', 'Dùng tọa độ', 'Use coordinates']) assert.strictEqual(unsafe(text), true, text);
-  for (const text of ['a3a4', 'P2-5 M8.7', 'Xt.1 hoặc B7t.1', '#main h1', 'Chariots coordinate']) assert.strictEqual(unsafe(text), false, text);
+  for (const text of ['a3a4', 'P2-5 M8.7', 'Xt.1 hoặc B7t.1', '#main h1', 'Chariots coordinate', '2e2k1C1/4P2h1/e1c6/4Hh3/p8/2Pp5/8P/4rR2E/9/4HK3 w']) assert.strictEqual(unsafe(text), false, text);
+  assert.strictEqual(unsafe('Xe e1h6 rồi 2e2k1C1/4P2h1/e1c6/4Hh3/p8/2Pp5/8P/4rR2E/9/4HK3 w'), true, 'a FEN inside a sentence is still checked');
   const found = [];
   const check = (where, text) => { if (unsafe(text)) found.push(where + ': ' + text); };
   for (const f of fs.readdirSync(path.join(ROOT, 'web'))) {

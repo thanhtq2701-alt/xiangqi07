@@ -1,19 +1,22 @@
 /* English overlay for Cờ Chill lesson content (curriculum.js + fixtures.js).
  * Keys are '<collection>#<id>.<field path>'; each entry keeps the Vietnamese source ('vi')
  * so a test can detect when the source text changes and the translation is stale.
- * Terminology: docs/I18N_GLOSSARY.md. Translated 2026-11-01, reviewed by the project owner. */
+ * Terminology: docs/I18N_GLOSSARY.md. Translated 2026-11-01, reviewed by the project owner.
+ * Exercises from the owner's workbook (curriculum-pack.js) carry their own English by field path;
+ * their entries are added below in the same '<collection>#<id>.<path>' form (draft, 2026-11-20). */
 (function (root, factory) {
   'use strict';
-  const api = factory();
-  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  const node = typeof module !== 'undefined' && module.exports;
+  const api = factory(node ? require('./curriculum-pack.js') : root.CCCurriculumPack);
+  if (node) module.exports = api;
   root.CCContentEN = api;
-})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+})(typeof globalThis !== 'undefined' ? globalThis : this, function (PACK) {
   'use strict';
-  return Object.freeze({
+  const entries = {
     "courses#opening.title": {"vi": "Khai cuộc", "en": "Opening"},
     "courses#opening.description": {"vi": "Phát triển quân và đọc phản ứng đầu ván.", "en": "Develop your pieces and read your opponent's early responses."},
     "courses#middle.title": {"vi": "Trung cuộc", "en": "Middlegame"},
-    "courses#middle.description": {"vi": "Khám phá Xe, Pháo, Mã, an toàn Tướng và phối hợp.", "en": "Explore the Chariot, Cannon, and Horse, along with General safety and piece coordination."},
+    "courses#middle.description": {"vi": "Khám phá Xe, Pháo, Mã, Tốt, an toàn Tướng và phối hợp.", "en": "Explore the Chariot, Cannon, Horse, and Soldier, along with General safety and piece coordination."},
     "courses#end.title": {"vi": "Tàn cuộc", "en": "Endgame"},
     "courses#end.description": {"vi": "Bắt đầu bằng việc kiểm tra đường thoát và kết thúc ván.", "en": "Start by checking the General's escape routes and how to finish the game."},
     "chapters#opening-foundation.title": {"vi": "Bắt đầu có kế hoạch", "en": "Start with a plan"},
@@ -23,6 +26,8 @@
     "chapters#cannon.summary": {"vi": "Quan sát ngòi trước và sau mỗi trao đổi.", "en": "Count the Cannon's screen before and after every exchange."},
     "chapters#horse.title": {"vi": "Mã", "en": "Horse"},
     "chapters#horse.summary": {"vi": "Nhìn chân Mã và cả những đường đi lùi.", "en": "Check the Horse's leg point, as well as its backward moves."},
+    "chapters#pawn.title": {"vi": "Tốt", "en": "Soldier"},
+    "chapters#pawn.summary": {"vi": "Tốt qua sông, nước Tốt êm và lưới chiếu bằng Tốt.", "en": "Soldiers across the river, quiet Soldier moves, and mating nets built with Soldiers."},
     "chapters#kingSafety.title": {"vi": "An toàn Tướng", "en": "General safety"},
     "chapters#kingSafety.summary": {"vi": "Giải chiếu trước khi tiếp tục kế hoạch.", "en": "Get out of check before continuing your plan."},
     "chapters#coordination.title": {"vi": "Phối hợp quân", "en": "Piece coordination"},
@@ -243,5 +248,17 @@
     "fixtures#check-blocker.phaseNote": {"vi": "Bài tập ít quân được xếp vào mục tàn cuộc để tiện tìm; không phải giáo trình tàn cuộc đã thẩm định.", "en": "These few-piece exercises are grouped under Endgame for ease of navigation; this is not a vetted endgame course."},
     "fixtures#check-blocker.verification": {"vi": "Nước mẫu và toàn bộ nước hợp lệ được kiểm tra bằng bộ luật cục bộ; chưa được chuyên gia thẩm định, không khẳng định nước mẫu là đáp án tốt duy nhất.", "en": "The sample move and all legal moves have been checked by the local rules engine. The position has not been reviewed by an expert, and the sample move is not claimed to be the only good answer."},
     "chapters#rook.title": {"vi": "Xe", "en": "Chariot"}
-  });
+  };
+  // Same walk as tools/test_i18n_en.cjs: every string with Vietnamese letters needs an entry.
+  const VI = /[ăâđêôơưàáạảãằắặẳẵầấậẩẫèéẹẻẽềếệểễìíịỉĩòóọỏõồốộổỗờớợởỡùúụủũừứựửữỳýỵỷỹ]/i;
+  function walk(key, path, value, english) {
+    if (typeof value === 'string') { if (VI.test(value) && typeof english[path] === 'string') entries[key] = { vi: value, en: english[path] }; return; }
+    if (Array.isArray(value)) value.forEach((item, i) => walk(`${key}[${i}]`, `${path}[${i}]`, item, english));
+    else if (value && typeof value === 'object') for (const k of Object.keys(value)) walk(`${key}.${k}`, path ? `${path}.${k}` : k, value[k], english);
+  }
+  for (const exercise of Array.isArray(PACK?.exercises) ? PACK.exercises : []) {
+    const english = PACK.en?.[exercise.id];
+    if (english && typeof english === 'object') walk('exercises#' + exercise.id, '', exercise, english);
+  }
+  return Object.freeze(entries);
 });

@@ -9,11 +9,11 @@ import time
 
 ROOT = Path(__file__).resolve().parents[1]
 PYTHON_TESTS = ['test_rules', 'test_cloud', 'test_pikafish', 'test_online_rooms', 'test_online_http',
-                'test_import_positions', 'test_public_profile']
+                'test_import_positions', 'test_import_curriculum_xlsx', 'test_public_profile']
 JS_TESTS = ['test_preview_learning', 'test_preview_experience', 'test_preview_game_tools',
             'test_cloud_client', 'test_engine_client', 'test_v5_ui', 'test_v6_ui',
             'test_v6_learning', 'test_v6_online_ui', 'test_v6_learning_ui', 'test_i18n_en',
-            'test_progress_import', 'test_public_profile_ui']
+            'test_progress_import', 'test_public_profile_ui', 'test_curriculum_pack']
 
 
 def main():

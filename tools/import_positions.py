@@ -61,8 +61,13 @@ def colour_swapped(key):
     return '/'.join(ranks) + ' ' + ('b' if turn == 'w' else 'w')
 
 
-def existing_bank():
-    """Ids and positions already in the app: basic puzzles + curriculum exercises."""
+def existing_bank(include_pack=True):
+    """Ids and positions already in the app: basic puzzles + curriculum exercises.
+
+    include_pack adds the exercises generated from the owner's workbook
+    (web/curriculum-pack.js); tools/import_curriculum_xlsx.py leaves them out
+    because it regenerates that file.
+    """
     ids, fens = set(), {}
     for puzzle in PUZZLES:
         ids.add(puzzle['id'])
@@ -77,6 +82,14 @@ def existing_bank():
         for fen in re.findall(r'"fen": "([^"]+)"', block):
             fens.setdefault(board_key(fen), 'bài nhiều lượt ' + found.group(1))
     chapters = dict(re.findall(r"\{id:'([^']+)',courseId:'([^']+)'", text))
+    pack = ROOT / 'web' / 'curriculum-pack.js'
+    if include_pack and pack.is_file():
+        body = pack.read_text(encoding='utf-8')
+        if '/*PACK-JSON-START*/' in body:
+            data = json.loads(body.split('/*PACK-JSON-START*/', 1)[1].split('/*PACK-JSON-END*/', 1)[0])
+            for exercise in data.get('exercises', []):
+                ids.add(exercise['id'])
+                fens.setdefault(board_key(exercise['fen']), 'bài nhiều lượt ' + exercise['id'])
     return ids, fens, chapters
 
 

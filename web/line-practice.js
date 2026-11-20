@@ -28,8 +28,25 @@
   const answers = value => [0, 1, 2].map(i => typeof value?.[i] === 'string' ? value[i].slice(0, 1500) : '');
   const reflected = value => answers(value).every(a => a.trim().length > 0);
   const assert = (condition, message) => { if (!condition) throw new Error(message); };
+  // Rough piece values for the "win material" objective (same table as tools/import_curriculum_xlsx.py).
+  // They only check that the learner ends the line with more material than at the start; not an evaluation.
+  const VALUES = Object.freeze({ r: 9, c: 4.5, h: 4, a: 2, e: 2, p: 1, k: 0 });
+  function material(pos, side) {
+    let total = 0;
+    for (const piece of pos.board) if (piece !== '.') total += (XQ.side(piece) === side ? 1 : -1) * VALUES[piece.toLowerCase()];
+    return total;
+  }
+  const mated = (pos, learner) => pos.status().over && pos.status().winner === learner && pos.inCheck();
+  const textField = value => value === undefined || (typeof value === 'string' && value.length <= 2000);
+  // A frozen exercise (the curriculum is deep-frozen) cannot change after it passed once, so syncing
+  // many saved attempts does not replay the same tree again and again.
+  const validated = typeof WeakSet === 'function' ? new WeakSet() : null;
   function validate(exercise) {
+    if (validated && plain(exercise) && validated.has(exercise)) return true;
     assert(plain(exercise) && exercise.format === 'line-v1' && id(exercise.id) && Number.isInteger(exercise.version) && exercise.version > 0, 'Định dạng bài nhiều lượt chưa hợp lệ.');
+    // Exercises without an objective are the original checkmate exercises.
+    const objective = exercise.objective === undefined ? 'mate' : exercise.objective;
+    assert(objective === 'mate' || objective === 'material', 'Mục tiêu bài nhiều lượt chưa hợp lệ.');
     assert(plain(exercise.nodes) && id(exercise.root) && Object.prototype.hasOwnProperty.call(exercise.nodes, exercise.root), 'Thiếu vị trí bắt đầu.');
     const nodeIds = Object.keys(exercise.nodes);
     assert(nodeIds.length > 0 && nodeIds.length <= 256 && nodeIds.every(id), 'Số vị trí hoặc mã vị trí không hợp lệ.');
@@ -47,13 +64,17 @@
       assert(Array.isArray(node.choices) && node.choices.length > 0 && node.choices.length <= 90, 'Vị trí cần ít nhất một phương án đã duyệt.');
       const legal = pos.legalMoves(), seenMoves = new Set();
       assert(Array.isArray(node.rejectedMoves || []), 'Danh sách nước chưa đạt không hợp lệ.');
+      assert(textField(node.watchOut), 'Ghi chú của vị trí không hợp lệ.');
       for (const edge of node.choices) {
         assert(plain(edge) && legal.includes(edge.move) && !seenMoves.has(edge.move), 'Phương án trùng hoặc sai luật.');
+        assert(textField(edge.reason) && textField(edge.note), 'Ghi chú của vị trí không hợp lệ.');
         seenMoves.add(edge.move);
         let next = pos.play(edge.move);
         if (exercise.proof?.method === 'exhaustive-checking-mate') assert(next.inCheck(), 'Bài chiếu liên tục có nước không chiếu.');
         if (edge.next === null) {
-          assert(edge.reply === null && next.status().over && next.status().winner === exercise.learner && next.inCheck(), 'Điểm kết thúc chưa phải chiếu hết.');
+          assert(edge.reply === null, 'Điểm kết thúc chưa phải chiếu hết.');
+          if (objective === 'mate') assert(mated(next, exercise.learner), 'Điểm kết thúc chưa phải chiếu hết.');
+          else assert(mated(next, exercise.learner) || (!next.status().over && material(next, exercise.learner) > material(rootPos, exercise.learner)), 'Điểm kết thúc chưa hơn quân so với thế đầu.');
         } else {
           assert(id(edge.next) && next.legalMoves().includes(edge.reply), 'Nước đáp hoặc nhánh tiếp theo không hợp lệ.');
           next = next.play(edge.reply);
@@ -65,6 +86,7 @@
     }
     walk(exercise.root, rootPos.fen(), 0);
     assert(visited.size === nodeIds.length, 'Bài có vị trí rời không sử dụng.');
+    if (validated && Object.isFrozen(exercise) && Object.isFrozen(exercise.nodes)) validated.add(exercise);
     return true;
   }
   function create(exercise, options = {}) {
@@ -234,5 +256,5 @@
     const pending = {...restored,stage:'explain',completedAt:null,dueAt:null};
     return finish(exercise,pending,{now:restored.completedAt,previous:options.previous}).attempt;
   }
-  return Object.freeze({ DAY, INTERVALS: INTERVALS.slice(), validate, create, currentPosition, submit, restore, reveal, retry, resumeParked, finish, sanitizeAttempt });
+  return Object.freeze({ DAY, INTERVALS: INTERVALS.slice(), VALUES, material, validate, create, currentPosition, submit, restore, reveal, retry, resumeParked, finish, sanitizeAttempt });
 });
