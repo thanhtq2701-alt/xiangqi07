@@ -247,20 +247,23 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
 
 ### Kỹ thuật và dữ liệu
 
-- PvP polling khoảng 2 giây; tab nền/mạng yếu có thể quá hạn 30 giây và bị coi
-  mất kết nối. Mỗi lần polling là 4 lần mở/đóng kết nối SQLite và 2 giao dịch
-  ghi (bộ giới hạn tần suất và lưu lại cả JSON phòng chỉ để cập nhật presence),
-  nên các lần polling xếp hàng qua một khóa ghi. Đo ngày 20/11/2026 bằng
-  `python tools/load_rooms.py` (server local riêng, database tạm, laptop
-  Windows; không phải VM 2 vCPU, số trên VM cần đo riêng, không đo production):
-  20 người chơi p50 ~70–100 ms, p95 0,2–3 s (dao động giữa các lần chạy); 50
-  người p50 ~120–240 ms, p95 ~0,6 s; trần khoảng 35–40 yêu cầu/giây; 100 người
-  p95 ~8,6 s và lỗi 500 "database is locked" (chờ khóa quá 10 giây); 200 người
-  có 22/100 ván bị xử thua "mất kết nối" oan. Pilot 5–10 người nằm trong vùng
-  an toàn; không mở rộng quá ~25 ván cùng lúc (50 người) trước khi sửa: polling
-  chỉ đọc (presence giữ trong bộ nhớ của tiến trình duy nhất, chỉ ghi phòng khi
-  trạng thái đổi), giới hạn tần suất polling trong bộ nhớ, dùng lại kết nối
-  SQLite, giãn polling cho người xem/phòng chờ. Đây là đề xuất, chưa làm.
+- PvP polling khoảng 2 giây cho người đang chơi (ván đang chơi hoặc tạm dừng);
+  người xem, phòng chờ và ván đã kết thúc khoảng 4 giây. Tab nền/mạng yếu có thể
+  quá hạn 30 giây và bị coi mất kết nối. Từ 21/11/2026, một lần polling chỉ đọc
+  SQLite: trạng thái "đang online" giữ trong bộ nhớ của tiến trình duy nhất và
+  phòng chỉ được ghi khi ván đổi (hết giờ, mất kết nối, tạm dừng, hết hạn lời
+  mời); giới hạn tần suất polling (180/phút/người) cũng trong bộ nhớ, thao tác
+  ghi vẫn giới hạn trong SQLite; hàng chờ kết nối của server tăng từ 5 lên 128.
+  Khởi động lại server làm mất trạng thái online, nhưng việc đó vốn đã tạm dừng
+  mọi ván. Không chạy nhiều tiến trình/worker cùng lúc.
+  Đo bằng `python tools/load_rooms.py` (server local riêng, database tạm, laptop
+  Windows; không phải VM 2 vCPU, chưa đo trên VM; không đo production):
+  trước khi sửa (20/11) 100 người p95 ~8,6 s kèm lỗi "database is locked", 200
+  người có 22/100 ván bị xử thua oan; sau khi sửa (21/11) lấy trạng thái phòng
+  100 người p50 ~75 ms / p95 ~0,2 s, 200 người p50 ~150 ms / p95 ~0,36 s, không
+  lỗi, không ván nào bị tạm dừng hay xử thua oan. Đi nước vẫn là giao dịch ghi
+  xếp hàng: 200 người p95 ~3,2 s. 400 người chưa đo được tin cậy vì chính máy
+  đo bị quá tải.
 - Ghép cộng đồng theo thời gian, chưa theo trình độ.
 - Cookie phòng khách 24 giờ. Giữ phòng và biên bản có khách 30 ngày (chủ dự án
   chốt 19/11/2026) bằng lệnh `prune-rooms`: xem trước, chỉ xóa khi có
@@ -376,10 +379,10 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 8. Câu trả lời bằng mũi tên, avatar, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
-9. Giảm tải PvP polling theo kết quả đo ngày 20/11/2026 (§4): polling chỉ đọc,
-   giới hạn tần suất trong bộ nhớ, dùng lại kết nối SQLite, giãn nhịp polling
-   cho người xem; đo lại bằng `tools/load_rooms.py` và đo trên một VM thử
-   (không phải production) trước khi mở cho hơn khoảng 50 người cùng lúc.
+9. PvP: đã giảm tải polling (21/11/2026, §4). Còn lại: đo trên một VM thử
+   (không phải production); nếu cần hơn ~200 người cùng lúc thì giảm thời gian
+   ghi của nước đi (dùng lại kết nối SQLite, `synchronous=NORMAL`) hoặc chuyển
+   sang kênh đẩy (SSE/WebSocket).
 
 ## 8. Quy trình đóng góp
 

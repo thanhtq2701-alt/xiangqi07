@@ -158,6 +158,45 @@ class OnlineRoomTests(unittest.TestCase):
         r = self.rooms.action(self.black, self.code, 'ready')
         self.assertEqual(r['status'], 'playing')
 
+    def row(self):
+        with self.rooms.connect(write=False) as db:
+            return tuple(db.execute('SELECT updated_at, data FROM online_rooms WHERE code=?', (self.code,)).fetchone())
+
+    def test_poll_is_a_read_but_still_counts_as_presence(self):
+        """Load fix 2026-11-21: a poll writes nothing unless the room really changes."""
+        self.started()
+        saved = self.row()
+        self.now += 5
+        for _ in range(3):
+            red = self.rooms.snapshot(self.red, self.code)
+            self.rooms.snapshot(self.black, self.code)
+        self.assertEqual(self.row(), saved, 'polling must not rewrite the room')
+        self.assertLess(red['clock']['w'], 600000, 'the running clock is still computed for the snapshot')
+        self.assertEqual(red['clock']['at'], self.now)
+        # Only Red keeps polling. Red's presence lives in memory (the saved room still has
+        # the time of 'ready'), so after 31 s it is Black, not both seats, that is missing.
+        self.now += 20
+        self.rooms.snapshot(self.red, self.code)
+        self.now += 11
+        r = self.rooms.snapshot(self.red, self.code)
+        self.assertEqual((r['status'], r['result']['reason'], r['result']['winner']), ('finished', 'disconnected', 'w'))
+        self.assertNotEqual(self.row(), saved, 'a finished game is saved')
+        self.assertEqual(len(self.rooms.history(self.a)['games']), 1)
+
+    def test_live_context_check_does_not_rewrite_unchanged_rooms(self):
+        self.started()
+        saved = self.row()
+        self.now += 3
+        self.assertTrue(self.rooms.has_live_context(self.a))
+        self.rooms.list_public(self.c)
+        self.assertEqual(self.row(), saved)
+
+    def test_deleting_an_identity_forgets_its_presence(self):
+        self.started()
+        self.rooms.snapshot(self.red, self.code)
+        self.rooms.delete_identity(self.red['id'])
+        self.assertFalse(any(self.red['id'] in seats for seats in self.rooms._presence.values()))
+
     def test_paused_players_must_finish_before_leaving_seat(self):
         self.started()
         self.now += 40

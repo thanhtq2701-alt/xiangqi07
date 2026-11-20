@@ -36,6 +36,32 @@ GUEST_ROOM_SECONDS = 24 * 3600
 MAX_BODY = MAX_STATE_BYTES + 65536
 
 
+class MemoryRateLimit:
+    """Fixed-window counter in this process, for room polls only.
+
+    A poll every 2 seconds per person must not be a database write (measured
+    20/11/2026: tools/load_rooms.py). Writes and logins keep the SQLite limiter,
+    whose counts survive restarts. One instance, one worker, as for presence.
+    """
+
+    def __init__(self, clock=None):
+        self.clock, self.lock, self.windows = clock or (lambda: time.time()), Lock(), {}
+
+    def hit(self, key, maximum, period):
+        now = self.clock()
+        with self.lock:
+            start, count = self.windows.get(key, (now, 0))
+            if start + period <= now:
+                start, count = now, 0
+            if count >= maximum:
+                raise APIError(429, 'Có nhiều yêu cầu liên tiếp. Hãy chờ rồi thử lại.', 'rate_limited',
+                               retryAfter=max(1, int(start + period - now)))
+            self.windows[key] = (start, count + 1)
+            if len(self.windows) > 10000:
+                for old in [k for k, (begun, _) in self.windows.items() if begun + period <= now]:
+                    del self.windows[old]
+
+
 class CloudApplication:
     def __init__(self, db_path=None, public_origin=None, admin_totp_secret=None, static_root=None, engine=None,
                  trusted_proxies=None):
@@ -61,6 +87,7 @@ class CloudApplication:
             engine = AnalysisEngine()
         self.engine = engine
         self.rooms = OnlineRooms(self.store.path)
+        self.room_reads = MemoryRateLimit()
         with self.store.connect(True) as db:
             db.execute('''CREATE TABLE IF NOT EXISTS room_guest_sessions (
                 token_hash TEXT PRIMARY KEY, user_id TEXT UNIQUE NOT NULL,
@@ -287,7 +314,10 @@ class CloudApplication:
         if not actor:
             raise APIError(401, 'Hãy đăng nhập hoặc chọn phiên khách để vào phòng.', 'room_session_required')
         write = method in ('POST', 'PUT', 'PATCH', 'DELETE')
-        self.store.throttle('room-write' if write else 'room-read', actor['id'], 120 if write else 180, 60)
+        if write:
+            self.store.throttle('room-write', actor['id'], 120, 60)
+        else:
+            self.room_reads.hit(actor['id'], 180, 60)
         if write:
             csrf = environ.get('HTTP_X_CSRF_TOKEN', '')
             if not csrf or not hmac.compare_digest(csrf, actor['csrf']):
@@ -663,8 +693,12 @@ class QuietHandler(WSGIRequestHandler):
 
 
 class LocalThreadedServer(ThreadingMixIn, WSGIServer):
-    """Local pilot only; production still runs one Gunicorn worker + threads."""
+    """Threaded WSGI server used by `serve`, locally and by deploy/cochill.service
+    (Gunicorn is optional, see deploy/DEPLOY_GCP_VI.md §8). One process, one worker."""
     daemon_threads = True
+    # socketserver's default listen backlog is 5: with a few hundred people polling,
+    # bursts of new connections were refused (tools/load_rooms.py, 21/11/2026).
+    request_queue_size = 128
 
 
 def main():

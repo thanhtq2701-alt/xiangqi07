@@ -187,6 +187,21 @@ class OnlineHttpTests(unittest.TestCase):
         with self.app.store.connect() as db:
             self.assertFalse(db.execute('SELECT 1 FROM room_guest_sessions WHERE user_id=?', (self.a.uid,)).fetchone())
 
+    def test_room_polls_are_rate_limited_in_memory_without_database_writes(self):
+        self.started(guests=True)
+        with self.app.store.connect() as db:
+            before = db.execute('SELECT COUNT(*) FROM rate_limits').fetchone()[0]
+        for _ in range(180):
+            self.assertEqual(self.red.request(f'/api/rooms/{self.code}')[0], 200)
+        status, body, headers = self.red.request(f'/api/rooms/{self.code}')
+        self.assertEqual((status, body['code']), (429, 'rate_limited'))
+        self.assertIn('Retry-After', headers)
+        self.assertEqual(self.black.request(f'/api/rooms/{self.code}')[0], 200, 'the limit is per person')
+        with self.app.store.connect() as db:
+            self.assertEqual(db.execute('SELECT COUNT(*) FROM rate_limits').fetchone()[0], before)
+        with patch('co_chill_server.time.time', return_value=time.time() + 61):
+            self.assertEqual(self.red.request(f'/api/rooms/{self.code}')[0], 200, 'a new minute resets the window')
+
     def test_player_and_spectator_cannot_call_engine_for_any_purpose(self):
         self.started()
         self.c.register('watcher')

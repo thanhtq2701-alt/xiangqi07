@@ -11,7 +11,10 @@
   const PROTECTED=new Set(['learn','line','practice','lesson','lessons','opening','moments','replay','review','path','rules','howto','editor','course','chapter','chapter-lesson']);
   const PRESETS={rapid:'10 phút + 5 giây',blitz:'5 phút + 3 giây',bullet:'1 phút',untimed:'Không giới hạn'};
   const LABELS={waiting:'Chờ hai người sẵn sàng',playing:'Ván đang diễn ra',paused:'Ván tạm dừng · cả hai cần sẵn sàng lại',finished:'Ván đã kết thúc'};
-  let session=null,room=null,listing=null,problem='',inviteMessage='',working=false,loading=false,chosen=null,epoch=0,authKey='',lastSession=0,lastHistory='',flipped=false,installed=false;
+  let session=null,room=null,listing=null,problem='',inviteMessage='',working=false,loading=false,chosen=null,epoch=0,authKey='',lastSession=0,lastHistory='',flipped=false,installed=false,lastPoll=0;
+  // Players in a live or paused game poll every 2 s; spectators, waiting rooms and finished games
+  // every ~4 s (load measured 20/11/2026). Clocks and the 30 s disconnect rule are unchanged.
+  function slowPoll(){return !!room&&(!room.side||!['playing','paused'].includes(room.status));}
   function code(value){const s=String(value||'').trim().toUpperCase();return /^[0-9A-F]{10}$/.test(s)?s:null;}
   function isLive(){return !!room&&LIVE.has(room.status);}
   function blocks(page){return isLive()&&PROTECTED.has(page);}
@@ -126,7 +129,7 @@
       if(type==='guest')refresh();
     },true);
     root.addEventListener('hashchange',()=>{if(route()[0]==='online')refresh();});
-    root.addEventListener('online',refresh);setInterval(()=>refresh({quiet:true}),2000);render();refresh();
+    root.addEventListener('online',refresh);setInterval(()=>{if(slowPoll()&&Date.now()-lastPoll<3900)return;lastPoll=Date.now();refresh({quiet:true});},2000);render();refresh();
   }
   return {install,isLive,blocks,guardHTML,refresh,code,clockLabel,historyGame,PRESETS,snapshot:()=>({session,room,listing,problem,working})};
 });

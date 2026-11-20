@@ -76,15 +76,20 @@ class Client:
                     self.cookie = value.split('=', 1)[1].split(';', 1)[0]
             conn.close()
             payload = json.loads(raw or b'{}')
-        except (OSError, http.client.HTTPException, ValueError):
+        except (OSError, http.client.HTTPException, ValueError) as error:
             status = -1
+            self.stats.note_error(type(error).__name__)
         self.stats.add(kind, status, time.perf_counter() - started)
         return status, payload
 
 
 class Stats:
     def __init__(self):
-        self.lock, self.rows = threading.Lock(), []
+        self.lock, self.rows, self.errors = threading.Lock(), [], {}
+
+    def note_error(self, name):
+        with self.lock:
+            self.errors[name] = self.errors.get(name, 0) + 1
 
     def add(self, kind, status, seconds):
         with self.lock:
@@ -130,39 +135,61 @@ def start_server(db):
     raise SystemExit('Server did not start in 10 seconds.')
 
 
-def setup(base, rooms, spectators, stats):
-    """Guests, private rapid rooms, both players ready; returns [(client, code, role)]."""
+def setup(base, rooms, spectators, stats, begin):
+    """Guests, private rapid rooms, both players ready; returns [(client, code, role)].
+
+    begin(client, code, role) starts that person's polling as soon as the room is ready:
+    a game left without polls while later rooms are still being set up would be paused
+    after 30 s (correctly), which is not what we want to measure.
+    """
     people, n = [], 0
+
+    def must(client, path, body=None, guest_session=False):
+        """A setup step; retried like a browser would when the server is busy."""
+        for attempt in range(6):
+            if guest_session and client.cookie:
+                status, payload = client.call('setup', 'GET', '/session')
+            else:
+                status, payload = client.call('setup', 'POST', path, body)
+            if status in (200, 201):
+                return payload
+            time.sleep(0.5 * (attempt + 1))
+        raise SystemExit(f'Setup step {path} failed (HTTP {status}): {payload}; connection errors so far: {stats.errors}')
 
     def guest():
         nonlocal n
         n += 1
         client = Client(base, f'10.{n // 65536 % 256}.{n // 256 % 256}.{n % 256}', stats)
-        status, body = client.call('setup', 'POST', '/guest', {'displayName': f'Tải {n}'})
-        if status not in (200, 201):
-            raise SystemExit(f'Could not create a guest session (HTTP {status}): {body}')
-        client.csrf = body['csrf']
+        client.csrf = must(client, '/guest', {'displayName': f'Tải {n}'}, guest_session=True)['csrf']
         return client
 
-    for _ in range(rooms):
+    for index in range(rooms):
+        if index and index % 25 == 0:
+            print(f'  setup: {index}/{rooms} rooms ready', flush=True)
         red, black = guest(), guest()
-        status, room = red.call('setup', 'POST', '', {'preset': 'rapid', 'visibility': 'private'})
-        if status not in (200, 201):
-            raise SystemExit(f'Could not create a room (HTTP {status}): {room}')
-        code = room['code']
-        assert black.call('setup', 'POST', f'/{code}/join')[0] == 200
+        code = must(red, '', {'preset': 'rapid', 'visibility': 'private'})['code']
+        must(black, f'/{code}/join')
         for player in (red, black):
-            assert player.call('setup', 'POST', f'/{code}/ready')[0] == 200
+            must(player, f'/{code}/ready')
         people += [(red, code, 'player'), (black, code, 'player')]
+        begin(red, code, 'player')
+        begin(black, code, 'player')
         for _ in range(spectators):
             viewer = guest()
-            assert viewer.call('setup', 'POST', f'/{code}/watch')[0] == 200
+            must(viewer, f'/{code}/watch')
             people.append((viewer, code, 'spectator'))
+            begin(viewer, code, 'spectator')
     return people
 
 
-def person(client, code, role, stop, last, rng):
-    """One browser tab: poll, refresh the session, move on its turn."""
+def person(client, code, role, stop, last, rng, gaps):
+    """One browser tab: poll, refresh the session, move on its turn.
+
+    gaps[ip] = the longest time between two successful polls as this client saw it.
+    Over 30 s means the simulated person really was silent (for example because this
+    load generator itself was starved of CPU), so a pause is then the correct result.
+    """
+    last_ok = time.monotonic()
     next_poll = time.monotonic() + rng.uniform(0, POLL_SECONDS)
     next_session = time.monotonic() + rng.uniform(0, SESSION_SECONDS)
     next_move = time.monotonic() + rng.uniform(2, MOVE_SECONDS)
@@ -175,6 +202,9 @@ def person(client, code, role, stop, last, rng):
             status, snap = client.call('snapshot', 'GET', f'/{code}')
             if status == 200:
                 last[client.ip] = snap
+                done = time.monotonic()
+                gaps[client.ip] = max(gaps.get(client.ip, 0), done - last_ok)
+                last_ok = done
             next_poll += POLL_SECONDS
         snap = last.get(client.ip)
         if role == 'player' and snap and now >= next_move and snap.get('status') == 'playing' and snap.get('side'):
@@ -198,15 +228,20 @@ def scenario(rooms, spectators, seconds, url=None):
         db_dir = tempfile.mkdtemp(prefix='cochill-load-')
         proc, base = start_server(Path(db_dir) / 'load.sqlite3')
     try:
-        people = setup(base, rooms, spectators, stats)
-        setup_rows = len(stats.rows)
-        stats.rows.clear()
-        stop, last, threads = threading.Event(), {}, []
+        stop, last, threads, gaps = threading.Event(), {}, [], {}
         rng = random.Random(rooms * 1000 + spectators)
-        for client, code, role in people:
-            t = threading.Thread(target=person, args=(client, code, role, stop, last, random.Random(rng.random())), daemon=True)
+
+        def begin(client, code, role):
+            t = threading.Thread(target=person, args=(client, code, role, stop, last, random.Random(rng.random()), gaps), daemon=True)
             t.start()
             threads.append(t)
+
+        people = setup(base, rooms, spectators, stats, begin)
+        # Measure only once everyone is in: setup requests and early polls are not counted.
+        with stats.lock:
+            setup_rows = len(stats.rows)
+            stats.rows.clear()
+        gaps.clear()
         started = time.monotonic()
         stop.wait(seconds)
         stop.set()
@@ -218,13 +253,16 @@ def scenario(rooms, spectators, seconds, url=None):
             if role == 'player':
                 snap = last.get(client.ip) or {}
                 result = snap.get('result') or {}
-                key = snap.get('status', '?') + ('/' + result['reason'] if snap.get('status') == 'finished' else '')
+                key = snap.get('status', '?') + ('/' + result['reason'] if snap.get('status') == 'finished' else
+                                                 '/' + str(snap.get('pauseReason')) if snap.get('status') == 'paused' else '')
                 finals[code] = key
         outcome = {}
         for key in finals.values():
             outcome[key] = outcome.get(key, 0) + 1
         db_bytes = sum(f.stat().st_size for f in Path(db_dir).glob('load.sqlite3*')) if db_dir else None
-        return {'rooms': rooms, 'people': len(people), 'spectatorsPerRoom': spectators, 'seconds': round(duration, 1),
+        gap_values = sorted(gaps.values()) or [0]
+        return {'connectionErrors': dict(stats.errors), 'pollGapMaxSeconds': round(gap_values[-1], 1), 'clientsSilentOver30s': sum(g >= 30 for g in gap_values),
+                'rooms': rooms, 'people': len(people), 'spectatorsPerRoom': spectators, 'seconds': round(duration, 1),
                 'setupRequests': setup_rows, 'requests': stats.summary(duration), 'rooms_at_end': outcome,
                 'databaseBytes': db_bytes}
     finally:
@@ -247,7 +285,10 @@ def problems(result):
         if errors:
             bad.append(f'{kind}: {errors}')
     lost = {k: n for k, n in result['rooms_at_end'].items() if 'disconnected' in k or k.startswith('paused')}
-    if lost:
+    if lost and result.get('clientsSilentOver30s'):
+        bad.append(f'rooms paused or lost, but {result["clientsSilentOver30s"]} simulated people were really silent for 30 s+'
+                   f' (load generator overloaded; rerun with fewer rooms): {lost}')
+    elif lost:
         bad.append(f'rooms lost to disconnection/pause: {lost}')
     return bad
 
@@ -275,7 +316,11 @@ def main(argv=None):
         print(f'{"request":<9} {"req/s":>6} {"p50 ms":>8} {"p95 ms":>8} {"p99 ms":>8} {"max ms":>8}  status')
         for kind, row in result['requests'].items():
             print(f'{kind:<9} {row["perSecond"]:>6} {row["p50ms"]:>8} {row["p95ms"]:>8} {row["p99ms"]:>8} {row["maxms"]:>8}  {row["status"]}')
+        if result['connectionErrors']:
+            print('connection errors (client side):', result['connectionErrors'])
         print('rooms at end:', result['rooms_at_end'], '| database + WAL:', result['databaseBytes'], 'bytes')
+        print(f"longest gap between two successful polls (client side): {result['pollGapMaxSeconds']} s;"
+              f" simulated people silent for 30 s or more: {result['clientsSilentOver30s']}")
         for line in problems(result):
             print('PROBLEM', line)
     if args.json:
