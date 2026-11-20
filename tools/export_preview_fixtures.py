@@ -36,7 +36,23 @@ TITLES = {
     'check-blocker': 'Cân nhắc trước khi đi',
 }
 
-PIECE_CODES = {'k': 'Tg', 'a': 'S', 'e': 'T', 'r': 'X', 'h': 'M', 'c': 'P', 'p': 'B'}
+# Each exercise has its own goal: it names what to look at, never the piece, target or move.
+GOALS = {
+    'loose-rook': 'Quét hết cả hàng ngang và cột dọc của Xe trước khi chọn. Tìm nước có lợi về quân mà vẫn giữ an toàn cho Tướng.',
+    'loose-cannon': 'Trước khi đi, xem quân Đen nào không có quân bảo vệ. Chọn nước có lợi về quân, giữ an toàn cho Tướng và nói rõ lý do.',
+    'sideways-rook': 'Xét mọi hướng Xe có thể đi, không chỉ hướng tiến. Tìm nước có lợi về quân và giải thích vì sao đường đi trống.',
+    'cannon-file': 'Pháo ăn quân cần đúng một ngòi. Với từng quân Đen, đếm số quân nằm giữa nó và Pháo rồi chọn nước có lợi về quân.',
+    'cannon-rank': 'Kiểm tra cả đường dọc lẫn đường ngang của Pháo. Tìm nước ăn quân hợp lệ và nói rõ quân nào làm ngòi.',
+    'cannon-enemy-screen': 'Nhìn mọi quân nằm trên đường Pháo, của bên nào cũng vậy. Tìm nước có lợi về quân và giải thích vì sao nước đó hợp lệ.',
+    'horse-fork': 'Liệt kê các ô Mã có thể tới và kiểm tra chân Mã của từng ô. Chọn nước có lợi về quân, giữ an toàn cho Tướng.',
+    'horse-side': 'Giữ cách nghĩ với Mã ở vị trí mới: kiểm tra chân Mã trước, rồi xem ô đến có quân Đen nào. Tìm nước có lợi về quân.',
+    'horse-back': 'Mã có tới tám hướng đi; xét đủ cả những hướng dễ bỏ sót. Chọn nước có lợi về quân và giải thích lý do.',
+    'check-capture': 'Tướng Đỏ đang bị chiếu. Liệt kê mọi cách thoát chiếu, rồi chọn cách có lợi nhất và giải thích.',
+    'check-cannon': 'Tướng Đỏ đang bị chiếu. So sánh các nước thoát chiếu hợp lệ; chọn nước vừa an toàn vừa có lợi về quân.',
+    'check-blocker': 'Tướng Đỏ đang bị chiếu. Đừng dừng ở cách thoát đầu tiên: xét cả bắt quân chiếu, che chiếu và đi Tướng.',
+}
+
+PIECE_CODES ={'k': 'Tg', 'a': 'S', 'e': 'T', 'r': 'X', 'h': 'M', 'c': 'P', 'p': 'B'}
 
 
 def intervening_squares(src, dst):
@@ -119,7 +135,7 @@ def make_fixtures():
             'skill': puzzle['skill'], 'skillName': SKILL_NAMES[puzzle['skill']],
             'title': TITLES[puzzle['id']],
             'description': 'Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.',
-            'goal': 'Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.',
+            'goal': GOALS[puzzle['id']],
             'fen': pos.fen(), 'turn': pos.turn,
             'pieces': {square(i): p for i, p in enumerate(pos.board) if p != '.'},
             'solution': puzzle['solution'], 'legal': pos.legal_moves(),
@@ -133,7 +149,8 @@ def make_fixtures():
 
 def main():
     target = ROOT / 'web/fixtures.js'
-    target.write_text('const FIXTURES = ' + json.dumps(make_fixtures(), ensure_ascii=False, indent=2) + ';\n', encoding='utf-8')
+    # write_bytes keeps LF on Windows, matching the committed file and its ?v= stamp.
+    target.write_bytes(('const FIXTURES = ' + json.dumps(make_fixtures(), ensure_ascii=False, indent=2) + ';\n').encode('utf-8'))
     print(f'Exported {len(PUZZLES)} original synthetic exercises to web/fixtures.js')
 
 

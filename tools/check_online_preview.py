@@ -38,6 +38,12 @@ def main():
         for field in ('what', 'why'):
             assert not re.search(r'(?<![A-Za-z0-9])[a-i][0-9](?![0-9A-Za-z])', fixture[field]), f'Machine coordinate in {field}: {fixture["id"]}'
         assert fixture['solution'] not in fixture['title']
+        # The goal is shown before reflection: no move, no notation, no square.
+        notation = re.search(r'\(([^)]+)\)', fixture['what']).group(1)
+        for text in (fixture['title'], fixture['goal']):
+            assert fixture['solution'] not in text and notation not in text, f'Goal or title gives the move away: {fixture["id"]}'
+            assert not re.search(r'(?<![A-Za-z0-9])[a-i][0-9](?![0-9A-Za-z])', text), f'Machine coordinate in goal/title: {fixture["id"]}'
+    assert len({f['goal'] for f in fixtures}) == len(fixtures), 'Every basic exercise needs its own goal'
     assert {f['skill'] for f in fixtures} == set(SKILL_NAMES)
     print('PASS: all 12 synthetic fixtures, grounded text, provenance and complete legal-move sets match project rules.')
 

@@ -6,7 +6,7 @@ const FIXTURES = [
     "skillName": "Quan sát quân và đường đi",
     "title": "Quan sát toàn bàn",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Quét hết cả hàng ngang và cột dọc của Xe trước khi chọn. Tìm nước có lợi về quân mà vẫn giữ an toàn cho Tướng.",
     "fen": "4k4/9/r8/8p/9/4P4/9/R8/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -55,7 +55,7 @@ const FIXTURES = [
     "skillName": "Quan sát quân và đường đi",
     "title": "Dừng lại trước khi chọn",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Trước khi đi, xem quân Đen nào không có quân bảo vệ. Chọn nước có lợi về quân, giữ an toàn cho Tướng và nói rõ lý do.",
     "fen": "4k4/9/7c1/p8/9/4P4/9/7R1/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -104,7 +104,7 @@ const FIXTURES = [
     "skillName": "Quan sát quân và đường đi",
     "title": "Nhìn từ một góc khác",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Xét mọi hướng Xe có thể đi, không chỉ hướng tiến. Tìm nước có lợi về quân và giải thích vì sao đường đi trống.",
     "fen": "4k4/9/9/p8/9/4P4/1R4r2/9/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -153,7 +153,7 @@ const FIXTURES = [
     "skillName": "Đường đi của Pháo",
     "title": "Một vị trí cần quan sát",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Pháo ăn quân cần đúng một ngòi. Với từng quân Đen, đếm số quân nằm giữa nó và Pháo rồi chọn nước có lợi về quân.",
     "fen": "4k4/9/1r7/8p/9/1H2P4/9/1C7/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -208,7 +208,7 @@ const FIXTURES = [
     "skillName": "Đường đi của Pháo",
     "title": "Thêm một góc nhìn",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Kiểm tra cả đường dọc lẫn đường ngang của Pháo. Tìm nước ăn quân hợp lệ và nói rõ quân nào làm ngòi.",
     "fen": "4k4/9/9/p8/9/4P4/C1H4r1/9/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -259,7 +259,7 @@ const FIXTURES = [
     "skillName": "Đường đi của Pháo",
     "title": "Đọc kỹ cấu trúc bàn cờ",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Nhìn mọi quân nằm trên đường Pháo, của bên nào cũng vậy. Tìm nước có lợi về quân và giải thích vì sao nước đó hợp lệ.",
     "fen": "4k4/9/6r2/p8/9/4P1p2/9/6C2/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -308,7 +308,7 @@ const FIXTURES = [
     "skillName": "Đường đi của Mã",
     "title": "Chọn một phương án",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Liệt kê các ô Mã có thể tới và kiểm tra chân Mã của từng ô. Chọn nước có lợi về quân, giữ an toàn cho Tướng.",
     "fen": "4k4/9/9/p8/3r5/4P4/2H6/9/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -350,7 +350,7 @@ const FIXTURES = [
     "skillName": "Đường đi của Mã",
     "title": "Đổi vị trí, giữ cách nghĩ",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Giữ cách nghĩ với Mã ở vị trí mới: kiểm tra chân Mã trước, rồi xem ô đến có quân Đen nào. Tìm nước có lợi về quân.",
     "fen": "4k4/9/9/p8/9/4P2c1/5H3/9/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -394,7 +394,7 @@ const FIXTURES = [
     "skillName": "Đường đi của Mã",
     "title": "Quan sát đủ các hướng",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Mã có tới tám hướng đi; xét đủ cả những hướng dễ bỏ sót. Chọn nước có lợi về quân và giải thích lý do.",
     "fen": "4k4/9/9/p3r4/6H2/4P4/9/9/9/4K4 w",
     "turn": "w",
     "pieces": {
@@ -437,7 +437,7 @@ const FIXTURES = [
     "skillName": "An toàn của Tướng",
     "title": "Ưu tiên điều quan trọng",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Tướng Đỏ đang bị chiếu. Liệt kê mọi cách thoát chiếu, rồi chọn cách có lợi nhất và giải thích.",
     "fen": "4k4/9/9/8p/9/4P4/9/R8/9/r3K4 w",
     "turn": "w",
     "pieces": {
@@ -469,7 +469,7 @@ const FIXTURES = [
     "skillName": "An toàn của Tướng",
     "title": "Một quyết định cần kiểm tra",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Tướng Đỏ đang bị chiếu. So sánh các nước thoát chiếu hợp lệ; chọn nước vừa an toàn vừa có lợi về quân.",
     "fen": "4k4/9/9/p8/9/4P4/9/8R/9/4K3r w",
     "turn": "w",
     "pieces": {
@@ -501,7 +501,7 @@ const FIXTURES = [
     "skillName": "An toàn của Tướng",
     "title": "Cân nhắc trước khi đi",
     "description": "Thế cờ tổng hợp ít quân để luyện quan sát và kiểm tra nước đi; không trích từ một ván đấu thật.",
-    "goal": "Chọn một nước hợp lệ có lợi về quân và giữ an toàn cho Tướng; giải thích lý do của bạn.",
+    "goal": "Tướng Đỏ đang bị chiếu. Đừng dừng ở cách thoát đầu tiên: xét cả bắt quân chiếu, che chiếu và đi Tướng.",
     "fen": "4k4/9/9/8p/9/4P4/9/R3r4/9/4K4 w",
     "turn": "w",
     "pieces": {
