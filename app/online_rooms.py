@@ -11,7 +11,9 @@ import json
 from pathlib import Path
 import re
 import secrets
+import copy
 import sqlite3
+import threading
 import time
 
 from app.cloud_store import APIError
@@ -37,11 +39,29 @@ def _replace_id(value, old, new):
     return new if value == old else value
 
 
+class _NeedsWrite(Exception):
+    """A read-only poll found that the room must be saved (game over, pause, expiry)."""
+
+
+class _ReadOnlyDb:
+    """Stands in for the connection while a poll checks the clock on a copy of the room."""
+
+    def execute(self, *_args, **_kwargs):
+        raise _NeedsWrite()
+
+
 class OnlineRooms:
     def __init__(self, db_path, clock=None):
         self.path = Path(db_path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self.clock = clock or time.time
+        # Presence from polling ("seen") lives in this process (one instance, one
+        # worker by design) so that a poll is a read, not a write of the whole room.
+        # It is merged into the room whenever the room is loaded, and saved with the
+        # room on the next real change. A restart loses it, but a restart already
+        # pauses every live game (below), so no one can lose on time to it.
+        self._presence = {}
+        self._presence_lock = threading.Lock()
         with self.connect() as db:
             db.executescript('''
                 CREATE TABLE IF NOT EXISTS online_rooms (
@@ -62,18 +82,71 @@ class OnlineRooms:
                 self._save(db, room)
 
     @contextmanager
-    def connect(self):
+    def connect(self, write=True):
+        """write=False: a plain read (WAL lets it run beside the writer); nothing is committed."""
         db = sqlite3.connect(self.path, timeout=10)
         db.row_factory = sqlite3.Row
         try:
+            if not write:
+                yield db
+                return
             db.execute('BEGIN IMMEDIATE')
             yield db
             db.commit()
         except Exception:
-            db.rollback()
+            if write:
+                db.rollback()
             raise
         finally:
             db.close()
+
+    PRESENCE_KEEP_SECONDS = 86400
+
+    def _note_presence(self, code, uid, now):
+        with self._presence_lock:
+            seats = self._presence.setdefault(code, {})
+            seats[uid] = max(now, seats.get(uid, now))
+            # Rooms nobody has polled for a day carry no live presence any more.
+            if len(self._presence) > 256:
+                cutoff = now - self.PRESENCE_KEEP_SECONDS
+                for stale in [c for c, s in self._presence.items() if max(s.values()) < cutoff]:
+                    del self._presence[stale]
+
+    def _forget_presence(self, uid):
+        with self._presence_lock:
+            for seats in self._presence.values():
+                seats.pop(uid, None)
+
+    def _merge_presence(self, room):
+        """Bring this process's newer 'seen' times into the room (current members only)."""
+        with self._presence_lock:
+            seen = dict(self._presence.get(room['code'], {}))
+        for uid, at in seen.items():
+            if self._member(room, uid) and at > room['seen'].get(uid, float('-inf')):
+                room['seen'][uid] = at
+        return room
+
+    def _tick_and_save_changes(self, db, room, now):
+        """Tick with fresh presence; write the room only if its state changed."""
+        self._merge_presence(room)
+        before = (room['status'], room['revision'])
+        self._tick(db, room, now)
+        if (room['status'], room['revision']) != before:
+            self._save(db, room)
+        return room
+
+    def _tick_read_only(self, room, now):
+        """Run the clock on a copy. Returns the ticked copy, or None when the room
+        would change (game over, pause, expired offer) and must be saved instead.
+        A running clock alone is not a change: it is recomputed from 'at' each time."""
+        trial = copy.deepcopy(room)
+        try:
+            self._tick(_ReadOnlyDb(), trial, now)
+        except _NeedsWrite:
+            return None
+        if (trial['status'], trial['revision']) != (room['status'], room['revision']):
+            return None
+        return trial
 
     @staticmethod
     def identity(user):
@@ -233,8 +306,7 @@ class OnlineRooms:
             rooms = []
             for row in db.execute("SELECT data FROM online_rooms WHERE visibility='public' AND status!='finished' ORDER BY updated_at DESC LIMIT 50").fetchall():
                 room = json.loads(row['data'])
-                self._tick(db, room, self.clock())
-                self._save(db, room)
+                self._tick_and_save_changes(db, room, self.clock())
                 if person['id'] not in room['banned'] and room['status'] != 'finished':
                     rooms.append({'code': room['code'], 'players': room['players'], 'status': room['status'],
                                   'options': room['options'], 'openSeat': any(p is None for p in room['players'].values())})
@@ -274,7 +346,7 @@ class OnlineRooms:
     def join(self, user, code, spectator=False):
         person = self.identity(user)
         with self.connect() as db:
-            room, now = self._load(db, code), self.clock()
+            room, now = self._merge_presence(self._load(db, code)), self.clock()
             self._tick(db, room, now)
             if person['id'] in room['banned']:
                 raise APIError(403, 'Chủ phòng đã mời bạn rời phòng.', 'room_forbidden')
@@ -295,16 +367,32 @@ class OnlineRooms:
                 room['ready'] = []
                 room['revision'] += 1
             room['seen'][person['id']] = now
+            self._note_presence(room['code'], person['id'], now)
             self._save(db, room)
             return self._snapshot(room, person['id'])
 
     def snapshot(self, user, code):
+        """A poll. Usually a pure read: presence is noted in memory and the clock is
+        computed on a copy. Only when the clock changes the room (game over, pause,
+        expired offer) is the room saved, under the write lock as before."""
         person = self.identity(user)
-        with self.connect() as db:
+        # As before this change, the clock runs before this poll counts as presence:
+        # after a gap where both seats were silent, the game pauses instead of
+        # awarding the win to whoever polls first.
+        with self.connect(write=False) as db:
             room, now = self._load(db, code), self.clock()
+            self._require_member(room, person['id'])
+            current = self._tick_read_only(self._merge_presence(room), now)
+            if current is not None:
+                self._note_presence(room['code'], person['id'], now)
+                current['seen'][person['id']] = now
+                return self._snapshot(current, person['id'])
+        with self.connect() as db:
+            room, now = self._merge_presence(self._load(db, code)), self.clock()
             self._require_member(room, person['id'])
             self._tick(db, room, now)
             room['seen'][person['id']] = now
+            self._note_presence(room['code'], person['id'], now)
             self._save(db, room)
             return self._snapshot(room, person['id'])
 
@@ -315,17 +403,18 @@ class OnlineRooms:
         if not isinstance(data, dict):
             raise APIError(400, 'Dữ liệu thao tác không hợp lệ.')
         with self.connect() as db:
-            room, now = self._load(db, code), self.clock()
+            room, now = self._merge_presence(self._load(db, code)), self.clock()
             self._require_member(room, person['id'])
             self._tick(db, room, now)
             # Persist timeouts even if the attempted action is no longer legal.
             self._save(db, room)
             db.commit()
             db.execute('BEGIN IMMEDIATE')
-            room = self._load(db, code)
+            room = self._merge_presence(self._load(db, code))
             self._require_member(room, person['id'])
             now = self.clock()
             room['seen'][person['id']] = now
+            self._note_presence(room['code'], person['id'], now)
             nonce = data.get('nonce')
             if action == 'move' and (not isinstance(nonce, str) or not re.fullmatch(r'[A-Za-z0-9_-]{8,80}', nonce)):
                 raise APIError(400, 'Nước đi cần mã yêu cầu duy nhất.', 'nonce_required')
@@ -490,8 +579,7 @@ class OnlineRooms:
         with self.connect() as db:
             for row in db.execute("SELECT data FROM online_rooms WHERE status IN ('playing','paused')").fetchall():
                 room = json.loads(row['data'])
-                self._tick(db, room, self.clock())
-                self._save(db, room)
+                self._tick_and_save_changes(db, room, self.clock())
                 if room['status'] in ('playing', 'paused') and self._member(room, uid):
                     return True
         return False
@@ -527,6 +615,7 @@ class OnlineRooms:
 
     def delete_identity(self, user_id, db=None):
         """Explicit account deletion helper; do not silently retain identifiers."""
+        self._forget_presence(user_id)
         if db is None:
             with self.connect() as connection_db:
                 self.delete_identity_in_db(connection_db, user_id, now=self.clock())

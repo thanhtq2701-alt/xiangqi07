@@ -54,4 +54,11 @@ test('quiet startup refresh restores an invite room after account boot finishes'
 test('background polling does not erase account forms or lobby drafts',async()=>{const app=harness({hash:'#online/'+code,memberRoom:initialRoom({status:'playing'})});await settle();app.sandbox.location.hash='#account';app.element('main').innerHTML='typed account draft';await app.api.refresh({quiet:true});assert.equal(app.element('main').innerHTML,'typed account draft');app.sandbox.location.hash='#online';app.element('main').innerHTML='typed room draft';await app.api.refresh({quiet:true});assert.equal(app.element('main').innerHTML,'typed room draft');});
 test('changing accounts immediately discards previous room identity and board',async()=>{const app=harness({hash:'#online/'+code,memberRoom:initialRoom({status:'playing'})});await settle();assert.ok(app.api.snapshot().room);app.switchAccount();assert.equal(app.api.snapshot().room,null);assert.equal(app.api.snapshot().session,null);assert.equal(app.api.isLive(),false);});
 test('static hosting is labeled unavailable rather than pretending a server exists',async()=>{const app=harness({responder:async()=>({ok:true,status:200,headers:{get:()=> 'text/html'},json:async()=>({})})});await settle();assert.match(app.api.snapshot().problem,/chưa chạy máy chủ phòng cờ/);assert.equal(app.api.snapshot().session,null);});
+test('players in a live game poll every tick; spectators and waiting rooms poll about half as often',async()=>{
+  const polls=app=>app.requests.filter(r=>r.url==='/api/rooms/'+code).length;
+  for(const [label,extra,expected] of [['player',{status:'playing'},2],['paused player',{status:'paused'},2],['spectator',{status:'playing',side:null},1],['waiting room',{status:'waiting'},1]]){
+    const app=harness({hash:'#online/'+code,memberRoom:initialRoom(extra)});await settle();const before=polls(app);
+    app.timers[0]();await settle();app.timers[0]();await settle();
+    assert.equal(polls(app)-before,expected,label);}
+});
 (async()=>{let failed=0;for(const {name,fn} of tests){try{await fn();console.log('PASS '+name);}catch(e){failed++;console.error('FAIL '+name,e);}}console.log(`${tests.length-failed}/${tests.length} V6 online UI checks passed`);process.exitCode=failed?1:0;})();
