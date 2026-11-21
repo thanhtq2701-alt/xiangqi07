@@ -117,7 +117,8 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 - 7 cấp bot máy chủ (21/11/2026, xem BOT_LEVELS.md): giới hạn số nút + chọn ngẫu
   nhiên trong các nước tốt nhất; người mới bắt đầu ở cấp 2; mặc định tự đổi cấp
   theo 10 ván gần nhất ở cùng cấp (thắng ≥7 lên, thua ≥6 xuống), tắt được và luôn
-  tự chọn được cấp. Chưa hiệu chỉnh, không gán Elo. Không dùng độ sâu 1/2 của máy
+  tự chọn được cấp. Chưa hiệu chỉnh (công cụ tự đấu `tools/calibrate_bot_levels.py`
+  đã có, cần chạy trên VM thử), không gán Elo. Không dùng độ sâu 1/2 của máy
   cơ bản để giả bảy cấp.
 - LLM cá nhân hóa/nhận xét lập luận chưa có provider, key hay rubric. Lời giải
   hiện là mẫu dựa trên luật/cây bài, hoặc lời giải thích chủ dự án tự viết cho
@@ -379,8 +380,9 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    thúc chiếu hết hoặc hơn quân, bản tiếng Anh đã duyệt. Còn lại: quyết định có chấm "chưa đạt" nước ngoài cây khi có bằng chứng engine
    trong ứng dụng; thêm bài cho các chương chưa đủ 10.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
-7. Bot 7 cấp, hàng đợi và hạn 10 giây: đã có bản thiết kế chờ duyệt
-   ([BOT_LEVELS.md](BOT_LEVELS.md)); chưa code, chưa hiệu chỉnh; không gán Elo.
+7. Bot 7 cấp, hàng đợi và hạn 10 giây: đã làm (21/11/2026, [BOT_LEVELS.md](BOT_LEVELS.md)).
+   Còn lại: chạy hiệu chỉnh tự đấu trên VM thử (BOT_LEVELS.md §7) rồi chỉnh bảng
+   tham số; đo bộ nhớ và thời gian mỗi nước với Pikafish thật; không gán Elo.
 8. Câu trả lời bằng mũi tên, avatar, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
