@@ -101,8 +101,15 @@
       this.pending = JSON.stringify(state); this.draftVersion++;
       this.notify(this.conflict ? 'conflict' : 'pending');
     }
-    async flush() {
-      if ((this.sending && this.sendingEpoch === this.epoch) || !this.pending || this.conflict || !this.session.authenticated || !this.stateReady || this.loggingOut) return false;
+    flush() {
+      // A save already running for this account sends the newest draft too (its loop reads
+      // `pending` again), so a second caller waits for it instead of failing at once.
+      if (this.sending && this.sendingEpoch === this.epoch) return this.inflight;
+      if (!this.pending || this.conflict || !this.session.authenticated || !this.stateReady || this.loggingOut) return Promise.resolve(false);
+      this.inflight = this.sendPending();
+      return this.inflight;
+    }
+    async sendPending() {
       this.sending = true; const epoch = this.epoch; this.sendingEpoch = epoch;
       try {
         while (this.pending && epoch === this.epoch && this.session.authenticated && !this.loggingOut) {

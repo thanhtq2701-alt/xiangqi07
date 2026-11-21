@@ -123,6 +123,7 @@ test('bot setup offers seven uncalibrated levels, level 2 first, automatic chang
   assert.equal((html.match(/<option value="[1-7]"[^>]*>Cấp [1-7]<\/option>/g)||[]).length,7);
   assert.match(html,/<option value="2" selected>Cấp 2<\/option>/);
   assert.match(html,/name="autoLevel" checked/);
+  assert.doesNotMatch(html,/name="depth"|Mức tìm kiếm cơ bản/,'the basic search depth choice was removed (owner, 21/11/2026)');
   assert.match(html,/chưa hiệu chỉnh, không phải Elo/);
   assert.doesNotMatch(html.match(/<select name="level">.*?<\/select>/)[0],/Elo|\d{3,4}/,'levels are not ratings');
 });
@@ -151,6 +152,24 @@ test('a server bot game keeps its level and asks the server for that level',asyn
   app.run("state.games=[];newGame({color:'w',engineChoice:'local',level:4,autoLevel:false})");
   assert.equal(app.run('state.games.at(-1).level'),undefined,'the basic engine has no level');
   assert.equal(app.run('prefs.botAutoLevel'),false);
+});
+
+test('a save still running when the learner moves makes the server bot wait instead of pausing the game',async()=>{
+  let hold=false,release=null,revision=0;const asked=[];
+  const app=harness({session:account('A'),scripts:['engine-client.js'],answer:async(url,options)=>{
+    if(url==='/api/state'&&options.method==='PUT'){if(hold){hold=false;await new Promise(done=>{release=done;});}return response({revision:++revision});}
+    if(url==='/api/engine/analyze'){asked.push(JSON.parse(options.body));return response({best_move:'h9g7',engine:'co-chill-uci-1',engine_name:'Test',fallback:false,status:'ready',warnings:[],bot:{level:3}});}
+  }});
+  await settle();app.run("mode='bot'");
+  app.run("newGame({color:'w',engineChoice:'server',level:3,autoLevel:true})");await settle();
+  hold=true;app.run('save();CCCloudUI.snapshot().client.flush()');await settle();
+  assert.ok(release,'the earlier save is still on its way');
+  app.run("moveGame(state.games.at(-1),'h2e2')");await settle();
+  assert.equal(asked.length,0,'the bot waits until the game is saved');
+  release();for(let i=0;i<5;i++)await settle();
+  assert.notEqual(app.run('state.games.at(-1).technicalPause'),true,'no technical pause');
+  assert.equal(asked.length,1);
+  assert.equal(app.run('state.games.at(-1).moves.map(m=>m.move).join()'),'h2e2,h9g7');
 });
 
 (async()=>{let passed=0;for(const {name,fn} of tests){try{await fn();passed++;console.log('PASS '+name);}catch(error){console.error('FAIL '+name);throw error;}}console.log(`${passed}/${tests.length} V6 UI checks passed.`);})().catch(error=>{console.error(error);process.exitCode=1;});
