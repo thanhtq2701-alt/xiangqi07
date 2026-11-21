@@ -3,8 +3,9 @@
 Trạng thái: viết ngày 20/11/2026 theo quyết định số 6 của chủ dự án
 (19/11/2026): giới hạn số nút + chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7,
 chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi ngày 21/11/2026
-(mục 10). **J1 (mục 4), J2 (mục 3) và J3 (giao diện, mục 5) đã làm ngày
-21/11/2026**; J4 (hiệu chỉnh) đang làm. Cấp, công tắc tự đổi cấp và mốc đếm ván
+(mục 10). **J1 (mục 4), J2 (mục 3), J3 (giao diện, mục 5) và công cụ J4
+(`tools/calibrate_bot_levels.py`, mục 7) đã làm ngày 21/11/2026**; lần chạy
+hiệu chỉnh thật trên VM thử **chưa làm**, nên các cấp vẫn là giá trị khởi điểm. Cấp, công tắc tự đổi cấp và mốc đếm ván
 lưu trong tùy chọn của thiết bị (`CC.preferences`); ván lưu cấp đã chơi. Nước chiếu bí ngay và nước duy nhất
 do bộ luật quyết định, không gọi engine.
 
@@ -124,6 +125,33 @@ Làm trên **VM thử** (không phải production), bằng một công cụ tự
 3. Thêm 20 ván người thật (pilot) mỗi cấp 1–3 để xem cấp 1 có thực sự dễ
    không; chỉ ghi nhận định tính, không suy ra Elo.
 4. Ghi kết quả và bảng tham số cuối vào tài liệu này.
+
+### Cách chạy (chủ dự án, trên VM thử)
+
+Công cụ: `tools/calibrate_bot_levels.py` (chỉ thư viện chuẩn của Python). Nó từ
+chối chạy nếu thiếu `--confirm-test-machine`, vì chiếm trọn một CPU nhiều giờ:
+**không chạy trên VM production**.
+
+1. Tạo một VM thử (cùng cấu hình 2 vCPU nếu muốn số liệu sát production), cài
+   Python 3.12, chép repo và Pikafish + file NNUE giống production.
+2. Chạy thử nhanh một cặp cấp (vài phút):
+
+   ```bash
+   python3 tools/calibrate_bot_levels.py --confirm-test-machine      --engine /duong-dan/pikafish --nnue /duong-dan/pikafish.nnue      --pairs 1-2 --games 10 --json /tmp/thu.json
+   ```
+
+3. Chạy đủ 6 cặp, 100 ván mỗi cặp (nhiều giờ; nên chạy trong `tmux` hoặc
+   `screen`):
+
+   ```bash
+   python3 tools/calibrate_bot_levels.py --confirm-test-machine      --engine /duong-dan/pikafish --nnue /duong-dan/pikafish.nnue      --json /tmp/hieu-chinh.json
+   ```
+
+4. Gửi file JSON cho người phát triển. Với mỗi cặp: `highScore` là tỉ lệ điểm của
+   cấp cao hơn (mục tiêu 0,65–0,85), `timePerMove` là thời gian mỗi nước,
+   `discarded` là số ván bỏ vì engine lỗi (phải bằng 0 hoặc rất nhỏ). Ván hòa
+   do lặp thế hoặc quá 200 nửa nước chỉ là quy ước của công cụ đo, không phải
+   phán quyết luật.
 
 ## 8. Thay đổi dự kiến (khi được duyệt)
 
