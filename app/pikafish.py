@@ -39,13 +39,14 @@ PRIORITY = {'bot': 0, 'review': 1, 'practice': 1, 'review-scan': 2}
 # level: (nodes or None for the full-strength quick search, MultiPV, temperature in cp
 #         (0 = uniform choice, None = always the best line), largest loss allowed in cp)
 BOT_LEVELS = {
-    1: (2000, 5, 0, 400),
-    2: (5000, 5, 0, 300),
-    3: (10000, 4, 150, 250),
-    # 4–6 softened on 21/11/2026 after the owner's first games: 2–3 felt right, 4 too strong.
-    4: (15000, 4, 120, 200),
-    5: (30000, 4, 100, 150),
-    6: (100000, 3, 60, 100),
+    # Third table, 21/11/2026: after more games the owner found level 3 far too strong, so
+    # every level 1–6 now forgives much larger mistakes; level 6 equals the second table's 4.
+    1: (300, 8, 0, 900),
+    2: (800, 6, 0, 600),
+    3: (2000, 5, 0, 400),
+    4: (4000, 5, 200, 300),
+    5: (8000, 4, 150, 250),
+    6: (15000, 4, 120, 200),
     7: (None, 1, None, 0),
 }
 LEVEL_TIME_CAP_MS = 3000   # a node-limited search never runs longer than this
