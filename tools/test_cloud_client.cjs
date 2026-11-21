@@ -35,9 +35,11 @@ test('serializes concurrent edits with next CAS revision and keeps newest state'
   assert.equal(calls.length,1);
   client.queue({step:2});
   client.queue({step:3});
-  assert.equal(await client.flush(),false,'parallel flush must not duplicate write');
+  const joined = client.flush();
+  assert.equal(calls.length,1,'parallel flush must not duplicate write');
   first.resolve(response({revision:6}));
   assert.equal(await saving,true);
+  assert.equal(await joined,true,'a second caller waits for the running save instead of failing');
   assert.deepEqual(calls.map(call=>call.body),[
     {revision:5,state:{step:1}}, {revision:6,state:{step:3}}
   ]);
@@ -48,6 +50,21 @@ test('serializes concurrent edits with next CAS revision and keeps newest state'
   assert.equal(notices.at(-1),'saved');
   assert.equal(calls[0].options.credentials,'same-origin');
   assert.equal(calls[0].options.headers['X-CSRF-Token'],'test-csrf-not-secret');
+});
+
+test('a caller that joins a running save learns when it fails (bot moves wait, never guess)', async () => {
+  const first = deferred();let calls=0;
+  const client = logged(async () => {calls++;return first.promise;});
+  client.queue({move:1});
+  const saving = client.flush();
+  client.queue({move:2});
+  const joined = client.flush();
+  first.reject(new TypeError('offline'));
+  assert.equal(await saving,false);
+  assert.equal(await joined,false);
+  assert.equal(calls,1);
+  assert.equal(client.pending,JSON.stringify({move:2}),'the newest draft is kept for the next try');
+  assert.equal(client.sending,false);
 });
 
 test('queue stores a snapshot, not a mutable reference', async () => {

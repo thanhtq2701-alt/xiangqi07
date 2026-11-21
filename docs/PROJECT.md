@@ -120,7 +120,8 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
   tự chọn được cấp. Chưa hiệu chỉnh (công cụ tự đấu `tools/calibrate_bot_levels.py`
   đã có, cần chạy trên VM thử), không gán Elo. Cấp 4–6 đã hạ một lần (21/11/2026)
   vì chủ dự án thấy cấp 2–3 vừa sức, cấp 4 quá mạnh; đó là nhận định của một người. Không dùng độ sâu 1/2 của máy
-  cơ bản để giả bảy cấp.
+  cơ bản để giả bảy cấp. Máy cơ bản (chạy trên thiết bị) luôn tìm 1 nửa nước; ô chọn
+  "Mức tìm kiếm cơ bản" đã bỏ (21/11/2026), ván cũ lưu độ sâu 2 vẫn chơi tiếp như cũ.
 - LLM cá nhân hóa/nhận xét lập luận chưa có provider, key hay rubric. Lời giải
   hiện là mẫu dựa trên luật/cây bài, hoặc lời giải thích chủ dự án tự viết cho
   70 bài nhập từ file Excel (quyết định 19/11/2026).
