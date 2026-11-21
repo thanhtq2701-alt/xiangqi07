@@ -1289,7 +1289,11 @@
     "Tự luyện nhiều lượt": "Multi-move practice",
     // Multi-move exercises imported from the owner's workbook (2026-11-20).
     "Cấp máy phải là số nguyên từ 1 đến 7.": "The bot level must be a whole number from 1 to 7.",
-    "Cấp máy chỉ dùng cho nước của máy và phải từ 1 đến 7.": "A bot level is only for the bot's own move and must be from 1 to 7."
+    "Cấp máy chỉ dùng cho nước của máy và phải từ 1 đến 7.": "A bot level is only for the bot's own move and must be from 1 to 7.",
+    // Multi-move exercises imported from the owner's workbook (2026-11-20).
+    "Cấp máy chủ · chưa hiệu chỉnh, không phải Elo": "Server bot level · not calibrated, not an Elo rating",
+    "Tự đổi cấp theo 10 ván gần nhất: thắng từ 7 ván thì lên, thua từ 6 ván thì xuống": "Change the level automatically from the last 10 games: 7 or more wins moves up, 6 or more losses moves down",
+    "Cấp chỉ dùng khi chọn máy chủ; bạn luôn chọn được cấp bất kỳ.": "The level applies only to the server bot; you can always choose any level."
   });
 
   const PIECE = { 'Tướng': 'General', 'Sĩ': 'Advisor', 'Tượng': 'Elephant', 'Xe': 'Chariot', 'Pháo': 'Cannon', 'Mã': 'Horse', 'Tốt': 'Soldier' };
@@ -1368,6 +1372,9 @@
     [/^Biến hợp lệ được tính: (.+)\. Chênh lệch (-?\d+) điểm (quy ước tìm kiếm nông|centipawn của engine) từ cùng thế và cùng bên đi\.$/,
       m => `Legal line calculated: ${m[1].split('; sau đó ').map(notation).join('; then ')}. Difference: ${m[2]} ${m[3] === 'quy ước tìm kiếm nông' ? 'shallow-search points' : 'engine centipawns'} from the same position with the same side to move.`],
     [/^Không đọc được biên bản ở nửa nước (\d+)(\. .+)$/, (m, t) => `Could not read the move record at half-move ${m[1]}${t(m[2])}`],
+    [/^Cấp ([1-7])$/, m => `Level ${m[1]}`],
+    [/^Cấp ([1-7]) · chưa hiệu chỉnh$/, m => `Level ${m[1]} · not calibrated`],
+    [/^Đã đổi sang cấp ([1-7]) sau 10 ván gần nhất ở cấp ([1-7]): (\d+) thắng, (\d+) thua\.$/, m => `Moved to level ${m[1]} after the last 10 games at level ${m[2]}: ${m[3]} won, ${m[4]} lost.`],
     [/^Cấp ([1-7]) · chưa hiệu chỉnh; không phải Elo\.$/, m => `Level ${m[1]} · not calibrated; not an Elo rating.`],
     // Difficulty label of a multi-move exercise followed by its number of decisions (any label, any number).
     [/^(.+) · tối đa (\d+) quyết định$/, (m, t) => `${t(m[1])} · up to ${plural(m[2], 'decision', 'decisions')}`],

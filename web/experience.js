@@ -5,7 +5,7 @@
   root.CC = Object.assign(root.CC || {}, api);
 })(typeof globalThis !== 'undefined' ? globalThis : this, function () {
   'use strict';
-  const DEFAULT_PREFS = {theme:'warm',pieces:'han',font:'normal',sound:false,sidebar:false,autoFlip:true,level:'intermediate',tone:'neutral'};
+  const DEFAULT_PREFS = {theme:'warm',pieces:'han',font:'normal',sound:false,sidebar:false,autoFlip:true,level:'intermediate',tone:'neutral',botLevel:2,botAutoLevel:true,botLevelSince:0};
   function preferences(raw) {
     raw = raw && typeof raw === 'object' ? raw : {};
     const result = {...DEFAULT_PREFS};
@@ -15,7 +15,28 @@
     result.sound=raw.sound===true;result.sidebar=raw.sidebar===true;
     // On unless the learner switched it off: older saved preferences have no key.
     result.autoFlip=raw.autoFlip!==false;
+    // Server bot level (docs/BOT_LEVELS.md): new players start at level 2; automatic level
+    // change is on unless switched off (owner decisions 21/11/2026).
+    if (Number.isInteger(raw.botLevel) && raw.botLevel >= 1 && raw.botLevel <= 7) result.botLevel=raw.botLevel;
+    result.botAutoLevel=raw.botAutoLevel!==false;
+    if (Number.isFinite(raw.botLevelSince) && raw.botLevelSince >= 0) result.botLevelSince=raw.botLevelSince;
     return result;
+  }
+  // The 10-game rule: among the last 10 finished server-bot games at the current level
+  // since the level was last set, 7+ wins move up one level and 6+ losses move down one.
+  // Unfinished games, games that still need rule verification and other levels do not count.
+  // Returns null when there is no change. A heuristic step, not a rating.
+  function botLevelStep(games, prefs) {
+    const level = prefs.botLevel, since = prefs.botLevelSince || 0;
+    const counted = (Array.isArray(games) ? games : []).filter(g => g && g.mode === 'bot' && g.engineChoice === 'server' && g.level === level
+      && g.status && g.status.over === true && !g.status.needsVerification && Number(g.createdAt) > since)
+      .sort((a, b) => Number(a.createdAt) - Number(b.createdAt)).slice(-10);
+    if (counted.length < 10) return null;
+    const wins = counted.filter(g => g.status.winner === g.player).length;
+    const losses = counted.filter(g => g.status.winner && g.status.winner !== g.player).length;
+    if (wins >= 7 && level < 7) return {from: level, level: level + 1, wins, losses};
+    if (losses >= 6 && level > 1) return {from: level, level: level - 1, wins, losses};
+    return null;
   }
   const PROMPTS = [
     'Bên nào đang thuận lợi hơn? Hãy nêu một điều bạn nhìn thấy trên bàn.',
@@ -72,5 +93,5 @@
     next[side]=remaining+Math.max(0,Number(next.increment)||0);next.last=now;
     return {clock:next,expired:false};
   }
-  return {DEFAULT_PREFS,PROMPTS,HINTS,preferences,reflectionCheck,safeExport,evidence,applyClockMove};
+  return {DEFAULT_PREFS,PROMPTS,HINTS,preferences,botLevelStep,reflectionCheck,safeExport,evidence,applyClockMove};
 });

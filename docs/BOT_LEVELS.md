@@ -3,8 +3,9 @@
 Trạng thái: viết ngày 20/11/2026 theo quyết định số 6 của chủ dự án
 (19/11/2026): giới hạn số nút + chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7,
 chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi ngày 21/11/2026
-(mục 10). **J1 (mục 4) và J2 (mục 3, phía máy chủ) đã làm ngày 21/11/2026**;
-J3 (giao diện) và J4 (hiệu chỉnh) đang làm. Nước chiếu bí ngay và nước duy nhất
+(mục 10). **J1 (mục 4), J2 (mục 3) và J3 (giao diện, mục 5) đã làm ngày
+21/11/2026**; J4 (hiệu chỉnh) đang làm. Cấp, công tắc tự đổi cấp và mốc đếm ván
+lưu trong tùy chọn của thiết bị (`CC.preferences`); ván lưu cấp đã chơi. Nước chiếu bí ngay và nước duy nhất
 do bộ luật quyết định, không gọi engine.
 
 ## 1. Hiện trạng và ràng buộc

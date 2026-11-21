@@ -12,10 +12,11 @@ const tests=[];const test=(name,fn)=>tests.push({name,fn});
 const response=data=>({ok:true,status:200,headers:{get:()=> 'application/json'},json:async()=>data});
 const account=id=>({authenticated:true,user:{id,username:'user_'+id,displayName:'Player '+id,role:'user'},csrf:'test-csrf'});
 async function settle(){for(let i=0;i<40;i++)await Promise.resolve();}
-function harness({session={authenticated:false},available=true,initialHash='#home',initialStorage={}}={}){
+function harness({session={authenticated:false},available=true,initialHash='#home',initialStorage={},answer=null,scripts=[]}={}){
   const listeners={},elements=new Map(),storage=new Map(Object.entries(initialStorage)),writes=[];
   function element(id){if(!elements.has(id))elements.set(id,{innerHTML:'',textContent:'',hidden:false,dataset:{},classList:{toggle(){}},setAttribute(){},focus(){}});return elements.get(id);}
   const fetcher=async(url,options={})=>{
+    if(answer){const reply=await answer(url,options);if(reply)return reply;}
     if(url==='/api/session')return available?response(session):{ok:false,status:404,headers:{get:()=> 'text/html'},text:async()=>'<html></html>'};
     if(url==='/api/content')return response({puzzles:[]});
     if(url==='/api/state'&&options.method==='GET')return response({revision:0,state:CC.fresh()});
@@ -30,7 +31,7 @@ function harness({session={authenticated:false},available=true,initialHash='#hom
     FormData:class extends Map{constructor(form){super(form.data||[]);}getAll(key){const v=this.get(key);return v===undefined?[]:[v];}},
     addEventListener(){},scrollTo(){}};
   sandbox.window=sandbox;vm.createContext(sandbox);
-  for(const name of ['app.js','v5-ui.js','v6-ui.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',name),'utf8'),sandbox,{filename:name});
+  for(const name of [...scripts,'app.js','v5-ui.js','v6-ui.js'])vm.runInContext(fs.readFileSync(path.join(__dirname,'../web',name),'utf8'),sandbox,{filename:name});
   return {run:s=>vm.runInContext(s,sandbox),api:sandbox.CCV6UI,storage,writes,element,document,client:()=>sandbox.CCCloudUI.snapshot().client,
     async dispatch(kind,event){for(const listener of listeners[kind]||[])await listener(event);}};
 }
@@ -113,6 +114,43 @@ test('theme preview preserves settings values and queues account sync',async()=>
   await app.dispatch('change',{target});
   assert.equal(app.run('prefs.theme'),'dark');assert.equal(app.run('prefs.pieces'),'vi');assert.equal(app.run('prefs.font'),'large');
   assert.equal(JSON.parse(app.client().pending).preferences.theme,'dark');
+});
+
+// Bot levels (J3, docs/BOT_LEVELS.md): level 2 by default, automatic change on, any level selectable.
+const botGame=(i,result,level=2)=>({id:'b'+i,mode:'bot',engineChoice:'server',level,player:'w',createdAt:1000+i,moves:[],status:{over:true,winner:result==='win'?'w':result==='loss'?'b':null}});
+test('bot setup offers seven uncalibrated levels, level 2 first, automatic change on',()=>{
+  const app=harness();app.run("mode='bot'");const html=app.run('playSetup()');
+  assert.equal((html.match(/<option value="[1-7]"[^>]*>Cấp [1-7]<\/option>/g)||[]).length,7);
+  assert.match(html,/<option value="2" selected>Cấp 2<\/option>/);
+  assert.match(html,/name="autoLevel" checked/);
+  assert.match(html,/chưa hiệu chỉnh, không phải Elo/);
+  assert.doesNotMatch(html.match(/<select name="level">.*?<\/select>/)[0],/Elo|\d{3,4}/,'levels are not ratings');
+});
+test('ten games with 7 wins move the level up once and say so; switched off, nothing changes',()=>{
+  const app=harness();app.run("mode='bot'");
+  app.run(`state.games=${JSON.stringify([...Array(10)].map((_,i)=>botGame(i,i<7?'win':'loss')))}`);
+  const html=app.run('playSetup()');
+  assert.equal(app.run('prefs.botLevel'),3);
+  assert.ok(app.run('prefs.botLevelSince')>1000);
+  assert.match(html,/Đã đổi sang cấp 3 sau 10 ván gần nhất ở cấp 2: 7 thắng, 3 thua\./);
+  assert.match(html,/<option value="3" selected>Cấp 3<\/option>/);
+  app.run('playSetup()');assert.equal(app.run('prefs.botLevel'),3,'the same games are not counted twice');
+  const off=harness();off.run("mode='bot';prefs=CC.preferences({botAutoLevel:false})");
+  off.run(`state.games=${JSON.stringify([...Array(10)].map((_,i)=>botGame(i,'loss')))}`);off.run('playSetup()');
+  assert.equal(off.run('prefs.botLevel'),2);
+});
+test('a server bot game keeps its level and asks the server for that level',async()=>{
+  const sent=[];
+  const app=harness({session:account('A'),scripts:['engine-client.js'],answer:async(url,options)=>{if(url==='/api/engine/analyze'){sent.push(JSON.parse(options.body));return response({best_move:'h7e7',engine:'co-chill-uci-1',engine_name:'Test',fallback:false,status:'ready',warnings:[],bot:{level:5}});}}});
+  await settle();app.run("mode='bot'");
+  app.run("newGame({color:'b',engineChoice:'server',level:5,autoLevel:true})");await settle();
+  assert.equal(app.run('state.games.at(-1).level'),5);
+  assert.equal(app.run('prefs.botLevel'),5,'choosing a level makes it the current level');
+  assert.equal(sent.length,1);assert.equal(sent[0].level,5);assert.equal(sent[0].purpose,'bot');
+  assert.equal(app.run('state.games.at(-1).engineLabel'),'Cấp 5 · chưa hiệu chỉnh');
+  app.run("state.games=[];newGame({color:'w',engineChoice:'local',level:4,autoLevel:false})");
+  assert.equal(app.run('state.games.at(-1).level'),undefined,'the basic engine has no level');
+  assert.equal(app.run('prefs.botAutoLevel'),false);
 });
 
 (async()=>{let passed=0;for(const {name,fn} of tests){try{await fn();passed++;console.log('PASS '+name);}catch(error){console.error('FAIL '+name);throw error;}}console.log(`${passed}/${tests.length} V6 UI checks passed.`);})().catch(error=>{console.error(error);process.exitCode=1;});
