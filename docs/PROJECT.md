@@ -5,7 +5,7 @@ và ký phổ, giới hạn, dữ liệu, nguồn và quy trình đóng góp. C�
 thiệu chung ở [README](../README.md); vận hành máy chủ ở
 [deploy/DEPLOY_GCP_VI.md](../deploy/DEPLOY_GCP_VI.md); thuật ngữ dịch ở
 [I18N_GLOSSARY.md](I18N_GLOSSARY.md); định dạng nhập thế cờ ở
-[POSITION_IMPORT.md](POSITION_IMPORT.md); thiết kế bot nhiều cấp (chưa làm) ở
+[POSITION_IMPORT.md](POSITION_IMPORT.md); thiết kế bot nhiều cấp ở
 [BOT_LEVELS.md](BOT_LEVELS.md). Tài liệu lịch sử nằm trong
 [`old/`](../old/README.md) và không mô tả trạng thái hiện tại.
 
@@ -118,7 +118,8 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
   nhiên trong các nước tốt nhất; người mới bắt đầu ở cấp 2; mặc định tự đổi cấp
   theo 10 ván gần nhất ở cùng cấp (thắng ≥7 lên, thua ≥6 xuống), tắt được và luôn
   tự chọn được cấp. Chưa hiệu chỉnh (công cụ tự đấu `tools/calibrate_bot_levels.py`
-  đã có, cần chạy trên VM thử), không gán Elo. Không dùng độ sâu 1/2 của máy
+  đã có, cần chạy trên VM thử), không gán Elo. Cấp 4–6 đã hạ một lần (21/11/2026)
+  vì chủ dự án thấy cấp 2–3 vừa sức, cấp 4 quá mạnh; đó là nhận định của một người. Không dùng độ sâu 1/2 của máy
   cơ bản để giả bảy cấp.
 - LLM cá nhân hóa/nhận xét lập luận chưa có provider, key hay rubric. Lời giải
   hiện là mẫu dựa trên luật/cây bài, hoặc lời giải thích chủ dự án tự viết cho
@@ -215,8 +216,8 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
   chơi, theo dõi hay bình luận. Hồ sơ riêng tư, chưa chọn, bị khóa, quản trị hoặc
   không tồn tại đều trả cùng một lỗi 404. Ai có link đều xem được hồ sơ công
   khai; người vận hành chưa có công cụ ẩn một hồ sơ ngoài khóa tài khoản.
-- Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot hiệu chỉnh, chính sách lên
-  xuống cấp sau 10 ván hoặc hàng đợi ưu tiên bot với SLA 10 giây đã đo.
+- Chưa có LLM chấm tư duy/cá nhân hóa, bảy cấp bot đã hiệu chỉnh bằng số đo,
+  hay số đo thời gian chờ thật của hàng đợi bot (hạn 10 giây mới kiểm bằng engine giả).
 - Kho bài: 12 cơ bản, 9 hướng dẫn, 72 bài nhiều lượt (2 thí điểm + 70 bài của
   chủ dự án). Chương Khai cuộc, Xe, An toàn Tướng và Phối hợp quân đã có ít
   nhất 10 bài; Pháo, Mã, Đường thoát của Tướng có 9, Tốt có 5, nên các chương
@@ -382,7 +383,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Bot 7 cấp, hàng đợi và hạn 10 giây: đã làm (21/11/2026, [BOT_LEVELS.md](BOT_LEVELS.md)).
    Còn lại: chạy hiệu chỉnh tự đấu trên VM thử (BOT_LEVELS.md §7) rồi chỉnh bảng
-   tham số; đo bộ nhớ và thời gian mỗi nước với Pikafish thật; không gán Elo.
+   tham số; đo thời gian mỗi nước với Pikafish thật; không gán Elo. Sau deploy
+   21/11/2026, RAM trống trên VM giảm khoảng 210 MB khi Pikafish chạy thường trực.
 8. Câu trả lời bằng mũi tên, avatar, luật
    lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.

@@ -5,7 +5,8 @@ Trạng thái: viết ngày 20/11/2026 theo quyết định số 6 của chủ d
 chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi ngày 21/11/2026
 (mục 10). **J1 (mục 4), J2 (mục 3), J3 (giao diện, mục 5) và công cụ J4
 (`tools/calibrate_bot_levels.py`, mục 7) đã làm ngày 21/11/2026**; lần chạy
-hiệu chỉnh thật trên VM thử **chưa làm**, nên các cấp vẫn là giá trị khởi điểm. Cấp, công tắc tự đổi cấp và mốc đếm ván
+hiệu chỉnh thật trên VM thử **chưa làm**, nên các cấp vẫn là giá trị khởi điểm (cấp 4–6
+đã hạ một lần theo ván thử của chủ dự án, mục 3). Cấp, công tắc tự đổi cấp và mốc đếm ván
 lưu trong tùy chọn của thiết bị (`CC.preferences`); ván lưu cấp đã chơi. Nước chiếu bí ngay và nước duy nhất
 do bộ luật quyết định, không gọi engine.
 
@@ -48,12 +49,18 @@ chọn một nước theo luật của cấp.
 | 1 | 2.000 | 5 | ngẫu nhiên đều | 400 cp |
 | 2 | 5.000 | 5 | ngẫu nhiên đều | 300 cp |
 | 3 | 10.000 | 4 | softmax, T = 150 cp | 250 cp |
-| 4 | 30.000 | 4 | softmax, T = 100 cp | 150 cp |
-| 5 | 100.000 | 3 | softmax, T = 60 cp | 100 cp |
-| 6 | 300.000 | 2 | softmax, T = 30 cp | 50 cp |
+| 4 | 15.000 | 4 | softmax, T = 120 cp | 200 cp |
+| 5 | 30.000 | 4 | softmax, T = 100 cp | 150 cp |
+| 6 | 100.000 | 3 | softmax, T = 60 cp | 100 cp |
 | 7 | ~600 ms (như bot máy chủ hiện nay) | 1 | luôn nước tốt nhất | 0 |
 
 Đây là **giá trị khởi điểm chưa hiệu chỉnh**; mục 7 mô tả cách đo để sửa.
+
+Điều chỉnh ngày 21/11/2026 (bản thứ hai): sau các ván thử đầu tiên trên
+production, chủ dự án thấy cấp 2–3 vừa sức và cấp 4 quá mạnh. Cấp 1–3 giữ nguyên;
+cấp 4 mới nằm giữa cấp 3 và cấp 4 cũ; cấp 5 và 6 mới bằng cấp 4 và 5 cũ; cấp 6 cũ
+(300.000 nút) bị bỏ. Đây là nhận định định
+tính của một người chơi, không phải số đo; vẫn ghi "chưa hiệu chỉnh".
 
 Luật chọn nước:
 1. Bỏ các nước kém nước tốt nhất quá ngưỡng của cấp (cột cuối). Luôn còn ít
