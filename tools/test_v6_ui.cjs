@@ -154,6 +154,27 @@ test('a server bot game keeps its level and asks the server for that level',asyn
   assert.equal(app.run('prefs.botAutoLevel'),false);
 });
 
+test('play again keeps the server bot, its level and the time control; the setup form remembers the server',async()=>{
+  const app=harness({session:account('A'),scripts:['engine-client.js'],answer:async url=>{if(url==='/api/engine/analyze')return response({best_move:'h7e7',engine:'co-chill-uci-1',engine_name:'Test',fallback:false,status:'ready',warnings:[],bot:{level:2}});}});
+  await settle();app.run("mode='bot'");
+  app.run("newGame({color:'w',seconds:300,increment:3,engineChoice:'server',level:2,autoLevel:true})");await settle();
+  assert.equal(app.run('state.games.at(-1).clock.initial'),300000);
+  app.run("state.games.at(-1).status={over:true,winner:'b',reason:'Hết thời gian'}");
+  const rematch=id=>app.dispatch('click',{target:{closest:selector=>selector==='[data-action]'?{dataset:{action:'rematch',value:id}}:null}});
+  await rematch(app.run('state.games.at(-1).id'));await settle();
+  const again=JSON.parse(app.run('JSON.stringify(state.games.at(-1))'));
+  assert.equal(app.run('state.games.length'),2);
+  assert.equal(again.engineChoice,'server','a lost server game is not replayed against the basic engine');
+  assert.equal(again.level,2);
+  assert.deepEqual([again.clock.initial,again.clock.increment],[300000,3000]);
+  app.run("state.games.at(-1).status={over:true,winner:'w',reason:'Chiếu hết'}");
+  assert.match(app.run('playSetup()'),/<option value="server" selected>/);
+  app.run("state.games.push({id:'old',mode:'bot',engineChoice:'local',depth:1,player:'w',createdAt:1,moves:[],clock:{enabled:true,increment:5000},status:{over:true,winner:'b'}})");
+  await rematch('old');await settle();
+  const old=JSON.parse(app.run('JSON.stringify(state.games.at(-1))'));
+  assert.equal(old.engineChoice,'local');
+  assert.deepEqual([old.clock.initial,old.clock.increment],[600000,5000],'games saved before clock.initial replay as 10+5');
+});
 test('a save still running when the learner moves makes the server bot wait instead of pausing the game',async()=>{
   let hold=false,release=null,revision=0;const asked=[];
   const app=harness({session:account('A'),scripts:['engine-client.js'],answer:async(url,options)=>{
