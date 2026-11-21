@@ -114,10 +114,11 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 - Chờ engine tối đa mong muốn 10 giây/nước. Bot máy chủ và review tài khoản
   bật `requireStrong`; API báo lỗi khả dụng nếu adapter fallback, không thay
   bằng tìm kiếm nông. Bài cơ bản có nhãn vẫn chạy local.
-- 7 cấp bot (máy chủ đã có từ 21/11/2026: giới hạn số nút + chọn ngẫu nhiên trong
-  các nước tốt nhất, xem BOT_LEVELS.md) và đổi cấp theo 10 ván (thua ≥6 hạ, thắng
-  ≥7 tăng) chưa hiệu chỉnh
-  hay triển khai. Không dùng độ sâu 1/2 để giả bảy cấp.
+- 7 cấp bot máy chủ (21/11/2026, xem BOT_LEVELS.md): giới hạn số nút + chọn ngẫu
+  nhiên trong các nước tốt nhất; người mới bắt đầu ở cấp 2; mặc định tự đổi cấp
+  theo 10 ván gần nhất ở cùng cấp (thắng ≥7 lên, thua ≥6 xuống), tắt được và luôn
+  tự chọn được cấp. Chưa hiệu chỉnh, không gán Elo. Không dùng độ sâu 1/2 của máy
+  cơ bản để giả bảy cấp.
 - LLM cá nhân hóa/nhận xét lập luận chưa có provider, key hay rubric. Lời giải
   hiện là mẫu dựa trên luật/cây bài, hoặc lời giải thích chủ dự án tự viết cho
   70 bài nhập từ file Excel (quyết định 19/11/2026).

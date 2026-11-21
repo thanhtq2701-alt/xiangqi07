@@ -18,11 +18,35 @@ function session() {
   return value;
 }
 
+test('the 10-game rule moves the bot level one step and counts only finished games at that level', () => {
+  const game = (i, result, extra = {}) => ({ id: 'g' + i, mode: 'bot', engineChoice: 'server', level: 3, player: 'w', createdAt: 1000 + i,
+    status: { over: true, winner: result === 'win' ? 'w' : result === 'loss' ? 'b' : null }, ...extra });
+  const prefs = CC.preferences({ botLevel: 3 });
+  const tenWith = (wins, losses) => [...Array(10)].map((_, i) => game(i, i < wins ? 'win' : i < wins + losses ? 'loss' : 'draw'));
+  assert.deepEqual(CC.botLevelStep(tenWith(7, 3), prefs), { from: 3, level: 4, wins: 7, losses: 3 });
+  assert.deepEqual(CC.botLevelStep(tenWith(2, 6), prefs), { from: 3, level: 2, wins: 2, losses: 6 });
+  assert.equal(CC.botLevelStep(tenWith(6, 4), prefs), null, '6 wins and 4 losses: no change');
+  assert.equal(CC.botLevelStep(tenWith(7, 3).slice(1), prefs), null, 'fewer than 10 games');
+  const noise = [game(20, 'win', { level: 4 }), game(21, 'win', { engineChoice: 'local' }), game(22, 'win', { status: { over: false } }),
+    game(23, 'win', { status: { over: true, winner: 'w', needsVerification: true } }), game(24, 'win', { mode: 'local' })];
+  assert.equal(CC.botLevelStep([...tenWith(6, 4), ...noise], prefs), null, 'other levels, local engine, unfinished and unverified games do not count');
+  assert.equal(CC.botLevelStep(tenWith(7, 3), { ...prefs, botLevelSince: 1005 }), null, 'only games since the level was set');
+  assert.equal(CC.botLevelStep(tenWith(10, 0).map(g => ({ ...g, level: 7 })), CC.preferences({ botLevel: 7 })), null, 'no level 8');
+  assert.equal(CC.botLevelStep(tenWith(0, 10).map(g => ({ ...g, level: 1 })), CC.preferences({ botLevel: 1 })), null, 'no level 0');
+  const black = tenWith(7, 3).map(g => ({ ...g, player: 'b', status: { over: true, winner: g.status.winner === 'w' ? 'b' : g.status.winner === 'b' ? 'w' : null } }));
+  assert.equal(CC.botLevelStep(black, prefs).level, 4, 'wins are counted for the side the learner played');
+});
 test('preferences accept only supported options and exact booleans', () => {
   assert.deepEqual(CC.preferences(null), CC.DEFAULT_PREFS);
   assert.deepEqual(CC.preferences({ theme: 'purple', pieces: 'secret', font: 44, level: 'master', sound: 'true', sidebar: 1, injected: true }), CC.DEFAULT_PREFS);
   const result = CC.preferences({ theme: 'dark', pieces: 'vi', font: 'large', sound: true, sidebar: true, level: 'beginner', tone: 'friendly' });
-  assert.deepEqual(result, { theme: 'dark', pieces: 'vi', font: 'large', sound: true, sidebar: true, autoFlip: true, level: 'beginner', tone: 'friendly' });
+  assert.deepEqual(result, { theme: 'dark', pieces: 'vi', font: 'large', sound: true, sidebar: true, autoFlip: true, level: 'beginner', tone: 'friendly', botLevel: 2, botAutoLevel: true, botLevelSince: 0 });
+  // Bot level: 1-7 integers only, new players start at 2, automatic change on unless exactly false.
+  for (const bad of [0, 8, '3', 2.5, true, null]) assert.equal(CC.preferences({ botLevel: bad }).botLevel, 2);
+  assert.equal(CC.preferences({ botLevel: 6 }).botLevel, 6);
+  assert.equal(CC.preferences({ botAutoLevel: false }).botAutoLevel, false);
+  assert.equal(CC.preferences({ botAutoLevel: 'false' }).botAutoLevel, true);
+  assert.equal(CC.preferences({ botLevelSince: -5 }).botLevelSince, 0);
   // Auto-flip defaults on for old saved preferences; only an exact false turns it off.
   assert.equal(CC.DEFAULT_PREFS.autoFlip, true);
   assert.equal(CC.preferences({ autoFlip: false }).autoFlip, false);
