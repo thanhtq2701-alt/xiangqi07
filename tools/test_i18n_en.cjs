@@ -95,7 +95,7 @@ const KEEP = new Set(['bạn', 'đối thủ', '. Chọn Vào chơi để tham g
   'quy ước tìm kiếm nông', 'centipawn của engine', 'Đối thủ', '· hiệu lực 15 giây', 'Phòng', 'Bạn cầm', 'Tạm khóa 24 giờ',
   'hình cờ đã đến lúc ôn', 'LƯỢT', 'TỰ QUAN SÁT ·', 'Suy nghĩ ban đầu', 'đề nghị hòa. Bên còn lại xác nhận trong 15 giây; đồng hồ vẫn chạy.',
   '· đã kiểm tra', 'vị trí ·', 'nước đầu phù hợp mẫu, không hỗ trợ ·', 'bài', 'mục)', 'Đến lượt', 'ván ·', '· phiên bản', 'Chương', 'chương',
-  'hình minh họa ·', 'Biến mẫu đã kiểm chứng:']);
+  'hình minh họa ·', 'Biến mẫu đã kiểm chứng:', 'Cấp', '· chưa hiệu chỉnh; không phải Elo.']);
 // Full runtime text built from the KEEP pieces above (and similar), as the user sees it.
 const RUNTIME = ['3 hình đến hạn', 'Nước bạn chọn: P2-5', 'Phòng 0123456789', 'Bạn cầm Đỏ', 'Bạn cầm Đen · Đỏ đến lượt', 'Bạn đang xem ván · Đen đến lượt',
   'Bạn đề nghị hòa · hiệu lực 15 giây.', 'Đối thủ đề nghị hòa · hiệu lực 15 giây.', 'Bạn đề nghị đi lại.', 'Đối thủ đề nghị đi lại.',
@@ -117,7 +117,7 @@ const RUNTIME = ['3 hình đến hạn', 'Nước bạn chọn: P2-5', 'Phòng 0
   'nước đầu phù hợp mẫu, không hỗ trợ · 3/6 bài', '(3 mục)', 'Đã lưu tự đánh giá. (1 mục)', 'Đến lượt bạn', 'Đến lượt đối thủ', 'Đỏ đến lượt',
   '3 ván · 5 lượt học', 'draft · phiên bản 2',
   'Số đếm từ dữ liệu đã đồng bộ; chưa xác minh kỹ năng, Elo hoặc hiệu quả học. Không dùng tài khoản thử để tuyên bố tác động sản phẩm.', 'Chương 1', '7 chương', '3 hình minh họa · Cơ bản', 'Biến mẫu đã kiểm chứng: 2/5 nửa nước',
-  'Trung cấp · mức dự kiến · tối đa 3 quyết định', 'Khó · mức dự kiến · tối đa 6 quyết định', 'Khó · mức dự kiến · tối đa 5 lượt của bạn', 'Trung cấp · mức dự kiến · tối đa 4 lượt của bạn'];
+  'Cấp 3 · chưa hiệu chỉnh; không phải Elo.', 'Trung cấp · mức dự kiến · tối đa 3 quyết định', 'Khó · mức dự kiến · tối đa 6 quyết định', 'Khó · mức dự kiến · tối đa 5 lượt của bạn', 'Trung cấp · mức dự kiến · tối đa 4 lượt của bạn'];
 
 test('every interface and server message fragment translates', () => {
   const sources = [];

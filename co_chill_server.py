@@ -471,6 +471,11 @@ class CloudApplication:
                 raise APIError(400, 'Mục đích phân tích không hợp lệ.')
             if 'requireStrong' in data and type(data['requireStrong']) is not bool:
                 raise APIError(400, 'requireStrong phải là true hoặc false.', 'invalid_engine_policy')
+            # Bot level 1–7 (docs/BOT_LEVELS.md): the server decides nodes and MultiPV;
+            # the client only names the level, and only for the bot's own move.
+            level = data.get('level')
+            if level is not None and (purpose != 'bot' or type(level) is not int or not 1 <= level <= 7):
+                raise APIError(400, 'Cấp máy chỉ dùng cho nước của máy và phải từ 1 đến 7.', 'invalid_bot_level')
             state = self.store.state(db, uid)['state']
             state = state.get('learning', state.get('state', state))
             games = state.get('games', []) if isinstance(state, dict) else []
@@ -490,7 +495,7 @@ class CloudApplication:
                 raise APIError(400, 'Chế độ phân tích không hợp lệ.')
             try:
                 result = self.engine.analyze(data.get('fen'), moves=data.get('moves'), selected_move=data.get('selected_move', data.get('selectedMove')),
-                                             mode=data.get('mode', 'quick'), purpose=purpose, owner=uid)
+                                             mode=data.get('mode', 'quick'), purpose=purpose, owner=uid, level=level)
             except ValueError as exc:
                 raise APIError(400, str(exc), 'invalid_position')
             except Exception as exc:
@@ -504,7 +509,7 @@ class CloudApplication:
                 raise APIError(503, 'Pikafish chưa sẵn sàng. Bản nháp vẫn được giữ; hãy thử lại hoặc chọn bài đã được duyệt.',
                                'engine_unavailable', retryAfter=5)
             if purpose == 'bot':
-                result = {key: result.get(key) for key in ('best_move', 'engine', 'engine_name', 'fallback', 'status', 'warnings', 'provenance')}
+                result = {key: result.get(key) for key in ('best_move', 'engine', 'engine_name', 'fallback', 'status', 'warnings', 'provenance', 'bot')}
             # A room may have started while a slow engine request was running.
             if self.rooms.has_live_context(user):
                 raise APIError(409, 'Ván trực tuyến đang hoạt động; kết quả phân tích đã được bỏ.', 'live_online_no_coaching')

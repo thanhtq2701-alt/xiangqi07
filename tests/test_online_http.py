@@ -202,6 +202,14 @@ class OnlineHttpTests(unittest.TestCase):
         with patch('co_chill_server.time.time', return_value=time.time() + 61):
             self.assertEqual(self.red.request(f'/api/rooms/{self.code}')[0], 200, 'a new minute resets the window')
 
+    def test_bot_level_is_only_for_the_bot_move_and_must_be_1_to_7(self):
+        self.assertEqual(self.a.register('levels')[0], 201)
+        for body in ({'purpose': 'review-scan', 'level': 3}, {'purpose': 'bot', 'level': 9},
+                     {'purpose': 'bot', 'level': '3'}, {'purpose': 'bot', 'level': True}):
+            status, payload, _ = self.a.request('/api/engine/analyze', 'POST', {'fen': START_FEN, **body})
+            self.assertEqual((status, payload.get('code')), (400, 'invalid_bot_level'), body)
+        self.assertEqual(self.engine.calls, 0)
+
     def test_player_and_spectator_cannot_call_engine_for_any_purpose(self):
         self.started()
         self.c.register('watcher')

@@ -3,7 +3,9 @@
 Trạng thái: viết ngày 20/11/2026 theo quyết định số 6 của chủ dự án
 (19/11/2026): giới hạn số nút + chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7,
 chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi ngày 21/11/2026
-(mục 10). **J1 (mục 4) đã làm ngày 21/11/2026**; J2–J4 đang làm.
+(mục 10). **J1 (mục 4) và J2 (mục 3, phía máy chủ) đã làm ngày 21/11/2026**;
+J3 (giao diện) và J4 (hiệu chỉnh) đang làm. Nước chiếu bí ngay và nước duy nhất
+do bộ luật quyết định, không gọi engine.
 
 ## 1. Hiện trạng và ràng buộc
 
