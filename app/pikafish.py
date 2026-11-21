@@ -9,9 +9,11 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 import atexit
+import math
 import os
 from pathlib import Path
 import queue
+import random
 import re
 import subprocess
 import threading
@@ -31,6 +33,62 @@ MOVE_RE = re.compile(r'^[a-i][0-9][a-i][0-9]$')
 # Who waits first for the single engine: a learner waiting for the bot's move,
 # then someone reading an analysis, then a whole-game scan (docs/BOT_LEVELS.md §4).
 PRIORITY = {'bot': 0, 'review': 1, 'practice': 1, 'review-scan': 2}
+
+
+# Bot levels (docs/BOT_LEVELS.md §3; starting values, NOT calibrated, no Elo).
+# level: (nodes or None for the full-strength quick search, MultiPV, temperature in cp
+#         (0 = uniform choice, None = always the best line), largest loss allowed in cp)
+BOT_LEVELS = {
+    1: (2000, 5, 0, 400),
+    2: (5000, 5, 0, 300),
+    3: (10000, 4, 150, 250),
+    4: (30000, 4, 100, 150),
+    5: (100000, 3, 60, 100),
+    6: (300000, 2, 30, 50),
+    7: (None, 1, None, 0),
+}
+LEVEL_TIME_CAP_MS = 3000   # a node-limited search never runs longer than this
+MATE_VALUE = 30000
+LEVEL_ONE_MISSES_MATE = 0.5  # owner decision 21/11/2026: only level 1 may miss a mate in one
+
+
+def _value(candidate):
+    """Comparable value for the side to move: mates beat any centipawn score, faster mates more."""
+    if candidate['score_type'] == 'mate':
+        n = candidate['score']
+        return MATE_VALUE - abs(n) if n > 0 else -MATE_VALUE + abs(n)
+    return candidate['score']
+
+
+def immediate_mates(state):
+    """Legal moves that checkmate at once, proven by the rules (not by the engine)."""
+    mates = []
+    for move in state.legal_moves():
+        after = state.after_unchecked(move)   # already legal: no second legality check
+        if after.in_check() and not after.legal_moves():
+            mates.append(move)
+    return mates
+
+
+def choose_level_move(candidates, level, rng, avoid=()):
+    """Pick the bot's move among the engine's MultiPV lines for this level.
+
+    Lines worse than the best by more than the level's cap are dropped; the rest are
+    chosen uniformly (temperature 0) or with softmax weights exp(-(loss)/T). Returns
+    (candidate, rank starting at 1, loss in cp). `avoid` lists moves to skip when
+    another line is available (level 1 passing over a mate in one).
+    """
+    _nodes, _multipv, temperature, cap = BOT_LEVELS[level]
+    pool = [c for c in candidates if c['move'] not in avoid] or list(candidates)
+    best = max(_value(c) for c in pool)
+    pool = [c for c in pool if best - _value(c) <= cap] if temperature is not None else [max(pool, key=_value)]
+    if temperature:
+        weights = [math.exp(-(best - _value(c)) / temperature) for c in pool]
+    else:
+        weights = [1.0] * len(pool)
+    chosen = rng.choices(pool, weights=weights, k=1)[0]
+    rank = next(i for i, c in enumerate(candidates, 1) if c['move'] == chosen['move'])
+    return chosen, rank, best - _value(chosen)
 
 
 class _Ticket:
@@ -320,12 +378,13 @@ class _UciProcess:
         while self.next_line(deadline) != 'readyok':
             pass
 
-    def search(self, state, position_command, movetime_ms, multipv, selected=None):
+    def search(self, state, position_command, movetime_ms, multipv, selected=None, nodes=None):
+        """nodes: stop after this many nodes (bot levels); movetime_ms still caps the time."""
         if 'MultiPV' in self.options:
             self.option('MultiPV', 1 if selected else multipv)
         self.ready()
         self.send(position_command)
-        command = f'go movetime {movetime_ms}'
+        command = f'go nodes {int(nodes)} movetime {movetime_ms}' if nodes else f'go movetime {movetime_ms}'
         if selected:
             command += ' searchmoves ' + selected
         self.send(command)
@@ -400,6 +459,7 @@ class AnalysisEngine:
         # Only the queue's running request touches it.
         self._process, self._searches = None, 0
         self._seconds = {}  # moving average of how long each kind of request takes
+        self.rng = random.SystemRandom()  # bot choices; never seeded from a request
         atexit.register(self.close)
 
     def close(self):
@@ -420,7 +480,13 @@ class AnalysisEngine:
         return self._process
 
     def _estimate(self, kind, movetime):
-        return self._seconds.get(kind, movetime / 1000 * (2 if kind[1] else 1) + 0.5)
+        if kind in self._seconds:
+            return self._seconds[kind]
+        if kind[0] == 'level':
+            nodes = BOT_LEVELS[kind[1]][0]
+            # ~250k nodes/s on one thread until real measurements replace this guess.
+            return (min(LEVEL_TIME_CAP_MS / 1000, nodes / 250000) if nodes else movetime / 1000) + 0.5
+        return movetime / 1000 * (2 if kind[1] else 1) + 0.5
 
     def _measured(self, kind, seconds):
         self._seconds[kind] = seconds if kind not in self._seconds else .7 * self._seconds[kind] + .3 * seconds
@@ -432,8 +498,11 @@ class AnalysisEngine:
                     fallback=ENGINE_VERSION, max_pv_plies=MAX_PV, queue=self.queue.snapshot(),
                     note='Có cấu hình chưa có nghĩa đã chạy hoặc kiểm chứng sức mạnh engine.')
 
-    def analyze(self, fen, *, moves=None, selected_move=None, mode='quick', purpose='review-scan', owner=None):
+    def analyze(self, fen, *, moves=None, selected_move=None, mode='quick', purpose='review-scan', owner=None, level=None):
+        """level 1–7: the bot's move for that level (docs/BOT_LEVELS.md); None: plain analysis."""
         started = monotonic()
+        if level is not None and (type(level) is not int or level not in BOT_LEVELS):
+            raise ValueError('Cấp máy phải là số nguyên từ 1 đến 7.')
         if mode not in ('quick', 'deep'):
             raise ValueError('Chế độ phân tích phải là quick hoặc deep.')
         state, command, history_count = _position(fen, moves)
@@ -442,6 +511,16 @@ class AnalysisEngine:
             raise ValueError('Nước cần đánh giá không hợp lệ ở thế cờ này.')
         if not legal:
             return self._terminal(state, started, history_count)
+        avoid = ()
+        if level is not None:
+            # The rules settle these without the engine: a forced move, or a mate in one
+            # (always played from level 2; level 1 misses it half of the time).
+            mates = immediate_mates(state)
+            if len(legal) == 1:
+                return self._ruled_move(state, legal[0], level, 'only_legal_move', started, history_count)
+            if mates and (level >= 2 or self.rng.random() >= LEVEL_ONE_MISSES_MATE):
+                return self._ruled_move(state, mates[0], level, 'mate_in_one', started, history_count)
+            avoid = tuple(mates)
         reason = self.config.availability()
         if reason != 'configured_unverified':
             return self._fallback(state, selected_move, mode, reason, started, history_count)
@@ -449,6 +528,12 @@ class AnalysisEngine:
         multipv = max(1, min(3, self.config.multipv))
         deadline = started + max(.1, min(15.0, self.config.request_seconds))
         kind = (mode, bool(selected_move))
+        level_nodes = None
+        if level is not None:
+            level_nodes, multipv = BOT_LEVELS[level][0], BOT_LEVELS[level][1]
+            if level_nodes:
+                movetime = LEVEL_TIME_CAP_MS
+            kind, selected_move = ('level', level), None
         # Raises EngineUnavailable('busy') when the queue cannot meet the deadline;
         # the server turns that into 429 engine_busy, never a silent local answer.
         ticket = self.queue.enter(PRIORITY.get(purpose, PRIORITY['review-scan']), owner,
@@ -457,7 +542,7 @@ class AnalysisEngine:
             began = monotonic()
             engine = self._uci(deadline)
             engine.send('ucinewgame')  # each request starts from an empty hash table
-            lines, depth, nodes = engine.search(state, command, movetime, multipv)
+            lines, depth, nodes = engine.search(state, command, movetime, multipv, nodes=level_nodes)
             selected = None
             if selected_move:
                 # Same root/side; do not negate a child score or assume that
@@ -479,6 +564,13 @@ class AnalysisEngine:
                           warnings=['Điểm và biến là kết quả tìm kiếm hữu hạn; chưa thay thế duyệt bài học.'],
                           provenance=dict(version=engine.name, adapter=ADAPTER_VERSION,
                                           source='configured_uci_binary', repetition_history=bool(history_count)))
+            if level is not None:
+                chosen, rank, loss = choose_level_move(lines, level, self.rng, avoid)
+                result['best_move'] = chosen['move']
+                result['bot'] = dict(level=level, rank=rank, loss_cp=loss, nodes_limit=level_nodes,
+                                     multipv=multipv, calibrated=False)
+                result['provenance']['bot_level'] = level
+                result['warnings'] = [f'Cấp {level} · chưa hiệu chỉnh; không phải Elo.']
             self.last_status = 'ready'
             return result
         except EngineUnavailable as error:
@@ -489,6 +581,17 @@ class AnalysisEngine:
             self._searches += 1
             self._measured(kind, monotonic() - began)
             self.queue.leave(ticket)
+
+    def _ruled_move(self, state, move, level, reason, started, history_count):
+        """A bot move proven by the rules alone (the only legal move, or a mate in one)."""
+        return dict(engine='co-chill-rules', engine_name='Luật cờ Cờ Chill', fallback=False, status='ready',
+                    confidence='rules', fen=state.fen(), turn=state.turn, score=None, score_type=None,
+                    best_move=move, candidates=[], lines=[], selected=None,
+                    bot=dict(level=level, rank=None, loss_cp=0, nodes_limit=0, multipv=0, calibrated=False, reason=reason),
+                    search=dict(depth=0, nodes=0, elapsed_ms=round((monotonic() - started) * 1000),
+                                exhaustive_root=True, history_plies=history_count),
+                    warnings=[f'Cấp {level} · chưa hiệu chỉnh; không phải Elo.'],
+                    provenance=dict(version=ADAPTER_VERSION, source='rules', bot_level=level))
 
     def _fallback(self, state, selected_move, mode, reason, started, history_count):
         raw = self.local.analyze(state.fen())

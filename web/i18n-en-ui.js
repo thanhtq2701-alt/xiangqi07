@@ -1286,7 +1286,10 @@
     "Giữ mục tiêu, kiểm tra lại quân nào đang bị bắt sau nước của đối thủ.": "Keep the objective in mind, and check again which pieces are under attack after your opponent's move.",
     "Chưa đạt mục tiêu của bài trong giới hạn lượt. Thử lại tại vị trí này.": "This does not reach the exercise's objective within the move limit. Try again from this position.",
     // Multi-move exercises imported from the owner's workbook (2026-11-20).
-    "Tự luyện nhiều lượt": "Multi-move practice"
+    "Tự luyện nhiều lượt": "Multi-move practice",
+    // Multi-move exercises imported from the owner's workbook (2026-11-20).
+    "Cấp máy phải là số nguyên từ 1 đến 7.": "The bot level must be a whole number from 1 to 7.",
+    "Cấp máy chỉ dùng cho nước của máy và phải từ 1 đến 7.": "A bot level is only for the bot's own move and must be from 1 to 7."
   });
 
   const PIECE = { 'Tướng': 'General', 'Sĩ': 'Advisor', 'Tượng': 'Elephant', 'Xe': 'Chariot', 'Pháo': 'Cannon', 'Mã': 'Horse', 'Tốt': 'Soldier' };
@@ -1365,6 +1368,7 @@
     [/^Biến hợp lệ được tính: (.+)\. Chênh lệch (-?\d+) điểm (quy ước tìm kiếm nông|centipawn của engine) từ cùng thế và cùng bên đi\.$/,
       m => `Legal line calculated: ${m[1].split('; sau đó ').map(notation).join('; then ')}. Difference: ${m[2]} ${m[3] === 'quy ước tìm kiếm nông' ? 'shallow-search points' : 'engine centipawns'} from the same position with the same side to move.`],
     [/^Không đọc được biên bản ở nửa nước (\d+)(\. .+)$/, (m, t) => `Could not read the move record at half-move ${m[1]}${t(m[2])}`],
+    [/^Cấp ([1-7]) · chưa hiệu chỉnh; không phải Elo\.$/, m => `Level ${m[1]} · not calibrated; not an Elo rating.`],
     // Difficulty label of a multi-move exercise followed by its number of decisions (any label, any number).
     [/^(.+) · tối đa (\d+) quyết định$/, (m, t) => `${t(m[1])} · up to ${plural(m[2], 'decision', 'decisions')}`],
     [/^(.+) · tối đa (\d+) lượt của bạn$/, (m, t) => `${t(m[1])} · up to ${m[2]} of your moves`],

@@ -11,7 +11,10 @@ from unittest.mock import patch
 from app.engine import LocalEngine
 import threading
 
-from app.pikafish import AnalysisEngine, EngineConfig, EngineUnavailable, _EngineQueue
+import random
+
+from app.pikafish import (AnalysisEngine, BOT_LEVELS, EngineConfig, EngineUnavailable, _EngineQueue,
+                         choose_level_move, immediate_mates)
 from app.rules import Position, START_FEN
 
 
@@ -88,7 +91,9 @@ for raw in sys.stdin:
 '''
 
 
-class PikafishAdapterTests(unittest.TestCase):
+class FakeEngineCase(unittest.TestCase):
+    """A temporary folder with the fake UCI engine and its command log."""
+
     def setUp(self):
         Path('var/tests').mkdir(parents=True, exist_ok=True)
         self.temp = tempfile.TemporaryDirectory(dir='var/tests')
@@ -113,6 +118,7 @@ class PikafishAdapterTests(unittest.TestCase):
     def commands(self):
         return [json.loads(line) for line in self.log.read_text(encoding='utf-8').splitlines()]
 
+class PikafishAdapterTests(FakeEngineCase):
     def test_no_binary_is_explicit_limited_fallback(self):
         engine = AnalysisEngine(EngineConfig(), LocalEngine(max_depth=1, seconds=.1))
         result = engine.analyze(START_FEN, selected_move='a0a1')
@@ -340,6 +346,101 @@ class PikafishAdapterTests(unittest.TestCase):
         self.assertEqual(result['outcome']['winner'], 'b')
         self.assertIsNone(result['score'])
         self.assertIsNone(result['best_move'])
+        self.assertFalse(self.log.exists())
+
+
+MATE_IN_ONE = '3k5/2P6/3P5/9/9/9/9/9/9/4K4 w'      # Soldier lesson net: three mates in one
+ONLY_MOVE = '5k3/9/9/9/4r4/9/9/9/9/3K5 w'          # the Red General has one legal move
+
+
+def line(move, score, kind='cp'):
+    return {'move': move, 'score': score, 'score_type': kind}
+
+
+class BotLevelTests(FakeEngineCase):
+    """J2 (docs/BOT_LEVELS.md section 3): uncalibrated levels, honest labels, rules first."""
+
+    def test_level_table_grows_monotonically_and_ends_at_full_strength(self):
+        nodes = [BOT_LEVELS[n][0] for n in range(1, 7)]
+        self.assertEqual(nodes, sorted(nodes))
+        caps = [BOT_LEVELS[n][3] for n in range(1, 8)]
+        self.assertEqual(caps, sorted(caps, reverse=True))
+        self.assertEqual(BOT_LEVELS[7], (None, 1, None, 0))
+
+    def test_choice_respects_the_loss_cap_and_prefers_better_lines(self):
+        lines = [line('a', 100), line('b', 40), line('c', -50), line('d', -400)]
+        rng = random.Random(7)
+        for level in range(1, 8):
+            cap = BOT_LEVELS[level][3]
+            for _ in range(200):
+                chosen, rank, loss = choose_level_move(lines, level, rng)
+                self.assertLessEqual(loss, cap, level)
+                self.assertEqual(lines[rank - 1]['move'], chosen['move'])
+        picks = [choose_level_move(lines, 7, rng)[0]['move'] for _ in range(50)]
+        self.assertEqual(set(picks), {'a'}, 'level 7 always plays the best line')
+        counts = {m: 0 for m in 'abcd'}
+        for _ in range(2000):
+            counts[choose_level_move(lines, 5, rng)[0]['move']] += 1
+        self.assertGreater(counts['a'], counts['b'])
+        self.assertEqual(counts['c'] + counts['d'], 0, 'beyond the 100 cp cap of level 5')
+        uniform = {m: 0 for m in 'abcd'}
+        for _ in range(3000):
+            uniform[choose_level_move(lines, 1, rng)[0]['move']] += 1
+        self.assertEqual(uniform['d'], 0, 'level 1 still never loses more than 400 cp')
+        self.assertTrue(all(800 < uniform[m] < 1200 for m in 'abc'), uniform)
+
+    def test_mates_are_valued_above_any_score_and_avoid_is_honoured(self):
+        lines = [line('m', 2, 'mate'), line('x', 900), line('y', -3, 'mate')]
+        self.assertEqual(choose_level_move(lines, 6, random.Random(1))[0]['move'], 'm')
+        chosen = choose_level_move([line('m', 1, 'mate'), line('x', 30)], 1, random.Random(1), avoid=('m',))[0]
+        self.assertEqual(chosen['move'], 'x')
+        alone = choose_level_move([line('m', 1, 'mate')], 1, random.Random(1), avoid=('m',))[0]
+        self.assertEqual(alone['move'], 'm', 'avoid never leaves the bot without a move')
+
+    def test_mate_in_one_and_forced_moves_need_no_engine(self):
+        state = Position.from_fen(MATE_IN_ONE)
+        mates = immediate_mates(state)
+        self.assertIn('d7d8', mates)
+        for move in mates:
+            after = state.play(move)
+            self.assertTrue(after.in_check() and not after.legal_moves())
+        engine = self.engine()
+        for level in range(2, 8):
+            result = engine.analyze(MATE_IN_ONE, purpose='bot', level=level)
+            self.assertIn(result['best_move'], mates)
+            self.assertEqual((result['bot']['reason'], result['fallback']), ('mate_in_one', False))
+        forced = engine.analyze(ONLY_MOVE, purpose='bot', level=3)
+        self.assertEqual((forced['best_move'], forced['bot']['reason']), ('d0d1', 'only_legal_move'))
+        self.assertIn('chưa hiệu chỉnh', forced['warnings'][0])
+        self.assertFalse(self.log.exists(), 'the rules answered; the engine was never started')
+
+    def test_level_one_sometimes_passes_over_a_mate_in_one(self):
+        engine = self.engine()
+        engine.rng = random.Random(0)
+        engine.rng.random = lambda: 0.9          # takes the mate
+        self.assertEqual(engine.analyze(MATE_IN_ONE, purpose='bot', level=1)['bot']['reason'], 'mate_in_one')
+        engine.rng.random = lambda: 0.1          # misses it: the engine is asked instead
+        engine.analyze(MATE_IN_ONE, purpose='bot', level=1)
+        self.assertIn('go nodes 2000 movetime 3000', self.commands())
+
+    def test_levels_use_node_limits_multipv_and_label_the_result(self):
+        engine = self.engine()
+        result = engine.analyze(START_FEN, purpose='bot', level=3)
+        self.assertFalse(result['fallback'])
+        self.assertIn(result['best_move'], {'b0c2', 'h0g2'})
+        self.assertEqual({k: result['bot'][k] for k in ('level', 'nodes_limit', 'multipv', 'calibrated')},
+                         {'level': 3, 'nodes_limit': 10000, 'multipv': 4, 'calibrated': False})
+        self.assertIn('go nodes 10000 movetime 3000', self.commands())
+        self.assertIn('setoption name MultiPV value 4', self.commands())
+        top = engine.analyze(START_FEN, purpose='bot', level=7)
+        self.assertEqual((top['best_move'], top['bot']['rank']), ('b0c2', 1))
+        self.assertIn('go movetime 50', self.commands())
+
+    def test_invalid_levels_are_rejected_before_any_search(self):
+        engine = self.engine()
+        for bad in (0, 8, True, '3', 2.0):
+            with self.subTest(level=bad), self.assertRaises(ValueError):
+                engine.analyze(START_FEN, purpose='bot', level=bad)
         self.assertFalse(self.log.exists())
 
 
