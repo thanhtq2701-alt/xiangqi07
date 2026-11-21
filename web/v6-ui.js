@@ -59,7 +59,7 @@
     'Giao diện và dữ liệu →':'Appearance & data →', 'Tài khoản & đồng bộ →':'Account & sync →',
     'Góc cá nhân':'Personal space', 'Lưu tên':'Save name', 'Tiến độ của bạn':'Your progress',
     'Ngôn ngữ giao diện':'Interface language',
-    'Màu ấm, nền kem và nét xanh lá.':'Cream tones with a fresh green accent.',
+    'Nền giấy dó, sơn đỏ và gỗ bàn cờ.':'Rice paper, lacquer red and board wood.',
     'Sắc xanh trầm trên nền xám lạnh.':'Muted blue on a cool slate background.',
     'Nền tối dịu, quân cờ dễ phân biệt.':'A calm dark surface with distinct pieces.',
     'Chọn màu để xem ngay. Tùy chọn được lưu cùng hồ sơ hiện tại.':'Preview a theme instantly. Preferences are saved for the current profile.',
@@ -243,11 +243,15 @@
   function cover() {
     return '<div class="v6-cover"><img src="cover-co-chill.webp?v=d64c4ead" width="1200" height="800" alt="Cờ Chill · bàn cờ tướng và quân cờ" fetchpriority="high"></div>';
   }
+  // Pet Chill, the mascot: decorative, so screen readers skip it.
+  function mascot(mood='happy') {
+    return `<img class="pet-chill" src="${mood==='think'?'pet-chill-think.svg?v=56abc932':'pet-chill.svg?v=61f375a1'}" width="120" height="120" alt="" aria-hidden="true">`;
+  }
   function entryHTML(available) {
-    return `<section class="v6-entry">${cover()}<div class="v6-entry-body"><div class="v6-entry-title"><p class="eyebrow">CỜ CHILL</p><h1>Chọn cách bắt đầu</h1><p>Một không gian để chơi, suy nghĩ và tiến bộ.</p></div><div class="v6-entry-options"><section class="v6-entry-option"><span class="v6-illustration">${icon('user')}</span><h2>Tiếp tục với tài khoản</h2><p>Lưu tiến độ và tiếp tục trên thiết bị khác.</p>${available?'<a href="#account" class="primary">Đăng nhập hoặc tạo tài khoản</a>':'<button class="primary" type="button" disabled>Đăng nhập hoặc tạo tài khoản</button>'}</section><section class="v6-entry-option"><span class="v6-illustration">${icon('guest')}</span><h2>Tiếp tục với tư cách khách</h2><p>Bắt đầu ngay trên thiết bị này.</p><button type="button" class="${available?'secondary':'primary'}" data-v6-action="guest">Tiếp tục với tư cách khách</button><small>Tiến độ khách được lưu trong trình duyệt này.</small></section></div>${!available?'<p class="v6-entry-notice" role="status">Bản xem trước chưa có dịch vụ tài khoản. Bạn có thể chơi và học với chế độ khách.</p>':''}<div class="v6-entry-footer"><a href="#privacy">Cách lưu dữ liệu</a><a href="#help">Trợ giúp</a></div></div></section>`;
+    return `<section class="v6-entry">${cover()}<div class="v6-entry-body"><div class="v6-entry-title">${mascot()}<p class="eyebrow">CỜ CHILL</p><h1>Chọn cách bắt đầu</h1><p>Một không gian để chơi, suy nghĩ và tiến bộ.</p></div><div class="v6-entry-options"><section class="v6-entry-option"><span class="v6-illustration">${icon('user')}</span><h2>Tiếp tục với tài khoản</h2><p>Lưu tiến độ và tiếp tục trên thiết bị khác.</p>${available?'<a href="#account" class="primary">Đăng nhập hoặc tạo tài khoản</a>':'<button class="primary" type="button" disabled>Đăng nhập hoặc tạo tài khoản</button>'}</section><section class="v6-entry-option"><span class="v6-illustration">${icon('guest')}</span><h2>Tiếp tục với tư cách khách</h2><p>Bắt đầu ngay trên thiết bị này.</p><button type="button" class="${available?'secondary':'primary'}" data-v6-action="guest">Tiếp tục với tư cách khách</button><small>Tiến độ khách được lưu trong trình duyệt này.</small></section></div>${!available?'<p class="v6-entry-notice" role="status">Bản xem trước chưa có dịch vụ tài khoản. Bạn có thể chơi và học với chế độ khách.</p>':''}<div class="v6-entry-footer"><a href="#privacy">Cách lưu dữ liệu</a><a href="#help">Trợ giúp</a></div></div></section>`;
   }
   function themePicker(selected) {
-    const descriptions={warm:'Màu ấm, nền kem và nét xanh lá.',cool:'Sắc xanh trầm trên nền xám lạnh.',dark:'Nền tối dịu, quân cờ dễ phân biệt.'};
+    const descriptions={warm:'Nền giấy dó, sơn đỏ và gỗ bàn cờ.',cool:'Sắc xanh trầm trên nền xám lạnh.',dark:'Nền tối dịu, quân cờ dễ phân biệt.'};
     const labels={warm:'Sáng ấm',cool:'Trắng lạnh',dark:'Tối'};
     return `<fieldset class="v6-theme-fieldset"><legend>Chủ đề</legend><div class="v6-theme-picker">${['warm','cool','dark'].map(theme=>`<label class="v6-theme-option"><input type="radio" name="theme" value="${theme}" ${selected===theme?'checked':''}><span class="v6-theme-preview ${theme}" aria-hidden="true"><span class="v6-preview-sidebar"></span><span class="v6-preview-card"></span><span class="v6-preview-button"></span></span><strong>${labels[theme]}</strong><small>${descriptions[theme]}</small></label>`).join('')}</div><p class="subtle">Chọn màu để xem ngay. Tùy chọn được lưu cùng hồ sơ hiện tại.</p></fieldset>`;
   }
@@ -286,8 +290,16 @@
       const old=baseHome();
       const rest=old.replace(/<section class="home-intro">[\s\S]*?<\/section>/,'');
       let cardIndex=0;
-      const decorated=rest.replace(/<span class="tile-symbol">[\s\S]*?<\/span>/g,()=>`<span class="tile-symbol v6-card-icon">${icon(['play','lessons','history','review'][cardIndex++])}</span>`);
-      return `<div class="v6-home">${cover()}<div class="v6-home-content"><section class="v6-home-copy"><p class="eyebrow">Chơi · Suy nghĩ · Tiến bộ</p><h1>Chơi một ván, học từ nước đi của mình.</h1></section>${decorated}</div></div>`;
+      // Each area gets a carved piece: 俥 play, 書 lessons, 譜 game records, 習 review.
+      const decorated=rest.replace(/<span class="tile-symbol">[\s\S]*?<\/span>/g,()=>`<span class="tile-symbol v7-medal" aria-hidden="true">${['俥','書','譜','習'][cardIndex++]}</span>`);
+      const grid=decorated.indexOf('<section class="home-grid"'),bottom=decorated.indexOf('<div class="home-bottom">');
+      if(grid<0||bottom<0)return `<div class="v6-home">${cover()}<div class="v6-home-content">${decorated}</div></div>`;
+      // v6-learning-ui appends the unfinished multi-move exercise after the stats; it joins the main column.
+      const resume=decorated.indexOf('<div class="next-up">',bottom),end=resume<0?decorated.length:resume;
+      const level=typeof prefs!=='undefined'&&Number.isInteger(prefs.botLevel)?prefs.botLevel:2,auto=typeof prefs==='undefined'||prefs.botAutoLevel!==false;
+      const levels=[1,2,3,4,5,6,7].map(n=>`<span class="${n<level?'done':n===level?'current':''}">${n}</span>`).join(''),levelLabel='Cấp '+level;
+      const rail=`<aside class="v7-home-rail"><section class="panel v7-rail-card"><div class="v7-rail-head"><h2>Máy của bạn</h2><span class="pill">chưa hiệu chỉnh</span></div><div class="v7-levels" role="img" aria-label="${levelLabel}">${levels}</div><p class="subtle"><span>${auto?'Tự đổi cấp: bật.':'Tự đổi cấp: tắt.'}</span> <span>Cấp dùng cho máy chủ, cần tài khoản.</span></p><a class="secondary" href="#play">Chơi với máy →</a></section><section class="panel v7-rail-card v7-online"><span class="v7-medal" aria-hidden="true">對</span><div><h2>Chơi trực tuyến</h2><p class="subtle">Phòng mời bạn · ghép cộng đồng</p></div><a class="primary" href="#online">Tìm người chơi →</a></section><section class="panel v7-rail-card v7-stats">${decorated.slice(bottom,end)}</section></aside>`;
+      return `<div class="v6-home v7-home"><section class="v7-hero">${cover()}<div class="v7-hero-body"><span class="v7-hero-pet">${mascot()}</span><section class="v6-home-copy"><p class="eyebrow">Chơi · Suy nghĩ · Tiến bộ</p><h1>Chơi một ván, học từ nước đi của mình.</h1></section></div></section><div class="v6-home-content v7-home-layout"><div class="v7-home-main">${decorated.slice(0,grid)}${decorated.slice(end)}${decorated.slice(grid,bottom)}</div>${rail}</div></div>`;
     };
     settings=function v6Settings() {
       const old=baseSettings();
@@ -347,5 +359,5 @@
     if(root.CCI18nEN&&root.CCContentEN)root.CCI18nEN.addEntries(Object.values(root.CCContentEN).map(entry=>[entry.vi,entry.en]));
     render();
   }
-  return {install,refresh,setLanguage,language:()=>language,t:translate,icon,languageKey,shouldShowEntry,entryHTML,themePicker,ENTRY_KEY};
+  return {install,refresh,setLanguage,language:()=>language,t:translate,icon,mascot,languageKey,shouldShowEntry,entryHTML,themePicker,ENTRY_KEY};
 });

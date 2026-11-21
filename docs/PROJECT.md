@@ -75,6 +75,7 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 | Ba theme ấm/lạnh/tối, dễ tìm trong cài đặt | Có thẻ chọn/xem trước và lưu theo hồ sơ |
 | Tiếng Việt trước, có chế độ tiếng Anh | Giao diện, bài học và thông báo server có tiếng Anh, được `tools/test_i18n_en.cjs` kiểm tra |
 | Thêm bàn cờ/hình thay văn bản dài | Bàn cờ ví dụ, thẻ chương, icon; chưa có minh họa riêng cho mọi bài |
+| Giao diện V7 (chủ dự án duyệt 21/11/2026) | Đỏ sơn mài, ngọc, vàng và gỗ; quân cờ nổi, ô màu ở trang chủ và trang Chơi, đường học dạng quân cờ, linh vật Pet Chill (SVG tự vẽ). Lớp CSS cuối `web/style.css`; theme lạnh giữ màu xanh |
 | Chơi giữ đối thủ, đồng hồ, ký phổ, hòa/thua | Có; PvP từ trạng thái server |
 | Tự lật bàn mỗi lượt khi hai người cùng máy | Có; mặc định bật (chủ dự án chốt 19/11/2026), tắt bằng công tắc ngay dưới bàn hoặc trong Cài đặt; khi bật thì ẩn nút lật thủ công |
 | Dashboard học gọn, calendar tuần; admin đầy đủ | Có dashboard và lịch tuần (thứ Hai–Chủ nhật, giờ Việt Nam: lượt đã luyện mỗi ngày, hình cần ôn từ hôm nay) trên trang Tiến độ; chưa đúng mọi bố cục đã chốt |
@@ -362,7 +363,12 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 - Logo và cover (`web/logo-co-chill.webp`, `web/cover-co-chill.webp`) do chủ
   sản phẩm cung cấp. Bản WebP 02/11/2026 bỏ chữ "CLB CỜ TƯỚNG"; chữ 兵 và 士
   trên ảnh bìa vẽ bằng font Ma Shan Zheng (SIL Open Font License 1.1), chỉ có
-  trong ảnh. UI dùng SVG/CSS và font hệ thống, không tải font hay tracker ngoài.
+  trong ảnh. Linh vật Pet Chill (`web/pet-chill*.svg`) là SVG tự vẽ cho dự án.
+- Font: bản cắt nhỏ (chữ Latin, tiếng Việt và khoảng 30 chữ Hán của quân cờ) của
+  Be Vietnam Pro, Baloo 2 và Noto Serif TC, giấy phép SIL OFL 1.1 trong
+  `docs/licenses/`, đặt trong `web/font-*.woff2`. Thêm chữ Hán mới vào giao diện
+  thì phải cắt lại font bằng `tools/subset_fonts.py` (§8), nếu không chữ đó dùng
+  font của máy. Không tải font, script hay tracker từ trang khác.
 - Gunicorn trong `requirements.txt` dành cho Linux production; giữ giấy phép
   dependency khi phân phối môi trường cài sẵn.
 - Tham khảo: [Pikafish](https://github.com/official-pikafish/Pikafish),
@@ -414,3 +420,54 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
 6. Báo lỗi: hệ điều hành, phiên bản Python, commit, các bước tái hiện, kết quả
    mong đợi và thực tế. Lỗi luật kèm thế tự tạo, bên đi và nước đi. Xóa thông
    tin cá nhân khỏi log và ảnh chụp.
+
+### Chạy và kiểm tra trên máy
+
+Cần Python 3.12; bộ kiểm tra cần thêm Node.js theo `.nvmrc`. Chạy từ thư mục
+gốc của repo:
+
+```powershell
+python co_chill_server.py serve --port 8769
+```
+
+Mở <http://127.0.0.1:8769/>. Dữ liệu nằm trong SQLite dưới `var/`; không đưa
+vào Git.
+
+```powershell
+python tools/run_checks.py
+```
+
+Kiểm tra một file thế cờ mới (chỉ luật, không ghi gì vào `web/`), xem
+[POSITION_IMPORT.md](POSITION_IMPORT.md):
+
+```powershell
+python tools/import_positions.py path\to\positions.json
+```
+
+File Excel bài tập của chủ dự án nằm trong `var/import/` (Git bỏ qua). Kiểm tra
+file, rồi tạo lại `web/curriculum-pack.js` kèm bản tiếng Anh
+(`tools/curriculum_pack_en.json`); chạy lại trên cùng file không đổi gì:
+
+```powershell
+python tools/import_curriculum_xlsx.py
+python tools/import_curriculum_xlsx.py --write
+python tools/stamp_static_versions.py
+```
+
+Cắt lại font giao diện khi thêm chữ Hán mới (chỉ khi phát triển; cần
+`python -m pip install fonttools brotli`, nên cài trong môi trường ảo; file font
+gốc lấy từ repo google/fonts, xem đầu file tool). `--check` liệt kê chữ còn
+thiếu:
+
+```powershell
+python tools/subset_fonts.py --check
+python tools/subset_fonts.py --source path\to\font-folder
+python tools/stamp_static_versions.py
+```
+
+Đo tải poll phòng trực tuyến trên máy này (tự chạy server riêng với database
+dùng một lần và từ chối mọi địa chỉ không phải local):
+
+```powershell
+python tools/load_rooms.py
+```

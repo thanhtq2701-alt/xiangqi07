@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Pet Chill thinking: shown while the learner reads the position. Original artwork for this project. -->
+  <ellipse cx="60" cy="111" rx="34" ry="5" fill="#3c230a" opacity=".16"/>
+  <circle cx="60" cy="64" r="44" fill="#a9783e"/>
+  <circle cx="60" cy="59" r="44" fill="#f7e6c2"/>
+  <circle cx="60" cy="59" r="37" fill="none" stroke="#2f6b4f" stroke-width="3"/>
+  <text x="60" y="41" text-anchor="middle" font-family="'Noto Serif TC','Microsoft JhengHei','PMingLiU',serif" font-weight="900" font-size="15" fill="#2f6b4f">兵</text>
+  <path d="M40 54l10 2M80 54l-10 2" stroke="#2b1d14" stroke-width="3" stroke-linecap="round"/>
+  <ellipse cx="46" cy="63" rx="4.2" ry="5" fill="#2b1d14"/>
+  <ellipse cx="74" cy="63" rx="4.2" ry="5" fill="#2b1d14"/>
+  <circle cx="47.4" cy="61" r="1.4" fill="#fff"/>
+  <circle cx="75.4" cy="61" r="1.4" fill="#fff"/>
+  <path d="M52 78q8-4 16 0" fill="none" stroke="#2b1d14" stroke-width="3.2" stroke-linecap="round"/>
+  <circle cx="98" cy="22" r="5" fill="#c8963e"/>
+  <circle cx="106" cy="10" r="3" fill="#c8963e"/>
+</svg>

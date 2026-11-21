@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <!-- Pet Chill: the Cờ Chill mascot, a smiling Pawn piece. Original artwork for this project. -->
+  <ellipse cx="60" cy="111" rx="34" ry="5" fill="#3c230a" opacity=".16"/>
+  <circle cx="60" cy="64" r="44" fill="#a9783e"/>
+  <circle cx="60" cy="59" r="44" fill="#f7e6c2"/>
+  <circle cx="60" cy="59" r="37" fill="none" stroke="#b8322a" stroke-width="3"/>
+  <text x="60" y="41" text-anchor="middle" font-family="'Noto Serif TC','Microsoft JhengHei','PMingLiU',serif" font-weight="900" font-size="15" fill="#b8322a">兵</text>
+  <ellipse cx="46" cy="60" rx="4.6" ry="6" fill="#2b1d14"/>
+  <ellipse cx="74" cy="60" rx="4.6" ry="6" fill="#2b1d14"/>
+  <circle cx="47.6" cy="57.6" r="1.6" fill="#fff"/>
+  <circle cx="75.6" cy="57.6" r="1.6" fill="#fff"/>
+  <ellipse cx="37" cy="72" rx="6" ry="3.6" fill="#ef8f7c" opacity=".65"/>
+  <ellipse cx="83" cy="72" rx="6" ry="3.6" fill="#ef8f7c" opacity=".65"/>
+  <path d="M49 73q11 10 22 0" fill="none" stroke="#2b1d14" stroke-width="3.4" stroke-linecap="round"/>
+</svg>

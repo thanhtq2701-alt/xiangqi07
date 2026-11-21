@@ -1,92 +1,139 @@
 <div align="center">
 
-# Cờ Chill
+<img src="web/cover-co-chill.webp" alt="Cờ Chill" width="720">
 
-**Learn Xiangqi by thinking through the position, not by skipping to the answer.**
+# 帥 Cờ Chill
+
+### Learn Xiangqi by thinking through the position, not by skipping to the answer.
+
+*Chơi một ván, học từ nước đi của mình.*
 
 [![Checks](https://github.com/thanhtq2701-alt/xiangqi07/actions/workflows/checks.yml/badge.svg?branch=codex-full)](https://github.com/thanhtq2701-alt/xiangqi07/actions/workflows/checks.yml)
+![Python 3.12](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)
+![No build step](https://img.shields.io/badge/JavaScript-no%20build%20step-F7DF1E?logo=javascript&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-local%20data-003B57?logo=sqlite&logoColor=white)
+![Tiếng Việt · English](https://img.shields.io/badge/UI-Ti%E1%BA%BFng%20Vi%E1%BB%87t%20%C2%B7%20English-c0392b)
 
-<img src="web/cover-co-chill.webp" alt="Cờ Chill cover" width="640">
-
-[cochill.vn](https://cochill.vn) · [Tiếng Việt](#tiếng-việt) · [Project doc](docs/PROJECT.md)
+### [🏮 Play now at cochill.vn](https://cochill.vn)
 
 </div>
 
-Cờ Chill is a Vietnamese-first web app for learning and playing Xiangqi (Chinese chess), with a full English mode. Learners reflect on a position before an explanation is shown, then retry, try related practice and come back for review.
+<br>
 
-## Features
+<p align="center">
+  <img src="docs/images/exercise.webp" alt="A multi-move exercise: the learner answers three questions about the position before choosing a move" width="860">
+  <br>
+  <sub><b>Think first.</b> Every exercise asks what you see, what you want and how your opponent will reply, before any explanation appears.</sub>
+</p>
 
-- **Reflection-first exercises:** basic and multi-move exercises, retry, related practice and a review schedule.
-- **Play:** against a basic heuristic bot, two players on one device, or friendly online rooms where the server owns moves, clocks and results.
-- **Accounts:** synced progress, export, import with preview, and deletion of your own data. Guests can play without an account.
-- **Rules-first:** Python and JavaScript rules are cross-checked; explanations are templates grounded in checked lines. An optional Pikafish adapter works only when the operator supplies the engine.
+## 🧧 Why Cờ Chill
 
-The library: 12 basic exercises, 9 lessons and 72 multi-move exercises (70 written and reviewed by the project owner, imported from a workbook; the app checks their rules, checkmates and material, not their quality). There is no trained AI coach and no claim of measured learning impact. See [limitations](docs/PROJECT.md#4-giới-hạn-hiện-tại).
+Most puzzle apps tell you right or wrong and move on. Cờ Chill slows down at the moment that matters: you read the position, write down your plan, try your move, and only then see an explanation grounded in checked lines. Then you retry, practise a related position and come back for review a few days later.
 
-## Run locally
-
-Requires Python 3.12. From the repository root:
-
-```powershell
-python co_chill_server.py serve --port 8769
+```mermaid
+flowchart LR
+    A["車 Play or load a game"] --> B["⏸️ Critical moment"]
+    B --> C["🤔 Reflect"]
+    C --> D["💡 Grounded explanation"]
+    D --> E["🔁 Retry"]
+    E --> F["🧩 Related practice"]
+    F --> G["📅 Spaced review"]
+    G --> H["📈 Progress"]
 ```
 
-Open <http://127.0.0.1:8769/>. Data is stored in SQLite under `var/`; keep it out of Git.
+## 🐉 Features
 
-## Run checks
+<table>
+<tr>
+<td width="50%" valign="top">
 
-Requires Node.js (version in [`.nvmrc`](.nvmrc)):
+### 車 Play
+Signed-in players face a **7-level bot** that moves up or down based on their last 10 games at a level; guests play a light bot on their own device. Or play two players on one device, or in friendly online rooms where the server owns moves, clocks and results.
 
-```powershell
-python tools/run_checks.py
-```
+</td>
+<td width="50%" valign="top">
 
-To check a file of new positions (rules only, nothing is written to `web/`), see [`docs/POSITION_IMPORT.md`](docs/POSITION_IMPORT.md):
+### 炮 Learn by chapter
+Opening, middlegame and endgame chapters for the Rook, Cannon, Horse, Pawn, King safety and coordination, with multi-move exercises from a single decision up to five to seven.
 
-```powershell
-python tools/import_positions.py path\to\positions.json
-```
+</td>
+</tr>
+<tr>
+<td valign="top">
 
-The owner's exercise workbook stays in `var/import/` (ignored by Git). Check it, then regenerate `web/curriculum-pack.js` with its English (`tools/curriculum_pack_en.json`); running it again on the same file changes nothing:
+### 兵 Reflection before answers
+No solution is shown before you have thought it through, and no coaching appears during a live game.
 
-```powershell
-python tools/import_curriculum_xlsx.py
-python tools/import_curriculum_xlsx.py --write
-python tools/stamp_static_versions.py
-```
+</td>
+<td valign="top">
 
-To measure online-room polling on this machine (it starts its own server with a throwaway database and refuses any non-local address):
+### 馬 Spaced review
+Positions you finish come back at growing intervals (1 / 2 / 7 / 14 / 30 days), and the ones you needed help with return sooner.
 
-```powershell
-python tools/load_rooms.py
-```
+</td>
+</tr>
+<tr>
+<td valign="top">
 
-## Repository
+### 帥 Rules own the truth
+Python and JavaScript rules are cross-checked on every change. Explanations are built only from checked lines, never invented moves or evaluations.
 
-| Path | Contents |
-|---|---|
-| [`co_chill_server.py`](co_chill_server.py) | Entry point: HTTP API and static files |
-| [`app/`](app/) | Rules, accounts, persistence, online rooms, engine adapter |
-| [`web/`](web/) | Browser app, no build step |
-| [`tests/`](tests/), [`tools/`](tools/) | Tests and the check runner |
-| [`docs/`](docs/) | [Project doc](docs/PROJECT.md), [glossary](docs/I18N_GLOSSARY.md), [position import](docs/POSITION_IMPORT.md) |
-| [`deploy/`](deploy/) | Production runbook and templates |
-| [`old/`](old/README.md) | History only |
+</td>
+<td valign="top">
 
-## Contributing
+### 士 Your data, your call
+Play as a guest with no account, or sign in to sync. Export, import with preview, and delete your own data at any time.
 
-Branch from `codex-full`, run the checks and open a pull request; GitHub Actions must pass. The project owner reviews, merges and deploys. Details: [contribution workflow](docs/PROJECT.md#8-quy-trình-đóng-góp).
+</td>
+</tr>
+</table>
 
-No license has been chosen yet, so the code, content and artwork are not licensed for reuse. Third-party notes are in [the project doc](docs/PROJECT.md#6-ai-nguồn-nội-dung-và-bên-thứ-ba).
+## 📸 Screenshots
 
-## Tiếng Việt
+<table>
+<tr>
+<td width="50%"><img src="docs/images/play.webp" alt="A game against the bot, with clock and move list"></td>
+<td width="50%"><img src="docs/images/lessons.webp" alt="The learning journey: chapters shown as carved pieces along a winding path"></td>
+</tr>
+<tr>
+<td align="center"><sub><b>Play</b>: focus on the game; learning opens after it ends.</sub></td>
+<td align="center"><sub><b>Learning journey</b>: pick any chapter, in any order.</sub></td>
+</tr>
+<tr>
+<td width="50%"><img src="docs/images/home.webp" alt="Home page with the Cờ Chill cover"></td>
+<td width="50%" align="center"><img src="docs/images/mobile.webp" alt="Cờ Chill on a phone" width="220"></td>
+</tr>
+<tr>
+<td align="center"><sub><b>Home</b>: one tap to start, no account needed.</sub></td>
+<td align="center"><sub><b>Phone</b>: the same app with a bottom tab bar.</sub></td>
+</tr>
+</table>
 
-Cờ Chill là ứng dụng web học và chơi cờ tướng, tiếng Việt trước, có chế độ tiếng Anh. Người học tự suy nghĩ trước khi xem giải thích, sau đó thử lại, làm bài liên quan và ôn tập. Luật cờ quyết định nước đi hợp lệ; máy cơ bản dùng tìm kiếm heuristic và lời giải là mẫu hoặc do chủ dự án viết, không phải AI được huấn luyện. Kho bài: 12 bài cơ bản, 9 bài hướng dẫn, 72 bài nhiều lượt (70 bài nhập từ file Excel của chủ dự án bằng `python tools/import_curriculum_xlsx.py`; xem [docs/POSITION_IMPORT.md](docs/POSITION_IMPORT.md)).
+## 📚 What's inside
 
-Chạy trên máy (Python 3.12):
+<div align="center">
 
-```powershell
-python co_chill_server.py serve --port 8769
-```
+| 🧩 **12** | 📖 **9** | 🎯 **72** | 🤖 **7** | 🌐 **2** |
+|:---:|:---:|:---:|:---:|:---:|
+| basic exercises | lessons | multi-move exercises | bot levels | languages |
 
-Mở <http://127.0.0.1:8769/>. Kiến trúc, quyết định, giới hạn, quyền riêng tư và quy trình đóng góp: [docs/PROJECT.md](docs/PROJECT.md).
+</div>
+
+70 of the multi-move exercises were written and reviewed by the project owner. The app checks their rules, checkmates and material, not their quality.
+
+## 🔍 Honest by design
+
+- The bot levels are not calibrated against real players and carry no Elo. The server bot uses [Pikafish](https://github.com/official-pikafish/Pikafish), a separate open-source engine that is not included in this repository.
+- Explanations are templates or written by the project owner. There is no trained AI coach.
+- The review schedule and progress signals are simple, experimental rules. No measured learning impact is claimed.
+
+## 📜 License
+
+No license has been chosen yet, so the code, content and artwork are not licensed for reuse.
+
+<div align="center">
+<br>
+
+**[cochill.vn](https://cochill.vn)** · Vietnamese-first, with a full English mode · *Mỗi lần hiểu thêm một chút.*
+
+</div>
