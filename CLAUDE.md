@@ -41,5 +41,5 @@ from the retired app in `old/legacy/` or the original planning in `old/spec/`.
   scheduling, recommendation and persistence. Do not weaken failing tests.
 - After editing `web/`, run `python tools/stamp_static_versions.py`; then run
   `python tools/run_checks.py` and `git diff --check`.
-- Keep runnable instructions in `README.md` and limitations in `docs/PROJECT.md`
-  up to date.
+- Keep runnable instructions (`docs/PROJECT.md` §8) and limitations in
+  `docs/PROJECT.md` up to date.

@@ -496,6 +496,7 @@
     "Máy cơ bản trên thiết bị": "Basic engine on this device",
     "Máy cơ bản ·": "Basic engine ·",
     "Máy cơ bản · chưa xếp hạng": "Basic engine · unrated",
+    "Máy của bạn": "Your server bot",
     "Máy nhẹ trên thiết bị · chưa có Elo": "Light engine on your device · no Elo yet",
     "Máy phân tích đang bận. Bản nháp của bạn vẫn được giữ.": "The analysis engine is busy. Your draft is still saved.",
     "Mã bảo vệ phiên không hợp lệ. Hãy tải lại trang.": "Invalid session security token. Please reload the page.",
@@ -759,6 +760,7 @@
     "Tìm kiếm nông; chưa chứng minh nước tối ưu.": "Shallow search; it does not prove the best move.",
     "Tìm một quyết định đáng học từ ván của bạn.": "Find a decision worth learning from in your game.",
     "Tìm người chơi": "Find an opponent",
+    "Tìm người chơi →": "Find an opponent →",
     "Tìm điểm cần học →": "Find moments to learn from →",
     "Tính đường Mã và chân Mã": "Work out Horse paths and leg points",
     "Tính đường Pháo và quân ngòi": "Work out Cannon lines and screens",
@@ -1289,6 +1291,11 @@
     "Cấp máy chỉ dùng cho nước của máy và phải từ 1 đến 7.": "A bot level is only for the bot's own move and must be from 1 to 7.",
     // Multi-move exercises imported from the owner's workbook (2026-11-20).
     "Cấp máy chủ · chưa hiệu chỉnh, không phải Elo": "Server bot level · not calibrated, not an Elo rating",
+    "Cấp dùng cho máy chủ, cần tài khoản.": "Levels apply to the server bot, which needs an account.",
+    "Chơi với máy →": "Play the bot →",
+    "Tự đổi cấp: bật.": "Automatic level change: on.",
+    "Tự đổi cấp: tắt.": "Automatic level change: off.",
+    "chưa hiệu chỉnh": "not calibrated",
     "Tự đổi cấp theo 10 ván gần nhất: thắng từ 7 ván thì lên, thua từ 6 ván thì xuống": "Change the level automatically from the last 10 games: 7 or more wins moves up, 6 or more losses moves down",
     "Cấp chỉ dùng khi chọn máy chủ; bạn luôn chọn được cấp bất kỳ.": "The level applies only to the server bot; you can always choose any level."
   });

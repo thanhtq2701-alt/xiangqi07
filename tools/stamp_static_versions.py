@@ -17,8 +17,8 @@ from app.static_version import content_version  # noqa: E402
 
 WEB = ROOT / 'web'
 STAMP = rb'(?:\?v=[0-9a-f]{8})?'
-# Images referenced from scripts and stylesheets. They reference nothing, so they are versioned first.
-IMAGE_REF = re.compile(rb'(?<![\w./-])([\w-]+\.(?:webp|svg|png|jpg|jpeg|ico))' + STAMP + rb'(?![\w.-])')
+# Images and fonts referenced from scripts and stylesheets. They reference nothing, so they are versioned first.
+IMAGE_REF = re.compile(rb'(?<![\w./-])([\w-]+\.(?:webp|svg|png|jpg|jpeg|ico|woff2))' + STAMP + rb'(?![\w.-])')
 # Everything index.html loads. index.html itself is never cached, so it is stamped last.
 INDEX_REF = re.compile(rb'((?:src|href)=")([\w-]+\.(?:js|css|webp|svg|png|jpg|jpeg|ico))' + STAMP + rb'"')
 
