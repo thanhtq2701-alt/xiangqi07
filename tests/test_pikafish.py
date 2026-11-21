@@ -396,12 +396,12 @@ class BotLevelTests(FakeEngineCase):
         self.assertEqual(caps, sorted(set(caps), reverse=True), 'each level forgives strictly less')
         self.assertEqual(BOT_LEVELS[7], (None, 1, None, 0))
 
-    def test_owner_pilot_kept_levels_1_to_3_and_softened_level_4(self):
-        # 21/11/2026: levels 2–3 felt right to the owner, level 4 too strong (qualitative, not Elo).
-        self.assertEqual([BOT_LEVELS[n] for n in (1, 2, 3)],
-                         [(2000, 5, 0, 400), (5000, 5, 0, 300), (10000, 4, 150, 250)])
-        self.assertLess(BOT_LEVELS[4][0], 30000)
-        self.assertGreater(BOT_LEVELS[4][3], 150)
+    def test_owner_pilot_softened_every_level_below_full_strength(self):
+        # 21/11/2026, third table: level 3 felt far too strong to the owner (qualitative, not Elo);
+        # the owner chose 2000 / 4000 / 8000 nodes for levels 3–5.
+        self.assertEqual([BOT_LEVELS[n] for n in range(1, 7)],
+                         [(300, 8, 0, 900), (800, 6, 0, 600), (2000, 5, 0, 400),
+                          (4000, 5, 200, 300), (8000, 4, 150, 250), (15000, 4, 120, 200)])
 
     def test_choice_respects_the_loss_cap_and_prefers_better_lines(self):
         lines = [line('a', 100), line('b', 40), line('c', -50), line('d', -400)]
@@ -418,12 +418,17 @@ class BotLevelTests(FakeEngineCase):
         for _ in range(2000):
             counts[choose_level_move(lines, 6, rng)[0]['move']] += 1
         self.assertGreater(counts['a'], counts['b'])
-        self.assertEqual(counts['c'] + counts['d'], 0, 'beyond the 100 cp cap of level 6')
+        self.assertGreater(counts['b'], counts['c'])
+        self.assertEqual(counts['d'], 0, 'beyond the 200 cp cap of level 6')
         uniform = {m: 0 for m in 'abcd'}
         for _ in range(3000):
-            uniform[choose_level_move(lines, 1, rng)[0]['move']] += 1
-        self.assertEqual(uniform['d'], 0, 'level 1 still never loses more than 400 cp')
+            uniform[choose_level_move(lines, 3, rng)[0]['move']] += 1
+        self.assertEqual(uniform['d'], 0, 'level 3 never loses more than 400 cp')
         self.assertTrue(all(800 < uniform[m] < 1200 for m in 'abc'), uniform)
+        loose = {m: 0 for m in 'abcd'}
+        for _ in range(4000):
+            loose[choose_level_move(lines, 1, rng)[0]['move']] += 1
+        self.assertTrue(all(800 < loose[m] < 1200 for m in 'abcd'), 'level 1 may drop 500 cp: ' + str(loose))
 
     def test_mates_are_valued_above_any_score_and_avoid_is_honoured(self):
         lines = [line('m', 2, 'mate'), line('x', 900), line('y', -3, 'mate')]
@@ -457,7 +462,7 @@ class BotLevelTests(FakeEngineCase):
         self.assertEqual(engine.analyze(MATE_IN_ONE, purpose='bot', level=1)['bot']['reason'], 'mate_in_one')
         engine.rng.random = lambda: 0.1          # misses it: the engine is asked instead
         engine.analyze(MATE_IN_ONE, purpose='bot', level=1)
-        self.assertIn('go nodes 2000 movetime 3000', self.commands())
+        self.assertIn('go nodes 300 movetime 3000', self.commands())
 
     def test_levels_use_node_limits_multipv_and_label_the_result(self):
         engine = self.engine()
@@ -465,9 +470,9 @@ class BotLevelTests(FakeEngineCase):
         self.assertFalse(result['fallback'])
         self.assertIn(result['best_move'], {'b0c2', 'h0g2'})
         self.assertEqual({k: result['bot'][k] for k in ('level', 'nodes_limit', 'multipv', 'calibrated')},
-                         {'level': 3, 'nodes_limit': 10000, 'multipv': 4, 'calibrated': False})
-        self.assertIn('go nodes 10000 movetime 3000', self.commands())
-        self.assertIn('setoption name MultiPV value 4', self.commands())
+                         {'level': 3, 'nodes_limit': 2000, 'multipv': 5, 'calibrated': False})
+        self.assertIn('go nodes 2000 movetime 3000', self.commands())
+        self.assertIn('setoption name MultiPV value 5', self.commands())
         top = engine.analyze(START_FEN, purpose='bot', level=7)
         self.assertEqual((top['best_move'], top['bot']['rank']), ('b0c2', 1))
         self.assertIn('go movetime 50', self.commands())

@@ -6,7 +6,8 @@ chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi 
 (mục 10). **J1 (mục 4), J2 (mục 3), J3 (giao diện, mục 5) và công cụ J4
 (`tools/calibrate_bot_levels.py`, mục 7) đã làm ngày 21/11/2026**. Cấp 4–6 đã hạ một lần theo ván thử của chủ dự án
 (mục 3); lần tự đấu đầu tiên (21/11/2026, máy tính của chủ dự án, mục 7) cho thấy cấp
-sau luôn mạnh hơn cấp trước và bảng được giữ nguyên. Chưa hiệu chỉnh theo người thật. Cấp, công tắc tự đổi cấp và mốc đếm ván
+sau luôn mạnh hơn cấp trước và bảng được giữ nguyên. Cùng ngày, chủ dự án thấy cấp 3
+quá mạnh nên cấp 1–6 được hạ sâu lần nữa (bản thứ ba, mục 3); bản này chưa tự đấu. Chưa hiệu chỉnh theo người thật. Cấp, công tắc tự đổi cấp và mốc đếm ván
 lưu trong tùy chọn của thiết bị (`CC.preferences`); ván lưu cấp đã chơi. Nước chiếu bí ngay và nước duy nhất
 do bộ luật quyết định, không gọi engine.
 
@@ -46,15 +47,25 @@ chọn một nước theo luật của cấp.
 
 | Cấp | Nút tìm kiếm `N` | `MultiPV K` | Cách chọn trong K nước | Cho phép kém nước tốt nhất tối đa |
 |---|---|---|---|---|
-| 1 | 2.000 | 5 | ngẫu nhiên đều | 400 cp |
-| 2 | 5.000 | 5 | ngẫu nhiên đều | 300 cp |
-| 3 | 10.000 | 4 | softmax, T = 150 cp | 250 cp |
-| 4 | 15.000 | 4 | softmax, T = 120 cp | 200 cp |
-| 5 | 30.000 | 4 | softmax, T = 100 cp | 150 cp |
-| 6 | 100.000 | 3 | softmax, T = 60 cp | 100 cp |
+| 1 | 300 | 8 | ngẫu nhiên đều | 900 cp |
+| 2 | 800 | 6 | ngẫu nhiên đều | 600 cp |
+| 3 | 2.000 | 5 | ngẫu nhiên đều | 400 cp |
+| 4 | 4.000 | 5 | softmax, T = 200 cp | 300 cp |
+| 5 | 8.000 | 4 | softmax, T = 150 cp | 250 cp |
+| 6 | 15.000 | 4 | softmax, T = 120 cp | 200 cp |
 | 7 | ~600 ms (như bot máy chủ hiện nay) | 1 | luôn nước tốt nhất | 0 |
 
-Đây là **giá trị khởi điểm chưa hiệu chỉnh**; mục 7 mô tả cách đo để sửa.
+Đây là **giá trị chưa hiệu chỉnh**; mục 7 mô tả cách đo để sửa.
+
+Điều chỉnh ngày 21/11/2026 (bản thứ ba, bảng trên): sau thêm nhiều ván trên
+production, chủ dự án thấy cấp 3 quá mạnh. Mọi cấp 1–6 được phép đi kém hơn nhiều
+(ngưỡng 900 → 200 cp) và tìm ít nút hơn; chủ dự án chọn 2.000 / 4.000 / 8.000 nút
+cho cấp 3–5. Cấp 6 mới bằng cấp 4 của bản thứ hai; cấp 7 giữ nguyên, nên khoảng
+cách 6 → 7 lớn. Kết quả tự đấu ở mục 7 đo bản thứ hai, chưa đo bản này.
+
+Bản thứ hai (thay thế bởi bảng trên): 1 = 2.000 nút/MultiPV 5/đều/400 cp;
+2 = 5.000/5/đều/300; 3 = 10.000/4/T 150/250; 4 = 15.000/4/T 120/200;
+5 = 30.000/4/T 100/150; 6 = 100.000/3/T 60/100.
 
 Điều chỉnh ngày 21/11/2026 (bản thứ hai): sau các ván thử đầu tiên trên
 production, chủ dự án thấy cấp 2–3 vừa sức và cấp 4 quá mạnh. Cấp 1–3 giữ nguyên;

@@ -121,7 +121,9 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
   tự chọn được cấp. Chưa hiệu chỉnh theo người thật, không gán Elo; lần tự đấu đầu
   tiên (21/11/2026, `tools/calibrate_bot_levels.py`, BOT_LEVELS.md §7) cho thấy cấp
   sau luôn mạnh hơn cấp trước (63–86 % điểm) và bảng được giữ nguyên. Cấp 4–6 đã hạ một lần (21/11/2026)
-  vì chủ dự án thấy cấp 2–3 vừa sức, cấp 4 quá mạnh; đó là nhận định của một người. Không dùng độ sâu 1/2 của máy
+  vì chủ dự án thấy cấp 2–3 vừa sức, cấp 4 quá mạnh; sau đó cùng ngày cấp 3 vẫn quá
+  mạnh nên cấp 1–6 hạ sâu lần nữa (bản thứ ba: 300 → 15.000 nút, được đi kém 900 → 200
+  cp; chưa tự đấu lại). Đó là nhận định của một người. Không dùng độ sâu 1/2 của máy
   cơ bản để giả bảy cấp. Máy cơ bản (chạy trên thiết bị) luôn tìm 1 nửa nước; ô chọn
   "Mức tìm kiếm cơ bản" đã bỏ (21/11/2026), ván cũ lưu độ sâu 2 vẫn chơi tiếp như cũ.
 - LLM cá nhân hóa/nhận xét lập luận chưa có provider, key hay rubric. Lời giải
