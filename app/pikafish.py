@@ -172,6 +172,10 @@ class EngineConfig:
     quick_ms: int = 600
     deep_ms: int = 2000
     handshake_seconds: float = 2.0
+    # Starting a process loads the ~50 MB NNUE network (Pikafish reads pikafish.nnue from
+    # its folder before answering uci, then EvalFile): 1-6 s measured on a busy laptop
+    # (21/11/2026), so 2 s timed out many restarts. Still capped by the request deadline.
+    startup_seconds: float = 8.0
     request_seconds: float = 10.0
     multipv: int = 3
     threads: int = 1
@@ -301,7 +305,8 @@ class _UciProcess:
             self.reader = threading.Thread(target=self._read, daemon=True, name='co-chill-uci-reader')
             self.reader.start()
             self.send('uci')
-            deadline = min(self.deadline, monotonic() + self.config.handshake_seconds)
+            # Pikafish loads pikafish.nnue from its own folder before answering uci.
+            deadline = min(self.deadline, monotonic() + self.config.startup_seconds)
             while True:
                 line = self.next_line(deadline)
                 if line == 'uciok':
@@ -319,7 +324,7 @@ class _UciProcess:
                     raise EngineUnavailable('network_option_unavailable')
                 self.option('EvalFile', self.config.nnue_path)
             self.send('ucinewgame')
-            self.ready()
+            self.ready(self.config.startup_seconds)
             return self
         except (OSError, EngineUnavailable) as error:
             self.close()
@@ -373,9 +378,9 @@ class _UciProcess:
     def option(self, name, value):
         self.send(f'setoption name {name} value {value}')
 
-    def ready(self):
+    def ready(self, seconds=None):
         self.send('isready')
-        deadline = min(self.deadline, monotonic() + self.config.handshake_seconds)
+        deadline = min(self.deadline, monotonic() + (self.config.handshake_seconds if seconds is None else seconds))
         while self.next_line(deadline) != 'readyok':
             pass
 

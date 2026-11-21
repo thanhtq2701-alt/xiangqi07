@@ -12,6 +12,7 @@ ten fixed openings. A game ends by checkmate or no legal moves (rules), a positi
 repeated three times or the ply limit (both counted as a draw by this tool; they
 are not tournament rulings). A game in which the engine fell back to the basic
 engine is discarded and reported: those moves were not played by the level.
+Each move is asked with the current position only, as the web app does.
 
 For each pair the report gives the higher level's score and whether it falls in
 the target band (65-85 %, docs/BOT_LEVELS.md), plus time per move per level.
@@ -56,7 +57,8 @@ def play_game(engine, red_level, black_level, opening, max_plies):
             return None, 'ply_limit', len(moves), times, False
         level = red_level if pos.turn == 'w' else black_level
         started = time.monotonic()
-        result = engine.analyze(START_FEN, moves=moves, purpose='bot', level=level)
+        # The current position only, exactly as the web app asks for a bot move (no history).
+        result = engine.analyze(pos.fen(), purpose='bot', level=level)
         times[level].append(time.monotonic() - started)
         if result.get('fallback') is not False or result.get('best_move') not in pos.legal_moves():
             return None, 'engine_fallback:' + str(result.get('fallback_reason')), len(moves), times, True

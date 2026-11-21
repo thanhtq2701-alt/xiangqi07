@@ -4,9 +4,9 @@ Trạng thái: viết ngày 20/11/2026 theo quyết định số 6 của chủ d
 (19/11/2026): giới hạn số nút + chọn ngẫu nhiên trong top MultiPV, nhãn "Cấp 1–7,
 chưa hiệu chỉnh", không gán Elo. Chủ dự án trả lời 5 câu hỏi ngày 21/11/2026
 (mục 10). **J1 (mục 4), J2 (mục 3), J3 (giao diện, mục 5) và công cụ J4
-(`tools/calibrate_bot_levels.py`, mục 7) đã làm ngày 21/11/2026**; lần chạy
-hiệu chỉnh thật trên VM thử **chưa làm**, nên các cấp vẫn là giá trị khởi điểm (cấp 4–6
-đã hạ một lần theo ván thử của chủ dự án, mục 3). Cấp, công tắc tự đổi cấp và mốc đếm ván
+(`tools/calibrate_bot_levels.py`, mục 7) đã làm ngày 21/11/2026**. Cấp 4–6 đã hạ một lần theo ván thử của chủ dự án
+(mục 3); lần tự đấu đầu tiên (21/11/2026, máy tính của chủ dự án, mục 7) cho thấy cấp
+sau luôn mạnh hơn cấp trước và bảng được giữ nguyên. Chưa hiệu chỉnh theo người thật. Cấp, công tắc tự đổi cấp và mốc đếm ván
 lưu trong tùy chọn của thiết bị (`CC.preferences`); ván lưu cấp đã chơi. Nước chiếu bí ngay và nước duy nhất
 do bộ luật quyết định, không gọi engine.
 
@@ -83,7 +83,11 @@ làm yếu, không phải lỗi. Không hiển thị điểm này cho người h
 1. **Một tiến trình Pikafish sống lâu** (`Threads 1`, `Hash 32`) thay cho mở
    mới mỗi lần; gửi `ucinewgame` khi đổi ván, `isready` trước mỗi lệnh. Khởi
    động lại khi tiến trình chết, quá hạn hoặc trả dữ liệu lạ. Bộ nhớ dự kiến
-   dưới 150 MB (NNUE + hash), phải đo trên VM.
+   dưới 150 MB (NNUE + hash), phải đo trên VM; đo sau deploy: RAM trống giảm
+   khoảng 210 MB. Mở tiến trình mới phải nạp NNUE (Pikafish tự đọc
+   `pikafish.nnue` trong thư mục của nó trước khi trả lời `uci`): đo được 1–6 giây
+   trên máy bận, nên bước khởi động có hạn riêng 8 giây (`startup_seconds`, vẫn
+   trong hạn của yêu cầu); hạn 2 giây cũ làm hỏng nhiều lần khởi động lại.
 2. **Hàng đợi một luồng xử lý**, ưu tiên: `bot` (người đang chờ trong ván) >
    `review` (người đang xem) > `review-scan` (quét cả ván). Mỗi người tối đa 1
    yêu cầu đang chờ; hàng đợi tối đa 8 yêu cầu.
@@ -159,6 +163,37 @@ chối chạy nếu thiếu `--confirm-test-machine`, vì chiếm trọn một C
    `discarded` là số ván bỏ vì engine lỗi (phải bằng 0 hoặc rất nhỏ). Ván hòa
    do lặp thế hoặc quá 200 nửa nước chỉ là quy ước của công cụ đo, không phải
    phán quyết luật.
+
+Công cụ hỏi mỗi nước bằng thế cờ hiện tại, không gửi lịch sử, đúng như trang web
+(từ 21/11/2026; trước đó gửi lại cả biên bản nên rất chậm ở ván dài).
+
+### Kết quả lần chạy 21/11/2026
+
+Máy tính Windows của chủ dự án (12 luồng; không phải VM production), Pikafish
+2026-09-06 bản `universal` cùng file NNUE như production, 9 tiến trình chạy song
+song trong 43 phút. Bảng cấp là bảng sau lần hạ cấp 4–6 (mục 3).
+
+| Cặp | Ván tính | Cấp cao thắng / hòa / thua | Điểm cấp cao | Thời gian mỗi nước (p50 / p95, cấp cao) |
+|---|---|---|---|---|
+| 1–2 | 98 | 64 / 23 / 11 | 77 % | 0,12 / 0,28 giây |
+| 2–3 | 100 | 76 / 20 / 4 | 86 % | 0,08 / 0,26 giây |
+| 3–4 | 95 | 44 / 32 / 19 | 63 % | 0,15 / 0,36 giây |
+| 4–5 | 92 | 50 / 35 / 7 | 73 % | 0,23 / 0,52 giây |
+| 5–6 | 92 | 51 / 39 / 2 | 77 % | 0,52 / 1,18 giây |
+| 6–7 | 91 | 51 / 40 / 0 | 78 % | 0,67 / 0,79 giây |
+
+- Cấp sau luôn mạnh hơn cấp trước. Bốn cặp nằm trong khoảng mục tiêu 65–85 %;
+  cặp 2–3 (86 %) và 3–4 (63 %) ở sát hai mép. Với khoảng 100 ván, sai số thống kê
+  khoảng ±4–5 %, nên **chưa đủ căn cứ để sửa bảng**; chủ dự án cũng thấy cấp 2–3
+  vừa sức và cấp 4 sau khi hạ là ổn. Bảng giữ nguyên.
+- 34 ván bị bỏ (5,6 %), đều do `timeout`: máy tính ngủ hai lần trong lúc chạy và
+  lỗi hạn khởi động 2 giây ở trên (đã sửa; chạy lại 3.600 nửa nước với 9 tiến
+  trình không còn lỗi nào). Ván bị bỏ không được tính điểm.
+- Cấp 1–6 giới hạn theo số nút nên sức cờ không phụ thuộc tốc độ máy; cấp 7 tính
+  theo thời gian (~600 ms) nên trên VM 2 vCPU có thể yếu hơn một chút so với ở đây.
+  Thời gian mỗi nước đo khi 9 tiến trình chạy cùng lúc, không phải số đo trên VM.
+- Đây là máy tự đấu với máy, **không phải Elo** và không nói gì về sức cờ so với
+  người; nhãn "chưa hiệu chỉnh" vẫn đúng cho tới khi có ván thử của người thật (bước 3).
 
 ## 8. Thay đổi dự kiến (khi được duyệt)
 
