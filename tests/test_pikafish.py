@@ -362,10 +362,17 @@ class BotLevelTests(FakeEngineCase):
 
     def test_level_table_grows_monotonically_and_ends_at_full_strength(self):
         nodes = [BOT_LEVELS[n][0] for n in range(1, 7)]
-        self.assertEqual(nodes, sorted(nodes))
+        self.assertEqual(nodes, sorted(set(nodes)), 'each level searches strictly more than the one below')
         caps = [BOT_LEVELS[n][3] for n in range(1, 8)]
-        self.assertEqual(caps, sorted(caps, reverse=True))
+        self.assertEqual(caps, sorted(set(caps), reverse=True), 'each level forgives strictly less')
         self.assertEqual(BOT_LEVELS[7], (None, 1, None, 0))
+
+    def test_owner_pilot_kept_levels_1_to_3_and_softened_level_4(self):
+        # 21/11/2026: levels 2–3 felt right to the owner, level 4 too strong (qualitative, not Elo).
+        self.assertEqual([BOT_LEVELS[n] for n in (1, 2, 3)],
+                         [(2000, 5, 0, 400), (5000, 5, 0, 300), (10000, 4, 150, 250)])
+        self.assertLess(BOT_LEVELS[4][0], 30000)
+        self.assertGreater(BOT_LEVELS[4][3], 150)
 
     def test_choice_respects_the_loss_cap_and_prefers_better_lines(self):
         lines = [line('a', 100), line('b', 40), line('c', -50), line('d', -400)]
@@ -380,9 +387,9 @@ class BotLevelTests(FakeEngineCase):
         self.assertEqual(set(picks), {'a'}, 'level 7 always plays the best line')
         counts = {m: 0 for m in 'abcd'}
         for _ in range(2000):
-            counts[choose_level_move(lines, 5, rng)[0]['move']] += 1
+            counts[choose_level_move(lines, 6, rng)[0]['move']] += 1
         self.assertGreater(counts['a'], counts['b'])
-        self.assertEqual(counts['c'] + counts['d'], 0, 'beyond the 100 cp cap of level 5')
+        self.assertEqual(counts['c'] + counts['d'], 0, 'beyond the 100 cp cap of level 6')
         uniform = {m: 0 for m in 'abcd'}
         for _ in range(3000):
             uniform[choose_level_move(lines, 1, rng)[0]['move']] += 1
