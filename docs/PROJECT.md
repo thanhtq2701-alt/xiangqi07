@@ -117,8 +117,9 @@ Tóm từ câu trả lời V6 của chủ sản phẩm; không tự đổi câu 
 - 7 cấp bot máy chủ (21/11/2026, xem BOT_LEVELS.md): giới hạn số nút + chọn ngẫu
   nhiên trong các nước tốt nhất; người mới bắt đầu ở cấp 2; mặc định tự đổi cấp
   theo 10 ván gần nhất ở cùng cấp (thắng ≥7 lên, thua ≥6 xuống), tắt được và luôn
-  tự chọn được cấp. Chưa hiệu chỉnh (công cụ tự đấu `tools/calibrate_bot_levels.py`
-  đã có, cần chạy trên VM thử), không gán Elo. Cấp 4–6 đã hạ một lần (21/11/2026)
+  tự chọn được cấp. Chưa hiệu chỉnh theo người thật, không gán Elo; lần tự đấu đầu
+  tiên (21/11/2026, `tools/calibrate_bot_levels.py`, BOT_LEVELS.md §7) cho thấy cấp
+  sau luôn mạnh hơn cấp trước (63–86 % điểm) và bảng được giữ nguyên. Cấp 4–6 đã hạ một lần (21/11/2026)
   vì chủ dự án thấy cấp 2–3 vừa sức, cấp 4 quá mạnh; đó là nhận định của một người. Không dùng độ sâu 1/2 của máy
   cơ bản để giả bảy cấp. Máy cơ bản (chạy trên thiết bị) luôn tìm 1 nửa nước; ô chọn
   "Mức tìm kiếm cơ bản" đã bỏ (21/11/2026), ván cũ lưu độ sâu 2 vẫn chơi tiếp như cũ.
@@ -275,7 +276,8 @@ lệ áp dụng và cách xử lý ván cần kiểm chứng.
 - Ghép cộng đồng theo thời gian, chưa theo trình độ.
 - Cookie phòng khách 24 giờ. Giữ phòng và biên bản có khách 30 ngày (chủ dự án
   chốt 19/11/2026) bằng lệnh `prune-rooms`: xem trước, chỉ xóa khi có
-  `--confirm`; chưa tự chạy cho đến khi người vận hành cài cron. Backup database
+  `--confirm`; trên production, cron chạy hằng ngày lúc 20:45 UTC sau backup 20:15
+  (người vận hành cài 21/11/2026). Backup database
   chạy hằng ngày, giữ 14 ngày (theo chủ dự án), nên bản cũ còn trong backup tới
   khi xoay vòng.
 - Xóa tài khoản hoặc khách: ván đã kết thúc chung với người khác được ẩn danh
@@ -332,7 +334,8 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
   mật khẩu), xóa khách phòng. File xuất không chứa khóa đáp án; có thể nhập lại
   vào tài khoản hoặc trình duyệt đang dùng sau khi xem trước và xác nhận. Có
   lệnh xem trước/xóa tài khoản không hoạt động 365 ngày và lệnh dọn phòng/khách
-  sau 30 ngày (`prune-rooms`), đều chỉ xóa khi người vận hành xác nhận.
+  sau 30 ngày (`prune-rooms`), đều chỉ xóa khi người vận hành xác nhận (với
+  `prune-rooms`, người vận hành đã xác nhận bằng cron hằng ngày).
 - Database và backup là hai nơi khác nhau: yêu cầu xóa phải được áp dụng lại khi
   phục hồi backup; file đã tải xuống không tự bị thu hồi.
 - Dùng ván người chơi làm bộ bài chung cần đồng ý riêng.
@@ -383,11 +386,12 @@ cần bổ sung liên hệ, phạm vi độ tuổi, quy trình yêu cầu xóa v
    trong ứng dụng; thêm bài cho các chương chưa đủ 10.
 6. LLM giải thích dựa trên schema bằng chứng, có rubric và tập kiểm thử.
 7. Bot 7 cấp, hàng đợi và hạn 10 giây: đã làm (21/11/2026, [BOT_LEVELS.md](BOT_LEVELS.md)).
-   Còn lại: chạy hiệu chỉnh tự đấu trên VM thử (BOT_LEVELS.md §7) rồi chỉnh bảng
-   tham số; đo thời gian mỗi nước với Pikafish thật; không gán Elo. Sau deploy
+   Tự đấu lần đầu đã chạy (21/11/2026, BOT_LEVELS.md §7), bảng giữ nguyên. Còn
+   lại: ván thử của người thật cho cấp 1–3; đo thời gian mỗi nước trên chính VM;
+   không gán Elo. Sau deploy
    21/11/2026, RAM trống trên VM giảm khoảng 210 MB khi Pikafish chạy thường trực.
 8. Câu trả lời bằng mũi tên, avatar, luật
-   lặp/đuổi, chat có quản trị; cài cron cho `prune-rooms` trên VM; thử tải nhỏ
+   lặp/đuổi, chat có quản trị; thử tải nhỏ
    và chốt luật trước bất kỳ ranked nào.
 9. PvP: đã giảm tải polling (21/11/2026, §4). Còn lại: đo trên một VM thử
    (không phải production); nếu cần hơn ~200 người cùng lúc thì giảm thời gian

@@ -27,6 +27,7 @@ sys.stdin.reconfigure(encoding='utf-8')
 sys.stdout.reconfigure(encoding='utf-8')
 mode, log_path = sys.argv[1:3]
 position = ''
+loading_network = False
 def emit(line):
     print(line, flush=True)
 for raw in sys.stdin:
@@ -36,13 +37,20 @@ for raw in sys.stdin:
     if line == 'uci':
         if mode == 'handshake_timeout':
             time.sleep(30)
+        if mode == 'slow_start':
+            time.sleep(2.5)  # loading pikafish.nnue from its folder before answering uci
         emit('id name Test UCI only 1.0')
         for name in ['Threads', 'Hash', 'Ponder', 'MultiPV', 'EvalFile']:
             emit('option name ' + name + ' type string default 1')
         emit('uciok')
+    elif line.startswith('setoption name EvalFile '):
+        loading_network = True
     elif line == 'isready':
         if mode == 'ready_timeout':
             time.sleep(30)
+        if mode == 'slow_network' and loading_network:
+            time.sleep(2.5)  # loading the NNUE file takes longer than the 2 s handshake
+        loading_network = False
         emit('readyok')
     elif line.startswith('position '):
         position = line
@@ -355,6 +363,27 @@ ONLY_MOVE = '5k3/9/9/9/4r4/9/9/9/9/3K5 w'          # the Red General has one leg
 
 def line(move, score, kind='cp'):
     return {'move': move, 'score': score, 'score_type': kind}
+
+
+class EngineStartupTests(FakeEngineCase):
+    def test_a_slow_network_load_at_startup_is_not_a_timeout(self):
+        # 21/11/2026: process starts took 1.5-4 s with the real NNUE; 2 s failed about half.
+        network = self.root / 'test.nnue'
+        network.write_bytes(b'not a real network')
+        result = self.engine('slow_network', nnue_path=str(network)).analyze(START_FEN, purpose='bot', level=3)
+        self.assertFalse(result['fallback'], result.get('fallback_reason'))
+
+    def test_a_slow_start_before_uciok_is_not_a_timeout(self):
+        result = self.engine('slow_start').analyze(START_FEN, purpose='bot', level=3)
+        self.assertFalse(result['fallback'], result.get('fallback_reason'))
+
+    def test_startup_still_respects_the_request_deadline(self):
+        network = self.root / 'test.nnue'
+        network.write_bytes(b'not a real network')
+        started = time.monotonic()
+        result = self.engine('slow_network', nnue_path=str(network), request_seconds=1.0).analyze(START_FEN, purpose='bot', level=3)
+        self.assertEqual((result['fallback'], result['fallback_reason']), (True, 'timeout'))
+        self.assertLess(time.monotonic() - started, 2.4)
 
 
 class BotLevelTests(FakeEngineCase):
